@@ -1,6 +1,6 @@
 # Impress
 
- [Impress](https://github.com/tshemsedinov/impress.git) Impressive totalitarian style web application framework for [node.js](http://nodejs.org).
+[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style web application framework for [node.js](http://nodejs.org).
 
 ## Installation
 
