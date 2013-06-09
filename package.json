@@ -1,0 +1,34 @@
+{
+  "name": "impress",
+  "version": "0.0.1",
+  "author": "Timur Shemsedinov <timur.shemsedinov@nodejitsu.com>",
+  "description": "Impressive totalitarian style web application framework",
+  "keywords": [
+    "impress",
+    "framework",
+    "profiler",
+    "application",
+    "web",
+    "site",
+    "api",
+    "router",
+    "statefull",
+    "server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tshemsedinov/impress.git"
+  },
+  "main": "./lib/impress",
+  "dependencies": {
+    "async": "0.2.x",
+    "cluster": "0.7.x",
+    "colors": "0.6.x",
+    "mongodb": "1.2.x",
+	"mkdirp": "0.3.x"
+  },
+  "engines": {
+    "node": ">=0.10.6"
+  },
+  "readmeFilename": "README.md"
+}
