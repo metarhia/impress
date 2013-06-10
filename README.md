@@ -1,3 +1,5 @@
+![impress logo](http://habrastorage.org/storage2/c1e/1b7/190/c1e1b7190c8c6685a34d6584e936c4c9.png)
+
 # Impress
 
 [Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style web application framework for [node.js](http://nodejs.org).
@@ -41,10 +43,33 @@ impress.init(function() {
 
 ## Configuration
 
-1. Create config.js file in project folder based on included exaple
-2. If you want to store persistent sessions in MongoDB, you need to run setup.js
-3. Create server.js based on included exaple
-4. node server.js
+1. Copy project template from examples into your project folder
+2. Edit config.js file in project folder
+3. If you want to store persistent sessions in MongoDB, you need to run setup.js
+4. Run command: node server.js
+
+## Handler examples and file system url mapping
+
+1. Template example
+Location: http://localhost
+Base template: /sites/localhost/html.template
+2. Override included "left.template"
+Location: http://localhost/override
+Overriden template: /sites/localhost/override/left.template
+Base template: /sites/localhost/html.template
+Handler: /sites/localhost/request.js
+3. JSON api method example
+Location: http://localhost/api/examples/methodName.json
+Handler: /sites/localhost/api/examples/methodName.json/get.js
+4. Start anonymous session
+Location: http://localhost/api/auth/anonymousSession.json
+Handler: /sites/localhost/api/auth/anonymousSession.json/get.js
+5. POST request handler
+Location: POST http://localhost/api/auth/regvalidation.json
+Handler: /sites/localhost/api/auth/regvalidation.json/post.js
+6. MongoDB access example
+Location: http://localhost/api/examples/getUsers.json
+Handler: /sites/localhost/api/examples/getUsers.json/get.js
 
 ## License 
 

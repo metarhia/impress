@@ -1,4 +1,4 @@
-require('./lib/impress');
+require('lib/impress');
 impress.openDatabases(function() {
 	impress.prepareDataStructures();
 });
