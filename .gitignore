@@ -16,8 +16,3 @@ logs
 results
 
 npm-debug.log
-
-sites
-server.js
-config.js
-setup.js
