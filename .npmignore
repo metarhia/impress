@@ -1,3 +1,8 @@
 node_modules
 log
 test
+
+sites
+server.js
+config.js
+setup.js

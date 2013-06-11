@@ -1,3 +1,11 @@
+0.0.3 / 2010-06-11
+==================
+
+  * Added template specialization for user groups. Fixed method impress.template().
+    * If there is active session, Impress will search for file templateName.groupName.template
+    * If no group name specified it will search for templateName.everyone.template
+    * If no such file found it will take templateName.template
+    * If no such file found it will look into parent directory
 
 0.0.2 / 2010-06-10
 ==================
