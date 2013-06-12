@@ -6,7 +6,6 @@
 * Add support for file uploads (POST requests)
 * Add static files memory caching
 * Add geoIP lookup
-* Add error page templates for 404 etc.
 * Add access restrictions according to access.js files
 * Add json api example 'auth' for registration, sign in, sign out, recovery password and so on
 * Add examples with web GUI controls

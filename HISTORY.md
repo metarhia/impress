@@ -1,6 +1,13 @@
 0.0.3 / 2010-06-11
 ==================
 
+  * Fixed .end(), .error(), .sendCookie() and impress.process()
+  * Added http error page template /lib/error.template
+  * Collections mimeTypes, httpErrorCodes and customHttpCodes moved from config.js into impress.constants.js
+
+0.0.3 / 2010-06-11
+==================
+
   * Added template specialization for user groups. Fixed method impress.template().
     * If there is active session, Impress will search for file templateName.groupName.template
     * If no group name specified it will search for templateName.everyone.template

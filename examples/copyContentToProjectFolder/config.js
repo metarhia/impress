@@ -106,35 +106,6 @@ module.exports = {
 			host:     "example.com",
 			port:     80
 		}
-	},
-
-	mimeTypes : {
-		html:  "text/html; charset=UTF-8",
-		txt:   "text/plain; charset=UTF-8",
-		json:  "application/json; charset=UTF-8",
-		jsonp: "application/javascript",
-		sse:   "text/event-stream",
-		xml:   "text/xml; charset=UTF-8",
-		kml:   "application/vnd.google-earth.kml+xml",
-		js:    "text/javascript",
-		wav:   "audio/wav",
-		css:   "text/css",
-		mp3:   "audio/mpeg3",
-		csv:   "application/csv",
-		ajax:  "text/html; charset=UTF-8",
-		png:   "image/png",
-		gif:   "image/gif",
-		jpg:   "image/jpeg",
-		jpeg:  "image/jpeg",
-		ogg:   "audio/ogg",
-		ico:   "image/x-icon"
-	},
-
-	// Streaming http codes
-	customHttpCodes: {
-		mp3 : 206,
-		ogg : 206,
-		wav : 206
 	}
 
 }
