@@ -15,7 +15,7 @@ $ npm install impress
   - url routing based on file system
   - serving multiple ports, network interfaces, hosts and protocols
   - caching server-side executable JavaScript in memory
-  - simple server-side templating
+  - simple server-side templating (template personalization for user groups)
   - folder monitoring for server-side executable JavaScript changes and template changes
   - sessions and cookies (memory state or persistent sessions with mongoDB)
   - simple way for json-based web services development

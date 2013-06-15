@@ -1,4 +1,11 @@
-0.0.3 / 2010-06-11
+0.0.5 / 2010-06-15
+==================
+
+  * Fixed callback in impress.openDatabases
+  * Fixed impress.sendCookie
+  * Changed license to dual licensed the MIT or RUMI licenses
+
+0.0.4 / 2010-06-13
 ==================
 
   * Fixed .end(), .error(), .sendCookie() and impress.process()
