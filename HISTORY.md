@@ -1,3 +1,11 @@
+0.0.6 / 2010-06-16
+==================
+
+  * Added support for optional session persistence (see config: session.persist)
+  * Removed vain session deletion when session identifier is empty
+  * Fixed impress.saveSession
+  * Fixed impress.restoreSession
+
 0.0.5 / 2010-06-15
 ==================
 
