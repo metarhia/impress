@@ -1,3 +1,14 @@
+0.0.7 / 2010-06-17
+==================
+
+  * Empty template bug found and fixed
+  * Support for template files with UTF-8 BOM (Impress removes BOM when rendering)
+  * Template engine optimization
+  * Fixed: impress.watchCache
+  * Fixed: impress.include
+  * Fixed: impress.render
+  * Fixed: impress.template
+
 0.0.6 / 2010-06-16
 ==================
 
