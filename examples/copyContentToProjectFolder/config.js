@@ -1,11 +1,22 @@
 module.exports = {
 
+	// Plugins to be loaded using require by Impress
+	plugins: {
+		require: ["db", "db.mongodb"] // add "db.mysql" to use mysql
+	},
+
 	// Databases including persistent session storage and application specific
 	databases: {
 		impress: {
 			url: "mongodb://localhost:27017/impress", // MongoDB connection string
 			collections: ["sessions", "users"]                  // Collection name for store sessions
 		},
+
+		//dbname: {
+		//	url: "mysql://user1:password1@localhost/database1", // MySQL connection example
+		//	tables: []                                          // to be implemented
+		//}
+
 		// Other MongoDB databases for application purposes
 		// Collections to be created automatically for access like this: dbname.collname1.find(...)
 		// see example:

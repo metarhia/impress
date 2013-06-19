@@ -1,3 +1,12 @@
+0.0.8 / 2010-06-20
+==================
+
+  * Added framework optional plugins in config (e.g. db drivers)
+  * Fixed db.js and db.mongodb.js to be compatible with plugins
+  * All db connections and drivers are optional now (edit config.plugins.require)
+  * Added mysql connection driver (wrapper for npm package mysql)
+  * Added example for JSON API with mysql query (other JSON examples restructured into folders)
+
 0.0.7 / 2010-06-17
 ==================
 
