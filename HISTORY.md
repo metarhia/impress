@@ -1,3 +1,11 @@
+0.0.9 / 2010-06-21
+==================
+
+  * Fixed soft config reload when config file changed (now config can be chenged without restarting Impress, named servers parameters, hosts and routes can be changed, but worker number, cluster strategy and server names should not be changed)
+  * Fixed impress.stop, impress.start, impress.restart, impress.init
+  * Added impress.preprocessConfiguration, impress.shutdown
+  * Added nodemailer to send emails from Impress applications
+
 0.0.8 / 2010-06-20
 ==================
 

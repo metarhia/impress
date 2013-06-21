@@ -43,6 +43,27 @@ module.exports = {
 		error:  "error.log",  // filename or false
 	},
 
+	// Mail configuration
+	smtp: {
+		enabled: false, // enable or disable smtp transport
+		robot: "Robot name <robotname@gmail.com>",
+		options: {
+		    service: "Gmail",
+		    auth: {
+		        user: "username@gmail.com",
+		        pass: "password"
+		    }
+		}
+	},
+
+	// Mail configuration
+	smtp: {
+		options: {
+			host: "212.111.203.3"
+		}
+	},
+
+
 	// Cluster configuraton
 	cluster: {
 		name:     "C1",   // Cluster name to identify it in loadbalancing infrastructure

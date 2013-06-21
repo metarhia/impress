@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive totalitarian style web application framework",
   "keywords": [
@@ -26,7 +26,8 @@
     "colors": "0.6.x",
     "mongodb": "1.2.x",
 	"mkdirp": "0.3.x",
-	"mysql": "2.0.x"
+	"mysql": "2.0.x",
+	"nodemailer": "0.4.x"
   },
   "engines": {
     "node": ">=0.10.6"
