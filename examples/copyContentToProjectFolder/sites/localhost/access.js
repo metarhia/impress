@@ -1,7 +1,7 @@
 module.exports = {
-	guests: true, // default true
-	logged: true, // default true
-	http:   true, // default true
-	https:  true, // default true
+	guests: true,
+	logged: true,
+	http:   true,
+	https:  true,
 	groups: ['users']
 }

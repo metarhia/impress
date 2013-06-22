@@ -1,3 +1,15 @@
+0.0.11 / 2010-06-23
+==================
+
+  * Added access modifiers for guests and logged users, http and https protocols: access.js (groups access not implemented yet)
+  * Fixed error "Can't set headers after they are sent." in impress.file
+  * Renamed methods process to processing, file to filehandler
+  * Changed core methods into private: dispatcher, balancer, route, processing, filehandler, execute, static
+  * Changed session methods into private: restoreSession, saveSession
+  * Changed utilities into private: preprocessConfiguration, staticRegExp, watchCache, baseHeader
+  * Fixed bugs in impress.register and impress.sendPassword
+  * Added "home" link in error page template
+
 0.0.10 / 2010-06-22
 ==================
 
