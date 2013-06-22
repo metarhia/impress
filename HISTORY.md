@@ -1,3 +1,11 @@
+0.0.10 / 2010-06-22
+==================
+
+  * Graceful shutdown, signals support: SIGINT, SIGTERM
+  * Fixed config reload
+  * Added application cache manifest content-type
+  * Fixed bug with empty template
+
 0.0.9 / 2010-06-21
 ==================
 

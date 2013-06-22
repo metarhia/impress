@@ -18,5 +18,4 @@
 
 ## Bugs
 
-* Graceful shutdown need
 * Add error messages when starting second copy on same config
