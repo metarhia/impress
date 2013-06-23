@@ -3,5 +3,5 @@ module.exports = {
 	logged: true,
 	http:   true,
 	https:  true,
-	groups: ['users']
+	groups: []
 }

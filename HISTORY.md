@@ -1,3 +1,10 @@
+0.0.12 / 2010-06-24
+==================
+
+  * Fixed impress.redirect (HTTP Location header)
+  * Merged with tblasv fork (added existing checks for config sections)
+  * Add user group access checks in access.js (no group definition or empty array [] for any logged user access)
+
 0.0.11 / 2010-06-23
 ==================
 

@@ -2,7 +2,7 @@
 
 # Impress
 
-[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style web application framework for [node.js](http://nodejs.org).
+[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style web application framework for [node.js](http://nodejs.org). All decisions are made. Ready for applied development.
 
 ## Installation
 
@@ -70,6 +70,11 @@ Handler: /sites/localhost/api/auth/regvalidation.json/post.js
 6. MongoDB access example
 Location: http://localhost/api/examples/getUsers.json
 Handler: /sites/localhost/api/examples/getUsers.json/get.js
+
+## Contributors 
+
+Timur Shemsedinov (marcusaurelius)
+Sergey Andriyaschenko (tblasv)
 
 ## License 
 

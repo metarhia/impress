@@ -2,6 +2,8 @@
 
 ## Improvements
 
+* Load virtual host separated config files from folder
+* Separate database access for different sites/applications
 * Add support for file uploads (POST requests)
 * Add static files memory caching
 * Add geoIP lookup
@@ -11,8 +13,6 @@
 * Add simple cms plugin with mongoDB storage
 * Add mongoDB backup/restore
 * Add SSE event/stream support
-* Hide internal methods in sources
-* Add group access in access.js
 
 ## Bugs
 
