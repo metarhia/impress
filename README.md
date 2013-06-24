@@ -13,11 +13,16 @@ $ npm install impress
 ## Features
 
   - url routing based on file system
-  - serving multiple ports, network interfaces, hosts and protocols
-  - caching server-side executable JavaScript in memory
-  - simple server-side templating (template personalization for user groups)
+  - can hosts multiple sites or applications on one server
+    - serving multiple ports, network interfaces, hosts and protocols
+    - soft configuration changes with zero downtime
+  - simple server-side templating
+  - caching server-side executable JavaScript and templates in memory
   - folder monitoring for server-side executable JavaScript changes and template changes
-  - sessions and cookies (memory state or persistent sessions with mongoDB)
+  - buil-in authentication and user groups
+    - sessions and cookies (memory state or persistent sessions with MongoDB)
+    - template personalization for user groups
+    - access modifiers for each folder in access.js files
   - simple way for json-based web services development
   - serving static files with content type and streaming for media files
   - multiple instantiation strategies:
@@ -28,6 +33,8 @@ $ npm install impress
   - reverse-proxy (routing request to external HTTP server with url-rewriting)
   - flexible configuration in json file
   - simple logging web requests
+  - connection drivers for MongoDB and MySQL
+  - nodemailer as a plugin for email sending
 
 ## Example
 
@@ -73,8 +80,8 @@ Handler: /sites/localhost/api/examples/getUsers.json/get.js
 
 ## Contributors 
 
-Timur Shemsedinov (marcusaurelius)
-Sergey Andriyaschenko (tblasv)
+  - Timur Shemsedinov (marcusaurelius)
+  - Sergey Andriyaschenko (tblasv)
 
 ## License 
 
