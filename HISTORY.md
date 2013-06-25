@@ -1,3 +1,10 @@
+0.0.13 / 2010-06-25
+==================
+
+  * Fixed proxying (function "route" renamed to "proxy" because of naming conflict)
+  * Added memcached connection plugin
+  * Implemented code SSE (Server-Sent Events) event/stream support but need more development
+
 0.0.12 / 2010-06-24
 ==================
 

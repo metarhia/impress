@@ -25,7 +25,7 @@ $ npm install impress
     - access modifiers for each folder in access.js files
   - simple way for json-based web services development
   - serving static files with content type and streaming for media files
-  - multiple instantiation strategies:
+  - multiple cluster instantiation strategies:
     - single instance (one process, no master and workers)
     - instance specialization (multiple processes, one master and different workers for each server)
     - multiple instances (multiple processes, one master and identical workers with no sticky)
