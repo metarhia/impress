@@ -7,6 +7,30 @@ global.onLoad(function() {
 	global.disableCopy();
 	global.disableSelection();
 
+	// -------------------
+
+	//setTimeout(sseConnect, 1000);
+
+	function sseConnect() {
+		var sse = new EventSource("/api/examples/test.sse");
+		var sseListener = function (event) {
+			var div = document.createElement("div");
+			var type = event.type;
+			div.appendChild(document.createTextNode(type + ": " + (type === "message" ? event.data : sse.url)));
+			id("panel-center").appendChild(div);
+		};
+		sse.addEventListener("open", function(e) {
+			console.log("open: sse.readyState="+sse.readyState);
+		}, false);
+		sse.addEventListener("ping", function(e) {
+			console.log("ping: type="+e.type+", data="+e.data);
+		}, false);
+		sse.addEventListener("error", function(e) {
+			//setTimeout(sseConnect, 3000);
+			console.log("error: sse.readyState="+sse.readyState);
+		}, false);
+	}
+
 	// --- Auth Module ---
 
 	$('#hmenu-Signin').click(function() {

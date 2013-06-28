@@ -25,6 +25,7 @@ $ npm install impress
     - access modifiers for each folder in access.js files
   - simple way for json-based web services development
   - serving static files with content type and streaming for media files
+  - implemented SSE (Server-Sent Events) with channels and milticast
   - multiple cluster instantiation strategies:
     - single instance (one process, no master and workers)
     - instance specialization (multiple processes, one master and different workers for each server)

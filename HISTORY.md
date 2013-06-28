@@ -1,3 +1,14 @@
+0.0.14 / 2010-06-28
+==================
+
+  * Implemented impress.users[] array and changed memory structure for sessions
+  * Optimized clister strategies and cluster cookie mechanism
+  * Implemented channels for SSE and milticast
+    * Added handlers like /name.sse/get.js with channel name definition: res.sse.channel = 'TestChannel';
+    * impress.sse.userEvent(userId, eventName, data) send SSE event to all connections of given user
+    * impress.sse.channelEvent(channel, eventName, data) send SSE event to all users in channel
+    * impress.sse.globalEvent(eventName, data) send SSE event to all users in system
+
 0.0.13 / 2010-06-25
 ==================
 

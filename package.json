@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive totalitarian style web application framework. All decisions are made. Ready for applied development.",
   "keywords": [
@@ -12,8 +12,15 @@
     "site",
     "api",
     "router",
-    "statefull",
-    "server"
+    "stateful",
+	"rest",
+	"restful",
+    "server",
+	"sse",
+	"proxy",
+	"cluster",
+	"cache",
+	""
   ],
   "repository": {
     "type": "git",

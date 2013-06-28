@@ -12,9 +12,9 @@
 * Add handlers for .xml and .form folder extensions
 * Add simple cms plugin with mongoDB storage
 * Add mongoDB backup/restore
-* Add SSE event/stream support
 * Add Long-pooling
 * Fork url-handlers as separate process for long processing (to be implemented)
+* Make config parameters optional, prosess, route, hosts, etc.
 
 ## Bugs
 
