@@ -24,7 +24,7 @@ $ npm install impress
     - template personalization for user groups
     - access modifiers for each folder in access.js files
   - simple way for json-based web services development
-  - serving static files with content type and streaming for media files
+  - serving static files with memory caching and filesystem watching
   - implemented SSE (Server-Sent Events) with channels and milticast
   - multiple cluster instantiation strategies:
     - single instance (one process, no master and workers)

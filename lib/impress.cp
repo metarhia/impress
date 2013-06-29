@@ -685,9 +685,8 @@
 
 	// Save session
 	//
-	function saveSession(req, res, callback) { // !!!!!!!!!!!!!!!!!
-		if (req.impress.session && impress.config.session.persist) {
-		//if (req.impress && req.impress.session && impress.config.session.persist) {
+	function saveSession(req, res, callback) {
+		if (impress.config.session.persist) {
 			var session = { sid: req.impress.session, state: impress.sessions[req.impress.session] };
 			if (req.impress.sessionCreated) db.impress.sessions.insert(session, callback);
 			else if (req.impress.sessionModified) db.impress.sessions.update({ sid: req.impress.session }, session, callback);
@@ -750,7 +749,7 @@
 			});
 			req.socket.setTimeout(0);
 			res.write(':connected');
-			//console.dir({userId:userId,users:impress.users});
+			console.dir({userId:userId,users:impress.users});
 			if (!impress.users[userId].sse) impress.users[userId].sse = {};
 			req.impress._id = impress.sse._counter;
 			res.impress._id = impress.sse._counter;
@@ -1116,44 +1115,25 @@
 	function static(req, res) {
 		var filePath = req.impress.hostDir+req.impress.path,
 			setAcceptRanges = true, // whether we should send file size in headers
-			httpCode = impress.customHttpCodes[req.impress.ext] || 200,
-			buffer = impress.cache.static[filePath];
-		if (buffer) {
-			if (buffer != impress.fileNotFound) {
-				var ifSince = req.headers['if-modified-since'];
-				if (ifSince && buffer.stats) {
-					var now = (new Date(buffer.stats.mtime)).getTime();
-					var since = (new Date(ifSince)).getTime();
-					if (since === now) {
-						impress.error(req, res, 304);
-						return;
-					}
-				}
-				res.writeHead(httpCode, baseHeader(req.impress.ext, buffer.stats));
-				res.end(buffer.data);
-			} else impress.error(req, res, 404);
-		} else impress.fs.stat(filePath, function(err, stats) {
+			httpCode = impress.customHttpCodes[req.impress.ext] || 200;
+		impress.fs.stat(filePath, function(err, stats) {
 			if (err) {
 				impress.error(req, res, 404);
-				impress.cache.static[filePath] = impress.fileNotFound;
-				watchCache(filePath);
-			} else {
-				var ifSince = req.headers['if-modified-since'];
-				if (ifSince && stats) {
-					var now = (new Date(stats.mtime)).getTime();
-					var since = (new Date(ifSince)).getTime();
-					if (since === now) {
-						impress.error(req, res, 304);
-						return;
-					}
-				}
-				res.writeHead(httpCode, baseHeader(req.impress.ext, stats));
-				impress.fs.readFile(filePath, function(error, data) {
-					impress.cache.static[filePath] = { data:data, stats:stats };
-					watchCache(filePath);
-					if (!error) res.end(data); else res.end();
-				});
+				return;
 			}
+			var ifSince = req.headers['if-modified-since'];
+			if (ifSince && stats) {
+				var now = (new Date(stats.mtime)).getTime();
+				var since = (new Date(ifSince)).getTime();
+				if (since === now) {
+					impress.error(req, res, 304);
+					return;
+				}
+			}
+			res.writeHead(httpCode, baseHeader(req.impress.ext, stats));
+			var readStream = impress.fs.createReadStream(filePath);
+			readStream.pipe(res);
+			readStream.on('end', function() { res.end(); });
 		});
 	}
 
@@ -1196,56 +1176,39 @@
 					watcher = impress.fs.watch(path, function(event, fileName) {
 						var filePath = (fileName) ? path+fileName : path,
 							ext = impress.path.extname(fileName).replace('.','');
-						impress.fs.stat(filePath, function (err, stats) {
-							if (stats.isFile()) {
-								if (ext == 'js') {
-									// Replace changed js file in cache
-									delete require.cache[require.resolve(filePath)];
-									impress.fs.exists(filePath, function(exists) {
-										if (exists) require(filePath);
-									});
-								} else if (ext == 'template') {
-									// Replace changed template file in cache
-									delete impress.cache.templates[filePath];
-									impress.fs.exists(filePath, function(exists) {
-										if (exists) impress.fs.readFile(filePath, 'utf8', function(err, tpl) {
-											if (!err) {
-												if (!tpl) tpl = impress.fileIsEmpty;
-												else tpl = tpl.replace(/^[\uBBBF\uFEFF]/, '');
-												impress.cache.templates[filePath] = tpl;
-											}
-										});
-									});
-								} else if (impress.cache.static[filePath]) {
-									// Replace static files memory cache
-									impress.fs.exists(filePath, function(exists) {
-										if (exists) impress.fs.readFile(filePath, function(err, data) {
-											if (!err) impress.cache.static[filePath] = { data:data, stats:stats };
-										});
-									});
-								}
-							} else {
-								if (impress.cache.static[filePath]) {
-									for (desired in impress.cache.static) {
-										if (desired.startsWith(filePath)) delete impress.cache.static[desired];
+						if (ext == 'js') {
+							// Replace changed js file in cache
+							delete require.cache[require.resolve(filePath)];
+							impress.fs.exists(filePath, function(exists) {
+								if (exists) require(filePath);
+							});
+						} else if (ext == 'template') {
+							// Replace changed template file in cache
+							delete impress.cache.templates[filePath];
+							impress.fs.exists(filePath, function(exists) {
+								if (exists) impress.fs.readFile(filePath, 'utf8', function(err, tpl) {
+									if (!err) {
+										if (!tpl) tpl = impress.fileIsEmpty;
+										else tpl = tpl.replace(/^[\uBBBF\uFEFF]/, '');
+										impress.cache.templates[filePath] = tpl;
 									}
-								} else {
-									// Clear cache for all changed folders (created or deleted files)
-									for (desired in impress.cache.files) {
-										var used = impress.cache.files[desired];
-										if (desired.startsWith(filePath)) delete impress.cache.files[desired];
-										if (used != impress.fileNotFound) {
-											ext = impress.path.extname(used).replace('.','');
-											if (used.startsWith(filePath)) {
-												if (ext == 'js') delete require.cache[require.resolve(used)];
-												else if (ext == 'template') delete impress.cache.templates[used];
-												delete impress.cache.files[desired];
-											}
-										}
+								});
+							});
+						} else {
+							// Clear cache for all changed folders (created or deleted files)
+							for (desired in impress.cache.files) {
+								var used = impress.cache.files[desired];
+								if (desired.startsWith(filePath)) delete impress.cache.files[desired];
+								if (used != impress.fileNotFound) {
+									ext = impress.path.extname(used).replace('.','');
+									if (used.startsWith(filePath)) {
+										if (ext == 'js') delete require.cache[require.resolve(used)];
+										else if (ext == 'template') delete impress.cache.templates[used];
+										delete impress.cache.files[desired];
 									}
 								}
 							}
-						});
+						}
 					});
 					impress.cache.watchers[path] = watcher;
 				}

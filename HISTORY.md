@@ -1,3 +1,12 @@
+0.0.15 / 2010-06-29
+==================
+
+  * Added static files memory cache
+    * With optimization and performance test method selection
+    * Static filesystem watching and cache refreshing when changed
+    * Supported HTTP 304 Not Modified
+  * Fixed saveSession
+
 0.0.14 / 2010-06-28
 ==================
 

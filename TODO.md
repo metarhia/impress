@@ -15,6 +15,8 @@
 * Add Long-pooling
 * Fork url-handlers as separate process for long processing (to be implemented)
 * Make config parameters optional, prosess, route, hosts, etc.
+* Do not remove session cookie when sign out, just unlink session and associater user account
+* Send SSE multicast to othr processes using IPC
 
 ## Bugs
 
