@@ -116,7 +116,8 @@ module.exports = function(req, res, callback) {
 		res.context.data = { rows:rows, fields:fields };
 		callback();
 	});
-}```
+}
+```
 
 File "html.template": place such file in folder as a main page template. Example:
 ```html
