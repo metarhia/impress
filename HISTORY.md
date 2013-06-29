@@ -1,3 +1,16 @@
+0.0.16 / 2010-06-30
+==================
+
+  * Added gzip compression for static files except images and small files (256 bytes)
+  * Optimized HTTP 304 for gzipped static memory cache
+  * Performance tested and optimized
+  * Fixed HTTP headers generation: Last-Modified, Content-Type, Content-Length
+  * Added method impress.signIn (session creates only if not already exists)
+  * Added method impress.signOut (session remains but it unlinks user)
+  * Changed impress.register, simplified for applied developers
+  * Use req.impress.logged to ckeck if user logged, not req.impress.session, there are session allowed with no logged user
+  * Fixed bug in restoreSession
+
 0.0.15 / 2010-06-29
 ==================
 

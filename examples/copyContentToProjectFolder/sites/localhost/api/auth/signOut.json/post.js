@@ -1,5 +1,4 @@
 ﻿module.exports = function(req, res, callback) {
-	impress.destroySession(req, res);
-	res.context.data = "Ok";
-	callback();
+	res.context.data = { Result: "Ok" };
+	impress.signOut(req, res, callback);
 }

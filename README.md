@@ -24,7 +24,7 @@ $ npm install impress
     - template personalization for user groups
     - access modifiers for each folder in access.js files
   - simple way for json-based web services development
-  - serving static files with memory caching and filesystem watching
+  - serving static files with gzipping, memory caching and filesystem watching
   - implemented SSE (Server-Sent Events) with channels and milticast
   - multiple cluster instantiation strategies:
     - single instance (one process, no master and workers)
@@ -36,18 +36,6 @@ $ npm install impress
   - simple logging web requests
   - connection drivers for MongoDB and MySQL
   - nodemailer as a plugin for email sending
-
-## Example
-
-server.js:
-
-```javascript
-require('impress');
-impress.init(function() {
-	// Place here other initialization code
-	// to be executed after Impress initialization
-});
-```
 
 ## Configuration
 
@@ -78,6 +66,85 @@ Handler: /sites/localhost/api/auth/regvalidation.json/post.js
 6. MongoDB access example
 Location: http://localhost/api/examples/getUsers.json
 Handler: /sites/localhost/api/examples/getUsers.json/get.js
+
+## Example
+
+Following "server.js" is stating file. Run it using command line "node server" for debud or "nohup node server" for production.
+```javascript
+require('impress');
+impress.init(function() {
+	// Place here other initialization code
+	// to be executed after Impress initialization
+});
+```
+
+File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.
+If folder not contains "access.js" it will inherit from parent folder and so on. Example:
+```javascript
+module.exports = {
+	guests: true, // allow requests from not logged users
+	logged: true, // allow requests from logged users
+	http:   true, // allow requests using http protocol
+	https:  true, // allow requests using https protocol (SSL)
+	groups: []    // allow access for user groups listed in array
+	              // or for all if array is empty or no groups field specified
+}
+```
+
+File "request.js": place such file in folder to be executed on each request (GET, POST, PUT, etc.).
+If folder not contains "request.js" it will inherit from parent folder and so on. Example:
+```javascript
+module.exports = function(req, res, callback) {
+	res.context.data = {
+		title: "Page Title",
+		users: [
+			{ name: "vasia", age: 22, emails: ["user1@gmail.com", "user2@gmail.com"] },
+			{ name: "dima", age: 32, emails: ["user3@gmail.com", "user4@gmail.com", "user5@gmail.com"] },
+		],
+		session: JSON.stringify(impress.sessions[req.impress.session])
+	};
+	callback();
+}
+```
+
+File "get.js": place such file in folder to be executed on GET request. For POST request "post.js", and so on.
+If folder not contains "get.js" it will inherit from parent folder and so on. Example:
+```javascript
+module.exports = function(req, res, callback) {
+	db.polltool.query('select * from City', function(err, rows, fields) {
+		if (err) throw err;
+		res.context.data = { rows:rows, fields:fields };
+		callback();
+	});
+}```
+
+File "html.template": place such file in folder as a main page template. Example:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>@title@</title>
+</head>
+<body>
+	<div> Field value: @field@ </div>
+	<div> Include template: @[name]@ - this will include file "./name.template" </div>
+	<div> This will iterate "res.context.data" from "request.js" example above:
+		@[users]@
+			<div>
+				User name: @.name@<br/>
+				User age: @.age@<br/>
+				Email addresses:
+				<ul>
+					@[emails]@
+						<li>@.value@</li>
+					@[/emails]@
+				</ul>
+			</div>
+		@[/users]@
+	</div>
+</body>
+</html>
+```
 
 ## Contributors 
 
