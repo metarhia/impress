@@ -2,7 +2,7 @@
 
 # Impress
 
-[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style web application framework for [node.js](http://nodejs.org). All decisions are made. Ready for applied development.
+[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style multipurpose web application server for [node.js](http://nodejs.org). All decisions are made. Ready for applied development.
 
 ## Installation
 
@@ -12,14 +12,14 @@ $ npm install impress
 
 ## Features
 
-  - url routing based on file system
+  - URL routing based on file system
   - can hosts multiple sites or applications on one server
     - serving multiple ports, network interfaces, hosts and protocols
     - soft configuration changes with zero downtime
   - simple server-side templating
   - caching server-side executable JavaScript and templates in memory
   - folder monitoring for server-side executable JavaScript changes and template changes
-  - buil-in authentication and user groups
+  - built-in authentication and user groups
     - sessions and cookies (memory state or persistent sessions with MongoDB)
     - template personalization for user groups
     - access modifiers for each folder in access.js files
@@ -31,7 +31,7 @@ $ npm install impress
     - instance specialization (multiple processes, one master and different workers for each server)
     - multiple instances (multiple processes, one master and identical workers with no sticky)
     - ip sticky (multiple processes, one master and workers with serving sticky by IP)
-  - reverse-proxy (routing request to external HTTP server with url-rewriting)
+  - reverse-proxy (routing request to external HTTP server with URL-rewriting)
   - flexible configuration in json file
   - simple logging web requests
   - connection drivers for MongoDB and MySQL
@@ -39,10 +39,10 @@ $ npm install impress
 
 ## Configuration
 
-1. Copy project template from examples into your project folder
-2. Edit config.js file in project folder
-3. If you want to store persistent sessions in MongoDB, you need to run setup.js
-4. Run command: node server.js
+1. Copy project template from examples into your project folder (it contains 3 files and folder "sites" where virtual hosts are)
+2. Edit config.js file in project folder (or leave it untouched if you want just to test Impress)
+3. If you want to store persistent sessions in MongoDB you need this DBMS installed and you need to run "node setup.js" before starting Impress
+4. Run Impress using command "node server.js"
 
 ## Handler examples and file system url mapping
 
