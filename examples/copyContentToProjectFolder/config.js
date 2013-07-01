@@ -2,7 +2,13 @@ module.exports = {
 
 	// Plugins to be loaded using require by Impress
 	plugins: {
-		require: ["db", "db.mongodb"] // add "db.mysql" to use mysql
+		require: [
+			"db",
+			"db.mongodb",
+			// "db.mysql",
+			// "impress.mail",
+			// "impress.geoip"
+		]
 	},
 
 	// Databases including persistent session storage and application specific
@@ -44,7 +50,7 @@ module.exports = {
 	},
 
 	// Mail configuration
-	smtp: {
+	mail: {
 		enabled: false, // enable or disable smtp transport
 		robot: "Robot name <robotname@gmail.com>",
 		options: {
@@ -55,14 +61,6 @@ module.exports = {
 		    }
 		}
 	},
-
-	// Mail configuration
-	smtp: {
-		options: {
-			host: "212.111.203.3"
-		}
-	},
-
 
 	// Cluster configuraton
 	cluster: {

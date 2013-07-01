@@ -1,3 +1,10 @@
+0.0.17 / 2010-07-01
+==================
+
+  * Added interprocess SSE routing via IPC (worker sends it to master and master propagates to all other workers)
+  * Added package "geoip-lite" as plugin "impress.geoip": geoData = impress.geoip.lookup(req.connection.remoteAddress);
+  * Package "nodemailer" moved to plugin "impress.mail"
+
 0.0.16 / 2010-06-30
 ==================
 
