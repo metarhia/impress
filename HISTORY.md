@@ -1,3 +1,10 @@
+0.0.18 / 2010-07-02
+==================
+
+  * Fixed routing with regexp simplified syntax (characters auto escaping ".", "?" and "/")
+  * Added simple routing without regexp 
+  * 
+
 0.0.17 / 2010-07-01
 ==================
 
