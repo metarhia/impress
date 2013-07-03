@@ -13,6 +13,7 @@
 * Add Long-pooling
 * Fork url-handlers as separate process for long processing (to be implemented)
 * Make config parameters optional, prosess, route, hosts, etc.
+* Implemented file uploads
 
 ## Bugs
 

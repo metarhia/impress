@@ -5,9 +5,10 @@ module.exports = {
 		require: [
 			"db",
 			"db.mongodb",
-			// "db.mysql",
-			// "impress.mail",
-			// "impress.geoip"
+			"db.memcached",
+			"db.mysql",
+			"impress.mail",
+			"impress.geoip"
 		]
 	},
 
@@ -60,6 +61,10 @@ module.exports = {
 		        pass: "password"
 		    }
 		}
+	},
+
+	uglify: {
+		minify: true
 	},
 
 	// Cluster configuraton
