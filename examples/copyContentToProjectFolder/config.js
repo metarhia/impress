@@ -8,7 +8,8 @@ module.exports = {
 			"db.memcached",
 			"db.mysql",
 			"impress.mail",
-			"impress.geoip"
+			"impress.geoip",
+			"impress.uglify"
 		]
 	},
 
