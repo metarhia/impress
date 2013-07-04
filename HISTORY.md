@@ -1,8 +1,14 @@
+0.0.19 / 2010-07-04
+==================
+
+  * Implemented file uploads: req.impress.files array is accessible in "post.js" handlers
+  * Startup check to prevent running if another copy is already running
+
 0.0.18 / 2010-07-03
 ==================
 
   * Fixed routing with regexp simplified syntax (characters auto escaping ".", "?" and "/")
-  * Added simple routing without regexp 
+  * Added simple routing without regexp
   * Added "uglify-js" to minify static js files (using memory cache to avoid multiple minification)
 
 0.0.17 / 2010-07-01

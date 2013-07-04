@@ -1,5 +1,11 @@
 module.exports = {
 
+	// Startup: pre initializing procedures
+	startup: {
+		config: "local",             // or you can specify URL to load config from
+		check:  "http://localhost/"  // if we can get this page it means that another copy is runing
+	},
+
 	// Plugins to be loaded using require by Impress
 	plugins: {
 		require: [

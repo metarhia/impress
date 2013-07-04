@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive totalitarian style multipurpose web application server. All decisions are made. Ready for applied development.",
   "keywords": [
@@ -45,7 +45,8 @@
 	"memcached": "0.2.x",
 	"nodemailer": "0.4.x",
 	"geoip-lite": "1.0.x",
-	"uglify-js": "2.3.x"
+	"uglify-js": "2.3.x",
+	"multiparty": "2.1.x"
   },
   "engines": {
     "node": ">=0.10.6"

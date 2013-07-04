@@ -271,88 +271,73 @@
 	// Impress initialization
 	//
 	impress.init = function(callback) {
-		if (impress.cluster.isMaster && impress.config.startup && impress.config.startup.check) {
-			console.log('Startup check: '.green+impress.config.startup.check);
-			impress.http.get(impress.config.startup.check, function(res) {
-				if (res.statusCode == 404) startup(callback);
-				else {
-					console.log('Status: server is already started'.green);
-					process.exit(1);
+		if (impress.cluster.isMaster) console.log('Impress starting'.bold.green+', reading configuration'.green);
+
+		// Open log files
+		impress.mkdirp(impress.dir+'/log', function (err) {
+			if (err) console.error(err);
+			else {
+				if (impress.config.log.access) impress.log.fdAccess = impress.fs.createWriteStream(
+					impress.dir+'/log/'+impress.config.log.access, {flags: 'a'}
+				);
+				if (impress.config.log.error) impress.log.fdError  = impress.fs.createWriteStream(
+					impress.dir+'/log/'+impress.config.log.error, {flags: 'a'}
+				);
+			}
+		});
+
+		if(impress.config.databases) impress.openDatabases(callback);
+
+		// Config initialization
+		preprocessConfiguration();
+		impress.fs.watch(configFile, function(event, fileName) {
+			if ((new Date() - configLoadTime)>2000) {
+				configLoadTime = new Date();
+				if (impress.cluster.isMaster) console.log('Reloading server configuration'.green);
+				impress.restart();
+			}
+		});
+
+		// Start workers
+		if (impress.cluster.isMaster) {
+			impress.workers = [];
+			if (impress.config.cluster.strategy == "multiple" || impress.config.cluster.strategy == "sticky") {
+				for (var workerId = 0; workerId < impress.config.cluster.workers; workerId++) {
+					if (isFirstStart) impress.spawn(workerId);
 				}
-			}).on('error', function(e) {
-				startup(callback);
-			});
-		} else startup(callback);
-
-		function startup(callback) {
-			if (impress.cluster.isMaster) console.log('Impress Application Server starting'.bold.green+', reading configuration'.green);
-
-			// Open log files
-			impress.mkdirp(impress.dir+'/log', function (err) {
-				if (err) console.error(err);
-				else {
-					if (impress.config.log.access) impress.log.fdAccess = impress.fs.createWriteStream(
-						impress.dir+'/log/'+impress.config.log.access, {flags: 'a'}
-					);
-					if (impress.config.log.error) impress.log.fdError  = impress.fs.createWriteStream(
-						impress.dir+'/log/'+impress.config.log.error, {flags: 'a'}
-					);
-				}
-			});
-
-			if(impress.config.databases) impress.openDatabases(callback);
-
-			// Config initialization
-			preprocessConfiguration();
-			impress.fs.watch(configFile, function(event, fileName) {
-				if ((new Date() - configLoadTime)>2000) {
-					configLoadTime = new Date();
-					if (impress.cluster.isMaster) console.log('Reloading server configuration'.green);
-					impress.restart();
-				}
-			});
-
-			// Start workers
-			if (impress.cluster.isMaster) {
-				impress.workers = [];
-				if (impress.config.cluster.strategy == "multiple" || impress.config.cluster.strategy == "sticky") {
-					for (var workerId = 0; workerId < impress.config.cluster.workers; workerId++) {
-						if (isFirstStart) impress.spawn(workerId);
-					}
-				}
-				process.on('SIGINT', impress.shutdown);
-				process.on('SIGTERM', impress.shutdown);
-			} else {
-				process.on('message', function(message, socket) {
-					if (message.name == 'impress:socket') {
-						var servers = impress.config.servers;
-						for (var serverName in servers) {
-							var server = servers[serverName];
-							if (server.address == message.address && server.port == message.port) {
-								socket.server = server.listener;
-								server.listener.emit('connection', socket);
-							}
+			}
+			process.on('SIGINT', impress.shutdown);
+			process.on('SIGTERM', impress.shutdown);
+		} else {
+			process.on('message', function(message, socket) {
+				if (message.name == 'impress:socket') {
+					var servers = impress.config.servers;
+					for (var serverName in servers) {
+						var server = servers[serverName];
+						if (server.address == message.address && server.port == message.port) {
+							socket.server = server.listener;
+							server.listener.emit('connection', socket);
 						}
-					} else if (message.name == 'impress:sse') {
-						// Retranslated SSE from master to worker
-						//console.dir({workerRetranslated:{message:message, id:impress.workerId}});
-
-						if (message.user) impress.sse.userEvent(message.user, message.eventName, message.data, true);
-						else if (message.channel) impress.sse.channelEvent(message.channel, message.eventName, message.data, true);
-						else if (message.global) impress.sse.globalEvent(message.eventName, message.data, true);
 					}
-				});
-			}
+				} else if (message.name == 'impress:sse') {
+					// Retranslated SSE from master to worker
+					//console.dir({workerRetranslated:{message:message, id:impress.workerId}});
 
-			impress.start();
+					if (message.user) impress.sse.userEvent(message.user, message.eventName, message.data, true);
+					else if (message.channel) impress.sse.channelEvent(message.channel, message.eventName, message.data, true);
+					else if (message.global) impress.sse.globalEvent(message.eventName, message.data, true);
+				}
+			});
+		}
 
-			// Set garbage collection interval
-			var gcInterval = duration(impress.config.cluster.gc);
-			if (typeof(global.gc) === 'function' && gcInterval > 0) {
-				setInterval(function () {
-					global.gc();
-				}, gcInterval*1000);
-			}
+		impress.start();
+
+		// Set garbage collection interval
+		var gcInterval = duration(impress.config.cluster.gc);
+		if (typeof(global.gc) === 'function' && gcInterval > 0) {
+			setInterval(function () {
+				global.gc();
+			}, gcInterval*1000);
 		}
 	}
 
@@ -379,7 +364,7 @@
 		}
 
 		console.log('Impress shutting down'.bold.green);
-		process.exit(0);
+		process.exit();
 	}
 
 	// Spawn new worker
@@ -472,27 +457,33 @@
 							// Read POST parameters
 							if (req.method === "POST") {
 								var contentType = req.headers['content-type'];
-								if (contentType && contentType.startsWith('multipart')) { // !!!!!!!!!!!!!!
-									var form = new impress.multiparty.Form();
-									form.parse(req, function(err, fields, files) {
-										if (err) {
-											impress.error(req, res, 400);
-											return;
-										} else {
-											req.impress.files = files;
-											restoreSession(req, res);
-										}
-									});
-								} else {
-									req.impress.data = "";
-									req.on("data", function(chunk) {
-										req.impress.data += chunk;
-									});
-									req.on("end", function() {
-										req.post = impress.qs.parse(req.impress.data);
-										restoreSession(req, res);
-									});
-								}
+								req.setEncoding('utf8');
+
+								req.impress.data = "";
+								req.on("data", function(chunk) {
+									req.impress.data += chunk;
+								});
+								req.on("end", function() {
+									if (contentType && contentType.startsWith('multipart')) { // !!!!!!!!!!!!!!
+										//impress.fs.writeFile('./file.dat', req.impress.data, {encoding:'utf8'}, function(err) { // 'binary'
+										//	restoreSession(req, res);
+										//});
+
+										var form = new impress.multiparty.Form();
+										form.parse(req, function(err, fields, files) {
+											if (err) {
+												res.writeHead(400, {'content-type': 'text/plain'});
+												res.end("invalid request: " + err.message);
+												return;
+											}
+											res.writeHead(200, {'content-type': 'text/plain'});
+											res.write('received fields:\n\n '+util.inspect(fields));
+											res.write('\n\n');
+											res.end('received files:\n\n '+util.inspect(files));
+										});
+									} else req.post = impress.qs.parse(req.impress.data);
+									restoreSession(req, res);
+								});
 							} else restoreSession(req, res);
 							return;
 						}
