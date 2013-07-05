@@ -1,3 +1,10 @@
+0.0.20 / 2010-07-05
+==================
+
+  * Fixed config reloading crushes in impress.restart()
+  * Added dummy listener in master process to emulate
+  * Added callback to impress.stop()
+
 0.0.19 / 2010-07-04
 ==================
 
