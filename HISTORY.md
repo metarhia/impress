@@ -1,3 +1,9 @@
+0.0.21 / 2010-07-08
+==================
+
+  * Fixed bug with refresh of static files cache when changed (fixed functions static, watchCache)
+  * Added functions: compress(filePath, stats, httpCode, req, res), fileExt(fileName)
+
 0.0.20 / 2010-07-05
 ==================
 
