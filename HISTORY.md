@@ -1,3 +1,9 @@
+0.0.22 / 2010-07-10
+==================
+
+  * Fixed watchCache on stats error
+  * Fidex security bag in watchCache filesystem monitoring: now have difference in processiing static js files and server-side js updates
+
 0.0.21 / 2010-07-08
 ==================
 
