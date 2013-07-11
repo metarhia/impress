@@ -1,3 +1,10 @@
+0.0.23 / 2010-07-12
+==================
+
+  * Fixed security bag in watchCache filesystem monitoring
+  * Preventing watchCache firing more then one time per file change (fs.watch have a bug, it fires 3-12 times per file change depending on OS and FS)
+  * Changed multi-firing prevention method for config.js reloading in preprocessConfiguration()
+
 0.0.22 / 2010-07-10
 ==================
 
