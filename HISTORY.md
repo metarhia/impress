@@ -1,3 +1,9 @@
+0.0.24 / 2010-07-15
+==================
+
+  * Implemented mysql system metadata utilities: primary, foreign, fields, databases, tables, tableInfo
+  * Implemented mysql data access utilities: query, queryRow, queryValue, queryArray, queryKeyValue, count
+
 0.0.23 / 2010-07-12
 ==================
 
