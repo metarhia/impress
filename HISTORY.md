@@ -1,3 +1,10 @@
+0.0.25 / 2010-07-17
+==================
+
+  * Updated mysql system metadata utilities: primary, foreign, fields, databases, tables, tableInfo
+  * Added mysql system metadata utilities: indexes, processes, globalVariables, globalStatus
+  * Updated mysql data access utilities: queryRow, queryValue, queryArray, queryHash, queryKeyValue, count
+
 0.0.24 / 2010-07-15
 ==================
 
