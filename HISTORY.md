@@ -1,3 +1,9 @@
+0.0.26 / 2010-07-18
+==================
+
+  * Added Introspection methods .constraints(), .users()
+  * Changed Introspection method .tables(), detailed table information added
+
 0.0.25 / 2010-07-17
 ==================
 
