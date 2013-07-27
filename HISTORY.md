@@ -1,3 +1,9 @@
+0.0.27 / 2010-07-28
+==================
+
+  * Added MySQL methods .select(), .insert(), .update(), .upsert(), .delete()
+  * Changed MySQL methods .where()
+
 0.0.26 / 2010-07-18
 ==================
 
