@@ -5,9 +5,10 @@ module.exports = {
 
 	CmsSkin: {
 		caption: "CMS Skins",
+		comment: "CMS Skins",
 		fields: {
-			SkinId:       { caption: "Id",            type: "xid" },
-			SkinName:     { caption: "Skin Name",     type: "str", size: 32, index: { unique: "xtrue" } },
+			SkinId:       { caption: "Id",            type: "id" },
+			SkinName:     { caption: "Skin Name",     type: "str", size: 32, index: { unique: true } },
 			CssVariables: { caption: "CSS Variables", type: "text", subtype: "json" }
 		}
 	},

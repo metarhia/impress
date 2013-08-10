@@ -1,3 +1,9 @@
+0.0.30 / 2010-08-11
+==================
+
+  * Added database schema generator for MySQL
+  * Fixed database schema validator
+
 0.0.29 / 2010-08-10
 ==================
 
