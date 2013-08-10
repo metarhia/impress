@@ -3,21 +3,40 @@
 <head>
 	<title>@title@</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/css/screen.css">
 	<meta name="HandheldFriendly" content="true" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="/favicon.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
 	<link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
-	<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="/favicon.png" />
 
-	<script type="text/javascript" src="/js/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/screen.css" />
+	<link rel="stylesheet" type="text/css" href="/js/scroller/scroller.css" />
+
+	<link rel="stylesheet" type="text/css" href="/js/slickgrid/css/smoothness/jquery-ui-1.10.3.custom.css" />
+	<link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.css" />
+	<link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.theme.css" />
+
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascropt" src="/js/eventsource.js"></script>
 	<script type="text/javascript" src="/js/global.js"></script>
 	<script type="text/javascript" src="/js/mobilization.js"></script>
+	<script type="text/javascript" src="/js/scroller/scroller.js"></script>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="/js/jstree/jquery.jstree.js"></script>
+
+	<script type="text/javascript" src="/js/slickgrid/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<script type="text/javascript" src="/js/slickgrid/lib/jquery.event.drag-2.2.js"></script>
+	<script type="text/javascript" src="/js/slickgrid/slick.core.js"></script>
+	<script type="text/javascript" src="/js/slickgrid/slick.remotemodel.js"></script>
+	<script type="text/javascript" src="/js/slickgrid/slick.dataview.js"></script>
+	<script type="text/javascript" src="/js/slickgrid/slick.grid.js"></script>
+	<script type="text/javascript" src="/js/slickgrid/slick.editors.js"></script>
+
 	<script type="text/javascript" src="/js/init.js"></script>
 </head>
 <body>

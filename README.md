@@ -71,7 +71,7 @@ Handler: /sites/localhost/api/examples/getUsers.json/get.js
 
 ## Example
 
-Following "server.js" is stating file. Run it using command line "node server" for debud or "nohup node server" for production.
+Following "server.js" is stating file. Run it using command line "node server" for debug or "nohup node server" for production.
 ```javascript
 require('impress');
 impress.init(function() {

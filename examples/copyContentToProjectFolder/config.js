@@ -10,9 +10,11 @@ module.exports = {
 	plugins: {
 		require: [
 			"db",
+			"db.schema",
 			"db.mongodb",
 			"db.memcached",
 			"db.mysql",
+			"db.mysql.introspection",
 			"impress.mail",
 			"impress.geoip",
 			"impress.uglify"

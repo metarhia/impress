@@ -12,7 +12,7 @@ html, body {
 	padding: 0;
 	margin: 0;
 	font-family: Tahoma,Arial,sans-serif;
-	font-size: 10pt;
+	font-size: 9pt;
 	overflow: hidden;
 	height: 100%;
 }
@@ -40,8 +40,7 @@ ul,ol {
 	z-index: 10;
 }
 #header {
-	height: 106px;
-	background: url('/images/bk-top.png') repeat-x 0 90px;
+	height: 90px;
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -50,7 +49,7 @@ ul,ol {
 }
 #header-panel {
 	border-bottom: 3px solid #777777;
-	height: 87px;
+	height: 100%;
 	overflow: hidden;
 }
 #logo-panel {
@@ -69,9 +68,7 @@ ul,ol {
 #footer {
 	bottom: 0;
 	font-size: 0.9em;
-	padding-top: 16px;
 	height: 18px;
-	background: url('/images/bk-bottom.png') repeat-x 0 0;
 }
 #footer-panel {
 	height: 16px;
@@ -83,8 +80,8 @@ ul,ol {
 	xborder-top: 1px solid #fff;
 }
 #panel-left {
-	width: 300px;
-	padding: 12px 16px 12px 10px;
+	width: 218px;
+	padding: 8px 4px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: absolute;
@@ -93,10 +90,11 @@ ul,ol {
 	left: 0;
 	bottom: 18px;
 	background: #e3e3e3 url('/images/panel-border.gif') repeat-y right 0;
+	box-shadow: 0 30px 10px -28px #999999 inset, 0 -30px 10px -28px #999999 inset;
 }
 #panel-right {
-	width: 300px;
-	padding: 12px 16px 12px 10px;
+	width: 218px;
+	padding: 8px 4px;
 	position: fixed;
 	top: 90px;
 	right: 0px;
@@ -104,6 +102,7 @@ ul,ol {
 	overflow-x: hidden;
 	overflow-y: auto;
 	background: #e3e3e3 url('/images/panel-border.gif') repeat-y;
+	box-shadow: 0 30px 10px -28px #999999 inset, 0 -30px 10px -28px #999999 inset;
 }
 #panel-center {
 	overflow-x: hidden;
@@ -111,10 +110,11 @@ ul,ol {
 	position: absolute;
 	position: fixed;	
 	top: 90px;
-	left: 326px;
-	right: 326px;
+	left: 226px;
+	right: 226px;
 	bottom: 18px;
-	padding: 12px 18px 0px 10px;
+	padding: 8px;
+	box-shadow: 0 30px 10px -28px #999999 inset, 0 -30px 10px -28px #999999 inset;
 }
 #panel-center a {
 	font-weight: bold;
@@ -717,6 +717,22 @@ br.clear { clear:both; }
 	height: 16px;
 	position: absolute;
 }
-.form .shadow.top { background: url("/images/bk-top.png") repeat-x scroll transparent; }
-.form .shadow.bottom { background: url("/images/bk-bottom.png") repeat-x scroll transparent; }
+.form .shadow {
+	box-shadow: 0 30px 10px -28px #999999 inset, 0 -30px 10px -28px #999999 inset;
+}
 
+
+#dbmiTree {
+	overflow-x: hidden;
+}
+#panel-center .slick-headerrow-column {
+	background: #7abcff;
+	padding: 1px;
+}
+#panel-center .slick-headerrow {
+	background: #7abcff;
+}
+.slick-cell .editor-text {
+	border: none;
+	width: 100%;
+}

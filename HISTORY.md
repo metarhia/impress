@@ -1,3 +1,14 @@
+0.0.29 / 2010-08-10
+==================
+
+  * Improved MySQL introspection
+  * Added first version of universal database explorer for MySQL and MongoDB (under development)
+  * Added first version of JSON-based database schema
+  * Added database schema validator using meta-definition
+  * Added two database schemas examples for "Impress Core" tables and "Impress CMS"
+  * Added first version of database schema compiler for relational DBMS to generate SQL script for MySQL (under development)
+  * Fixed rendering handlers in templating engine for a few content-types
+
 0.0.28 / 2010-07-29
 ==================
 
@@ -33,14 +44,14 @@
 ==================
 
   * Fixed security bag in watchCache filesystem monitoring
-  * Preventing watchCache firing more then one time per file change (fs.watch have a bug, it fires 3-12 times per file change depending on OS and FS)
+  * Preventing watchCache firing more than one time per file change (fs.watch have a bug, it fires 3-12 times per file change depending on OS and FS)
   * Changed multi-firing prevention method for config.js reloading in preprocessConfiguration()
 
 0.0.22 / 2010-07-10
 ==================
 
   * Fixed watchCache on stats error
-  * Fidex security bag in watchCache filesystem monitoring: now have difference in processiing static js files and server-side js updates
+  * Fixed security bag in watchCache filesystem monitoring: now have difference in processing static js files and server-side js updates
 
 0.0.21 / 2010-07-08
 ==================
@@ -101,7 +112,7 @@
 ==================
 
   * Implemented impress.users[] array and changed memory structure for sessions
-  * Optimized clister strategies and cluster cookie mechanism
+  * Optimized cluster strategies and cluster cookie mechanism
   * Implemented channels for SSE and milticast
     * Added handlers like /name.sse/get.js with channel name definition: res.sse.channel = 'TestChannel';
     * impress.sse.userEvent(userId, eventName, data) send SSE event to all connections of given user
@@ -145,7 +156,7 @@
 0.0.9 / 2010-06-21
 ==================
 
-  * Fixed soft config reload when config file changed (now config can be chenged without restarting Impress, named servers parameters, hosts and routes can be changed, but worker number, cluster strategy and server names should not be changed)
+  * Fixed soft config reload when config file changed (now config can be changed without restarting Impress, named servers parameters, hosts and routes can be changed, but worker number, cluster strategy and server names should not be changed)
   * Fixed impress.stop, impress.start, impress.restart, impress.init
   * Added impress.preprocessConfiguration, impress.shutdown
   * Added nodemailer to send emails from Impress applications
