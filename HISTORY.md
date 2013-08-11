@@ -1,3 +1,8 @@
+0.0.31 / 2010-08-12
+==================
+
+  * Added new functionality to database schema generator for MySQL
+
 0.0.30 / 2010-08-11
 ==================
 

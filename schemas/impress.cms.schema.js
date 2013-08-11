@@ -1,11 +1,10 @@
 module.exports = {
 
-	caption: "Impress System Database Schema",
+	caption: "Impress CMS Database Schema",
 	version: 4,
 
 	CmsSkin: {
 		caption: "CMS Skins",
-		comment: "CMS Skins",
 		fields: {
 			SkinId:       { caption: "Id",            type: "id" },
 			SkinName:     { caption: "Skin Name",     type: "str", size: 32, index: { unique: true } },

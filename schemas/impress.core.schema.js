@@ -1,6 +1,6 @@
 module.exports = {
 
-	caption: "Impress CMS Database Schema",
+	caption: "Impress System Core Database Schema",
 	version: 8,
 
 	SystemLanguage: {
@@ -54,8 +54,8 @@ module.exports = {
 	SystemGroup: {
 		caption: "System Groups",
 		fields: {
-			GroupId:   { caption: "Id",       type: "uid" },
-			GroupName: { caption: "Name",     type: "str", size: 64, nullable: false, index: { unique: true } }
+			GroupId:   { caption: "Id",   type: "uid" },
+			GroupName: { caption: "Name", type: "str", size: 64, nullable: false, index: { unique: true } }
 		}
 	},
 
