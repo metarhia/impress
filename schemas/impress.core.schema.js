@@ -76,5 +76,36 @@ module.exports = {
 			PermissionName: { caption: "Name",   type: "str", size: 64, nullable: false, index: { unique: true } }
 		}
 	},
+	
+	SystemGroupPermission: {
+		caption: "System Group Permission",
+		fields: {
+			GroupId: { caption: "Group", type: "uid", master: { dataset: "SystemGroup" }, primary: true },
+			PermissionId:  { caption: "Permission",  type: "uid", master: { dataset: "SystemPermission" }, primary: true }
+		}
+	},
+
+	SystemUserPermission: {
+		caption: "System User Permission",
+		fields: {
+			UserId: { caption: "User", type: "uid", master: { dataset: "SystemUser" }, primary: true },
+			PermissionId:  { caption: "Permission",  type: "uid", master: { dataset: "SystemPermission" }, primary: true }
+		}
+	},
+	
+	SystemLog: {
+		caption: "System Log",
+		fields: {
+			LogId:     { caption: "Id",      type: "id" },
+			ServerId:  { caption: "Server",  type: "id", master: { dataset: "SystemServer", key: "ServerId" } },
+			EventTime: { caption: "Time",    type: "datetime", nullable: false, index: { unique: false } },
+			Status:    { caption: "Status",  type: "char", size: 1, lookup: { dictionary: {
+				"E": "Exception", "D": "Database", "N": "Network", "F": "Filesystem", "M": "Memory", "A": "Access", "I": "Info", "G": "Debug"
+			} } },
+			EventType: { caption: "Type",    type: "str", size: 32, index: { unique: false } },
+			Message:   { caption: "Message", type: "str", size: 128 },
+			EventData: { caption: "Data",    type: "text" }
+		}
+	}
 
 }

@@ -18,12 +18,13 @@
 	*/
 	if (path.length == 3) {
 		if (schema == 'mysql') {
-			driver.select(path[1]+'.'+path[2], '*', filter, function(err, data) {
+			driver.select(path[1]+'.'+path[2], '*', filter, function(err, data, query) {
 				if (!data) data = [];
 				res.context.data = {
 					start: 0,
 					count: data.length,
-					data: data
+					data: data,
+					sql: query.sql
 				};
 				callback();
 			});

@@ -1,3 +1,12 @@
+0.0.32 / 2010-08-18
+==================
+
+  * Added new functionality to DBMI interface (SQL command window, grid editing)
+  * Changed DBMI to be independent from base template
+  * Fixed MySQL methods
+  * Fixed static reqexp generator
+  * Changed core and cms database schemas
+
 0.0.31 / 2010-08-12
 ==================
 

@@ -78,6 +78,7 @@
 		}
 
 		function onSuccess(res) {
+			taCommands.val(res.sql);
 			var from = res.start, to = from + res.data.length;
 			data.length = Math.min(parseInt(res.count),1000);
 			for (var i = 0; i < res.data.length; i++) {
