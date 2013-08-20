@@ -75,7 +75,9 @@
 				client.connect(url, function(err, connection) {
 					connection.collections(function(err, collections) {
 						for (var i = 0; i < collections.length; i++) {
-							items.push({ id:"/"+path[0]+"/"+path[1]+"/"+collections[i].collectionName, name:collections[i].collectionName, type:"collection" });
+							if (collections[i].db.databaseName == path[1]) {
+								items.push({ id:"/"+path[0]+"/"+path[1]+"/"+collections[i].collectionName, name:collections[i].collectionName, type:"collection" });
+							}
 						}
 						serializeData(null, items);
 						callback();

@@ -114,6 +114,31 @@ if (typeof(String.prototype.endsWith)!= 'function') {
 	};
 }
 
+String.prototype.lpad = function(padChar, length) {
+	var padCount = length - this.length;
+	if (padCount<0) padCount = 0;
+    return Array(padCount).join(padChar)+this;
+}
+
+String.prototype.rpad = function(padChar, length) {
+	var padCount = length - this.length;
+	if (padCount<0) padCount = 0;
+    return this+Array(padCount).join(padChar);
+}
+
+String.prototype.between = function(prefix, suffix) {
+	s = this;
+	var i = s.indexOf(prefix);
+	if (i >= 0) s = s.substring(i + prefix.length);
+	else return '';
+	if (suffix) {
+		i = s.indexOf(suffix);
+		if (i >= 0) s = s.substring(0, i);
+		else return '';
+	}
+	return s;
+}
+
 // Add toISOString support if no native support (e.g. "2012-01-01T12:30:15.120Z")
 if (!Date.prototype.toISOString) {
 	Date.prototype.toISOString = function() {

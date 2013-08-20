@@ -29,25 +29,25 @@
 				callback();
 			});
 		} else if (schema == 'mongodb') {
-			driver.createCollection(path[2], function(err, collection) {
-				collection.find({}).toArray(function(err, nodes) {
-					var data = [];
-					for (var i=0; i<nodes.length; ++i) {
-						var node = nodes[i];
-						var nodeId = node._id;
-						delete node['_id'];
-						data.push({id:nodeId,Object:JSON.stringify(node)});
-					}
-					res.context.data = {
-						start: 0,
-						count: data.length,
-						data: data
-					};
-					callback();
+			var client = db.drivers.mongodb.MongoClient,
+				url = 'mongodb://localhost:27017/'+path[1];
+			client.connect(url, function(err, connection) {
+				connection.createCollection(path[2], function(err, collection) {
+					collection.find(filter).toArray(function(err, nodes) {
+						for (var i=0; i<nodes.length; ++i) {
+							var node = nodes[i];
+							for (field in node) if (typeof(node[field]) == 'object') node[field] = JSON.stringify(node[field]);
+						}
+						res.context.data = {
+							start: 0,
+							count: nodes.length,
+							data: nodes
+						};
+						callback();
+					});
 				});
 			});
 		} else callback();
-
 	} else callback();
 
 }

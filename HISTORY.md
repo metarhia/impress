@@ -1,3 +1,12 @@
+0.0.33 / 2010-08-12
+==================
+
+  * Added new functionality to DBMI (grid editing for MySQL and grid view for MongoDB)
+  * Reverted to mongodb driver version 1.3.15, because higher versions "eating" exceptions in all Impress handlers
+  * Added iconv-lite dependency
+  * Fixed MySQL where generator
+  * Synchronized global.js versions for server and client sides
+
 0.0.32 / 2010-08-18
 ==================
 

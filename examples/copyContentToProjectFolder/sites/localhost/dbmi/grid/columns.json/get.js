@@ -20,9 +20,32 @@
 				callback();
 			});
 		} else if (schema == 'mongodb') {
-			res.context.data.push({id: 'id', name: 'id', field: 'id', width: 250, sortable: true, resizable: true });
-			res.context.data.push({id: 'Object', name: 'Object', field: 'Object', width: 600, sortable: false, resizable: true });
-			callback();
+			var client = db.drivers.mongodb.MongoClient,
+				url = 'mongodb://localhost:27017/'+path[1];
+			client.connect(url, function(err, connection) {
+				connection.createCollection(path[2], function(err, collection) {
+					collection.mapReduce(
+						function() { for (var key in this) { emit(key, null); } },
+						function(key, stuff) { return null; },
+						{ out: { replace: 'tempCollection' } },
+						function(err, tempCollection) {
+							if (tempCollection) {
+								tempCollection.find({}).toArray(function(err, fields) {
+									for (var i=0; i<fields.length; ++i) {
+										var fieldName = fields[i]._id;
+											field = {id: fieldName, name: fieldName, field: fieldName, width: 200, sortable: true, resizable: true };
+										res.context.data.push(field);
+									}
+									callback();
+								});
+							} else callback();
+						}
+					);
+				});
+			});
+
+			//callback();
+
 		} else callback();
 	} else callback();
 
