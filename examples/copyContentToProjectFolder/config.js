@@ -15,6 +15,9 @@ module.exports = {
 			"db.memcached",
 			"db.mysql",
 			"db.mysql.introspection",
+			"db.mysql.schema",
+		    "impress.security",
+		    "impress.security.mongodb",
 			"impress.mail",
 			"impress.geoip",
 			"impress.uglify"
@@ -97,7 +100,7 @@ module.exports = {
 			protocol:  "http", // protocol "http" or "https" (need server.key and server.cer files)
 			address:   "127.0.0.1",
 			port:      80,
-			static:    ["/css/*", "/images/*", "/js/*", "/favicon.ico", "/index.html"], // static definitions using wildcard "*"
+			static:    ["*/css/*", "*/images/*", "*/js/*", "/favicon.ico"], // static definitions using wildcard "*"
 			process:   "/sites/[host]",         // execute JavaScript from specified directory
 			hosts:     ["localhost"]            // virtual hosts for this server (see hosts definitions below)
 		},
@@ -116,15 +119,6 @@ module.exports = {
 		//	static:    ["/css/*", "/images/*", "/js/*", "/favicon.ico", "/index.html"],
 		//	process:   "/sites/[host]",
 		//	hosts:     ["localhost", "mezha"]
-		//},
-		//events: {
-		//	protocol:  "http",
-		//	address:   "127.0.0.1",
-		//	port:      83,
-		//	hosts:     "*",
-		//	sse:       true,
-		//	channels:  ["test"],
-		//	heartbeat: 40000    // heartbeat delay
 		//}
 	},
 
@@ -132,7 +126,7 @@ module.exports = {
 	hosts: {
 		localhost: {
 			name:     "*",
-			static:    ["/css/*", "/images/*", "/js/*", "/favicon.*"],
+			static:    ["*/css/*", "*/images/*", "*/js/*", "/favicon.*"],
 			process:  "/sites/localhost"
 		}
 	},

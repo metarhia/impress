@@ -1,7 +1,7 @@
 module.exports = {
 
 	caption: "Impress CMS Database Schema",
-	version: 4,
+	version: 5,
 
 	CmsSkin: {
 		caption: "CMS Skins",

@@ -32,13 +32,11 @@
 	<script type="text/javascript" src="/js/slickgrid/lib/jquery-ui-1.10.3.custom.min.js"></script>
 	<script type="text/javascript" src="/js/slickgrid/lib/jquery.event.drag-2.2.js"></script>
 	<script type="text/javascript" src="/js/slickgrid/slick.core.js"></script>
-	<script type="text/javascript" src="/js/slickgrid/slick.remotemodel.js"></script>
 	<script type="text/javascript" src="/js/slickgrid/slick.dataview.js"></script>
 	<script type="text/javascript" src="/js/slickgrid/slick.grid.js"></script>
 	<script type="text/javascript" src="/js/slickgrid/slick.editors.js"></script>
 
 	<script type="text/javascript" src="/js/init.js"></script>
-	<script type="text/javascript" src="/js/dbmi.js"></script>
 </head>
 <body>
 	<div id="header">
