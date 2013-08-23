@@ -1,7 +1,7 @@
 module.exports = {
 
 	caption: "Impress System Core Database Schema",
-	version: 8,
+	version: 9,
 
 	SystemLanguage: {
 		caption: "Language",
