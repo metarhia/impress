@@ -18,7 +18,18 @@
 				callback();
 			});
 		} else if (schema == 'mongodb') {
-			callback();
+			var client = db.drivers.mongodb.MongoClient,
+				url = 'mongodb://localhost:27017/'+path[1];
+			client.connect(url, function(err, connection) {
+				connection.createCollection(path[2], function(err, collection) {
+					delete req.post.source;
+					collection.update({ _id: req.post._id }, req.post,  function(err) {
+						console.dir({err:err});
+						if (!err) res.context.data = { status: 1 };
+						callback();
+					});
+				});
+			});
 		} else callback();
 	} else callback();
 

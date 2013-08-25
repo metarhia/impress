@@ -1,8 +1,47 @@
 ﻿module.exports = function(req, res, callback) {
 
-	jb.idDelete(jb.oid(req.post.id), function(err, deleted) {
-		res.context.data = { status: deleted ? 1 : 0 };
-		callback();
-	});
+	res.context.data = { status: 0 };
+
+	console.dir({post:req.post});
+
+	var items = [],
+		path = req.post.id.substring(1).split('/'),
+		dbName = path[0],
+		database = impress.config.databases[dbName],
+		schema = database.url.substr(0, database.url.indexOf(':')),
+		driver = db[dbName];
+	if (path.length == 2) {
+		if (schema == 'mysql') {
+			driver.query('DROP DATABASE ??', [path[1]], function(err, result) {
+				if (!err) res.context.data = { status: 1 };
+				callback();
+			});
+		} else if (schema == 'mongodb') {
+			var client = db.drivers.mongodb.MongoClient,
+				url = 'mongodb://localhost:27017/'+path[1];
+			client.connect(url, function(err, connection) {
+				connection.dropDatabase(function(err, result) {
+					if (!err) res.context.data = { status: 1 };
+					callback();
+				});
+			});
+		} else callback();
+	} else if (path.length == 3) {
+		if (schema == 'mysql') {
+			driver.query('DROP TABLE ??', [path[1]+'.'+path[2]], function(err, result) {
+				if (!err) res.context.data = { status: 1 };
+				callback();
+			});
+		} else if (schema == 'mongodb') {
+			var client = db.drivers.mongodb.MongoClient,
+				url = 'mongodb://localhost:27017/'+path[1];
+			client.connect(url, function(err, connection) {
+				connection.dropCollection(path[2], function(err, result) {
+					if (!err) res.context.data = { status: 1 };
+					callback();
+				});
+			});
+		} else callback();
+	}
 
 }

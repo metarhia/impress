@@ -45,7 +45,6 @@
 					}
 					serializeData(null, items);
 					callback();
-					return;
 				});
 			} else if (schema == 'mongodb') {
 				driver.admin().listDatabases(function(err, databases) {
@@ -55,7 +54,6 @@
 					}
 					serializeData(null, items);
 					callback();
-					return;
 				});
 			}
 		} else if (path.length == 2) {
@@ -67,7 +65,6 @@
 					}
 					serializeData(null, items);
 					callback();
-					return;
 				});
 			} else if (schema == 'mongodb') {
 				var client = db.drivers.mongodb.MongoClient,
@@ -81,12 +78,10 @@
 						}
 						serializeData(null, items);
 						callback();
-						return;
 					});
 				});
 			}
 		}
-		//serializeData(null, items);
 	}
 
 }

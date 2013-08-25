@@ -194,159 +194,31 @@ global.onLoad(function() {
 
 	function customMenu(node) {
 		var items = {
-			"create" : {
+			"cdatabase" : {
 				"separator_before"	: false,
 				"separator_after"	: false,
-				"label"				: "Создать",
-				"action"			: false,
-				"icon"				: "/js/jstree/images/create.png",
-				"submenu" : { 
-					"afolder" : {
-						"separator_before"	: false,
-						"separator_after"	: false,
-						"label"				: "Раздел",
-						"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "folder" } }); },
-						"icon"				: "/js/jstree/images/folder.png"
-					},
-					"achapter" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Глава",
-						"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "chapter" } }); },
-						"icon"				: "/js/jstree/images/chapter.png"
-					},
-					"aalternatives" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Варианты",
-						"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "alternatives" } }); },
-						"icon"				: "/js/jstree/images/alternatives.png"
-					},
-					"asteps" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Шаги",
-						"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "steps" } }); },
-						"icon"				: "/js/jstree/images/steps.png"
-					},
-					"aaction" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Пункт",
-						"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "action" } }); },
-						"icon"				: "/js/jstree/images/action.png"
-					},
-					"adocument" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Документ",
-						"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "document" } }); },
-						"icon"				: "/js/jstree/images/document.png"
-					},
-					"ahtml" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "HTML",
-						"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "html" } }); },
-						"icon"				: "/js/jstree/images/html.png"
-					}
-				}
+				"label"				: "Create database",
+				"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "database" } }); },
+				"icon"				: "/js/jstree/images/database.png"
 			},
-			"change" : {
+			"ccollection" : {
 				"separator_before"	: false,
 				"separator_after"	: false,
-				"label"				: "Изменить тип",
-				"action"			: false,
-				"icon"				: "/js/jstree/images/change.png",
-				"submenu" : { 
-					"cfolder" : {
-						"separator_before"	: false,
-						"separator_after"	: false,
-						"label"				: "Раздел",
-						"action"			: function (obj) {
-							this.set_type("folder", obj[0]);
-							changeNodeType(obj[0].id, "folder");
-						},
-						"icon"				: "/js/jstree/images/folder.png"
-					},
-					"cchapter" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Глава",
-						"action"			: function (obj) {
-							this.set_type("chapter", obj[0]);
-							changeNodeType(obj[0].id, "chapter");
-						},
-						"icon"				: "/js/jstree/images/chapter.png"
-					},
-					"calternatives" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Варианты",
-						"action"			: function (obj) {
-							this.set_type("alternatives", obj[0]);
-							changeNodeType(obj[0].id, "alternatives");
-						},
-						"icon"				: "/js/jstree/images/alternatives.png"
-					},
-					"csteps" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Шаги",
-						"action"			: function (obj) {
-							this.set_type("steps", obj[0]);
-							changeNodeType(obj[0].id, "steps");
-						},
-						"icon"				: "/js/jstree/images/steps.png"
-					},
-					"caction" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Пункт",
-						"action"			: function (obj) {
-							this.set_type("action", obj[0]);
-							changeNodeType(obj[0].id, "action");
-						},
-						"icon"				: "/js/jstree/images/action.png"
-					},
-					"cdocument" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Документ",
-						"action"			: function (obj) {
-							this.set_type("document", obj[0]);
-							changeNodeType(obj[0].id, "document");
-						},
-						"icon"				: "/js/jstree/images/document.png"
-					},
-					"chtml" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "HTML",
-						"action"			: function (obj) {
-							this.set_type("html", obj[0]);
-							changeNodeType(obj[0].id, "html");
-						},
-						"icon"				: "/js/jstree/images/html.png"
-					}
-				}
+				"label"				: "Create collection",
+				"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "collection" } }); },
+				"icon"				: "/js/jstree/images/collection.png"
+			},
+			"ctable" : {
+				"separator_before"	: false,
+				"separator_after"	: false,
+				"label"				: "Create table",
+				"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "table" } }); },
+				"icon"				: "/js/jstree/images/table.png"
 			},
 			"rename" : {
 				"separator_before"	: false,
 				"separator_after"	: false,
-				"label"				: "Переименовать",
+				"label"				: "Rename",
 				"action"			: function (obj) { this.rename(obj); },
 				"icon"				: "/js/jstree/images/rename.png"
 			},
@@ -354,66 +226,37 @@ global.onLoad(function() {
 				"separator_before"	: false,
 				"icon"				: false,
 				"separator_after"	: false,
-				"label"				: "Удалить",
+				"label"				: "Delete",
 				"action"			: function (obj) { if (this.is_selected(obj)) this.remove(); else this.remove(obj); },
 				"icon"				: "/js/jstree/images/remove.png"
 			},
-			"ccp" : {
+			"backup" : {
 				"separator_before"	: false,
 				"icon"				: false,
 				"separator_after"	: false,
-				"label"				: "Правка",
-				"action"			: false,
-				"icon"				: "/js/jstree/images/ccp.png",
-				"submenu" : {
-					"cut" : {
-						"separator_before"	: false,
-						"separator_after"	: false,
-						"label"				: "Выредать",
-						"action"			: function (obj) { this.cut(obj); },
-						"icon"				: "/js/jstree/images/cut.png"
-					},
-					"copy" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Копировать",
-						"action"			: function (obj) { this.copy(obj); },
-						"icon"				: "/js/jstree/images/copy.png"
-					},
-					"paste" : {
-						"separator_before"	: false,
-						"icon"				: false,
-						"separator_after"	: false,
-						"label"				: "Вставить",
-						"action"			: function (obj) { this.paste(obj); },
-						"icon"				: "/js/jstree/images/paste.png"
-					}
-				}
+				"label"				: "Backup",
+				"action"			: function (obj) { if (this.is_selected(obj)) backup(obj); },
+				"icon"				: "/js/jstree/images/download.png"
 			}
 		};
-		// Filter create node submenu
 		var nodeType = this._get_type(node),
-			metaType = metadata.types.types[nodeType],
-			itemCount = 0;
-		for (var cmItem in items.create.submenu) {
-			ntItem = cmItem.substring(1);
-			if (!inArray(metaType.valid_children, ntItem)) delete items.create.submenu[cmItem];
-			else itemCount++;
-		}
-		if (itemCount==0) delete items.create;
-		// Filter change node type submenu
-		var parentType = this._get_type(this._get_parent(node)),
-			metaType = metadata.types.types[parentType],
-			itemCount = 0;
-		if (!parentType) delete items.change;
-		else {
-			for (var cmItem in items.change.submenu) {
-				ntItem = cmItem.substring(1);
-				if (!inArray(metaType.valid_children, ntItem) || nodeType==cmItem) delete items.change.submenu[cmItem];
-				else itemCount++;
-			}
-			if (itemCount==0) delete items.change;
+			metaType = metadata.types.types[nodeType];
+		if (nodeType == "provider") {
+			delete items.ccollection;
+			delete items.ctable;
+			delete items.rename;
+			delete items.remove;
+			delete items.backup;
+		} else if (nodeType == "database") {
+			delete items.cdatabase;
+		} else if (nodeType == "collection") {
+			delete items.cdatabase;
+			delete items.ccollection;
+			delete items.ctable;
+		} else if (nodeType == "table") {
+			delete items.cdatabase;
+			delete items.ccollection;
+			delete items.ctable;
 		}
 		return items;
 	};

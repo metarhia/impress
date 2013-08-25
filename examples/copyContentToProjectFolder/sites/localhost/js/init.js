@@ -84,16 +84,33 @@ global.onLoad(function() {
 
 	// --- LEFT MENU ---
 
-	/*
-	$(document).on('click', '#menuAJAX'
-	$(document).on('click', '#menuJSON'
-	$(document).on('click', '#menuTemplate'
-	$(document).on('click', '#menuFileUpload'
-	$(document).on('click', '#menuDownload'
-	$(document).on('click', '#menuGeoIP'
-	$(document).on('click', '#menuSSE'
-	$(document).on('click', '#menuSendMail'
-	*/
+	$(document).on('click', '#menuDBMI', function() {
+		window.location = '/dbmi';
+	});
+
+	$(document).on('click', '#menuAJAX', function() {
+	});
+
+	$(document).on('click', '#menuJSON', function() {
+	});
+
+	$(document).on('click', '#menuTemplate', function() {
+	});
+
+	$(document).on('click', '#menuFileUpload', function() {
+	});
+
+	$(document).on('click', '#menuDownload', function() {
+	});
+
+	$(document).on('click', '#menuGeoIP', function() {
+	});
+
+	$(document).on('click', '#menuSSE', function() {
+	});
+
+	$(document).on('click', '#menuSendMail', function() {
+	});
 
 });
 
