@@ -28,7 +28,8 @@
 		} else callback();
 	} else if (path.length == 3) {
 		if (schema == 'mysql') {
-			driver.query('DROP TABLE ??', [path[1]+'.'+path[2]], function(err, result) {
+			var tableName = path[1]+'.'+path[2];
+			driver.query('DROP TABLE ??', [tableName], function(err, result) {
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});

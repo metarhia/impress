@@ -1,6 +1,18 @@
 global.onLoad(function() {
 
 	taCommands = $("#taCommands");
+	gridToolbar = $("#gridToolbar");
+	logTable = $("#logTable");
+	logScroll = logTable.parent()[0];
+	var grid, loader, gridSource;
+	
+	global.logAdd = function(command, status) {
+		if (command) {
+			status = status || 'executed';
+			logTable.append("<tr><td>"+command+"</td><td>"+status+"</td></tr>");
+			logScroll.scrollTop = logScroll.scrollHeight;
+		}
+	}
 
 	var metadata = {
 		plugins: [
@@ -12,8 +24,8 @@ global.onLoad(function() {
 				// the `data` function is executed in the instance's scope
 				// the parameter is the node being loaded 
 				// (may be -1, 0, or undefined when loading the root nodes)
-				data: function (n) {
-					setTimeout(function () { panelLeft.resize(); }, 2000);
+				data: function(n) {
+					setTimeout(function() { panelLeft.resize(); }, 2000);
 					// the result is fed to the AJAX request `data` option
 					return { id: n.attr ? n.attr("id") : 1 };
 				}
@@ -24,7 +36,7 @@ global.onLoad(function() {
 			// Same as above - the `ajax` config option is actually jQuery's AJAX object
 			ajax: {
 				url: "/dbmi/tree/search.json",
-				data: function (str) { // You get the search string as a parameter
+				data: function(str) { // You get the search string as a parameter
 					return { search_str: str };
 				}
 			}
@@ -122,23 +134,23 @@ global.onLoad(function() {
 
 	function initTree() {
 		$("#dbmiTree")
-		.bind("before.jstree", function (e, data) {
+		.bind("before.jstree", function(e, data) {
 			$("#alog").append(data.func + "<br />");
 		})
 		.jstree(metadata)
-		.bind("create.jstree", function (e, data) {
+		.bind("create.jstree", function(e, data) {
 			$.post("/dbmi/tree/create.json", {
 				id:       data.rslt.parent.attr("id"),
 				position: data.rslt.position,
 				title:    data.rslt.name,
 				type:     data.rslt.obj.attr("rel")
-			}, function (res) {
+			}, function(res) {
 				if (res.status) $(data.rslt.obj).attr("id", res.id);
 				else $.jstree.rollback(data.rlbk);
 			});
 		})
-		.bind("remove.jstree", function (e, data) {
-			data.rslt.obj.each(function () {
+		.bind("remove.jstree", function(e, data) {
+			data.rslt.obj.each(function() {
 				var id = this.id;
 				confirmation('Удалить раздел','Хотите ли Вы удалить раздел?', function() {
 					$.ajax({
@@ -146,22 +158,22 @@ global.onLoad(function() {
 						type:  'POST',
 						url:   "/dbmi/tree/delete.json",
 						data:  { id: id },
-						success: function (res) {
+						success: function(res) {
 							if (!res.status) data.inst.refresh();
 						}
 					});
 				});
 			});
 		})
-		.bind("rename.jstree", function (e, data) {
+		.bind("rename.jstree", function(e, data) {
 			$.post("/dbmi/tree/rename.json", {
 				id:    data.rslt.obj.attr("id"),
 				title: data.rslt.new_name
-			}, function (res) {
+			}, function(res) {
 				if (!res.status) $.jstree.rollback(data.rlbk);
 			});
 		})
-		.bind("move_node.jstree", function (e, data) {
+		.bind("move_node.jstree", function(e, data) {
 			data.rslt.o.each(function(i) {
 				$.ajax({
 					async: false,
@@ -174,7 +186,7 @@ global.onLoad(function() {
 						title:    data.rslt.name,
 						copy:     data.rslt.cy ? 1 : 0
 					},
-					success: function (res) {
+					success: function(res) {
 						if (!res.status) {
 							$.jstree.rollback(data.rlbk);
 						} else {
@@ -187,7 +199,7 @@ global.onLoad(function() {
 				});
 			});
 		})
-		.bind("loaded.jstree", function (event, data) {
+		.bind("loaded.jstree", function(event, data) {
 			$("#dbmiTree").jstree('select_node', 'ul > li:first');
 		});
 	}
@@ -198,28 +210,28 @@ global.onLoad(function() {
 				"separator_before"	: false,
 				"separator_after"	: false,
 				"label"				: "Create database",
-				"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "database" } }); },
+				"action"			: function(obj) { this.create(obj, "last", { "attr": { "rel": "database" } }); },
 				"icon"				: "/js/jstree/images/database.png"
 			},
 			"ccollection" : {
 				"separator_before"	: false,
 				"separator_after"	: false,
 				"label"				: "Create collection",
-				"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "collection" } }); },
+				"action"			: function(obj) { this.create(obj, "last", { "attr": { "rel": "collection" } }); },
 				"icon"				: "/js/jstree/images/collection.png"
 			},
 			"ctable" : {
 				"separator_before"	: false,
 				"separator_after"	: false,
 				"label"				: "Create table",
-				"action"			: function (obj) { this.create(obj, "last", { "attr": { "rel": "table" } }); },
+				"action"			: function(obj) { this.create(obj, "last", { "attr": { "rel": "table" } }); },
 				"icon"				: "/js/jstree/images/table.png"
 			},
 			"rename" : {
 				"separator_before"	: false,
 				"separator_after"	: false,
 				"label"				: "Rename",
-				"action"			: function (obj) { this.rename(obj); },
+				"action"			: function(obj) { this.rename(obj); },
 				"icon"				: "/js/jstree/images/rename.png"
 			},
 			"remove" : {
@@ -227,7 +239,7 @@ global.onLoad(function() {
 				"icon"				: false,
 				"separator_after"	: false,
 				"label"				: "Delete",
-				"action"			: function (obj) { if (this.is_selected(obj)) this.remove(); else this.remove(obj); },
+				"action"			: function(obj) { if (this.is_selected(obj)) this.remove(); else this.remove(obj); },
 				"icon"				: "/js/jstree/images/remove.png"
 			},
 			"backup" : {
@@ -235,7 +247,7 @@ global.onLoad(function() {
 				"icon"				: false,
 				"separator_after"	: false,
 				"label"				: "Backup",
-				"action"			: function (obj) { if (this.is_selected(obj)) backup(obj); },
+				"action"			: function(obj) { if (this.is_selected(obj)) backup(obj); },
 				"icon"				: "/js/jstree/images/download.png"
 			}
 		};
@@ -262,6 +274,7 @@ global.onLoad(function() {
 	};
 
 	function displayData(source) {
+		gridToolbar.hide();
 		if (source) {
 			var surrcePath = source.split('/');
 			if (surrcePath.length-1!=3) return;
@@ -271,9 +284,10 @@ global.onLoad(function() {
 			//	'<div id="commandLine"><textarea style="height:100%; width:100%"></textarea></div>'
 
 			$.get('/dbmi/grid/columns.json?source='+source, function(res) {
-				var grid,
-					loader = new Slick.Data.RemoteModel(),
-					columns = res,
+				loader = new Slick.Data.RemoteModel();
+				gridSource = source;
+				gridToolbar.show();
+				var columns = res,
 					columnFilters = {},
 					options = {
 						editable: true,
@@ -282,7 +296,8 @@ global.onLoad(function() {
 						syncColumnCellResize: true,
 						showHeaderRow: true,
 						headerRowHeight: 23,
-						explicitInitialization: true
+						explicitInitialization: true,
+						autoEdit:false
 					},
 					loadingIndicator = null;
 				loader.setFilter({});
@@ -292,20 +307,20 @@ global.onLoad(function() {
 					columns[i].editor = Slick.Editors.Text;
 				}
 		    
-				$(function () {
+				$(function() {
 					grid = new Slick.Grid("#myGrid", loader.data, columns, options);
 
-					/*loader.data.onRowCountChanged.subscribe(function (e, args) {
+					/*loader.data.onRowCountChanged.subscribe(function(e, args) {
 						grid.updateRowCount();
 						grid.render();
 					});
                 
-					loader.data.onRowsChanged.subscribe(function (e, args) {
+					loader.data.onRowsChanged.subscribe(function(e, args) {
 						grid.invalidateRows(args.rows);
 						grid.render();
 					});*/
 
-					$(grid.getHeaderRow()).delegate(":input", "change keyup", function (e) {
+					$(grid.getHeaderRow()).delegate(":input", "change keyup", function(e) {
 						var columnId = $(this).data("columnId");
 						if (columnId != null) {
 							var val = $.trim($(this).val());
@@ -328,31 +343,66 @@ global.onLoad(function() {
 
 					grid.setColumns(columns);
 	            
-					grid.onViewportChanged.subscribe(function (e, args) {
+					grid.onViewportChanged.subscribe(function(e, args) {
 						var vp = grid.getViewport();
 						loader.ensureData(vp.top, vp.bottom);
 					});
 	            
-					grid.onSort.subscribe(function (e, args) {
+					grid.onSort.subscribe(function(e, args) {
 						loader.setSort(args.sortCol.field, args.sortAsc ? 1 : -1);
 						var vp = grid.getViewport();
 						loader.ensureData(vp.top, vp.bottom);
 					});
-					
+										
 					grid.onCellChange.subscribe(function(e, args) {
 						var fieldName = grid.getColumns()[args.cell].field,
+							fieldValue = args.item[fieldName],
 							primaryKey = grid.getColumns()[0].field,
-							data = { source: source };
-						data[primaryKey] = args.item[primaryKey];
-						data[fieldName] = args.item[fieldName];
-						$.post("/dbmi/grid/save.json", data, function (res) {
-							taCommands.val(res.sql);
+							pkValue = args.item[primaryKey];
+						if (pkValue) {
+							var row = {};
+							row[primaryKey] = pkValue;
+							row[fieldName] = fieldValue;
+							saveGridRow(row);
+						} else {
+							row = args.item;
+							insertGridRow(row);
+						}
+					});
+					
+					function saveGridRow(row) {
+						$.post("/dbmi/grid/save.json", { source: source, data: JSON.stringify(row) }, function(res) {
+							//taCommands.val(res.sql);
+							logAdd(res.sql, "done");
 							//if (res.status) $(data.rslt.obj).attr("id", res.id);
 							//else $.jstree.rollback(data.rlbk);
 						});
+					}
+					
+					grid.onAddNewRow.subscribe(function(e, args) {
+						var row = args.item;
+						grid.invalidateRow(loader.data.length);
+						row.index = loader.data.length;
+						loader.data[loader.data.length] = row;
+						loader.data.length++;
+						grid.updateRowCount();
+						grid.render();
+						insertGridRow(row);
 					});
+					
+					function insertGridRow(row) {
+						$.post("/dbmi/grid/insert.json", { source: source, data: JSON.stringify(row) }, function(res) {
+							if (res.data) {
+								res.data.index = row.index;
+								loader.data[row.index] = res.data;
+								grid.invalidateRow(row.index);
+								grid.render();
+							}
+							logAdd(res.sql, "done");
+						});
+					}
 	            
-					loader.onDataLoading.subscribe(function () {
+					loader.onDataLoading.subscribe(function() {
 						if (!loadingIndicator) {
 							loadingIndicator = $("<span class='loading-indicator'><label>Buffering...</label></span>").appendTo(document.body);
 							var $g = $("#myGrid");
@@ -364,13 +414,13 @@ global.onLoad(function() {
 						loadingIndicator.show();
 					});
 	            
-					loader.onDataLoaded.subscribe(function (e, args) {
+					loader.onDataLoaded.subscribe(function(e, args) {
 						for (var i = args.from; i <= args.to; i++) grid.invalidateRow(i);
 						grid.updateRowCount();
 						grid.render();
 						loadingIndicator.fadeOut();
 					});
-	            
+						            
 					//loader.setSort("create_ts", -1);
 					//grid.setSortColumn("date", false);
 	            
@@ -382,5 +432,42 @@ global.onLoad(function() {
 			});
 		}
 	};
+	
+	$(document).on('click', "#gridEdit", function(event) {
+	});
+	
+	$(document).on('click', "#gridInsert", function(event) {
+	});
+	
+	$(document).on('click', "#gridClone", function(event) {
+	});
+	
+	$(document).on('click', "#gridDelete", function(event) {
+		var currentRow = grid.getActiveCell().row;
+		if (loader.data[currentRow]) {
+			var primaryKey = grid.getColumns()[0].field,
+				pkValue = loader.data[currentRow][primaryKey];
+			$.post("/dbmi/grid/delete.json", { source: gridSource, pkName: primaryKey, pkValue: pkValue }, function(res) {
+				if (res.status) {
+					delete loader.data[currentRow];
+					var rowIndex = currentRow;
+					loader.data.length--;
+					while (rowIndex<loader.data.length) {
+						var row = loader.data[rowIndex+1];
+						row.index = rowIndex;
+						loader.data[rowIndex] = row;
+						grid.invalidateRow(rowIndex);
+						rowIndex++;
+					}
+					delete loader.data[rowIndex];
+					grid.invalidateRow(rowIndex);
+					grid.updateRowCount();
+					grid.render();
+					grid.scrollRowIntoView(currentRow-1);
+					logAdd(res.sql, "done");
+				}
+			});
+		}
+	}); 	
 
 });

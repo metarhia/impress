@@ -17,7 +17,7 @@ global.onLoad(function() {
 
 	function sseConnect() {
 		var sse = new EventSource("/api/examples/test.sse");
-		var sseListener = function (event) {
+		var sseListener = function(event) {
 			var div = document.createElement("div");
 			var type = event.type;
 			div.appendChild(document.createTextNode(type + ": " + (type === "message" ? event.data : sse.url)));

@@ -8,20 +8,43 @@
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName],
 		data = JSON.parse(req.post.data);
+	console.dir(req.post);
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			driver.update(tableName, data, function(err, affectedRows, query) {
+			driver.insert(tableName, data, function(err, recordId, query) {
 				if (!err) {
 					var sql = query.sql.replace(/`/g, '').replace(path[1]+'.', '');
 					res.context.data = {
-						status: affectedRows>0 ? 1 : 0,
+						status: recordId>0 ? 1 : 0,
 						sql: sql
 					};
-				}
-				callback();
+					if (recordId) {
+						driver.fields(tableName, function(err, fields) {
+							if (!err) {
+								var uniqueKey = null;
+								for (var i in fields) {
+									var field = fields[i],
+										fieldName = field['Field'];
+									if (!uniqueKey && (field['Key']=='PRI' || field['Key']=='UNI')) uniqueKey = fieldName;
+								}
+								if (uniqueKey) {
+									var where = {};
+									where[uniqueKey] = recordId;
+									where = driver.where(where);
+									driver.queryRow('SELECT * FROM ?? WHERE '+where, [tableName], function(err, data) {
+										if (!data) data = [];
+										res.context.data.data = data;
+										callback();
+									});
+								} else callback();
+							} else callback();
+						});
+					} else callback();
+				} else callback();
 			});
 		} else if (schema == 'mongodb') {
+			/*
 			var client = db.drivers.mongodb.MongoClient,
 				url = 'mongodb://localhost:27017/'+path[1];
 			client.connect(url, function(err, connection) {
@@ -33,8 +56,9 @@
 					});
 				});
 			});
+			*/
+			callback();
 		} else callback();
 	} else callback();
-
 
 }

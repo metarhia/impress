@@ -18,14 +18,18 @@
 	*/
 	if (path.length == 3) {
 		if (schema == 'mysql') {
-			driver.select(path[1]+'.'+path[2], '*', filter, function(err, data, query) {
-				if (!data) data = [];
-				res.context.data = {
-					start: 0,
-					count: data.length,
-					data: data,
-					sql: query.sql
-				};
+			var tableName = path[1]+'.'+path[2];
+			driver.select(tableName, '*', filter, function(err, data, query) {
+				if (!err) {
+					var sql = query.sql.replace(/`/g, '').replace(path[1]+'.', '');
+					if (!data) data = [];
+					res.context.data = {
+						start: 0,
+						count: data.length,
+						data: data,
+						sql: sql
+					};
+				}
 				callback();
 			});
 		} else if (schema == 'mongodb') {

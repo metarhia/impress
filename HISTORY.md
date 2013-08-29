@@ -1,3 +1,9 @@
+0.0.36 / 2013-08-29
+==================
+
+  * Fixed security issue (http headers parsing)
+  * Added new functionality to DBMI
+
 0.0.35 / 2013-08-26
 ==================
 

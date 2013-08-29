@@ -39,7 +39,8 @@
 		} else callback();
 	} else if (path.length == 3) {
 		if (schema == 'mysql') { // [OK]
-			driver.query('RENAME TABLE ?? TO ??', [path[1]+'.'+path[2], path[1]+'.'+req.post.title], function(err, result) {
+			var tableName = path[1]+'.'+path[2];
+			driver.query('RENAME TABLE ?? TO ??', [tableName, path[1]+'.'+req.post.title], function(err, result) {
 				console.dir({err:err});
 				if (!err) res.context.data = { status: 1 };
 				callback();

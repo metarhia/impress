@@ -1,4 +1,4 @@
-(function ($) {
+(function($) {
 
 	function RemoteModel() {
 		var PAGESIZE = 50;
@@ -51,7 +51,7 @@
 
 			if (h_request != null) clearTimeout(h_request);
 
-			h_request = setTimeout(function () {
+			h_request = setTimeout(function() {
 				for (var i = fromPage; i <= toPage; i++) data[i * PAGESIZE] = null; // null indicates a 'requested but not available yet'
 				onDataLoading.notify({from: from, to: to});
 
@@ -78,7 +78,7 @@
 		}
 
 		function onSuccess(res) {
-			taCommands.val(res.sql);
+			logAdd(res.sql, "");
 			var from = res.start, to = from + res.data.length;
 			data.length = Math.min(parseInt(res.count),1000);
 			for (var i = 0; i < res.data.length; i++) {

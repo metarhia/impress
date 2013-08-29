@@ -102,9 +102,9 @@ ul,ol {
 	box-shadow: none;
 }
 #footer .tabpanel {
-	padding: 2px 4px;
+	padding: 4px;
 	background: #ffffff;
-	height: 106px;
+	height: 102px;
 }
 #footer textarea {
 	width: 100%;
@@ -112,11 +112,46 @@ ul,ol {
 	resize: none;
 	height: 100%;
 	background: inherit;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 1.2em;
+	overflow: hidden;
 }
 #footer .buttonpanel {
 	position: absolute;
 	bottom: 20px;
 	right: 6px;
+}
+#footer .tabpanel > div {
+	height: 100%;
+	display: none;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+#footer .tabpanel > div.active {
+	display: block;
+}
+#footer .tabpanel table {
+	width: 100%;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 1.2em;
+	border-spacing:0;
+	border-collapse:collapse;
+}
+#footer .tabpanel table tr {
+
+}
+#footer .tabpanel table td {
+
+}
+#footer .tabpanel table tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+#footer .tabpanel table tr:nth-child(even) {
+	background-color: #f3f3f3;
+}
+#footer .tabpanel table tr.selected {
+	background-color: #0079a1;
+	color: #ffffff;
 }
 #footer-panel {
 	height: 16px;
@@ -786,4 +821,7 @@ br.clear { clear:both; }
 .slick-cell .editor-text {
 	border: none;
 	width: 100%;
+}
+#gridToolbar {
+	display: none;
 }

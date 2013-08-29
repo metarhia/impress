@@ -30,7 +30,7 @@ $.extend({
 		}
 	},
 
-	fixCookie: function (SessionCookieName) {
+	fixCookie: function(SessionCookieName) {
 		if (localStorage && $.platform.iOS) {
 			var CookieSession = document.cookie.match(new RegExp(SessionCookieName+"=[^;]+")),
 				LocalSession = localStorage.getItem(SessionCookieName);

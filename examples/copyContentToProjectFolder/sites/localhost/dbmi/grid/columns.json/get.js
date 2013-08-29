@@ -9,7 +9,8 @@
 		driver = db[dbName];
 	if (path.length == 3) {
 		if (schema == 'mysql') {
-			driver.fields(path[1]+'.'+path[2], function(err, fields) {
+			var tableName = path[1]+'.'+path[2];
+			driver.fields(tableName, function(err, fields) {
 				for (var fieldName in fields) {
 					var field = fields[fieldName],
 						width = field['Type'].match(/\d+/);
