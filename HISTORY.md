@@ -1,3 +1,8 @@
+0.0.37 / 2013-08-31
+==================
+
+  * Fixed session restoring in mongodb security provider
+
 0.0.36 / 2013-08-29
 ==================
 
