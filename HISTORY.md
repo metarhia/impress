@@ -1,3 +1,9 @@
+0.0.38 / 2013-09-02
+==================
+
+  * Fixed http request dispatcher (preventing socket hanging when request not match routing or virtual host rules)
+  * Impress examples for developers
+
 0.0.37 / 2013-08-31
 ==================
 

@@ -84,17 +84,33 @@ global.onLoad(function() {
 
 	// --- LEFT MENU ---
 
-	$(document).on('click', '#menuDBMI', function() {
-		window.location = '/dbmi';
-	});
-
 	$(document).on('click', '#menuAJAX', function() {
+		var parameterName = 'paramaterValue';
+		panelCenter.load('/examples/ajaxTest.ajax?parameterName='+parameterName);
 	});
 
-	$(document).on('click', '#menuJSON', function() {
+	$(document).on('click', '#menuGetJSON', function() {
+		var parameterName = 'paramaterValue';
+		panelCenter.empty().html('<div class="progress"></div>');
+		$.get('/examples/jsonGet.json?parameterName='+parameterName, function(res) {
+			panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
+		});
+	});
+
+	$(document).on('click', '#menuPostJSON', function() {
+		var parameterName = 'paramaterValue';
+		panelCenter.empty().html('<div class="progress"></div>');
+		$.post('/examples/jsonPost.json', { parameterName: parameterName }, function(res) {
+			panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
+		});
 	});
 
 	$(document).on('click', '#menuTemplate', function() {
+		window.location = '/examples/override';
+	});
+
+	$(document).on('click', '#menuDBMI', function() {
+		window.location = '/dbmi';
 	});
 
 	$(document).on('click', '#menuFileUpload', function() {

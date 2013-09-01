@@ -3,7 +3,7 @@ module.exports = {
 	// Startup: pre initializing procedures
 	startup: {
 		config: "local",             // or you can specify URL to load config from
-		check:  "http://localhost/"  // if we can get this page it means that another copy is runing
+		check:  "http://127.0.0.1/"  // if we can get this page it means that another copy is runing
 	},
 
 	// Plugins to be loaded using require by Impress
@@ -125,7 +125,7 @@ module.exports = {
 	// Virtual hosts
 	hosts: {
 		localhost: {
-			name:     "*",
+			name:     "127.0.0.1",
 			static:    ["*/css/*", "*/images/*", "*/js/*", "/favicon.*"],
 			process:  "/sites/localhost"
 		}
