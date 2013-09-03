@@ -2,8 +2,6 @@
 
 	res.context.data = { status: 0 };
 
-	console.dir({post:req.post});
-
 	var items = [],
 		path = req.post.id.substring(1).split('/'),
 		dbName = path[0],

@@ -72,8 +72,8 @@
 		<div class="tabbar">
 			<ul>
 				<li class="active">Logs</li>
-				<li>Command</li>
-				<li>Script</li>
+				<!--li>Command</li>
+				<li>Script</li-->
 			</ul>
 		</div>
 		<div class="tabpanel">

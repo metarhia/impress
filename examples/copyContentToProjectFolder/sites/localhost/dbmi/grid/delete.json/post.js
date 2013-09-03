@@ -2,8 +2,6 @@
 
 	res.context.data = { status: 0 };
 
-	console.dir({post:req.post});
-
 	var items = [],
 		path = req.post.source.substring(1).split('/'),
 		dbName = path[0],
@@ -24,9 +22,11 @@
 			var client = db.drivers.mongodb.MongoClient,
 				url = 'mongodb://localhost:27017/'+path[1];
 			client.connect(url, function(err, connection) {
-				connection.dropCollection(path[2], function(err, result) {
-					if (!err) res.context.data = { status: 1 };
-					callback();
+				connection.createCollection(path[2], function(err, collection) {
+					collection.remove({ _id: db.mongodb.oid(req.post.pkValue) }, function(err, collection) {
+						if (!err) res.context.data = { status: 1 };
+						callback();
+					});
 				});
 			});
 		} else callback();

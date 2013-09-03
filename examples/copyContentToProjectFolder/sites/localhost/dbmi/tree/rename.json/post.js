@@ -2,8 +2,6 @@
 
 	res.context.data = { status: 0 };
 
-	console.dir({post:req.post});
-
 	var items = [],
 		path = req.post.id.substring(1).split('/'),
 		dbName = path[0],
@@ -21,7 +19,6 @@
 			// DROP DATABASE old_database
 
 			driver.query('RENAME DATABASE ?? TO ??', [path[1], req.post.title], function(err, result) {
-				console.dir({err:err});
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});
@@ -29,7 +26,6 @@
 			var client = db.drivers.mongodb.MongoClient,
 				url = 'mongodb://localhost:27017/'+path[1];
 			client.connect(url, function(err, connection) {
-				console.dir({err:err});
 				callback();
 				//connection.dropDatabase(function(err, result) {
 				//	if (!err) res.context.data = { status: 1 };
@@ -41,7 +37,6 @@
 		if (schema == 'mysql') { // [OK]
 			var tableName = path[1]+'.'+path[2];
 			driver.query('RENAME TABLE ?? TO ??', [tableName, path[1]+'.'+req.post.title], function(err, result) {
-				console.dir({err:err});
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});
@@ -50,7 +45,6 @@
 				url = 'mongodb://localhost:27017/'+path[1];
 			client.connect(url, function(err, connection) {
 				connection.renameCollection(path[2], req.post.title, function(err, result) {
-					console.dir({err:err});
 					if (!err) res.context.data = { status: 1 };
 					callback();
 				});

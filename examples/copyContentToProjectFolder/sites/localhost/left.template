@@ -2,7 +2,7 @@
 <a class="button silver cancel" id="menuGetJSON"><span class="icon run"></span>GET JSON handler</a>
 <a class="button silver cancel" id="menuPostJSON"><span class="icon run"></span>POST JSON handler</a>
 <a class="button silver cancel" id="menuTemplate"><span class="icon file source"></span>Templating</a>
-<a class="button silver cancel" id="menuDBMI"><span class="icon db"></span>DB Metainterface</a>
+<a class="button silver cancel" id="menuDBMI"><span class="icon db"></span>DB Management Interface</a>
 <a class="button silver cancel disabled" id="menuFileUpload"><span class="icon load up"></span>Upload files</a>
 <a class="button silver cancel disabled" id="menuDownload"><span class="icon load down"></span>Download files</a>
 <a class="button silver cancel disabled" id="menuGeoIP"><span class="icon globe"></span>Geo IP</a>

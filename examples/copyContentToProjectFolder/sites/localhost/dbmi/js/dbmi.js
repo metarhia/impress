@@ -8,7 +8,7 @@ global.onLoad(function() {
 	
 	global.logAdd = function(command, status) {
 		if (command) {
-			status = status || 'executed';
+			status = status || '';
 			logTable.append("<tr><td>"+command+"</td><td>"+status+"</td></tr>");
 			logScroll.scrollTop = logScroll.scrollHeight;
 		}
@@ -152,7 +152,7 @@ global.onLoad(function() {
 		.bind("remove.jstree", function(e, data) {
 			data.rslt.obj.each(function() {
 				var id = this.id;
-				confirmation('Удалить раздел','Хотите ли Вы удалить раздел?', function() {
+				confirmation('Delete','Do you wont to delete "'+this.id+'" ?', function() {
 					$.ajax({
 						async: false,
 						type:  'POST',
@@ -333,7 +333,6 @@ global.onLoad(function() {
 					});
 
 					grid.onHeaderRowCellRendered.subscribe(function(e, args) {
-						console.dir(args);
 						$(args.node).empty();
 						$("<input type='text'>")
 							.data("columnId", args.column.id)
@@ -357,8 +356,12 @@ global.onLoad(function() {
 					grid.onCellChange.subscribe(function(e, args) {
 						var fieldName = grid.getColumns()[args.cell].field,
 							fieldValue = args.item[fieldName],
-							primaryKey = grid.getColumns()[0].field,
-							pkValue = args.item[primaryKey];
+							primaryKey, pkValue;
+						if (grid.getColumns()['_id'])
+							primaryKey = grid.getColumns()['_id'].field;
+						else
+							primaryKey = grid.getColumns()[0].field;
+						pkValue = args.item[primaryKey];
 						if (pkValue) {
 							var row = {};
 							row[primaryKey] = pkValue;
@@ -373,7 +376,7 @@ global.onLoad(function() {
 					function saveGridRow(row) {
 						$.post("/dbmi/grid/save.json", { source: source, data: JSON.stringify(row) }, function(res) {
 							//taCommands.val(res.sql);
-							logAdd(res.sql, "done");
+							logAdd(res.sql, '');
 							//if (res.status) $(data.rslt.obj).attr("id", res.id);
 							//else $.jstree.rollback(data.rlbk);
 						});
@@ -398,7 +401,7 @@ global.onLoad(function() {
 								grid.invalidateRow(row.index);
 								grid.render();
 							}
-							logAdd(res.sql, "done");
+							logAdd(res.sql, '');
 						});
 					}
 	            
@@ -445,27 +448,32 @@ global.onLoad(function() {
 	$(document).on('click', "#gridDelete", function(event) {
 		var currentRow = grid.getActiveCell().row;
 		if (loader.data[currentRow]) {
-			var primaryKey = grid.getColumns()[0].field,
-				pkValue = loader.data[currentRow][primaryKey];
-			$.post("/dbmi/grid/delete.json", { source: gridSource, pkName: primaryKey, pkValue: pkValue }, function(res) {
-				if (res.status) {
-					delete loader.data[currentRow];
-					var rowIndex = currentRow;
-					loader.data.length--;
-					while (rowIndex<loader.data.length) {
-						var row = loader.data[rowIndex+1];
-						row.index = rowIndex;
-						loader.data[rowIndex] = row;
+			if (grid.getColumns()['_id'])
+				primaryKey = grid.getColumns()['_id'].field;
+			else
+				primaryKey = grid.getColumns()[0].field;
+			var pkValue = loader.data[currentRow][primaryKey];
+			confirmation('Delete','Do you wont to delete record ?', function() {
+				$.post("/dbmi/grid/delete.json", { source: gridSource, pkName: primaryKey, pkValue: pkValue }, function(res) {
+					if (res.status) {
+						delete loader.data[currentRow];
+						var rowIndex = currentRow;
+						loader.data.length--;
+						while (rowIndex<loader.data.length) {
+							var row = loader.data[rowIndex+1];
+							row.index = rowIndex;
+							loader.data[rowIndex] = row;
+							grid.invalidateRow(rowIndex);
+							rowIndex++;
+						}
+						delete loader.data[rowIndex];
 						grid.invalidateRow(rowIndex);
-						rowIndex++;
+						grid.updateRowCount();
+						grid.render();
+						grid.scrollRowIntoView(currentRow-1);
+						logAdd(res.sql, '');
 					}
-					delete loader.data[rowIndex];
-					grid.invalidateRow(rowIndex);
-					grid.updateRowCount();
-					grid.render();
-					grid.scrollRowIntoView(currentRow-1);
-					logAdd(res.sql, "done");
-				}
+				});
 			});
 		}
 	}); 	

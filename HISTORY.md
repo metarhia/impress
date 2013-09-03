@@ -1,3 +1,9 @@
+0.0.39 / 2013-09-04
+==================
+
+  * Added examples for Impress framework
+  * Added new functionality to DBMI (beta release)
+
 0.0.38 / 2013-09-02
 ==================
 

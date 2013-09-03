@@ -3,9 +3,9 @@ global.onLoad(function() {
 	$('body').addClass('js');
 	$.fixCookie("SID");
 
-	global.disableContextMenu();
-	global.disableCopy();
-	global.disableSelection();
+	//global.disableContextMenu();
+	//global.disableCopy();
+	//global.disableSelection();
 
 	panelLeft = $('#panel-left');
 	panelCenter = $('#panel-center');

@@ -8,7 +8,6 @@
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName],
 		data = JSON.parse(req.post.data);
-	console.dir(req.post);
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];

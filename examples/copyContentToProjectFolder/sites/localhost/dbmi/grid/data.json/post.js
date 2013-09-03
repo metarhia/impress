@@ -40,7 +40,7 @@
 					collection.find(filter).toArray(function(err, nodes) {
 						for (var i=0; i<nodes.length; ++i) {
 							var node = nodes[i];
-							for (field in node) if (typeof(node[field]) == 'object') node[field] = JSON.stringify(node[field]);
+							for (field in node) if (typeof(node[field]) == 'object') node[field] = JSON.stringify(node[field]).replace(/"/g, '');
 						}
 						res.context.data = {
 							start: 0,
