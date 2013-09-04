@@ -72,8 +72,8 @@
 		<div class="tabbar">
 			<ul>
 				<li class="active">Logs</li>
-				<!--li>Command</li>
-				<li>Script</li-->
+				<li>Command</li>
+				<li>Script</li>
 			</ul>
 		</div>
 		<div class="tabpanel">
@@ -86,6 +86,9 @@
 				<div class="buttonpanel">
 					<a id="btnExecuteCommand" class="button silver"><span class="icon run"></span>Execute</a>
 				</div>
+			</div>
+			<div>
+				<textarea id="taScript"></textarea>
 			</div>
 		</div>
 		<div id="footer-panel">Copyright &copy; 2013 MetaSystems</div>

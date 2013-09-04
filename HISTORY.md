@@ -1,3 +1,9 @@
+0.0.40 / 2013-09-05
+==================
+
+  * Added SQL editor to DBMI for executing manually entered query
+  * Added SQL displaying results and errors in executing log
+
 0.0.39 / 2013-09-04
 ==================
 

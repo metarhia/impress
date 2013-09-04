@@ -276,6 +276,7 @@ global.onLoad(function() {
 	function displayData(source) {
 		gridToolbar.hide();
 		if (source) {
+			gridSource = source;
 			var surrcePath = source.split('/');
 			if (surrcePath.length-1!=3) return;
 			
@@ -476,6 +477,37 @@ global.onLoad(function() {
 				});
 			});
 		}
-	}); 	
+	});
+
+	var curPanel = $("#footer .tabpanel > div").eq(0),
+		curTab = $("#footer .tabbar ul li").eq(0);
+
+	$(document).on('click', "#footer .tabbar ul li", function(event) {
+		selectFooterTab(this);
+	});
+
+	function selectFooterTab(newTab) {
+		var tabIndex = $(newTab).index(),
+			panel = $("#footer .tabpanel > div").eq(tabIndex),
+			tab = $("#footer .tabbar ul li").eq(tabIndex);
+		if (curPanel!=panel) {
+			curTab.removeClass('active');
+			curPanel.hide();
+			tab.addClass('active');
+			panel.show();
+			curTab = tab;
+			curPanel = panel;
+		}
+	}
+
+	$(document).on('click', "#btnExecuteCommand", function(event) {
+		var sql = taCommands.val();
+		$.post("/dbmi/query/execute.json", { source: gridSource, sql: sql }, function(res) {
+			var msg = 'invalid database or not selected';
+			if (res.msg) msg = res.msg;
+			selectFooterTab($("#footer .tabbar ul li").eq(0)[0]);
+			logAdd(sql, msg);
+		});
+	});
 
 });
