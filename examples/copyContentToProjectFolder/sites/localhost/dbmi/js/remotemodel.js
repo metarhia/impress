@@ -64,14 +64,6 @@
 					order: (sortdir > 0) ? "asc" : "desc"
 				}, onSuccess);
 
-				/*req = $.ajax({
-					async:   false,
-					type:    'GET',
-					url:     url,
-					data:    { id: id },
-					success: onSuccess
-				});*/
-
 				req.fromPage = fromPage;
 				req.toPage = toPage;
 			}, 50);

@@ -13,7 +13,7 @@
 			var tableName = path[1]+'.'+path[2];
 			driver.insert(tableName, data, function(err, recordId, query) {
 				if (!err) {
-					var sql = query.sql.replace(/`/g, '').replace(path[1]+'.', '');
+					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '').
 					res.context.data = {
 						status: recordId>0 ? 1 : 0,
 						sql: sql
@@ -31,7 +31,7 @@
 									var where = {};
 									where[uniqueKey] = recordId;
 									where = driver.where(where);
-									driver.queryRow('SELECT * FROM ?? WHERE '+where, [tableName], function(err, data) {
+									driver.queryRow('SELECT * FROM '+db.escape(tableName)+' WHERE '+where, [], function(err, data) {
 										if (!data) data = [];
 										res.context.data.data = data;
 										callback();

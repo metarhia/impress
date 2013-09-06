@@ -18,7 +18,7 @@
 			// done
 			// DROP DATABASE old_database
 
-			driver.query('RENAME DATABASE ?? TO ??', [path[1], req.post.title], function(err, result) {
+			driver.query('RENAME DATABASE '+db.escape(path[1])+' TO '+db.escape(req.post.title), [], function(err, result) {
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});
@@ -36,7 +36,7 @@
 	} else if (path.length == 3) {
 		if (schema == 'mysql') { // [OK]
 			var tableName = path[1]+'.'+path[2];
-			driver.query('RENAME TABLE ?? TO ??', [tableName, path[1]+'.'+req.post.title], function(err, result) {
+			driver.query('RENAME TABLE '+db.escape(tableName)+' TO '+db.escape(path[1]+'.'+req.post.title), [], function(err, result) {
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});

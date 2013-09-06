@@ -28,11 +28,13 @@ module.exports = {
 	databases: {
 		impress: {
 			url: "mongodb://localhost:27017/impress", // MongoDB connection string
-			collections: ["sessions", "users"]                  // Collection name for store sessions
+			slowTime: 1000,                           // time to log query as slow
+			collections: ["sessions", "users"]        // Collection name for store sessions
 		},
 
 		//dbname: {
 		//	url: "mysql://user1:password1@localhost/database1", // MySQL connection example
+		//	slowTime: 1000,                                     // time to log query as slow
 		//	tables: []                                          // to be implemented
 		//}
 
@@ -42,6 +44,7 @@ module.exports = {
 		//
 		//	dbname: {
 		//		url: "mongodb://localhost:27017/dbname",
+		//		slowTime: 1000,
 		//		collections: ["collname1", "collname2"]
 		//	}
 	},
@@ -56,10 +59,12 @@ module.exports = {
 		database:   "impress"  // Database connection name to store sessions
 	},
 
-	// Server log files
+	// Server log files (filename or false)
 	log: {
-		access: "access.log", // filename or false
-		error:  "error.log",  // filename or false
+		access: "access.log",
+		error:  "error.log",
+		debug:  "debug.log",
+		slow:   "slow.log"
 	},
 
 	// Mail configuration

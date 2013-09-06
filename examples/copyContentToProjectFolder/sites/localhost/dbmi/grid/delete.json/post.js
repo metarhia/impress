@@ -11,9 +11,9 @@
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			var query = driver.query('DELETE FROM ?? WHERE '+req.post.pkName+'=?', [tableName, req.post.pkValue], function(err, result) {
+			var query = driver.query('DELETE FROM '+db.escape(tableName)+' WHERE '+req.post.pkName+'=?', [req.post.pkValue], function(err, result) {
 				if (!err) {
-					var sql = query.sql.replace(/`/g, '').replace(path[1]+'.', '');
+					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '').
 					res.context.data = { status: 1, sql: sql };
 				}
 				callback();

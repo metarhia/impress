@@ -13,7 +13,7 @@
 			var tableName = path[1]+'.'+path[2];
 			driver.update(tableName, data, function(err, affectedRows, query) {
 				if (!err) {
-					var sql = query.sql.replace(/`/g, '').replace(path[1]+'.', '');
+					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '').
 					res.context.data = {
 						status: affectedRows>0 ? 1 : 0,
 						sql: sql

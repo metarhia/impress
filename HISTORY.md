@@ -1,3 +1,12 @@
+0.0.41 / 2013-09-06
+==================
+
+  * Added HTTP request execution time measurement and logging into slow.log
+  * Added debug.log
+  * Changed SQL unquoted identifiers escaping
+  * Added SQL query execution time measurement and slow queries logging
+  * Added SQL errors logging
+
 0.0.40 / 2013-09-05
 ==================
 

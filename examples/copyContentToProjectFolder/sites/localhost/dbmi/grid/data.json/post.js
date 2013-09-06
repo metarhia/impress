@@ -21,7 +21,7 @@
 			var tableName = path[1]+'.'+path[2];
 			driver.select(tableName, '*', filter, function(err, data, query) {
 				if (!err) {
-					var sql = query.sql.replace(/`/g, '').replace(path[1]+'.', '');
+					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '')
 					if (!data) data = [];
 					res.context.data = {
 						start: 0,

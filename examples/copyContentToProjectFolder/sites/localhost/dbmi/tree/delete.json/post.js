@@ -10,7 +10,7 @@
 		driver = db[dbName];
 	if (path.length == 2) {
 		if (schema == 'mysql') {
-			driver.query('DROP DATABASE ??', [path[1]], function(err, result) {
+			driver.query('DROP DATABASE '+db.escape(path[1]), [], function(err, result) {
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});
@@ -27,7 +27,7 @@
 	} else if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			driver.query('DROP TABLE ??', [tableName], function(err, result) {
+			driver.query('DROP TABLE '+db.escape(tableName), [], function(err, result) {
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});

@@ -10,7 +10,7 @@
 		driver = db[dbName];
 	if (path.length == 1) {
 		if (schema == 'mysql') {
-			driver.query('CREATE DATABASE ??', [req.post.title], function(err, result) {
+			driver.query('CREATE DATABASE '+db.escape(req.post.title), [], function(err, result) {
 				if (!err) res.context.data = { status: 1, id: req.post.id+'/'+req.post.title };
 				callback();
 			});
@@ -28,7 +28,7 @@
 		} else callback();
 	} else if (path.length == 2) {
 		if (schema == 'mysql') {
-			driver.query('CREATE TABLE ??', [path[1]+'.'+req.post.title], function(err, result) {
+			driver.query('CREATE TABLE '+db.escape(path[1]+'.'+req.post.title), [], function(err, result) {
 				if (!err) res.context.data = { status: 1 };
 				callback();
 			});
