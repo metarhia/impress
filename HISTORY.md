@@ -1,3 +1,9 @@
+0.0.42 / 2013-09-07
+==================
+
+  * Added logs rotation (file format YYYY-MM-DD-logtype.log)
+  * Added config parameter log.keepDays, if parameter exists, files older then X days in /log folder will be deleted once a day
+
 0.0.41 / 2013-09-06
 ==================
 

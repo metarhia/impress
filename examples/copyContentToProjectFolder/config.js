@@ -59,12 +59,9 @@ module.exports = {
 		database:   "impress"  // Database connection name to store sessions
 	},
 
-	// Server log files (filename or false)
+	// Server logs
 	log: {
-		access: "access.log",
-		error:  "error.log",
-		debug:  "debug.log",
-		slow:   "slow.log"
+		keepDays: 100
 	},
 
 	// Mail configuration
