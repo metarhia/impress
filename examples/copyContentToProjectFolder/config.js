@@ -8,7 +8,7 @@ module.exports = {
 
 	// Plugins to be loaded using require by Impress
 	plugins: {
-		require: [
+		require: [ // Plugins list (comment to disable)
 			"db",
 			"db.schema",
 			"db.mongodb",
@@ -61,7 +61,13 @@ module.exports = {
 
 	// Server logs
 	log: {
-		keepDays: 100
+		keepDays: 100, // Delete files after N days
+		fileTypes: [   // List of log files set (comment to disable)
+			"access",
+			"error",
+			"debug",
+			"slow"
+		]
 	},
 
 	// Mail configuration

@@ -1,3 +1,8 @@
+0.0.43 / 2013-09-08
+==================
+
+  * Fixed critical bug in static files caching and compressing methods
+
 0.0.42 / 2013-09-07
 ==================
 
