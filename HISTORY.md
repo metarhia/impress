@@ -1,3 +1,8 @@
+0.0.44 / 2013-09-13
+==================
+
+  * Fixed logging, preventing zero length log files propagation
+
 0.0.43 / 2013-09-08
 ==================
 
