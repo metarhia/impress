@@ -1,3 +1,10 @@
+0.0.45 / 2013-09-17
+==================
+
+  * Changed impress.security.js, now fields login and group from user record will be copied to session for quick access
+  * Added new functionality to DBMS, and removed mapreduce usage creating temporary collection for selecting all fields in MongoDB collection
+  * Added new examples for Impress usage
+
 0.0.44 / 2013-09-13
 ==================
 

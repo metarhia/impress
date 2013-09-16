@@ -55,10 +55,16 @@
 			<div id="panel-center"></div>
 			<div id="panel-right">
 				<div id="gridToolbar">
-					<a href="#" class="button silver disabled" id="gridEdit"><span class="icon edit"></span>Edit</a>
-					<a href="#" class="button silver disabled" id="gridInsert"><span class="icon plus"></span>Insert</a>
-					<a href="#" class="button silver disabled" id="gridClone"><span class="icon clone"></span>Clone</a>
-					<a href="#" class="button silver" id="gridDelete"><span class="icon delete"></span>Delete</a>
+					<a href="#" class="button silver" id="gridEdit"><span class="icon edit"></span>Edit record</a>
+					<a href="#" class="button silver" id="gridInsert"><span class="icon plus"></span>Insert new record</a>
+					<a href="#" class="button silver" id="gridNewField"><span class="icon cursor blue"></span>Add new field</a>
+					<a href="#" class="button silver" id="gridClone"><span class="icon clone"></span>Clone record</a>
+					<a href="#" class="button silver" id="gridDelete"><span class="icon delete"></span>Delete selected</a>
+					<br>
+					<br><hr>
+					<a href="#" class="button silver" id="gridEmpty"><span class="icon eraser"></span>Empty table or collection</a>
+					<a href="#" class="button silver" id="gridRemoveCell"><span class="icon eraser"></span>Remove value or set NULL</a>
+					<a href="#" class="button silver" id="gridRemoveColumn"><span class="icon eraser"></span>Remove column</a>
 					<br>
 					<br><hr>One to many relations:
 					<a tab="Respondent" class="button silver master"><span class="icon right"></span>TableName1</a>

@@ -479,6 +479,35 @@ global.onLoad(function() {
 		}
 	});
 
+	$(document).on('click', "#gridNewField", function(event) {
+		var currentRow = grid.getActiveCell().row;
+		if (loader.data[currentRow]) {
+			if (grid.getColumns()['_id'])
+				primaryKey = grid.getColumns()['_id'].field;
+			else
+				primaryKey = grid.getColumns()[0].field;
+			var pkValue = loader.data[currentRow][primaryKey];
+			input('Add new field', 'Enter field name', '', function(newFieldName) {
+				alert(newFieldName);
+				$.post("/dbmi/grid/newField.json", { source: gridSource, pkName: primaryKey, pkValue: pkValue, newFieldName: newFieldName }, function(res) {
+					if (res.status) {
+						displayData(gridSource);
+					} else alert('Error: can not add new field');
+				});
+			});
+		}
+	});
+
+	/*
+	gridEdit
+	gridInsert
+	gridNewField
+	gridClone
+	gridEmpty
+	gridRemoveCell
+	gridRemoveColumn
+	*/
+
 	var curPanel = $("#footer .tabpanel > div").eq(0),
 		curTab = $("#footer .tabbar ul li").eq(0);
 

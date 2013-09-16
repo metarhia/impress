@@ -114,12 +114,18 @@ global.onLoad(function() {
 	});
 
 	$(document).on('click', '#menuFileUpload', function() {
+		panelCenter.load('/examples/upload.ajax');
 	});
 
 	$(document).on('click', '#menuDownload', function() {
+		panelCenter.html('<iframe src="/examples/download.ajax" style="display:none"></iframe>');
 	});
 
 	$(document).on('click', '#menuGeoIP', function() {
+		panelCenter.empty().html('<div class="progress"></div>');
+		$.get('/examples/geoip.json', function(res) {
+			panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
+		});
 	});
 
 	$(document).on('click', '#menuSSE', function() {

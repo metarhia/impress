@@ -1,4 +1,3 @@
-/*HELLO*/
 * {
 	padding: 0;
 	margin: 0;
@@ -813,11 +812,11 @@ br.clear { clear:both; }
 	overflow-x: hidden;
 }
 #panel-center .slick-headerrow-column {
-	background: #7abcff;
+	background: #bbbbbb;
 	padding: 1px;
 }
 #panel-center .slick-headerrow {
-	background: #7abcff;
+	background: #bbbbbb;
 }
 .slick-cell .editor-text {
 	border: none;
@@ -825,4 +824,15 @@ br.clear { clear:both; }
 }
 #gridToolbar {
 	display: none;
+}
+.slick-row.active {
+	background: #0079a1 !important;
+	color: #ffffff !important;
+}
+.slick-cell.active, .slick-cell.active input {
+	background: #005c83 !important;
+	color: #ffffff !important;
+}
+.slick-cell.active input {
+	border: none !important;
 }

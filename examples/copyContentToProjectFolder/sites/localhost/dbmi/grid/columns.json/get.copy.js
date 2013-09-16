@@ -25,25 +25,28 @@
 				url = 'mongodb://localhost:27017/'+path[1];
 			client.connect(url, function(err, connection) {
 				connection.createCollection(path[2], function(err, collection) {
-					collection.find({}).toArray(function(err, nodes) {
-						var fields = [],
-							fieldName = '_id';
-						res.context.data.push({ id: fieldName, name: fieldName, field: fieldName, width: 220, sortable: true, resizable: true });
-						for (var i=0; i<nodes.length; ++i) {
-							var node = nodes[i],
-								keys = Object.keys(node);
-							for (var j=0; j<keys.length; ++j) {
-								var fieldName = keys[j];
-								if (fields.indexOf(fieldName) == -1 && fieldName != '_id') {
-									res.context.data.push({ id: fieldName, name: fieldName, field: fieldName, width: 180, sortable: true, resizable: true });
-									fields.push(fieldName);
-								}
-							}
+					collection.mapReduce(
+						function() { for (var key in this) { emit(key, null); } },
+						function(key, stuff) { return null; },
+						{ out: { replace: 'tempCollection' } },
+						function(err, tempCollection) {
+							if (tempCollection) {
+								tempCollection.find({}).toArray(function(err, fields) {
+									for (var i=0; i<fields.length; ++i) {
+										var fieldName = fields[i]._id;
+											field = {id: fieldName, name: fieldName, field: fieldName, width: 200, sortable: true, resizable: true };
+										res.context.data.push(field);
+									}
+									callback();
+								});
+							} else callback();
 						}
-						callback();
-					});
+					);
 				});
 			});
+
+			//callback();
+
 		} else callback();
 	} else callback();
 
