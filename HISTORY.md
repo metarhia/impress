@@ -1,3 +1,10 @@
+0.0.46 / 2013-09-22
+==================
+
+  * Added CMS module with MySQL storage provider
+  * Added MySQL multistatement script execution (with temporary connection)
+  * Changed parameter order in impress.init(cbMasterInstance, cbWorkerInstance, cbInstance)
+
 0.0.45 / 2013-09-17
 ==================
 

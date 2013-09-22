@@ -2,16 +2,14 @@
 
 ## Improvements
 
-* Load virtual host separated config files from folder
+* Load virtual host separated config files for each host
 * Separate database access for different sites/applications
-* Add examples with web GUI controls
 * Add handlers for .xml and .form folder extensions
-* Add simple cms plugin with mongoDB storage
-* Add mongoDB backup/restore
-* Add Long-pooling
+* Add database backup/restore
 * Fork url-handlers as separate process for long processing (to be implemented)
-* Make config parameters optional, prosess, route, hosts, etc.
+* Make config parameters optional, process, route, hosts, etc.
 * Add user identifier logging in HTTP logs if user authenticated
+* Syntactic structures for inserting default values with database schema
 
 ## Bugs
 

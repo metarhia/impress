@@ -76,7 +76,8 @@ module.exports = {
 			Content:      { caption: "Content",     type: "text" }
 		},
 		compositeIndexes: {
-			akCmsContent: { fields: [ "PageId", "LangiageId" ], unique: true }
+			akCmsContentPage: { fields: [ "PageId", "LangiageId" ], unique: true },
+			akCmsContentSite: { fields: [ "SiteId", "PageName", "LangiageId" ], unique: true }
 		}
 	},
 
