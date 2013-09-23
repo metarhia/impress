@@ -9,44 +9,52 @@ module.exports = {
 	// Plugins to be loaded using require by Impress
 	plugins: {
 		require: [ // Plugins list (comment to disable)
-			"db",
-			"db.schema",
-			"db.mongodb",
-			"db.memcached",
-			"db.mysql",
-			"db.mysql.introspection",
-			"db.mysql.schema",
+			//"db",
+			//"db.schema",
+			//"db.mongodb",
+			//"db.memcached",
+			//"db.mysql",
+			//"db.mysql.introspection",
+			//"db.mysql.schema",
 		    "impress.security",
-		    "impress.security.mongodb",
-			"impress.mail",
+		    //"impress.security.mongodb",
+			//"impress.mail",
 			"impress.geoip",
 			"impress.uglify"
+			//"cms",
+			//"cms.mysql"
 		]
 	},
 
 	// Databases including persistent session storage and application specific
 	databases: {
-		impress: {
+
+		/*impress: {
 			url: "mongodb://localhost:27017/impress", // MongoDB connection string
-			slowTime: 1000,                           // time to log query as slow
 			collections: ["sessions", "users"]        // Collection name for store sessions
-		},
+		},*/
 
-		//dbname: {
-		//	url: "mysql://user1:password1@localhost/database1", // MySQL connection example
-		//	slowTime: 1000,                                     // time to log query as slow
-		//	tables: []                                          // to be implemented
-		//}
+		/*system: {
+			url: "mysql://impress:password@localhost/impress",
+			slowTime: 1000
+		},*/
 
+		/*dbname: {
+			url: "mysql://user1:password1@localhost/database1", // MySQL connection example
+			slowTime: 1000                                      // time to log query as slow
+		},*/
+
+		/*
 		// Other MongoDB databases for application purposes
-		// Collections to be created automatically for access like this: dbname.collname1.find(...)
+		// access will be like this: dbname.collname1.find(...)
 		// see example:
 		//
-		//	dbname: {
-		//		url: "mongodb://localhost:27017/dbname",
-		//		slowTime: 1000,
-		//		collections: ["collname1", "collname2"]
-		//	}
+		dbname: {
+			url: "mongodb://localhost:27017/dbname",
+			slowTime: 1000,
+			collections: ["collname1", "collname2"]
+		}
+		*/
 	},
 
 	// Sessions configuration
@@ -55,7 +63,7 @@ module.exports = {
 		cookie:     "SID",     // Session cookie name
 		characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", // Possible characters for SID
 		length:     64,        // SID length in bytes
-		persist:    true,      // Store sessions in persistent database
+		persist:    false,     // Store sessions in persistent database
 		database:   "impress"  // Database connection name to store sessions
 	},
 

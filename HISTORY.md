@@ -1,3 +1,11 @@
+0.0.47 / 2013-09-23
+==================
+
+  * Added new functionality to CMS module
+  * Added Core and CMS database SQL scripts impress.core.schema.sql and impress.cms.schema.sql compiled from corresponding .js schemas by method db.schema.mysql.generateScript
+  * Added SQL statements debug logging
+  * Added flag res.impress.cachable, it can be set by CMS or js handlers (e.g. get.js, request.js...) to cache rendered pages in memory like we cache static files
+
 0.0.46 / 2013-09-22
 ==================
 
