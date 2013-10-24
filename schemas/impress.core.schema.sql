@@ -72,8 +72,8 @@ ALTER TABLE SystemGroup CHANGE GroupId GroupId bigint unsigned auto_increment;
 CREATE UNIQUE INDEX akSystemGroupGroupName ON SystemGroup (GroupName);
 
 CREATE TABLE SystemGroupUser (
-  GroupId bigint unsigned,
-  UserId  bigint unsigned
+  GroupId bigint unsigned NOT NULL,
+  UserId  bigint unsigned NOT NULL
 );
 
 ALTER TABLE SystemGroupUser ADD CONSTRAINT pkSystemGroupUser PRIMARY KEY (GroupId, UserId);
@@ -92,8 +92,8 @@ ALTER TABLE SystemPermission CHANGE PermissionId PermissionId bigint unsigned au
 CREATE UNIQUE INDEX akSystemPermissionPermissionName ON SystemPermission (PermissionName);
 
 CREATE TABLE SystemGroupPermission (
-  GroupId      bigint unsigned,
-  PermissionId bigint unsigned
+  GroupId      bigint unsigned NOT NULL,
+  PermissionId bigint unsigned NOT NULL
 );
 
 ALTER TABLE SystemGroupPermission ADD CONSTRAINT pkSystemGroupPermission PRIMARY KEY (GroupId, PermissionId);
@@ -101,8 +101,8 @@ ALTER TABLE SystemGroupPermission ADD CONSTRAINT fkSystemGroupPermissionGroupId 
 ALTER TABLE SystemGroupPermission ADD CONSTRAINT fkSystemGroupPermissionPermissionId FOREIGN KEY (PermissionId) REFERENCES SystemPermission (PermissionId) ON DELETE CASCADE;
 
 CREATE TABLE SystemUserPermission (
-  UserId       bigint unsigned,
-  PermissionId bigint unsigned
+  UserId       bigint unsigned NOT NULL,
+  PermissionId bigint unsigned NOT NULL
 );
 
 ALTER TABLE SystemUserPermission ADD CONSTRAINT pkSystemUserPermission PRIMARY KEY (UserId, PermissionId);
@@ -126,3 +126,4 @@ CREATE INDEX idxSystemLogEventTime ON SystemLog (EventTime);
 CREATE INDEX idxSystemLogEventType ON SystemLog (EventType);
 
 ALTER TABLE SystemLog ADD CONSTRAINT fkSystemLogServerId FOREIGN KEY (ServerId) REFERENCES SystemServer (ServerId) ON DELETE CASCADE;
+

@@ -14,7 +14,6 @@ module.exports = {
 			//"db.mongodb",
 			//"db.memcached",
 			//"db.mysql",
-			//"db.mysql.introspection",
 			//"db.mysql.schema",
 		    "impress.security",
 		    //"impress.security.mongodb",

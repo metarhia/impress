@@ -1,3 +1,11 @@
+0.0.48 / 2013-10-24
+==================
+
+  * MySQL utilities extracted into separate module, used as dependencies and placed here:
+    - https://github.com/tshemsedinov/node-mysql-utilities
+    - https://npmjs.org/package/mysql-utilities
+  * Fixed db.mysql.schema.js and schemas in folder /schemas
+
 0.0.47 / 2013-09-23
 ==================
 

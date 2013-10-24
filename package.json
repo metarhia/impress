@@ -47,7 +47,8 @@
 	"geoip-lite": "1.1.x",
 	"uglify-js": "2.3.x",
 	"multiparty": "2.1.x",
-	"iconv-lite": "0.2.x"
+	"iconv-lite": "0.2.x",
+	"mysql-utilities": "0.0.x"
   },
   "engines": {
     "node": ">=0.10.6"

@@ -16,7 +16,7 @@ CREATE UNIQUE INDEX akCmsSkinSkinName ON CmsSkin (SkinName);
 
 CREATE TABLE CmsSite (
   SiteId       bigint unsigned,
-  OwnerId      bigint unsigned,
+  OwnerId      bigint unsigned NOT NULL,
   SkinId       bigint unsigned NOT NULL,
   LanguageId   bigint unsigned NOT NULL DEFAULT "1",
   DomainName   varchar(64),
@@ -37,7 +37,7 @@ ALTER TABLE CmsSite ADD CONSTRAINT fkCmsSiteLanguageId FOREIGN KEY (LanguageId) 
 
 CREATE TABLE CmsSiteProp (
   SitePropId bigint unsigned NOT NULL,
-  SiteId     bigint unsigned,
+  SiteId     bigint unsigned NOT NULL,
   LanguageId bigint unsigned NOT NULL,
   Title      varchar(255),
   Subtitle   varchar(255),
@@ -53,7 +53,7 @@ ALTER TABLE CmsSiteProp ADD CONSTRAINT fkCmsSitePropLanguageId FOREIGN KEY (Lang
 CREATE TABLE CmsSitePage (
   PageId       bigint unsigned NOT NULL,
   ParentPageId bigint unsigned,
-  SiteId       bigint unsigned,
+  SiteId       bigint unsigned NOT NULL,
   Sequence     int(10) unsigned NOT NULL DEFAULT "1",
   PageType     char(1) DEFAULT "P",
   Visible      char(1) DEFAULT "V",
@@ -69,7 +69,7 @@ ALTER TABLE CmsSitePage ADD CONSTRAINT fkCmsSitePageSiteId FOREIGN KEY (SiteId) 
 
 CREATE TABLE CmsContent (
   ContentId   bigint unsigned NOT NULL,
-  SiteId      bigint unsigned,
+  SiteId      bigint unsigned NOT NULL,
   PageId      bigint unsigned NOT NULL,
   LanguageId  bigint unsigned NOT NULL,
   Priority    int(10) unsigned NOT NULL DEFAULT "5",
