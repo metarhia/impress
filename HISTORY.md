@@ -1,3 +1,11 @@
+0.0.49 / 2013-10-26
+==================
+
+  * Fixed critical bug in filesystem watchers; file:impress.js; function:watchCache
+  * Added timers array for watchers to minimize cache rebuilding when same file changes multiple times within small interval (2 sec)
+  * Added clearCacheStartsWith into impress.js, improved and optimized
+  * Fixed Impress server shutdown and restart; memory leak prevented; file:impress.js; method:impress.stop
+
 0.0.48 / 2013-10-24
 ==================
 
