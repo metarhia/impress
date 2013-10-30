@@ -1,3 +1,9 @@
+0.0.50 / 2013-10-26
+==================
+
+  * Restored MySQL "slowlog" functionality (not supported by version 0.0.48 and 0.0.49)
+  * Fixed 2 non-critical memory leaks in core and db libraries
+
 0.0.49 / 2013-10-26
 ==================
 
