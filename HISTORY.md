@@ -1,3 +1,9 @@
+0.0.51 / 2013-11-04
+==================
+
+  * Fixed child process termination on SIGTERM
+  * Fixed non-critical memory issues
+
 0.0.50 / 2013-10-26
 ==================
 
