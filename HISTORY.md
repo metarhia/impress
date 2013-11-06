@@ -1,3 +1,8 @@
+0.0.52 / 2013-11-06
+==================
+
+  * Improved logging: added write buffer for high load intensive writing, default config.log.writeInterval value is 2000ms
+
 0.0.51 / 2013-11-04
 ==================
 
