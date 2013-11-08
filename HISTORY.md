@@ -1,3 +1,9 @@
+0.0.53 / 2013-11-08
+==================
+
+  * Revision of global.js, removed all browser-side code and other unnecessary code
+  * Minor fixes in impress.js and impress.constants.js
+
 0.0.52 / 2013-11-06
 ==================
 
