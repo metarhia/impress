@@ -1,3 +1,9 @@
+0.0.54 / 2013-11-11
+==================
+
+  * Added installation script
+  * Code revision and optimization
+
 0.0.53 / 2013-11-08
 ==================
 
