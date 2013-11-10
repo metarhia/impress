@@ -5,8 +5,9 @@ var fs = require('fs'),
 
 ncp.limit = 16;
 
-var destination = process.cwd().replace(/\\/g, '/')+'/',
-	source = path.dirname(__filename.replace(/\\/g, '/'))+'/examples/copyContentToProjectFolder/';
+var current = path.dirname(__filename.replace(/\\/g, '/')),
+	destination = path.dirname(path.dirname(current))+'/',
+	source = current+'/examples/copyContentToProjectFolder/';
 
 fs.exists(destination+'config.js', function(exists) {
 	if (!exists) {
