@@ -1,3 +1,9 @@
+0.0.55 / 2013-11-14
+==================
+
+  * Fixed exception in filesystem cache monitoring
+  * Fixed empty template detection bug if template have UTF-8 signature
+
 0.0.54 / 2013-11-11
 ==================
 
