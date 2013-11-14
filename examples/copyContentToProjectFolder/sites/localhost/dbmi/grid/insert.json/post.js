@@ -48,8 +48,8 @@
 				url = 'mongodb://localhost:27017/'+path[1];
 			client.connect(url, function(err, connection) {
 				connection.createCollection(path[2], function(err, collection) {
-					collection.insert(data,  function(err) {
-						if (!err) res.context.data = { status: 1 };
+					collection.insert(data,  function(err, data) {
+						if (!err) res.context.data = { status: 1, data: data[0] };
 						callback();
 					});
 				});

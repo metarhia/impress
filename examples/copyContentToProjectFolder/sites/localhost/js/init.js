@@ -113,6 +113,10 @@ global.onLoad(function() {
 		window.location = '/dbmi';
 	});
 
+	$(document).on('click', '#menuSetup', function() {
+		window.location = '/setup';
+	});
+
 	$(document).on('click', '#menuFileUpload', function() {
 		panelCenter.load('/examples/upload.ajax');
 	});

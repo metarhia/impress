@@ -50,22 +50,7 @@
 	<div id="main">
 		<div id="content">
 			<div id="panel-left">@[left]@</div>
-			<div id="panel-center">
-			@session@
-			<hr>
-			@[users]@
-				<div>
-					User name: @.name@<br/>
-					User age: @.age@<br/>
-					Email addresses:
-					<ul>
-						@[emails]@
-							<li>@.value@</li>
-						@[/emails]@
-					</ul>
-				</div>
-			@[/users]@
-			</div>
+			<div id="panel-center">@[center]@</div>
 			<div id="panel-right">@[right]@</div>
 		</div>
 	</div>

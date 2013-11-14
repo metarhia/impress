@@ -14,34 +14,59 @@ $ npm install impress
 
 ## Features
 
+  - Can serve multiple applications and sites on multiple domains
+  - Serves multiple ports, network interfaces, hosts and protocols
+  - Can be run on one or multiple servers
+  - Supports one or multiple CPU cores with following instantiation strategies:
+    - Single instance (one process)
+    - Instance specialization (multiple processes, one master and different workers for each server)
+    - Multiple instances (multiple processes, one master and identical workers with no sticky)
+    - IP sticky (multiple processes, one master and workers with serving sticky by IP)
   - URL routing based on file system
-  - can hosts multiple sites or applications on one server
-    - serving multiple ports, network interfaces, hosts and protocols
-    - soft configuration changes with zero downtime
-  - simple server-side templating
-  - caching server-side executable JavaScript and templates in memory
-  - folder monitoring for server-side executable JavaScript changes and template changes
-  - built-in authentication and user groups
-    - sessions and cookies (memory state or persistent sessions with MongoDB)
-    - template personalization for user groups
-    - access modifiers for each folder in access.js files
-  - simple way for json-based web services development
-  - serving static files with gzipping, memory caching and filesystem watching
-  - implemented SSE (Server-Sent Events) with channels and milticast
-  - multiple cluster instantiation strategies:
-    - single instance (one process, no master and workers)
-    - instance specialization (multiple processes, one master and different workers for each server)
-    - multiple instances (multiple processes, one master and identical workers with no sticky)
-    - ip sticky (multiple processes, one master and workers with serving sticky by IP)
-  - reverse-proxy (routing request to external HTTP server with URL-rewriting)
-  - flexible configuration in json file
-  - simple logging web requests
-  - connection drivers for MongoDB and MySQL
-  - nodemailer as a plugin for email sending
+    - Caching server-side executable JavaScript in memory
+    - Filesystem watching for cache reloading when file changes on disk
+  - API development support (simple way for JSON-based WEB-services development)
+    - RPC-style API (Stateful, state stored in memory between requests)
+    - REST-style API (Stateless, each call is separate, no state in memory)
+  - Server server-side templating
+    - Caching templates in memory and ready (rendered) pages optional caching
+    - Value rendering with @VariableName@ syntax, absolute and relative addressing
+    - Array and hash iterations with @[arrayName]@ and @[/arrayName]@ syntax
+    - Including sub-templates @[includeTemplate]@ syntax
+    - Template personalization for user groups
+  - Config changes with zero downtime
+    - Flexible configuration in JSON file
+    - File watch and automatic soft reloading when config.js file changes
+    - No Impress server hard restarting
+  - Serving static files
+    - Gzipping and HTTP request field "if-modified-since" field support and HTTP 304 "Not Modified" answer
+    - Memory caching and filesystem watching for cache reloading when files changed on disk
+    - JavaScript optional (configurable) minification, based on module "uglify-js" as Impress plugin
+  - Built-in sessions support with authentication and user groups and anonymous sessions
+    - Sessions and cookies (memory state or persistent sessions with MongoDB)
+    - Access modifiers for each folder in access.js files and access inheritance
+  - Implemented SSE (Server-Sent Events) with channels and multicast
+  - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
+  - Logging: "access", "debug", "error and "slow" logs
+    - Log rotation: keep logs N days (configurable) delete files after N days
+    - Log buffering, write stream flushing interval
+  - Connection drivers for database engines:
+    - MySQL data access layer based on felixge/mysql low-level drivers (separate module "musql-utilities")
+      - MySQL Data Access Methods: queryRow, queryValue, queryCol, queryHash, queryKeyValue
+      - MySQL Introspection Methods: primary, foreign, constraints, fields, databases, tables, databaseTables, tableInfo, indexes, processes, globalVariables, globalStatus, users
+      - MySQL SQL Autogenerating Methods: select, insert, update, upsert, count, delete
+      - Events: 'query', 'slow'
+    - MongoDB drivers as Impress plugin
+    - Memcached drivers as Impress plugin
+    - MySQL schema generator from JSON database schemas
+  - Sending Emails functionality using "nodemailer" module as Impress plugin
+  - IPC support (interprocess communications) for event delivery between Node.js instances
+  - Integrated DBMI (Web-based management interface for MySQL and MongoDB)
+  - GeoIP support, based on "geoip-lite" module as Impress plugin (uses MaxMind database)
 
 ## Configuration
 
-1. Copy project template from examples into your project folder (it contains 3 files and folder "sites" where virtual hosts are)
+1. Install module using npm
 2. Edit config.js file in project folder (or leave it untouched if you want just to test Impress)
 3. If you want to store persistent sessions in MongoDB you need this DBMS installed and you need to run "node setup.js" before starting Impress
 4. Run Impress using command "node server.js"
@@ -134,9 +159,14 @@ File "html.template": place such file in folder as a main page template. Example
 	<title>@title@</title>
 </head>
 <body>
-	<div> Field value: @field@ </div>
-	<div> Include template: @[name]@ - this will include file "./name.template" </div>
-	<div> This will iterate "res.context.data" from "request.js" example above:
+	<div>
+		Field value: @field@
+	</div>
+	<div>
+		Include template: @[name]@ - this will include file "./name.template"
+	</div>
+	<div>
+		This will iterate "res.context.data" from "request.js" example above:
 		@[users]@
 			<div>
 				User name: @.name@<br/>

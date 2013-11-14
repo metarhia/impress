@@ -1,4 +1,8 @@
 module.exports = function(req, res, callback) {
+
+	//console.dir(req.impress.slowTime);
+	//if (req.post.loginForm) impress.redirect(res, "/");
+
 	res.context.data = {
 		title: "Page Title",
 		users: [
@@ -7,5 +11,6 @@ module.exports = function(req, res, callback) {
 		],
 		session: JSON.stringify(impress.sessions[req.impress.session])
 	};
+
 	callback();
 }

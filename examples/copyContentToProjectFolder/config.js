@@ -30,7 +30,7 @@ module.exports = {
 
 		/*impress: {
 			url: "mongodb://localhost:27017/impress", // MongoDB connection string
-			collections: ["sessions", "users"]        // Collection name for store sessions
+			collections: ["sessions", "users", "groups"]        // Collection name for store sessions
 		},*/
 
 		/*system: {

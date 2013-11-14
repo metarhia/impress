@@ -1,3 +1,10 @@
+0.0.56 / 2013-11-15
+==================
+
+  * Fixed DBMI insert record handler and UI
+  * Changed module description
+  * Minor fixes in sessions and security plugin and examples
+
 0.0.55 / 2013-11-14
 ==================
 

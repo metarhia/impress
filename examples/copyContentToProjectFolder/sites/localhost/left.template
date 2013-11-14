@@ -1,3 +1,4 @@
+<a class="button silver cancel" id="menuSetup"><span class="icon gear"></span>Setup</a>
 <a class="button silver cancel" id="menuAJAX"><span class="icon file html"></span>AJAX handler</a>
 <a class="button silver cancel" id="menuGetJSON"><span class="icon run"></span>GET JSON handler</a>
 <a class="button silver cancel" id="menuPostJSON"><span class="icon run"></span>POST JSON handler</a>

@@ -401,6 +401,23 @@ global.onLoad(function() {
 								loader.data[row.index] = res.data;
 								grid.invalidateRow(row.index);
 								grid.render();
+							} else {
+								delete loader.data[currentRow];
+								var rowIndex = currentRow;
+								loader.data.length--;
+								while (rowIndex<loader.data.length) {
+									var row = loader.data[rowIndex+1];
+									row.index = rowIndex;
+									loader.data[rowIndex] = row;
+									grid.invalidateRow(rowIndex);
+									rowIndex++;
+								}
+								delete loader.data[rowIndex];
+								grid.invalidateRow(rowIndex);
+								grid.updateRowCount();
+								grid.render();
+								grid.scrollRowIntoView(currentRow-1);
+
 							}
 							logAdd(res.sql, '');
 						});
