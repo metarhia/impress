@@ -1,3 +1,13 @@
+0.0.57 / 2013-11-21
+==================
+
+  * Improved log buffering, added writeBuffer parameter (default 64kb) to config in addition to writeInterval parameter
+  * Added impress.cloud.js and impress.health.js with stub cloudware functionality
+  * Fixed SSE messaging propagation on cluster
+  * Added filter for IPC retranslation in master process
+  * Changed impress.init parameters to hash { master: callback, worker: callback, instance: callback }
+  * Moved impress.log.js to plugins, so it is optional now
+
 0.0.56 / 2013-11-15
 ==================
 

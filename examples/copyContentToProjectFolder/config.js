@@ -8,20 +8,25 @@ module.exports = {
 
 	// Plugins to be loaded using require by Impress
 	plugins: {
-		require: [ // Plugins list (comment to disable)
-			//"db",
-			//"db.schema",
-			//"db.mongodb",
-			//"db.memcached",
-			//"db.mysql",
-			//"db.mysql.schema",
+		require: [ // Plugins list
+		    "impress.log",
 		    "impress.security",
-		    //"impress.security.mongodb",
-			//"impress.mail",
 			"impress.geoip",
 			"impress.uglify"
-			//"cms",
-			//"cms.mysql"
+		],
+		disabled: [ // Disabled plugins
+			"db",
+			"db.schema",
+			"db.mongodb",
+			"db.memcached",
+			"db.mysql",
+			"db.mysql.schema",
+		    "impress.security.mongodb",
+			"impress.mail",
+			"cms",
+			"cms.mysql",
+			"impress.health",
+			"impress.cloud"
 		]
 	},
 
@@ -68,8 +73,10 @@ module.exports = {
 
 	// Server logs
 	log: {
-		keepDays: 100, // Delete files after N days
-		fileTypes: [   // List of log files set (comment to disable)
+		keepDays:      100,     // Delete files after N days
+		writeInterval: 3000,    // Flush log to disk interval (milliseconds)
+		writeBuffer:   64*1024, // Buffer size 64kb
+		fileTypes: [            // List of log files set (comment to disable)
 			"access",
 			"error",
 			"debug",
