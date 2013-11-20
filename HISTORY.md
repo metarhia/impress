@@ -1,4 +1,10 @@
-0.0.57 / 2013-11-21
+0.0.58 / 2013-11-21
+==================
+
+  * Improved impress.health, now it works on local cluster over IPC
+  * Added new callback "shutdown" in impress.init in addition to "master", "worker" and "instance"
+
+0.0.57 / 2013-11-19
 ==================
 
   * Improved log buffering, added writeBuffer parameter (default 64kb) to config in addition to writeInterval parameter
