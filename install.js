@@ -30,7 +30,7 @@ fs.exists(destination+'config.js', function(exists) {
 								ncp(source+'sites', destination+'sites', { clobber: false }, function (err) {
 									if (err) console.error(err);
 									if (isWin) {
-										exec('start cmd /K "cd /d '+destination.replace(/\//g, '\\')+' & node server.js');
+										exec('start cmd /K "cd /d '+destination.replace(/\//g, '\\')+' & node server.js"' );
 									} else {
 										var n = spawn('node', [destination+'server.js'], { cwd: destination });
 										n.stdout.on('data', function (data) {
@@ -41,7 +41,9 @@ fs.exists(destination+'config.js', function(exists) {
 										});
 									}
 									setTimeout(function() {
-										open('http://127.0.0.1');
+										open('http://127.0.0.1', function() {
+											if (isWin) setTimeout(function() { process.exit(0); });
+										});
 									}, 2000);
 								});
 							}
