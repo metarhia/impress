@@ -1,7 +1,13 @@
 var fs = require('fs'),
 	colors = require('colors'),
 	path = require('path'),
-	ncp = require('ncp').ncp;
+	ncp = require('ncp').ncp,
+	sys = require('sys'),
+	exec = require('child_process').exec,
+	spawn = require('child_process').spawn,
+	open = require("open");
+
+var isWin = !!process.platform.match(/^win/);
 
 ncp.limit = 16;
 
@@ -21,11 +27,22 @@ fs.exists(destination+'config.js', function(exists) {
 								fs.createReadStream(source+'config.js').pipe(fs.createWriteStream(destination+'config.js'));
 								fs.createReadStream(source+'server.js').pipe(fs.createWriteStream(destination+'server.js'));
 								fs.createReadStream(source+'setup.js').pipe(fs.createWriteStream(destination+'setup.js'));
-								ncp(source, destination, { clobber: false }, function (err) {
-									if (err) {
-										return console.error(err);
+								ncp(source+'sites', destination+'sites', { clobber: false }, function (err) {
+									if (err) console.error(err);
+									if (isWin) {
+										exec('start cmd /K "cd /d '+destination.replace(/\//g, '\\')+' & node server.js');
+									} else {
+										var n = spawn('node', [destination+'server.js'], { cwd: destination });
+										n.stdout.on('data', function (data) {
+											console.log(data.toString().replace(/[\r\n]/g,''));
+										});
+										n.stderr.on('data', function (data) {
+											console.log(data.toString().replace(/[\r\n]/g,''));
+										});
 									}
-									console.log('done!');
+									setTimeout(function() {
+										open('http://127.0.0.1');
+									}, 2000);
 								});
 							}
 						});

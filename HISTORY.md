@@ -1,3 +1,8 @@
+0.0.59 / 2013-11-22
+==================
+
+  * Fixed install script for quick examle run after installation
+
 0.0.58 / 2013-11-21
 ==================
 
