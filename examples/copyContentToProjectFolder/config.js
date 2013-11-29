@@ -101,6 +101,14 @@ module.exports = {
 		minify: true
 	},
 
+	// Cloud configuraton
+	/*cloud: {
+		name:       "PrivateCloud", // cloud name, 
+		nodeType:   "standalone",       // standalone, controller, server
+		addrPubSub: "tcp://127.0.0.1:3000",
+		addrReqRes: "tcp://127.0.0.1:3001"
+	},*/
+
 	// Cluster configuraton
 	cluster: {
 		name:     "C1",   // Cluster name to identify it in loadbalancing infrastructure

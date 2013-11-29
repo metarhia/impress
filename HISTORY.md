@@ -1,3 +1,13 @@
+0.0.60 / 2013-11-28
+==================
+
+  * Added optional/safe module loader impress.require(moduleName)
+  * Added ZeroMQ support (optional/plugin)
+  * Improved impress.cluster.js with ZeroMQ pub/sub and req/rep connections
+  * Added SSE cross-cluster retranlation over ZeroMQ
+  * Added npm programmatically API (optional/plugin) for future use in web-based setup utility
+  * Moved GeoIP to optional/plugin
+
 0.0.59 / 2013-11-22
 ==================
 
