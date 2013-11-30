@@ -1,3 +1,8 @@
+0.0.61 / 2013-11-30
+==================
+
+  * Fixed event pub/sub between clusters over ZeroMQ in impress.cluster.js
+
 0.0.60 / 2013-11-28
 ==================
 
