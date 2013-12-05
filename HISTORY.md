@@ -1,3 +1,10 @@
+0.0.62 / 2013-12-05
+==================
+
+  * Improved global.duration(number or srting "1d 10h 7m 13s") and all configurable intervals
+  * Fixed log slowTime processing
+  * Fixed servers, hosts and routes configuration preprocessing
+
 0.0.61 / 2013-11-30
 ==================
 

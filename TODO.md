@@ -4,7 +4,6 @@
 
 * Extend Impress to be cloudware application server
 * Extend Impress.health functionality
-* Prepare version with ZeroMQ interprocess communications transport
 * Load separate config files for each application
 * Separate database access for different applications
 * Add database backup/restore
