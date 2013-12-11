@@ -2,7 +2,7 @@
 
 # Impress
 
-[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style multipurpose web application server for [node.js](http://nodejs.org). All decisions are made. Ready for applied development.
+[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style Multipurpose Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
 The main difference from others that Impress core is monolithic and its approach is to make all in one solution with high code coupling for obligatory things and leave not obligatory to be integrated by applied developers optionally. High coupling in core gives us advantages in performance and code simplicity. For example, why we should implement static files serving or memory caching as a plugin while no one application will omit that.
 
@@ -99,9 +99,20 @@ Handler: /sites/localhost/api/examples/getUsers.json/get.js
 Following "server.js" is stating file. Run it using command line "node server" for debug or "nohup node server" for production.
 ```javascript
 require('impress');
-impress.init(function() {
-	// Place here other initialization code
-	// to be executed after Impress initialization
+impress.init({
+	master: function() {
+		// Place here other initialization code
+		// to be executed after Impress initialization (master process)
+	},
+	worker: function() {
+		// Place initialization code for workers
+	},
+	instance: function() {
+		// Place initialization code for any instance
+	},
+	shutdown: function() {
+		// Place finalization code here
+	}
 });
 ```
 

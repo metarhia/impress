@@ -1,3 +1,9 @@
+0.0.63 / 2013-12-11
+==================
+
+  * Fixed templating "not found" handling
+  * Fixed MongoDB security provider
+
 0.0.62 / 2013-12-05
 ==================
 

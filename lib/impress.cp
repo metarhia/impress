@@ -1136,9 +1136,7 @@
 		tpl = tpl.replace(/@([\.0-9a-zA-Z]+)@/g, function(s, key) {
 			var name, pos = key.indexOf(".");
 			if (pos == 0) name = cursor+key; else name = key;
-			var value = impress.value(data, name);
-			if (typeof(value) == 'object') value = '[not found: '+key+']';
-			return value;
+			return impress.value(data, name);
 		});
 		return tpl;
 	}
