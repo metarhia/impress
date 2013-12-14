@@ -46,6 +46,7 @@ $ npm install impress
     - Sessions and cookies (memory state or persistent sessions with MongoDB)
     - Access modifiers for each folder in access.js files and access inheritance
   - Implemented SSE (Server-Sent Events) with channels and multicast
+  - WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
   - Logging: "access", "debug", "error and "slow" logs
     - Log rotation: keep logs N days (configurable) delete files after N days

@@ -8,4 +8,5 @@
 <a class="button silver cancel" id="menuDownload"><span class="icon load down"></span>Download files</a>
 <a class="button silver cancel" id="menuGeoIP"><span class="icon globe"></span>Geo IP</a>
 <a class="button silver cancel disabled" id="menuSSE"><span class="icon talk"></span>Server-Sent Events</a>
+<a class="button silver cancel" id="menuWS"><span class="icon online"></span>Web Sockets</a>
 <a class="button silver cancel disabled" id="menuSendMail"><span class="icon mailto"></span>Send Mail</a>

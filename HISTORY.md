@@ -1,3 +1,9 @@
+0.0.64 / 2013-12-14
+==================
+
+  * WebSockets server support (optional), use "npm install websocket" add 'impress.websocket' plugin in config
+  * Added example for WebSockets, see /examples/connest.ws/get.js
+
 0.0.63 / 2013-12-11
 ==================
 

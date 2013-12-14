@@ -135,6 +135,23 @@ global.onLoad(function() {
 	$(document).on('click', '#menuSSE', function() {
 	});
 
+	$(document).on('click', '#menuWS', function() {
+		ws = new WebSocket("ws://127.0.0.1:80/examples/connect.ws");
+		panelCenter.html("Connecting...<hr>");
+
+		ws.onopen = function() {
+			panelCenter.append("Connection opened<hr>");
+		}
+
+		ws.onclose = function() {
+			panelCenter.append("Connection closed<hr>");
+		}
+
+		ws.onmessage = function(evt) {
+			panelCenter.append("Message from server: "+evt.data+"<hr>");
+		}
+	});
+
 	$(document).on('click', '#menuSendMail', function() {
 	});
 

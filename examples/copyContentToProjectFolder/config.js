@@ -26,7 +26,8 @@ module.exports = {
 			"cms",
 			"cms.mysql",
 			"impress.health",
-			"impress.cloud"
+			"impress.cloud",
+			"impress.websocket"
 		]
 	},
 
