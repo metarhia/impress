@@ -21,13 +21,13 @@ fs.exists(destination+'config.js', function(exists) {
 			if (!exists) {
 				fs.exists(path+'setup.js', function(exists) {
 					if (!exists) {
-						fs.exists(path+'sites', function(exists) {
+						fs.exists(path+'applications', function(exists) {
 							if (!exists) {
 								console.log('Install Impress Application Server...'.bold.green);
 								fs.createReadStream(source+'config.js').pipe(fs.createWriteStream(destination+'config.js'));
 								fs.createReadStream(source+'server.js').pipe(fs.createWriteStream(destination+'server.js'));
 								fs.createReadStream(source+'setup.js').pipe(fs.createWriteStream(destination+'setup.js'));
-								ncp(source+'sites', destination+'sites', { clobber: false }, function (err) {
+								ncp(source+'applications', destination+'applications', { clobber: false }, function (err) {
 									if (err) console.error(err);
 									if (isWin) {
 										exec('start cmd /K "cd /d '+destination.replace(/\//g, '\\')+' & node server.js"' );

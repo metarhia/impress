@@ -1,3 +1,12 @@
+0.0.65 / 2013-12-15
+==================
+
+  * SSE moved from Impress core into separate plugin impress.sse.js
+  * Refactored event propagation between master and workers and between cloud controller and node clusters using IPC and ZeroMQ
+  * Moved userEvent, channelEvent and globalEvent from impress.sse to impress.events namespace
+  * Improved example for WebSockets
+  * Directory /sites in default examples config.js file renamed to /applications
+
 0.0.64 / 2013-12-14
 ==================
 

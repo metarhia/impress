@@ -76,24 +76,24 @@ $ npm install impress
 
 1. Template example
 Location: http://localhost
-Base template: /sites/localhost/html.template
+Base template: /applications/localhost/html.template
 2. Override included "left.template"
 Location: http://localhost/override
-Overriden template: /sites/localhost/override/left.template
-Base template: /sites/localhost/html.template
-Handler: /sites/localhost/request.js
+Overriden template: /applications/localhost/override/left.template
+Base template: /applications/localhost/html.template
+Handler: /applications/localhost/request.js
 3. JSON api method example
 Location: http://localhost/api/examples/methodName.json
-Handler: /sites/localhost/api/examples/methodName.json/get.js
+Handler: /applications/localhost/api/examples/methodName.json/get.js
 4. Start anonymous session
 Location: http://localhost/api/auth/anonymousSession.json
-Handler: /sites/localhost/api/auth/anonymousSession.json/get.js
+Handler: /applications/localhost/api/auth/anonymousSession.json/get.js
 5. POST request handler
 Location: POST http://localhost/api/auth/regvalidation.json
-Handler: /sites/localhost/api/auth/regvalidation.json/post.js
+Handler: /applications/localhost/api/auth/regvalidation.json/post.js
 6. MongoDB access example
 Location: http://localhost/api/examples/getUsers.json
-Handler: /sites/localhost/api/examples/getUsers.json/get.js
+Handler: /applications/localhost/api/examples/getUsers.json/get.js
 
 ## Example
 
