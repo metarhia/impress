@@ -1,3 +1,12 @@
+0.0.66 / 2013-12-16
+==================
+
+  * Fixed websocket plugin to display warning when "websocket" module not installed instead of process crash
+  * Improved exceptions handling in Impress core, exceptions will be logged to file, workers will restart, master will exit on exception
+  * Refactored plugins optional loader for all plugins
+  * Fixed impress.log.js, prevent exception in case when other application deletes log
+  * Fixed parameters in 'exit' event when spawn worker processes
+
 0.0.65 / 2013-12-15
 ==================
 
