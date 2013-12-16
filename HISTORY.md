@@ -1,3 +1,10 @@
+0.0.67 / 2013-12-17
+==================
+
+  * Fixed startup check
+  * Load additional plugins if confog.js changed and new (not loaded) plugins are found in config
+  * Unload disabled plugins if they already loaded at start or previous soft restart
+
 0.0.66 / 2013-12-16
 ==================
 
