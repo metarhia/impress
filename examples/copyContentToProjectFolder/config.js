@@ -13,22 +13,22 @@ module.exports = {
 		    "impress.security",
 			"impress.uglify"
 		],
-		disabled: [ // Disabled plugins
+		disabled: [ // Disabled plugins (to use plugins you need modules mentioned in comments below)
 			"db",
 			"db.schema",
-			"db.mongodb",
-			"db.memcached",
-			"db.mysql",
+			"db.mongodb",        // mongodb
+			"db.memcached",      // memcached
+			"db.mysql",          // mysql, mysql-utilities
 			"db.mysql.schema",
 		    "impress.security.mongodb",
-			"impress.mail",
+			"impress.mail",      // nodemailer
 			"cms",
 			"cms.mysql",
 			"impress.health",
-			"impress.cloud",
-			"impress.websocket",
+			"impress.cloud",     // zmq
+			"impress.websocket", // websocket
 			"impress.sse",
-			"impress.geoip"
+			"impress.geoip"      // geoip-lite
 		]
 	},
 

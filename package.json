@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.0.67",
+  "version": "0.0.68",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Totalitarian-style Multipurpose Application Server for node.js. All decisions are made. Ready for applied development",
   "keywords": [
@@ -45,20 +45,10 @@
     "mkdirp": "0.3.x",
     "ncp": "0.4.x",
     "open": "0.0.x",
-    "mongodb": ">=1.3.19",
-    "mysql": "2.0.x",
-    "mysql-utilities": "1.0.x",
-    "memcached": "0.2.x",
-    "nodemailer": "0.5.x",
     "uglify-js": "2.4.x",
     "multiparty": "3.1.x",
-    "iconv-lite": "0.2.x"
-  },
-  "optionalDependencies": {
-    "npm": "1.3.x",
-    "zmq": "2.5.x",
-    "geoip-lite": "1.1.x",
-    "websocket": "1.0.x"
+    "iconv-lite": "0.2.x",
+    "npm": "1.3.x"
   },
   "engines": {
     "node": ">=0.10.6"
