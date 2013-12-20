@@ -1,3 +1,11 @@
+0.0.69 / 2013-12-20
+==================
+
+  * Methods moved from impress.events (Impress core) to impress.sse.js and renamed: userEvent to sendToUser, channelEvent to sendToChanel, globalEvent to sendGlobal
+  * Fixed and improved SSE implementation
+  * Added SSE example
+  * Fixed multipart form-data fields (by SkeLLLa)
+
 0.0.68 / 2013-12-18
 ==================
 

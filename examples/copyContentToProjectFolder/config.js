@@ -10,6 +10,7 @@ module.exports = {
 	plugins: {
 		require: [ // Plugins list
 		    "impress.log",
+			"impress.sse",
 		    "impress.security",
 			"impress.uglify"
 		],
@@ -27,7 +28,6 @@ module.exports = {
 			"impress.health",
 			"impress.cloud",     // zmq
 			"impress.websocket", // websocket
-			"impress.sse",
 			"impress.geoip"      // geoip-lite
 		]
 	},

@@ -11,30 +11,6 @@ global.onLoad(function() {
 	panelCenter = $('#panel-center');
 	panelRight = $('#panel-right');
 
-	// -------------------
-
-	//setTimeout(sseConnect, 1000);
-
-	function sseConnect() {
-		var sse = new EventSource("/api/examples/test.sse");
-		var sseListener = function(event) {
-			var div = document.createElement("div");
-			var type = event.type;
-			div.appendChild(document.createTextNode(type + ": " + (type === "message" ? event.data : sse.url)));
-			id("panel-center").appendChild(div);
-		};
-		sse.addEventListener("open", function(e) {
-			console.log("open: sse.readyState="+sse.readyState);
-		}, false);
-		sse.addEventListener("ping", function(e) {
-			console.log("ping: type="+e.type+", data="+e.data);
-		}, false);
-		sse.addEventListener("error", function(e) {
-			//setTimeout(sseConnect, 3000);
-			console.log("error: sse.readyState="+sse.readyState);
-		}, false);
-	}
-
 	// --- Auth Module ---
 
 	$('#hmenu-Signin').click(function() {
@@ -165,6 +141,44 @@ global.onLoad(function() {
 			ws.send("Hello");
 		});
 	});
+	
+	$(document).on('click', '#menuSSE', function() {
+		panelCenter.html(
+			'<a class="button silver" id="btnSseClose"><span class="icon delete"></span>Close connection</a> '+
+			'<a class="button silver" id="btnSseSend"><span class="icon handshake"></span>Send event to server</a>'+
+			'<hr>Connecting...<hr>'
+		);
+		sseConnect();
+	});
+
+	function sseConnect() {
+		var sse = new EventSource("/examples/connect.sse");
+
+		sse.addEventListener("TestEvent", function(e) {
+			panelCenter.append("Event: "+e.event+"; Data: "+e.data+"<hr>");
+		});
+
+		sse.addEventListener("open", function(e) {
+			panelCenter.append("Connection opened<hr>");
+		}, false);
+
+		sse.addEventListener("error", function(e) {
+			if (e.readyState == EventSource.CLOSED) panelCenter.append("Connection closed by server<hr>");
+			else panelCenter.append("SSE Error: readyState="+sse.readyState+"<hr>");
+		}, false);
+
+		$('#btnSseClose').on('click', function() {
+			sse.close();
+			panelCenter.append("Connection closed by user<hr>");
+			$('#btnSseClose').hide();
+		});
+
+		$('#btnSseSend').on('click', function() {
+			panelCenter.append("Sending event to server, it should return back.<hr>");
+			$.get('/examples/sendEvent.json', function(res) {
+			});
+		});
+	}
 
 	$(document).on('click', '#menuSendMail', function() {
 	});

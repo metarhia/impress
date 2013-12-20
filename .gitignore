@@ -2,6 +2,7 @@ node_modules
 log
 test
 debug
+develop
 
 lib-cov
 *.seed
