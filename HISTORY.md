@@ -1,3 +1,10 @@
+0.0.70 / 2013-12-23
+==================
+
+  * Fixed disabled plugins unloading
+  * Added correct mime type for .svg (by SkeLLLa)
+  * Added more mime types
+
 0.0.69 / 2013-12-20
 ==================
 
