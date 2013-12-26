@@ -1,3 +1,9 @@
+0.0.71 / 2013-12-26
+==================
+
+  * Added access check on port binding (needed for non-privileged users on unix/linux systems)
+  * Changed process title for Impress processes, now you can stop all processes running in background using: killall "Impress App Srv"
+
 0.0.70 / 2013-12-23
 ==================
 
