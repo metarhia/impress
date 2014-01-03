@@ -2,6 +2,12 @@
 
 module.exports = {
 	modules: [
+		'global',
+		'console',
+		'process',
+		'impress',
+		'db',
+		'cms',
 		'os',
 		'domain',
 		'crypto',
