@@ -1,3 +1,16 @@
+0.1.1 / 2014-01-03
+==================
+
+  * Implemented application separation in V8 "sandboxes"
+  * Changed application configuration (separate section files, application separation, separated server global config)
+  * Changed method of configuration files loading from "require" to "sandboxes" ("require" worcs synchronously)
+  * Refactored server startup (impress.init deprecated with callbacks, now impress.server.start and events "start", "master", "worker", "stop" will be emitted instead callbacks)
+  * Implemented database separation for different applications
+  * Implemented URL rewriting without additional proxying overhead
+  * Refactored application server soft reloading when config changed
+  * Refactored global.js
+  * Refactored examples
+
 0.0.71 / 2013-12-26
 ==================
 
