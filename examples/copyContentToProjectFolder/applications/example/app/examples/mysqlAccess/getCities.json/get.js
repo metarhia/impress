@@ -1,7 +1,7 @@
-module.exports = function(req, res, callback) {
+module.exports = function(client, callback) {
 	db.polltool.query('select * from City', function(err, rows, fields) {
 		if (err) throw err;
-		res.context.data = { rows:rows, fields:fields };
+		client.context.data = { rows:rows, fields:fields };
 		callback();
 	});
 }

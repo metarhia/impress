@@ -1,5 +1,5 @@
-module.exports = function(req, res, callback) {
-	res.context.data = {
+module.exports = function(client, callback) {
+	client.context.data = {
 		phone: {
 			model: "Motorola Photom Q 4G LTE",
 			os: "Android 4.0.4 (Ice Cream Sandwich)",

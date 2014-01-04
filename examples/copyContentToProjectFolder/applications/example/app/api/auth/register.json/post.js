@@ -1,8 +1,7 @@
-﻿module.exports = function(req, res, callback) {
-	impress.security.register(req, res, function(err, user) {
-		console.dir({user:user});
-		if (user) res.context.data = { Result: "Ok" };
-		else res.context.data = { Result: "Error" };
+﻿module.exports = function(client, callback) {
+	impress.security.register(client, function(err, user) {
+		if (user) client.context.data = { Result: "Ok" };
+		else client.context.data = { Result: "Error" };
 		callback();
 	});
 }

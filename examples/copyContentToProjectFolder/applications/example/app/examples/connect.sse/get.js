@@ -1,4 +1,4 @@
-module.exports = function(req, res, callback) {
-	res.sse.channel = 'TestEvent';
+module.exports = function(client, callback) {
+	client.sse.channel = 'TestEvent';
 	callback();
 }

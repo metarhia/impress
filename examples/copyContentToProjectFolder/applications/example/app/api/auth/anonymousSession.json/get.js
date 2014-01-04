@@ -1,5 +1,5 @@
-﻿module.exports = function(req, res, callback) {
-	impress.startSession(req, res);
-	res.context.data = { SID: req.impress.session };
+﻿module.exports = function(client, callback) {
+	client.startSession();
+	client.context.data = { SID: client.session };
 	callback();
 }

@@ -1,4 +1,4 @@
-﻿module.exports = function(req, res, callback) {
+﻿module.exports = function(client, callback) {
 
 	var serializeData = function(err, nodes) {
 		for (var i = 0; i < nodes.length; i++) {
@@ -15,13 +15,13 @@
 				item.state = "open";
 				item.attr.class = "jstree-leaf";
 			}
-			res.context.data.push(item);
+			client.context.data.push(item);
 		}
 	}
 
-	res.context.data = [];
+	client.context.data = [];
 
-	if (req.query.id == 1) {
+	if (client.req.query.id == 1) {
 		var providers = [],
 			databases = impress.config.databases;
 		for (var databaseName in databases) {
@@ -32,7 +32,7 @@
 		callback();
 	} else {
 		var items = [],
-			path = req.query.id.substring(1).split('/'),
+			path = client.req.query.id.substring(1).split('/'),
 			dbName = path[0],
 			database = impress.config.databases[dbName],
 			schema = database.url.substr(0, database.url.indexOf(':')),
@@ -67,9 +67,9 @@
 					callback();
 				});
 			} else if (schema == 'mongodb') {
-				var client = db.drivers.mongodb.MongoClient,
+				var dbClient = db.drivers.mongodb.MongoClient,
 					url = 'mongodb://localhost:27017/'+path[1];
-				client.connect(url, function(err, connection) {
+				dbClient.connect(url, function(err, connection) {
 					connection.collections(function(err, collections) {
 						for (var i = 0; i < collections.length; i++) {
 							if (collections[i].db.databaseName == path[1]) {

@@ -1,11 +1,11 @@
-﻿module.exports = function(req, res, callback) {
+﻿module.exports = function(client, callback) {
 
-	impress.requestCounter = impress.requestCounter || 0;
+    application.requestCounter = application.requestCounter || 0;
 
-	res.context.data = {
+	client.context.data = {
 		status: 1,
-		parameterValue: req.post.parameterName,
-		valueLength: req.post.parameterName.length,
+		parameterValue: client.req.fields.parameterName,
+		valueLength: client.req.fields.parameterName.length,
 		requestCounter: impress.requestCounter++
 	};
 	callback();

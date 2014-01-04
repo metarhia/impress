@@ -1,5 +1,3 @@
-module.exports = function(req, res, callback) {
-
+module.exports = function(client, callback) {
 	callback();
-
 }

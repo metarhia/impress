@@ -1,6 +1,6 @@
-﻿module.exports = function(req, res, callback) {
-	impress.security.getUser(req.post.Email, function(err, user) {
-		res.context.data = { Email: !user };
+﻿module.exports = function(client, callback) {
+	impress.security.getUser(client.req.fields.Email, function(err, user) {
+		client.context.data = { Email: !user };
 		callback();
 	});
 }

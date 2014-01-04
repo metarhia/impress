@@ -1,13 +1,13 @@
-﻿module.exports = function(req, res, callback) {
+﻿module.exports = function(client, callback) {
 
-	res.context.data = {};
+	client.context.data = {};
 
-	var path = req.post.source.substring(1).split('/'),
+	var path = client.req.post.source.substring(1).split('/'),
 		dbName = path[0],
 		url = impress.config.databases[dbName].url,
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName],
-		filter = (req.post.filter) ? JSON.parse(req.post.filter) : {};
+		filter = (client.req.fields.filter) ? JSON.parse(client.req.fields.filter) : {};
 	/*
 		source: dataSource,
 		filter: filter,
@@ -23,7 +23,7 @@
 				if (!err) {
 					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '')
 					if (!data) data = [];
-					res.context.data = {
+					client.context.data = {
 						start: 0,
 						count: data.length,
 						data: data,
@@ -33,16 +33,16 @@
 				callback();
 			});
 		} else if (schema == 'mongodb') {
-			var client = db.drivers.mongodb.MongoClient,
+			var dbClient = db.drivers.mongodb.MongoClient,
 				url = 'mongodb://localhost:27017/'+path[1];
-			client.connect(url, function(err, connection) {
+			dbClient.connect(url, function(err, connection) {
 				connection.createCollection(path[2], function(err, collection) {
 					collection.find(filter).toArray(function(err, nodes) {
 						for (var i=0; i<nodes.length; ++i) {
 							var node = nodes[i];
 							for (field in node) if (typeof(node[field]) == 'object') node[field] = JSON.stringify(node[field]).replace(/"/g, '');
 						}
-						res.context.data = {
+						client.context.data = {
 							start: 0,
 							count: nodes.length,
 							data: nodes

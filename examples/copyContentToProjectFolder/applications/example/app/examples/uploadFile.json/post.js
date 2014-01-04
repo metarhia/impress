@@ -1,4 +1,4 @@
-﻿module.exports = function(req, res, callback) {
-	res.context.data = req.impress.files;
+﻿module.exports = function(client, callback) {
+	client.context.data = client.files;
 	callback();
 }

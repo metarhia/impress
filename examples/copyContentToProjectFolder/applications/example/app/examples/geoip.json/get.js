@@ -1,26 +1,21 @@
-module.exports = function(req, res, callback) {
+module.exports = function(client, callback) {
 
-	if (impress.geoip) {
-		impress.dns.lookup('nodejs.org', 4, function(err, address, family) {
-			res.context.data = {
-				req: {
-					connection: {
-						remoteAddress: req.connection.remoteAddress,
-						geoip: impress.geoip.lookup(req.connection.remoteAddress)
-					}
-				},
-				example: {
-					nodejs: {
-						host: 'nodejs.org',
-						geoip: impress.geoip.lookup(address)
-					}
+	dns.lookup('nodejs.org', 4, function(err, address, family) {
+		client.context.data = {
+			req: {
+				connection: {
+					remoteAddress: client.req.connection.remoteAddress,
+					geoip: geoip.lookup(client.req.connection.remoteAddress)
 				}
-			};
-			callback();
-		});
-	} else {
-			res.context.data = { msg: "GeoIP module is not installed, you can add it using: npm install geoip-lite" };
-			callback();
-	}
+			},
+			example: {
+				nodejs: {
+					host: 'nodejs.org',
+					geoip: geoip.lookup(address)
+				}
+			}
+		};
+		callback();
+	});
 
 }

@@ -1,7 +1,7 @@
-module.exports = function(req, res, callback) {
-	res.context.data = [];
+module.exports = function(client, callback) {
+	client.context.data = [];
 	db.impress.sessions.find({}).toArray(function(err, nodes) {
-		res.context.data = nodes;
+		client.context.data = nodes;
 		callback();
 	});
 }

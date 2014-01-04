@@ -1,24 +1,24 @@
-module.exports = function(req, res, callback) {
+module.exports = function(client, callback) {
 
 	var fileName = 'example.png';
 
-    res.setHeader('Content-Description', 'File Transfer');
-	res.setHeader('Content-Type', 'application/x-download');
-	res.setHeader('Content-Disposition', 'attachment; filename="'+fileName+'"');
-	res.setHeader('Content-Transfer-Encoding', 'binary');
-	res.setHeader('Expires', 0);
-	res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
-	res.setHeader('Pragma', 'no-cache');
+    client.res.setHeader('Content-Description', 'File Transfer');
+	client.res.setHeader('Content-Type', 'application/x-download');
+	client.res.setHeader('Content-Disposition', 'attachment; filename="'+fileName+'"');
+	client.res.setHeader('Content-Transfer-Encoding', 'binary');
+	client.res.setHeader('Expires', 0);
+	client.res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+	client.res.setHeader('Pragma', 'no-cache');
 
-	var filePath = req.impress.hostDir+req.impress.path+'/'+fileName;
+	var filePath = client.hostDir+client.path+'/'+fileName;
 
-	impress.fs.stat(filePath, function(err, stats) {
-		if (err) impress.error(req, res, 404);
+	fs.stat(filePath, function(err, stats) {
+		if (err) client.error(404);
 		else {
-			res.setHeader('Content-Length', stats.size);
-			impress.fs.readFile(filePath, function(error, data) {
-				if (error) impress.error(req, res, 404);
-				else res.end(data);
+			client.res.setHeader('Content-Length', stats.size);
+			fs.readFile(filePath, function(error, data) {
+				if (error) client.error(404);
+				else client.end(data);
 				callback();
 			});
 		}

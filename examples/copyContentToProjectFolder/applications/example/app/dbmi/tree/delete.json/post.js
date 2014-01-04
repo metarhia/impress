@@ -1,6 +1,6 @@
-﻿module.exports = function(req, res, callback) {
+﻿module.exports = function(client, callback) {
 
-	res.context.data = { status: 0 };
+	client.context.data = { status: 0 };
 
 	var items = [],
 		path = req.post.id.substring(1).split('/'),
@@ -11,15 +11,15 @@
 	if (path.length == 2) {
 		if (schema == 'mysql') {
 			driver.query('DROP DATABASE '+db.escape(path[1]), [], function(err, result) {
-				if (!err) res.context.data = { status: 1 };
+				if (!err) client.context.data = { status: 1 };
 				callback();
 			});
 		} else if (schema == 'mongodb') {
-			var client = db.drivers.mongodb.MongoClient,
+			var dbClient = db.drivers.mongodb.MongoClient,
 				url = 'mongodb://localhost:27017/'+path[1];
-			client.connect(url, function(err, connection) {
+			dbClient.connect(url, function(err, connection) {
 				connection.dropDatabase(function(err, result) {
-					if (!err) res.context.data = { status: 1 };
+					if (!err) client.context.data = { status: 1 };
 					callback();
 				});
 			});
@@ -28,15 +28,15 @@
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
 			driver.query('DROP TABLE '+db.escape(tableName), [], function(err, result) {
-				if (!err) res.context.data = { status: 1 };
+				if (!err) client.context.data = { status: 1 };
 				callback();
 			});
 		} else if (schema == 'mongodb') {
-			var client = db.drivers.mongodb.MongoClient,
+			var dbClient = db.drivers.mongodb.MongoClient,
 				url = 'mongodb://localhost:27017/'+path[1];
-			client.connect(url, function(err, connection) {
+			dbClient.connect(url, function(err, connection) {
 				connection.dropCollection(path[2], function(err, result) {
-					if (!err) res.context.data = { status: 1 };
+					if (!err) client.context.data = { status: 1 };
 					callback();
 				});
 			});

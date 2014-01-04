@@ -1,6 +1,6 @@
-module.exports = function(req, res, callback) {
+module.exports = function(client, callback) {
 
-	var connection = res.websocket.accept();
+	var connection = client.res.websocket.accept();
 
 	connection.send('Hello world');
 

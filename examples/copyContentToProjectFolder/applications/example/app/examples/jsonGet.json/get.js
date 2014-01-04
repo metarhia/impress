@@ -1,8 +1,6 @@
-﻿module.exports = function(req, res, callback) {
+﻿module.exports = function(client, callback) {
 
-	var os = impress.os;
-
-	res.context.data = {
+	client.context.data = {
 		process: {
 			execPath: process.execPath,
 			execArgv: process.execArgv,

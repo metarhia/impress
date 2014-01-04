@@ -1,6 +1,6 @@
-module.exports = function(req, res, callback) {
-	res.context.data = {
-		parameterName: req.query.parameterName,
+module.exports = function(client, callback) {
+	client.context.data = {
+		parameterName: client.req.query.parameterName,
 	};
 	callback();
 }

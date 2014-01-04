@@ -1,4 +1,4 @@
-module.exports = function(req, res, callback) {
+module.exports = function(client, callback) {
 
 	impress.sse.sendGlobal('TestEvent', { test: "data" });
 	callback();
