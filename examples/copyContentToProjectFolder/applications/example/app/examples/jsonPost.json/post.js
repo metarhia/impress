@@ -4,8 +4,8 @@
 
 	client.context.data = {
 		status: 1,
-		parameterValue: client.req.fields.parameterName,
-		valueLength: client.req.fields.parameterName.length,
+		parameterValue: client.fields.parameterName,
+		valueLength: client.fields.parameterName.length,
 		requestCounter: impress.requestCounter++
 	};
 	callback();

@@ -3,7 +3,7 @@
 	client.context.data = { status: 0 };
 
 	var items = [],
-		path = req.post.id.substring(1).split('/'),
+		path = client.fields.id.substring(1).split('/'),
 		dbName = path[0],
 		database = impress.config.databases[dbName],
 		schema = database.url.substr(0, database.url.indexOf(':')),

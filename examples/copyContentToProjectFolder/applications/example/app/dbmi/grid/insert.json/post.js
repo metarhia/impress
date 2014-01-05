@@ -2,12 +2,12 @@
 
 	client.context.data = { status:0 };
 
-	var path = client.req.fields.source.substring(1).split('/'),
+	var path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
 		url = impress.config.databases[dbName].url,
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName],
-		data = JSON.parse(client.req.fields.data) || {};
+		data = JSON.parse(client.fields.data) || {};
 	if (data.index) delete data.index;
 	if (path.length == 3) {
 		if (schema == 'mysql') {

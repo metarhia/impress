@@ -2,7 +2,7 @@
 	impress.security.signIn(client, function(isSuccess) {
 		if (isSuccess) client.context.data = { Result: "Ok" };
 		else client.context.data = { Result: "Error" };
-		if (client.req.fields.loginForm) client.redirect("/");
+		if (client.fields.loginForm) client.redirect("/");
 		callback();
 	});
 }

@@ -2,7 +2,7 @@
 
 	client.context.data = [];
 
-	var path = client.req.fields.source.substring(1).split('/'),
+	var path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
 		url = impress.config.databases[dbName].url,
 		schema = url.substr(0, url.indexOf(':')),

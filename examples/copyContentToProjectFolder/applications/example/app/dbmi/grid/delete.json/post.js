@@ -11,7 +11,7 @@
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			var query = driver.query('DELETE FROM '+db.escape(tableName)+' WHERE '+client.req.fields.pkName+'=?', [client.req.fields.pkValue], function(err, result) {
+			var query = driver.query('DELETE FROM '+db.escape(tableName)+' WHERE '+client.fields.pkName+'=?', [client.fields.pkValue], function(err, result) {
 				if (!err) {
 					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '').
 					client.context.data = { status: 1, sql: sql };
@@ -23,7 +23,7 @@
 				url = 'mongodb://localhost:27017/'+path[1];
 			dbClient.connect(url, function(err, connection) {
 				connection.createCollection(path[2], function(err, collection) {
-					collection.remove({ _id: db.mongodb.oid(client.req.fields.pkValue) }, function(err, collection) {
+					collection.remove({ _id: db.mongodb.oid(client.fields.pkValue) }, function(err, collection) {
 						if (!err) client.context.data = { status: 1 };
 						callback();
 					});

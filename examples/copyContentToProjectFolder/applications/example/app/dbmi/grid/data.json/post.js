@@ -2,12 +2,12 @@
 
 	client.context.data = {};
 
-	var path = client.req.post.source.substring(1).split('/'),
+	var path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
 		url = impress.config.databases[dbName].url,
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName],
-		filter = (client.req.fields.filter) ? JSON.parse(client.req.fields.filter) : {};
+		filter = (client.fields.filter) ? JSON.parse(client.fields.filter) : {};
 	/*
 		source: dataSource,
 		filter: filter,

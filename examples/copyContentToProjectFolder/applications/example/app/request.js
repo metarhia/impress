@@ -1,6 +1,6 @@
 module.exports = function(client, callback) {
 
-	//if (client.req.fields.loginForm) client.redirect("/");
+	//if (client.fields.loginForm) client.redirect("/");
 	//console.dir(global);
 
 	client.context.data = {

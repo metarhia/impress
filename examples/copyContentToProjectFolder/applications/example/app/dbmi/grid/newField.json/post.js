@@ -2,7 +2,7 @@
 
 	client.context.data = { status:0 };
 
-	var path = client.req.fields.source.substring(1).split('/'),
+	var path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
 		url = impress.config.databases[dbName].url,
 		schema = url.substr(0, url.indexOf(':')),
@@ -49,9 +49,9 @@
 				url = 'mongodb://localhost:27017/'+path[1];
 			dbClient.connect(url, function(err, connection) {
 				connection.createCollection(path[2], function(err, collection) {
-					var objectId = db.mongodb.oid(client.req.fields.pkValue);
+					var objectId = db.mongodb.oid(client.fields.pkValue);
 					var data = {};
-					data[client.req.fields.newFieldName] = '';
+					data[client.fields.newFieldName] = '';
 					collection.update({ _id: objectId }, { $set: data },  function(err) {
 						if (!err) client.context.data = { status: 1 };
 						callback();
