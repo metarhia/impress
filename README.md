@@ -16,7 +16,8 @@ $ npm install impress
 
   - Can serve multiple applications and sites on multiple domains
   - Serves multiple ports, network interfaces, hosts and protocols
-  - Can be run on one or multiple servers
+  - Can scale on multiple servers
+  - Supports application sandboxing (configuration, db and memory access isolation)
   - Supports one or multiple CPU cores with following instantiation strategies:
     - Single instance (one process)
     - Instance specialization (multiple processes, one master and different workers for each server)
@@ -124,8 +125,8 @@ module.exports = {
 File "request.js": place such file in folder to be executed on each request (GET, POST, PUT, etc.).
 If folder not contains "request.js" it will inherit from parent folder and so on. Example:
 ```javascript
-module.exports = function(req, res, callback) {
-	res.context.data = {
+module.exports = function(client, callback) {
+	client.context.data = {
 		title: "Page Title",
 		users: [
 			{
@@ -136,7 +137,7 @@ module.exports = function(req, res, callback) {
 				emails: ["user3@gmail.com", "user4@gmail.com", "user5@gmail.com"]
 			}
 		],
-		session: JSON.stringify(impress.sessions[req.impress.session])
+		session: client.session
 	};
 	callback();
 }
@@ -145,10 +146,10 @@ module.exports = function(req, res, callback) {
 File "get.js": place such file in folder to be executed on GET request. For POST request "post.js", and so on.
 If folder not contains "get.js" it will inherit from parent folder and so on. Example:
 ```javascript
-module.exports = function(req, res, callback) {
+module.exports = function(client, callback) {
 	db.polltool.query('select * from City', function(err, rows, fields) {
 		if (err) throw err;
-		res.context.data = { rows:rows, fields:fields };
+		client.context.data = { rows:rows, fields:fields };
 		callback();
 	});
 }
@@ -187,12 +188,12 @@ File "html.template": place such file in folder as a main page template. Example
 </html>
 ```
 
-## Contributors 
+## Contributors
 
   - Timur Shemsedinov (marcusaurelius)
   - See github
 
-## License 
+## License
 
 Dual licensed under the MIT or RUMI licenses.
 
