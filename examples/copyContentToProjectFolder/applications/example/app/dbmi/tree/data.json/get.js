@@ -23,7 +23,7 @@
 
 	if (client.req.query.id == 1) {
 		var providers = [],
-			databases = impress.config.databases;
+			databases = application.databases;
 		for (var databaseName in databases) {
 			var database = databases[databaseName];
 			providers.push({ id:"/"+databaseName, name:databaseName+' ('+database.url+')', type:"provider" });
@@ -34,12 +34,12 @@
 		var items = [],
 			path = client.req.query.id.substring(1).split('/'),
 			dbName = path[0],
-			database = impress.config.databases[dbName],
+			database = application.databases[dbName],
 			schema = database.url.substr(0, database.url.indexOf(':')),
 			driver = db[dbName];
 		if (path.length == 1) {
 			if (schema == 'mysql') {
-				driver.databases(function(err, databases) {
+				database.connection.databases(function(err, databases) {
 					for (var i = 0; i < databases.length; i++) {
 						items.push({ id:"/"+dbName+"/"+databases[i], name:databases[i], type:"database" });
 					}
@@ -47,7 +47,7 @@
 					callback();
 				});
 			} else if (schema == 'mongodb') {
-				driver.admin().listDatabases(function(err, databases) {
+				database.connection.admin().listDatabases(function(err, databases) {
 					databases = databases.databases;
 					for (var i = 0; i < databases.length; i++) {
 						items.push({ id:"/"+dbName+"/"+databases[i].name, name:databases[i].name, type:"database" });
@@ -58,7 +58,7 @@
 			}
 		} else if (path.length == 2) {
 			if (schema == 'mysql') {
-				driver.databaseTables(path[1], function(err, tables) {
+				database.connection.databaseTables(path[1], function(err, tables) {
 					for (var tableName in tables) {
 						var table = tables[tableName];
 						items.push({ id:"/"+path[0]+"/"+path[1]+"/"+table['TABLE_NAME'], name:table['TABLE_NAME'], type:"table" });

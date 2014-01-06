@@ -5,13 +5,13 @@
 	var items = [],
 		path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
-		database = impress.config.databases[dbName],
+		database = application.databases[dbName],
 		schema = database.url.substr(0, database.url.indexOf(':')),
 		driver = db[dbName];
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			var query = driver.query('DELETE FROM '+db.escape(tableName)+' WHERE '+client.fields.pkName+'=?', [client.fields.pkValue], function(err, result) {
+			var query = database.connection.query('DELETE FROM '+db.escape(tableName)+' WHERE '+client.fields.pkName+'=?', [client.fields.pkValue], function(err, result) {
 				if (!err) {
 					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '').
 					client.context.data = { status: 1, sql: sql };

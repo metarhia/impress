@@ -2,15 +2,16 @@
 
 	client.context.data = [];
 
-	var path = client.fields.source.substring(1).split('/'),
+	var path = client.req.query.source.substring(1).split('/'),
 		dbName = path[0],
-		url = impress.config.databases[dbName].url,
+		database = application.databases[dbName],
+		url = database.url,
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName];
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			driver.fields(tableName, function(err, fields) {
+			database.connection.fields(tableName, function(err, fields) {
 				for (var fieldName in fields) {
 					var field = fields[fieldName],
 						width = field['Type'].match(/\d+/);

@@ -4,14 +4,14 @@
 
 	var path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
-		url = impress.config.databases[dbName].url,
+		url = application.databases[dbName].url,
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName];
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			/*
 			var tableName = path[1]+'.'+path[2];
-			driver.insert(tableName, data, function(err, recordId, query) {
+			database.connection.insert(tableName, data, function(err, recordId, query) {
 				if (!err) {
 					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '').
 					client.context.data = {
@@ -19,7 +19,7 @@
 						sql: sql
 					};
 					if (recordId) {
-						driver.fields(tableName, function(err, fields) {
+						database.connection.fields(tableName, function(err, fields) {
 							if (!err) {
 								var uniqueKey = null;
 								for (var i in fields) {
@@ -30,8 +30,8 @@
 								if (uniqueKey) {
 									var where = {};
 									where[uniqueKey] = recordId;
-									where = driver.where(where);
-									driver.queryRow('SELECT * FROM '+db.escape(tableName)+' WHERE '+where, [], function(err, data) {
+									where = database.connection.where(where);
+									database.connection.queryRow('SELECT * FROM '+db.escape(tableName)+' WHERE '+where, [], function(err, data) {
 										if (!data) data = [];
 										client.context.data.data = data;
 										callback();

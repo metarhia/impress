@@ -395,11 +395,12 @@ global.onLoad(function() {
 					});
 					
 					function insertGridRow(row) {
+						var currentRow = row.index;
 						$.post("/dbmi/grid/insert.json", { source: source, data: JSON.stringify(row) }, function(res) {
 							if (res.data) {
-								res.data.index = row.index;
-								loader.data[row.index] = res.data;
-								grid.invalidateRow(row.index);
+								res.data.index = currentRow;
+								loader.data[currentRow] = res.data;
+								grid.invalidateRow(currentRow);
 								grid.render();
 							} else {
 								delete loader.data[currentRow];

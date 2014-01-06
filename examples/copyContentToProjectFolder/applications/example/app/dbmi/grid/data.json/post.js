@@ -4,7 +4,8 @@
 
 	var path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
-		url = impress.config.databases[dbName].url,
+		database = application.databases[dbName],
+		url = database.url,
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName],
 		filter = (client.fields.filter) ? JSON.parse(client.fields.filter) : {};
@@ -19,7 +20,7 @@
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			driver.select(tableName, '*', filter, function(err, data, query) {
+			database.connection.select(tableName, '*', filter, function(err, data, query) {
 				if (!err) {
 					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '')
 					if (!data) data = [];

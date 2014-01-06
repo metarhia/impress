@@ -4,14 +4,15 @@
 
 	var path = client.fields.source.substring(1).split('/'),
 		dbName = path[0],
-		url = impress.config.databases[dbName].url,
+		database = application.databases[dbName],
+		url = database.url,
 		schema = url.substr(0, url.indexOf(':')),
 		driver = db[dbName],
 		data = JSON.parse(client.fields.data);
 	if (path.length == 3) {
 		if (schema == 'mysql') {
 			var tableName = path[1]+'.'+path[2];
-			driver.update(tableName, data, function(err, affectedRows, query) {
+			database.connection.update(tableName, data, function(err, affectedRows, query) {
 				if (!err) {
 					var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '').
 					client.context.data = {

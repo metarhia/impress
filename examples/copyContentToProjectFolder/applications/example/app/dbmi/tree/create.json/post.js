@@ -5,12 +5,12 @@
 	var items = [],
 		path = client.fields.id.substring(1).split('/'),
 		dbName = path[0],
-		database = impress.config.databases[dbName],
+		database = application.databases[dbName],
 		schema = database.url.substr(0, database.url.indexOf(':')),
 		driver = db[dbName];
 	if (path.length == 1) {
 		if (schema == 'mysql') {
-			driver.query('CREATE DATABASE '+db.escape(client.fields.title), [], function(err, result) {
+			database.connection.query('CREATE DATABASE '+db.escape(client.fields.title), [], function(err, result) {
 				if (!err) client.context.data = { status: 1, id: client.fields.id+'/'+client.fields.title };
 				callback();
 			});
@@ -28,7 +28,7 @@
 		} else callback();
 	} else if (path.length == 2) {
 		if (schema == 'mysql') {
-			driver.query('CREATE TABLE '+db.escape(path[1]+'.'+client.fields.title), [], function(err, result) {
+			database.connection.query('CREATE TABLE '+db.escape(path[1]+'.'+client.fields.title), [], function(err, result) {
 				if (!err) client.context.data = { status: 1 };
 				callback();
 			});

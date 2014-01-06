@@ -1,5 +1,6 @@
 global.onLoad(function() {
 
+
 	$('body').addClass('js');
 	$.fixCookie("SID");
 
