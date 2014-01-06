@@ -147,7 +147,7 @@ File "get.js": place such file in folder to be executed on GET request. For POST
 If folder not contains "get.js" it will inherit from parent folder and so on. Example:
 ```javascript
 module.exports = function(client, callback) {
-	db.polltool.query('select * from City', function(err, rows, fields) {
+	database1.query('select * from City', function(err, rows, fields) {
 		if (err) throw err;
 		client.context.data = { rows:rows, fields:fields };
 		callback();
