@@ -21,7 +21,7 @@
 
 	client.context.data = [];
 
-	if (client.req.query.id == 1) {
+	if (client.query.id == 1) {
 		var providers = [],
 			databases = application.databases;
 		for (var databaseName in databases) {
@@ -32,7 +32,7 @@
 		callback();
 	} else {
 		var items = [],
-			path = client.req.query.id.substring(1).split('/'),
+			path = client.query.id.substring(1).split('/'),
 			dbName = path[0],
 			database = application.databases[dbName],
 			schema = database.url.substr(0, database.url.indexOf(':')),

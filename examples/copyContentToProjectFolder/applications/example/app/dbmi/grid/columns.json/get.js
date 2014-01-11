@@ -2,7 +2,7 @@
 
 	client.context.data = [];
 
-	var path = client.req.query.source.substring(1).split('/'),
+	var path = client.query.source.substring(1).split('/'),
 		dbName = path[0],
 		database = application.databases[dbName],
 		url = database.url,

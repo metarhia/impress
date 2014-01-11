@@ -1,3 +1,13 @@
+0.1.2 / 2014-01-11
+==================
+
+  * Implemented internal URL rewriting
+  * Implemented request proxy
+  * Changed client.req.query to client.query
+  * Added process id and marker to log
+  * Refactored impress.dispatcher
+  * Fixed examples
+
 0.1.1 / 2014-01-03
 ==================
 
