@@ -1,4 +1,4 @@
-![impress logo](http://habrastorage.org/storage2/c1e/1b7/190/c1e1b7190c8c6685a34d6584e936c4c9.png)
+![impress logo](http://habrastorage.org/storage3/ca7/287/cd2/ca7287cd25f773d75e59a266698258a0.png)
 
 # Impress
 
