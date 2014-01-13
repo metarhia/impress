@@ -106,7 +106,7 @@ impress.server.on("start", function() {
 	// place code to be executed after all applecation started
 });
 
-impress.server.srart();
+impress.server.start();
 ```
 
 File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.
