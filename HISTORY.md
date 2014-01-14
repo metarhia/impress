@@ -1,3 +1,9 @@
+0.1.4 / 2014-01-14
+==================
+
+  * Long worker fork implementation done (not optimized for speed and security)
+  * Added example for worker fork
+
 0.1.3 / 2014-01-14
 ==================
 

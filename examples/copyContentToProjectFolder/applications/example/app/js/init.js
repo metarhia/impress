@@ -82,6 +82,12 @@ global.onLoad(function() {
 		});
 	});
 
+	$(document).on('click', '#menuWorker', function() {
+		$.get('/examples/forkWorker.json', function(res) {
+			panelCenter.html('Worker process forked, see console for output.');
+		});
+	});
+
 	$(document).on('click', '#menuTemplate', function() {
 		window.location = '/examples/override';
 	});

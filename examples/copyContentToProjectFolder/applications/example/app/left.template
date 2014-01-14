@@ -2,6 +2,7 @@
 <a class="button silver cancel" id="menuAJAX"><span class="icon file html"></span>AJAX handler</a>
 <a class="button silver cancel" id="menuGetJSON"><span class="icon run"></span>GET JSON handler</a>
 <a class="button silver cancel" id="menuPostJSON"><span class="icon run"></span>POST JSON handler</a>
+<a class="button silver cancel" id="menuWorker"><span class="icon online"></span>Fork worker</a>
 <a class="button silver cancel" id="menuTemplate"><span class="icon file source"></span>Templating</a>
 <a class="button silver cancel" id="menuDBMI"><span class="icon db"></span>DB Management Interface</a>
 <a class="button silver cancel" id="menuFileUpload"><span class="icon load up"></span>Upload files</a>
