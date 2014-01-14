@@ -1,3 +1,10 @@
+0.1.3 / 2014-01-14
+==================
+
+  * Critical Client fixes (non-latin unicode symbol removed)
+  * Renamed impress.spawn to impress.fork
+  * Long worker implementation started, Client.prototype.fork
+
 0.1.2 / 2014-01-11
 ==================
 
