@@ -1,0 +1,11 @@
+﻿<b>Install following modules:</b><br>
+<div id="npmModules">
+<input type="checkbox" name="npmMongoDb" value="mongodb" @npm.mongodb@> MongoDB drivers<br>
+<input type="checkbox" name="npmMemcached" value="memcached" @npm.memcached@> Memcached drivers<br>
+<input type="checkbox" name="npmMySql" value="mysql" @npm.mysql@> MySQL drivers<br>
+<input type="checkbox" name="npmMySqlUtilities" value="mysql-utilities" @npm.mysql-utilities@> MySQL utilities<br>
+<input type="checkbox" name="npmNodemailer" value="nodemailer" @npm.nodemailer@> Nodemailer library<br>
+<input type="checkbox" name="npmGeoIpLite" value="geoip-lite" @npm.geoip-lite@> GeoIP Lite library<br>
+<input type="checkbox" name="npmWebSocket" value="websocket" @npm.websocket@> Websocket library<br>
+</div>
+<a class="button silver" id="btnApplySetup"><span class="icon run"></span>Apply</a>

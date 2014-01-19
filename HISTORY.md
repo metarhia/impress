@@ -1,3 +1,10 @@
+0.1.5 / 2014-01-19
+==================
+
+  * Fixed file watch and application cache clear procedure
+  * Added example: visual setup for optional npm modules used by Impress
+  * Fixed templates, allow "-" in variable names
+
 0.1.4 / 2014-01-14
 ==================
 
