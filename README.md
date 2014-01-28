@@ -103,7 +103,7 @@ Following "server.js" is stating file. Run it using command line "node server" f
 require('impress');
 
 impress.server.on("start", function() {
-	// place code to be executed after all applecation started
+	// place code to be executed after all application started
 });
 
 impress.server.start();
