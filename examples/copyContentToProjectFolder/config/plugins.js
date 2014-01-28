@@ -1,8 +1,8 @@
 // Plugins to be loaded using require by Impress
 
 module.exports = [
-	"db",
-	"db.schema",
+	//"db",
+	//"db.schema",
 	//"db.mongodb",
 	//"db.memcached",
 	//"db.mysql",
@@ -10,7 +10,7 @@ module.exports = [
     "impress.log",
     "impress.security",
     //"impress.security.mongodb",
-	"impress.mail",
+	//"impress.mail",
 	"impress.uglify",
 	//"impress.health",
 	//"impress.cloud",
@@ -18,6 +18,6 @@ module.exports = [
 	//"impress.websocket",
 	"impress.sse",
 
-	// "cms",
-	// "cms.mysql"
+	//"cms",
+	//"cms.mysql"
 ]
