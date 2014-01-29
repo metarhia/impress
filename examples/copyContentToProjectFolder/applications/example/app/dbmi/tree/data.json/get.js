@@ -77,6 +77,7 @@
 							}
 						}
 						serializeData(null, items);
+						connection.close();
 						callback();
 					});
 				});

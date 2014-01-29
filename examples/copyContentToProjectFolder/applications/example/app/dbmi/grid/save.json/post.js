@@ -33,6 +33,7 @@
 						if (!err) client.context.data = { status: 1 };
 						callback();
 					});
+					connection.close();
 				});
 			});
 		} else callback();

@@ -26,11 +26,8 @@
 			var dbClient = db.drivers.mongodb.MongoClient,
 				url = 'mongodb://localhost:27017/'+path[1];
 			dbClient.connect(url, function(err, connection) {
+				connection.close();
 				callback();
-				//connection.dropDatabase(function(err, result) {
-				//	if (!err) client.context.data = { status: 1 };
-				//	callback();
-				//});
 			});
 		} else callback();
 	} else if (path.length == 3) {
@@ -46,6 +43,7 @@
 			dbClient.connect(url, function(err, connection) {
 				connection.renameCollection(path[2], client.fields.title, function(err, result) {
 					if (!err) client.context.data = { status: 1 };
+					connection.close();
 					callback();
 				});
 			});

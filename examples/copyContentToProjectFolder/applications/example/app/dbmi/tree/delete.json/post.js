@@ -20,6 +20,7 @@
 			dbClient.connect(url, function(err, connection) {
 				connection.dropDatabase(function(err, result) {
 					if (!err) client.context.data = { status: 1 };
+					connection.close();
 					callback();
 				});
 			});
@@ -37,6 +38,7 @@
 			dbClient.connect(url, function(err, connection) {
 				connection.dropCollection(path[2], function(err, result) {
 					if (!err) client.context.data = { status: 1 };
+					connection.close();
 					callback();
 				});
 			});

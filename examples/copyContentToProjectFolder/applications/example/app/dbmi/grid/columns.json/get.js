@@ -41,6 +41,7 @@
 								}
 							}
 						}
+						connection.close();
 						callback();
 					});
 				});

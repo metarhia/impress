@@ -25,6 +25,7 @@
 				connection.createCollection(path[2], function(err, collection) {
 					collection.remove({ _id: db.mongodb.oid(client.fields.pkValue) }, function(err, collection) {
 						if (!err) client.context.data = { status: 1 };
+						connection.close();
 						callback();
 					});
 				});

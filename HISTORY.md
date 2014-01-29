@@ -1,3 +1,9 @@
+0.1.7 / 2014-01-29
+==================
+
+  * DBMI connection leaking fixed
+  * A few Syntactic and misspell fixes
+
 0.1.6 / 2014-01-22
 ==================
 

@@ -19,11 +19,8 @@
 				url = 'mongodb://localhost:27017/'+client.fields.title;
 			dbClient.connect(url, function(err, connection) {
 				client.context.data = { status: 1, id: client.fields.id+'/'+client.fields.title };
+				connection.close();
 				callback();
-				//connection.dropDatabase(function(err, result) {
-				//	if (!err) client.context.data = { status: 1 };
-				//	callback();
-				//});
 			});
 		} else callback();
 	} else if (path.length == 2) {
@@ -38,6 +35,7 @@
 			dbClient.connect(url, function(err, connection) {
 				connection.createCollection(client.fields.title, function(err, result) {
 					if (!err) client.context.data = { status: 1 };
+					connection.close();
 					callback();
 				});
 			});

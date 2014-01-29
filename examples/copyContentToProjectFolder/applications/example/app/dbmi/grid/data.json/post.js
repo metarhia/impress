@@ -48,6 +48,7 @@
 							count: nodes.length,
 							data: nodes
 						};
+						connection.close();
 						callback();
 					});
 				});

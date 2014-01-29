@@ -51,6 +51,7 @@
 				connection.createCollection(path[2], function(err, collection) {
 					collection.insert(data,  function(err, data) {
 						if (!err) client.context.data = { status: 1, data: data[0] };
+						connection.close();
 						callback();
 					});
 				});
