@@ -1,3 +1,9 @@
+0.1.8 / 2014-01-31
+==================
+
+  * Fixed critical bug in inpress.js:watchCache
+  * Fixed minor bug in loading empty application
+
 0.1.7 / 2014-01-29
 ==================
 
