@@ -100,7 +100,7 @@ Handler: /applications/localhost/api/examples/getUsers.json/get.js
 
 Following "server.js" is stating file. Run it using command line "node server" for debug or "nohup node server" for production.
 ```javascript
-require('impress');
+var impress = require('impress');
 
 impress.server.on("start", function() {
 	// place code to be executed after all application started
