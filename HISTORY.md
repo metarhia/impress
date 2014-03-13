@@ -1,3 +1,8 @@
+0.1.14 / 2014-03-09
+==================
+
+  * Added mysql reconnection on startup and on error "PROTOCOL_CONNECTION_LOST" received
+
 0.1.13 / 2014-03-09
 ==================
 
