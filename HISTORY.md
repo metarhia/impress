@@ -1,3 +1,9 @@
+0.1.15 / 2014-03-14
+==================
+
+  * Start impress automatically during the system startup
+  * Become a service to be controlled from command line: service impress start|stop|restart|status
+
 0.1.14 / 2014-03-09
 ==================
 

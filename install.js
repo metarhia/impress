@@ -23,9 +23,9 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
 		callback();
 	});
 }, function(err) {
-	if (exists) console.log('Install Impress Application Server'.bold.green+' is already installed and configured in this folder');
+	if (exists) console.log('Impress Application Server'.bold.green+' is already installed and configured in this folder.');
 	else {
-		console.log('Install Impress Application Server...'.bold.green);
+		console.log('Installing Impress Application Server...'.bold.green);
 		fs.createReadStream(source+'server.js').pipe(fs.createWriteStream(destination+'server.js'));
 		ncp(source+'config', destination+'config', { clobber: false }, function (err) {
 			if (err) console.error(err);
@@ -34,6 +34,19 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
 				if (isWin) {
 					exec('start cmd /K "cd /d '+destination.replace(/\//g, '\\')+' & node server.js"' );
 				} else {
+					if (destination == '/impress/') {
+						console.log('Installing Impress Application Server as a service.');
+						console.log('  Usage: service impress start|stop|restart|status');
+						exec('chmod +x ./bin/install.sh', function() {
+							exec('chmod +x ./bin/uninstall.sh');
+							exec('./bin/install.sh');
+						});
+					} else {
+						console.log(
+							'To install Impress Application Server as a service to start automatically during the system startup you need to create directory '+
+							'/impress'.bold.green+' and run '+'npm install impress'.bold.green+' in this directory.'
+						);
+					}
 					var nodeProcess = spawn('node', [destination+'server.js'], { cwd: destination });
 					var nodeOutput = function (data) {
 						console.log(data.toString().replace(/[\r\n]/g,''));

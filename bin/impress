@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# chkconfig: 2345 90 10
+# description: Impress Application Server
+# processname: impress
+
+usage() {
+	echo "service impress {start|stop|restart|status}"
+	exit 0
+}
+
+start() {
+	cd /impress
+	nohup node server > /dev/null 2>&1 &
+}
+
+stop() {
+	killall impress
+}
+
+status() {
+	ps aux | grep impress | grep -v grep
+}
+
+case $1 in
+
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart|reload)
+		stop
+		start
+		;;
+	status)
+		status
+		;;
+	*) usage
+		usage
+		;;
+esac
