@@ -68,10 +68,13 @@ $ npm install impress
 
 ## Configuration
 
-1. Install module using npm
-2. Example will start automaticaly and you can see it in browser
-3. Add applications to /applications and edit files in /config
-4. Run Impress using command "node server.js"
+1. Install module using "npm install impress" in new directory. If you want to setup impress as a service, place it into /impress directory.
+2. Example will start automaticaly after installation and you can see it in browser http://127.0.0.1
+3. You can create a directory for your new application inside /applications, for example: /applications/myapp and copy /applications/example into this directory.
+4. Edit /config/servers.js and add "myapp" to "applications" array.
+5. Edit /applications/myapp/config/hosts.js and change "127.0.0.1" to "myapp.com", certainly you need to register and configure domain name myapp.com or just add it into "hosts" file in your OS.
+6. Place your html to /applications/myapp/config/app/html.template and required files into directories /js, /css, /images.
+7. Run Impress using command "node server.js" or "service impress start" (if installed as a service).
 
 ## Handler examples and file system url mapping
 

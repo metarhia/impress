@@ -1,3 +1,10 @@
+0.1.16 / 2014-03-27
+==================
+
+  * Added directory index (set index: true in access.js to switch on)
+  * Added API introspection stub
+  * Multiple minor fixes and optimizations
+
 0.1.15 / 2014-03-14
 ==================
 

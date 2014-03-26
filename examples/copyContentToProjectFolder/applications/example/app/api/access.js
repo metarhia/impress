@@ -3,7 +3,7 @@ module.exports = {
 	logged: true,
 	http:   true,
 	https:  true,
-	intro:  false,
-	index:  true,
+	intro:  true,
+	index:  false,
 	groups: []
 }
