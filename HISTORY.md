@@ -1,3 +1,10 @@
+0.1.17 / 2014-04-01
+==================
+
+  * Fixed security issue in directory index generator: access.js will not be visible and accessible even if it matches static regexp
+  * Fixed sort order in directory index, added links to each directory in path to the current
+  * Added support for httpOnly cookies
+
 0.1.16 / 2014-03-27
 ==================
 
