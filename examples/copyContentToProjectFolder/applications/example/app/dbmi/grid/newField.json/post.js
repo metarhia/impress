@@ -49,7 +49,8 @@
 				url = 'mongodb://localhost:27017/'+path[1];
 			dbClient.connect(url, function(err, connection) {
 				connection.createCollection(path[2], function(err, collection) {
-					var objectId = db.mongodb.oid(client.fields.pkValue);
+					var objectId = client.fields.pkValue;
+					if (objectId.length == 24) objectId = db.mongodb.oid(objectId);
 					var data = {};
 					data[client.fields.newFieldName] = '';
 					collection.update({ _id: objectId }, { $set: data },  function(err) {

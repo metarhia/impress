@@ -4,6 +4,9 @@
 # description: Impress Application Server
 # processname: impress
 
+yellow="\e[1;32m"
+nocolor="\e[0m"
+
 usage() {
 	echo "service impress {start|stop|restart|status}"
 	exit 0
@@ -15,22 +18,25 @@ start() {
 }
 
 stop() {
-	killall impress
+	killall "impress srv"
 }
 
 status() {
-	ps aux | grep impress | grep -v grep
+	ps aux | grep impress | grep -v grep | grep -v sh
 }
 
 case $1 in
 
 	start)
+		echo -e "${yellow}Starting Impress Application Server${nocolor}"
 		start
 		;;
 	stop)
+		echo -e "${yellow}Stopping Impress Application Server${nocolor}"
 		stop
 		;;
 	restart|reload)
+		echo -e "${yellow}Restarting Impress Application Server${nocolor}"
 		stop
 		start
 		;;

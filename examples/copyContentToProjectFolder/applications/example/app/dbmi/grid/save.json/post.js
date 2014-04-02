@@ -27,7 +27,8 @@
 				url = 'mongodb://localhost:27017/'+path[1];
 			dbClient.connect(url, function(err, connection) {
 				connection.createCollection(path[2], function(err, collection) {
-					var objectId = db.mongodb.oid(data._id);
+					var objectId = data._id;
+					if (objectId.length == 24) objectId = db.mongodb.oid(objectId);
 					delete data._id;
 					collection.update({ _id: objectId }, { $set: data },  function(err) {
 						if (!err) client.context.data = { status: 1 };

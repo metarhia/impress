@@ -1,3 +1,9 @@
+0.1.18 / 2014-04-02
+==================
+
+  * Fixed shell script for running Impress as a service (if Impress is already installed you need to run impress/bin/install.sh again to refresh service script)
+  * Fixed DBMI interface (for mongodb)
+
 0.1.17 / 2014-04-01
 ==================
 
