@@ -17,14 +17,26 @@ var current = path.dirname(__filename.replace(/\\/g, '/')),
 	source = current+'/examples/copyContentToProjectFolder/',
 	exists = false;
 
+function installService() {
+	exec('chmod +x ./bin/install.sh', function() {
+		exec('chmod +x ./bin/uninstall.sh');
+		exec('./bin/install.sh');
+	});
+}
+
 async.each(['server.js', 'config', 'applications'], function(file, callback) {
 	fs.exists(destination+file, function(fileExists) {
 		exists = exists || fileExists;
 		callback();
 	});
 }, function(err) {
-	if (exists) console.log('Impress Application Server'.bold.green+' is already installed and configured in this folder.');
-	else {
+	if (exists) {
+		console.log('Impress Application Server'.bold.green+' is already installed and configured in this folder.');
+		if (destination == '/impress/') {
+			console.log('Refreshing service scripts.');
+			installService();
+		}
+	} else {
 		console.log('Installing Impress Application Server...'.bold.green);
 		fs.createReadStream(source+'server.js').pipe(fs.createWriteStream(destination+'server.js'));
 		ncp(source+'config', destination+'config', { clobber: false }, function (err) {
@@ -37,10 +49,7 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
 					if (destination == '/impress/') {
 						console.log('Installing Impress Application Server as a service.');
 						console.log('  Usage: service impress start|stop|restart|status');
-						exec('chmod +x ./bin/install.sh', function() {
-							exec('chmod +x ./bin/uninstall.sh');
-							exec('./bin/install.sh');
-						});
+						installService();
 					} else {
 						console.log(
 							'To install Impress Application Server as a service to start automatically during the system startup you need to create directory '+

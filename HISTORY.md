@@ -1,3 +1,8 @@
+0.1.19 / 2014-04-03
+==================
+
+  * Fixed critical bug in npm script (install.js) to reinstall Impress as a service on npm update
+
 0.1.18 / 2014-04-02
 ==================
 
