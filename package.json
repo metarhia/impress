@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Totalitarian-style Multipurpose Application Server for node.js. All decisions are made. Ready for applied development",
   "keywords": [
@@ -39,7 +39,7 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "async": "0.2.x",
+    "async": "0.6.x",
     "cluster": "0.7.x",
     "colors": "0.6.x",
     "mkdirp": "0.3.x",

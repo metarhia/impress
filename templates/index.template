@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <style>
 body {background:#0079a1;font-family:Verdana;font-size:10pt}
-body,a {color:#fff}
+body,a {color:#fff;overflow-x: hidden;white-space: nowrap}
 img {float:left;margin:0 10px 0 0}
 div {margin:6px}
 th {text-align:left}

@@ -1,3 +1,10 @@
+0.1.20 / 2014-04-06
+==================
+
+  * Added system log and fixed impress.log.js, closing files with callback instead of setTimeout
+  * Fixed file index template
+  * Added shutdown handler for SIGINT and SIGTERM in worker processes
+
 0.1.19 / 2014-04-03
 ==================
 
