@@ -8,7 +8,7 @@ yellow="\e[1;32m"
 nocolor="\e[0m"
 
 usage() {
-	echo "service impress {start|stop|restart|status}"
+	echo "service impress {start|stop|restart|status|update}"
 	exit 0
 }
 
@@ -25,6 +25,12 @@ status() {
 	ps aux | grep impress | grep -v grep | grep -v sh
 }
 
+update() {
+	cd /impress
+	npm update
+	restart
+}
+
 case $1 in
 
 	start)
@@ -39,6 +45,10 @@ case $1 in
 		echo -e "${yellow}Restarting Impress Application Server${nocolor}"
 		stop
 		start
+		;;
+	update)
+		echo -e "${yellow}Updating and restarting${nocolor}"
+		update
 		;;
 	status)
 		status

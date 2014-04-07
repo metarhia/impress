@@ -1,3 +1,9 @@
+0.1.21 / 2014-04-08
+==================
+
+  * Added API introspection (set intro: true in access.js to switch on)
+  * Added "update" command to update OS and npm: service impress update
+
 0.1.20 / 2014-04-06
 ==================
 
