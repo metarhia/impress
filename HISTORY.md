@@ -1,3 +1,8 @@
+0.1.22 / 2014-04-09
+==================
+
+  * Fixed API introspection: .existsSync replaced to asynchronous analogs with async.parallel
+
 0.1.21 / 2014-04-08
 ==================
 
