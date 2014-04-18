@@ -5,14 +5,16 @@ module.exports = {
 	impress: {
 		url: "mongodb://localhost:27017/impress", // MongoDB connection string
 		slowTime: "2s",                           // time to log query as slow
-		collections: ["sessions", "users", "groups"],  // Collection name for store sessions (to be removed and use introspection)
-		security: true                            // this database will be used for security subsystem storage (sessions, users, groups)
+		collections: ["sessions", "users", "groups", "testCollection"],  // Collection name for store sessions (to be removed and use introspection)
+		security: true,                           // this database will be used for security subsystem storage (sessions, users, groups)
+		alias: "dbAlias"                          // name for access from api handlers
 	},
 
 	// system: {
 	// 	url: "mysql://impress:password@localhost/impress", // MySQL connection example
 	// 	slowTime: 1000,                                // time to log query as slow
-	// 	tables: []                                     // to be implemented (to be removed and use introspection)
+	// 	tables: [],                                    // to be implemented (to be removed and use introspection)
+	//	alias: "aliasName"
 	// },
 
 	// Other MongoDB databases for application purposes
@@ -21,6 +23,7 @@ module.exports = {
 	//
 	//	dbname: {
 	//		url: "mongodb://localhost:27017/dbname",
-	//		collections: ["collname1", "collname2"]
+	//		collections: ["collname1", "collname2"],
+	//		alias: "aliasName"
 	//	}
 }

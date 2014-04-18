@@ -6,7 +6,7 @@
 		status: 1,
 		parameterValue: client.fields.parameterName,
 		valueLength: client.fields.parameterName.length,
-		requestCounter: impress.requestCounter++
+		requestCounter: application.requestCounter++
 	};
 	callback();
 

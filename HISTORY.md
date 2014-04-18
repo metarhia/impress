@@ -1,3 +1,10 @@
+0.1.23 / 2014-04-19
+==================
+
+  * Added database shorthand for database access. Long name: client.application.databases.databaseName.collectionOrTableName.accessMethodName. Short name we can specify in appName/config/databases.js database parameter "alias"
+  * Added new examples, refactored examples structure and database access
+  * Fixed Client.fileHandler (callback leak)
+
 0.1.22 / 2014-04-09
 ==================
 

@@ -1,6 +1,5 @@
 global.onLoad(function() {
 
-
 	$('body').addClass('js');
 	$.fixCookie("SID");
 
@@ -63,13 +62,13 @@ global.onLoad(function() {
 
 	$(document).on('click', '#menuAJAX', function() {
 		var parameterName = 'paramaterValue';
-		panelCenter.load('/examples/ajaxTest.ajax?parameterName='+parameterName);
+		panelCenter.load('/examples/simple/ajaxTest.ajax?parameterName='+parameterName);
 	});
 
 	$(document).on('click', '#menuGetJSON', function() {
 		var parameterName = 'paramaterValue';
 		panelCenter.empty().html('<div class="progress"></div>');
-		$.get('/examples/jsonGet.json?parameterName='+parameterName, function(res) {
+		$.get('/examples/simple/jsonGet.json?parameterName='+parameterName, function(res) {
 			panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
 		});
 	});
@@ -77,13 +76,13 @@ global.onLoad(function() {
 	$(document).on('click', '#menuPostJSON', function() {
 		var parameterName = 'paramaterValue';
 		panelCenter.empty().html('<div class="progress"></div>');
-		$.post('/examples/jsonPost.json', { parameterName: parameterName }, function(res) {
+		$.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(res) {
 			panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
 		});
 	});
 
 	$(document).on('click', '#menuWorker', function() {
-		$.get('/examples/forkWorker.json', function(res) {
+		$.get('/examples/tools/forkWorker.json', function(res) {
 			panelCenter.html('Worker process forked, see console for output.');
 		});
 	});
@@ -101,25 +100,22 @@ global.onLoad(function() {
 	});
 
 	$(document).on('click', '#menuFileUpload', function() {
-		panelCenter.load('/examples/upload.ajax');
+		panelCenter.load('/examples/simple/upload.ajax');
 	});
 
 	$(document).on('click', '#menuDownload', function() {
-		panelCenter.html('<iframe src="/examples/download.ajax" style="display:none"></iframe>');
+		panelCenter.html('<iframe src="/examples/simple/download.ajax" style="display:none"></iframe>');
 	});
 
 	$(document).on('click', '#menuGeoIP', function() {
 		panelCenter.empty().html('<div class="progress"></div>');
-		$.get('/examples/geoip.json', function(res) {
+		$.get('/examples/tools/geoip.json', function(res) {
 			panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
 		});
 	});
 
-	$(document).on('click', '#menuSSE', function() {
-	});
-
 	$(document).on('click', '#menuWS', function() {
-		ws = new WebSocket("ws://127.0.0.1:80/examples/connect.ws");
+		ws = new WebSocket("ws://127.0.0.1:80/examples/events/connect.ws");
 		panelCenter.html(
 			'<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> '+
 			'<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>'+
@@ -159,7 +155,7 @@ global.onLoad(function() {
 	});
 
 	function sseConnect() {
-		var sse = new EventSource("/examples/connect.sse");
+		var sse = new EventSource("/examples/events/connect.sse");
 
 		sse.addEventListener("TestEvent", function(e) {
 			panelCenter.append("Event: "+e.event+"; Data: "+e.data+"<hr>");
@@ -182,12 +178,93 @@ global.onLoad(function() {
 
 		$('#btnSseSend').on('click', function() {
 			panelCenter.append("Sending event to server, it should return back.<hr>");
-			$.get('/examples/sendEvent.json', function(res) {
+			$.get('/examples/events/sendEvent.json', function(res) {
 			});
 		});
 	}
 
 	$(document).on('click', '#menuSendMail', function() {
+	});
+
+	$(document).on('click', '#menuHealth', function() {
+		panelCenter.html('<div id="chartHealth"></div>');
+
+		//var n = 40,
+		//	random = d3.random.normal(0, .2),
+		//	data = d3.range(n).map(random);
+
+		var n = 40;
+
+		for (var i = 0, data = new Array(n); i < n;) data[i++] = 0;
+
+		var margin = {top: 20, right: 20, bottom: 20, left: 40},
+			width = 960 - margin.left - margin.right,
+			height = 300 - margin.top - margin.bottom;
+
+		var x = d3.scale.linear().domain([0, n - 1]).range([0, width]);
+
+		var y = d3.scale.linear().domain([0, 1]).range([height, 0]);
+
+		var line = d3.svg.line()
+			.x(function(d, i) { return x(i); })
+			.y(function(d, i) { return y(d); });
+
+		var svg = d3.select("#chartHealth")
+			.append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+			.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		svg.append("defs")
+			.append("clipPath")
+				.attr("id", "clip")
+			.append("rect")
+				.attr("width", width)
+				.attr("height", height);
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + y(0) + ")")
+			.call(d3.svg.axis().scale(x).orient("bottom"));
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(d3.svg.axis().scale(y).orient("left"));
+
+		var path = svg
+			.append("g")
+				.attr("clip-path", "url(#clip)")
+			.append("path")
+				.datum(data)
+				.attr("class", "line")
+				.attr("d", line);
+
+		tick();
+
+		function bytesToSize(bytes) {
+			if (bytes == 0) return 0;
+			var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+			return Math.round(bytes / Math.pow(1024, i), 2) / 1024;
+		}
+
+		function tick() {
+			$.get('/examples/tools/serverHealth.json', function(res) {
+				data.push(bytesToSize(res.memory.heapUsed));
+				console.log(res.memory.heapUsed+'   '+bytesToSize(res.memory.heapUsed));
+
+				path
+					.attr("d", line)
+					.attr("transform", null)
+				.transition()
+					.duration(1000)
+					.ease("linear")
+					.attr("transform", "translate(" + x(-1) + ",0)")
+				    .each("end", tick);
+				data.shift();
+			});
+		}
+
 	});
 
 	$(document).on('click', '#btnApplySetup', function() {
