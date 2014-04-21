@@ -1,4 +1,5 @@
 module.exports = function(client, callback) {
+
 	client.context.data = {
 		title: "Override Page Title",
 		users: [
@@ -8,4 +9,5 @@ module.exports = function(client, callback) {
 		session: client.session
 	};
 	callback();
+
 }

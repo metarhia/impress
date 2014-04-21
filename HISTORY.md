@@ -1,3 +1,9 @@
+0.1.24 / 2014-04-21
+==================
+
+  * Fixed long worker fork from child process in cluster mode, it translates request to master process (via IPC message "impress:longworker") and master process forks
+  * Added new api examples for mongodb, file access, request to remote api and hybrid asynchronous example
+
 0.1.23 / 2014-04-19
 ==================
 
