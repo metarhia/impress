@@ -1,7 +1,13 @@
+0.1.26 / 2014-04-24
+==================
+
+  * Fixed critical bug calculating IP hash (caused server stop on bad IP address)
+  * Fixed server core exception logging
+
 0.1.25 / 2014-04-23
 ==================
 
-  * Fixed critical bug in linux service script
+  * Fixed critical bug in linux service script (restart needed after update core and packets)
   * Added new api examples
 
 0.1.24 / 2014-04-21
