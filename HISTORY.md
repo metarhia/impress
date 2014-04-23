@@ -1,3 +1,9 @@
+0.1.25 / 2014-04-23
+==================
+
+  * Fixed critical bug in linux service script
+  * Added new api examples
+
 0.1.24 / 2014-04-21
 ==================
 

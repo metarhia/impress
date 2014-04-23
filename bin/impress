@@ -28,7 +28,8 @@ status() {
 update() {
 	cd /impress
 	npm update
-	restart
+	stop
+	start
 }
 
 case $1 in
@@ -56,4 +57,5 @@ case $1 in
 	*) usage
 		usage
 		;;
+
 esac
