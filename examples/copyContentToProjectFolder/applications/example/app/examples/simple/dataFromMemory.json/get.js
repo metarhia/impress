@@ -1,6 +1,6 @@
 module.exports = function(client, callback) {
 
-	client.context.data = {
+	callback({
 		phone: {
 			model: "Motorola Photom Q 4G LTE",
 			os: "Android 4.0.4 (Ice Cream Sandwich)",
@@ -54,7 +54,6 @@ module.exports = function(client, callback) {
 				standby: "Up to 220 hrs"
 			}
 		}
-	};
-	callback();
+	});
 
 }

@@ -1,3 +1,10 @@
+0.1.27 / 2014-04-25
+==================
+
+  * Fixed critical bug in serving static fro memory, removed "Transfer-Encoding" from HTTP response header according to RFC2616 Section 4.4
+  * Simplified API handler result, now we can use callback(result); as client.context.data = result; callback(); old method is available as well
+  * Examples refactored
+
 0.1.26 / 2014-04-24
 ==================
 

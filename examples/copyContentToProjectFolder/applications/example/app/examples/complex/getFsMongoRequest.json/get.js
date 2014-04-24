@@ -36,8 +36,7 @@
 			});
 		}
 	}, function(err, results) {
-		client.context.data = results;
-		callback();
+		callback(results);
 	});
 
 }

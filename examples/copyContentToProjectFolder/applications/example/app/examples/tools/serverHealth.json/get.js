@@ -4,9 +4,8 @@ module.exports = function(client, callback) {
 	var n = client.application.leak.length ? client.application.leak.length : 0;
 	client.application.leak.push(new Array(1024*(1024/n+1)).join("Hello node.js, Hello Impress Application Server "));
 
-	client.context.data = {
+	callback({
 		memory: process.memoryUsage()
-	};
-	callback();
+	});
 
 }

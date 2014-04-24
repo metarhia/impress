@@ -1,8 +1,7 @@
 module.exports = function(client, callback) {
 
-	client.context.data = {
+	callback({
 		parameterName: client.query.parameterName,
-	};
-	callback();
+	});
 
 }

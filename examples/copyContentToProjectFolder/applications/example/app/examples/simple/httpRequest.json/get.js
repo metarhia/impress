@@ -13,14 +13,12 @@
 				data = data+chunk;
 			});
 			response.on('end', function() {
-				client.context.data = data;
-				callback();
+				callback(data);
 			});
 		}
 	);
 	req.on('error', function(e) {
-		client.context.data = "Can't get page";
-		callback();
+		callback("Can't get page");
 	});
 	req.end();
 

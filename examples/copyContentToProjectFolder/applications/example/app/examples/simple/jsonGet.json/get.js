@@ -1,6 +1,6 @@
 ﻿module.exports = function(client, callback) {
 
-	client.context.data = {
+	callback({
 		process: {
 			execPath: process.execPath,
 			execArgv: process.execArgv,
@@ -32,7 +32,6 @@
 			cpus: os.cpus(),
 			networkInterfaces: os.networkInterfaces()
 		}
-	};
-	callback();
+	});
 
 }
