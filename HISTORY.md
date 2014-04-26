@@ -1,3 +1,9 @@
+0.1.28 / 2014-04-26
+==================
+
+  * Added boolean flag "global" to database config, database will be visible in application global if true
+  * Fixed Impress security module and MongoDB Impress security provider
+
 0.1.27 / 2014-04-25
 ==================
 
