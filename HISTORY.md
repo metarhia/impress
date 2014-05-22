@@ -1,3 +1,10 @@
+0.1.29 / 2014-05-22
+==================
+
+  * Refactored /lib/global.js to be used as mixin for global context and for sanboxed application contexts
+  * Refactored file upload example
+  * Proposed technique for application specific "require" and config initialization, see /applications/example/config/filestorage.js
+
 0.1.28 / 2014-04-26
 ==================
 

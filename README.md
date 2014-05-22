@@ -202,15 +202,5 @@ Dual licensed under the MIT or RUMI licenses.
 
 Copyright (c) 2012-2014 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
 
-License: RUMI
-
-Do you know what you are?
-You are a manuscript of a divine letter.
-You are a mirror reflecting a noble face.
-This universe is not outside of you.
-Look inside yourself;
-everything that you want,
-you are already that.
-
-Jalal ad-Din Muhammad Rumi
-"Hush, Don't Say Anything to God: Passionate Poems of Rumi"
+RUMI License: Everything that you want, you are already that.
+// Jalal ad-Din Muhammad Rumi

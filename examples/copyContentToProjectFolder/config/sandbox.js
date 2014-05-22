@@ -3,6 +3,7 @@
 module.exports = {
 	modules: [
 		'global',
+		'require',
 		'console',
 		'process',
 		'impress',
@@ -27,6 +28,7 @@ module.exports = {
 		'async',
 		'iconv',
 		'geoip',
-		'nodemailer'
+		'nodemailer',
+		'Buffer'
 	]
 }
