@@ -1,3 +1,9 @@
+0.1.30 / 2014-05-22
+==================
+
+  * Extracted Client class from impress.js to impress.client.js
+  * Extracted general purpose utilities from impress.js to impress.utilities.js
+
 0.1.29 / 2014-05-22
 ==================
 
