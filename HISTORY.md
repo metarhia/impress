@@ -1,3 +1,10 @@
+0.1.31 / 2014-05-24
+==================
+
+  * Fixed bug in templating, for logged users who have no specialized template, now used 'everyone' template
+  * Rewritten function Client.prototype.template
+  * Fixed critical bug in static files dispatching
+
 0.1.30 / 2014-05-22
 ==================
 
