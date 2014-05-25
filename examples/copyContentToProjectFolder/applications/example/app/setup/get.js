@@ -5,14 +5,11 @@ module.exports = function(client, callback) {
 
 	for (var i = 0; i < npmList.length; i++) {
 		var npmName = npmList[i],
-			lib = impress.require(npmName);
+			lib = require(npmName);
 		npmChecks[npmName] = lib ? 'checked' : '';
 	}
-
-	client.context.data = {
+	callback({
 		npm: npmChecks
-	};
-
-	callback();
+	});
 
 }

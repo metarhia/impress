@@ -1,6 +1,6 @@
 ﻿module.exports = function(client, callback) {
 
-	var req = impress.http.request(
+	var req = http.request(
 		{
 			hostname: 'google.com',
 			port: 80,

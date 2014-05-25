@@ -6,7 +6,6 @@ module.exports = {
 		'console',
 		'process',
 		'db',
-		'cms',
 		'os',
 		'domain',
 		'crypto',
@@ -27,6 +26,8 @@ module.exports = {
 		'iconv',
 		'geoip',
 		'nodemailer',
-		'Buffer'
+		'Buffer',
+		'security',
+		'sse'
 	]
 }

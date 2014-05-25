@@ -10,7 +10,7 @@ module.exports = {
 		// "multiple"       - multiple processes, one master and identical workers with no sticky (master should listen ports)
 		// "sticky"         - multiple processes, one master and workers with sticky by IP (master should listen ports)
 		//
-	workers:    os.cpus().length-1, // worker count, e.g. impress.os.cpus().length-1 or just number
+	workers:    os.cpus().length-1, // worker count, e.g. os.cpus().length-1 or just number
 	nagle:      false,  // Nagle algorithm
 	gcInterval: 0       // garbage collector interval "1h" - 1 hour, "10m" - 10 minutes
 }

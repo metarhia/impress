@@ -1,6 +1,6 @@
 ﻿module.exports = function(client, callback) {
 
-	impress.async.parallel({
+	async.parallel({
 		file: function(callback) {
 			var filePath = client.hostDir+client.path+'/test.txt';
 			fs.readFile(filePath, 'utf8', function(error, data) {
@@ -8,7 +8,7 @@
 			});
 		},
 		request: function(callback) {
-			var req = impress.http.request(
+			var req = http.request(
 				{
 					hostname: 'google.com',
 					port: 80,

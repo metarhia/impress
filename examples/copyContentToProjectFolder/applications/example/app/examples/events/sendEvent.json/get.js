@@ -1,6 +1,6 @@
 module.exports = function(client, callback) {
 
-	impress.sse.sendGlobal(client, 'TestEvent', { test: "data" });
+	sse.sendGlobal(client, 'TestEvent', { test: "data" });
 	callback("Ok");
 
 }

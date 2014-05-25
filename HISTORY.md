@@ -1,3 +1,11 @@
+0.1.32 / 2014-05-26
+==================
+
+  * Separate sandbox configuration for all applications: sandbox.js
+  * Refactored sandboxing deep, more security and fixed some namespace isolation issues
+  * Refactored application config loading
+  * Refactored examples according to changes above
+
 0.1.31 / 2014-05-24
 ==================
 
