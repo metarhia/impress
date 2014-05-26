@@ -1,3 +1,10 @@
+0.1.33 / 2014-05-27
+==================
+
+  * Added "use strict"; and variable declaration fixed
+  * Lazy library load in sandboxes changed to delayed server start on callbacks to prevent rare instability
+  * Refactored callback cbIndex/cbCount pattern
+
 0.1.32 / 2014-05-26
 ==================
 
