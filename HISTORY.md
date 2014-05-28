@@ -1,3 +1,8 @@
+0.1.34 / 2014-05-28
+==================
+
+  * Fixed critical bug in impress.js/loadApplications()
+
 0.1.33 / 2014-05-27
 ==================
 
