@@ -1,3 +1,12 @@
+0.1.35 / 2014-05-31
+==================
+
+  * Added shell scripts for deployment from from scratch included Node.js, MongoDB and Impress
+    - For CentOS /deploy/centos.sh tested for CentOS 6.5 64bit minimal (may work for Red Hat but not tested yet)
+    - For Ubuntu /deploy/ubuntu.sh tested for Ubuntu 14.04 64bit minimal
+    - For Debian /deploy/debian.sh tested for Debian 7.5 64bit minimal
+  * Fixed /bin/install.js and /bin/uninstall.js for ubuntu and debian
+
 0.1.34 / 2014-05-28
 ==================
 
