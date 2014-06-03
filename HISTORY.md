@@ -1,3 +1,9 @@
+0.1.36 / 2014-06-03
+==================
+
+  * Added plugin for unit testing /lib/impress.tests.js
+  * Added example test for /lib/impress.utilities.js
+
 0.1.35 / 2014-05-31
 ==================
 
