@@ -4,8 +4,15 @@
 # description: Impress Application Server
 # processname: impress
 
-yellow="\e[1;32m"
-nocolor="\e[0m"
+### BEGIN INIT INFO
+# Provides:          impress
+# Required-Start:    $syslog
+# Required-Stop:     $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Impress Application Server
+# Description:       Impress Application Server provudes platform for Node.js applications
+### END INIT INFO
 
 usage() {
 	echo "service impress {start|stop|restart|status|update}"
@@ -35,20 +42,20 @@ update() {
 case $1 in
 
 	start)
-		echo -e "${yellow}Starting Impress Application Server${nocolor}"
+		echo -e "\e[1;32mStarting Impress Application Server\e[0m"
 		start
 		;;
 	stop)
-		echo -e "${yellow}Stopping Impress Application Server${nocolor}"
+		echo -e "\e[1;32mStopping Impress Application Server\e[0m"
 		stop
 		;;
 	restart|reload)
-		echo -e "${yellow}Restarting Impress Application Server${nocolor}"
+		echo -e "\e[1;32mRestarting Impress Application Server\e[0m"
 		stop
 		start
 		;;
 	update)
-		echo -e "${yellow}Updating and restarting${nocolor}"
+		echo -e "\e[1;32mUpdating and restarting\e[0m"
 		update
 		;;
 	status)

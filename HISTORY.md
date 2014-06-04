@@ -1,3 +1,10 @@
+0.1.37 / 2014-06-04
+==================
+
+  * Enhanced unit testing
+  * Added tests for /lib/global.js
+  * Some minor fixes in core functions after unit testing
+
 0.1.36 / 2014-06-03
 ==================
 

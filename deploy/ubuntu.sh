@@ -12,7 +12,7 @@ sudo make
 sudo make install
 echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
 sudo apt-get -y update
-sudo apt-get -y install mongodb-org
+sudo apt-get -y --force-yes install mongodb-org
 sudo service mongod start
 sudo update-rc.d mongod defaults
 mkdir /impress
