@@ -1,4 +1,9 @@
-0.1.38 / 2014-06-0
+0.1.39 / 2014-06-08
+==================
+
+  * Fixed critical bug in watching filesystem: impress.js/watchCache
+
+0.1.38 / 2014-06-07
 ==================
 
   * Added PgSQL driver as Impress plugin, configuration and query examples
