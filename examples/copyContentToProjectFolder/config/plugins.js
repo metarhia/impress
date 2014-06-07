@@ -7,6 +7,7 @@ module.exports = [
 	//"db.memcached",
 	//"db.mysql",
 	//"db.mysql.schema",
+	//"db.pgsql",
 	"impress.log",
 	"impress.security",
 	//"impress.security.mongodb",

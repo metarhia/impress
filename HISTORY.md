@@ -1,3 +1,9 @@
+0.1.38 / 2014-06-0
+==================
+
+  * Added PgSQL driver as Impress plugin, configuration and query examples
+  * Fixed bug in db aliases
+
 0.1.37 / 2014-06-04
 ==================
 

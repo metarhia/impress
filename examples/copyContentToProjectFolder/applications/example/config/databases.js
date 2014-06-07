@@ -11,10 +11,15 @@ module.exports = {
 	},
 
 	// system: {
-	// 	url: "mysql://impress:password@localhost/impress", // MySQL connection example
-	// 	slowTime: 1000,                                // time to log query as slow
-	// 	tables: [],                                    // to be implemented (to be removed and use introspection)
+	// 	url: "mysql://user:password@localhost/impress", // MySQL connection example
+	// 	slowTime: 1000,                                 // time to log query as slow
 	//	alias: "aliasName"
+	// },
+
+	// test: {
+	// 	url: "postgres://user:password@localhost/test", // MySQL connection example
+	// 	slowTime: 1000,                                 // time to log query as slow
+	// 	alias: "aliasNamePg"
 	// },
 
 	// Other MongoDB databases for application purposes
