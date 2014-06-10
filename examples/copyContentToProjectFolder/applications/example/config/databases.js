@@ -3,32 +3,36 @@
 module.exports = {
 
 	impress: {
-		url: "mongodb://localhost:27017/impress", // MongoDB connection string
-		slowTime: "2s",                           // time to log query as slow
-		collections: ["sessions", "users", "groups", "testCollection"],  // Collection name for store sessions (to be removed and use introspection)
-		security: true,                           // this database will be used for security subsystem storage (sessions, users, groups)
-		alias: "dbAlias"                          // name for access from api handlers
+		url: "mongodb://localhost:27017/impress",
+		collections: ["sessions", "users", "groups", "testCollection"],
+		alias: "dbImpress",
+		slowTime: "2s",
+		security: true,
 	},
 
-	// system: {
-	// 	url: "mysql://user:password@localhost/impress", // MySQL connection example
-	// 	slowTime: 1000,                                 // time to log query as slow
-	//	alias: "aliasName"
-	// },
-
-	// test: {
-	// 	url: "postgres://user:password@localhost/test", // MySQL connection example
-	// 	slowTime: 1000,                                 // time to log query as slow
-	// 	alias: "aliasNamePg"
-	// },
-
-	// Other MongoDB databases for application purposes
-	// Collections to be created automatically for access like this: dbname.collname1.find(...)
-	// see example:
+	// MySQL example database configuration
 	//
-	//	dbname: {
-	//		url: "mongodb://localhost:27017/dbname",
-	//		collections: ["collname1", "collname2"],
-	//		alias: "aliasName"
+	//	mysqlConnection: {
+	//		url: "mysql://impress:password@localhost/impress", // connection string (required)
+	//		alias: "aliasNameMy"                               // database alias to be used as short identifier (optional)
+	//		slowTime: 1000,                                    // time to log query as slow (optional, default: "2s", in milliseconds or string like "5s")
+	//	},
+
+	// PgSQL example database configuration
+	//
+	//	pgsqlConnection: {
+	//		url: "postgres://impress:password@localhost/test", // connection string (required)
+	//		alias: "aliasNamePg"                               // database alias to be used as short identifier (optional)
+	//		slowTime: 1000,                                    // time to log query as slow (optional, default: "2s", in milliseconds or string like "5s")
+	//	},
+
+	// MongoDB example database configuration
+	//
+	//	mongoConnection: {
+	//		url: "mongodb://localhost:27017/dbname", // connection string (required)
+	//		collections: ["collname1", "collname2"], // collection to be created automatically if not exists
+	//		alias: "aliasNameMongo",                 // database alias to be used as short identifier (optional)
+	//		slowTime: "2s",                          // time to log query as slow (optional, default: "2s", in milliseconds or string like "5s")
+	//		security: true,                          // flag to use this database for security subsystem (optional, dafault: false), collections: sessions, users, groups
 	//	}
 }

@@ -8,8 +8,7 @@ module.exports = function(client, callback) {
 			lib = require(npmName);
 		npmChecks[npmName] = lib ? 'checked' : '';
 	}
-	callback({
-		npm: npmChecks
-	});
+
+	callback({ npm: npmChecks });
 
 }
