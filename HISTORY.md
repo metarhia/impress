@@ -1,3 +1,9 @@
+0.1.41 / 2014-06-11
+==================
+
+  * Fixed bug: now access.js, request.js and get/post.js is not required in application root directory
+  * Optimized access calculations
+
 0.1.40 / 2014-06-10
 ==================
 
