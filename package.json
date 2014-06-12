@@ -39,21 +39,25 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "async":   "0.6.x",
+    "async": "0.6.x",
     "cluster": "0.7.x",
-    "colors":  "0.6.x",
-    "mkdirp":  "0.5.x",
-    "ncp":     "0.5.x",
-    "open":    "0.0.x",
-    "npm":     "1.4.x",
-    "uglify-js":  "2.4.x",
+    "colors": "0.6.x",
+    "mkdirp": "0.5.x",
+    "ncp": "0.5.x",
+    "open": "0.0.x",
+    "npm": "1.4.x",
+    "uglify-js": "2.4.x",
     "multiparty": "3.2.x",
     "iconv-lite": "0.2.x",
-    "zip-stream": "0.3.x"
+    "zip-stream": "0.3.x",
+    "passport": "^0.2.0",
+    "passport-google-oauth": "^0.1.5"
   },
   "engines": {
     "node": ">=0.10.6"
   },
   "readmeFilename": "README.md",
-  "scripts" : { "install" : "node install.js" }
+  "scripts": {
+    "install": "node install.js"
+  }
 }

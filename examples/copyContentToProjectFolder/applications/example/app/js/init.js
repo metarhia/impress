@@ -278,6 +278,10 @@ global.onLoad(function() {
 		});
 	});
 
+    $(document).on('click', '#menuAuth', function() {
+        window.location = '/examples/auth';
+    });
+
 });
 
 $.ajaxSetup({cache: false});
