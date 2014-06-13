@@ -18,7 +18,7 @@ module.exports = [
 	//"impress.geoip",
 	//"impress.websocket",
 	"impress.sse",
-	//"impress.passport",
+	"impress.passport",
 
 	//"cms",
 	//"cms.mysql"
