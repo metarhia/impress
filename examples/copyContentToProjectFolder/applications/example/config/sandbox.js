@@ -28,6 +28,8 @@ module.exports = {
 		'nodemailer',
 		'Buffer',
 		'security',
-		'sse'
+		'sse',
+        'passport',
+        'passport-google-oauth'
 	]
 }
