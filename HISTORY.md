@@ -1,3 +1,13 @@
+0.1.42 / 2014-06-14
+==================
+
+  * Added passport.js as plugin with example using google oauth
+  * Before using passport.js you need:
+    - npm install passport
+    - npm install passport-google-oauth
+    - uncomment "impress.passport" in /config/plugins/js
+    - edit /applications/name/config/passport.js
+
 0.1.41 / 2014-06-11
 ==================
 
