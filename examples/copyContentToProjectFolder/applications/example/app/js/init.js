@@ -11,6 +11,12 @@ global.onLoad(function() {
 	panelCenter = $('#panel-center');
 	panelRight = $('#panel-right');
 
+	var auth = wcl.AjaxDataSource({
+		regValidation:  { post: "/api/auth/regvalidation.json" },
+		register:       { post: "/api/auth/register.json" },
+		signOut:        { post: "/api/auth/signOut.json" },
+	});
+
 	// --- Auth Module ---
 
 	$('#hmenu-Signin').click(function() {
@@ -19,10 +25,10 @@ global.onLoad(function() {
 	});
 
 	$('#hmenu-Signout').click(function() {
-		$.post('/api/auth/signOut.json', {}, function(data) {
+		auth.signOut({}, function(err, data) {
 			if (localStorage) localStorage.clear();
 			window.location.reload(true);
-		}, "json");
+		});
 		return false;
 	});
 
@@ -36,20 +42,11 @@ global.onLoad(function() {
 			inputPassword = $('#formRegPassword'),
 			RegValidation = null,
 			Data = { "Email": inputEmail.val() };
-		$.ajax({
-			url: '/api/auth/regvalidation.json',
-			type: 'POST',
-			dataType: 'json',
-			async: false,
-			data: Data,
-			success: function(json) { RegValidation = json; }
-		});
+		auth.regValidation(Data, function(err, json) { RegValidation = json; });
 		if (RegValidation!=null) {
 			Data.Password = inputPassword.val();
 			if (!RegValidation.Email) inputEmail.addClass('invalid').focus(); else inputEmail.removeClass('invalid');
-			$.post("/api/auth/register.json", Data, function(data) {
-				if (data.Result=='Ok') window.location.reload(true);
-			}, "json");
+			auth.register(Data, function(err, data) { if (data.Result=='Ok') window.location.reload(true); });
 		}
 		return false;
 	});
