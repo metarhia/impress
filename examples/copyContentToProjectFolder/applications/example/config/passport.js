@@ -1,4 +1,4 @@
-if (passport) {
+if (global.passport) {
 
 	var p = require('passport'),
 		pGoogle = require('passport-google-oauth');

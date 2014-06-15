@@ -1,3 +1,9 @@
+0.1.43 / 2014-06-16
+==================
+
+  * Fixed critical bugs with database aliases and connection visibility in /lib/db.js and /lib/db.mongodb.js
+  * Fixed bug in plugin configuration for passport.js
+
 0.1.42 / 2014-06-14
 ==================
 
