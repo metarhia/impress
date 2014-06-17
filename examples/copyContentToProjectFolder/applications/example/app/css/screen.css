@@ -736,3 +736,23 @@ br.clear { clear:both; }
 	border: none;
 	width: 100%;
 }
+
+
+
+
+svg {
+	font: 10px sans-serif;
+}
+
+.line {
+	fill: none;
+	stroke: #000;
+	stroke-width: 1.5px;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}

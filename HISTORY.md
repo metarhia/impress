@@ -1,3 +1,10 @@
+0.1.44 / 2014-06-17
+==================
+
+  * Changes in impress.passport.js plugin: urls moved to config, no mixin to appication if no passport.js in application config
+  * Prevent application from log files creating and rotation if "applicationLog" is false in application config/log.js
+  * Added wcl.js to example page and other minor fixes
+
 0.1.43 / 2014-06-16
 ==================
 

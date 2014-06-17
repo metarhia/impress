@@ -35,7 +35,10 @@ if (global.passport) {
 		                }
 		
 		            } catch (e) { console.trace(); }
-		        }
+		        },
+				successRedirect: '/api/auth/userInfo.json',
+				failureRedirect: '/'
+
 		    }
 		}
 	};

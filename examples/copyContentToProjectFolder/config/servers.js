@@ -6,7 +6,6 @@ module.exports = {
 		protocol:      "http",
 		address:       "127.0.0.1",
 		port:          80,
-		applications:  ["example"], // virtual hosts for this server (see hosts definitions below)
 		nagle:         true,        // Nagle algorithm, default true, set to false for latency optimization
 		slowTime:      "1s"
 	},

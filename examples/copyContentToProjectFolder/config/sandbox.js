@@ -5,6 +5,7 @@ module.exports = {
 		'require',
 		'console',
 		'process',
+		'impress',
 		'db',
 		'cms',
 		'os',
