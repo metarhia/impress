@@ -1,3 +1,10 @@
+0.1.45 / 2014-06-19
+==================
+
+  * Fixed error logging for exceptions, improved error logging for syntax errors, but can't log line/pos because of V8 bug
+  * Fixed error loffing in db.js and db driver for mongodb, mysql and pgsql
+  * Some refactoring in impress.js and impress.client.js
+
 0.1.44 / 2014-06-17
 ==================
 
