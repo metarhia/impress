@@ -42,12 +42,16 @@ global.onLoad(function() {
 			inputPassword = $('#formRegPassword'),
 			RegValidation = null,
 			Data = { "Email": inputEmail.val() };
-		auth.regValidation(Data, function(err, json) { RegValidation = json; });
-		if (RegValidation!=null) {
-			Data.Password = inputPassword.val();
-			if (!RegValidation.Email) inputEmail.addClass('invalid').focus(); else inputEmail.removeClass('invalid');
-			auth.register(Data, function(err, data) { if (data.Result=='Ok') window.location.reload(true); });
-		}
+		auth.regValidation(Data, function(err, json) {
+			RegValidation = json;
+			if (RegValidation!=null) {
+				Data.Password = inputPassword.val();
+				if (RegValidation.Email) {
+					inputEmail.removeClass('invalid');
+					auth.register(Data, function(err, data) { if (data.Result=='Ok') window.location.reload(true); });
+				} else inputEmail.addClass('invalid').focus();
+			}
+		});
 		return false;
 	});
 

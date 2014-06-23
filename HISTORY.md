@@ -1,3 +1,10 @@
+0.1.47 / 2014-06-24
+==================
+
+  * Fixed impress.security.js and mongodb security provider
+  * Fixed api /auth in examples and tested signin/signout/register
+  * Fixed wcl.js
+
 0.1.46 / 2014-06-23
 ==================
 

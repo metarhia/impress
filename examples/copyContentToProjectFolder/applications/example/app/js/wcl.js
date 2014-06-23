@@ -26,14 +26,17 @@
 		api.init = function(methods) {
 			api.methods = methods;
 			for (var method in api.methods) {
-				if (method == 'introspect') api[method] = function(params, callback) {
-					api.request(method, params, function(err, data) {
-						api.init(data);
-						callback(err, data);
-					});
-				}; else api[method] = function(params, callback) {
-					api.request(method, params, callback);
-				}
+				(function() {
+					var apiMethod = method;
+					if (apiMethod == 'introspect') api[apiMethod] = function(params, callback) {
+						api.request(apiMethod, params, function(err, data) {
+							api.init(data);
+							callback(err, data);
+						});
+					}; else api[apiMethod] = function(params, callback) {
+						api.request(apiMethod, params, callback);
+					}
+				} ());
 			}
 		}
 		api.init(methods);
