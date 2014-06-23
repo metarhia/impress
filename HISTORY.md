@@ -1,3 +1,10 @@
+0.1.46 / 2014-06-23
+==================
+
+  * Fixed closure to open multiple databases for one application in db.js
+  * Fixed access calculations in impress.client.js
+  * Minor refactoring in global.js
+
 0.1.45 / 2014-06-19
 ==================
 
