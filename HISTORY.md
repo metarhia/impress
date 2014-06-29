@@ -1,3 +1,9 @@
+0.1.48 / 2014-06-29
+==================
+
+  * Fixed inpress.passport.js
+  * Fixed global.js/duration
+
 0.1.47 / 2014-06-24
 ==================
 
