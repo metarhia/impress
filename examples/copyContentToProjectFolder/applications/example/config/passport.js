@@ -18,8 +18,8 @@ if (global.passport) {
 		strategies: {
 		    google: {
 		        param: {
-	    	        clientID: '791494201012-uecv1djmhgp4fjmca9v0os5c4f8omsk0.apps.googleusercontent.com',
-		            clientSecret: 'Q4I-Z6YNgtouBAsg7NPM3gXd',
+	    	        clientID: '-place-id-here-',
+		            clientSecret: '-place-secret-here-',
 		            callbackURL: '/api/auth/google/callback'
 		        },
 		        strategy: pGoogle.OAuth2Strategy,
