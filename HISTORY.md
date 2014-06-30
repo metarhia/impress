@@ -1,7 +1,15 @@
+0.1.49 / 2014-06-30
+==================
+
+  * Fixed critical bug in impress.client.js: no autostarting sessions any more, to start one you should manually call client.startSession()
+  * Session cookie "SID" hash algorithm changed
+  * In /applications/name/config/routes.js new boolean parameter "escaping" can be used, default: true. So escaping==false "url" parameter will not be escaped
+  * Fixed example application /dbmi: wcl.js added
+
 0.1.48 / 2014-06-29
 ==================
 
-  * Fixed inpress.passport.js
+  * Fixed impress.passport.js
   * Fixed global.js/duration
 
 0.1.47 / 2014-06-24
