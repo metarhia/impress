@@ -1,3 +1,15 @@
+0.1.51 / 2014-07-07
+==================
+
+  * Fixed sessions
+  * Refactored plugin impress.passport.js and auth examples
+  * Fixed impress.client.js, removed dependency to impress.passport.js
+
+0.1.50 / 2014-06-30
+==================
+
+  * Temporary revert to wrong session starting (need refactoring)
+
 0.1.49 / 2014-06-30
 ==================
 

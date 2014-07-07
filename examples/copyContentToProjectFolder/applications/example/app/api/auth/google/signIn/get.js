@@ -1,3 +1,5 @@
 module.exports = function(client, callback) {
-	client.passport.strategies.google.authenticate(client.req, client.res);
+	client.passport.init(function () {
+		client.passport.strategies.google.authenticate(client.req, client.res, callback);
+	}, callback);
 };
