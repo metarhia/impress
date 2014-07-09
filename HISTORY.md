@@ -1,3 +1,10 @@
+0.1.52 / 2014-07-10
+==================
+
+  * Added support for JSON config format (application specific only)
+  * Refactored mixins for plugins
+  * Implemented config loading priority (specified in impress.constants.js)
+
 0.1.51 / 2014-07-07
 ==================
 
