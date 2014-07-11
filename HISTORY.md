@@ -1,3 +1,10 @@
+0.1.54 / 2014-07-11
+==================
+
+  * Optimized timeout error handling
+  * Added logging for timed-out requests
+  * Fixed deploy and service scripts
+
 0.1.53 / 2014-07-11
 ==================
 

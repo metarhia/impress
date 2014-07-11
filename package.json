@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.53",
+  "version": "0.1.54",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Totalitarian-style Multipurpose Application Server for node.js. All decisions are made. Ready for applied development",
   "keywords": [
@@ -50,8 +50,6 @@
     "multiparty": "3.2.x",
     "iconv-lite": "0.4.x",
     "zip-stream": "0.3.x",
-    "passport": "^0.2.0",
-    "passport-google-oauth": "^0.1.5"
   },
   "engines": {
     "node": ">=0.10.6"

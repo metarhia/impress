@@ -29,7 +29,13 @@ stop() {
 }
 
 status() {
-	ps aux | grep impress | grep -v grep | grep -v sh
+	iprocess=$(ps aux | grep 'impress' | grep -v grep | grep -v sh | wc -l)
+	if [ $iprocess -gt 0 ]
+	then
+		ps aux | grep 'impress\|%CPU' | grep -v grep | grep -v sh
+	else
+		echo "Impress Application Server is not running"
+	fi
 }
 
 update() {
@@ -42,20 +48,20 @@ update() {
 case $1 in
 
 	start)
-		echo -e "\e[1;32mStarting Impress Application Server\e[0m"
+		echo Starting Impress Application Server
 		start
 		;;
 	stop)
-		echo -e "\e[1;32mStopping Impress Application Server\e[0m"
+		echo Stopping Impress Application Server
 		stop
 		;;
 	restart|reload)
-		echo -e "\e[1;32mRestarting Impress Application Server\e[0m"
+		echo Restarting Impress Application Server
 		stop
 		start
 		;;
 	update)
-		echo -e "\e[1;32mUpdating and restarting\e[0m"
+		echo Updating and restarting
 		update
 		;;
 	status)
