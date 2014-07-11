@@ -1,3 +1,10 @@
+0.1.53 / 2014-07-11
+==================
+
+  * Added parameter "timeout" in /config/servers.js, default "2m", can be integer in milliseconds or string in duration format, e.g. "5s" or "1m 25s"
+  * Implemented timeout error handling and displaying
+  * Implemented fallback of IP "sticky" serving strategy on windows to "single" strategy
+
 0.1.52 / 2014-07-10
 ==================
 

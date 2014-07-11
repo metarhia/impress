@@ -16,30 +16,29 @@ if (global.passport) {
 	module.exports = {
 		lib: p,
 		strategies: {
-		    google: {
-		        param: {
-	    	        clientID: '-place-id-here-',
-		            clientSecret: '-place-secret-here-',
-		            callbackURL: '/api/auth/google/callback'
-		        },
-		        strategy: pGoogle.OAuth2Strategy,
-		        authenticate: function(req, token, refreshToken, profile, done) {
-		            try {
-		                if (!req.user) {
-		                    // validate request and find user ...
-		                    // if (err) done(err)
-		                    // else
-		                    done(null, profile);
-		                } else {
-		                    done(null, req.user);
-		                }
+			google: {
+				param: {
+					clientID: '-place-id-here-',
+					clientSecret: '-place-secret-here-',
+					callbackURL: '/api/auth/google/callback'
+				},
+				strategy: pGoogle.OAuth2Strategy,
+				authenticate: function(req, token, refreshToken, profile, done) {
+					try {
+						if (!req.user) {
+							// validate request and find user ...
+							// if (err) done(err)
+							// else
+							done(null, profile);
+						} else {
+							done(null, req.user);
+						}
 		
-		            } catch (e) { console.trace(); }
-		        },
+					} catch (e) { console.trace(); }
+				},
 				successRedirect: '/api/auth/userInfo.json',
 				failureRedirect: '/'
-
-		    }
+			}
 		}
 	};
 
