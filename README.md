@@ -2,15 +2,38 @@
 
 # Impress
 
-[Impress](https://github.com/tshemsedinov/impress.git)ive totalitarian style Multipurpose Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
+[Impress](https://github.com/tshemsedinov/impress)ive multipurpose Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
-The main difference from others that Impress core is monolithic and its approach is to make all in one solution with high code coupling for obligatory things and leave not obligatory to be integrated by applied developers optionally. High coupling in core gives us advantages in performance and code simplicity. For example, why we should implement static files serving or memory caching as a plugin while no one application will omit that.
+Impress follows alternative way in several aspects:
+  - No callback chain (no middleware), hierarchically inheritable hash routing instead
+  - Monolithic high coupling core with obligatory things optimized for performance
+  - Extensible plug-ins format for optionally needed things
+  - Applied code simplicity, API code high-level abstraction and brevity
+  - Support for both Stateful and Stateless approach
+  - Application can't include Application Server, quite the opposite, Application Server is a container for Applications
+  - No I/O is faster even then async I/O, so maximum memory usage and lazy I/O is the choice
 
-## Installation
+## Installation and upgrade
 
-```bash
-$ npm install impress
-```
+  - Install to project folder (mostly for development): `npm install impress` and configure
+  - Install as a service for Linux: create directory `/impress` in `/` (file system root) and type: `npm install impress`
+  - Install using package.json and `npm install`: not recommended but you can do so if you know what you're doing
+  - Installation scripts for empty server (from the scratch), you can prepare scripts based on examples below and run at a target server shell: `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
+    - For CentOS /deploy/centos.sh (tested on CentOS 6.5 64bit minimal)
+    - For Ubuntu /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
+    - For Debian /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
+    
+To upgrade Impress version you can type 'npm update' in Impress folder, but if Impress installed as a service it is better to use service CLI, see commands below.
+If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.
+
+## Service (daemon) commands
+
+If Impress installed as a service (daemon) you can use following commands:
+  - `service impress start`
+  - `service impress stop`
+  - `service impress restart` is equal to `stop` and `start` commands
+  - `service impress status` to show Impress processes CPU, MEM, RSS, TIME and other parameters
+  - `service impress update` to update and restart Application Server
 
 ## Features
 
@@ -25,176 +48,131 @@ $ npm install impress
     - IP sticky (multiple processes, one master and workers with serving sticky by IP)
   - URL routing based on file system
     - Caching server-side executable JavaScript in memory
-    - Filesystem watching for cache reloading when file changes on disk
+    - File system watching for cache reloading when file changes on disk
   - API development support (simple way for JSON-based WEB-services development)
     - RPC-style API (Stateful, state stored in memory between requests)
     - REST-style API (Stateless, each call is separate, no state in memory)
-  - Server server-side templating
+  - Server server-side simple templating
     - Caching templates in memory and ready (rendered) pages optional caching
-    - Value rendering with @VariableName@ syntax, absolute and relative addressing
-    - Array and hash iterations with @[arrayName]@ and @[/arrayName]@ syntax
-    - Including sub-templates @[includeTemplate]@ syntax
+    - Supports array and hash iterations and sub-templates including
     - Template personalization for user groups
-  - Config changes with zero downtime
-    - Flexible configuration in JSON file
+  - Application config changes with zero downtime
+    - Flexible configuration in JS or JSON format
     - File watch and automatic soft reloading when config.js file changes
     - No Impress server hard restarting
   - Serving static files
     - Gzipping and HTTP request field "if-modified-since" field support and HTTP 304 "Not Modified" answer
-    - Memory caching and filesystem watching for cache reloading when files changed on disk
-    - JavaScript optional (configurable) minification, based on module "uglify-js" as Impress plugin
+    - Memory caching and file system watching for cache reloading when files changed on disk
+    - JavaScript optional (configurable) minification, based on module "uglify-js" as Impress plug-in
   - Built-in sessions support with authentication and user groups and anonymous sessions
     - Sessions and cookies (memory state or persistent sessions with MongoDB)
     - Access modifiers for each folder in access.js files and access inheritance
-  - Implemented SSE (Server-Sent Events) with channels and multicast
+  - Implemented SSE (Server-Sent Events) with channels and multi-cast
   - WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
   - Logging: "access", "debug", "error and "slow" logs
     - Log rotation: keep logs N days (configurable) delete files after N days
     - Log buffering, write stream flushing interval
+    - Each application can be logged to own folder and/or to server-wide logs
   - Connection drivers for database engines:
     - MySQL data access layer based on felixge/mysql low-level drivers (separate module "musql-utilities")
       - MySQL Data Access Methods: queryRow, queryValue, queryCol, queryHash, queryKeyValue
       - MySQL Introspection Methods: primary, foreign, constraints, fields, databases, tables, databaseTables, tableInfo, indexes, processes, globalVariables, globalStatus, users
       - MySQL SQL Autogenerating Methods: select, insert, update, upsert, count, delete
       - Events: 'query', 'slow'
-    - MongoDB drivers as Impress plugin
-    - Memcached drivers as Impress plugin
-    - MySQL schema generator from JSON database schemas
-  - Sending Emails functionality using "nodemailer" module as Impress plugin
+    - MongoDB drivers as Impress plug-in
+    - PgSQL drivers as Impress plug-in
+    - Memcached drivers as Impress plug-in
+    - Relational schema generator from JSON database schemas
+  - Sending Emails functionality using "nodemailer" module as Impress plug-in
   - IPC support (interprocess communications) for event delivery between Node.js instances
   - Integrated DBMI (Web-based management interface for MySQL and MongoDB)
-  - GeoIP support, based on "geoip-lite" module as Impress plugin (uses MaxMind database)
+  - GeoIP support, based on "geoip-lite" module as Impress plug-in (uses MaxMind database)
+  - Social networking login using Passport.js as plug-in
+  - Built-in simple testing framework
+  - Server health monitoring
 
 ## Configuration
 
-1. Install module using "npm install impress" in new directory. If you want to setup impress as a service, place it into /impress directory.
-2. Example will start automaticaly after installation and you can see it in browser http://127.0.0.1
-3. You can create a directory for your new application inside /applications, for example: /applications/myapp and copy /applications/example into this directory.
-4. Edit /config/servers.js and add "myapp" to "applications" array.
-5. Edit /applications/myapp/config/hosts.js and change "127.0.0.1" to "myapp.com", certainly you need to register and configure domain name myapp.com or just add it into "hosts" file in your OS.
-6. Place your html to /applications/myapp/config/app/html.template and required files into directories /js, /css, /images.
-7. Run Impress using command "node server.js" or "service impress start" (if installed as a service).
+1. Install Impress as described above.
+2. Example application will start automatically after installation and you can see it in browser `http://127.0.0.1/`
+3. Edit `/config/*.js` to configure Application Server
+4. You can create a directory for your new application inside `/applications`, for example: `/applications/myapp` and copy `/applications/example` into this directory to start with
+5. Edit `/applications/myapp/config/hosts.js`, change "127.0.0.1" to "myapp.com", certainly you need to register and configure domain name myapp.com or just add it into "hosts" file in your OS
+6. Place your html to `/applications/myapp/app/html.template` and required files into directories `/js`, `/css`, `/images`
+7. Run Impress using command `service impress start` (if installed as a service) or `node server.js`
 
 ## Handler examples and file system url mapping
 
 1. Template example
-Location: http://localhost
-Base template: /applications/localhost/html.template
-2. Override included "left.template"
-Location: http://localhost/override
-Overriden template: /applications/localhost/override/left.template
-Base template: /applications/localhost/html.template
-Handler: /applications/localhost/request.js
+Location: `http://localhost`
+Base template: `/applications/localhost/html.template`
+2. Override `left.template`
+Location: `http://localhost/override`
+Overridden template: `/applications/localhost/override/left.template`
+Base template: `/applications/localhost/html.template`
+Handler: `/applications/localhost/request.js`
 3. JSON api method example
-Location: http://localhost/api/examples/methodName.json
-Handler: /applications/localhost/api/examples/methodName.json/get.js
+Location: `http://localhost/examples/simple/jsonGet.json`
+Handler: `/applications/localhost/examples/simple/jsonGet.json/get.js`
 4. Start anonymous session
-Location: http://localhost/api/auth/anonymousSession.json
-Handler: /applications/localhost/api/auth/anonymousSession.json/get.js
+Location: `http://localhost/api/auth/anonymousSession.json`
+Handler: `/applications/localhost/api/auth/anonymousSession.json/get.js`
 5. POST request handler
-Location: POST http://localhost/api/auth/regvalidation.json
-Handler: /applications/localhost/api/auth/regvalidation.json/post.js
+Location: `POST http://localhost/examples/simple/jsonPost.json`
+Handler: `/applications/localhost/examples/simple/jsonPost.json/post.js`
 6. MongoDB access example
-Location: http://localhost/api/examples/getUsers.json
-Handler: /applications/localhost/api/examples/getUsers.json/get.js
+Location: `http://localhost/examples/mongodb/getData.json`
+Handler: `/applications/localhost/examples/mongodb/getData.json/get.js`
 
-## Example
+## Examples
 
-Following "server.js" is stating file. Run it using command line "node server" for debug or "nohup node server" for production.
+Example #1
+File `/api/method.json/get.js`, Request type `GET`
 ```javascript
-require('impress');
+module.exports = function(client, callback) {
+    callback({ field: "value" });
+}
+```
+Result: `{ "field": "value" }`
 
-impress.server.on("start", function() {
-	// place code to be executed after all application started
-});
-
-impress.server.start();
+Example #2
+File `/api/method.json/post.js`, Request type `POST`
+```javascript
+module.exports = function(client, callback) {
+    dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
+        callback(nodes);
+    });
+}
+```
+Result:
+```javascript
+[
+    { "login": "Vasia Pupkin", "password": "whoami", "group": "users" },
+    { "login": "Marcus Aurelius", "password": "tomyself", "group": "users" }
+]
 ```
 
+Example #3
 File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.
 If folder not contains "access.js" it will inherit from parent folder and so on. Example:
 ```javascript
 module.exports = {
-	guests: true, // allow requests from not logged users
-	logged: true, // allow requests from logged users
-	http:   true, // allow requests using http protocol
-	https:  true, // allow requests using https protocol (SSL)
-	groups: []    // allow access for user groups listed in array
-	              // or for all if array is empty or no groups field specified
+    guests: true,  // Allow requests from anonimous users (not logged or no session started)
+    logged: true,  // Allow requests from logged users
+    http:   true,  // Allow requests using http protocol
+    https:  true,  // Allow requests using https protocol
+    groups: [],    // Allow access for user groups listed in array
+                   //   or for all if array is empty or no groups field specified
+    intro:  true,  // Generate introspection for API methods in this directory
+    index:  false, // Generate directory index
 }
-```
-
-File "request.js": place such file in folder to be executed on each request (GET, POST, PUT, etc.).
-If folder not contains "request.js" it will inherit from parent folder and so on. Example:
-```javascript
-module.exports = function(client, callback) {
-	client.context.data = {
-		title: "Page Title",
-		users: [
-			{
-				name: "vasia", age: 22,
-				emails: ["user1@gmail.com", "user2@gmail.com"]
-			},{
-				name: "dima", age: 32,
-				emails: ["user3@gmail.com", "user4@gmail.com", "user5@gmail.com"]
-			}
-		],
-		session: client.session
-	};
-	callback();
-}
-```
-
-File "get.js": place such file in folder to be executed on GET request. For POST request "post.js", and so on.
-If folder not contains "get.js" it will inherit from parent folder and so on. Example:
-```javascript
-module.exports = function(client, callback) {
-	database1.query('select * from City', function(err, rows, fields) {
-		if (err) throw err;
-		client.context.data = { rows:rows, fields:fields };
-		callback();
-	});
-}
-```
-
-File "html.template": place such file in folder as a main page template. Example:
-```html
-<!DOCTYPE html>
-<html>
-<head>
-	<title>@title@</title>
-</head>
-<body>
-	<div>
-		Field value: @field@
-	</div>
-	<div>
-		Include template: @[name]@ - this will include file "./name.template"
-	</div>
-	<div>
-		This will iterate "res.context.data" from "request.js" example above:
-		@[users]@
-			<div>
-				User name: @.name@<br/>
-				User age: @.age@<br/>
-				Email addresses:
-				<ul>
-					@[emails]@
-						<li>@.value@</li>
-					@[/emails]@
-				</ul>
-			</div>
-		@[/users]@
-	</div>
-</body>
-</html>
 ```
 
 ## Contributors
 
   - Timur Shemsedinov (marcusaurelius)
-  - See github
+  - See github contributors list
 
 ## License
 
