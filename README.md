@@ -16,13 +16,16 @@ Impress follows alternative way in several aspects:
 ## Installation and upgrade
 
   - Install to project folder (mostly for development): `npm install impress` and configure
-  - Install as a service for Linux: create directory `/impress` in `/` (file system root) and type: `npm install impress`
-  - Install using package.json and `npm install`: not recommended but you can do so if you know what you're doing
-  - Installation scripts for empty server (from the scratch), you can prepare scripts based on examples below and run at a target server shell: `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
+  - Install as a service for Linux: create directory `/impress` and type: `npm install impress`
+  - Install using package.json and `npm install`: not recommended but if you know what you're doing...
+  - Installation scripts for empty server (from the scratch)
     - For CentOS /deploy/centos.sh (tested on CentOS 6.5 64bit minimal)
     - For Ubuntu /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
     - For Debian /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
-    
+	
+You can prepare scripts based on examples above and run at a target server shell:
+`curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
+
 To upgrade Impress version you can type 'npm update' in Impress folder, but if Impress installed as a service it is better to use service CLI, see commands below.
 If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.
 
@@ -92,39 +95,6 @@ If Impress installed as a service (daemon) you can use following commands:
   - Built-in simple testing framework
   - Server health monitoring
 
-## Configuration
-
-1. Install Impress as described above.
-2. Example application will start automatically after installation and you can see it in browser `http://127.0.0.1/`
-3. Edit `/config/*.js` to configure Application Server
-4. You can create a directory for your new application inside `/applications`, for example: `/applications/myapp` and copy `/applications/example` into this directory to start with
-5. Edit `/applications/myapp/config/hosts.js`, change "127.0.0.1" to "myapp.com", certainly you need to register and configure domain name myapp.com or just add it into "hosts" file in your OS
-6. Place your html to `/applications/myapp/app/html.template` and required files into directories `/js`, `/css`, `/images`
-7. Run Impress using command `service impress start` (if installed as a service) or `node server.js`
-
-## Handler examples and file system url mapping
-
-1. Template example
-Location: `http://localhost`
-Base template: `/applications/localhost/html.template`
-2. Override `left.template`
-Location: `http://localhost/override`
-Overridden template: `/applications/localhost/override/left.template`
-Base template: `/applications/localhost/html.template`
-Handler: `/applications/localhost/request.js`
-3. JSON api method example
-Location: `http://localhost/examples/simple/jsonGet.json`
-Handler: `/applications/localhost/examples/simple/jsonGet.json/get.js`
-4. Start anonymous session
-Location: `http://localhost/api/auth/anonymousSession.json`
-Handler: `/applications/localhost/api/auth/anonymousSession.json/get.js`
-5. POST request handler
-Location: `POST http://localhost/examples/simple/jsonPost.json`
-Handler: `/applications/localhost/examples/simple/jsonPost.json/post.js`
-6. MongoDB access example
-Location: `http://localhost/examples/mongodb/getData.json`
-Handler: `/applications/localhost/examples/mongodb/getData.json/get.js`
-
 ## Examples
 
 Example #1
@@ -168,6 +138,16 @@ module.exports = {
     index:  false, // Generate directory index
 }
 ```
+
+## Configuration
+
+1. Install Impress as described above.
+2. Example application will start automatically and will open `http://127.0.0.1/`
+3. Edit `/config/*.js` to configure Application Server
+4. You can create a directory for your new application inside `/applications`, for example: `/applications/myapp` and copy `/applications/example` into this directory to start with
+5. Edit `/applications/myapp/config/hosts.js`, change `127.0.0.1` to `myapp.com`, certainly you need to register and configure domain name myapp.com or just add it into `hosts` file in your OS
+6. Place your html to `/applications/myapp/app/html.template` and required files into directories `/js`, `/css`, `/images` and write API in live environment without restart
+7. Run Impress using command `service impress start` (if installed as a service) or `node server.js`
 
 ## Contributors
 
