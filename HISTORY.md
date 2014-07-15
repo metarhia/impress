@@ -1,7 +1,13 @@
+0.1.56 / 2014-07-15
+==================
+
+  * Updated readme.md brief docs
+  * Further refactoring code style
+
 0.1.55 / 2014-07-12
 ==================
 
-  * Refactored all modules mode style
+  * Refactored all modules code style
 
 0.1.54 / 2014-07-11
 ==================
