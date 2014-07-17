@@ -11,6 +11,7 @@ module.exports = {
 		// "sticky"         - multiple processes, one master and workers with sticky by IP (master should listen ports)
 		//
 	workers:    os.cpus().length-1, // worker count, e.g. os.cpus().length-1 or just number
-	nagle:      false,  // Nagle algorithm
-	gcInterval: 0       // garbage collector interval "1h" - 1 hour, "10m" - 10 minutes
+	nagle:      false,     // Nagle algorithm
+	gcInterval: 0,         // garbage collector interval "1h" - 1 hour, "10m" - 10 minutes
+	// cacheLimit: "10mb"  // cache memory limit
 }

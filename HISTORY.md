@@ -1,3 +1,10 @@
+0.1.57 / 2014-07-17
+==================
+
+  * Implemented cache memory limits, issue #60
+  * Fixed cluster strategy "specialization", issue #61
+  * Fixed error on live changing main impress config files: TypeError: Cannot read property 'mixinClient' of undefined; Object.application.preprocessConfig (impress.js:241:37);
+
 0.1.56 / 2014-07-15
 ==================
 
