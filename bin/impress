@@ -15,7 +15,7 @@
 ### END INIT INFO
 
 usage() {
-	echo "service impress {start|stop|restart|status|update}"
+	echo "service impress {start|stop|restart|status|update|debug}"
 	exit 0
 }
 
@@ -24,8 +24,24 @@ start() {
 	nohup node server > /dev/null 2>&1 &
 }
 
+debug() {
+	cd /impress
+	node server
+}
+
 stop() {
 	killall "impress srv"
+}
+
+restart() {
+	iprocess=$(ps aux | grep 'impress' | grep -v grep | grep -v sh | wc -l)
+	if [ $iprocess -gt 0 ]
+	then
+		stop
+		start
+	else
+		echo "Impress Application Server is not running"
+	fi
 }
 
 status() {
@@ -40,9 +56,9 @@ status() {
 
 update() {
 	cd /impress
+	npm update npm -g
 	npm update
-	stop
-	start
+	restart
 }
 
 case $1 in
@@ -51,17 +67,20 @@ case $1 in
 		echo Starting Impress Application Server
 		start
 		;;
+	debug)
+		echo Starting Impress Application Server with console output
+		start
+		;;
 	stop)
 		echo Stopping Impress Application Server
 		stop
 		;;
 	restart|reload)
 		echo Restarting Impress Application Server
-		stop
-		start
+		restart
 		;;
 	update)
-		echo Updating and restarting
+		echo Updating and restarting (if started)
 		update
 		;;
 	status)

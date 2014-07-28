@@ -1,3 +1,10 @@
+0.1.58 / 2014-07-28
+==================
+
+  * Changed config files loading in series to ensure next file use results of previous, so loading order will have sense
+  * Refactored api namespaces, moved to api
+  * Fixed Linux service "update" and "restart" behavior, issue #63
+
 0.1.57 / 2014-07-17
 ==================
 
