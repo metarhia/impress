@@ -1,3 +1,9 @@
+0.1.59 / 2014-07-29
+==================
+
+  * Fixed bug on empty Directory index and API Introspection index
+  * Minor optimizations
+
 0.1.58 / 2014-07-28
 ==================
 
