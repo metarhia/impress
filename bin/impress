@@ -64,23 +64,23 @@ update() {
 case $1 in
 
 	start)
-		echo Starting Impress Application Server
+		echo "Starting Impress Application Server"
 		start
 		;;
 	debug)
-		echo Starting Impress Application Server with console output
+		echo "Starting Impress Application Server with console output"
 		start
 		;;
 	stop)
-		echo Stopping Impress Application Server
+		echo "Stopping Impress Application Server"
 		stop
 		;;
 	restart|reload)
-		echo Restarting Impress Application Server
+		echo "Restarting Impress Application Server"
 		restart
 		;;
 	update)
-		echo Updating and restarting (if started)
+		echo "Updating and restarting (if started)"
 		update
 		;;
 	status)
