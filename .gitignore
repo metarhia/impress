@@ -9,6 +9,7 @@ node_modules
 /server.*
 /stresstest.*
 /setup.*
+/lib/*.new
 
 *.log
 npm-debug.log

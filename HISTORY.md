@@ -1,3 +1,10 @@
+0.1.61 / 2014-08-02
+==================
+
+  * Implemented parameter "virtual" in access.js, issue #65
+  * Added folders for different program logic placing (as a draft, functionality is not implemented)
+  * Fixed bug in sse example and minor fixes
+
 0.1.60 / 2014-07-30
 ==================
 

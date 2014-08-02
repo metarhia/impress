@@ -2,6 +2,7 @@
 
 module.exports = {
 	modules: [
+		'impress',
 		'require',
 		'console',
 		'process',
