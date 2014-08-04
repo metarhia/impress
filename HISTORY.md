@@ -1,3 +1,9 @@
+0.1.62 / 2014-08-04
+==================
+
+  * Fixed EPERM exception on live reload live watching, issue #65
+  * Fixed start fail, issue #68
+
 0.1.61 / 2014-08-02
 ==================
 
