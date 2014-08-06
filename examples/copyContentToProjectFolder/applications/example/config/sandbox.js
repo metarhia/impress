@@ -6,6 +6,7 @@ module.exports = {
 		'require',
 		'console',
 		'process',
+		'npm',
 		'db',
 		'os',
 		'domain',

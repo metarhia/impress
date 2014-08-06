@@ -1,3 +1,9 @@
+0.1.63 / 2014-08-06
+==================
+
+  * Fixed critical bug in url-rewriting, issue #69 (issue #70)
+  * Minor fixes in examples
+
 0.1.62 / 2014-08-04
 ==================
 

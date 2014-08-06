@@ -8,8 +8,10 @@
 			console.log(message);
 		});
 		for (var i = 0; i < npmList.length; i++) {
-			var npmName = npmList[i],
+			var lib, npmName = npmList[i];
+			try {
 				lib = require(npmName);
+			} catch (err) {}
 			if (!lib && npmChecked.indexOf(npmName) != -1) {
 				npm.commands.install([npmName], function (err, data) {
 					if (err) console.log('npm error'.red);

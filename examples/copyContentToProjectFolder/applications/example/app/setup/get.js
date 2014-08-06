@@ -4,8 +4,10 @@ module.exports = function(client, callback) {
     	npmChecks = {};
 
 	for (var i = 0; i < npmList.length; i++) {
-		var npmName = npmList[i],
+		var lib, npmName = npmList[i];
+		try {
 			lib = require(npmName);
+		} catch (err) {}
 		npmChecks[npmName] = lib ? 'checked' : '';
 	}
 
