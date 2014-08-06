@@ -2,7 +2,5 @@
 node_js:
   - "0.11"
   - "0.10"
-install:
-  - sudo npm install
 script:
   - node unittests
