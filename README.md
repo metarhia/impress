@@ -2,6 +2,8 @@
 
 # Impress
 
+[![Build Status](https://travis-ci.org/tshemsedinov/impress.svg?branch=master)](https://travis-ci.org/tshemsedinov/impress)
+
 [Impress](https://github.com/tshemsedinov/impress)ive multipurpose Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
 Impress follows alternative way in several aspects:
