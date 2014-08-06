@@ -51,6 +51,19 @@
     "iconv-lite": "0.4.x",
     "zip-stream": "0.3.x"
   },
+  "devDependencies": {
+    "async": "0.6.x",
+    "cluster": "0.7.x",
+    "colors": "0.6.x",
+    "mkdirp": "0.5.x",
+    "ncp": "0.5.x",
+    "open": "0.0.x",
+    "npm": "1.4.x",
+    "uglify-js": "2.4.x",
+    "multiparty": "3.2.x",
+    "iconv-lite": "0.4.x",
+    "zip-stream": "0.3.x"
+  },
   "engines": {
     "node": ">=0.10.6"
   },
