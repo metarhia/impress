@@ -14,7 +14,7 @@ module.exports = {
 	//
 	//	mysqlConnection: {
 	//		url: "mysql://impress:password@localhost/impress", // connection string (required)
-	//		alias: "aliasNameMy"                               // database alias to be used as short identifier (optional)
+	//		alias: "aliasNameMy",                              // database alias to be used as short identifier (optional)
 	//		slowTime: 1000,                                    // time to log query as slow (optional, default: "2s", in milliseconds or string like "5s")
 	//	},
 
@@ -22,7 +22,7 @@ module.exports = {
 	//
 	//	pgsqlConnection: {
 	//		url: "postgres://impress:password@localhost/test", // connection string (required)
-	//		alias: "aliasNamePg"                               // database alias to be used as short identifier (optional)
+	//		alias: "aliasNamePg",                              // database alias to be used as short identifier (optional)
 	//		slowTime: 1000,                                    // time to log query as slow (optional, default: "2s", in milliseconds or string like "5s")
 	//	},
 
