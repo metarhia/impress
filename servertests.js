@@ -6,8 +6,9 @@ var ncp = require('ncp').ncp,
 ncp.limit = 16;
 
 var config = {
-	host: '127.0.0.1',
-	port: 8080,
+	host:   '127.0.0.1',
+	port:    8080,
+	timeout: 5000,
 	tasks: [
 		{ get: "/" },
 		{ get: "/examples/simple/ajaxTest.ajax" },
@@ -24,9 +25,7 @@ var current = api.path.dirname(__filename.replace(/\\/g, '/')),
 	exists = false;
 
 api.async.each(['config', 'applications'], function(file, callback) {
-	console.log(destination+file);
 	api.fs.exists(destination+file, function(fileExists) {
-		console.dir({fileExists:fileExists});
 		exists = exists || fileExists;
 		callback();
 	});
@@ -58,7 +57,7 @@ function doTests() {
 
 	setInterval(function() {
 		impress.server.shutdown();
-	}, 10000);
+	}, config.timeout);
 }
 
 function httpTest(task) {
@@ -69,10 +68,15 @@ function httpTest(task) {
 		agent: false
 	});
 	req.on('response', function(res) {
-		console.log('  Request: http://'+config.host+':'+config.port+task.get+'... HTTP '+res.statusCode);
-		res.on('error', function(err) {
-			if (err) throw err;
-		});
+		if (res.statusCode === 200) {
+			var msg = 'Request: http://'+config.host+':'+config.port+task.get+'... HTTP '+res.statusCode;
+			console.log('  '+msg);
+			res.on('error', function(err) {
+				if (err) throw err;
+			});
+		} else {
+			throw new Error(msg);
+		}
 	});
 	req.on('error', function(err) {
 		if (err) throw err;
