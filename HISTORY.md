@@ -1,3 +1,12 @@
+0.1.65 / 2014-08-11
+==================
+
+  * Refactored Client class
+  * Refactored SSE plugin
+  * Refactored WebSocker plugin
+  * Events plugin separated from SSE plugin
+  * Fixed examples
+
 0.1.64 / 2014-08-08
 ==================
 
