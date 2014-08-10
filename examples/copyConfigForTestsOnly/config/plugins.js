@@ -2,5 +2,6 @@ module.exports = [
 	"impress.log",
 	"impress.security",
 	"impress.uglify",
-	"impress.sse"
+	"impress.events",
+	"impress.sse",
 ]

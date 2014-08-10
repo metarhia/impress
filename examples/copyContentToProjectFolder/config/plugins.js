@@ -16,6 +16,7 @@ module.exports = [
 	//"impress.health",
 	//"impress.cloud",
 	//"impress.geoip",
+	"impress.events",
 	//"impress.websocket",
 	"impress.sse",
 	//"impress.passport",
