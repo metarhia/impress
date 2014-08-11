@@ -1,3 +1,25 @@
+0.1.67 / 2014-08-12
+==================
+
+  * Fixed bugs in passport plugin
+  * Added more examples and tests
+
+0.1.66 / 2014-08-11
+==================
+
+  * Refactored Passport plugin
+  * Removed client mixins mechanism (changed to prototype mechanism)
+  * Fixed dispatcher to show 404 if no app selected
+
+0.1.65 / 2014-08-11
+==================
+
+  * Refactored Client class
+  * Refactored SSE plugin
+  * Refactored WebSocker plugin
+  * Events plugin separated from SSE plugin
+  * Fixed examples
+
 0.1.64 / 2014-08-08
 ==================
 
