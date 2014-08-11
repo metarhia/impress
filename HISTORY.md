@@ -1,3 +1,10 @@
+0.1.66 / 2014-08-11
+==================
+
+  * Refactored Passport plugin
+  * Removed client mixins mechanism (changed to prototype mechanism)
+  * Fixed dispatcher to show 404 if no app selected
+
 0.1.65 / 2014-08-11
 ==================
 
