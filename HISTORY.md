@@ -1,3 +1,9 @@
+0.1.67 / 2014-08-12
+==================
+
+  * Fixed bugs in passport plugin
+  * Added more examples and tests
+
 0.1.66 / 2014-08-11
 ==================
 
