@@ -1,3 +1,8 @@
+0.1.68 / 2014-08-12
+==================
+
+  * Fixed security plugin and minor code beautification
+
 0.1.67 / 2014-08-12
 ==================
 
