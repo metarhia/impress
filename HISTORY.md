@@ -1,3 +1,11 @@
+0.1.69 / 2014-08-17
+==================
+
+  * Fixed bug in access.js/virtual, issue #76
+  * Added example for virtual folders
+  * Refactored Client class
+  * Fixed circular redirections mechanism, issue #77
+
 0.1.68 / 2014-08-12
 ==================
 
