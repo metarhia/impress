@@ -1,3 +1,8 @@
+0.1.70 / 2014-08-18
+==================
+
+  * Added support for sending parameters to server using Content-Type: application/json
+
 0.1.69 / 2014-08-17
 ==================
 
