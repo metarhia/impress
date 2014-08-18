@@ -1,3 +1,5 @@
+"use strict";
+
 require('./lib/impress');
 require('./lib/impress.tests');
 

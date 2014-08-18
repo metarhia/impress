@@ -31,7 +31,7 @@ module.exports = {
 		'Buffer',
 		'security',
 		'sse',
-        'passport',
-        'passport-google-oauth'
+		'passport',
+		'passport-google-oauth'
 	]
 }

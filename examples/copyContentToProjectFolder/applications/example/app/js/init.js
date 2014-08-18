@@ -261,7 +261,7 @@ global.onLoad(function() {
 					.duration(1000)
 					.ease("linear")
 					.attr("transform", "translate(" + x(-1) + ",0)")
-				    .each("end", tick);
+					.each("end", tick);
 				data.shift();
 			});
 		}
@@ -279,9 +279,9 @@ global.onLoad(function() {
 		});
 	});
 
-    $(document).on('click', '#menuAuth', function() {
-        window.location = '/examples/auth';
-    });
+	$(document).on('click', '#menuAuth', function() {
+		window.location = '/examples/auth';
+	});
 
 });
 

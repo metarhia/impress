@@ -1,3 +1,9 @@
+0.1.71 / 2014-08-19
+==================
+
+  * Fixed critical bug in processing Content-Type: application/json
+  * Minor fixes
+
 0.1.70 / 2014-08-18
 ==================
 

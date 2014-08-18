@@ -307,7 +307,7 @@ global.onLoad(function() {
 				for (var i = 0; i <= columns.length-1; i++) {
 					columns[i].editor = Slick.Editors.Text;
 				}
-		    
+
 				$(function() {
 					grid = new Slick.Grid("#myGrid", loader.data, columns, options);
 
@@ -315,7 +315,7 @@ global.onLoad(function() {
 						grid.updateRowCount();
 						grid.render();
 					});
-                
+
 					loader.data.onRowsChanged.subscribe(function(e, args) {
 						grid.invalidateRows(args.rows);
 						grid.render();
@@ -342,12 +342,12 @@ global.onLoad(function() {
 					});
 
 					grid.setColumns(columns);
-	            
+
 					grid.onViewportChanged.subscribe(function(e, args) {
 						var vp = grid.getViewport();
 						loader.ensureData(vp.top, vp.bottom);
 					});
-	            
+
 					grid.onSort.subscribe(function(e, args) {
 						loader.setSort(args.sortCol.field, args.sortAsc ? 1 : -1);
 						var vp = grid.getViewport();
@@ -423,7 +423,7 @@ global.onLoad(function() {
 							logAdd(res.sql, '');
 						});
 					}
-	            
+
 					loader.onDataLoading.subscribe(function() {
 						if (!loadingIndicator) {
 							loadingIndicator = $("<span class='loading-indicator'><label>Buffering...</label></span>").appendTo(document.body);
@@ -435,17 +435,17 @@ global.onLoad(function() {
 						}
 						loadingIndicator.show();
 					});
-	            
+
 					loader.onDataLoaded.subscribe(function(e, args) {
 						for (var i = args.from; i <= args.to; i++) grid.invalidateRow(i);
 						grid.updateRowCount();
 						grid.render();
 						loadingIndicator.fadeOut();
 					});
-						            
+
 					//loader.setSort("create_ts", -1);
 					//grid.setSortColumn("date", false);
-	            
+
 					// load the first page
 					grid.onViewportChanged.notify();
 					grid.init();
