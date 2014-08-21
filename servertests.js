@@ -68,7 +68,7 @@ function httpTests() {
 	});
 
 	setInterval(function() {
-		impress.server.shutdown();
+		impress.shutdown();
 	}, config.timeout);
 }
 
@@ -87,7 +87,8 @@ function httpTask(task) {
 				if (err) throw err;
 			});
 		} else {
-			throw new Error(msg);
+			console.dir(res);
+			throw new Error("HTTP "+res.statusCode);
 		}
 	});
 	req.on('error', function(err) {

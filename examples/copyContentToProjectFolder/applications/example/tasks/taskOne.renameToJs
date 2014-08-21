@@ -11,15 +11,18 @@ module.exports = {
 
 	run: function(task, callback) {
 		console.log('Execute task one');
-		console.dir(task);
+		console.dir(application.tasks);
 		callback(/* error or empty */); // empty if success, return new Error("Message") if not success
 	},
 
-	success:   null,    // last execution status: null, true, false
-	error:     null,    // last error or null (if success)
-	lastStart: null,    // last execution start time or null (never)
-	lastEnd:   null,    // last execution end time or null (never)
-	executing: false,   // current status
-	count:     0,       // executing count
-
+	// Additional task properties in runtime:
+	//
+	//	name:      "name",  // file name without extension used to access tasks: application.tasks[name]
+	//	success:   null,    // last execution status: null, true, false
+	//	error:     null,    // last error or null (if success)
+	//	lastStart: null,    // last execution start time or null (never)
+	//	lastEnd:   null,    // last execution end time or null (never)
+	//	executing: false,   // current status
+	//	active:    false,   // is active in current process
+	//	count:     0,       // executing count
 }
