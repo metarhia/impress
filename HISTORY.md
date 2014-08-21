@@ -1,3 +1,10 @@
+0.1.72 / 2014-08-21
+==================
+
+  * Implemented tasks scheduler for application, close #82, close #22
+  * Refactored and optimized configuration loader
+  * Improved callback(data, [errorCode, [contentType or {headers}]]), close #79
+
 0.1.71 / 2014-08-19
 ==================
 
