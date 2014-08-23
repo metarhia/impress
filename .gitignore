@@ -5,6 +5,7 @@ node_modules
 /develop/
 /applications/
 /config/
+/.idea/
 
 /server.*
 /stresstest.*

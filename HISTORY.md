@@ -1,8 +1,14 @@
+0.1.74 / 2014-08-23
+==================
+
+  * Code refactoring
+  * Examples added, how to implement REST handlers with virtual paths
+
 0.1.73 / 2014-08-21
 ==================
 
   * Hosts overlapping warning, close #83
-  * Typed handlers return (method.json will return JSON on error), close #83
+  * Typed handlers return (method.json will return JSON on error), close #80
   * Refactored tasks scheduler, implemented tasks live reload, issue #82
 
 0.1.72 / 2014-08-21
