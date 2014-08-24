@@ -87,7 +87,7 @@ function httpTask(task) {
 				if (err) throw err;
 			});
 		} else {
-			console.dir(res);
+			// console.dir(task);
 			throw new Error("HTTP "+res.statusCode);
 		}
 	});

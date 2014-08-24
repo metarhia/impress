@@ -1,3 +1,10 @@
+0.1.75 / 2014-08-24
+==================
+
+  * Deep changes in server core, emulated module.exports in handlers running in sandboxes using runInNewContext, this made possible to implement issue #87
+  * Implemented optional preloading application from disk to memory (/config/application.js "preload": true/false), close #84
+  * Warning: if you use client.hostDir in application, you need to change it to application.hostDir
+
 0.1.74 / 2014-08-23
 ==================
 

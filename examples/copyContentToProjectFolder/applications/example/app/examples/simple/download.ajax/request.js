@@ -10,7 +10,7 @@ module.exports = function(client, callback) {
 	client.res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
 	client.res.setHeader('Pragma', 'no-cache');
 
-	var filePath = client.hostDir+client.path+'/'+fileName;
+	var filePath = application.hostDir+client.path+'/'+fileName;
 
 	fs.stat(filePath, function(err, stats) {
 		if (err) client.error(404);

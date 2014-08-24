@@ -131,15 +131,33 @@ File "access.js" is something line ".htaccess", you can easily define access res
 If folder not contains "access.js" it will inherit from parent folder and so on. Example:
 ```javascript
 module.exports = {
-    guests: true,  // Allow requests from anonimous users (not logged or no session started)
-    logged: true,  // Allow requests from logged users
-    http:   true,  // Allow requests using http protocol
-    https:  true,  // Allow requests using https protocol
-    groups: [],    // Allow access for user groups listed in array
-                   //   or for all if array is empty or no groups field specified
-    intro:  true,  // Generate introspection for API methods in this directory
-    index:  false, // Generate directory index
+    guests:  true,  // Allow requests from anonimous users (not logged or no session started)
+    logged:  true,  // Allow requests from logged users
+    http:    true,  // Allow requests using http protocol
+    https:   true,  // Allow requests using https protocol
+    groups:  [],    // Allow access for user groups listed in array
+                    //   or for all if array is empty or no groups field specified
+    intro:   true,  // Generate introspection for API methods in this directory
+    index:   false, // Generate directory index
+    virtual: true   // Allow requests to virtual paths, for CMS and REST URLs, etc.
 }
+```
+
+Example #4
+File `/api/method.json/post.js`, Request type `POST`
+```javascript
+module.exports = function(client, callback) {
+    dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
+        callback(nodes);
+    });
+}
+```
+Result:
+```javascript
+[
+    { "login": "Vasia Pupkin", "password": "whoami", "group": "users" },
+    { "login": "Marcus Aurelius", "password": "tomyself", "group": "users" }
+]
 ```
 
 ## Configuration
