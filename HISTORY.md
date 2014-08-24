@@ -1,3 +1,49 @@
+0.1.75 / 2014-08-24
+==================
+
+  * Deep changes in server core, emulated module.exports in handlers running in sandboxes using runInNewContext, this made possible to implement issue #87
+  * Implemented optional preloading application from disk to memory (/config/application.js "preload": true/false), close #84
+  * Warning: if you use client.hostDir in application, you need to change it to application.hostDir
+
+0.1.74 / 2014-08-23
+==================
+
+  * Code refactoring
+  * Examples added, how to implement REST handlers with virtual paths
+
+0.1.73 / 2014-08-21
+==================
+
+  * Hosts overlapping warning, close #83
+  * Typed handlers return (method.json will return JSON on error), close #80
+  * Refactored tasks scheduler, implemented tasks live reload, issue #82
+
+0.1.72 / 2014-08-21
+==================
+
+  * Implemented tasks scheduler for application, close #82, close #22
+  * Refactored and optimized configuration loader
+  * Improved callback(data, [errorCode, [contentType or {headers}]]), close #79
+
+0.1.71 / 2014-08-19
+==================
+
+  * Fixed critical bug in processing Content-Type: application/json
+  * Minor fixes
+
+0.1.70 / 2014-08-18
+==================
+
+  * Added support for sending parameters to server using Content-Type: application/json
+
+0.1.69 / 2014-08-17
+==================
+
+  * Fixed bug in access.js/virtual, issue #76
+  * Added example for virtual folders
+  * Refactored Client class
+  * Fixed circular redirections mechanism, issue #77
+
 0.1.68 / 2014-08-12
 ==================
 

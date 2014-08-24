@@ -117,13 +117,13 @@ if (typeof(String.prototype.endsWith)!= 'function') {
 String.prototype.lpad = function(padChar, length) {
 	var padCount = length - this.length;
 	if (padCount<0) padCount = 0;
-    return Array(padCount).join(padChar)+this;
+	return Array(padCount).join(padChar)+this;
 }
 
 String.prototype.rpad = function(padChar, length) {
 	var padCount = length - this.length;
 	if (padCount<0) padCount = 0;
-    return this+Array(padCount).join(padChar);
+	return this+Array(padCount).join(padChar);
 }
 
 String.prototype.between = function(prefix, suffix) {
