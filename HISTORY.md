@@ -1,3 +1,9 @@
+0.1.76 / 2014-08-26
+==================
+
+  * Implement handler metadata introspection, close #87
+  * Added calback to recursive preloader, issue #84
+
 0.1.75 / 2014-08-24
 ==================
 
