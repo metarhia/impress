@@ -1,3 +1,9 @@
+0.1.77 / 2014-08-28
+==================
+
+  * Fixed bug: callback first parameter check for undefined, close #92
+  * Dependencies update
+
 0.1.76 / 2014-08-26
 ==================
 
