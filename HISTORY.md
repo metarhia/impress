@@ -1,3 +1,9 @@
+0.1.78 / 2014-08-30
+==================
+
+  * Fixed bug: removed SSE plugin hidden dependence on mongo data structures, close #93
+  * Implemented CORS HTTP header Access-Control-Allow-Origin, configurable in /appName/config/application.js, for example: { allowOrigin: "*" } for any domain, close #95
+
 0.1.77 / 2014-08-28
 ==================
 
