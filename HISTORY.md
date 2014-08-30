@@ -1,4 +1,9 @@
-0.1.78 / 2014-08-30
+0.1.79 / 2014-08-30
+==================
+
+  * Fixed bug: JSON circular reference in Client.prototype.fork, close #96
+
+0.1.78 / 2014-08-29
 ==================
 
   * Fixed bug: removed SSE plugin hidden dependence on mongo data structures, close #93
