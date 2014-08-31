@@ -1,3 +1,8 @@
+0.1.81 / 2014-09-01
+==================
+
+  * Fixed bug: preload applications now omits static files, issue #96
+
 0.1.80 / 2014-08-31
 ==================
 
