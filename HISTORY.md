@@ -1,3 +1,9 @@
+0.1.80 / 2014-08-31
+==================
+
+  * Fixed bug: encoding user object in Client.prototype.fork, issue #96
+  * JSON.stringify changed to json-stringify-safe in a few places
+
 0.1.79 / 2014-08-30
 ==================
 
