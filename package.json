@@ -48,7 +48,7 @@
     "uglify-js": "2.4.x",
     "multiparty": "3.3.x",
     "iconv-lite": "0.4.x",
-    "zip-stream": "0.4.x"
+    "zip-stream": "0.4.x",
     "websocket": "1.0.x",
     "json-stringify-safe": "5.0.x"
   },
