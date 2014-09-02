@@ -1,3 +1,9 @@
+0.1.82 / 2014-09-03
+==================
+
+  * Implemented sending events (including SSE) from long workers
+  * Temporary fix for mongodb stored sessions
+
 0.1.81 / 2014-09-01
 ==================
 
