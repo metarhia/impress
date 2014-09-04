@@ -1,3 +1,22 @@
+0.1.83 / 2014-09-04
+==================
+
+  * Implemented linking applications from any disk location to Impress application directory using file "application.link" containing path to application
+  * Added list of local IP addresses for all network interfaces: impress.localIPs 
+  * Added client.ip (containing client IP) and client.local (true or false, is client IP in impress.localIPs)
+  * Added virtual group "local" in access.js to allow self requests without authentication, close #100
+
+0.1.82 / 2014-09-03
+==================
+
+  * Implemented sending events (including SSE) from long workers
+  * Temporary fix for mongodb stored sessions
+
+0.1.81 / 2014-09-01
+==================
+
+  * Fixed bug: preload applications now omits static files, issue #96
+
 0.1.80 / 2014-08-31
 ==================
 
