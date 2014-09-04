@@ -1,3 +1,11 @@
+0.1.83 / 2014-09-04
+==================
+
+  * Implemented linking applications from any disk location to Impress application directory using file "application.link" containing path to application
+  * Added list of local IP addresses for all network interfaces: impress.localIPs 
+  * Added client.ip (containing client IP) and client.local (true or false, is client IP in impress.localIPs)
+  * Added virtual group "local" in access.js to allow self requests without authentication, close #100
+
 0.1.82 / 2014-09-03
 ==================
 
