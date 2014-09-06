@@ -1,3 +1,10 @@
+0.1.84 / 2014-09-06
+==================
+
+  * Config parameter moved: impress.config.files.cacheLimit to application.config.files.cacheSize
+  * Added config parameter: application.config.files.cacheMaxFileSize - maximum file size to store in memory cache
+  * Implemented file streaming in static file is larger then cacheMaxFileSize, close #103
+
 0.1.83 / 2014-09-04
 ==================
 
