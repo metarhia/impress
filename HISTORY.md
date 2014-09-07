@@ -1,3 +1,11 @@
+0.1.85 / 2014-09-07
+==================
+
+  * Deprecated impress.compress and impress.compressSend, close #105
+  * Static files compressing moved to application.compress
+  * Static files serving moved to Client.prototype.compress
+  * Updates in impress.constants.js
+
 0.1.84 / 2014-09-06
 ==================
 
