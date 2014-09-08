@@ -10,7 +10,7 @@ body,a {color:#fff;overflow-x: hidden;white-space: nowrap}
 img {float:left;margin:0 10px 0 0}
 div {margin:6px}
 th {text-align:left}
-td, th {padding:2px 15px 2px 2px;font-weight:normal}
+td, th {padding:2px 15px 2px 2px;font-weight:normal;vertical-align:top}
 tr:nth-child(even) {background: inherit}
 tr:nth-child(odd) {background: #007097}
 tr:hover, tr.selected {background:#78cef9;color:#000;cursor:pointer}
