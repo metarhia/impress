@@ -1,3 +1,10 @@
+0.1.86 / 2014-09-08
+==================
+
+  * Extracted mixinApplication from impress.js to impress.application.js, close #106
+  * Implemented initialization handlers /init/handlerName.js, close #85
+  * TCP server example (cluster mode) /init/telnet.js, close #41
+
 0.1.85 / 2014-09-07
 ==================
 
