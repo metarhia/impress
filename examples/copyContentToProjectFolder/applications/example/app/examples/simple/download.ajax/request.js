@@ -12,11 +12,11 @@ module.exports = function(client, callback) {
 
 	var filePath = application.hostDir+client.path+'/'+fileName;
 
-	fs.stat(filePath, function(err, stats) {
+	api.fs.stat(filePath, function(err, stats) {
 		if (err) client.error(404);
 		else {
 			client.res.setHeader('Content-Length', stats.size);
-			fs.readFile(filePath, function(error, data) {
+			api.fs.readFile(filePath, function(error, data) {
 				if (error) client.error(404);
 				else client.end(data);
 				callback();

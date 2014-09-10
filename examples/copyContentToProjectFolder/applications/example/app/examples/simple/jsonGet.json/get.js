@@ -18,19 +18,19 @@
 			hrtime: process.hrtime()
 		},
 		os: {
-			tmpdir: os.tmpdir(),
-			endianness: os.endianness(),
-			hostname: os.hostname(),
-			type: os.type(),
-			platform: os.platform(),
-			arch: os.arch(),
-			release: os.release(),
-			uptime: os.uptime(),
-			loadavg: os.loadavg(),
-			totalmem: os.totalmem(),
-			freemem: os.freemem(),
-			cpus: os.cpus(),
-			networkInterfaces: os.networkInterfaces()
+			tmpdir: api.os.tmpdir(),
+			endianness: api.os.endianness(),
+			hostname: api.os.hostname(),
+			type: api.os.type(),
+			platform: api.os.platform(),
+			arch: api.os.arch(),
+			release: api.os.release(),
+			uptime: api.os.uptime(),
+			loadavg: api.os.loadavg(),
+			totalmem: api.os.totalmem(),
+			freemem: api.os.freemem(),
+			cpus: api.os.cpus(),
+			networkInterfaces: api.os.networkInterfaces()
 		}
 	});
 

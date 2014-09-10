@@ -1,3 +1,10 @@
+0.1.87 / 2014-09-10
+==================
+
+  * Deprecated /config/databases.js parameter: database.alias, use hash key instead
+  * Sandbox namespaces are arranged, see issue for details, close #102
+  * Warning: you need refactor code, replacing fs.*, async.*, ... to api.fs.*, api.async.*, ...
+
 0.1.86 / 2014-09-08
 ==================
 

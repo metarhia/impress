@@ -1,14 +1,14 @@
 ﻿module.exports = function(client, callback) {
 
-	async.parallel({
+	api.async.parallel({
 		file: function(callback) {
 			var filePath = application.hostDir+client.path+'/test.txt';
-			fs.readFile(filePath, 'utf8', function(error, data) {
+			api.fs.readFile(filePath, 'utf8', function(error, data) {
 				callback(null, data);
 			});
 		},
 		request: function(callback) {
-			var req = http.request(
+			var req = api.http.request(
 				{
 					hostname: 'google.com',
 					port: 80,

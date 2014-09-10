@@ -1,6 +1,6 @@
 ﻿module.exports = function(client, callback) {
 
-	var req = http.request(
+	var req = api.http.request(
 		{
 			hostname: 'google.com',
 			port: 80,
