@@ -1,7 +1,4 @@
-﻿var mkdirp = require("mkdirp");
-var zipstream = require('zip-stream');
-
-var extCompressed = [
+﻿var extCompressed = [
 	'gif','jpg','jpe','jpeg','png','svgz',
 	'docx','xlsx','pptx','dotx','odm','odt','ott','odp','otp','djvu','djv',
 	'zip','rar','z7','gz','jar','arj',

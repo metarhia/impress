@@ -3,7 +3,7 @@
 	callback(client.files);
 
 	function saveToDatabase() {
-		fs.stat(storageFile, function() {
+		api.fs.stat(storageFile, function() {
 			//query(
 			//	'insert into StorageFile (OwnerId, StorageSize, OriginalSize, StorageName, CompressionFlag, OriginalExt, OriginalHash, OriginalName) values(?,?,?,?,?,?,?,?)',
 			//	1, storageSize, originalSize, storageName, compressionFlag, fileExt, originalHash, originalName
@@ -21,7 +21,7 @@
 					originalName = file.originalFilename,
 					originalSize = file.size,
 					compressionFlag = 'N',
-					fileExt = path.extname(originalName).replace('.','').toLowerCase(),
+					fileExt = api.path.extname(originalName).replace('.','').toLowerCase(),
 					folder1 = generateKey(2, '0123456789'),
 					folder2 = generateKey(2, '0123456789'),
 					code = generateKey(8, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'),
@@ -35,39 +35,38 @@
 						if (originalSize>=1048576) compressionFlag = 'Z'; // ZIP
 						else compressionFlag = 'G';                       // GZIP
 					}
-					mkdirp(targetDir, function(err) {
-						fs.createReadStream(tempFile).pipe(fs.createWriteStream(storageFile));
-						var fd = fs.createReadStream(tempFile),
-							hash = crypto.createHash('md5');
+					api.mkdirp(targetDir, function(err) {
+						api.fs.createReadStream(tempFile).pipe(api.fs.createWriteStream(storageFile));
+						var fd = api.fs.createReadStream(tempFile),
+							hash = api.crypto.createHash('md5');
 						hash.setEncoding('hex');
 						fd.on('end', function() {
 							hash.end();
 							var originalHash = hash.read();
 							if (compressionFlag == 'Z') {
 								var zipFile = storageFile+'.zip',
-									zipstream = require('zip-stream'),
-									archive = new zipstream(),
-									out = fs.createWriteStream(zipFile),
-									inp = fs.createReadStream(storageFile);
+									archive = new api.zipstream(),
+									out = api.fs.createWriteStream(zipFile),
+									inp = api.fs.createReadStream(storageFile);
 								archive.pipe(out);
 								archive.on('end', function() {
-									fs.unlink(storageFile, function() {
-										fs.rename(zipFile, storageFile, function() {});
+									api.fs.unlink(storageFile, function() {
+										api.fs.rename(zipFile, storageFile, function() {});
 									});
 								});
-								archive.entry(fs.createReadStream(storageFile), { name: originalName }, function(err, entry) {
+								archive.entry(api.fs.createReadStream(storageFile), { name: originalName }, function(err, entry) {
 									if (err) throw err;
 									archive.finalize();
 								});
 							} else if (compressionFlag == 'G') {
 								var zipFile = storageFile+'.gz',
-									gzip = zlib.createGzip(),
-									inp = fs.createReadStream(storageFile),
-									out = fs.createWriteStream(zipFile);
+									gzip = api.zlib.createGzip(),
+									inp = api.fs.createReadStream(storageFile),
+									out = api.fs.createWriteStream(zipFile);
 								inp.pipe(gzip).pipe(out);
 								inp.on('end', function() {
-									fs.unlink(storageFile, function() {
-										fs.rename(zipFile, storageFile, function() {});
+									api.fs.unlink(storageFile, function() {
+										api.fs.rename(zipFile, storageFile, function() {});
 									});
 								});
 							}

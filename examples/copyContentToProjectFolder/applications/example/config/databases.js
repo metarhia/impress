@@ -4,7 +4,7 @@ module.exports = {
 
 	dbImpress: {
 		url: "mongodb://localhost:27017/impress",
-		collections: ["sessions", "users", "groups", "testCollection"],
+		collections: [ "sessions", "users", "groups", "testCollection" ],
 		alias: "dbAlias",
 		slowTime: "2s",
 		security: true,
