@@ -1,3 +1,16 @@
+0.1.88 / 2014-09-11
+==================
+
+  * Impress sessions refactored
+    * client.session - > client.sid
+    * client.application.sessions[client.session] -> client.session
+  * Refactored impress.security.js (according to session changes)
+  * Fixed examples (to comply new session changes)
+  * Refactored .register() .signIn(), .signOut()
+  * Moved sessionCreated and sessionModified to Client class
+  * Session cookie secret, close issue #89
+  * Warning: you need refactor code everywhere you use client.session
+
 0.1.87 / 2014-09-10
 ==================
 
