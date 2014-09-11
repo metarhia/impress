@@ -1,3 +1,51 @@
+0.1.87 / 2014-09-10
+==================
+
+  * Deprecated /config/databases.js parameter: database.alias, use hash key instead
+  * Sandbox namespaces are arranged, see issue for details, close #102
+  * Warning: you need refactor code, replacing fs.*, async.*, ... to api.fs.*, api.async.*, ...
+
+0.1.86 / 2014-09-08
+==================
+
+  * Extracted mixinApplication from impress.js to impress.application.js, close #106
+  * Implemented initialization handlers /init/handlerName.js, close #85
+  * TCP server example (cluster mode) /init/telnet.js, close #41
+
+0.1.85 / 2014-09-07
+==================
+
+  * Deprecated impress.compress and impress.compressSend, close #105
+  * Static files compressing moved to application.compress
+  * Static files serving moved to Client.prototype.compress
+  * Updates in impress.constants.js
+
+0.1.84 / 2014-09-06
+==================
+
+  * Config parameter moved: impress.config.files.cacheLimit to application.config.files.cacheSize
+  * Added config parameter: application.config.files.cacheMaxFileSize - maximum file size to store in memory cache
+  * Implemented file streaming in static file is larger then cacheMaxFileSize, close #103
+
+0.1.83 / 2014-09-04
+==================
+
+  * Implemented linking applications from any disk location to Impress application directory using file "application.link" containing path to application
+  * Added list of local IP addresses for all network interfaces: impress.localIPs 
+  * Added client.ip (containing client IP) and client.local (true or false, is client IP in impress.localIPs)
+  * Added virtual group "local" in access.js to allow self requests without authentication, close #100
+
+0.1.82 / 2014-09-03
+==================
+
+  * Implemented sending events (including SSE) from long workers
+  * Temporary fix for mongodb stored sessions
+
+0.1.81 / 2014-09-01
+==================
+
+  * Fixed bug: preload applications now omits static files, issue #96
+
 0.1.80 / 2014-08-31
 ==================
 

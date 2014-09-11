@@ -1,18 +1,18 @@
 module.exports = function(client, callback) {
 
-	dns.lookup('nodejs.org', 4, function(err, address, family) {
-		if (global.geoip) {
+	api.dns.lookup('nodejs.org', 4, function(err, address, family) {
+		if (api.geoip) {
 			client.context.data = {
 				req: {
 					connection: {
 						remoteAddress: client.req.connection.remoteAddress,
-						geoip: geoip.lookup(client.req.connection.remoteAddress)
+						geoip: api.geoip.lookup(client.req.connection.remoteAddress)
 					}
 				},
 				example: {
 					nodejs: {
 						host: 'nodejs.org',
-						geoip: geoip.lookup(address)
+						geoip: api.geoip.lookup(address)
 					}
 				}
 			}

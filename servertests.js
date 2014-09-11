@@ -4,8 +4,8 @@ require('./lib/impress');
 
 if (api.cluster.isMaster) {
 
-	var ncp = require('ncp').ncp,
-		request = require('request').defaults({jar: false});
+	var ncp = require('ncp').ncp;
+	//	request = require('request').defaults({jar: false});
 
 	ncp.limit = 16;
 
@@ -63,7 +63,6 @@ function httpTests() {
 	impress.server.start();
 
 	impress.server.on("start", function() {
-		var task;
 		for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
 	});
 

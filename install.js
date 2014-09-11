@@ -32,7 +32,7 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
 }, function(err) {
 	if (exists) {
 		console.log('Impress Application Server'.bold.green+' is already installed and configured in this folder.');
-		if (destination == '/impress/') {
+		if (destination === '/impress/') {
 			console.log('Refreshing service scripts.');
 			installService();
 		}
@@ -46,7 +46,7 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
 				if (isWin) {
 					exec('start cmd /K "cd /d '+destination.replace(/\//g, '\\')+' & node server.js"' );
 				} else {
-					if (destination == '/impress/') {
+					if (destination === '/impress/') {
 						console.log('Installing Impress Application Server as a service.');
 						console.log('  Usage: service impress start|stop|restart|status');
 						installService();
