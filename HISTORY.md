@@ -1,3 +1,10 @@
+0.1.89 / 2014-09-12
+==================
+
+  * Temporary fix for "impress.security" visibility problem in application sandboxes as "security"
+  * Added developer mode detection to prevent install.js actions on "npm install" if running not from "node_modules" derectory
+  * Fixed: directories /init and /tasks become optional and old applications having no mentioned directories can be run without errors
+
 0.1.88 / 2014-09-11
 ==================
 

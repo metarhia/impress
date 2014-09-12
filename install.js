@@ -13,6 +13,7 @@ var isWin = !!process.platform.match(/^win/);
 ncp.limit = 16;
 
 var current = path.dirname(__filename.replace(/\\/g, '/')),
+	parent = path.basename(path.dirname(current)),
 	destination = path.dirname(path.dirname(current))+'/',
 	source = current+'/examples/copyContentToProjectFolder/',
 	exists = false;
@@ -22,6 +23,11 @@ function installService() {
 		exec('chmod +x ./bin/uninstall.sh');
 		exec('./bin/install.sh');
 	});
+}
+
+if (parent !== 'node_modules') {
+	console.log('Running in developer mode');
+	process.exit(0);
 }
 
 async.each(['server.js', 'config', 'applications'], function(file, callback) {
