@@ -1,3 +1,9 @@
+0.1.91 / 2014-09-14
+==================
+
+  * HTTP basic authentication, access.js new parameters { realm: "name", auth: "user:password" }, close #115
+  * Removed dependency to npm module
+
 0.1.90 / 2014-09-13
 ==================
 

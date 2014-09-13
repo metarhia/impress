@@ -2,7 +2,6 @@ var fs = require('fs'),
 	colors = require('colors'),
 	path = require('path'),
 	ncp = require('ncp').ncp,
-	sys = require('sys'),
 	exec = require('child_process').exec,
 	spawn = require('child_process').spawn,
 	open = require('open'),
@@ -35,7 +34,7 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
 		exists = exists || fileExists;
 		callback();
 	});
-}, function(err) {
+}, function() {
 	if (exists) {
 		console.log('Impress Application Server'.bold.green+' is already installed and configured in this folder.');
 		if (destination === '/impress/') {
@@ -71,7 +70,7 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
 				}
 				setTimeout(function() {
 					open('http://127.0.0.1', function() {
-						if (isWin) setTimeout(function() { process.exit(0); });
+						if (isWin) setTimeout(function() { process.exit(0); }, 1000);
 					});
 				}, 2000);
 			});
