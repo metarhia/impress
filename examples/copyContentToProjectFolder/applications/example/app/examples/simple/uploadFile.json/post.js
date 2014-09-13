@@ -28,7 +28,7 @@
 					storageName = folder1+folder2+code,
 					targetDir = storagePath+'/'+folder1+'/'+folder2,
 					storageFile = targetDir+'/'+code,
-					isCompressed = inArray(extCompressed, fileExt);
+					isCompressed = inArray(extCompressed, fileExt),
 					isNotCompressed = inArray(extNotCompressed, fileExt);
 				if (isCompressed || isNotCompressed) {
 					if (isNotCompressed) {

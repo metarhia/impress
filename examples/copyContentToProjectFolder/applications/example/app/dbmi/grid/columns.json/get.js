@@ -15,7 +15,7 @@
 				for (var fieldName in fields) {
 					var field = fields[fieldName],
 						width = field['Type'].match(/\d+/);
-					if (width) width = parseInt(width[0])*8+10;
+					if (width) width = parseInt(width[0], 10)*8+10;
 					else width = 80;
 					client.context.data.push({id: field['Field'], name: field['Field'], field: field['Field'], width: Math.min(width,400), sortable: (!!fields['Key']), resizable: true });
 				}

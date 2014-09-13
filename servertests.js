@@ -5,6 +5,7 @@ require('./lib/impress');
 if (api.cluster.isMaster) {
 
 	var ncp = require('ncp').ncp;
+	var querystring = require('querystring');
 	//	request = require('request').defaults({jar: false});
 
 	ncp.limit = 16;
@@ -14,18 +15,23 @@ if (api.cluster.isMaster) {
 		port:    8080,
 		timeout: 5000,
 		tasks: [
-			{ get: "/" },
-			{ get: "/examples/simple/ajaxTest.ajax" },
-			{ get: "/examples/simple/dataFromMemory.json" },
-			{ get: "/examples/simple/fsAccess.json" },
-			{ get: "/examples/simple/jsonGet.json" },
-			{ get: "/examples/memory/stateful.json" },
-			{ get: "/examples/override/" },
-			{ get: "/examples/tools/forkWorker.json" },
-			{ get: "/examples/tools/serverHealth.json" },
-			{ get: "/examples/simple/httpRequest.json" },
-			{ get: "/examples/security/anonymousSession.json" },
-			{ get: "/examples/security/userInfo.json" },
+			{  get: "/" },
+			{  get: "/examples/simple/ajaxTest.ajax" },
+			{  get: "/examples/simple/dataFromMemory.json" },
+			{  get: "/examples/simple/fsAccess.json" },
+			{  get: "/examples/simple/sysInfo.json" },
+			{  get: "/examples/memory/stateful.json" },
+			{  get: "/examples/override/" },
+			{  get: "/examples/tools/forkWorker.json" },
+			{  get: "/examples/tools/serverHealth.json" },
+			{  get: "/examples/simple/httpRequest.json" },
+			{  get: "/examples/security/anonymousSession.json" },
+			{  get: "/examples/security/userInfo.json" },
+			{  get: "/examples/tools/forkWorker.json/" },
+			{  get: "/examples/tools/serverHealth.json" },
+			{  get: "/examples/simple/virtualPath.json/a/b/c" },
+			{  get: "/examples/simple/jsonGet.json?field=value" },
+			{ post: "/examples/simple/jsonPost.json", data: { parameterName:"value" } },
 		]
 	};
 
@@ -72,26 +78,43 @@ function httpTests() {
 }
 
 function httpTask(task) {
-	var req = api.http.request({
-		host:  config.host,
-		port:  config.port,
-		path:  task.get,
+	var request = {
+		host: config.host,
+		port: config.port,
 		agent: false
-	});
-	req.on('response', function(res) {
-		if (res.statusCode === 200) {
-			var msg = 'Request: http://'+config.host+':'+config.port+task.get+'... HTTP '+res.statusCode;
-			console.log('  '+msg);
-			res.on('error', function(err) {
-				if (err) throw err;
-			});
-		} else {
-			// console.dir(task);
-			throw new Error("HTTP "+res.statusCode);
-		}
-	});
-	req.on('error', function(err) {
-		if (err) throw err;
-	});
-	req.end();
+	};
+	if (task.get) {
+		request.method = "GET";
+		request.path = task.get;
+	} else if (task.post) {
+		request.method = "POST";
+		request.path = task.post;
+	}
+	if (task.data) {
+		task.data = querystring.stringify(task.data);
+		request.headers = {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': task.data.length
+		};
+	}
+	if (request.path) {
+		var req = api.http.request(request);
+		req.on('response', function (res) {
+			if (res.statusCode === 200) {
+				var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path + ' -> HTTP ' + res.statusCode;
+				console.log('  ' + msg);
+				res.on('error', function (err) {
+					if (err) throw err;
+				});
+			} else {
+				// console.dir(task);
+				throw new Error("HTTP " + res.statusCode);
+			}
+		});
+		req.on('error', function (err) {
+			if (err) throw err;
+		});
+		if (task.data) req.write(task.data);
+		req.end();
+	}
 }

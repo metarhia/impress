@@ -72,7 +72,7 @@
 		function onSuccess(res) {
 			logAdd(res.sql, "");
 			var from = res.start, to = from + res.data.length;
-			data.length = Math.min(parseInt(res.count),1000);
+			data.length = Math.min(parseInt(res.count, 10),1000);
 			for (var i = 0; i < res.data.length; i++) {
 				var item = res.data[i];
 				data[from + i] = item;

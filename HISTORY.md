@@ -1,3 +1,10 @@
+0.1.90 / 2014-09-13
+==================
+
+  * Implemented directories autoredirect, close #113
+  * Added more tests to servertests.js
+  * Fixed examples
+
 0.1.89 / 2014-09-12
 ==================
 

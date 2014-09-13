@@ -2,5 +2,9 @@
 	guests:  true,
 	logged:  true,
 	http:    true,
-	virtual: true
-};
+	https:   true,
+	intro:   true,
+	index:   true,
+	virtual: true,
+	groups:  []
+}
