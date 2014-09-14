@@ -15,23 +15,23 @@ if (api.cluster.isMaster) {
 		port:    8080,
 		timeout: 5000,
 		tasks: [
-			{  get: "/" },
-			{  get: "/examples/simple/ajaxTest.ajax" },
-			{  get: "/examples/simple/dataFromMemory.json" },
-			{  get: "/examples/simple/fsAccess.json" },
-			{  get: "/examples/simple/sysInfo.json" },
-			{  get: "/examples/memory/stateful.json" },
-			{  get: "/examples/override/" },
-			{  get: "/examples/tools/forkWorker.json" },
-			{  get: "/examples/tools/serverHealth.json" },
-			{  get: "/examples/simple/httpRequest.json" },
-			{  get: "/examples/security/anonymousSession.json" },
-			{  get: "/examples/security/userInfo.json" },
-			{  get: "/examples/tools/forkWorker.json/" },
-			{  get: "/examples/tools/serverHealth.json" },
-			{  get: "/examples/simple/virtualPath.json/a/b/c" },
-			{  get: "/examples/simple/jsonGet.json?field=value" },
-			{ post: "/examples/simple/jsonPost.json", data: { parameterName:"value" } },
+			{  get: '/' },
+			{  get: '/examples/simple/ajaxTest.ajax' },
+			{  get: '/examples/simple/dataFromMemory.json' },
+			{  get: '/examples/simple/fsAccess.json' },
+			{  get: '/examples/simple/sysInfo.json' },
+			{  get: '/examples/memory/stateful.json' },
+			{  get: '/examples/override/' },
+			{  get: '/examples/tools/forkWorker.json' },
+			{  get: '/examples/tools/serverHealth.json' },
+			{  get: '/examples/simple/httpRequest.json' },
+			{  get: '/examples/security/anonymousSession.json' },
+			{  get: '/examples/security/userInfo.json' },
+			{  get: '/examples/tools/forkWorker.json/' },
+			{  get: '/examples/tools/serverHealth.json' },
+			{  get: '/examples/simple/virtualPath.json/a/b/c' },
+			{  get: '/examples/simple/jsonGet.json?field=value' },
+			{ post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
 		]
 	};
 
@@ -68,7 +68,7 @@ if (api.cluster.isMaster) {
 function httpTests() {
 	impress.server.start();
 
-	impress.server.on("start", function() {
+	impress.server.on('start', function() {
 		for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
 	});
 
@@ -84,10 +84,10 @@ function httpTask(task) {
 		agent: false
 	};
 	if (task.get) {
-		request.method = "GET";
+		request.method = 'GET';
 		request.path = task.get;
 	} else if (task.post) {
-		request.method = "POST";
+		request.method = 'POST';
 		request.path = task.post;
 	}
 	if (task.data) {
@@ -108,7 +108,7 @@ function httpTask(task) {
 				});
 			} else {
 				// console.dir(task);
-				throw new Error("HTTP " + res.statusCode);
+				throw new Error('HTTP ' + res.statusCode);
 			}
 		});
 		req.on('error', function (err) {

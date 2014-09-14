@@ -1,8 +1,19 @@
+0.1.93 / 2014-09-15
+==================
+
+  * Implemented logging enhancements, close #99
+  * Some refactoring and optimization
+  * Warning: application.hostDir should be renamed to application.appDir
+
+0.1.92 / 2014-09-14
+==================
+
+  * Removed dependency to npm module
+
 0.1.91 / 2014-09-14
 ==================
 
   * HTTP basic authentication, access.js new parameters { realm: "name", auth: "user:password" }, close #115
-  * Removed dependency to npm module
   * Implemented workers list and terminate programmatically, issue #114
 
 0.1.90 / 2014-09-13
