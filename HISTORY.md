@@ -3,6 +3,7 @@
 
   * HTTP basic authentication, access.js new parameters { realm: "name", auth: "user:password" }, close #115
   * Removed dependency to npm module
+  * Implemented workers list and terminate programmatically, issue #114
 
 0.1.90 / 2014-09-13
 ==================
