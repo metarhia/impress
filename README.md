@@ -26,7 +26,7 @@ Impress follows alternative way in several aspects:
     - For CentOS /deploy/centos.sh (tested on CentOS 6.5 64bit minimal)
     - For Ubuntu /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
     - For Debian /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
-	
+  
 You can prepare scripts based on examples above and run at a target server shell:
 `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
 

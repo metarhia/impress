@@ -1,7 +1,7 @@
 module.exports = [
-	"impress.log",
-	"impress.security",
-	"impress.uglify",
-	"impress.events",
-	"impress.sse",
+  "impress.log",
+  "impress.security",
+  "impress.uglify",
+  "impress.events",
+  "impress.sse",
 ]

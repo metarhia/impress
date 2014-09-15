@@ -1,3 +1,10 @@
+0.1.94 / 2014-09-15
+==================
+
+  * Fixed Unix service script problems with CRLF
+  * Replaced CRLF with LF in all files
+  * Replaced TAB character with double space in all files
+
 0.1.93 / 2014-09-15
 ==================
 

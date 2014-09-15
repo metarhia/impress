@@ -3,28 +3,28 @@
 var net = require('net');
 
 var port = 3000
-	host = '127.0.0.1';
+  host = '127.0.0.1';
 
 if (cluster.isMaster) {
 
-	console.log('  TCP listen on '+host+':'+port);
-	var server = net.createServer(function(connection) { });
+  console.log('  TCP listen on '+host+':'+port);
+  var server = net.createServer(function(connection) { });
 
-	module.exports = server;
+  module.exports = server;
 
 } else {
 
-	var server = net.createServer(function(connection) {
-		console.log('TCP client connected');
-		connection.on('end', function() {
-			console.log('TCP client disconnected');
-		});
-		connection.write('Hello!\r\n');
-	});
-	server.on('error', function (e) {
-		console.log('Error: '+e);
-	});
-	server.listen(port, host, function() { });
-	module.exports = server;
+  var server = net.createServer(function(connection) {
+    console.log('TCP client connected');
+    connection.on('end', function() {
+      console.log('TCP client disconnected');
+    });
+    connection.write('Hello!\r\n');
+  });
+  server.on('error', function (e) {
+    console.log('Error: '+e);
+  });
+  server.listen(port, host, function() { });
+  module.exports = server;
 
 };
