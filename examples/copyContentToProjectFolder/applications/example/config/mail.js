@@ -2,12 +2,12 @@
 
 module.exports = {
   enabled: false, // enable or disable smtp transport
-  robot: "Robot name <robotname@gmail.com>",
+  robot: 'Robot name <robotname@gmail.com>',
   options: {
-      service: "Gmail",
+      service: 'Gmail',
       auth: {
-          user: "username@gmail.com",
-          pass: "password"
+          user: 'username@gmail.com',
+          pass: 'password'
       }
   }
-}
+};

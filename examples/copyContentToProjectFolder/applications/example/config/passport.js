@@ -1,7 +1,7 @@
 if (global.passport) {
 
   var p = require('passport'),
-    pGoogle = require('passport-google-oauth');
+      pGoogle = require('passport-google-oauth');
 
   // used to serialize the user for the session
   p.serializeUser(function(user, done) {
@@ -42,4 +42,4 @@ if (global.passport) {
     }
   };
 
-}
+};

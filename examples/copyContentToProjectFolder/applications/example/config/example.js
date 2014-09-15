@@ -3,10 +3,10 @@
 
 module.exports = {
 
-  parameter: "value",
+  parameter: 'value',
 
   subSection: {
-    parameter: "value"
+    parameter: 'value'
   }
 
-}
+};
