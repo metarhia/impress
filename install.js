@@ -1,21 +1,21 @@
 var fs = require('fs'),
-  colors = require('colors'),
-  path = require('path'),
-  ncp = require('ncp').ncp,
-  exec = require('child_process').exec,
-  spawn = require('child_process').spawn,
-  open = require('open'),
-  async = require('async');
+    colors = require('colors'),
+    path = require('path'),
+    ncp = require('ncp').ncp,
+    exec = require('child_process').exec,
+    spawn = require('child_process').spawn,
+    open = require('open'),
+    async = require('async');
 
 var isWin = !!process.platform.match(/^win/);
 
 ncp.limit = 16;
 
 var current = path.dirname(__filename.replace(/\\/g, '/')),
-  parent = path.basename(path.dirname(current)),
-  destination = path.dirname(path.dirname(current))+'/',
-  source = current+'/examples/copyContentToProjectFolder/',
-  exists = false;
+    parent = path.basename(path.dirname(current)),
+    destination = path.dirname(path.dirname(current))+'/',
+    source = current+'/examples/copyContentToProjectFolder/',
+    exists = false;
 
 function installService() {
   exec('chmod +x ./bin/install.sh', function() {

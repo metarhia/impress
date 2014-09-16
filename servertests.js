@@ -67,7 +67,6 @@ if (api.cluster.isMaster) {
 
 function httpTests() {
   impress.server.start();
-
   impress.server.on('start', function() {
     for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
   });

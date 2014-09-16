@@ -1,3 +1,9 @@
+0.1.95 / 2014-09-16
+==================
+
+  * Implemented /model/name.js and /setup/name.js, close #66
+  * Optimizations and code style fixes
+
 0.1.94 / 2014-09-15
 ==================
 
