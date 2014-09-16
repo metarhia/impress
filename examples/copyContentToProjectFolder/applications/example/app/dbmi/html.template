@@ -1,105 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Database Management Interface</title>
-	<meta charset="UTF-8">
-	<meta name="HandheldFriendly" content="true" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="apple-touch-icon-precomposed" href="/favicon.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Database Management Interface</title>
+  <meta charset="UTF-8">
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
-	<link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
-	<link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
 
-	<link rel="stylesheet" type="text/css" href="/dbmi/css/screen.css" />
-	<link rel="stylesheet" type="text/css" href="/js/scroller/scroller.css" />
+  <link rel="stylesheet" type="text/css" href="/dbmi/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/js/scroller/scroller.css" />
 
-	<link rel="stylesheet" type="text/css" href="/js/slickgrid/css/smoothness/jquery-ui-1.10.3.custom.css" />
-	<link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.css" />
-	<link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.theme.css" />
+  <link rel="stylesheet" type="text/css" href="/js/slickgrid/css/smoothness/jquery-ui-1.10.3.custom.css" />
+  <link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.css" />
+  <link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.theme.css" />
 
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/eventsource.js"></script>
-	<script type="text/javascript" src="/js/global.js"></script>
-	<script type="text/javascript" src="/js/mobilization.js"></script>
-	<script type="text/javascript" src="/js/wcl.js"></script>
-	<script type="text/javascript" src="/js/scroller/scroller.js"></script>
-	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
-	<script type="text/javascript" src="/js/jquery.hotkeys.js"></script>
-	<script type="text/javascript" src="/js/jstree/jquery.jstree.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/eventsource.js"></script>
+  <script type="text/javascript" src="/js/global.js"></script>
+  <script type="text/javascript" src="/js/mobilization.js"></script>
+  <script type="text/javascript" src="/js/wcl.js"></script>
+  <script type="text/javascript" src="/js/scroller/scroller.js"></script>
+  <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="/js/jquery.hotkeys.js"></script>
+  <script type="text/javascript" src="/js/jstree/jquery.jstree.js"></script>
 
-	<script type="text/javascript" src="/js/slickgrid/lib/jquery-ui-1.10.3.custom.min.js"></script>
-	<script type="text/javascript" src="/js/slickgrid/lib/jquery.event.drag-2.2.js"></script>
-	<script type="text/javascript" src="/js/slickgrid/slick.core.js"></script>
-	<script type="text/javascript" src="/dbmi/js/remotemodel.js"></script>
-	<script type="text/javascript" src="/js/slickgrid/slick.dataview.js"></script>
-	<script type="text/javascript" src="/js/slickgrid/slick.grid.js"></script>
-	<script type="text/javascript" src="/js/slickgrid/slick.editors.js"></script>
+  <script type="text/javascript" src="/js/slickgrid/lib/jquery-ui-1.10.3.custom.min.js"></script>
+  <script type="text/javascript" src="/js/slickgrid/lib/jquery.event.drag-2.2.js"></script>
+  <script type="text/javascript" src="/js/slickgrid/slick.core.js"></script>
+  <script type="text/javascript" src="/dbmi/js/remotemodel.js"></script>
+  <script type="text/javascript" src="/js/slickgrid/slick.dataview.js"></script>
+  <script type="text/javascript" src="/js/slickgrid/slick.grid.js"></script>
+  <script type="text/javascript" src="/js/slickgrid/slick.editors.js"></script>
 
-	<script type="text/javascript" src="/js/init.js"></script>
-	<script type="text/javascript" src="/dbmi/js/dbmi.js"></script>
+  <script type="text/javascript" src="/js/init.js"></script>
+  <script type="text/javascript" src="/dbmi/js/dbmi.js"></script>
 </head>
 <body>
-	<div id="header">
-		<div id="header-panel">
-			<div id="logo-panel"><a href="/"><img src="/images/logo.png" width="238" height="87" border="0" /></a></div>
-			<div id="hmenu-panel">
-				<div id="hmenu">@[hmenu]@</div>
-			</div>
-		</div>
-	</div>
-	<div id="main">
-		<div id="content" class="showtabs">
-			<div id="panel-left"><div id="dbmiTree" class="tree"></div></div>
-			<div id="panel-center"></div>
-			<div id="panel-right">
-				<div id="gridToolbar">
-					<a href="#" class="button silver" id="gridEdit"><span class="icon edit"></span>Edit record</a>
-					<a href="#" class="button silver" id="gridInsert"><span class="icon plus"></span>Insert new record</a>
-					<a href="#" class="button silver" id="gridNewField"><span class="icon cursor blue"></span>Add new field</a>
-					<a href="#" class="button silver" id="gridClone"><span class="icon clone"></span>Clone record</a>
-					<a href="#" class="button silver" id="gridDelete"><span class="icon delete"></span>Delete selected</a>
-					<br>
-					<br><hr>
-					<a href="#" class="button silver" id="gridEmpty"><span class="icon eraser"></span>Empty table or collection</a>
-					<a href="#" class="button silver" id="gridRemoveCell"><span class="icon eraser"></span>Remove value or set NULL</a>
-					<a href="#" class="button silver" id="gridRemoveColumn"><span class="icon eraser"></span>Remove column</a>
-					<br>
-					<br><hr>One to many relations:
-					<a tab="Respondent" class="button silver master"><span class="icon right"></span>TableName1</a>
-					<br><hr>Many to one relations:
-					<a tab="Region" class="button silver detail"><span class="icon left"></span>TableName2</a><br>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="footer" class="tabs">
-		<div class="tabbar">
-			<ul>
-				<li class="active">Logs</li>
-				<li>Command</li>
-				<li>Script</li>
-			</ul>
-		</div>
-		<div class="tabpanel">
-			<div class="active">
-				<table id="logTable">
-				</table>
-			</div>
-			<div>
-				<textarea id="taCommands"></textarea>
-				<div class="buttonpanel">
-					<a id="btnExecuteCommand" class="button silver"><span class="icon run"></span>Execute</a>
-				</div>
-			</div>
-			<div>
-				<textarea id="taScript"></textarea>
-			</div>
-		</div>
-		<div id="footer-panel">Copyright &copy; 2013 MetaSystems</div>
-	</div>
-	@[forms]@
+  <div id="header">
+    <div id="header-panel">
+      <div id="logo-panel"><a href="/"><img src="/images/logo.png" width="238" height="87" border="0" /></a></div>
+      <div id="hmenu-panel">
+        <div id="hmenu">@[hmenu]@</div>
+      </div>
+    </div>
+  </div>
+  <div id="main">
+    <div id="content" class="showtabs">
+      <div id="panel-left"><div id="dbmiTree" class="tree"></div></div>
+      <div id="panel-center"></div>
+      <div id="panel-right">
+        <div id="gridToolbar">
+          <a href="#" class="button silver" id="gridEdit"><span class="icon edit"></span>Edit record</a>
+          <a href="#" class="button silver" id="gridInsert"><span class="icon plus"></span>Insert new record</a>
+          <a href="#" class="button silver" id="gridNewField"><span class="icon cursor blue"></span>Add new field</a>
+          <a href="#" class="button silver" id="gridClone"><span class="icon clone"></span>Clone record</a>
+          <a href="#" class="button silver" id="gridDelete"><span class="icon delete"></span>Delete selected</a>
+          <br>
+          <br><hr>
+          <a href="#" class="button silver" id="gridEmpty"><span class="icon eraser"></span>Empty table or collection</a>
+          <a href="#" class="button silver" id="gridRemoveCell"><span class="icon eraser"></span>Remove value or set NULL</a>
+          <a href="#" class="button silver" id="gridRemoveColumn"><span class="icon eraser"></span>Remove column</a>
+          <br>
+          <br><hr>One to many relations:
+          <a tab="Respondent" class="button silver master"><span class="icon right"></span>TableName1</a>
+          <br><hr>Many to one relations:
+          <a tab="Region" class="button silver detail"><span class="icon left"></span>TableName2</a><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer" class="tabs">
+    <div class="tabbar">
+      <ul>
+        <li class="active">Logs</li>
+        <li>Command</li>
+        <li>Script</li>
+      </ul>
+    </div>
+    <div class="tabpanel">
+      <div class="active">
+        <table id="logTable">
+        </table>
+      </div>
+      <div>
+        <textarea id="taCommands"></textarea>
+        <div class="buttonpanel">
+          <a id="btnExecuteCommand" class="button silver"><span class="icon run"></span>Execute</a>
+        </div>
+      </div>
+      <div>
+        <textarea id="taScript"></textarea>
+      </div>
+    </div>
+    <div id="footer-panel">Copyright &copy; 2013 MetaSystems</div>
+  </div>
+  @[forms]@
 </body>
 </html>

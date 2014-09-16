@@ -1,3 +1,53 @@
+0.1.96 / 2014-09-17
+==================
+
+  * Implemented setup script markers ".done" in /setup directory to mark files and run setup just at a first start, issue #66
+
+0.1.95 / 2014-09-16
+==================
+
+  * Implemented /model/name.js and /setup/name.js, close #66
+  * Optimizations and code style fixes
+
+0.1.94 / 2014-09-15
+==================
+
+  * Fixed Unix service script problems with CRLF
+  * Replaced CRLF with LF in all files
+  * Replaced TAB character with double space in all files
+
+0.1.93 / 2014-09-15
+==================
+
+  * Implemented logging enhancements, close #99
+  * Some refactoring and optimization
+  * Warning: application.hostDir should be renamed to application.appDir
+
+0.1.92 / 2014-09-14
+==================
+
+  * Removed dependency to npm module
+
+0.1.91 / 2014-09-14
+==================
+
+  * HTTP basic authentication, access.js new parameters { realm: "name", auth: "user:password" }, close #115
+  * Implemented workers list and terminate programmatically, issue #114
+
+0.1.90 / 2014-09-13
+==================
+
+  * Implemented directories autoredirect, close #113
+  * Added more tests to servertests.js
+  * Fixed examples
+
+0.1.89 / 2014-09-12
+==================
+
+  * Temporary fix for "impress.security" visibility problem in application sandboxes as "security"
+  * Added developer mode detection to prevent install.js actions on "npm install" if running not from "node_modules" derectory
+  * Fixed: directories /init and /tasks become optional and old applications having no mentioned directories can be run without errors
+
 0.1.88 / 2014-09-11
 ==================
 
