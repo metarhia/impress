@@ -1,3 +1,8 @@
+0.1.96 / 2014-09-17
+==================
+
+  * Implemented setup script markers ".done" in /setup directory to mark files and run setup just at a first start, issue #66
+
 0.1.95 / 2014-09-16
 ==================
 
