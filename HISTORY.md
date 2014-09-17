@@ -2,6 +2,7 @@
 ==================
 
   * Implemented setup script markers ".done" in /setup directory to mark files and run setup just at a first start, issue #66
+  * Critical fixes in db module and mongodb drivers
 
 0.1.95 / 2014-09-16
 ==================
