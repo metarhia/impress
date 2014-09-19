@@ -1,3 +1,9 @@
+0.1.98 / 2014-09-19
+==================
+
+  * Event broadcasting enhancement for long workers, issue #118
+  * Changes in process, worker and task forking, events sening and retranslation
+
 0.1.97 / 2014-09-18
 ==================
 
