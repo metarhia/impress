@@ -1,20 +1,18 @@
 // TCP example: telnet server
 
-var net = require('net');
-
 var port = 3000
   host = '127.0.0.1';
 
 if (cluster.isMaster) {
 
   console.log('  TCP listen on '+host+':'+port);
-  var server = net.createServer(function(connection) { });
+  var server = api.net.createServer(function(connection) { });
 
   module.exports = server;
 
 } else {
 
-  var server = net.createServer(function(connection) {
+  var server = api.net.createServer(function(connection) {
     console.log('TCP client connected');
     connection.on('end', function() {
       console.log('TCP client disconnected');

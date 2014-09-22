@@ -1,3 +1,10 @@
+0.1.100 / 2014-09-22
+==================
+
+  * Fixed bug in file watching
+  * Minor code fixex and examples added
+  * Normalized CRLF for Github
+
 0.1.99 / 2014-09-20
 ==================
 

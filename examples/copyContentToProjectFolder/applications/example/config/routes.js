@@ -21,4 +21,17 @@ module.exports = [
   }
 */
 
+{
+    url : "^/portfolio/(.+)/([0-9]{1,3})",
+    rewrite:  "/detail/[1]/[2]",
+    escaping: false
+}
+,
+
+{
+    url : "^/portfolio/([^/]+)",
+    rewrite:  "/deseacelist/[1]",
+    escaping: false
+}
+
 ];

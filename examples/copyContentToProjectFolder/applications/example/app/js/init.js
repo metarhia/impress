@@ -82,9 +82,15 @@ global.onLoad(function() {
     });
   });
 
-  $(document).on('click', '#menuWorker', function() {
+  $(document).on('click', '#menuForkWorker', function() {
     $.get('/examples/tools/forkWorker.json', function(res) {
       panelCenter.html('Worker process forked, see console for output.');
+    });
+  });
+
+  $(document).on('click', '#menuLongWorker', function() {
+    $.get('/examples/tools/longWorker.json', function(res) {
+      panelCenter.html('Worker process forked and will terminate in 30 seconds, see console for output.');
     });
   });
 
@@ -159,7 +165,7 @@ global.onLoad(function() {
     var sse = new EventSource("/examples/events/connect.sse");
 
     sse.addEventListener("TestEvent", function(e) {
-      panelCenter.append("Event: "+e.event+"; Data: "+e.data+"<hr>");
+      panelCenter.append("Event: "+e.type+"; Data: "+e.data+"<hr>");
     });
 
     sse.addEventListener("open", function(e) {
