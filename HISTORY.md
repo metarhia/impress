@@ -1,3 +1,9 @@
+0.1.101 / 2014-09-23
+==================
+
+  * Implemented page and api cache, close #121
+  * Added more error handling, optimizations and refactoring
+
 0.1.100 / 2014-09-22
 ==================
 
