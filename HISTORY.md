@@ -1,3 +1,9 @@
+0.1.102 / 2014-09-24
+==================
+
+  * Fixed minor logging issue
+  * Added constants and tests
+
 0.1.101 / 2014-09-23
 ==================
 
