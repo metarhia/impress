@@ -1,3 +1,10 @@
+0.1.103 / 2014-09-25
+==================
+
+  * Added universal method application.runInContext to run impress code in context of applications (instead of deprecated impress.mixinContextScript that can run just global.js initContext function)
+  * Improved global.js to prevent double context initialization
+  * Fixes and optimizations in SSE plugin
+
 0.1.102 / 2014-09-24
 ==================
 

@@ -23,6 +23,7 @@ module.exports = {
     // Additional modules
     'async',
     'iconv',
+    'colors',
     'geoip',
     'nodemailer',
     'mkdirp',

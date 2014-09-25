@@ -3,5 +3,4 @@
 module.exports = [
   'impress.events',
   'impress.sse',
-  'impress.passport',
 ];

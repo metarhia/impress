@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.102",
+  "version": "0.1.103",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Totalitarian-style Multipurpose Application Server for node.js. All decisions are made. Ready for applied development",
   "keywords": [
