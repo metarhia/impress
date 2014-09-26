@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/tshemsedinov/impress.svg?branch=master)](https://travis-ci.org/tshemsedinov/impress)
 [![Dependency Status](https://david-dm.org/tshemsedinov/impress.svg)](https://david-dm.org/tshemsedinov/impress)
+[![devDependency Status](https://david-dm.org/tshemsedinov/impress/dev-status.svg)](https://david-dm.org/tshemsedinov/impress#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/impress.svg)](http://badge.fury.io/js/impress)
 
 [Impress](https://github.com/tshemsedinov/impress)ive multipurpose Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.

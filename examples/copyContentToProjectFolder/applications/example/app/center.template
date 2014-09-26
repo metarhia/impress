@@ -1,4 +1,4 @@
-﻿@sid@
+﻿SID: @.sid@; Empty: @.empty@; Title: @title@
 <hr>
 @[users]@
   <div>

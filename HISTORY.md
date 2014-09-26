@@ -1,9 +1,16 @@
+0.1.104 / 2014-09-26
+==================
+
+  * Fixed empty template inheritance, close #123
+  * Fixed empty variable in templates, close #124
+
 0.1.103 / 2014-09-25
 ==================
 
   * Added universal method application.runInContext to run impress code in context of applications (instead of deprecated impress.mixinContextScript that can run just global.js initContext function)
   * Improved global.js to prevent double context initialization
   * Fixes and optimizations in SSE plugin
+  * Fixed navigation through files via arrow keys in Chrome for directory index and introspection
 
 0.1.102 / 2014-09-24
 ==================
