@@ -4,6 +4,10 @@ module.exports = function(client, callback) {
     someDataForWorker: "parameterValue"
   };
 
+  // Kill worker if it still working
+  client.killLongWorker('worker');
+
+  // Run new worker
   client.fork('worker');
 
   callback();

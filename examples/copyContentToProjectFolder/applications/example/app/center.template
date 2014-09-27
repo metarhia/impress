@@ -1,4 +1,12 @@
-﻿@sid@
+﻿SID: @.sid@; Empty: @.empty@; Title: @title@,
+nNull: @.nNull@,
+bTrue: @.bTrue@,
+bFalse: @.bFalse@,
+dData: @.dData@,
+aArray: @.aArray@,
+oObj: @.oObj@,
+oObj.a: @.oObj.a@,
+oObj.a.b @.oObj.a.b@,
 <hr>
 @[users]@
   <div>

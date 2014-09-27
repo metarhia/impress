@@ -1,7 +1,64 @@
+0.1.105 / 2014-09-27
+==================
+
+  * Critical fixes in templates, Warning: you need to refactor all templates, see issue for details, issue #124
+  * Fixed rare happening big in Client.prototype.render
+  * Changed mixins to Date.prototype to context.Date.prototype for use in sandboxed contexts
+
+0.1.104 / 2014-09-26
+==================
+
+  * Fixed empty template inheritance, close #123
+  * Fixed empty variable in templates, close #124
+
+0.1.103 / 2014-09-25
+==================
+
+  * Added universal method application.runInContext to run impress code in context of applications (instead of deprecated impress.mixinContextScript that can run just global.js initContext function)
+  * Improved global.js to prevent double context initialization
+  * Fixes and optimizations in SSE plugin
+  * Fixed navigation through files via arrow keys in Chrome for directory index and introspection
+
+0.1.102 / 2014-09-24
+==================
+
+  * Fixed minor logging issue
+  * Added constants and tests
+
+0.1.101 / 2014-09-23
+==================
+
+  * Implemented page and api cache, close #121
+  * Added more error handling, optimizations and refactoring
+
+0.1.100 / 2014-09-22
+==================
+
+  * Fixed bug in file watching
+  * Minor code fixex and examples added
+  * Normalized CRLF for Github
+
+0.1.99 / 2014-09-20
+==================
+
+  * Updated and optimized file watching, close #119
+
+0.1.98 / 2014-09-19
+==================
+
+  * Event broadcasting enhancement for long workers, issue #118
+  * Changes in process, worker and task forking, events sening and retranslation
+
+0.1.97 / 2014-09-18
+==================
+
+  * Cross-process event broadcasting, close #118
+
 0.1.96 / 2014-09-17
 ==================
 
   * Implemented setup script markers ".done" in /setup directory to mark files and run setup just at a first start, issue #66
+  * Critical fixes in db module and mongodb drivers
 
 0.1.95 / 2014-09-16
 ==================
