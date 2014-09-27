@@ -1,3 +1,10 @@
+0.1.105 / 2014-09-27
+==================
+
+  * Critical fixes in templates, Warning: you need to refactor all templates, see issue for details, issue #124
+  * Fixed rare happening big in Client.prototype.render
+  * Changed mixins to Date.prototype to context.Date.prototype for use in sandboxed contexts
+
 0.1.104 / 2014-09-26
 ==================
 
