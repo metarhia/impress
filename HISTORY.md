@@ -1,3 +1,10 @@
+0.1.106 / 2014-09-29
+==================
+
+  * Fixed application exception stack trace in logs, close #81
+  * Added v8 option to impress service by default --stack-trace-limit=1000
+  * Remove unnecessary stack info from logs
+
 0.1.105 / 2014-09-27
 ==================
 

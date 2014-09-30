@@ -32,7 +32,7 @@ module.exports = {
     'stringify', // npm module json-stringify-safe
 
     // Passport providers
-        // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
+    // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
   ]
 
 };

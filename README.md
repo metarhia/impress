@@ -38,7 +38,6 @@ If Impress Application Server is already installed in directory you want to inst
 
 If Impress installed as a service (daemon) you can use following commands:
   - `service impress start`
-  - `service impress debug` to run server in console mode with output (not as a service)
   - `service impress stop`
   - `service impress restart` is equal to `stop` and `start` commands
   - `service impress status` to show Impress processes CPU, MEM, RSS, TIME and other parameters
