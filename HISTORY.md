@@ -1,3 +1,10 @@
+0.1.107 / 2014-09-30
+==================
+
+  * Fixed security issue in Client.prototype.processing
+  * Fixed Geoip resolution in log format
+  * Omit HTTP base authentication for local requests (will be configured in access.js soon)
+
 0.1.106 / 2014-09-29
 ==================
 
