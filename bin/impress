@@ -15,70 +15,74 @@
 ### END INIT INFO
 
 usage() {
-	echo "service impress {start|stop|restart|status|update}"
-	exit 0
+  echo "service impress {start|stop|restart|status|update}"
+  exit 0
 }
 
 start() {
-	cd /impress
-	nohup node --stack-trace-limit=1000 server > /dev/null 2>&1 &
+  cd /impress
+  nohup node --stack-trace-limit=1000 server > /dev/null 2>&1 &
 }
 
 stop() {
-	killall "impress srv"
+  killall "impress srv"
 }
 
 restart() {
-	iprocess=$(ps aux | grep 'impress' | grep -v grep | grep -v sh | wc -l)
-	if [ $iprocess -gt 0 ]
-	then
-		stop
-		start
-	else
-		echo "Impress Application Server is not running"
-	fi
+  iprocess=$(ps aux | grep 'impress' | grep -v grep | grep -v sh | wc -l)
+  if [ $iprocess -gt 0 ]
+  then
+    stop
+    start
+  else
+    echo "Impress Application Server is not running"
+  fi
 }
 
 status() {
-	iprocess=$(ps aux | grep 'impress' | grep -v grep | grep -v sh | wc -l)
-	if [ $iprocess -gt 0 ]
-	then
-		ps aux | grep 'impress\|%CPU' | grep -v grep | grep -v sh
-	else
-		echo "Impress Application Server is not running"
-	fi
+  iprocess=$(ps aux | grep 'impress' | grep -v grep | grep -v sh | wc -l)
+  if [ $iprocess -gt 0 ]
+  then
+    ps aux | grep 'impress\|%CPU' | grep -v grep | grep -v sh
+  else
+    echo "Impress Application Server is not running"
+  fi
 }
 
 update() {
-	cd /impress
-	npm update npm -g
-	npm update
-	restart
+  cd /impress
+  npm update npm -g
+  npm update
+  restart
 }
 
 case $1 in
 
-	start)
-		echo "Starting Impress Application Server"
-		start
-		;;
-	stop)
-		echo "Stopping Impress Application Server"
-		stop
-		;;
-	restart|reload)
-		echo "Restarting Impress Application Server"
-		restart
-		;;
-	update)
-		echo "Updating and restarting (if started)"
-		update
-		;;
-	status)
-		status
-		;;
-	*) usage
-		usage
-		;;
+  start)
+    echo "Starting Impress Application Server"
+    start
+    status
+    ;;
+  stop)
+    echo "Stopping Impress Application Server"
+    stop
+    status
+    ;;
+  restart|reload)
+    echo "Restarting Impress Application Server"
+    restart
+    status
+    ;;
+  update)
+    echo "Updating and restarting (if started)"
+    update
+    status
+    ;;
+  status)
+    status
+    ;;
+  *) usage
+    usage
+    ;;
 
 esac
