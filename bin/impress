@@ -61,22 +61,18 @@ case $1 in
   start)
     echo "Starting Impress Application Server"
     start
-    status
     ;;
   stop)
     echo "Stopping Impress Application Server"
     stop
-    status
     ;;
   restart|reload)
     echo "Restarting Impress Application Server"
     restart
-    status
     ;;
   update)
     echo "Updating and restarting (if started)"
     update
-    status
     ;;
   status)
     status

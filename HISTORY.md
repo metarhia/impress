@@ -1,3 +1,10 @@
+0.1.110 / 2014-10-03
+==================
+
+  * Added tests and fixed noncritical functions
+  * Rollback service improvements
+  * Changed node.js version in deploy scripts
+
 0.1.109 / 2014-10-02
 ==================
 
