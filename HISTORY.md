@@ -1,3 +1,10 @@
+0.1.111 / 2014-10-05
+==================
+
+  * Fixed logging in non-standard situations (critical exceptions on server startup, etc.)
+  * Added tests and fixed noncritical functions
+  * Added shell script (for linux and windows) to start Impress in commend CLI (not as a service) with V8 parameter --stack-trace-limit=1000
+
 0.1.110 / 2014-10-03
 ==================
 

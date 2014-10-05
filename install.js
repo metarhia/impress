@@ -20,6 +20,7 @@ var current = path.dirname(__filename.replace(/\\/g, '/')),
 function installService() {
   exec('chmod +x ./bin/install.sh', function() {
     exec('chmod +x ./bin/uninstall.sh');
+    exec('chmod +x ./server.sh');
     exec('./bin/install.sh');
   });
 }
@@ -44,6 +45,8 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
   } else {
     console.log('Installing Impress Application Server...'.bold.green);
     fs.createReadStream(source+'server.js').pipe(fs.createWriteStream(destination+'server.js'));
+    var shellScript = 'server' + (isWin ? 'cmd' : 'sh');
+    fs.createReadStream(source+shellScript).pipe(fs.createWriteStream(destination+shellScript));
     ncp(source+'config', destination+'config', { clobber: false }, function (err) {
       if (err) console.error(err);
       ncp(source+'applications', destination+'applications', { clobber: false }, function (err) {
