@@ -6,7 +6,6 @@ module.exports = [
   //'db.mongodb',
   //'db.memcached',
   //'db.mysql',
-  //'db.mysql.schema',
   //'db.pgsql',
   'impress.log',
   'impress.security',

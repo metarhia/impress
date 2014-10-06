@@ -1,3 +1,8 @@
+0.1.112 / 2014-10-06
+==================
+
+  * Improved schema validation, added database generation for MongoDB
+
 0.1.111 / 2014-10-05
 ==================
 

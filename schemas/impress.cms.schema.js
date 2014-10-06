@@ -37,7 +37,7 @@ module.exports = {
       Subtitle:   { caption: "Subtitle",   type: "str", size: 255 },
       Copyright:  { caption: "Copyright",  type: "str", size: 255 }
     },
-    compositeIndexes: {
+    indexes: {
       akCmsSiteProp: { fields: [ "SiteId", "LangiageId" ], unique: true }
     }
   },
@@ -75,7 +75,7 @@ module.exports = {
       Keywords:     { caption: "Keywords",    type: "str", size: 255 },
       Content:      { caption: "Content",     type: "text" }
     },
-    compositeIndexes: {
+    indexes: {
       akCmsContentPage: { fields: [ "PageId", "LangiageId" ], unique: true },
       akCmsContentSite: { fields: [ "SiteId", "PageName", "LangiageId" ], unique: true }
     }
@@ -97,7 +97,7 @@ module.exports = {
       NicName:     { caption: "Name",     type: "str", size: 64, index: { unique: false } },
       Content:     { caption: "Content",  type: "text" }
     },
-    compositeIndexes: {
+    indexes: {
       idxCmsPost: { fields: [ "PageId", "LangiageId" ], unique: false }
     }
   },
