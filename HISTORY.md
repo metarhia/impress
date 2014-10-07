@@ -1,3 +1,10 @@
+0.1.113/ 2014-10-07
+==================
+
+  * Added config schema definition, issue #126
+  * Improved database generation from schema for MongoDB
+  * Added shell script (for linux and windows) to start Impress in commend CLI (not as a service) with V8 parameter --stack-trace-limit=1000
+
 0.1.112 / 2014-10-06
 ==================
 
