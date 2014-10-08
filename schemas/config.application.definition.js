@@ -1,5 +1,18 @@
 module.exports = {
 
+  config: {
+    databases: '{{database}}',
+    files:     '{files}',
+    log:       '{log}',
+    hosts:     'array',
+    mail:      '{mail}',
+    routes:    '{{route}}',
+    sessions:  '{sessions}',
+    plugins:   'array',
+    sandbox:   '{sandbox}',
+    _other:    'any'
+  },
+
   database: {
     url:         'string',
     collections: 'array',
@@ -22,6 +35,11 @@ module.exports = {
     serverLog:      'boolean'
   },
 
+  sandbox: {
+    global: 'array',
+    api:    'array'
+  },
+
   mail: {
     enabled: 'boolean',
     robot:   'string',
@@ -37,8 +55,6 @@ module.exports = {
     user: 'string',
     pass: 'string'
   },
-
-  routes: '{{route}}',
 
   route: {
     url:      'string',

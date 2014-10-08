@@ -1,5 +1,14 @@
 module.exports = {
 
+  config: {
+    cloud:   '{cloud}',
+    cluster: '{cluster}',
+    log:     '{log}',
+    plugins: 'array',
+    sandbox: '{sandbox}',
+    servers: '{servers}'
+  },
+
   cloud: {
     name:       'string',
     type:       'string',
@@ -27,18 +36,16 @@ module.exports = {
     serverLog:      'boolean'
   },
 
-  plugins: 'array',
-
   sandbox: {
     global:   'array',
     api:      'array'
   },
 
-  server: {
-    _other:   '{{serverRecord}}'
+  servers: {
+    _other:   '{{server}}'
   },
 
-  serverRecord: {
+  server: {
     protocol: [ 'http', 'https' ],
     address:  'string',
     port:     'number',

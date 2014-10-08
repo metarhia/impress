@@ -4,7 +4,7 @@
   version: 1,
 
   users: {
-    caption: 'System Users',
+    captiond: 'System Users',
     fields: {
       _id:      { caption: 'Id',        type: 'id' },
       login:    { caption: 'Login',     type: 'str', size: 64, nullable: false, index: { unique: true } },

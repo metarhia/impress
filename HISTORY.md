@@ -1,4 +1,10 @@
-0.1.113/ 2014-10-07
+0.1.114 / 2014-10-08
+==================
+
+  * Config schema definition applied for startup config validation, close #126
+  * Code refactoring and namespace api.* changes
+
+0.1.113 / 2014-10-07
 ==================
 
   * Added config schema definition, issue #126
@@ -15,7 +21,6 @@
 
   * Fixed logging in non-standard situations (critical exceptions on server startup, etc.)
   * Added tests and fixed noncritical functions
-  * Added shell script (for linux and windows) to start Impress in commend CLI (not as a service) with V8 parameter --stack-trace-limit=1000
 
 0.1.110 / 2014-10-03
 ==================

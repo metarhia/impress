@@ -10,16 +10,13 @@ module.exports = [
   'impress.log',
   'impress.security',
   //'impress.security.mongodb',
-  //'impress.mail',
-  'impress.uglify',
   //'impress.health',
   //'impress.cloud',
-  //'impress.geoip',
+  'api.uglify',
+  //'api.mail',
+  //'api.geoip',
+  //'api.websocket',
   'impress.events',
-  //'impress.websocket',
   'impress.sse',
-  //'impress.passport',
-
-  //'cms',
-  //'cms.mysql'
+  //'impress.passport'
 ];

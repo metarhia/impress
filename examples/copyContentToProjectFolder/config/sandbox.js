@@ -8,7 +8,7 @@ module.exports = {
   // 
   // global: [
   //  'require', 'console', 'Buffer', 'process',
-  //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate',
+  //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate'
   // ],
 
   // Following identifiers will be visible in sandbox as api.<name>
@@ -19,6 +19,9 @@ module.exports = {
     'net', 'http', 'https', 'dgram', 'dns', 'tls',
     'url', 'path', 'punycode', 'querystring', 'string_decoder',
     'fs', 'stream', 'zlib', 'events', 'readline', 'npm',
+
+    // Impress API modules
+    'definition',
 
     // Additional modules
     'async',

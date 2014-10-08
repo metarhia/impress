@@ -20,6 +20,9 @@ module.exports = {
     'url', 'path', 'punycode', 'querystring', 'string_decoder',
     'fs', 'stream', 'zlib', 'events', 'readline', 'npm',
 
+    // Impress API modules
+    'definition',
+
     // Additional modules
     'async',
     'iconv',
@@ -32,7 +35,7 @@ module.exports = {
     'stringify', // npm module json-stringify-safe
 
     // Passport providers
-        // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
+    // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
   ]
 
 };
