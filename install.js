@@ -45,7 +45,7 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
   } else {
     console.log('Installing Impress Application Server...'.bold.green);
     fs.createReadStream(source+'server.js').pipe(fs.createWriteStream(destination+'server.js'));
-    var shellScript = 'server' + (isWin ? 'cmd' : 'sh');
+    var shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
     fs.createReadStream(source+shellScript).pipe(fs.createWriteStream(destination+shellScript));
     ncp(source+'config', destination+'config', { clobber: false }, function (err) {
       if (err) console.error(err);
