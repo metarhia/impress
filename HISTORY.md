@@ -1,3 +1,8 @@
+0.1.116 / 2014-10-13
+==================
+
+  * Added optional domain parameter for session cookie in /application/config/sessions.js, close #127
+
 0.1.115 / 2014-10-09
 ==================
 
