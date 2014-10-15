@@ -10,38 +10,38 @@ module.exports = {
     sessions:  '{sessions}',
     plugins:   'array',
     sandbox:   '{sandbox}',
-    _other:    'any'
+    _other:    '*'
   },
 
   database: {
     url:         'string',
-    collections: 'array',
-    slowTime:    'number',
-    security:    'boolean'
+    collections: '[array]',
+    slowTime:    '2s:duration',
+    security:    'false:boolean'
   },
 
   files: {
-    minify:           'boolean',
-    static:           'array',
-    cacheSize:        'number',
-    cacheMaxFileSize: 'number',
+    minify:           'false:boolean',
+    static:           '[array]',
+    cacheSize:        '100mb:size',
+    cacheMaxFileSize: '1mb:size'
   },
 
   log: {
-    keepDays:       'number',
-    writeInterval:  'string',
-    writeBuffer:    'number',
-    applicationLog: 'boolean',
-    serverLog:      'boolean'
+    keepDays:       '100:number',
+    writeInterval:  '5s:duration',
+    writeBuffer:    '64kb:size',
+    applicationLog: 'false:boolean',
+    serverLog:      'true:boolean'
   },
 
   sandbox: {
-    global: 'array',
-    api:    'array'
+    global: '[array]',
+    api:    '[array]'
   },
 
   mail: {
-    enabled: 'boolean',
+    enabled: 'false:boolean',
     robot:   'string',
     options: '{mailOptions}'
   },
@@ -59,17 +59,17 @@ module.exports = {
   route: {
     url:      'string',
     rewrite:  'string',
-    escaping: 'boolean'
+    escaping: 'true:boolean'
   },
 
   sessions: {
-    anonymous:  'boolean',
-    cookie:     'string',
-    characters: 'string',
-    secret:     'string',
-    length:     'number',
-    persist:    'boolean',
-    database:   'string'
+    anonymous:  'false:boolean',
+    cookie:     'SID:string',
+    characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:string',
+    secret:     'secret:string',
+    length:     '64:number',
+    persist:    'true:boolean',
+    database:   '[string]'
   },
 
 };

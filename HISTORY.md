@@ -1,3 +1,11 @@
+0.1.117 / 2014-10-14
+==================
+
+  * Implemented new data structures definition syntax for databases, config files, etc.
+  * Added universal walker for data structures: api.definition.walk, issue #128
+  * Added data structures preprocessinf, including types, default values, converting size and duration to numbers: api.definition.preprocess, issue #128
+  * Fixed validation method for data definition: api.definition.validate, issue #128
+
 0.1.116 / 2014-10-13
 ==================
 

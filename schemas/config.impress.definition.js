@@ -11,34 +11,34 @@ module.exports = {
 
   cloud: {
     name:       'string',
-    type:       'string',
+    type:       '(none,standalone)',
     controller: 'string',
-    pubSubPort: 'string',
-    reqResPort: 'string',
-    health:     'string'
+    pubSubPort: '3000:number',
+    reqResPort: '3001:number',
+    health:     '5s:duration'
   },
 
   cluster: {
-    check:      'string',
+    check:      '[string]',
     name:       'string',
-    cookie:     'string',
-    strategy:   [ 'single', 'specialization', 'multiple', 'sticky' ],
-    workers:    'number',
-    nagle:      'boolean',
-    gcInterval: 'number'
+    cookie:     'node:string',
+    strategy:   '(single,specialization,multiple,sticky)',
+    workers:    '1:number',
+    nagle:      'false:boolean',
+    gcInterval: '10m:duration'
   },
 
   log: {
-    keepDays:       'number',
-    writeInterval:  'string',
-    writeBuffer:    'number',
-    applicationLog: 'boolean',
-    serverLog:      'boolean'
+    keepDays:       '100:number',
+    writeInterval:  '5s:duration',
+    writeBuffer:    '64kb:size',
+    applicationLog: 'false:boolean',
+    serverLog:      'true:boolean'
   },
 
   sandbox: {
-    global:   'array',
-    api:      'array'
+    global: '[array]',
+    api:    '[array]'
   },
 
   servers: {
@@ -46,13 +46,13 @@ module.exports = {
   },
 
   server: {
-    protocol: [ 'http', 'https' ],
+    protocol: '(http,https)',
     address:  'string',
     port:     'number',
-    nagle:    'boolean',
-    slowTime: 'string',
-    key:      'string',
-    cert:     'string'
+    nagle:    'false:boolean',
+    slowTime: '4s:duration',
+    key:      '[string]',
+    cert:     '[string]'
   }
 
 };
