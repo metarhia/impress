@@ -6,7 +6,7 @@ module.exports = {
     log:     '{log}',
     plugins: 'array',
     sandbox: '{sandbox}',
-    servers: '{servers}'
+    servers: '{{servers}}'
   },
 
   cloud: {
