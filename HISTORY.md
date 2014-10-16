@@ -1,3 +1,8 @@
+0.1.118 / 2014-10-16
+==================
+
+  * Multiple fixes in data structures definition API, issue #128
+
 0.1.117 / 2014-10-14
 ==================
 
