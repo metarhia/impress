@@ -34,6 +34,8 @@ module.exports = {
 
   servers: '{{server}}',
 
+  plugins: 'string',
+
   server: {
     protocol: '(http,https)',
     address:  'string',

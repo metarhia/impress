@@ -11,7 +11,7 @@ module.exports = {
     captions:   '{{caption}}',
     comment:    '[string]',
     type:       '[(system,dictionary,data,crossreference,view,query,log,unknown,set)]',
-    fields:     '{fields}',
+    fields:     '{{field}}',
     indexes:    '[{{compositeIndex}}]',
     server:     '[hash]',
     client:     '[hash]',
@@ -21,8 +21,6 @@ module.exports = {
   caption: {
     _other: '[string]'
   },
-
-  fields:       '{{field}}',
 
   field: {
     caption:    '[string]',

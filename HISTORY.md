@@ -1,3 +1,9 @@
+0.1.119 / 2014-10-17
+==================
+
+  * Fixes in data structures definition API, issue #128
+  * Fixes in /schemas (config and db definitions)
+
 0.1.118 / 2014-10-16
 ==================
 
