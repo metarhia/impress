@@ -1,3 +1,10 @@
+0.1.120 / 2014-10-18
+==================
+
+  * Added deploy script for CentOS 32bit
+  * Fixes in data structures definition API, issue #128
+  * Dependency updated
+
 0.1.119 / 2014-10-17
 ==================
 

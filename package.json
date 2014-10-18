@@ -45,7 +45,7 @@
     "ncp": "1.0.x",
     "open": "0.0.x",
     "uglify-js": "2.4.x",
-    "multiparty": "3.3.x",
+    "multiparty": "4.0.x",
     "iconv-lite": "0.4.x",
     "zip-stream": "0.4.x",
     "websocket": "1.0.x",

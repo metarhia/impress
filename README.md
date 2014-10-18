@@ -175,7 +175,7 @@ Result:
 ## Contributors
 
   - Timur Shemsedinov (marcusaurelius)
-  - See github contributors list
+  - See github for full contributors list
 
 ## License
 
