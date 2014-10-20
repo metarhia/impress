@@ -1,3 +1,9 @@
+0.1.121 / 2014-10-20
+==================
+
+  * Implemented api.definition.printErrors and fixed api.definition.parse, issue #128
+  * Added --nouse-idle-notification and --expose-gc examples
+
 0.1.120 / 2014-10-18
 ==================
 
