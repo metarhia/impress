@@ -7,7 +7,7 @@ node_modules
 /config/
 /.idea/
 
-/server.js
+/server.*
 /stresstest.*
 /setup.*
 /lib/*.cp
