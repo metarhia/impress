@@ -15,7 +15,7 @@ module.exports = {
 
   application: {
     slowTime:    '2s:duration',
-    preload:     '[false:boolean]',
+    preload:     'false:boolean',
     allowOrigin: '[string]'
   },
 

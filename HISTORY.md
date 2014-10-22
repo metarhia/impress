@@ -1,3 +1,10 @@
+0.1.123 / 2014-10-22
+==================
+
+  * Impress data definition API is now implemented, tested and brought into service, close #128
+  * Fixed impress.health configuration default values
+  * Fixed api.definition.validate: all values with default value are now optional regardless of square brackets "[]" (default syntax for optional values)
+
 0.1.122 / 2014-10-21
 ==================
 
