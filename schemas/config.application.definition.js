@@ -13,6 +13,12 @@ module.exports = {
     _other:    '*'
   },
 
+  application: {
+    slowTime:    '2s:duration',
+    preload:     '[false:boolean]',
+    allowOrigin: '[string]'
+  },
+
   database: {
     url:         'string',
     collections: '[array]',

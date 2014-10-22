@@ -1,3 +1,10 @@
+0.1.122 / 2014-10-21
+==================
+
+  * Implemented api.definition.preprocess and api.definition.preprocessValue, issue #128
+  * All default duration and size values in config files now will be processed by api.definition.preprocess in unified way, instead of manually processing for each value
+  * Renamed impress.config.cluster.gc to impress.config.cluster.gcInterval
+
 0.1.121 / 2014-10-20
 ==================
 
