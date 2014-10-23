@@ -1,0 +1,58 @@
+﻿console.log(api.colors.green(api.colors.bold('Ecample ')+' installing initial data structures to MongoDB...'));
+
+var rl = api.readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+rl.question('Delete stored data and recreate default structures? [y/n]: ', function(answer) {
+  rl.close();
+  if (answer === 'y') {
+    var collections = [
+      { name: 'sessions', index: 'sid' },   // login, sid, userId, group
+      { name: 'users',    index: 'login' }, // login, password, group
+      { name: 'groups',   index: 'name' },  // name
+    ];
+    var steps = [];
+
+    function closureEmptyCollection(item) {
+      return function(callback) {
+        dbAlias[item.name].remove({}, function(err, collection) {
+          console.log('  '+api.colors.bold(item.name)+' ... deleted');
+          callback();
+        });
+      }
+    }
+
+    collections.forEach(function(item) {
+      steps.push(closureEmptyCollection(item));
+    });
+      
+    function closureCreateIndex(item) {
+      return function(callback) {
+        var idx = {};
+        idx[item.index] = 1;
+        dbAlias[item.name].createIndex(idx, { unique: true }, callback);
+      }
+    }
+
+    collections.forEach(function(item) {
+      steps.push(closureCreateIndex(item));
+    });
+
+    steps.push(
+      function(callback) {
+        console.log(api.colors.bold('Creating groups: ')+' users, admins, employees');
+        dbAlias.groups.insert([ { name: 'users' }, { name: 'admins' }, { name: 'employees' } ], callback);
+      },
+      function(callback) {
+        console.log(api.colors.bold('Creating user: ')+' admin, password: admin');
+        dbAlias.users.insert([ { login:"admin", password:"admin", group:"admins" } ], callback);
+      }
+    );
+
+    api.async.series(steps, function() {
+      console.log(api.colors.bold(api.colors.green(api.colors.bold('Done! Now waiting for login from web interface.'))+'\nuser: admin\npassword: admin'));
+    });
+
+  } else console.log(api.colors.yellow('No changes in database.'));
+});

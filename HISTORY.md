@@ -1,3 +1,10 @@
+0.1.124 / 2014-10-23
+==================
+
+  * Added setup script example for security database initialization for MongoDB and changed ".done" file content to full ISO timestamp
+  * Begin implement memory state synchronization, issue #129
+  * Added more tests and fixed examples
+
 0.1.123 / 2014-10-22
 ==================
 
