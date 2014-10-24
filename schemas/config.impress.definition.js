@@ -2,7 +2,7 @@ module.exports = {
 
   cloud: {
     name:       'string',
-    type:       '(none,standalone)',
+    type:       '(none,standalone,controller,server)',
     controller: 'string',
     pubSubPort: '3000:number',
     reqResPort: '3001:number',

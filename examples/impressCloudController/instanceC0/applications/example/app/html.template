@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud Example</title>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/eventsource.js"></script>
+  <!--script type="text/javascript" src="/js/global.js"></script-->
+  <script type="text/javascript" src="/js/init.js"></script>
+</head>
+<body>
+  <h1>Cloud Example</h1>
+  <div id="log"></div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "CloudExample",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Impress Application Server Cloud Example",
+  "dependencies": {
+    "impress": "0.1.x",
+    "zmq": "2.5.x"
+  },
+  "engines": {
+    "node": ">=0.10.6"
+  }
+}

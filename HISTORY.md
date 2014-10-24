@@ -1,3 +1,9 @@
+0.1.125 / 2014-10-24
+==================
+
+  * Fixed Impress Cloud Controller with ZMQ transport and add examples, close #131
+  * Added examples for cloud controller and 2 impress servers
+
 0.1.124 / 2014-10-23
 ==================
 
