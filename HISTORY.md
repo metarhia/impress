@@ -1,3 +1,9 @@
+0.1.126 / 2014-10-25
+==================
+
+  * Final updates in memory state synchronization, done #129
+  * Added impress.setDataByPath and fixed application.logException
+
 0.1.125 / 2014-10-24
 ==================
 
