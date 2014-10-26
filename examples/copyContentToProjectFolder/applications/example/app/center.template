@@ -1,12 +1,8 @@
-﻿SID: @.sid@; Empty: @.empty@; Title: @title@,
-nNull: @.nNull@,
-bTrue: @.bTrue@,
-bFalse: @.bFalse@,
-dData: @.dData@,
-aArray: @.aArray@,
-oObj: @.oObj@,
-oObj.a: @.oObj.a@,
-oObj.a.b @.oObj.a.b@,
+﻿<h3>Template</h3>
+<hr>
+SID: @.sid@; Empty: @.empty@; Title: @title@,<br>
+nNull: @.nNull@, bTrue: @.bTrue@, bFalse: @.bFalse@, dData: @.dData@, aArray: @.aArray@,<br>
+oObj: @.oObj@, oObj.a: @.oObj.a@, oObj.a.b @.oObj.a.b@, oObj.k.l.m.n @.oObj.k.l.m.n@,<br>
 <hr>
 @[users]@
   <div>
@@ -19,4 +15,5 @@ oObj.a.b @.oObj.a.b@,
       @[/emails]@
     </ul>
   </div>
+  <br>
 @[/users]@
