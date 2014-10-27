@@ -1,3 +1,8 @@
+0.1.128 / 2014-10-27
+==================
+
+  * Implemented list workers programmatically from any process: application.workers, sync by IPC, issue #114
+
 0.1.127 / 2014-10-26
 ==================
 
