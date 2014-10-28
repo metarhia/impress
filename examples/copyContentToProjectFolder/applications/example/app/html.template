@@ -57,7 +57,7 @@
     </div>
   </div>
   <div id="footer">
-    <div id="footer-panel">Copyright &copy; 2013 MetaSystems</div>
+    <div id="footer-panel">Copyright &copy; 2013-2014 MetaSystems</div>
   </div>
   @[forms]@
 </body>

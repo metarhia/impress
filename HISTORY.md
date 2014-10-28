@@ -1,3 +1,9 @@
+0.1.129 / 2014-10-28
+==================
+
+  * Changed key in application.workers hash, it was workerId (number), not it is nodeId, e.g. C1L1390 (unique for Impress cloud), issue #114
+  * Fixed bug in impress.killLongWorker
+
 0.1.128 / 2014-10-27
 ==================
 
