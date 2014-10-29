@@ -2,7 +2,7 @@ module.exports = function(client, callback) {
 
   var fileName = 'example.png';
 
-    client.res.setHeader('Content-Description', 'File Transfer');
+  client.res.setHeader('Content-Description', 'File Transfer');
   client.res.setHeader('Content-Type', 'application/x-download');
   client.res.setHeader('Content-Disposition', 'attachment; filename="'+fileName+'"');
   client.res.setHeader('Content-Transfer-Encoding', 'binary');

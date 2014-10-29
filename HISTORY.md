@@ -1,3 +1,9 @@
+0.1.130 / 2014-10-29
+==================
+
+  * Warning: plugin api.websocket renamed to impress.websocket
+  * Implemented gzip compression for handlers returning JSON above 256 bytes with cache support
+
 0.1.129 / 2014-10-28
 ==================
 

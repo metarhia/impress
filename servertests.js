@@ -33,6 +33,7 @@ if (api.cluster.isMaster) {
       {  get: '/examples/simple/jsonGet.json?field=value' },
       {  get: '/examples/cache/htmlPage.ajax' },
       {  get: '/examples/cache/apiMethod.json' },
+      {  get: '/examples/events/connect.sse' },
       { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
     ]
   };
@@ -102,7 +103,7 @@ function httpTask(task) {
     var req = api.http.request(request);
     req.on('response', function (res) {
       if (res.statusCode === 200) {
-        var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path + ' -> HTTP ' + res.statusCode;
+        var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path + ' -> HTTP ' + res.statusCode + ' read: '+res.socket.bytesRead;
         console.log('  ' + msg);
         res.on('error', function (err) {
           if (err) throw err;

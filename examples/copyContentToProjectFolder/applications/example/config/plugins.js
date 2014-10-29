@@ -3,6 +3,7 @@
 module.exports = [
   'impress.events',
   'impress.sse',
+  'impress.websocket',
   //'impress.passport',
   'impress.state',
 ];
