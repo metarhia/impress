@@ -1,3 +1,9 @@
+0.1.131 / 2014-10-30
+==================
+
+  * Moved gzip compression for JSON to higher abstraction level (Client.prototype.end), now it is also used for AJAX HTML above 256 bytes with cache support, issue #135
+  * Fixed index and introspection templates (prevent double http requests on click links)
+
 0.1.130 / 2014-10-29
 ==================
 

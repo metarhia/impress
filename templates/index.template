@@ -25,11 +25,12 @@ a {color:inherit;text-decoration:none}
 <script type='text/javascript'>
 window.onload = function() {
   var table = document.getElementById("files"),
-    rows = table.getElementsByTagName('tr');
+      rows = table.getElementsByTagName('tr');
   for (var i=1; i < rows.length; i++) {
     rows[i].onclick = function() {
       var a = this.getElementsByTagName('a')[0];
       document.location.href = a.href;
+      return false;
     }
   }
   var curRow = null, newRow = null;
