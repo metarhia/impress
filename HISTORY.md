@@ -1,3 +1,9 @@
+0.1.132 / 2014-10-31
+==================
+
+  * Refactored Client methods: .static, .end, .compress, and method baseHeader is depricated, close #135
+  * Fixed TCP example (telnet.js)
+
 0.1.131 / 2014-10-30
 ==================
 

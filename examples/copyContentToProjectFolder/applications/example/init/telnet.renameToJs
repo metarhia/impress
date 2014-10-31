@@ -1,28 +1,36 @@
 // TCP example: telnet server
+// Requires /config/cluster.js/strategy === 'multiple' or 'sticky'
 
-var port = 3000
-  host = '127.0.0.1';
+var server = null,
+    port = 3000,
+    host = '127.0.0.1';
 
-if (cluster.isMaster) {
-
+if (impress.config.cluster.strategy === 'single' || api.cluster.isMaster) {
   console.log('  TCP listen on '+host+':'+port);
-  var server = api.net.createServer(function(connection) { });
+}
 
-  module.exports = server;
+if (impress.config.cluster.strategy === 'single' || api.cluster.isWorker) {
+
+  server = api.net.createServer();
+  server.listen(port, host);
 
 } else {
 
-  var server = api.net.createServer(function(connection) {
-    console.log('TCP client connected');
-    connection.on('end', function() {
-      console.log('TCP client disconnected');
-    });
-    connection.write('Hello!\r\n');
-  });
-  server.on('error', function (e) {
-    console.log('Error: '+e);
-  });
-  server.listen(port, host, function() { });
-  module.exports = server;
+  server = api.net.createServer(function(connection) { });
 
-};
+}
+
+server.on('connection', telnet);
+server.on('error', function (e) {
+  console.log('Error: '+e);
+});
+
+module.exports = server;
+
+function telnet(connection) {
+  console.log('TCP client connected');
+  connection.on('end', function() {
+    console.log('TCP client disconnected');
+  });
+  connection.write('Hello!\r\n');
+}
