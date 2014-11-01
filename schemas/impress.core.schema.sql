@@ -126,4 +126,3 @@ CREATE INDEX idxSystemLogEventTime ON SystemLog (EventTime);
 CREATE INDEX idxSystemLogEventType ON SystemLog (EventType);
 
 ALTER TABLE SystemLog ADD CONSTRAINT fkSystemLogServerId FOREIGN KEY (ServerId) REFERENCES SystemServer (ServerId) ON DELETE CASCADE;
-

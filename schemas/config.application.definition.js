@@ -76,6 +76,6 @@ module.exports = {
     length:     '64:number',
     persist:    'true:boolean',
     database:   '[string]'
-  },
+  }
 
 };

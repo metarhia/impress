@@ -1,20 +1,21 @@
 module.exports = {
 
-  cloud: {
-    name:       'string',
-    type:       '(none,standalone,controller,server)',
-    controller: 'string',
-    pubSubPort: '3000:number',
-    reqResPort: '3001:number',
-    health:     '5s:duration'
-  },
-
-  cluster: {
+  scalse: {
     check:      '[string]',
-    name:       'string',
+
+    cloud:      'string',
+    instance:   '(none,standalone,controller,server)',
+
+    controller: 'string',
+    subPort:    '3000:number',
+    reqPort:    '3001:number',
+
+    cluster:    'string',
     cookie:     'node:string',
     strategy:   '(single,specialization,multiple,sticky)',
     workers:    '1:number',
+
+    health:     '5s:duration',
     nagle:      'false:boolean',
     gcInterval: '10m:duration'
   },

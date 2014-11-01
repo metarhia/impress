@@ -1,3 +1,9 @@
+0.1.133 / 2014-11-01
+==================
+
+  * Combined configs files: cluster.js and cloud.js to scale.js, close #136
+  * Fixed bug crashing web sockets initialization before upgrade http connection in impress.client.js
+
 0.1.132 / 2014-10-31
 ==================
 

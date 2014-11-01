@@ -31,6 +31,6 @@
       sid:      { caption: 'Password',  type: 'str', size: 64, nullable: false, index: { unique: true } },
       group:    { caption: 'Group',     type: 'str', size: 64 }
     }
-  },
+  }
 
 };

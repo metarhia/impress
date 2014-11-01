@@ -140,4 +140,3 @@ CREATE INDEX idxCmsFileCompression ON CmsFile (Compression);
 CREATE INDEX idxCmsFileIpAddress ON CmsFile (IpAddress);
 
 ALTER TABLE CmsFile ADD CONSTRAINT fkCmsFileSiteId FOREIGN KEY (SiteId) REFERENCES CmsSite (SiteId) ON DELETE SET NULL;
-
