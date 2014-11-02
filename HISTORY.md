@@ -1,3 +1,10 @@
+0.1.134 / 2014-11-02
+==================
+
+  * Cloud and cluster API are combined to module impress.scale.js, close #137
+  * Config plugins.js is merged to sandbox.js as .config.sandbox.plugins, close #138
+  * Fixed bug: prevented loading sandbox.js config file twice, close #139
+
 0.1.133 / 2014-11-01
 ==================
 

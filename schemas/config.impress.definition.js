@@ -29,13 +29,12 @@ module.exports = {
   },
 
   sandbox: {
-    global: '[array]',
-    api:    '[array]'
+    global:  '[array]',
+    api:     '[array]',
+    plugins: '[array]'
   },
 
   servers: '{{server}}',
-
-  plugins: 'string',
 
   server: {
     protocol: '(http,https)',

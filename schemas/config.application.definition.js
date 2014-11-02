@@ -8,7 +8,6 @@ module.exports = {
     mail:      '{mail}',
     routes:    '{{route}}',
     sessions:  '{sessions}',
-    plugins:   'array',
     sandbox:   '{sandbox}',
     _other:    '*'
   },
@@ -42,8 +41,9 @@ module.exports = {
   },
 
   sandbox: {
-    global: '[array]',
-    api:    '[array]'
+    global:  '[array]',
+    api:     '[array]',
+    plugins: '[array]'
   },
 
   mail: {

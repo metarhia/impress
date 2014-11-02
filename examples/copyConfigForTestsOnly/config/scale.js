@@ -1,4 +1,4 @@
-// Cloud and health configuration
+// Server scale configuration
 
 module.exports = {
   cloud:      'PrivateCloud',

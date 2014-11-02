@@ -36,6 +36,15 @@ module.exports = {
 
     // Passport providers
     // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
+  ],
+
+  // Plugins to be loaded using require by Impress
+  plugins: [
+    'impress.log',
+    'impress.security',
+    'impress.events',
+    'impress.sse',
+    'api.uglify'
   ]
 
 };

@@ -1,4 +1,4 @@
-// Cloud and health configuration
+// Server scale configuration
 
 module.exports = {
   check:      'http://127.0.0.1/', // if we can get this page it means that another copy is running
