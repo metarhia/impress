@@ -1,0 +1,3 @@
+var dbSecurity = api.definition.require('impress.security.schema');
+
+db.schema.validate(dbSecurity, true);

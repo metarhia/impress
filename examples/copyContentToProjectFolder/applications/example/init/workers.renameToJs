@@ -1,0 +1,17 @@
+if (api.cluster.isWorker){
+
+  setInterval(function() {
+    console.log('Worker Process: '+impress.nodeId);
+    console.dir({ workers: application.workers });
+    console.log('---');
+  }, 5000);
+
+} else {
+
+  setInterval(function() {
+    console.log('Master Process: '+impress.nodeId);
+    console.dir({ workers: application.workers });
+    console.log('---');
+  }, 5000);
+
+}

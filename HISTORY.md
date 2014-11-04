@@ -1,3 +1,8 @@
+0.1.135 / 2014-11-03
+==================
+
+  * Fixed workers list in master process and changed worker list fields, close #114
+
 0.1.134 / 2014-11-02
 ==================
 
