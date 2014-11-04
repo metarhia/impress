@@ -1,3 +1,9 @@
+0.1.136 / 2014-11-04
+==================
+
+  * Fixed process forking and environment variables, impress.workerId, impress.workerTypr and impress.nodeId generation
+  * Fixes in issue #114
+
 0.1.135 / 2014-11-03
 ==================
 
