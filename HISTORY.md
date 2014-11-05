@@ -1,3 +1,10 @@
+0.1.137 / 2014-11-05
+==================
+
+  * Implemented state transactions and multiple additional methods to /lib/impress.state.js, issue #129
+  * Changes in impress.utilities: renamed .dataByPath to .getByPath, renamed .setDataByPath to .setByPath, added .deleteByPath
+  * Some code style refactoring
+
 0.1.136 / 2014-11-04
 ==================
 
