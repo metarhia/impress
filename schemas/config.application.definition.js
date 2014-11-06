@@ -37,7 +37,8 @@ module.exports = {
     writeInterval:  '5s:duration',
     writeBuffer:    '64kb:size',
     applicationLog: 'false:boolean',
-    serverLog:      'true:boolean'
+    serverLog:      'true:boolean',
+    stdout:         '[array]'
   },
 
   sandbox: {

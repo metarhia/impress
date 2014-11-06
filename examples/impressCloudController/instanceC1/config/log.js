@@ -6,4 +6,5 @@ module.exports = {
   writeBuffer:    64*1024, // Buffer size 64kb
   applicationLog: false,   // Write log to application folder
   serverLog:      true,    // Write log to server global folder
+  stdout:         ['error', 'debug'] // output log files to stdout
 };

@@ -1,3 +1,8 @@
+0.1.138 / 2014-11-06
+==================
+
+  * Added parameter to /config/log.js example: stdout: ['error', 'debug'] output log files to stdout
+
 0.1.137 / 2014-11-05
 ==================
 
