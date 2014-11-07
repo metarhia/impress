@@ -1,3 +1,11 @@
+0.1.139 / 2014-11-07
+==================
+
+  * Implemented dev configuration, close #140
+  Environment variable IMPRESS_MODE determine which config file to load, IMPRESS_MODE may be empty or have any value, "dev" is just for example.
+  When IMPRESS_MODE empty or not set, file.js will be loaded and file.dev.js will not be loaded.
+  When IMPRESS_MODE=dev, file.dev.js will be loaded and file.js will not be loaded except the case when file.dev.js is not exist.
+
 0.1.138 / 2014-11-06
 ==================
 
