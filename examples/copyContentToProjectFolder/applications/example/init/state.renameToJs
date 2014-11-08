@@ -5,7 +5,7 @@ application.state.data.car = {
 
 if (api.cluster.isWorker) {
 
-  //if (impress.nodeId === 'C1N2' || impress.nodeId === 'C1N3') {
+  if (impress.nodeId === 'C1N2' || impress.nodeId === 'C1N3') {
 
     setInterval(function() {
       application.state.inc('car.speed', 2, '5s');
@@ -24,16 +24,22 @@ if (api.cluster.isWorker) {
     }, random(2000, 4000));
 
     setInterval(function() {
-      application.state.data.car.name = 'nameOne';
-      application.state.sync('car.name', '5s');
+      application.state.set('car.name', 'nameOne', '5s');
     }, random(1000, 5000));
 
     setInterval(function() {
-      application.state.data.car.name = 'nameTwo';
-      application.state.sync('car.name', '7s');
+      application.state.set('car.name', 'nameTwo', '7s');
     }, random(2000, 6000));
 
-  //}
+  }
+
+  application.state.subscribe('car.speed', function(path, value, remote) {
+    console.log('State subscribe in: ' + impress.nodeId+' path='+path+', value='+value+', remote='+remote);
+  });
+
+  application.state.watch('car', function(path, value, remote) {
+    console.log('State watch in: ' + impress.nodeId+' path='+path+', value='+value+', remote='+remote);
+  });
 
   setInterval(function() {
     console.log('Data: '+impress.nodeId+' '+JSON.stringify(application.state.data.car));

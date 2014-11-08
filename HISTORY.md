@@ -1,3 +1,9 @@
+0.1.140 / 2014-11-08
+==================
+
+  * Implemented state subscription, e.g. application.state.subscribe('car.speed', function(path, value) {}); issue #129, close #141
+  * Fixed examples, changed impress.config.cluster to impress.config.scale, added application.state.subscribe example: /init/state.js
+
 0.1.139 / 2014-11-07
 ==================
 
