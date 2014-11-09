@@ -22,6 +22,6 @@ module.exports = function(client, callback) {
     },
   };
 
-  callback( /* you can assign result to client.context.data or place here as callback first parameter */);
+  callback(/* you can assign result to client.context.data or place here as callback first parameter */);
 
 }

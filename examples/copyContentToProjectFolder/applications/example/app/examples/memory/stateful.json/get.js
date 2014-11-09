@@ -4,7 +4,7 @@
   application.stateTest.counter++;
 
   var st = application.stateTest,
-    ip = client.req.connection.remoteAddress;
+      ip = client.req.connection.remoteAddress;
 
   if (st.addresses.indexOf(ip) == -1) st.addresses.push(ip);
 

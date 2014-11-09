@@ -10,13 +10,14 @@
     function(response) {
       var data = '';
       response.on('data', function(chunk) {
-        data = data+chunk;
+        data += chunk;
       });
       response.on('end', function() {
         callback(data);
       });
     }
   );
+
   req.on('error', function(e) {
     callback("Can't get page");
   });

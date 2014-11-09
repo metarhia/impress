@@ -1,4 +1,4 @@
 ﻿module.exports = {
-  realm:  "Restricted area",
-  auth:   "user:password"
+  realm: "Restricted area",
+  auth:  "user:password"
 }

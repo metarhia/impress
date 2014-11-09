@@ -6,7 +6,7 @@ var server = null,
     host = '127.0.0.1';
 
 if (impress.config.scale.strategy === 'single' || api.cluster.isMaster) {
-  console.log('  TCP listen on '+host+':'+port);
+  console.log('  TCP listen on ' + host + ':' + port);
 }
 
 if (impress.config.scale.strategy === 'single' || api.cluster.isWorker) {
@@ -22,7 +22,7 @@ if (impress.config.scale.strategy === 'single' || api.cluster.isWorker) {
 
 server.on('connection', telnet);
 server.on('error', function (e) {
-  console.log('Error: '+e);
+  console.log('Error: ' + e);
 });
 
 module.exports = server;

@@ -39,16 +39,18 @@ global.onLoad(function() {
 
   $(document).on('click', '#formRegDo', function(event) {
     var inputEmail = $('#formRegEmail'),
-      inputPassword = $('#formRegPassword'),
-      RegValidation = null,
-      Data = { "Email": inputEmail.val() };
+        inputPassword = $('#formRegPassword'),
+        RegValidation = null,
+        Data = { "Email": inputEmail.val() };
     auth.regValidation(Data, function(err, json) {
       RegValidation = json;
       if (RegValidation!=null) {
         Data.Password = inputPassword.val();
         if (RegValidation.Email) {
           inputEmail.removeClass('invalid');
-          auth.register(Data, function(err, data) { if (data.Result=='Ok') window.location.reload(true); });
+          auth.register(Data, function(err, data) {
+            if (data.Result=='Ok') window.location.reload(true);
+          });
         } else inputEmail.addClass('invalid').focus();
       }
     });
@@ -193,90 +195,9 @@ global.onLoad(function() {
   $(document).on('click', '#menuSendMail', function() {
   });
 
-  $(document).on('click', '#menuHealth', function() {
-    panelCenter.html('<div id="chartHealth"></div>');
-
-    //var n = 40,
-    //  random = d3.random.normal(0, .2),
-    //  data = d3.range(n).map(random);
-
-    var n = 40;
-
-    for (var i = 0, data = new Array(n); i < n;) data[i++] = 0;
-
-    var margin = {top: 20, right: 20, bottom: 20, left: 40},
-      width = 960 - margin.left - margin.right,
-      height = 300 - margin.top - margin.bottom;
-
-    var x = d3.scale.linear().domain([0, n - 1]).range([0, width]);
-
-    var y = d3.scale.linear().domain([0, 1]).range([height, 0]);
-
-    var line = d3.svg.line()
-      .x(function(d, i) { return x(i); })
-      .y(function(d, i) { return y(d); });
-
-    var svg = d3.select("#chartHealth")
-      .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    svg.append("defs")
-      .append("clipPath")
-        .attr("id", "clip")
-      .append("rect")
-        .attr("width", width)
-        .attr("height", height);
-
-    svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + y(0) + ")")
-      .call(d3.svg.axis().scale(x).orient("bottom"));
-
-    svg.append("g")
-      .attr("class", "y axis")
-      .call(d3.svg.axis().scale(y).orient("left"));
-
-    var path = svg
-      .append("g")
-        .attr("clip-path", "url(#clip)")
-      .append("path")
-        .datum(data)
-        .attr("class", "line")
-        .attr("d", line);
-
-    tick();
-
-    function bytesToSize(bytes) {
-      if (bytes == 0) return 0;
-      var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-      return Math.round(bytes / Math.pow(1024, i), 2) / 1024;
-    }
-
-    function tick() {
-      $.get('/examples/tools/serverHealth.json', function(res) {
-        data.push(bytesToSize(res.memory.heapUsed));
-        console.log(res.memory.heapUsed+'   '+bytesToSize(res.memory.heapUsed));
-
-        path
-          .attr("d", line)
-          .attr("transform", null)
-        .transition()
-          .duration(1000)
-          .ease("linear")
-          .attr("transform", "translate(" + x(-1) + ",0)")
-          .each("end", tick);
-        data.shift();
-      });
-    }
-
-  });
-
   $(document).on('click', '#btnApplySetup', function() {
     var npmModules = $('#npmModules input'),
-      npmChecked = [];
+        npmChecked = [];
     npmModules.each(function() {
       if ($(this)[0].checked) npmChecked.push($(this).val());
     });
@@ -352,7 +273,7 @@ function closeForm() {
 }
 
 $(document).keydown(function(event) {
-  if      (event.keyCode == 27) closeForm();
+  if (event.keyCode == 27) closeForm();
   else if (event.keyCode == 13) $('#popup .form .save').trigger('click');
 });
 
@@ -377,7 +298,7 @@ function confirmation(Title,Message,eventYes,Buttons) {
   form.togglePopup();
 }
 
-$(document).on('click','#formConfirmation .button.save',function(event) {
+$(document).on('click', '#formConfirmation .button.save', function(event) {
   if (typeof(formConfirmationYes)=='function') formConfirmationYes();
   formConfirmationYes = null;
   closeForm();
@@ -397,7 +318,7 @@ function input(Title,Prompt,DefaultValue,eventOk) {
   form.togglePopup();
 }
 
-$(document).on('click','#formInputOk',function(event) {
+$(document).on('click', '#formInputOk', function(event) {
   if (formInputOk) formInputOk($('#formInputValue').val());
   formInputOk = null;
   closeForm();

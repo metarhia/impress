@@ -1,3 +1,10 @@
+0.1.141 / 2014-11-09
+==================
+
+  * Implemented merge state changes, close #142
+  * Fixed application.state.delete and application.state.rollback, depricated application.state.sync, close #143
+  * Examples code refactoring
+
 0.1.140 / 2014-11-08
 ==================
 
