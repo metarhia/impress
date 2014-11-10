@@ -1,3 +1,10 @@
+0.1.142 / 2014-11-10
+==================
+
+  * Removed double message in fatalError and fixed impress.log to write fatal errors to log file, close #146
+  * Added node.js internal modules tls, punycode, child_process and string_decoder to api namespace respectively as: api.tls, api.punycode, api.cp and api.sd
+  * Constants refactored
+
 0.1.141 / 2014-11-09
 ==================
 
