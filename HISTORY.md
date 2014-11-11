@@ -1,3 +1,9 @@
+0.1.143 / 2014-11-11
+==================
+
+  * Implemented logging any process crash, child processes start/stop, long workers stsrt/stop/terminate, close #152
+  * Fixed impress.processMarker format for long workers
+
 0.1.142 / 2014-11-10
 ==================
 
