@@ -1,4 +1,9 @@
-0.1.144 / 2014-11-12
+0.1.145 / 2014-11-14
+==================
+
+  * Fixed exception when trying to get nonexistent handler, issue #158
+
+0.1.144 / 2014-11-13
 ==================
 
   * Added zmq transport for state sync, close #156
