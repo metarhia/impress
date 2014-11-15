@@ -3,7 +3,4 @@
 
 module.exports = [
   '127.0.0.1',        // IP address
-  // 'domain.com',    // domain name
-  // '*.domain.com',  // masked domain name
-  // '*",             // all
 ];

@@ -51,7 +51,8 @@ module.exports = {
     //'impress.security.mongodb',
     //'impress.health',
     //'impress.scale',
-    'api.uglify',
+    //'api.uglify',
+    //'api.saas',
     //'api.mail',
     //'api.geoip',
     'impress.events',
@@ -60,4 +61,4 @@ module.exports = {
     //'impress.passport'
   ]
 
-};
+}

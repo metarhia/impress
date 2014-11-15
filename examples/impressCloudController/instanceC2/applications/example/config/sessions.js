@@ -9,4 +9,4 @@ module.exports = {
   persist:    true,      // Store sessions in persistent database
   database:   'impress', // Database connection name to store sessions
   // domain:     'name.com' // optional domain for cookie '.domain.com' for all subdomains
-};
+}

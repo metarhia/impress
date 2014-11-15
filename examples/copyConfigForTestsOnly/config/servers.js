@@ -6,4 +6,4 @@ module.exports = {
     nagle:    true,
     slowTime: '2s'
   }
-};
+}

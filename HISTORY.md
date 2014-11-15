@@ -1,3 +1,9 @@
+0.1.146 / 2014-11-15
+==================
+
+  * Added sass/scss preprocessing, refactored js minification
+  * Deprecated application config parameter: files.js/minify
+
 0.1.145 / 2014-11-14
 ==================
 

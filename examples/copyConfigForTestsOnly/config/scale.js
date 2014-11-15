@@ -15,5 +15,5 @@ module.exports = {
 
   health:     '5s',
   nagle:      false,
-  gcInterval: 0,
-};
+  gcInterval: 0
+}

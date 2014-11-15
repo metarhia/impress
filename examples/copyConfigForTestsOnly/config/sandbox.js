@@ -2,17 +2,6 @@
 
 module.exports = {
 
-  // Following identifiers will be visible in sandbox global
-  // There is no need to uncomment this if you you do not want to override list
-  // You can hide 
-  // 
-  // global: [
-  //  'require', 'console', 'Buffer', 'process',
-  //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate'
-  // ],
-
-  // Following identifiers will be visible in sandbox as api.<name>
-  //
   api: [
     // Node internal modules
     'os', 'cluster', 'domain', 'crypto', 'util',
@@ -31,14 +20,10 @@ module.exports = {
     'nodemailer',
     'mkdirp',
     'request',
-    'zipstream', // npm modile zip-stream
-    'stringify', // npm module json-stringify-safe
-
-    // Passport providers
-    // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
+    'zipstream',
+    'stringify',
   ],
 
-  // Plugins to be loaded using require by Impress
   plugins: [
     'impress.log',
     'impress.security',
@@ -47,4 +32,4 @@ module.exports = {
     'api.uglify'
   ]
 
-};
+}

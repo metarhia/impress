@@ -17,4 +17,4 @@ module.exports = {
   health:     '5s',      // health monitoring interval
   nagle:      false,     // Nagle algorithm
   gcInterval: 0,         // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
-};
+}
