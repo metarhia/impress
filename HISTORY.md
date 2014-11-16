@@ -1,3 +1,8 @@
+0.1.147 / 2014-11-16
+==================
+
+  * Fixes in SSE (for chrome), added client.heartbeat = true/false;
+
 0.1.146 / 2014-11-15
 ==================
 

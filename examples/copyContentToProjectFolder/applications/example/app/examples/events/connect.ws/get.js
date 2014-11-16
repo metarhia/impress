@@ -1,7 +1,6 @@
 module.exports = function(client, callback) {
 
   var connection = client.res.websocket.accept();
-
   connection.send('Hello world');
 
   connection.on('message', function(message) {
@@ -13,5 +12,4 @@ module.exports = function(client, callback) {
   });
 
   callback();
-
 }
