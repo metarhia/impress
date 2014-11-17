@@ -8,7 +8,7 @@ module.exports = {
   subPort:    3000,              // bublisher/subscriber port
   reqPort:    3001,              // request/reply port
 
-  cluster:    'C3',              // Cluster name to identify it in loadbalancing infrastructure
+  cluster:    'auto',            // Cluster name to identify it in loadbalancing infrastructure
   cookie:     'node',            // Cookie name for loadbalancing (cookie value will be 'C1'+'N1')
   strategy:   'multiple',
 

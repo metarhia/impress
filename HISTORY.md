@@ -1,3 +1,9 @@
+0.1.148 / 2014-11-17
+==================
+
+  * Fixes in SSE implementation after testing on desktop browsers and mobile browsers
+  * Implemented cluster id generation in Impress Cloud Controller, issue #149
+
 0.1.147 / 2014-11-16
 ==================
 

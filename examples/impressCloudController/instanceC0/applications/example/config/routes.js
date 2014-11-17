@@ -18,9 +18,7 @@ module.exports = [
     escaping: false,              // use full regexp syntax, no escaping for '?' and '.'
     url:      '^/(?!client)(.*)',
     rewrite:  '/client/[1]'
-  }
-*/
-
+  },
   {
     url : "^/portfolio/(.+)/([0-9]{1,3})",
     rewrite:  "/detail/[1]/[2]",
@@ -28,8 +26,9 @@ module.exports = [
   },
   {
     url : "^/portfolio/([^/]+)",
-    rewrite:  "/deseacelist/[1]",
+    rewrite:  "/list/[1]",
     escaping: false
   }
+*/
 
 ];
