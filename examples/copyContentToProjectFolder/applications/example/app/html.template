@@ -23,6 +23,7 @@
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/eventsource.min.js"></script>
   <script type="text/javascript" src="/js/global.js"></script>
+  <script type="text/javascript" src="/js/global.browser.js"></script>
   <script type="text/javascript" src="/js/mobilization.js"></script>
   <script type="text/javascript" src="/js/wcl.js"></script>
   <script type="text/javascript" src="/js/scroller/scroller.js"></script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Example Application for Impress Application Server</title>
+  <meta charset="UTF-8">
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <script type="text/javascript" src="/js/global.js"></script>
+  <script type="text/javascript" src="/js/global.browser.js"></script>
+  <script type="text/javascript" src="/js/eventsource.min.js"></script>
+  <script type="text/javascript" src="/js/wcl.js"></script>
+  <script type="text/javascript" src="/js/init.js"></script>
+</head>
+<body>
+<h1>Example Application for Impress Application Server</h1>
+<div id="output">
+</div>
+</body>
+</html>

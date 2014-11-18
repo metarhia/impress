@@ -1,0 +1,16 @@
+{
+  "name": "impress-starter",
+  "version": "0.0.1",
+  "description": "Impress Application Server quick start API",
+  "dependencies": {
+    "impress": "0.1.x"
+  },
+  "engines": {
+    "node": ">=0.10.6"
+  },
+  "author": {
+    "name": "Timur Shemsedinov",
+    "email": "timur.shemsedinov@gmial.com"
+  },
+  "license": "MIT & RUMI"
+}

@@ -1,0 +1,17 @@
+* {
+  outline: none;
+  cursor: default;
+}
+a, a * {
+  cursor: pointer;
+}
+html, body {
+  font-family: Tahoma,Arial,sans-serif;
+  font-size: 9pt;
+  overflow: hidden;
+  background: #47483e;
+  color: #90c640;
+}
+h1 {
+  color: #fff;
+}
