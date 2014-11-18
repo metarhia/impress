@@ -1,3 +1,10 @@
+0.1.149 / 2014-11-18
+==================
+
+  * Implemented handler parameters validation / auto parsing, issue #154
+  * Added SSE testing application
+  * Refactored client-side global.js, extracted global.browser.js
+
 0.1.148 / 2014-11-17
 ==================
 

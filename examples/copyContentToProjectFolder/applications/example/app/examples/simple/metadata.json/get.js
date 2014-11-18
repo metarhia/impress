@@ -1,8 +1,8 @@
 ﻿var meta = {
   description: "Test method description",
-  par: {
-    "par1:int": "Parameter #1",
-    "par2:int": "Parameter #2"
+  parameters: {
+    "par1": "number   // Parameter #1",
+    "par2": "5:string // Parameter #2",
   },
   result: "Returns JSON {a:1}"
 };
