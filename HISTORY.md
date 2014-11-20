@@ -1,3 +1,9 @@
+0.1.151 / 2014-11-20
+==================
+
+  * Changes in parameters processing, close #154
+  * Critical fixes in data structures definition / validation, use default values
+
 0.1.150 / 2014-11-19
 ==================
 
