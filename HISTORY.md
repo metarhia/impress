@@ -1,3 +1,9 @@
+0.1.152 / 2014-11-21
+==================
+
+  * Fixed critical bug in logging subsystem as result of config boolean validation problem
+  * Optimized vm script error handling and logging
+
 0.1.151 / 2014-11-20
 ==================
 
