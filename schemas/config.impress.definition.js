@@ -17,7 +17,8 @@ module.exports = {
 
     health:     '5s:duration',
     nagle:      'false:boolean',
-    gcInterval: '10m:duration'
+    gcInterval: '10m:duration',
+    watchInterval: '2s:duration'
   },
 
   log: {

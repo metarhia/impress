@@ -1,3 +1,9 @@
+0.1.154 / 2014-11-24
+==================
+
+  * Multiple non-critical fixes and optimizations
+  * Added scale.js/watchInterval parameter for fs watch timeout, close #148
+
 0.1.153 / 2014-11-22
 ==================
 
