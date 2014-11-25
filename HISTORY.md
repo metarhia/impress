@@ -1,3 +1,8 @@
+0.1.155 / 2014-11-25
+==================
+
+  * Fixed parse error on js and sass (scss) parse/preprocessing, close #163
+
 0.1.154 / 2014-11-24
 ==================
 
