@@ -1,3 +1,10 @@
+0.1.156 / 2014-11-26
+==================
+
+  * Implemented programmatically adding path handlers, close #165
+  * Added status 404 for js and sass parse errors, issue #163
+  * Fixed bug in Client.prototype.detectRealPath
+
 0.1.155 / 2014-11-25
 ==================
 
