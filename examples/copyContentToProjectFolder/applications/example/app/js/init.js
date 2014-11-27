@@ -1,7 +1,7 @@
 global.onLoad(function() {
 
   $('body').addClass('js');
-  $.fixCookie("SID");
+  $.fixCookie('SID');
 
   //global.disableContextMenu();
   //global.disableCopy();
@@ -12,9 +12,9 @@ global.onLoad(function() {
   panelRight = $('#panel-right');
 
   var auth = wcl.AjaxDataSource({
-    regValidation:  { post: "/api/auth/regvalidation.json" },
-    register:       { post: "/api/auth/register.json" },
-    signOut:        { post: "/api/auth/signOut.json" },
+    regValidation:  { post: '/api/auth/regvalidation.json' },
+    register:       { post: '/api/auth/register.json' },
+    signOut:        { post: '/api/auth/signOut.json' },
   });
 
   // --- Auth Module ---
@@ -41,7 +41,7 @@ global.onLoad(function() {
     var inputEmail = $('#formRegEmail'),
         inputPassword = $('#formRegPassword'),
         RegValidation = null,
-        Data = { "Email": inputEmail.val() };
+        Data = { 'Email': inputEmail.val() };
     auth.regValidation(Data, function(err, json) {
       RegValidation = json;
       if (RegValidation!=null) {
@@ -65,14 +65,14 @@ global.onLoad(function() {
 
   $(document).on('click', '#menuAJAX', function() {
     var parameterName = 'paramaterValue';
-    panelCenter.load('/examples/simple/ajaxTest.ajax?parameterName='+parameterName);
+    panelCenter.load('/examples/simple/ajaxTest.ajax?parameterName=' + parameterName);
   });
 
   $(document).on('click', '#menuGetJSON', function() {
     var parameterName = 'paramaterValue';
     panelCenter.empty().html('<div class="progress"></div>');
-    $.get('/examples/simple/jsonGet.json?parameterName='+parameterName, function(res) {
-      panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
+    $.get('/examples/simple/jsonGet.json?parameterName=' + parameterName, function(res) {
+      panelCenter.html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
     });
   });
 
@@ -80,7 +80,7 @@ global.onLoad(function() {
     var parameterName = 'paramaterValue';
     panelCenter.empty().html('<div class="progress"></div>');
     $.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(res) {
-      panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
+      panelCenter.html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
     });
   });
 
@@ -119,28 +119,28 @@ global.onLoad(function() {
   $(document).on('click', '#menuGeoIP', function() {
     panelCenter.empty().html('<div class="progress"></div>');
     $.get('/examples/tools/geoip.json', function(res) {
-      panelCenter.html('<pre>'+JSON.stringify(res, null, 2)+'</pre>');
+      panelCenter.html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
     });
   });
 
   $(document).on('click', '#menuWS', function() {
-    ws = new WebSocket("ws://127.0.0.1:80/examples/events/connect.ws");
+    ws = new WebSocket('ws://127.0.0.1:80/examples/events/connect.ws');
     panelCenter.html(
-      '<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> '+
-      '<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>'+
+      '<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> ' +
+      '<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>' +
       '<hr>Connecting...<hr>'
     );
 
     ws.onopen = function() {
-      panelCenter.append("Connection opened<hr>");
+      panelCenter.append('Connection opened<hr>');
     }
 
     ws.onclose = function() {
-      panelCenter.append("Connection closed<hr>");
+      panelCenter.append('Connection closed<hr>');
     }
 
     ws.onmessage = function(evt) {
-      panelCenter.append("Message from server: "+evt.data+"<hr>");
+      panelCenter.append('Message from server: ' + evt.data + '<hr>');
     }
 
     $('#btnWsClose').on('click', function() {
@@ -149,44 +149,44 @@ global.onLoad(function() {
     });
 
     $('#btnWsSend').on('click', function() {
-      panelCenter.append("Sending to server: Hello<hr>");
-      ws.send("Hello");
+      panelCenter.append('Sending to server: Hello<hr>');
+      ws.send('Hello');
     });
   });
   
   $(document).on('click', '#menuSSE', function() {
     panelCenter.html(
-      '<a class="button silver" id="btnSseClose"><span class="icon delete"></span>Close connection</a> '+
-      '<a class="button silver" id="btnSseSend"><span class="icon handshake"></span>Send event to server</a>'+
+      '<a class="button silver" id="btnSseClose"><span class="icon delete"></span>Close connection</a> ' +
+      '<a class="button silver" id="btnSseSend"><span class="icon handshake"></span>Send event to server</a>' +
       '<hr>Connecting...<hr>'
     );
     sseConnect();
   });
 
   function sseConnect() {
-    var sse = new EventSource("/examples/events/connect.sse");
+    var sse = new EventSource('/examples/events/connect.sse');
 
-    sse.addEventListener("TestEvent", function(e) {
-      panelCenter.append("Event: "+e.type+"; Data: "+e.data+"<hr>");
+    sse.addEventListener('TestEvent', function(e) {
+      panelCenter.append('Event: ' + e.type + '; Data: ' + e.data + '<hr>');
     });
 
-    sse.addEventListener("open", function(e) {
-      panelCenter.append("Connection opened<hr>");
+    sse.addEventListener('open', function(e) {
+      panelCenter.append('Connection opened<hr>');
     }, false);
 
-    sse.addEventListener("error", function(e) {
-      if (e.readyState == EventSource.CLOSED) panelCenter.append("Connection closed by server<hr>");
-      else panelCenter.append("SSE Error: readyState="+sse.readyState+"<hr>");
+    sse.addEventListener('error', function(e) {
+      if (e.readyState == EventSource.CLOSED) panelCenter.append('Connection closed by server<hr>');
+      else panelCenter.append('SSE Error: readyState=' + sse.readyState + '<hr>');
     }, false);
 
     $('#btnSseClose').on('click', function() {
       sse.close();
-      panelCenter.append("Connection closed by user<hr>");
+      panelCenter.append('Connection closed by user<hr>');
       $('#btnSseClose').hide();
     });
 
     $('#btnSseSend').on('click', function() {
-      panelCenter.append("Sending event to server, it should return back.<hr>");
+      panelCenter.append('Sending event to server, it should return back.<hr>');
       $.get('/examples/events/sendEvent.json', function(res) {
       });
     });
@@ -289,7 +289,7 @@ function confirmation(Title,Message,eventYes,Buttons) {
   var form = $('#formConfirmation');
   if (typeof(Buttons)=='undefined') Buttons = ['Cancel','Yes'];
   $('.header',form).html(Title);
-  $('.message',form).html('<br/>'+Message+'<br/><br/>');
+  $('.message',form).html('<br/>' + Message + '<br/><br/>');
   formConfirmationYes = eventYes;
   $('#formConfirmationYes').visible($.inArray('Yes', Buttons)>-1);
   $('#formConfirmationOk').visible($.inArray('Ok', Buttons)>-1);

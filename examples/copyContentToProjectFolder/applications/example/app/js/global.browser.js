@@ -18,13 +18,13 @@ if (isBrowser) {
         counter++;
         this.script.loaded = true;
         global.scripts[script.namespace] = this.script;
-        if (counter == scripts.length && callback) callback();
+        if (counter === scripts.length && callback) callback();
       },
       scriptError = function() {
         counter++;
         delete this.script;
         head.removeChild(this);
-        if (counter == scripts.length && callback) callback();
+        if (counter === scripts.length && callback) callback();
       }
     for (var i=0; i<scripts.length; ++i) {
       var path = scripts[i],
@@ -63,7 +63,7 @@ if (isBrowser) {
       var img = document.createElement('img'),
         fn = function() {
           counter++;
-          if (counter == images.length) callback();
+          if (counter === images.length) callback();
         }
       addEvent(img, 'load', fn);
       addEvent(img, 'error', fn);
@@ -86,7 +86,7 @@ if (isBrowser) {
     iPod: navigator.userAgent.match(/iPod/i),
     iPad: navigator.userAgent.match(/iPad/i),
     Android: navigator.userAgent.match(/Android/i),
-    IE: navigator.appName.indexOf("Microsoft") != -1,
+    IE: navigator.appName.indexOf("Microsoft") !== -1,
     IEMobile: navigator.userAgent.match(/IEMobile/i),
     Chrome: !!window.chrome, // navigator.userAgent.match(/Chrome/i),
     Safari: navigator.userAgent.match(/Safari/i) && !window.chrome,
@@ -116,13 +116,13 @@ if (isBrowser) {
     }
   } else {
     global.getElementsByClass = function(classList, context) {
-      var context = context || document,
-        list = context.getElementsByTagName('*'),
+      context = context || document;
+      var list = context.getElementsByTagName('*'),
         classArray = classList.split(/\s+/),
         result = [], i,j;
       for (i=0; i<list.length; i++) {
         for(j=0; j<classArray.length; j++) {
-          if(list[i].className.search('\\b'+classArray[j]+'\\b') != -1) {
+          if(list[i].className.search('\\b'+classArray[j]+'\\b') !== -1) {
             result.push(list[i]);
             break;
           }
@@ -156,7 +156,7 @@ if (isBrowser) {
     if (element.addEventListener) {
       return element.addEventListener(event, fn, false);
     } else if (element.attachEvent) {
-      callback = function() { fn.call(element) }
+      var callback = function() { fn.call(element) }
       return element.attachEvent('on'+event, callback);
     } else return false;
   }
@@ -185,7 +185,7 @@ if (isBrowser) {
   global.onBeforeUnload = function(fn) {
     addEvent(global, 'beforeunload', function(event) {
       var message = fn(event);
-      if (typeof(event) == "undefined") event = window.event;
+      if (typeof(event) === "undefined") event = window.event;
       if (event) event.returnValue = message;
       return message;
     });
@@ -203,7 +203,7 @@ if (isBrowser) {
       var img = document.createElement('img'),
         fn = function() {
           counter++;
-          if (counter == images.length) callback();
+          if (counter === images.length) callback();
         }
       addEvent(img, 'load', fn);
       addEvent(img, 'error', fn);
@@ -216,10 +216,10 @@ if (isBrowser) {
   // Call disableSelection on page load with element to disable or without parameters to disable selection in whole page
   global.disableSelection = function(target) {
     target = target || html;
-    if (typeof(target.onselectstart) != "undefined") target.onselectstart=falseness //For IE
-    else if (typeof(target.style.MozUserSelect) != "undefined") { //For Firefox
+    if (typeof(target.onselectstart) !== "undefined") target.onselectstart=falseness //For IE
+    else if (typeof(target.style.MozUserSelect) !== "undefined") { //For Firefox
       target.style.MozUserSelect="none";
-      //if (target == body || target == html)
+      //if (target === body || target === html)
       //  for (var i=0; i<body.children.length; i++)
       //    body.children[i].style.MozUserSelect="none";
     } else target.onmousedown=falseness; //All other browsers (Opera)
@@ -256,9 +256,9 @@ if (isBrowser) {
       console.log('key='+key+' ctrlDown='+ctrlDown);
       // Check for Alt+Gr (http://en.wikipedia.org/wiki/AltGr_key)
       if (ctrlDown && event.altKey) result = true;
-      else if (ctrlDown && key == 67) result = false  // ctrl+c
-      else if (ctrlDown && key == 86) result = false  // ctrl+v
-      else if (ctrlDown && key == 88) result = false; // ctrl+x
+      else if (ctrlDown && key === 67) result = false  // ctrl+c
+      else if (ctrlDown && key === 86) result = false  // ctrl+v
+      else if (ctrlDown && key === 88) result = false; // ctrl+x
   
       event.returnValue = result;
       return result;

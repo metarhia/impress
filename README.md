@@ -145,23 +145,6 @@ module.exports = {
 }
 ```
 
-Example #4
-File `/api/method.json/post.js`, Request type `POST`
-```javascript
-module.exports = function(client, callback) {
-    dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
-        callback(nodes);
-    });
-}
-```
-Result:
-```javascript
-[
-    { "login": "Vasia Pupkin", "password": "whoami", "group": "users" },
-    { "login": "Marcus Aurelius", "password": "tomyself", "group": "users" }
-]
-```
-
 ## Configuration
 
 1. Install Impress as described above.

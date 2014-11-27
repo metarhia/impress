@@ -4,36 +4,32 @@ global.onLoad(function() {
 
   output = document.getElementById('output');
 
-  console.log('---1');
-
   api = wcl.AjaxDataSource({
-    mathodOne: { post: "/api/methodOne.json" },
-    mathodTwo: { get:  "/api/methodTwo.json" }
+    mathodOne: { post: '/api/methodOne.json' },
+    mathodTwo: { get:  '/api/methodTwo.json' }
   });
 
   sseConnect();
 
   function sseConnect() {
-    console.log('---2');
+    var sse = new EventSource('/api/connect.sse');
 
-    var sse = new EventSource("/api/connect.sse");
-
-    sse.addEventListener("TestEvent", function(e) {
-      log("Event: "+e.type+"; Data: "+e.data);
+    sse.addEventListener('TestEvent', function(e) {
+      log('Event: ' + e.type + '; Data: ' + e.data);
     });
 
-    sse.addEventListener("open", function(e) {
+    sse.addEventListener('open', function(e) {
       log('Connection opened');
     }, false);
 
-    sse.addEventListener("error", function(e) {
+    sse.addEventListener('error', function(e) {
       if (e.readyState == EventSource.CLOSED) log('Connection closed by server');
       else log('SSE Error: readyState = ' + sse.readyState);
     }, false);
 
     //sse.close();
 
-    // panelCenter.append("Sending event to server, it should return back.<hr>");
+    // panelCenter.append('Sending event to server, it should return back.<hr>');
     // $.get('/examples/events/sendEvent.json', function(res) {
 
   }

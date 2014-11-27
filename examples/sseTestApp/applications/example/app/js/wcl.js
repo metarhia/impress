@@ -25,10 +25,11 @@
     }
     api.init = function(methods) {
       api.methods = methods;
-      for (var method in api.methods) {
+      var method;
+      for (method in api.methods) {
         (function() {
           var apiMethod = method;
-          if (apiMethod == 'introspect') api[apiMethod] = function(params, callback) {
+          if (apiMethod === 'introspect') api[apiMethod] = function(params, callback) {
             api.request(apiMethod, params, function(err, data) {
               api.init(data);
               callback(err, data);
@@ -74,10 +75,11 @@
     ds.data = params.data;
     ds.metadata = params.metadata;
     ds.each = function(params, callback) {
-      for (var i = 0; i < ds.data.length; i++) {
-        var d = ds.data[i], match = true;
-        for (var key in params) match = match && (d[key] == params[key]);
-        if (match) { if (callback(i)) return; }
+      var i, d, key;
+      for (i = 0; i < ds.data.length; i++) {
+        d = ds.data[i], match = true;
+        for (key in params) match = match && (d[key] === params[key]);
+        if (match && callback(i)) return;
       }
     }
     ds.read = function(params, callback) {
@@ -117,21 +119,23 @@
     obj.bindings = [];
     obj.modified = false;
 
-    if (obj.data != null && typeof(obj.data) == "object") {
-      for (var key in obj.data) obj.fields[key] = wcl.DataObject({ data:obj.data[key] });
+    if (obj.data !== null && typeof(obj.data) === "object") {
+      var key;
+      for (key in obj.data) obj.fields[key] = wcl.DataObject({ data:obj.data[key] });
     }
 
     obj.value = function(value, forceUpdate) {
-      if (value != undefined) {
-        if ((field.data != value) || forceUpdate) {
+      if (value !== undefined) {
+        if ((field.data !== value) || forceUpdate) {
           //console.log('Field change '+field.data+' to '+value);
           field.data = value;
           if (!forceUpdate) {
             field.modified = true;
             field.dataSet.record.modified = true;
           }
-          if (field.dataSet.updateCount == 0) {
-            for (var i = 0; i < field.bindings.length; i++) field.bindings[i].value(value);
+          if (field.dataSet.updateCount === 0) {
+            var i;
+            for (i = 0; i < field.bindings.length; i++) field.bindings[i].value(value);
           }
         }
       } else return field.data;
@@ -148,7 +152,8 @@
     record.dataSet = params.dataSet;
     record.modified = false;
     record.assign = function(data, metadata, preventUpdateAll) {
-      for (var fieldName in data) {
+      var fieldName;
+      for (fieldName in data) {
         if (record.fields[fieldName]) {
           record.fields[fieldName].value(data[fieldName]);
           record.fields[fieldName].modified = false;
@@ -162,7 +167,8 @@
       record.modified = false;
     }
     record.each = function(callback) { // callback(fieldName, field)
-      for (var fieldName in record.fields) callback(fieldName, record.fields[fieldName]);
+      var fieldName;
+      for (fieldName in record.fields) callback(fieldName, record.fields[fieldName]);
     }
     record.toObject = function() {
       var result = {};
@@ -185,7 +191,7 @@
     record.commit = function() {
       if (record.modified) {
         var recNo = record.dataSet.currentRecord,
-          data = record.dataSet.memory.data[recNo];
+            data = record.dataSet.memory.data[recNo];
         record.each(function(fieldName, field) {
           if (field.modified) data[fieldName] = field.value();
           field.modified = false;
@@ -196,7 +202,7 @@
     record.rollback = function() {
       if (record.modified) {
         var recNo = record.dataSet.currentRecord,
-          data = record.dataSet.memory.data[recNo];
+            data = record.dataSet.memory.data[recNo];
         record.assign(data);
       }
     }
@@ -237,7 +243,7 @@
       }
     }
     dataSet.move = function(recNo) {
-      if (recNo != dataSet.currentRecord && recNo >= 0 && recNo < dataSet.recordCount) {
+      if (recNo !== dataSet.currentRecord && recNo >= 0 && recNo < dataSet.recordCount) {
         var data = dataSet.memory.data[recNo];
         if (dataSet.record) {
           if (dataSet.record.modified) dataSet.record.commit();
@@ -309,8 +315,8 @@
     wcl.components.FieldControl(obj);
     obj.innerHTML = '<span>'+obj.wcl.field.data+'</span>';
     obj.value = function(value) {
-      if (value == undefined) return obj.textContent;
-      else if (obj.textContent != value) obj.textContent = value;
+      if (value === undefined) return obj.textContent;
+      else if (obj.textContent !== value) obj.textContent = value;
     }
   }
   
@@ -324,8 +330,8 @@
     }, false);
     obj.value = function(value) {
       var edit = this.children[0];
-      if (value == undefined) return edit.value;
-      else if (edit.value != value) edit.value = value;
+      if (value === undefined) return edit.value;
+      else if (edit.value !== value) edit.value = value;
     }
   }
 
@@ -348,14 +354,14 @@
   //
   wcl.bind = function(params) { // { record:Record, container:element }
     params.container.wcl = { record: params.record };
-    var elements = params.container.getElementsByTagName('div');
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i],
-        dataWcl = element.getAttribute('data-wcl');
+    var i, dataWcl, element, component, elements = params.container.getElementsByTagName('div');
+    for (i = 0; i < elements.length; i++) {
+      element = elements[i];
+      dataWcl = element.getAttribute('data-wcl');
       if (dataWcl) {
         element.wcl = { dataWcl: wcl.parse(dataWcl), record: params.record };
         if (element.wcl.dataWcl.control) {
-          var component = wcl.components[element.wcl.dataWcl.control];
+          component = wcl.components[element.wcl.dataWcl.control];
           global[element.wcl.dataWcl.name] = element;
           component(element);
         }
@@ -386,12 +392,12 @@
   }
 
   wcl.request = function(method, url, params, parseResponse, callback) {
-    var req = new XMLHttpRequest(), data = [], value = '';
+    var key, req = new XMLHttpRequest(), data = [], value = '';
     req.open(method, url, true);
-    for (var key in params) {
+    for (key in params) {
       if (!params.hasOwnProperty(key)) continue;
       value = params[key];
-      if (typeof(value) != 'string') value = JSON.stringify(value);
+      if (typeof(value) !== 'string') value = JSON.stringify(value);
       data.push(encodeURIComponent(key)+'='+encodeURIComponent(value));
     }
     data = data.join('&');
@@ -399,9 +405,9 @@
     req.setRequestHeader("Content-length", data.length);
     req.setRequestHeader("Connection", "close");
     req.onreadystatechange = function() {
-      if (req.readyState == 4) {
+      if (req.readyState === 4) {
         var err = null, res = req.responseText;
-        if (req.status == 0 || req.status == 200) {
+        if (req.status === 0 || req.status == 200) {
           if (parseResponse) {
             try { res = JSON.parse(res); }
             catch(e) { err = new Error("JSON parse code: "+e); }
@@ -424,24 +430,25 @@
 
   wcl.autoInitialization = function() {
     wcl.body = document.body || document.getElementsByTagName('body')[0];
-    var elements = wcl.body.getElementsByTagName('div');
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i],
-        dataWcl = element.getAttribute('data-wcl');
+    var i, container, containerName, element, dataWcl, component,
+        elements = wcl.body.getElementsByTagName('div');
+    for (i = 0; i < elements.length; i++) {
+      element = elements[i];
+      dataWcl = element.getAttribute('data-wcl');
       if (dataWcl) {
         element.wcl = { dataWcl: wcl.parse(dataWcl) }; // record: params.record
-        if (element.wcl.dataWcl.control == 'Container') wcl.containers[dataWcl.name] = element;
+        if (element.wcl.dataWcl.control === 'Container') wcl.containers[dataWcl.name] = element;
       }
     }
-    for (var containerName in wcl.containers) {
-      var container = wcl.containers[containerName],
-        elements = container.getElementsByTagName('div');
+    for (containerName in wcl.containers) {
+      container = wcl.containers[containerName];
+      elements = container.getElementsByTagName('div');
       global[container.wcl.dataWcl.name] = container;
       wcl.components.Container(container);
-      for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
+      for (i = 0; i < elements.length; i++) {
+        element = elements[i];
         if (element.wcl.dataWcl.control) {
-          var component = wcl.components[element.wcl.dataWcl.control];
+          component = wcl.components[element.wcl.dataWcl.control];
           container.wcl.controls[element.wcl.dataWcl.name] = element;
           container[element.wcl.dataWcl.name] = element;
           element.wcl.container = container;
