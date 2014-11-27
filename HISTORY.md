@@ -1,3 +1,9 @@
+0.1.158 / 2014-11-28
+==================
+
+  * Improve AJAX handlers, close #169
+  * Middleware functions: application.get(path, handler, meta), .post, .put, .delete, close #168, related issue #165 and #165
+
 0.1.157 / 2014-11-27
 ==================
 
