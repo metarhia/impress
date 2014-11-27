@@ -1,5 +1,3 @@
-module.exports = function (client, callback) {
-
+module.exports = function(client, callback) {
   callback({ path: client.path });
-
 }

@@ -1,3 +1,9 @@
+0.1.157 / 2014-11-27
+==================
+
+  * Implemented middleware adapter, close #164, related issue #165
+  * Added examples for middleware and some code style refactoring
+
 0.1.156 / 2014-11-26
 ==================
 

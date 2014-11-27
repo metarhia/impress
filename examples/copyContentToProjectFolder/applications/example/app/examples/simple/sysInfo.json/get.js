@@ -1,5 +1,4 @@
 ﻿module.exports = function(client, callback) {
-
   callback({
     process: {
       execPath: process.execPath,
@@ -33,5 +32,4 @@
       networkInterfaces: api.os.networkInterfaces()
     }
   });
-
 }

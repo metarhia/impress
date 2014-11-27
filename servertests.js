@@ -31,6 +31,7 @@ if (api.cluster.isMaster) {
       {  get: '/examples/tools/serverHealth.json' },
       {  get: '/examples/simple/virtualPath.json/a/b/c' },
       {  get: '/examples/simple/jsonGet.json?field=value' },
+      {  get: '/examples/middleware/getHandler.json' },
       {  get: '/examples/cache/htmlPage.ajax' },
       {  get: '/examples/cache/apiMethod.json' },
       {  get: '/examples/events/connect.sse' },

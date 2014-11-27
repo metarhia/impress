@@ -1,5 +1,4 @@
 ﻿module.exports = function(client, callback) {
-
   var req = api.http.request(
     {
       hostname: 'google.com',
@@ -22,5 +21,4 @@
     callback("Can't get page");
   });
   req.end();
-
 }
