@@ -29,7 +29,7 @@ if (isBrowser) {
     for (var i=0; i<scripts.length; ++i) {
       var path = scripts[i],
         file = path.replace(/^.*[\\\/]/, ''),
-        namespace = file.replace(/\.[^/.]+$/, "");
+        namespace = file.replace(/\.[^/.]+$/, '');
       if (!global.scripts[namespace]) {
         var script = {"namespace":namespace,"file":file,"url":path,"element":null,"loaded":false};
         script.element = document.createElement('script');
@@ -77,7 +77,7 @@ if (isBrowser) {
     return a;
   }
 
-  if (typeof(JSON) !== "object") require(["json2.js"]);
+  if (typeof(JSON) !== 'object') require(['json2.js']);
 
   // Platform detection
 
@@ -86,14 +86,14 @@ if (isBrowser) {
     iPod: navigator.userAgent.match(/iPod/i),
     iPad: navigator.userAgent.match(/iPad/i),
     Android: navigator.userAgent.match(/Android/i),
-    IE: navigator.appName.indexOf("Microsoft") !== -1,
+    IE: navigator.appName.indexOf('Microsoft') !== -1,
     IEMobile: navigator.userAgent.match(/IEMobile/i),
     Chrome: !!window.chrome, // navigator.userAgent.match(/Chrome/i),
     Safari: navigator.userAgent.match(/Safari/i) && !window.chrome,
-    FireFox: navigator.userAgent.indexOf("Firefox") > -1,
+    FireFox: navigator.userAgent.indexOf('Firefox') > -1,
     BlackBerry: navigator.userAgent.match(/BlackBerry/i),
     WebOS: navigator.userAgent.match(/webOS/i),
-    Opera: window.opera, // navigator.userAgent.indexOf("Presto") > -1
+    Opera: window.opera, // navigator.userAgent.indexOf('Presto') > -1
     OperaMini: navigator.userAgent.match(/Opera Mini/i),
     OperaMobi: navigator.userAgent.match(/Opera Mobi/i)
   }
@@ -102,7 +102,7 @@ if (isBrowser) {
   global.platform.Mobile = platform.iOS || platform.Android || platform.OperaMini || platform.OperaMobi || platform.BlackBerry || platform.WebOS;
   global.platform.WebKit = platform.Chrome || platform.Safari;
 
-  if (platform.IE) platform.IEVersion = parseFloat(navigator.appVersion.split("MSIE")[1]);
+  if (platform.IE) platform.IEVersion = parseFloat(navigator.appVersion.split('MSIE')[1]);
 
   // DOM utils
 
@@ -122,7 +122,7 @@ if (isBrowser) {
         result = [], i,j;
       for (i=0; i<list.length; i++) {
         for(j=0; j<classArray.length; j++) {
-          if(list[i].className.search('\\b'+classArray[j]+'\\b') !== -1) {
+          if(list[i].className.search('\\b' + classArray[j] + '\\b') !== -1) {
             result.push(list[i]);
             break;
           }
@@ -133,14 +133,16 @@ if (isBrowser) {
   }
 
   global.addClass = function(element, className) {
-    var regex = new RegExp("(^|\\s)"+className+"(\\s|$)", "g");
-    if (regex.test(element.className))
-    return element.className = (element.className+" "+className).replace(/\s+/g, " ").replace(/(^ | $)/g, "");
+    var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
+    if (regex.test(element.className)) {
+      element.className = (element.className + ' ' + className).replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
+      return element.className;
+    }
   }
  
   global.removeClass = function(element, className) {
-    var regex = new RegExp("(^|\\s)"+className+"(\\s|$)", "g");
-    element.className = element.className.replace(regex, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "");
+    var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
+    element.className = element.className.replace(regex, '$1').replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
   }
 
   global.insertAfter = function(parent, node, referenceNode) {
@@ -157,7 +159,7 @@ if (isBrowser) {
       return element.addEventListener(event, fn, false);
     } else if (element.attachEvent) {
       var callback = function() { fn.call(element) }
-      return element.attachEvent('on'+event, callback);
+      return element.attachEvent('on' + event, callback);
     } else return false;
   }
 
@@ -165,7 +167,7 @@ if (isBrowser) {
     if (element.removeEventListener) {
       return element.removeEventListener(event, fn, false);
     } else if (element.detachEvent) { 
-      return element.detachEvent('on'+event, fn);
+      return element.detachEvent('on' + event, fn);
     } else return false;
   }
 
@@ -185,7 +187,7 @@ if (isBrowser) {
   global.onBeforeUnload = function(fn) {
     addEvent(global, 'beforeunload', function(event) {
       var message = fn(event);
-      if (typeof(event) === "undefined") event = window.event;
+      if (typeof(event) === 'undefined') event = window.event;
       if (event) event.returnValue = message;
       return message;
     });
@@ -196,7 +198,7 @@ if (isBrowser) {
     addEvent(global, 'error', fn);
   };
 
-  // preloadImages(["my.gif","/images/logo.jpg"], function() {...})
+  // preloadImages(['my.gif','/images/logo.jpg'], function() {...})
   global.preloadImages = function(images, callback) {
     var counter=0;
     for (var i=0; i<images.length; i++) {
@@ -216,14 +218,14 @@ if (isBrowser) {
   // Call disableSelection on page load with element to disable or without parameters to disable selection in whole page
   global.disableSelection = function(target) {
     target = target || html;
-    if (typeof(target.onselectstart) !== "undefined") target.onselectstart=falseness //For IE
-    else if (typeof(target.style.MozUserSelect) !== "undefined") { //For Firefox
-      target.style.MozUserSelect="none";
+    if (typeof(target.onselectstart) !== 'undefined') target.onselectstart=falseness //For IE
+    else if (typeof(target.style.MozUserSelect) !== 'undefined') { //For Firefox
+      target.style.MozUserSelect='none';
       //if (target === body || target === html)
       //  for (var i=0; i<body.children.length; i++)
-      //    body.children[i].style.MozUserSelect="none";
+      //    body.children[i].style.MozUserSelect='none';
     } else target.onmousedown=falseness; //All other browsers (Opera)
-    target.style.cursor = "default";
+    target.style.cursor = 'default';
   }
 
   global.disableContextMenu = function(target) {
@@ -239,7 +241,7 @@ if (isBrowser) {
     target = target || html;
     var fn = function(event) {
       event = event || window.event;
-      if (global.clipboardData) clipboardData.setData("Text", '');
+      if (global.clipboardData) clipboardData.setData('Text', '');
       event.returnValue = false;
       if (event.preventDefault) event.preventDefault();
       return false;
@@ -253,7 +255,7 @@ if (isBrowser) {
       var ctrlDown = event.ctrlKey || event.metaKey; // Mac support
       var result = true;
   
-      console.log('key='+key+' ctrlDown='+ctrlDown);
+      console.log('key=' + key + ' ctrlDown=' + ctrlDown);
       // Check for Alt+Gr (http://en.wikipedia.org/wiki/AltGr_key)
       if (ctrlDown && event.altKey) result = true;
       else if (ctrlDown && key === 67) result = false  // ctrl+c
@@ -269,13 +271,13 @@ if (isBrowser) {
 
   global.getCookie = function(name) {
     var matches = document.cookie.match(new RegExp(
-      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+      '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
     ));
     return matches ? decodeURIComponent(matches[1]) : false;
   }
 
   global.setCookie = function(name, value) {
-    var cookie = name+"="+escape(value)+"; path=/";
+    var cookie = name + '=' + escape(value) + '; path=/';
     document.cookie = cookie;
   }
 

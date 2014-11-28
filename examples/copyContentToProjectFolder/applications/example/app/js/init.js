@@ -175,7 +175,7 @@ global.onLoad(function() {
     }, false);
 
     sse.addEventListener('error', function(e) {
-      if (e.readyState == EventSource.CLOSED) panelCenter.append('Connection closed by server<hr>');
+      if (e.readyState === EventSource.CLOSED) panelCenter.append('Connection closed by server<hr>');
       else panelCenter.append('SSE Error: readyState=' + sse.readyState + '<hr>');
     }, false);
 
@@ -273,8 +273,8 @@ function closeForm() {
 }
 
 $(document).keydown(function(event) {
-  if (event.keyCode == 27) closeForm();
-  else if (event.keyCode == 13) $('#popup .form .save').trigger('click');
+  if (event.keyCode === 27) closeForm();
+  else if (event.keyCode === 13) $('#popup .form .save').trigger('click');
 });
 
 $(document).on('click', '#popup .cancel', function(event) {

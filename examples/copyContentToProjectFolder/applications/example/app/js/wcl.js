@@ -127,7 +127,7 @@
     obj.value = function(value, forceUpdate) {
       if (value !== undefined) {
         if ((field.data !== value) || forceUpdate) {
-          //console.log('Field change '+field.data+' to '+value);
+          //console.log('Field change ' + field.data + ' to ' + value);
           field.data = value;
           if (!forceUpdate) {
             field.modified = true;
@@ -313,7 +313,7 @@
 
   wcl.components.Label = function(obj) {
     wcl.components.FieldControl(obj);
-    obj.innerHTML = '<span>'+obj.wcl.field.data+'</span>';
+    obj.innerHTML = '<span>' + obj.wcl.field.data + '</span>';
     obj.value = function(value) {
       if (value === undefined) return obj.textContent;
       else if (obj.textContent !== value) obj.textContent = value;
@@ -371,13 +371,13 @@
 
   wcl.parse = function(json) {
     var result;
-    eval('result = new Object('+json+')');
+    eval('result = new Object(' + json + ')');
     return result;
   }
 
   wcl.htmlEscape = function(content) {
     return content.replace(/[&<>"'\/]/g, function(char) { return (
-      { "&":"&amp;","<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char]
+      { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', '\'':'&#39;' }[char]
     )});
   }
 
@@ -398,7 +398,7 @@
       if (!params.hasOwnProperty(key)) continue;
       value = params[key];
       if (typeof(value) !== 'string') value = JSON.stringify(value);
-      data.push(encodeURIComponent(key)+'='+encodeURIComponent(value));
+      data.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
     }
     data = data.join('&');
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -407,7 +407,7 @@
     req.onreadystatechange = function() {
       if (req.readyState === 4) {
         var err = null, res = req.responseText;
-        if (req.status === 0 || req.status == 200) {
+        if (req.status === 0 || req.status === 200) {
           if (parseResponse) {
             try { res = JSON.parse(res); }
             catch(e) { err = new Error("JSON parse code: "+e); }
