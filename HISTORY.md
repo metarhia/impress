@@ -1,3 +1,10 @@
+0.1.159 / 2014-11-29
+==================
+
+  * JSONP handlers implemented, example: /examples/simple/jsonpGet.jsonp, close #172
+  * CSV handlers implemented, example: /examples/simple/csvStringify.csv, close #176
+  * Fix sandbox api modules loading, close #174
+
 0.1.158 / 2014-11-28
 ==================
 

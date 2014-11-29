@@ -54,7 +54,6 @@ module.exports = {
     //'api.uglify',
     //'api.saas',
     //'api.mail',
-    //'api.geoip',
     'impress.events',
     'impress.sse',
     'impress.websocket',

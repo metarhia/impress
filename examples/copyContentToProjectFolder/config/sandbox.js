@@ -33,6 +33,7 @@ module.exports = {
     'request',
     'zipstream', // npm modile zip-stream
     'stringify', // npm module json-stringify-safe
+    'csv',
 
     // Passport providers
     // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
@@ -54,7 +55,6 @@ module.exports = {
     //'api.uglify',
     //'api.saas',
     //'api.mail',
-    //'api.geoip',
     'impress.events',
     'impress.sse',
     'impress.websocket',
