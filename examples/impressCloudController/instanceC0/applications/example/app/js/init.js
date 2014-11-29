@@ -16,7 +16,7 @@ $(function() {
     }, false);
 
     sse.addEventListener("error", function(e) {
-      if (e.readyState == EventSource.CLOSED) log.prepend("Connection closed by server<br>");
+      if (e.readyState === EventSource.CLOSED) log.prepend("Connection closed by server<br>");
       else log.prepend("SSE Error: readyState="+sse.readyState+"<br>");
     }, false);
   }

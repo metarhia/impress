@@ -14,7 +14,7 @@ $.extend({
 
   fixLinks: function(persist) {
     if ($.platform.iOS) {
-      if (persist == null) persist = true;
+      if (persist === null) persist = true;
       persist = persist && localStorage;
       if (persist) {
         var CurrentLocation = window.location.pathname+window.location.search,
@@ -23,7 +23,7 @@ $.extend({
       }
       $('a').live('click',function(e) {
         e.preventDefault();
-        if (persist && this.host==window.location.host)
+        if (persist && this.host === window.location.host)
         localStorage.setItem("location",this.pathname+this.search);
         window.location = this.href;
       });

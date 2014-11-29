@@ -251,11 +251,11 @@
         } else dataSet.record = wcl.Record({ data:data, dataSet:dataSet });
         dataSet.currentRecord = recNo;
       }
-    }
-    dataSet.first = function() { dataSet.move(0); }
-    dataSet.next  = function() { dataSet.move(dataSet.currentRecord+1); }
-    dataSet.prev  = function() { dataSet.move(dataSet.currentRecord-1); }
-    dataSet.last  = function() { dataSet.move(dataSet.recordCount-1); }
+    };
+    dataSet.first = function() { dataSet.move(0); };
+    dataSet.next  = function() { dataSet.move(dataSet.currentRecord+1); };
+    dataSet.prev  = function() { dataSet.move(dataSet.currentRecord-1); };
+    dataSet.last  = function() { dataSet.move(dataSet.recordCount-1); };
     //
     dataSet.updateCount = 0;
     dataSet.beginUpdate = function() {
@@ -407,7 +407,7 @@
     req.onreadystatechange = function() {
       if (req.readyState === 4) {
         var err = null, res = req.responseText;
-        if (req.status === 0 || req.status == 200) {
+        if (req.status === 0 || req.status === 200) {
           if (parseResponse) {
             try { res = JSON.parse(res); }
             catch(e) { err = new Error("JSON parse code: "+e); }

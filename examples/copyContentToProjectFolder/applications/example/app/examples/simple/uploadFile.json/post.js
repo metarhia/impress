@@ -43,7 +43,7 @@
             fd.on('end', function() {
               hash.end();
               var originalHash = hash.read();
-              if (compressionFlag == 'Z') {
+              if (compressionFlag === 'Z') {
                 var zipFile = storageFile + '.zip',
                     archive = new api.zipstream(),
                     out = api.fs.createWriteStream(zipFile),
@@ -58,7 +58,7 @@
                   if (err) throw err;
                   archive.finalize();
                 });
-              } else if (compressionFlag == 'G') {
+              } else if (compressionFlag === 'G') {
                 var zipFile = storageFile+'.gz',
                     gzip = api.zlib.createGzip(),
                     inp = api.fs.createReadStream(storageFile),

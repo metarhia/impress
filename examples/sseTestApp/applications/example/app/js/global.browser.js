@@ -112,7 +112,7 @@ if (isBrowser) {
 
   if (document.getElementsByClassName) {
     global.getElementsByClass = function(classList, context) {
-      return (context || document).getElementsByClassName(classList)
+      return (context || document).getElementsByClassName(classList);
     }
   } else {
     global.getElementsByClass = function(classList, context) {

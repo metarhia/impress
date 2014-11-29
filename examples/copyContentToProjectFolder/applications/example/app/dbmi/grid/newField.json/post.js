@@ -3,12 +3,12 @@
   client.context.data = { status:0 };
 
   var path = client.fields.source.substring(1).split('/'),
-    dbName = path[0],
-    url = application.databases[dbName].url,
-    schema = url.substr(0, url.indexOf(':')),
-    driver = db[dbName];
-  if (path.length == 3) {
-    if (schema == 'mysql') {
+      dbName = path[0],
+      url = application.databases[dbName].url,
+      schema = url.substr(0, url.indexOf(':')),
+      driver = db[dbName];
+  if (path.length === 3) {
+    if (schema === 'mysql') {
       /*
       var tableName = path[1]+'.'+path[2];
       database.connection.insert(tableName, data, function(err, recordId, query) {
@@ -44,13 +44,13 @@
       });
       */
       callback();
-    } else if (schema == 'mongodb') {
+    } else if (schema === 'mongodb') {
       var dbClient = db.drivers.mongodb.MongoClient,
-        url = 'mongodb://localhost:27017/'+path[1];
+          url = 'mongodb://localhost:27017/'+path[1];
       dbClient.connect(url, function(err, connection) {
         connection.createCollection(path[2], function(err, collection) {
           var objectId = client.fields.pkValue;
-          if (objectId.length == 24) objectId = db.mongodb.oid(objectId);
+          if (objectId.length === 24) objectId = db.mongodb.oid(objectId);
           var data = {};
           data[client.fields.newFieldName] = '';
           collection.update({ _id: objectId }, { $set: data },  function(err) {

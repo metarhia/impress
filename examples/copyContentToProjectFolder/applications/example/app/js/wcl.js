@@ -77,7 +77,8 @@
     ds.each = function(params, callback) {
       var i, d, key;
       for (i = 0; i < ds.data.length; i++) {
-        d = ds.data[i], match = true;
+        d = ds.data[i];
+        match = true;
         for (key in params) match = match && (d[key] === params[key]);
         if (match && callback(i)) return;
       }
@@ -251,11 +252,11 @@
         } else dataSet.record = wcl.Record({ data:data, dataSet:dataSet });
         dataSet.currentRecord = recNo;
       }
-    }
-    dataSet.first = function() { dataSet.move(0); }
-    dataSet.next  = function() { dataSet.move(dataSet.currentRecord+1); }
-    dataSet.prev  = function() { dataSet.move(dataSet.currentRecord-1); }
-    dataSet.last  = function() { dataSet.move(dataSet.recordCount-1); }
+    };
+    dataSet.first = function() { dataSet.move(0); };
+    dataSet.next  = function() { dataSet.move(dataSet.currentRecord+1); };
+    dataSet.prev  = function() { dataSet.move(dataSet.currentRecord-1); };
+    dataSet.last  = function() { dataSet.move(dataSet.recordCount-1); };
     //
     dataSet.updateCount = 0;
     dataSet.beginUpdate = function() {

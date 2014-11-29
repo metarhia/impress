@@ -23,7 +23,7 @@ global.onLoad(function() {
     }, false);
 
     sse.addEventListener('error', function(e) {
-      if (e.readyState == EventSource.CLOSED) log('Connection closed by server');
+      if (e.readyState === EventSource.CLOSED) log('Connection closed by server');
       else log('SSE Error: readyState = ' + sse.readyState);
     }, false);
 

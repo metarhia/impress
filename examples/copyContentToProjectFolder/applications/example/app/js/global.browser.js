@@ -112,7 +112,7 @@ if (isBrowser) {
 
   if (document.getElementsByClassName) {
     global.getElementsByClass = function(classList, context) {
-      return (context || document).getElementsByClassName(classList)
+      return (context || document).getElementsByClassName(classList);
     }
   } else {
     global.getElementsByClass = function(classList, context) {
@@ -158,7 +158,9 @@ if (isBrowser) {
     if (element.addEventListener) {
       return element.addEventListener(event, fn, false);
     } else if (element.attachEvent) {
-      var callback = function() { fn.call(element) }
+      var callback = function() {
+        fn.call(element);
+      };
       return element.attachEvent('on' + event, callback);
     } else return false;
   }
@@ -218,13 +220,13 @@ if (isBrowser) {
   // Call disableSelection on page load with element to disable or without parameters to disable selection in whole page
   global.disableSelection = function(target) {
     target = target || html;
-    if (typeof(target.onselectstart) !== 'undefined') target.onselectstart=falseness //For IE
+    if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = falseness; //For IE
     else if (typeof(target.style.MozUserSelect) !== 'undefined') { //For Firefox
       target.style.MozUserSelect='none';
       //if (target === body || target === html)
       //  for (var i=0; i<body.children.length; i++)
       //    body.children[i].style.MozUserSelect='none';
-    } else target.onmousedown=falseness; //All other browsers (Opera)
+    } else target.onmousedown = falseness; //All other browsers (Opera)
     target.style.cursor = 'default';
   }
 

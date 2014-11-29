@@ -253,19 +253,19 @@ global.onLoad(function() {
     };
     var nodeType = this._get_type(node),
       metaType = metadata.types.types[nodeType];
-    if (nodeType == "provider") {
+    if (nodeType === "provider") {
       delete items.ccollection;
       delete items.ctable;
       delete items.rename;
       delete items.remove;
       delete items.backup;
-    } else if (nodeType == "database") {
+    } else if (nodeType === "database") {
       delete items.cdatabase;
-    } else if (nodeType == "collection") {
+    } else if (nodeType === "collection") {
       delete items.cdatabase;
       delete items.ccollection;
       delete items.ctable;
-    } else if (nodeType == "table") {
+    } else if (nodeType === "table") {
       delete items.cdatabase;
       delete items.ccollection;
       delete items.ctable;
@@ -356,8 +356,8 @@ global.onLoad(function() {
                     
           grid.onCellChange.subscribe(function(e, args) {
             var fieldName = grid.getColumns()[args.cell].field,
-              fieldValue = args.item[fieldName],
-              primaryKey, pkValue;
+                fieldValue = args.item[fieldName],
+                primaryKey, pkValue;
             if (grid.getColumns()['_id'])
               primaryKey = grid.getColumns()['_id'].field;
             else
@@ -527,7 +527,7 @@ global.onLoad(function() {
   */
 
   var curPanel = $("#footer .tabpanel > div").eq(0),
-    curTab = $("#footer .tabbar ul li").eq(0);
+      curTab = $("#footer .tabbar ul li").eq(0);
 
   $(document).on('click', "#footer .tabbar ul li", function(event) {
     selectFooterTab(this);
@@ -535,8 +535,8 @@ global.onLoad(function() {
 
   function selectFooterTab(newTab) {
     var tabIndex = $(newTab).index(),
-      panel = $("#footer .tabpanel > div").eq(tabIndex),
-      tab = $("#footer .tabbar ul li").eq(tabIndex);
+        panel = $("#footer .tabpanel > div").eq(tabIndex),
+        tab = $("#footer .tabbar ul li").eq(tabIndex);
     if (curPanel!=panel) {
       curTab.removeClass('active');
       curPanel.hide();

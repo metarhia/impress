@@ -19,7 +19,7 @@
 
     function isDataLoaded(from, to) {
       for (var i = from; i <= to; i++) {
-        if (data[i] == undefined || data[i] == null) return false;
+        if (data[i] === undefined || data[i] === null) return false;
       }
       return true;
     }
@@ -43,7 +43,7 @@
       while (data[fromPage * PAGESIZE] !== undefined && fromPage < toPage) fromPage++;
       while (data[toPage * PAGESIZE] !== undefined && fromPage < toPage) toPage--;
 
-      if (fromPage > toPage || ((fromPage == toPage) && data[fromPage * PAGESIZE] !== undefined)) {
+      if (fromPage > toPage || ((fromPage === toPage) && data[fromPage * PAGESIZE] !== undefined)) {
         // TODO: look-ahead
         onDataLoaded.notify({from: from, to: to});
         return;
