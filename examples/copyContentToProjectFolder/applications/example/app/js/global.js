@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var initContext = function(context) {
 

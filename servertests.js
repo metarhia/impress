@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 require('./lib/impress');
 
