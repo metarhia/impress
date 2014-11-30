@@ -1,6 +1,6 @@
 $(function() {
 
-  log = $('#log');
+  var log = $('#log');
 
   sseConnect();
 
