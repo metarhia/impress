@@ -75,7 +75,7 @@
     ds.data = params.data;
     ds.metadata = params.metadata;
     ds.each = function(params, callback) {
-      var i, d, key;
+      var i, d, key, match;
       for (i = 0; i < ds.data.length; i++) {
         d = ds.data[i];
         match = true;

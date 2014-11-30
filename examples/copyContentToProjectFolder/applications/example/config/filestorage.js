@@ -1,4 +1,4 @@
-﻿var extCompressed = [
+﻿application.extCompressed = [
   'gif','jpg','jpe','jpeg','png','svgz',
   'docx','xlsx','pptx','dotx','odm','odt','ott','odp','otp','djvu','djv',
   'zip','rar','z7','gz','jar','arj',
@@ -6,7 +6,7 @@
   'mp2','mp3','mp4','avi','flv','fla','swf','3gp','mkv','mpeg','mpg','mpe','mov','asf','wmv','vob'
 ];
 
-var extNotCompressed = [
+application.extNotCompressed = [
   'txt','pdf','doc','dot','xls','ppt','rtf','hlp','inf','eml','uu','uue',
   'css','htm','html','xhtml','tpl','vsd','chm','ps',
   'bmp','ico','eps','svg','psd','ai','tif','tiff','wmf','emf','ani','cur','wav','wave','mid',

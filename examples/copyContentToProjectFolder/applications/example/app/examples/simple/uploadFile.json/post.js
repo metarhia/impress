@@ -28,8 +28,8 @@
             storageName = folder1 + folder2 + code,
             targetDir = storagePath + '/' + folder1 + '/' + folder2,
             storageFile = targetDir + '/' + code,
-            isCompressed = inArray(extCompressed, fileExt),
-            isNotCompressed = inArray(extNotCompressed, fileExt);
+            isCompressed = inArray(application.extCompressed, fileExt),
+            isNotCompressed = inArray(application.extNotCompressed, fileExt);
         if (isCompressed || isNotCompressed) {
           if (isNotCompressed) {
             if (originalSize>=1048576) compressionFlag = 'Z'; // ZIP
