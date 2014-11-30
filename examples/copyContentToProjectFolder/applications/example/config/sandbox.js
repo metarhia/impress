@@ -18,22 +18,25 @@ module.exports = {
     'os', 'cluster', 'domain', 'crypto', 'util',
     'net', 'http', 'https', 'dgram', 'dns', 'tls',
     'url', 'path', 'punycode', 'querystring', 'string_decoder',
-    'fs', 'stream', 'zlib', 'events', 'readline', 'npm',
+    'fs', 'stream', 'zlib', 'events', 'readline',
 
     // Impress API modules
     'definition',
 
-    // Additional modules
+    // Preinstalled modules
     'async',
     'iconv',
     'colors',
-    'geoip',
-    'nodemailer',
     'mkdirp',
-    'request',
     'zipstream', // npm modile zip-stream
     'stringify', // npm module json-stringify-safe
     'csv',
+
+    // Additional modules
+    // 'geoip',
+    // 'nodemailer',
+    // 'request',
+    // 'npm',
 
     // Passport providers
     // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'

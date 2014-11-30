@@ -1,3 +1,9 @@
+0.1.160 / 2014-11-30
+==================
+
+  * Core impress.js refactored, all functions moved to namespace from local context
+  * Fixes in example application configuration after "api." namespace refactored
+
 0.1.159 / 2014-11-29
 ==================
 

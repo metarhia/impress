@@ -59,14 +59,14 @@ if (isBrowser) {
 
   global.preloadImages = function(images, callback) {
     var counter=0;
+    function fnEvent() {
+      counter++;
+      if (counter === images.length) callback();
+    }
     for (var i=0; i<images.length; i++) {
-      var img = document.createElement('img'),
-        fn = function() {
-          counter++;
-          if (counter === images.length) callback();
-        }
-      addEvent(img, 'load', fn);
-      addEvent(img, 'error', fn);
+      var img = document.createElement('img');
+      addEvent(img, 'load', fnEvent);
+      addEvent(img, 'error', fnEvent);
       img.src = images[i];
     }
   }
@@ -199,21 +199,6 @@ if (isBrowser) {
   global.onError = function(fn) {
     addEvent(global, 'error', fn);
   };
-
-  // preloadImages(['my.gif','/images/logo.jpg'], function() {...})
-  global.preloadImages = function(images, callback) {
-    var counter=0;
-    for (var i=0; i<images.length; i++) {
-      var img = document.createElement('img'),
-        fn = function() {
-          counter++;
-          if (counter === images.length) callback();
-        }
-      addEvent(img, 'load', fn);
-      addEvent(img, 'error', fn);
-      img.src = images[i];
-    }
-  }
 
   // Copypaste utils
 

@@ -2,11 +2,64 @@
 
 require('./lib/impress');
 
+function httpTests() {
+  impress.server.start();
+  impress.server.on('start', function() {
+    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
+  });
+
+  setInterval(function() {
+    impress.shutdown();
+  }, config.timeout);
+}
+
+function httpTask(task) {
+  var request = {
+    host: config.host,
+    port: config.port,
+    agent: false
+  };
+  if (task.get) {
+    request.method = 'GET';
+    request.path = task.get;
+  } else if (task.post) {
+    request.method = 'POST';
+    request.path = task.post;
+  }
+  if (task.data) {
+    task.data = querystring.stringify(task.data);
+    request.headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': task.data.length
+    };
+  }
+  if (request.path) {
+    var req = api.http.request(request);
+    req.on('response', function (res) {
+      if (res.statusCode === 200) {
+        var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path + ' -> HTTP ' + res.statusCode + ' read: '+res.socket.bytesRead;
+        console.log('  ' + msg);
+        res.on('error', function (err) {
+          if (err) throw err;
+        });
+      } else {
+        // console.dir(task);
+        throw new Error('HTTP ' + res.statusCode);
+      }
+    });
+    req.on('error', function (err) {
+      if (err) throw err;
+    });
+    if (task.data) req.write(task.data);
+    req.end();
+  }
+}
+
 if (api.cluster.isMaster) {
 
   var ncp = require('ncp').ncp;
   var querystring = require('querystring');
-  //  request = require('request').defaults({jar: false});
+  // request = require('request').defaults({jar: false});
 
   ncp.limit = 16;
 
@@ -67,57 +120,4 @@ if (api.cluster.isMaster) {
     }
   });
 
-}
-
-function httpTests() {
-  impress.server.start();
-  impress.server.on('start', function() {
-    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
-  });
-
-  setInterval(function() {
-    impress.shutdown();
-  }, config.timeout);
-}
-
-function httpTask(task) {
-  var request = {
-    host: config.host,
-    port: config.port,
-    agent: false
-  };
-  if (task.get) {
-    request.method = 'GET';
-    request.path = task.get;
-  } else if (task.post) {
-    request.method = 'POST';
-    request.path = task.post;
-  }
-  if (task.data) {
-    task.data = querystring.stringify(task.data);
-    request.headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': task.data.length
-    };
-  }
-  if (request.path) {
-    var req = api.http.request(request);
-    req.on('response', function (res) {
-      if (res.statusCode === 200) {
-        var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path + ' -> HTTP ' + res.statusCode + ' read: '+res.socket.bytesRead;
-        console.log('  ' + msg);
-        res.on('error', function (err) {
-          if (err) throw err;
-        });
-      } else {
-        // console.dir(task);
-        throw new Error('HTTP ' + res.statusCode);
-      }
-    });
-    req.on('error', function (err) {
-      if (err) throw err;
-    });
-    if (task.data) req.write(task.data);
-    req.end();
-  }
 }

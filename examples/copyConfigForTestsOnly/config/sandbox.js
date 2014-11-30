@@ -3,25 +3,18 @@
 module.exports = {
 
   api: [
-    // Node internal modules
     'os', 'cluster', 'domain', 'crypto', 'util',
     'net', 'http', 'https', 'dgram', 'dns', 'tls',
     'url', 'path', 'punycode', 'querystring', 'string_decoder',
-    'fs', 'stream', 'zlib', 'events', 'readline', 'npm',
-
-    // Impress API modules
+    'fs', 'stream', 'zlib', 'events', 'readline',
     'definition',
-
-    // Additional modules
     'async',
     'iconv',
     'colors',
-    'geoip',
-    'nodemailer',
     'mkdirp',
-    'request',
     'zipstream',
     'stringify',
+    'csv'
   ],
 
   plugins: [
