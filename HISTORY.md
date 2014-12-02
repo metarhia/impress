@@ -1,3 +1,15 @@
+0.1.162 / 2014-12-02
+==================
+
+  * Added special place for application libraries: /lib, close #178
+
+0.1.161 / 2014-12-01
+==================
+
+  * Execution context domains refactored, close #167
+  * Fixed error handling, close #177
+  * Fixed EventEmitter memory leak in application.preprocessConfig
+
 0.1.160 / 2014-11-30
 ==================
 
