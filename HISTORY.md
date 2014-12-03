@@ -1,3 +1,8 @@
+0.1.163 / 2014-12-03
+==================
+
+  * Implemented attachment file transfer: client.download(filePath, attachmentName, callback), close #173
+
 0.1.162 / 2014-12-02
 ==================
 
