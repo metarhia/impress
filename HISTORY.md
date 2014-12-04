@@ -3,6 +3,7 @@
 
   * Fixes in client.download(), issue #173
   * Added client.attachment(attachmentName, size, lastModified) to generate HTTP headers without sending data
+  * Removed fallback from sticky to single strategy for windows platform, now it works
 
 0.1.163 / 2014-12-03
 ==================

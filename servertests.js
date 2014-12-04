@@ -8,16 +8,34 @@ var querystring = require('querystring');
 
 ncp.limit = 16;
 
-function httpTests() {
-  impress.server.start();
-  impress.server.on('start', function() {
-    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
-  });
-
-  setInterval(function() {
-    impress.shutdown();
-  }, config.timeout);
-}
+var config = {
+  host:   '127.0.0.1',
+  port:    8080,
+  timeout: 5000,
+  tasks: [
+    {  get: '/' },
+    {  get: '/examples/simple/ajaxTest.ajax' },
+    {  get: '/examples/simple/dataFromMemory.json' },
+    {  get: '/examples/simple/fsAccess.json' },
+    {  get: '/examples/simple/sysInfo.json' },
+    {  get: '/examples/memory/stateful.json' },
+    {  get: '/examples/override/' },
+    {  get: '/examples/tools/forkWorker.json' },
+    {  get: '/examples/tools/serverHealth.json' },
+    {  get: '/examples/simple/httpRequest.json' },
+    {  get: '/examples/security/anonymousSession.json' },
+    {  get: '/examples/security/userInfo.json' },
+    {  get: '/examples/tools/forkWorker.json/' },
+    {  get: '/examples/tools/serverHealth.json' },
+    {  get: '/examples/simple/virtualPath.json/a/b/c' },
+    {  get: '/examples/simple/jsonGet.json?field=value' },
+    {  get: '/examples/middleware/getHandler.json' },
+    {  get: '/examples/cache/htmlPage.ajax' },
+    {  get: '/examples/cache/apiMethod.json' },
+    {  get: '/examples/events/connect.sse' },
+    { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
+  ]
+};
 
 function httpTask(task) {
   var request = {
@@ -61,36 +79,18 @@ function httpTask(task) {
   }
 }
 
-if (api.cluster.isMaster) {
+function httpTests() {
+  impress.server.start();
+  impress.server.on('start', function() {
+    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
+  });
 
-  var config = {
-    host:   '127.0.0.1',
-    port:    8080,
-    timeout: 5000,
-    tasks: [
-      {  get: '/' },
-      {  get: '/examples/simple/ajaxTest.ajax' },
-      {  get: '/examples/simple/dataFromMemory.json' },
-      {  get: '/examples/simple/fsAccess.json' },
-      {  get: '/examples/simple/sysInfo.json' },
-      {  get: '/examples/memory/stateful.json' },
-      {  get: '/examples/override/' },
-      {  get: '/examples/tools/forkWorker.json' },
-      {  get: '/examples/tools/serverHealth.json' },
-      {  get: '/examples/simple/httpRequest.json' },
-      {  get: '/examples/security/anonymousSession.json' },
-      {  get: '/examples/security/userInfo.json' },
-      {  get: '/examples/tools/forkWorker.json/' },
-      {  get: '/examples/tools/serverHealth.json' },
-      {  get: '/examples/simple/virtualPath.json/a/b/c' },
-      {  get: '/examples/simple/jsonGet.json?field=value' },
-      {  get: '/examples/middleware/getHandler.json' },
-      {  get: '/examples/cache/htmlPage.ajax' },
-      {  get: '/examples/cache/apiMethod.json' },
-      {  get: '/examples/events/connect.sse' },
-      { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
-    ]
-  };
+  setInterval(function() {
+    impress.shutdown();
+  }, config.timeout);
+}
+
+if (api.cluster.isMaster) {
 
   var current = api.path.dirname(__filename.replace(/\\/g, '/')),
     destination = current+'/',

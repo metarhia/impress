@@ -29,6 +29,26 @@ var impressPath = 'c:/dropbox/projects/impress',
 
 global.applications = [];
 
+function showHelp() {
+  console.log(
+    'Syntax:\n'+
+    '  impress list\n'+
+    '  impress add [path]\n'+
+    '  impress remove [name]\n'+
+    '  impress new [name]'
+  );
+  doExit();
+}
+
+function notInstalled() {
+  console.log('  Error: not installed as a service (globally)'.red.bold);
+  process.exit(0);
+}
+
+function doExit() {
+  rl.close();
+}
+
 var commands = {
   list: function() {
     console.log('  Applications: ');
@@ -37,9 +57,6 @@ var commands = {
     doExit();
   },
   add: function() {
-    var applicationName = process.argv[3];
-    if (applicationName) doAdd(); else doInput();
-
     function doInput() {
       rl.question("Enter application name: ", function(answer) {
         if (applications.indexOf(answer) === -1) {
@@ -61,6 +78,9 @@ var commands = {
       console.log('Application "' +applicationName+ '" added with link to: ' + curDir);
       doExit();
     }
+
+    var applicationName = process.argv[3];
+    if (applicationName) doAdd(); else doInput();
   },
   remove: function() {
     doExit();
@@ -82,24 +102,4 @@ else {
     if (!command) showHelp();
     else command();
   }
-}
-
-function showHelp() {
-  console.log(
-    'Syntax:\n'+
-    '  impress list\n'+
-    '  impress add [path]\n'+
-    '  impress remove [name]\n'+
-    '  impress new [name]'
-  );
-  doExit();
-}
-
-function notInstalled() {
-  console.log('  Error: not installed as a service (globally)'.red.bold);
-  process.exit(0);
-}
-
-function doExit() {
-  rl.close();
 }
