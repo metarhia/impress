@@ -1,3 +1,9 @@
+0.1.164 / 2014-12-04
+==================
+
+  * Fixes in client.download(), issue #173
+  * Added client.attachment(attachmentName, size, lastModified) to generate HTTP headers without sending data
+
 0.1.163 / 2014-12-03
 ==================
 
