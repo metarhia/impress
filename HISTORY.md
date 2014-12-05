@@ -2,7 +2,6 @@
 ==================
 
   * Filesystem watching API moved from impress.js to impress.application.js, methods: updateFileCache, cliearDirectoryCache, watchCache
-  * Changed multiple timers watcher.timers to single timer, close #147
 
 0.1.164 / 2014-12-04
 ==================
