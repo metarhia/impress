@@ -1,3 +1,9 @@
+0.1.166 / 2014-12-06
+==================
+
+  * Changed multiple timers watcher.timers to single timer, close #147
+  * Fixed exception if path does not exists, close #181
+
 0.1.165 / 2014-12-05
 ==================
 
