@@ -1,7 +1,15 @@
+0.1.168 / 2014-12-09
+==================
+
+  * Implemented application.before(handler) and application.after(handler), see examples, issue #170
+  * Implemented client.mixin({...}) to extend application.Client class
+  * Implemented Client.prototype.dispatcher as an entry point for dynamic handlers (opposite to static, proxy, index, etc.)
+  * Code style refactoring
+
 0.1.167 / 2014-12-08
 ==================
 
-  * Fixed directory cache update, #180
+  * Fixed directory cache update, close #180
 
 0.1.166 / 2014-12-06
 ==================
