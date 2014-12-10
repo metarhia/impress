@@ -29,6 +29,10 @@ var impressPath = 'c:/dropbox/projects/impress',
 
 global.applications = [];
 
+function doExit() {
+  rl.close();
+}
+
 function showHelp() {
   console.log(
     'Syntax:\n'+
@@ -43,10 +47,6 @@ function showHelp() {
 function notInstalled() {
   console.log('  Error: not installed as a service (globally)'.red.bold);
   process.exit(0);
-}
-
-function doExit() {
-  rl.close();
 }
 
 var commands = {
