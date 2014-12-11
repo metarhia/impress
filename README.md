@@ -7,7 +7,7 @@
 [![devDependency Status](https://david-dm.org/tshemsedinov/impress/dev-status.svg)](https://david-dm.org/tshemsedinov/impress#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/impress.svg)](http://badge.fury.io/js/impress)
 
-[Impress](https://github.com/tshemsedinov/impress)ive multipurpose Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
+[Impress](https://github.com/tshemsedinov/impress)ive Multipurpose Totalitarian-style Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
 Impress follows alternative way in several aspects:
   - No callback chain (no middleware), hierarchically inheritable hash routing instead
@@ -106,7 +106,7 @@ Example #1
 File `/api/method.json/get.js`, Request type `GET`
 ```javascript
 module.exports = function(client, callback) {
-    callback({ field: "value" });
+  callback({ field: "value" });
 }
 ```
 Result: `{ "field": "value" }`
@@ -115,16 +115,16 @@ Example #2
 File `/api/method.json/post.js`, Request type `POST`
 ```javascript
 module.exports = function(client, callback) {
-    dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
-        callback(nodes);
-    });
+  dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
+    callback(nodes);
+  });
 }
 ```
 Result:
 ```javascript
 [
-    { "login": "Vasia Pupkin", "password": "whoami", "group": "users" },
-    { "login": "Marcus Aurelius", "password": "tomyself", "group": "users" }
+  { "login": "Vasia Pupkin", "password": "whoami", "group": "users" },
+  { "login": "Marcus Aurelius", "password": "tomyself", "group": "users" }
 ]
 ```
 
@@ -133,15 +133,15 @@ File "access.js" is something line ".htaccess", you can easily define access res
 If folder not contains "access.js" it will inherit from parent folder and so on. Example:
 ```javascript
 module.exports = {
-    guests:  true,  // Allow requests from anonimous users (not logged or no session started)
-    logged:  true,  // Allow requests from logged users
-    http:    true,  // Allow requests using http protocol
-    https:   true,  // Allow requests using https protocol
-    groups:  [],    // Allow access for user groups listed in array
-                    //   or for all if array is empty or no groups field specified
-    intro:   true,  // Generate introspection for API methods in this directory
-    index:   false, // Generate directory index
-    virtual: true   // Allow requests to virtual paths, for CMS and REST URLs, etc.
+  guests:  true,  // Allow requests from anonimous users (not logged or no session)
+  logged:  true,  // Allow requests from logged users
+  http:    true,  // Allow requests using http protocol
+  https:   true,  // Allow requests using https protocol
+  groups:  [],    // Allow access for user groups listed in array
+                  //   or for all if array is empty or no groups field specified
+  intro:   true,  // Generate introspection for API methods in this directory
+  index:   false, // Generate directory index
+  virtual: true   // Allow requests to virtual paths, for CMS and REST URLs, etc.
 }
 ```
 

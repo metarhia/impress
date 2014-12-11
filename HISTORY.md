@@ -1,3 +1,9 @@
+0.1.169 / 2014-12-11
+==================
+
+  * Implemented new handler types: end, lazy, issue #182
+  * Added "handler" parameters to Client.prototype.execute(, filePath, callback)
+
 0.1.168 / 2014-12-09
 ==================
 
