@@ -1,8 +1,14 @@
+0.1.170 / 2014-12-12
+==================
+
+  * Implemented new handler type: error.js, issue #182
+  * Fixed error in application.runScript
+
 0.1.169 / 2014-12-11
 ==================
 
-  * Implemented new handler types: end, lazy, issue #182
-  * Added "handler" parameters to Client.prototype.execute(, filePath, callback)
+  * Implemented new handler types: end.js and lazy.js, issue #182
+  * Added "handler" parameters to Client.prototype.execute(handler, filePath, callback)
 
 0.1.168 / 2014-12-09
 ==================
