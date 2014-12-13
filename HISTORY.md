@@ -1,3 +1,9 @@
+0.1.171 / 2014-12-13
+==================
+
+  * Merged application.runScript with client.execute into client.runScript, close #186
+  * Deprecated application.runScript and client.execute, issue #186
+
 0.1.170 / 2014-12-12
 ==================
 
