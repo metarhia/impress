@@ -18,6 +18,8 @@ var config = {
     {  get: '/examples/simple/dataFromMemory.json' },
     {  get: '/examples/simple/fsAccess.json' },
     {  get: '/examples/simple/sysInfo.json' },
+    {  get: '/examples/simple/lazyHandler.json' },
+    {  get: '/examples/simple/endHandler.json' },
     {  get: '/examples/memory/stateful.json' },
     {  get: '/examples/override/' },
     {  get: '/examples/tools/forkWorker.json' },

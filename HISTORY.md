@@ -1,3 +1,9 @@
+0.1.172 / 2014-12-14
+==================
+
+  * Tested fixed new handler types: end, lazy, error, close #182
+  * Fixed bug in Client.prototype.error
+
 0.1.171 / 2014-12-13
 ==================
 
