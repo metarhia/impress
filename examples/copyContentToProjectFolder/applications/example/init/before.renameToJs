@@ -1,6 +1,0 @@
-﻿// Attach handler before all dynamic handlers
-//
-application.before(function(client, callback) {
-  console.log('Before ' + client.path);
-  callback();
-});

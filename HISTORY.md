@@ -1,3 +1,8 @@
+0.1.173 / 2014-12-15
+==================
+
+  * Deprecated application.before and .after, close #185, use end.js, lazy.js, error.js instead, issue #182
+
 0.1.172 / 2014-12-14
 ==================
 

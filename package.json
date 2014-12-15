@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.172",
+  "version": "0.1.173",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Multipurpose Application Server for Node.js",
   "keywords": [

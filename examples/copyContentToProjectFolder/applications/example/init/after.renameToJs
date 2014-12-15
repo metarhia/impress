@@ -1,6 +1,0 @@
-﻿// Attach handler after all dynamic handlers
-//
-application.after(function(client, callback) {
-  console.log('After ' + client.path);
-  callback();
-});
