@@ -2,16 +2,16 @@
 
 require('./lib/impress');
 
-var ncp = require('ncp').ncp;
-var querystring = require('querystring');
-// request = require('request').defaults({jar: false});
+var ncp = require('ncp').ncp,
+		querystring = require('querystring'),
+		taskCount = 0;
 
 ncp.limit = 16;
 
 var config = {
-  host:   '127.0.0.1',
+  host:    '127.0.0.1',
   port:    8080,
-  timeout: 5000,
+  timeout: 10000,
   tasks: [
     {  get: '/' },
     {  get: '/examples/simple/ajaxTest.ajax' },
@@ -39,7 +39,13 @@ var config = {
   ]
 };
 
+function taskExit() {
+	taskCount--;
+	if (taskCount === 0) impress.shutdown();
+}
+
 function httpTask(task) {
+	taskCount++;
   var request = {
     host: config.host,
     port: config.port,
@@ -63,18 +69,20 @@ function httpTask(task) {
     var req = api.http.request(request);
     req.on('response', function (res) {
       if (res.statusCode === 200) {
-        var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path + ' -> HTTP ' + res.statusCode + ' read: '+res.socket.bytesRead;
+        var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path +
+            ' -> HTTP ' + res.statusCode + ' read: '+res.socket.bytesRead;
         console.log('  ' + msg);
         res.on('error', function (err) {
           if (err) throw err;
         });
       } else {
-        // console.dir(task);
         throw new Error('HTTP ' + res.statusCode);
       }
+    	taskExit();
     });
     req.on('error', function (err) {
       if (err) throw err;
+      taskExit();
     });
     if (task.data) req.write(task.data);
     req.end();
@@ -86,35 +94,31 @@ function httpTests() {
   impress.server.on('start', function() {
     for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
   });
-
-  setInterval(function() {
-    impress.shutdown();
-  }, config.timeout);
 }
 
 if (api.cluster.isMaster) {
 
   var current = api.path.dirname(__filename.replace(/\\/g, '/')),
-    destination = current+'/',
-    source = current+'/examples/',
-    exists = false;
+      destination = current + '/',
+      source = current + '/examples/',
+      exists = false;
 
   api.async.each(['config', 'applications'], function(file, callback) {
-    api.fs.exists(destination+file, function(fileExists) {
+    api.fs.exists(destination + file, function(fileExists) {
       exists = exists || fileExists;
       callback();
     });
   }, function(err) {
     if (err) throw err;
     if (exists) {
-      console.log('Impress Application Server'.bold.green+' is already installed and configured in this folder.');
+      console.log('Impress Application Server'.bold.green + ' is already installed and configured in this folder.');
       console.log('  Current config and applications will be used for tests');
       httpTests();
     } else {
       console.log('Installing config and examples...'.bold.green);
-      ncp(source+'copyConfigForTestsOnly/config', destination+'config', { clobber: false }, function (err) {
+      ncp(source + 'copyConfigForTestsOnly/config', destination + 'config', { clobber: false }, function (err) {
         if (err) throw err;
-        ncp(source+'copyContentToProjectFolder/applications', destination+'applications', { clobber: false }, function (err) {
+        ncp(source + 'copyContentToProjectFolder/applications', destination + 'applications', { clobber: false }, function (err) {
           if (err) throw err;
           httpTests();
         });
