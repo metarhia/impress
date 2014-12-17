@@ -16,7 +16,6 @@ module.exports = {
     'async',
     'iconv',
     'colors',
-    'mkdirp',
     'zipstream', // npm modile zip-stream
     'stringify', // npm module json-stringify-safe
     'csv',
@@ -26,6 +25,7 @@ module.exports = {
     // 'nodemailer',
     // 'request',
     // 'npm',
+    // 'mkdirp',
 
     // Passport providers
     // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'

@@ -27,10 +27,10 @@ module.exports = {
     'async',
     'iconv',
     'colors',
-    'mkdirp',
     'zipstream', // npm modile zip-stream
     'stringify', // npm module json-stringify-safe
     'csv',
+    'mkdirp',
 
     // Additional modules
     // 'geoip',

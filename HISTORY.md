@@ -1,8 +1,13 @@
+0.1.175 / 2014-12-17
+==================
+
+  * Issues revision and fixes, close #184, close #162, close #153
+
 0.1.174 / 2014-12-16
 ==================
 
   * Fixed long workers, close #187
-  * Improved 
+  * Improved integration tests for Impress
 
 0.1.173 / 2014-12-15
 ==================

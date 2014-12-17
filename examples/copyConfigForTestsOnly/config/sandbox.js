@@ -11,7 +11,6 @@ module.exports = {
     'async',
     'iconv',
     'colors',
-    'mkdirp',
     'zipstream',
     'stringify',
     'csv'
