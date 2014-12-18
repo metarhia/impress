@@ -3,8 +3,8 @@
 require('./lib/impress');
 
 var ncp = require('ncp').ncp,
-		querystring = require('querystring'),
-		taskCount = 0;
+    querystring = require('querystring'),
+    taskCount = 0;
 
 ncp.limit = 16;
 
@@ -35,17 +35,18 @@ var config = {
     {  get: '/examples/cache/htmlPage.ajax' },
     {  get: '/examples/cache/apiMethod.json' },
     {  get: '/examples/events/connect.sse' },
+    {  get: '/examples/mongodb/getData.json/' },
     { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
   ]
 };
 
 function taskExit() {
-	taskCount--;
-	if (taskCount === 0) impress.shutdown();
+  taskCount--;
+  if (taskCount === 0) impress.shutdown();
 }
 
 function httpTask(task) {
-	taskCount++;
+  taskCount++;
   var request = {
     host: config.host,
     port: config.port,
@@ -78,7 +79,7 @@ function httpTask(task) {
       } else {
         throw new Error('HTTP ' + res.statusCode);
       }
-    	taskExit();
+      taskExit();
     });
     req.on('error', function (err) {
       if (err) throw err;
