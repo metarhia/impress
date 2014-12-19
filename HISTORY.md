@@ -1,3 +1,8 @@
+0.1.177 / 2014-12-19
+==================
+
+  * Improved handlers for streaming and big files download, close #144
+
 0.1.176 / 2014-12-18
 ==================
 
