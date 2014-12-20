@@ -35,7 +35,6 @@ var config = {
     {  get: '/examples/cache/htmlPage.ajax' },
     {  get: '/examples/cache/apiMethod.json' },
     {  get: '/examples/events/connect.sse' },
-    {  get: '/examples/mongodb/getData.json/' },
     { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
   ]
 };
