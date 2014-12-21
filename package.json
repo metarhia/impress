@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.177",
+  "version": "0.1.178",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Multipurpose Application Server for Node.js",
   "keywords": [
@@ -51,9 +51,6 @@
     "websocket": "1.0.x",
     "json-stringify-safe": "5.0.x",
     "csv": "0.4.x"
-  },
-  "devDependencies": {
-    "request": "2.51.x"
   },
   "engines": {
     "node": ">=0.10.6"

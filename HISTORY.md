@@ -1,3 +1,9 @@
+0.1.178 / 2014-12-21
+==================
+
+  * Code refactoring and more unit and integration tests added
+  * Removed unused devDependencies
+
 0.1.177 / 2014-12-19
 ==================
 

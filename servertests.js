@@ -27,7 +27,7 @@ var config = {
     {  get: '/examples/simple/httpRequest.json' },
     {  get: '/examples/security/anonymousSession.json' },
     {  get: '/examples/security/userInfo.json' },
-    {  get: '/examples/tools/forkWorker.json/' },
+    {  get: '/examples/tools/longWorker.json/' },
     {  get: '/examples/tools/serverHealth.json' },
     {  get: '/examples/simple/virtualPath.json/a/b/c' },
     {  get: '/examples/simple/jsonGet.json?field=value' },
@@ -35,6 +35,10 @@ var config = {
     {  get: '/examples/cache/htmlPage.ajax' },
     {  get: '/examples/cache/apiMethod.json' },
     {  get: '/examples/events/connect.sse' },
+    {  get: '/examples/events/sendEvent.json' },
+    {  get: '/examples/events/serverEvent.json' },
+    {  get: '/examples/simple/csvStringify.csv' },
+    {  get: '/examples/simple/jsonpGet.jsonp', data: { callback: 'callbackFunctionName' } },
     { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
   ]
 };
