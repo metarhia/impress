@@ -1,3 +1,8 @@
+0.1.179 / 2014-12-22
+==================
+
+  * Refactored callback (counters removed, async library used), issue #145
+
 0.1.178 / 2014-12-21
 ==================
 
