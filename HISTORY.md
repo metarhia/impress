@@ -1,3 +1,9 @@
+0.1.181 / 2014-12-24
+==================
+
+  * Code refactoring, close #145
+  * Module impress.utilities.js renamed to api.impress.js, and is available using api.impress from application namespaces
+
 0.1.180 / 2014-12-23
 ==================
 
