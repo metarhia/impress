@@ -1,11 +1,11 @@
 module.exports = function(client, callback) {
 
-  // client.redirect("/"); // HTTP redirection
-  // client.cache("30s");  // Cache result for 30 seconds
+  // client.redirect('/'); // HTTP redirection
+  // client.cache('30s');  // Cache result for 30 seconds
 
   client.context.data = {
     title: "Page Title",
-    key: generateKey(2, '0123456789'),
+    key: api.impress.generateKey(2, '0123456789'),
     center: {
       sid: client.sid,
       empty: "",

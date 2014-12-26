@@ -21,6 +21,7 @@ module.exports = {
     'fs', 'stream', 'zlib', 'events', 'readline',
 
     // Impress API modules
+    'impress',
     'definition',
 
     // Preinstalled modules

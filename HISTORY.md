@@ -1,3 +1,9 @@
+0.1.182 / 2014-12-26
+==================
+
+  * Move a few functions to api.impress.js, tests added
+  * Implemented api.impress.spinalToCamel for issue #188
+
 0.1.181 / 2014-12-24
 ==================
 
