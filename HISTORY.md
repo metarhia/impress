@@ -1,3 +1,9 @@
+0.1.184 / 2014-12-28
+==================
+
+  * Critical fix in Impress core, affected on strategy 'multiple' and server sockets binding
+  * Refacror global.js, issue #189
+
 0.1.183 / 2014-12-27
 ==================
 
