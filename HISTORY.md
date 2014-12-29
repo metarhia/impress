@@ -1,3 +1,8 @@
+0.1.185 / 2014-12-29
+==================
+
+  * Removed unused functions and moved functions from global.js to api.impress.js, issue #189
+
 0.1.184 / 2014-12-28
 ==================
 
