@@ -1,5 +1,8 @@
+'use strict';
+
+require('colors');
+
 var fs = require('fs'),
-    colors = require('colors'),
     path = require('path'),
     ncp = require('ncp').ncp,
     exec = require('child_process').exec,
