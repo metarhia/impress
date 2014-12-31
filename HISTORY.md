@@ -1,7 +1,12 @@
+0.1.187 / 2014-12-31
+==================
+
+  * Some minor code refactoring and optimizations
+
 0.1.186 / 2014-12-30
 ==================
 
-  * Refacted api namespace to camel case, issue #188
+  * Refacted api namespace to camel case, close #188
 
 0.1.185 / 2014-12-29
 ==================
