@@ -103,7 +103,8 @@ If Impress installed as a service (daemon) you can use following commands:
 ## Examples
 
 Example #1
-File `/api/method.json/get.js`, Request type `GET`
+To create GET request handler for URL /api/method.json
+File `/api/method.json/get.js`
 ```javascript
 module.exports = function(client, callback) {
   callback({ field: "value" });
@@ -112,7 +113,8 @@ module.exports = function(client, callback) {
 Result: `{ "field": "value" }`
 
 Example #2
-File `/api/method.json/post.js`, Request type `POST`
+To create POST request handler for URL /api/method.json
+File `/api/method.json/post.js`
 ```javascript
 module.exports = function(client, callback) {
   dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
