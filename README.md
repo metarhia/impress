@@ -100,10 +100,9 @@ If Impress installed as a service (daemon) you can use following commands:
   - Built-in simple testing framework
   - Server health monitoring
 
-## Examples
-
-Example #1
-To create GET request handler for URL /api/method.json
+## Examples  
+Example #1  
+To create GET request handler for URL /api/method.json  
 File `/api/method.json/get.js`
 ```javascript
 module.exports = function(client, callback) {
@@ -112,8 +111,8 @@ module.exports = function(client, callback) {
 ```
 Result: `{ "field": "value" }`
 
-Example #2
-To create POST request handler for URL /api/method.json
+Example #2  
+To create POST request handler for URL /api/method.json  
 File `/api/method.json/post.js`
 ```javascript
 module.exports = function(client, callback) {
@@ -130,8 +129,8 @@ Result:
 ]
 ```
 
-Example #3
-File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.
+Example #3  
+File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.  
 If folder not contains "access.js" it will inherit from parent folder and so on. Example:
 ```javascript
 module.exports = {
