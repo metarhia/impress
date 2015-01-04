@@ -21,7 +21,7 @@
 
   client.context.data = [];
 
-  if (client.query.id === 1) {
+  if (client.query.id === '1') {
     var providers = [],
         databases = application.databases;
     for (var databaseName in databases) {

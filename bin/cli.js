@@ -2,8 +2,9 @@
 
 'use strict';
 
+require('colors');
+
 var fs = require('fs'),
-    colors = require('colors'),
     path = require('path'),
     ncp = require('ncp').ncp,
     readline = require('readline'),
@@ -11,7 +12,7 @@ var fs = require('fs'),
     spawn = require('child_process').spawn,
     async = require('async');
 
-var isWin = !!process.platform.match(/^win/);
+// var isWin = !!process.platform.match(/^win/);
 
 ncp.limit = 16;
 
@@ -24,8 +25,7 @@ var impressPath = 'c:/dropbox/projects/impress',
     applicationsDir = impressPath + '/applications',
     curDir = process.cwd(),
     current = path.dirname(__filename.replace(/\\/g, '/')),
-    parent = path.basename(path.dirname(current)),
-    isWin = !!process.platform.match(/^win/);
+    parent = path.basename(path.dirname(current));
 
 global.applications = [];
 
