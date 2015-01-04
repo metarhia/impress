@@ -1,3 +1,13 @@
+0.1.189 / 2014-01-04
+==================
+
+  * Refactored security subsystem (last plugin) to new conventions, close #59
+  * Changed application classes (Client, User, Session) factory to use util.inherits
+  * Refactored MongoDB security provider
+  * Changed application.users array key (prev key is userId, new key is user login)
+  * Refactored dependent modules according to security subsystem changes
+  * Fixed examples
+
 0.1.188 / 2014-01-02
 ==================
 
