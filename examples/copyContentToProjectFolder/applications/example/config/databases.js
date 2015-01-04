@@ -2,12 +2,12 @@
 
 module.exports = {
 
-  // dbAlias: {
-  //   url: 'mongodb://localhost:27017/impress',
-  //   collections: [ 'sessions', 'users', 'groups', 'testCollection' ],
-  //   slowTime: '2s',
-  //   security: true,
-  // },
+  dbAlias: {
+    url: 'mongodb://localhost:27017/impress',
+    collections: [ 'sessions', 'users', 'groups', 'testCollection' ],
+    slowTime: '2s',
+    security: true,
+  },
 
   // MySQL example database configuration
   //
