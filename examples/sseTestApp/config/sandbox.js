@@ -50,8 +50,6 @@ module.exports = {
     //'db.memcached',
     //'db.mysql',
     //'db.pgsql',
-    'impress.log',
-    'impress.security',
     //'impress.security.mongodb',
     //'impress.health',
     //'impress.scale',

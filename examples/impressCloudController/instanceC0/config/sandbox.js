@@ -33,8 +33,6 @@ module.exports = {
 
   // Plugins to be loaded using require by Impress
   plugins: [
-    'impress.log',
-    'impress.security',
     'impress.scale',
     'impress.events',
     'impress.sse',
