@@ -17,8 +17,6 @@ module.exports = {
   ],
 
   plugins: [
-    'impress.log',
-    'impress.security',
     'impress.events',
     'impress.sse',
     'api.uglify'
