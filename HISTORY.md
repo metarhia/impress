@@ -1,3 +1,9 @@
+0.1.190 / 2014-01-06
+==================
+
+  * Fixes in application classes (Client, User, Session)
+  * Fixes in MongoDB security provider
+
 0.1.189 / 2014-01-04
 ==================
 
