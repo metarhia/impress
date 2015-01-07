@@ -70,13 +70,17 @@ module.exports = {
   },
 
   sessions: {
-    anonymous:  'false:boolean',
-    cookie:     'SID:string',
-    characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:string',
-    secret:     'secret:string',
-    length:     '64:number',
-    persist:    'true:boolean',
-    database:   '[string]'
+    anonymous:    'false:boolean',
+    cookie:       'SID:string',
+    characters:   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:string',
+    secret:       'secret:string',
+    length:       '64:number',
+    persist:      'true:boolean',
+    perIpLimit:   '20:number',
+    confirmTime:  '1d:duration',
+    expireTime:   '10d:duration',
+    perUserLimit: '5:number',
+    database:     '[string]'
   }
 
 };

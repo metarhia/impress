@@ -1,3 +1,9 @@
+0.1.191 / 2014-01-07
+==================
+
+  * Optimized application classes (Client, User, Session)
+  * Optimized SSE
+
 0.1.190 / 2014-01-06
 ==================
 
