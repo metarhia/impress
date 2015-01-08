@@ -1,3 +1,9 @@
+0.1.192 / 2014-01-08
+==================
+
+  * Decomposed method dispatcher into: impress.dispatcher and application.dispatcher
+  * Avoid inheritance for classes User and Session, issue #193
+
 0.1.191 / 2014-01-07
 ==================
 
