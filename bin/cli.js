@@ -23,8 +23,8 @@ var rl = readline.createInterface({
 
 var impressPath = 'c:/dropbox/projects/impress',
     applicationsDir = impressPath + '/applications',
-    curDir = process.cwd(),
-    current = path.dirname(__filename.replace(/\\/g, '/'));
+    curDir = process.cwd();
+    //current = path.dirname(__filename.replace(/\\/g, '/'));
     //parent = path.basename(path.dirname(current));
 
 global.applications = [];
