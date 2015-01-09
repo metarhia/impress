@@ -1,3 +1,9 @@
+0.1.193 / 2014-01-09
+==================
+
+  * Decomposed application.dispatcher to application.dispatchRoute
+  * Optimized receiving large requests in chunks
+
 0.1.192 / 2014-01-08
 ==================
 
