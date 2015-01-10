@@ -6,6 +6,7 @@
 [![Dependency Status](https://david-dm.org/tshemsedinov/impress.svg)](https://david-dm.org/tshemsedinov/impress)
 [![devDependency Status](https://david-dm.org/tshemsedinov/impress/dev-status.svg)](https://david-dm.org/tshemsedinov/impress#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/impress.svg)](http://badge.fury.io/js/impress)
+[![Codacy Badge](https://www.codacy.com/project/badge/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com)
 
 [Impress](https://github.com/tshemsedinov/impress)ive Multipurpose Totalitarian-style Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
