@@ -1,3 +1,10 @@
+0.1.194 / 2014-01-10
+==================
+
+  * Fixed ReferenceError: login is not defined, issue #194
+  * Fixed name collision dispatch/dispatcher
+  * Minor code refactoring
+
 0.1.193 / 2014-01-09
 ==================
 

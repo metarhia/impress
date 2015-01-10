@@ -5,7 +5,7 @@
 require('colors');
 
 var fs = require('fs'),
-    path = require('path'),
+    //path = require('path'),
     ncp = require('ncp').ncp,
     readline = require('readline');
     //exec = require('child_process').exec,
