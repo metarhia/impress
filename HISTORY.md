@@ -1,3 +1,10 @@
+0.1.195 / 2014-01-11
+==================
+
+  * Fixed MongoDB schema validation
+  * Fixed double context initialization using application.callInContext(impress.initContext);
+  * Moved merge and inArray from global context to api.impress namespace, issue #189
+
 0.1.194 / 2014-01-10
 ==================
 
@@ -567,7 +574,7 @@
 ==================
 
   * Fixed bug in file watching
-  * Minor code fixex and examples added
+  * Minor code fixes and examples added
   * Normalized CRLF for Github
 
 0.1.99 / 2014-09-20
