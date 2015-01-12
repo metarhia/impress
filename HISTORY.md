@@ -1,3 +1,9 @@
+0.1.196 / 2014-01-12
+==================
+
+  * Changed for...in loops to integer loops in critical places, so v8 can optimize effectively
+  * Added example for application internal API
+
 0.1.195 / 2014-01-11
 ==================
 
