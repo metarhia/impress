@@ -1,48 +1,54 @@
-0.1.196 / 2014-01-12
+0.1.197 / 2015-01-13
+==================
+
+  * Another step to global.js deprecation, issue #189
+  * Prevent security warning duplication
+
+0.1.196 / 2015-01-12
 ==================
 
   * Changed for...in loops to integer loops in critical places, so v8 can optimize effectively
   * Added example for application internal API
 
-0.1.195 / 2014-01-11
+0.1.195 / 2015-01-11
 ==================
 
   * Fixed MongoDB schema validation
   * Fixed double context initialization using application.callInContext(impress.initContext);
   * Moved merge and inArray from global context to api.impress namespace, issue #189
 
-0.1.194 / 2014-01-10
+0.1.194 / 2015-01-10
 ==================
 
   * Fixed ReferenceError: login is not defined, issue #194
   * Fixed name collision dispatch/dispatcher
   * Minor code refactoring
 
-0.1.193 / 2014-01-09
+0.1.193 / 2015-01-09
 ==================
 
   * Decomposed application.dispatcher to application.dispatchRoute
   * Optimized receiving large requests in chunks
 
-0.1.192 / 2014-01-08
+0.1.192 / 2015-01-08
 ==================
 
   * Decomposed method dispatcher into: impress.dispatcher and application.dispatcher
   * Avoid inheritance for classes User and Session, issue #193
 
-0.1.191 / 2014-01-07
+0.1.191 / 2015-01-07
 ==================
 
   * Optimized application classes (Client, User, Session)
   * Optimized SSE
 
-0.1.190 / 2014-01-06
+0.1.190 / 2015-01-06
 ==================
 
   * Fixes in application classes (Client, User, Session)
   * Fixes in MongoDB security provider
 
-0.1.189 / 2014-01-04
+0.1.189 / 2015-01-04
 ==================
 
   * Refactored security subsystem (last plugin) to new conventions, close #59
@@ -52,7 +58,7 @@
   * Refactored dependent modules according to security subsystem changes
   * Fixed examples
 
-0.1.188 / 2014-01-02
+0.1.188 / 2015-01-02
 ==================
 
   * Fixes in error handling, found while fixing issue #190

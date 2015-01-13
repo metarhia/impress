@@ -166,7 +166,7 @@ module.exports = {
 
 Dual licensed under the MIT or RUMI licenses.
 
-Copyright (c) 2012-2014 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
+Copyright (c) 2012-2015 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
 
-RUMI License: Everything that you want, you are already that.
+RUMI License: Everything that you want, you are already that.  
 // Jalal ad-Din Muhammad Rumi
