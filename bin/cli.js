@@ -5,12 +5,12 @@
 require('colors');
 
 var fs = require('fs'),
-    path = require('path'),
+    //path = require('path'),
     ncp = require('ncp').ncp,
-    readline = require('readline'),
-    exec = require('child_process').exec,
-    spawn = require('child_process').spawn,
-    async = require('async');
+    readline = require('readline');
+    //exec = require('child_process').exec,
+    //spawn = require('child_process').spawn,
+    //async = require('async');
 
 // var isWin = !!process.platform.match(/^win/);
 
@@ -23,9 +23,9 @@ var rl = readline.createInterface({
 
 var impressPath = 'c:/dropbox/projects/impress',
     applicationsDir = impressPath + '/applications',
-    curDir = process.cwd(),
-    current = path.dirname(__filename.replace(/\\/g, '/')),
-    parent = path.basename(path.dirname(current));
+    curDir = process.cwd();
+    //current = path.dirname(__filename.replace(/\\/g, '/'));
+    //parent = path.basename(path.dirname(current));
 
 global.applications = [];
 

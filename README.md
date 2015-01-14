@@ -6,6 +6,7 @@
 [![Dependency Status](https://david-dm.org/tshemsedinov/impress.svg)](https://david-dm.org/tshemsedinov/impress)
 [![devDependency Status](https://david-dm.org/tshemsedinov/impress/dev-status.svg)](https://david-dm.org/tshemsedinov/impress#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/impress.svg)](http://badge.fury.io/js/impress)
+[![Codacy Badge](https://www.codacy.com/project/badge/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/public/tshemsedinov/impress)
 
 [Impress](https://github.com/tshemsedinov/impress)ive Multipurpose Totalitarian-style Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
@@ -100,10 +101,10 @@ If Impress installed as a service (daemon) you can use following commands:
   - Built-in simple testing framework
   - Server health monitoring
 
-## Examples
-
-Example #1
-File `/api/method.json/get.js`, Request type `GET`
+## Examples  
+Example #1  
+To create GET request handler for URL `/api/method.json`  
+File /api/method.json/get.js
 ```javascript
 module.exports = function(client, callback) {
   callback({ field: "value" });
@@ -111,8 +112,9 @@ module.exports = function(client, callback) {
 ```
 Result: `{ "field": "value" }`
 
-Example #2
-File `/api/method.json/post.js`, Request type `POST`
+Example #2  
+To create POST request handler for URL `/api/method.json`  
+File /api/method.json/post.js
 ```javascript
 module.exports = function(client, callback) {
   dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
@@ -128,8 +130,8 @@ Result:
 ]
 ```
 
-Example #3
-File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.
+Example #3  
+File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.  
 If folder not contains "access.js" it will inherit from parent folder and so on. Example:
 ```javascript
 module.exports = {
@@ -164,7 +166,7 @@ module.exports = {
 
 Dual licensed under the MIT or RUMI licenses.
 
-Copyright (c) 2012-2014 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
+Copyright (c) 2012-2015 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
 
-RUMI License: Everything that you want, you are already that.
+RUMI License: Everything that you want, you are already that.  
 // Jalal ad-Din Muhammad Rumi
