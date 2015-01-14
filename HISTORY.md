@@ -1,3 +1,9 @@
+0.1.198 / 2015-01-14
+==================
+
+  * Final global.js deprecation, issue #189
+  * Plugin mixin overriding refactored, as a result security subsystem refactored
+
 0.1.197 / 2015-01-13
 ==================
 
