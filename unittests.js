@@ -5,9 +5,11 @@ require('./lib/impress.tests');
 
 impress.test.show.ok = false;
 
-require('./unittests/api.impress.test');
-require('./unittests/api.definition.test');
-require('./unittests/impress.application.test');
-require('./unittests/impress.client.test');
+var testsDir = './unittests/',
+    tests = api.fs.readdirSync(testsDir);
+
+tests.map(function(fileName) {
+  require(testsDir + fileName);
+});
 
 impress.test.printReport();

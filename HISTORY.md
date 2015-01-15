@@ -1,3 +1,9 @@
+0.1.199 / 2015-01-15
+==================
+
+  * Fixed bug in pgsql plugin
+  * Unittests refactored
+
 0.1.198 / 2015-01-14
 ==================
 

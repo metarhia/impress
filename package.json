@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.198",
+  "version": "0.1.199",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Multipurpose Application Server for Node.js",
   "keywords": [
@@ -63,6 +63,7 @@
   "jshintConfig": {
     "predef": [ "api", "impress", "db", "global", "cms", "inArray", "emptyness", "window" ],
     "node": true,
-    "indent": 2
+    "indent": 2,
+    "maxcomplexity": 25
   }
 }
