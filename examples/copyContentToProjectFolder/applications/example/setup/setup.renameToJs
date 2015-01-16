@@ -1,4 +1,4 @@
-﻿console.log(api.colors.green(api.colors.bold('Ecample ')+' installing initial data structures to MongoDB...'));
+﻿console.log(api.colors.green(api.colors.bold('Example ')+' installing initial data structures to MongoDB...'));
 
 var rl = api.readline.createInterface({
   input: process.stdin,
