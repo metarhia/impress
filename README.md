@@ -160,7 +160,7 @@ module.exports = {
 ## Contributors
 
   - Timur Shemsedinov (marcusaurelius)
-  - See github for full contributors list
+  - See github for full [contributors list](https://github.com/tshemsedinov/impress/graphs/contributors)
 
 ## License
 
