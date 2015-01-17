@@ -1,3 +1,10 @@
+0.1.200 / 2015-01-17
+==================
+
+  * Added v8 optimization tools and utilities wrapper: /lib/api.v8.js
+  * Added minimal application example /examples/minimalApplication
+  * Extracted introspection and index to separate files
+
 0.1.199 / 2015-01-15
 ==================
 

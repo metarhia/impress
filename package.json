@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.199",
+  "version": "0.1.200",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Multipurpose Application Server for Node.js",
   "keywords": [
@@ -53,7 +53,8 @@
     "csv": "0.4.x"
   },
   "engines": {
-    "node": ">=0.10.6"
+    "node": ">=0.10.6",
+    "iojs": ">=1.0.0"
   },
   "readmeFilename": "README.md",
   "scripts": {

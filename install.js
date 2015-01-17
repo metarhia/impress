@@ -17,7 +17,7 @@ ncp.limit = 16;
 var current = path.dirname(__filename.replace(/\\/g, '/')),
     parent = path.basename(path.dirname(current)),
     destination = path.dirname(path.dirname(current))+'/',
-    source = current+'/examples/copyContentToProjectFolder/',
+    source = current+'/examples/exampleApplication/',
     exists = false;
 
 function installService() {

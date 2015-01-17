@@ -120,9 +120,9 @@ if (api.cluster.isMaster) {
       httpTests();
     } else {
       console.log('Installing config and examples...'.bold.green);
-      ncp(source + 'copyConfigForTestsOnly/config', destination + 'config', { clobber: false }, function (err) {
+      ncp(source + 'testsConfig/config', destination + 'config', { clobber: false }, function (err) {
         if (err) throw err;
-        ncp(source + 'copyContentToProjectFolder/applications', destination + 'applications', { clobber: false }, function (err) {
+        ncp(source + 'exampleApplication/applications', destination + 'applications', { clobber: false }, function (err) {
           if (err) throw err;
           httpTests();
         });
