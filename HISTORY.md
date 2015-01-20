@@ -1,7 +1,7 @@
 0.1.202 / 2015-01-20
 ==================
 
-  * Improved /lib/api.v8.js, added api.v8.OPT_STATUS array and function api.v8.optimizationStatus(code)
+  * Improved /lib/api.v8.js, added api.v8.OPT_STATUS array and function api.v8.optimizationStatus(code), issue #205
 
 0.1.201 / 2015-01-18
 ==================

@@ -4,4 +4,4 @@ node_js:
   - "0.10"
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax unittests.js
-  - node --stack-trace-limit=1000 --allow-natives-syntax server.js
+  - node --stack-trace-limit=1000 --allow-natives-syntax servertests.js
