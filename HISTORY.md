@@ -1,3 +1,9 @@
+0.1.203 / 2015-01-22
+==================
+
+  * Port 80 bind conflict solved, issue #210
+  * Fixed and optimized impress.log.js
+
 0.1.202 / 2015-01-20
 ==================
 
