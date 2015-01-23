@@ -1,7 +1,12 @@
+0.1.204 / 2015-01-23
+==================
+
+  * Changed conditional callback, e.g. if (callback) callback(); to direct where possible
+
 0.1.203 / 2015-01-22
 ==================
 
-  * Port 80 bind conflict solved, issue #210
+  * Port 80 bind conflict solved, close #210
   * Fixed and optimized impress.log.js
 
 0.1.202 / 2015-01-20
