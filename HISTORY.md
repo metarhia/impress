@@ -1,4 +1,10 @@
-0.1.204 / 2015-01-23
+0.1.205 / 2015-01-25
+==================
+
+  * Removed wrong warning about impress.log.js not loaded
+  * Tested issue #209, closed because after ```yum -y install psmisc``` killall works, close #209
+
+0.1.204 / 2015-01-24
 ==================
 
   * Changed conditional callback, e.g. if (callback) callback(); to direct where possible
