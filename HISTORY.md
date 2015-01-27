@@ -1,3 +1,9 @@
+0.1.206 / 2015-01-27
+==================
+
+  * Multiple but not critical fixes in security provider
+  * Some code refactored and removed debug output
+
 0.1.205 / 2015-01-25
 ==================
 
