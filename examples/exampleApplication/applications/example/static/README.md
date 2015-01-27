@@ -1,1 +1,1 @@
-Folder for grunt, gulp, bower and other build tools
+Folder for static files: client-side js, images, styles, etc.
