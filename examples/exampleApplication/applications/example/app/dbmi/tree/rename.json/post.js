@@ -50,4 +50,4 @@
     } else callback();
   }
 
-}
+};

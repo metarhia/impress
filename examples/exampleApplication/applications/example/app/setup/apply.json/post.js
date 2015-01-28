@@ -4,7 +4,7 @@
       npmChecked = client.fields.npmChecked.split(',');
 
   api.npm.load(npm.config, function(err) {
-    api.npm.on("log", function(message) {
+    api.npm.on('log', function(message) {
       console.log(message);
     });
     for (var i = 0; i < npmList.length; i++) {
@@ -22,4 +22,4 @@
 
   callback();
 
-}
+};

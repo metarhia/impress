@@ -3,4 +3,4 @@
   dbCity.buildings.findOne({ num: num }, function(err, building) {
     callback({ success: !err, building: building });
   });
-}
+};

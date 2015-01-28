@@ -26,4 +26,4 @@ module.exports = {
   //  active:    false,   // is active in current process
   //  count:     0,       // executing count
 
-}
+};

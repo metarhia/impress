@@ -18,7 +18,7 @@
   );
 
   req.on('error', function(e) {
-    callback("Can't get page");
+    callback('Can\'t get page');
   });
   req.end();
-}
+};

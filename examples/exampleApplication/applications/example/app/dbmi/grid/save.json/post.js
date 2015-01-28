@@ -40,4 +40,4 @@
     } else callback();
   } else callback();
 
-}
+};

@@ -4,4 +4,4 @@
     else client.context.data = { Result: 'Error' };
     callback();
   });
-}
+};

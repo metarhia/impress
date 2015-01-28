@@ -4,4 +4,4 @@
     path:   client.path,
     fields: client.fields
   });
-}
+};

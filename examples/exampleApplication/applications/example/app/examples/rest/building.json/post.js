@@ -7,4 +7,4 @@
       callback({ success: !err });
     }
   );
-}
+};

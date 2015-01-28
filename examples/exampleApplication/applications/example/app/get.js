@@ -4,4 +4,4 @@ module.exports = function(client, callback) {
     console.log('Called client.inherited() from ' + client.path);
   }
   callback();
-}
+};

@@ -59,4 +59,4 @@
     } else callback();
   } else callback();
 
-}
+};

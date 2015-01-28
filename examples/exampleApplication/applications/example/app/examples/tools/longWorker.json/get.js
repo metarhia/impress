@@ -3,4 +3,4 @@ module.exports = function(client, callback) {
   client.killLongWorker('worker');
   client.fork('worker');
   callback();
-}
+};

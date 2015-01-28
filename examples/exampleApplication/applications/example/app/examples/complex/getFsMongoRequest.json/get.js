@@ -25,7 +25,7 @@
         }
       );
       req.on('error', function(e) {
-        callback(null, "Can't get page");
+        callback(null, 'Can\'t get page');
       });
       req.end();
     },
@@ -37,4 +37,4 @@
   }, function(err, results) {
     callback(results);
   });
-}
+};

@@ -5,4 +5,4 @@
     if (client.fields.loginForm) client.redirect('/');
     callback();
   });
-}
+};

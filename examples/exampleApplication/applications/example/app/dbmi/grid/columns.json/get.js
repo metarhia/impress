@@ -49,4 +49,4 @@
     } else callback();
   } else callback();
 
-}
+};

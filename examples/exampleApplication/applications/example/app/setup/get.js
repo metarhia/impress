@@ -13,4 +13,4 @@ module.exports = function(client, callback) {
 
   callback({ npm: npmChecks });
 
-}
+};

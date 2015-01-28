@@ -15,7 +15,7 @@
     start: (fromPage * PAGESIZE),
     limit: (((toPage - fromPage) * PAGESIZE) + PAGESIZE),
     sortby: (sortcol) ? sortcol : '*',
-    order: (sortdir > 0) ? "+asc" : "+desc")
+    order: (sortdir > 0) ? '+asc' : '+desc')
   */
   if (path.length === 3) {
     if (schema === 'mysql') {
@@ -56,4 +56,4 @@
     } else callback();
   } else callback();
 
-}
+};

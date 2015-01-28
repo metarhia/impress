@@ -7,4 +7,4 @@
   index:   true,
   virtual: true,
   groups:  []
-}
+};

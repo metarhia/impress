@@ -45,4 +45,4 @@
     } else callback();
   }
 
-}
+};
