@@ -1,7 +1,7 @@
 ﻿module.exports = function(client, callback) {
   var req = api.http.request(
     {
-      hostname: 'google.com',
+      hostname: 'www.iana.org',
       port: 80,
       path: '/',
       method: 'get'
@@ -18,7 +18,7 @@
   );
 
   req.on('error', function(e) {
-    callback('Can\'t get page');
+    callback('Can`t get page');
   });
   req.end();
 };

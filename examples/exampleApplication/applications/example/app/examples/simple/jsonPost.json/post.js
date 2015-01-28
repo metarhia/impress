@@ -16,7 +16,7 @@ module.exports = function(client, callback) {
       valueLength:    client.fields.parameterName.length,
       requestCounter: application.requestCounter++
     });
-  } else callback({ error: 'POST parameter \'parameterName\' required' });
+  } else callback({ error: 'POST parameter "parameterName" required' });
 };
 
 module.exports.meta = meta;

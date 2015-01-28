@@ -1,3 +1,10 @@
+0.1.207 / 2015-01-28
+==================
+
+  * Added config parameters to make gzipping and minifying optional, close #211
+  * Static files moved to /static
+  * Code style fixes
+
 0.1.206 / 2015-01-27
 ==================
 

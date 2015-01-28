@@ -5,7 +5,7 @@ global.application = application;
 impress.mixinApplication(application);
 
 impress.test({
-  'impress.applicationDirs': [ [ [], function(value) { return Array.isArray(value) && value.length === 7; } ] ],
+  'impress.applicationDirs': [ [ [], function(value) { return Array.isArray(value) && value.length === 8; } ] ],
   'impress.applicationPlaces': [ [ [], function(value) { return Array.isArray(value) && value.length === 5; } ] ],
   'application.config': [ [ [], {} ] ],
   'application.tasks': [ [ [], {} ] ],
