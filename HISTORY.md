@@ -1,3 +1,9 @@
+0.1.208 / 2015-01-29
+==================
+
+  * Fixed client.cookies, close #215
+  * Moved to private var of Client.prototype.processing, close #214
+
 0.1.207 / 2015-01-28
 ==================
 
