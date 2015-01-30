@@ -33,8 +33,8 @@
         callback();
       });
     } else if (schema === 'mongodb') {
-      var dbClient = db.drivers.mongodb.MongoClient,
-          url = 'mongodb://localhost:27017/' + path[1];
+      var dbClient = db.drivers.mongodb.MongoClient;
+      url = 'mongodb://localhost:27017/' + path[1];
       dbClient.connect(url, function(err, connection) {
         connection.createCollection(path[2], function(err, collection) {
           collection.find(filter).toArray(function(err, nodes) {
