@@ -7,7 +7,6 @@
       database = application.databases[dbName],
       url = database.url,
       schema = url.substr(0, url.indexOf(':')),
-      driver = db[dbName],
       filter = (client.fields.filter) ? JSON.parse(client.fields.filter) : {};
   /*
     source: dataSource,
@@ -19,10 +18,10 @@
   */
   if (path.length === 3) {
     if (schema === 'mysql') {
-      var tableName = path[1]+'.'+path[2];
+      var tableName = path[1] + '.' + path[2];
       database.connection.select(tableName, '*', filter, function(err, data, query) {
         if (!err) {
-          var sql = query.sql.replace(path[1]+'.', ''); // replace(/`/g, '')
+          var sql = query.sql.replace(path[1] + '.', ''); // replace(/`/g, '')
           if (!data) data = [];
           client.context.data = {
             start: 0,
@@ -35,7 +34,7 @@
       });
     } else if (schema === 'mongodb') {
       var dbClient = db.drivers.mongodb.MongoClient,
-          url = 'mongodb://localhost:27017/'+path[1];
+          url = 'mongodb://localhost:27017/' + path[1];
       dbClient.connect(url, function(err, connection) {
         connection.createCollection(path[2], function(err, collection) {
           collection.find(filter).toArray(function(err, nodes) {

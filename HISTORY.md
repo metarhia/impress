@@ -1,3 +1,9 @@
+0.1.209 / 2015-01-30
+==================
+
+  * Implemented helper API for file upload, close #213
+  * Code style fixes
+
 0.1.208 / 2015-01-29
 ==================
 

@@ -5,7 +5,7 @@ module.exports = function(client, callback) {
 
   setInterval(function() {
     counter++;
-    console.log('Next 3 seconds counter: '+counter);
+    console.log('Next 3 seconds counter: ' + counter);
   }, 3000);
 
   setTimeout(function() {

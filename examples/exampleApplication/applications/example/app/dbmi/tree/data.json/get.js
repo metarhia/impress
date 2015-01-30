@@ -17,7 +17,7 @@
       }
       client.context.data.push(item);
     }
-  }
+  };
 
   client.context.data = [];
 
@@ -39,8 +39,8 @@
         path = client.query.id.substring(1).split('/'),
         dbName = path[0],
         database = application.databases[dbName],
-        schema = database.url.substr(0, database.url.indexOf(':')),
-        driver = db[dbName];
+        schema = database.url.substr(0, database.url.indexOf(':'));
+
     if (path.length === 1) {
       if (schema === 'mysql') {
         database.connection.databases(function(err, databases) {

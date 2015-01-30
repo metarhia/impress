@@ -1,7 +1,7 @@
 ﻿module.exports = function(client, callback) {
   var req = api.http.request(
     {
-      hostname: 'www.iana.org',
+      hostname: 'ietf.org',
       port: 80,
       path: '/',
       method: 'get'
