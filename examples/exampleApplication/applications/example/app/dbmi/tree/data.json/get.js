@@ -6,18 +6,18 @@
       var item = {
         attr: {
           id: node.id,
-          rel: node.type ? node.type : "root"
+          rel: node.type ? node.type : 'root'
         },
         data: node.name,
-        state: "closed"
+        state: 'closed'
       };
       if (node.type === 'table' || node.type === 'view' || node.type === 'collection') {
-        item.state = "open";
-        item.attr.class = "jstree-leaf";
+        item.state = 'open';
+        item.attr.class = 'jstree-leaf';
       }
       client.context.data.push(item);
     }
-  }
+  };
 
   client.context.data = [];
 
@@ -26,7 +26,11 @@
         databases = application.databases;
     for (var databaseName in databases) {
       var database = databases[databaseName];
-      providers.push({ id:"/"+databaseName, name:databaseName+' ('+database.url+')', type:"provider" });
+      providers.push({
+        id: '/' + databaseName,
+        name: databaseName + ' (' + database.url + ')',
+        type: 'provider'
+      });
     }
     serializeData(null, providers);
     callback();
@@ -35,13 +39,17 @@
         path = client.query.id.substring(1).split('/'),
         dbName = path[0],
         database = application.databases[dbName],
-        schema = database.url.substr(0, database.url.indexOf(':')),
-        driver = db[dbName];
+        schema = database.url.substr(0, database.url.indexOf(':'));
+
     if (path.length === 1) {
       if (schema === 'mysql') {
         database.connection.databases(function(err, databases) {
           for (var i = 0; i < databases.length; i++) {
-            items.push({ id:"/"+dbName+"/"+databases[i], name:databases[i], type:"database" });
+            items.push({
+              id: '/' + dbName + '/' + databases[i],
+              name: databases[i],
+              type: 'database'
+            });
           }
           serializeData(null, items);
           callback();
@@ -50,7 +58,11 @@
         database.connection.admin().listDatabases(function(err, databases) {
           databases = databases.databases;
           for (var i = 0; i < databases.length; i++) {
-            items.push({ id:"/"+dbName+"/"+databases[i].name, name:databases[i].name, type:"database" });
+            items.push({
+              id: '/' + dbName + '/' + databases[i].name,
+              name: databases[i].name,
+              type: 'database'
+            });
           }
           serializeData(null, items);
           callback();
@@ -61,19 +73,27 @@
         database.connection.databaseTables(path[1], function(err, tables) {
           for (var tableName in tables) {
             var table = tables[tableName];
-            items.push({ id:"/"+path[0]+"/"+path[1]+"/"+table['TABLE_NAME'], name:table['TABLE_NAME'], type:"table" });
+            items.push({
+              id: '/' + path[0] + '/' + path[1] + '/' + table['TABLE_NAME'],
+              name: table['TABLE_NAME'],
+              type:'table'
+            });
           }
           serializeData(null, items);
           callback();
         });
       } else if (schema === 'mongodb') {
         var dbClient = db.drivers.mongodb.MongoClient,
-          url = 'mongodb://localhost:27017/'+path[1];
+          url = 'mongodb://localhost:27017/' + path[1];
         dbClient.connect(url, function(err, connection) {
           connection.collections(function(err, collections) {
             for (var i = 0; i < collections.length; i++) {
               if (collections[i].db.databaseName === path[1]) {
-                items.push({ id:"/"+path[0]+"/"+path[1]+"/"+collections[i].collectionName, name:collections[i].collectionName, type:"collection" });
+                items.push({
+                  id: '/' + path[0] + '/' + path[1] + '/' + collections[i].collectionName,
+                  name: collections[i].collectionName,
+                  type:'collection
+                });
               }
             }
             serializeData(null, items);
@@ -85,4 +105,4 @@
     }
   }
 
-}
+};

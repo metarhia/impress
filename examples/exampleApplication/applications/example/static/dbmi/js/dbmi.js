@@ -152,7 +152,7 @@ global.onLoad(function() {
     .bind("remove.jstree", function(e, data) {
       data.rslt.obj.each(function() {
         var id = this.id;
-        confirmation('Delete','Do you wont to delete "'+this.id+'" ?', function() {
+        confirmation('Delete','Do you wont to delete "' + this.id + '" ?', function() {
           $.ajax({
             async: false,
             type:  'POST',
@@ -284,7 +284,7 @@ global.onLoad(function() {
       
       //  '<div id="commandLine"><textarea style="height:100%; width:100%"></textarea></div>'
 
-      $.get('/dbmi/grid/columns.json?source='+source, function(res) {
+      $.get('/dbmi/grid/columns.json?source=' + source, function(res) {
         loader = new Slick.Data.RemoteModel();
         gridSource = source;
         gridToolbar.show();

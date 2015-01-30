@@ -32,4 +32,4 @@
       networkInterfaces: api.os.networkInterfaces()
     }
   });
-}
+};

@@ -3,4 +3,4 @@
   api.fs.readFile(filePath, 'utf8', function(error, data) {
     callback({ fileContent: data, dataLength: data.length });
   });
-}
+};

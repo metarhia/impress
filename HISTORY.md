@@ -1,3 +1,27 @@
+0.1.210 / 2015-01-31
+==================
+
+  * Code style and DBMI fixes
+
+0.1.209 / 2015-01-30
+==================
+
+  * Implemented helper API for file upload, close #213
+  * Code style fixes
+
+0.1.208 / 2015-01-29
+==================
+
+  * Fixed client.cookies, close #215
+  * Moved to private var of Client.prototype.processing, close #214
+
+0.1.207 / 2015-01-28
+==================
+
+  * Added config parameters to make gzipping and minifying optional, close #211
+  * Static files moved to /static
+  * Code style fixes
+
 0.1.206 / 2015-01-27
 ==================
 

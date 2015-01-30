@@ -14,8 +14,8 @@ module.exports = function(client, callback) {
             geoip: api.geoip.lookup(address)
           }
         }
-      }
+      };
     } else client.context.data = 'GeoIP plugin is not loaded';
     callback();
   });
-}
+};

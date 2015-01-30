@@ -1,12 +1,11 @@
 module.exports = function(client, callback) {
 
-  console.log('Message from forked worker, will terminate in 30 seconds');
-
   var counter = 0;
+  console.log('Message from forked worker, will terminate in 30 seconds');
 
   setInterval(function() {
     counter++;
-    console.log('Next 3 seconds counter: '+counter);
+    console.log('Next 3 seconds counter: ' + counter);
   }, 3000);
 
   setTimeout(function() {
@@ -14,4 +13,4 @@ module.exports = function(client, callback) {
     callback();
   }, 30000);
   
-}
+};

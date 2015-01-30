@@ -4,4 +4,4 @@ module.exports = function(client, callback) {
     console.log('/over after inherited');
     callback();
   });
-}
+};

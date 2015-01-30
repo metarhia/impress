@@ -7,4 +7,4 @@ module.exports = {
   index:   false,
   virtual: true,
   groups: []
-}
+};

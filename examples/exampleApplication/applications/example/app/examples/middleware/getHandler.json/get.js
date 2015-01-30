@@ -5,4 +5,4 @@ module.exports = function(req, res, next) {
     method: req.method
   }));
   next();
-}
+};

@@ -37,4 +37,4 @@
   }, function(err, results) {
     callback(results);
   });
-}
+};

@@ -42,4 +42,4 @@ if (global.passport) {
     }
   };
 
-}
+};
