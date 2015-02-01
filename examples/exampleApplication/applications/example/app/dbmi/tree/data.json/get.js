@@ -92,7 +92,7 @@
                 items.push({
                   id: '/' + path[0] + '/' + path[1] + '/' + collections[i].collectionName,
                   name: collections[i].collectionName,
-                  type:'collection
+                  type:'collection'
                 });
               }
             }
