@@ -1,3 +1,10 @@
+0.1.212 / 2015-02-02
+==================
+
+  * Extracted upload/download API to /lib/impress.files.js, close #219
+  * Implemented support for multiple files upload using one http POST method
+  * Client class methods moved across modules
+
 0.1.211 / 2015-02-01
 ==================
 
