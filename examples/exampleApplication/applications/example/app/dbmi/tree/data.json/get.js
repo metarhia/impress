@@ -22,10 +22,11 @@
   client.context.data = [];
 
   if (client.query.id === '1') {
-    var providers = [],
+    var database,
+        providers = [],
         databases = application.databases;
     for (var databaseName in databases) {
-      var database = databases[databaseName];
+      database = databases[databaseName];
       providers.push({
         id: '/' + databaseName,
         name: databaseName + ' (' + database.url + ')',
@@ -37,9 +38,9 @@
   } else {
     var items = [],
         path = client.query.id.substring(1).split('/'),
-        dbName = path[0],
-        database = application.databases[dbName],
-        schema = database.url.substr(0, database.url.indexOf(':'));
+        dbName = path[0];
+    database = application.databases[dbName];
+    var schema = database.url.substr(0, database.url.indexOf(':'));
 
     if (path.length === 1) {
       if (schema === 'mysql') {
