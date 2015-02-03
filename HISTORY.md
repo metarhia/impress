@@ -1,3 +1,9 @@
+0.1.213 / 2015-02-03
+==================
+
+  * Improved helper API for file upload, issue #213
+  * Minor code fixes
+
 0.1.212 / 2015-02-02
 ==================
 
