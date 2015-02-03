@@ -1,3 +1,10 @@
+0.1.214 / 2015-02-04
+==================
+
+  * Live reload for /model, close #220
+  * Fixed filesystem watch, close #221
+  * Fixed \r\n and some code style issues
+
 0.1.213 / 2015-02-03
 ==================
 
