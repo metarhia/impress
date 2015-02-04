@@ -1,3 +1,28 @@
+0.1.214 / 2015-02-04
+==================
+
+  * Live reload for /model, close #220
+  * Fixed filesystem watch, close #221
+  * Fixed \r\n and some code style issues
+
+0.1.213 / 2015-02-03
+==================
+
+  * Improved helper API for file upload, issue #213
+  * Minor code fixes
+
+0.1.212 / 2015-02-02
+==================
+
+  * Extracted upload/download API to /lib/impress.files.js, close #219
+  * Implemented support for multiple files upload using one http POST method
+  * Client class methods moved across modules
+
+0.1.211 / 2015-02-01
+==================
+
+  * Changes in helper API for file upload, issue #213
+
 0.1.210 / 2015-01-31
 ==================
 

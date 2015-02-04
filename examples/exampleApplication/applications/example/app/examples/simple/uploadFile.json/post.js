@@ -3,9 +3,9 @@
   callback(client.files);
 
   client.upload(function(file) {
-    console.log('Uploaded: ' + file);
-  }, function(file) {
-    console.log('All files uploaded.');
+    console.dir({ uploadedFile: file });
+  }, function(doneCount) {
+    console.log('All ' + doneCount + ' file(s) are uploaded.');
   });
 
 };
