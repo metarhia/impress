@@ -1,3 +1,9 @@
+0.1.215 / 2015-02-05
+==================
+
+  * Fixed bug in /lib/api.impress.js method api.impress.log
+  * Repository structure changes to make core development easy to start after clone, close #224
+
 0.1.214 / 2015-02-04
 ==================
 
