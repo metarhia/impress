@@ -5,5 +5,5 @@ node_js:
   - iojs
   - iojs-v1.0.2
 script:
-  - unittests.sh
-  - servertests.sh
+  - ./unittests.sh
+  - ./servertests.sh
