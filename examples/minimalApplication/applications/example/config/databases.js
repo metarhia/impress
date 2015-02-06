@@ -31,4 +31,4 @@ module.exports = {
   //   slowTime: '2s',                          // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
   //   security: true,                          // flag to use this database for security subsystem (optional, dafault: false), collections: sessions, users, groups
   // }
-}
+};

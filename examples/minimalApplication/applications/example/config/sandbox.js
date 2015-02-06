@@ -45,22 +45,10 @@ module.exports = {
 
   // Plugins to be loaded using require by Impress
   plugins: [
-    'db',
-    'db.schema',
-    'db.mongodb',
-    //'db.memcached',
-    //'db.mysql',
-    //'db.pgsql',
-    'impress.log',
-    'impress.security.mongodb',
-    //'impress.health',
-    //'impress.scale',
-    'api.uglify',
-    'api.sass',
-    //'api.mail',
     'impress.events',
     'impress.sse',
     'impress.websocket',
+    //'impress.rpc',
     //'impress.passport',
     'impress.state',
   ]

@@ -93,41 +93,10 @@ function httpTask(task) {
   }
 }
 
-function httpTests() {
+if (api.cluster.isMaster) {
+  console.log('Testing IAS...'.bold.green);
   impress.server.start();
   impress.server.on('start', function() {
     for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
   });
-}
-
-if (api.cluster.isMaster) {
-
-  var current = api.path.dirname(__filename.replace(/\\/g, '/')),
-      destination = current + '/',
-      source = current + '/examples/',
-      exists = false;
-
-  api.async.each(['config', 'applications'], function(file, callback) {
-    api.fs.exists(destination + file, function(fileExists) {
-      exists = exists || fileExists;
-      callback();
-    });
-  }, function(err) {
-    if (err) throw err;
-    if (exists) {
-      console.log('Impress Application Server'.bold.green + ' is already installed and configured in this folder.');
-      console.log('  Current config and applications will be used for tests');
-      httpTests();
-    } else {
-      console.log('Installing config and examples...'.bold.green);
-      ncp(source + 'testsConfig/config', destination + 'config', { clobber: false }, function (err) {
-        if (err) throw err;
-        ncp(source + 'exampleApplication/applications', destination + 'applications', { clobber: false }, function (err) {
-          if (err) throw err;
-          httpTests();
-        });
-      });
-    }
-  });
-
 }

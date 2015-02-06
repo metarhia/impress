@@ -9,4 +9,4 @@ module.exports = {
     nagle:    true, // Nagle algorithm, default true, set to false for latency optimization
     slowTime: '1s'
   }
-}
+};

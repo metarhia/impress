@@ -6,4 +6,4 @@ module.exports = {
   intro:  false,
   index:  true,
   groups: []
-}
+};

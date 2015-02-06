@@ -51,19 +51,19 @@ module.exports = {
     //'db.memcached',
     //'db.mysql',
     //'db.pgsql',
-    //'impress.log',
+    'impress.log',
     'impress.security.mongodb',
     //'impress.health',
     //'impress.scale',
-    'api.uglify',
+    //'api.uglify',
     //'api.sass',
     //'api.mail',
     'impress.events',
     'impress.sse',
     'impress.websocket',
-    //'impress.rpc',
+    'impress.rpc',
     //'impress.passport',
-    'impress.state',
+    //'impress.state',
   ]
 
 };
