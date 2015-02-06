@@ -8,4 +8,4 @@ module.exports = function(client, callback) {
     // console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
   });
   callback();
-}
+};
