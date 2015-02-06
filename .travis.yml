@@ -7,5 +7,4 @@ node_js:
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax servertests.js
-env:
-  - IMPRESS_MODE=test
+env: IMPRESS_MODE=test
