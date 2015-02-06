@@ -4,7 +4,7 @@
 module.exports = {
   www: {
     protocol:      'http',
-    address:       '*', //'127.0.0.1',
+    address:       '127.0.01',
     port:          80,
     nagle:         false,        // Nagle algorithm, default true, set to false for latency optimization
     slowTime:      '1s'
