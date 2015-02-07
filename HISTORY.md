@@ -1,3 +1,9 @@
+0.1.216 / 2015-02-07
+==================
+
+  * Impress RPC implementation started, issue #216
+  * Fixed testing and development environment
+
 0.1.215 / 2015-02-06
 ==================
 
