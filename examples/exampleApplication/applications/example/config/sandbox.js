@@ -48,7 +48,7 @@ module.exports = {
     'impress.events',
     'impress.sse',
     'impress.websocket',
-    //'impress.rpc',
+    'impress.rpc',
     //'impress.passport',
     'impress.state',
   ]
