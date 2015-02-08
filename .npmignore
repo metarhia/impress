@@ -12,4 +12,3 @@ node_modules
 
 *.log
 npm-debug.log
-*.rpc.js

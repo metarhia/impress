@@ -1,4 +1,8 @@
 module.exports = function(client, callback) {
-  client.rpc.accept();
+  client.rpc.accept({
+    simple: '/examples/simple',
+    tools: '/examples/simple',
+    memory: '/examples/memory'
+  });
   callback();
 };
