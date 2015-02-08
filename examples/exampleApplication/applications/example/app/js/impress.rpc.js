@@ -48,7 +48,7 @@
         type: 'call',
         method: 'get',
         name: name,
-        parameters: parameters
+        data: parameters
       };
       data.callback = callback;
       rpc.socket.callCollection[data.id] = data;
