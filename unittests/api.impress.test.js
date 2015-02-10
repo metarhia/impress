@@ -232,7 +232,7 @@ impress.test({
   'api.impress.escapeRegExp.regex': [
     [ function(rx) { return rx instanceof RegExp; } ],
   ],
-  'api.impress.trailingSlash': [
+  'api.impress.addTrailingSlash': [
     [ '/path',   '/path/' ],
     [ '/path/',  '/path/' ],
     [ '/',            '/' ],

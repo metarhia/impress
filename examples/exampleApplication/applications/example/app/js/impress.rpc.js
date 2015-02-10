@@ -25,13 +25,13 @@
       console.log('Message from server: ' + event.data);
       var data = JSON.parse(event.data);
       if (data.type === 'introspection') {
-        var iName, mName, mPath, iface, obj, parts, sub;
-        for (iName in data.ifaces) {
-          iface = data.ifaces[iName];
+        var nName, mName, mPath, namespace, obj, parts, sub;
+        for (nName in data.namespaces) {
+          namespace = data.namespaces[nName];
           obj = {};
-          rpc[iName] = obj;
-          for (mName in iface) {
-            mPath = iName + '.' + mName;
+          rpc[nName] = obj;
+          for (mName in namespace) {
+            mPath = nName + '.' + mName;
             if (mName.indexOf('.') > -1) {
               parts = mName.split('.');
               sub = {};
@@ -54,7 +54,7 @@
         Array.prototype.push.apply(parameters, arguments);
         var cb = parameters.pop();
         rpc.call('post', path, parameters, cb);
-      }
+      };
     }
 
     rpc.close = function() {
