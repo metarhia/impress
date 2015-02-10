@@ -1,3 +1,9 @@
+0.1.218 / 2015-02-09
+==================
+
+  * Optimization in API introspection and preload
+  * Updates to Impress RPC, issue #216
+
 0.1.217 / 2015-02-08
 ==================
 

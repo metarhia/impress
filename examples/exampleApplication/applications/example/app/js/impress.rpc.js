@@ -25,8 +25,20 @@
       console.log('Message from server: ' + event.data);
       var data = JSON.parse(event.data);
       if (data.type === 'introspection') {
-        for (var nsName in data.namespaces) {
-          rpc[nsName] = {};
+        var iName, mName, mPath, iface, obj, parts, sub;
+        for (iName in data.ifaces) {
+          iface = data.ifaces[iName];
+          obj = {};
+          rpc[iName] = obj;
+          for (mName in iface) {
+            mPath = iName + '.' + mName;
+            if (mName.indexOf('.') > -1) {
+              parts = mName.split('.');
+              sub = {};
+              sub[parts[1]] = fn(mPath);
+              obj[parts[0]] = sub;
+            } else obj[mName] = fn(mPath);
+          }
         }
       } else if (data.id) {
         var call = rpc.socket.callCollection[data.id];
@@ -35,6 +47,15 @@
         }
       }
     };
+
+    function fn(path) {
+      return function() {
+        var parameters = [];
+        Array.prototype.push.apply(parameters, arguments);
+        var cb = parameters.pop();
+        rpc.call('post', path, parameters, cb);
+      }
+    }
 
     rpc.close = function() {
       socket.close();
