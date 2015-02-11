@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.214",
+  "version": "0.1.219",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Multipurpose Application Server for Node.js",
   "keywords": [
@@ -43,7 +43,6 @@
     "colors": "1.0.x",
     "mkdirp": "0.5.x",
     "ncp": "1.0.x",
-    "open": "0.0.x",
     "uglify-js": "2.4.x",
     "multiparty": "4.1.x",
     "iconv-lite": "0.4.x",
@@ -51,6 +50,9 @@
     "websocket": "1.0.x",
     "json-stringify-safe": "5.0.x",
     "csv": "0.4.x"
+  },
+  "devDependencies": {
+    "mongodb": "1.4.x"
   },
   "engines": {
     "node": ">=0.10.6",

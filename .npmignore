@@ -3,11 +3,8 @@ node_modules
 /test/
 /debug/
 /develop/
-/applications/
-/config/
 /.idea/
 
-/server.*
 /stresstest.*
 /setup.*
 /lib/*.cp

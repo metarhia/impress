@@ -232,7 +232,7 @@ impress.test({
   'api.impress.escapeRegExp.regex': [
     [ function(rx) { return rx instanceof RegExp; } ],
   ],
-  'api.impress.trailingSlash': [
+  'api.impress.addTrailingSlash': [
     [ '/path',   '/path/' ],
     [ '/path/',  '/path/' ],
     [ '/',            '/' ],
@@ -310,16 +310,13 @@ impress.test({
     [ {}, {},                         {} ],
     [ {}, null,                       {} ],
     [ { f1:1 }, { f2:2 }, { f1:1, f2:2 } ],
-    [ null, null,                   null ],
-    [ null,                         null ],
-    [ 'Hello' ,                  'Hello' ],
-    [ 'Hello', { f2:2 },         'Hello' ],
-    [ 2, 3,                            2 ],
-    [ null, {},                     null ],
     [ [], { f2:2 },                   [] ],
     [ [], [],                         [] ],
     [ [], null,                       [] ],
     [ [], 'Hello', ['H','e','l','l','o'] ],
+    [ null, null,                   null ],
+    [ null,                         null ],
+    [ null, {},                     null ],
   ],
   'api.impress.clone': [
     [ {}, {} ],

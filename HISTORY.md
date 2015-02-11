@@ -1,3 +1,33 @@
+0.1.219 / 2015-02-11
+==================
+
+  * File index, API introspection and preload optimizations
+  * Updates to Impress RPC, issue #216
+
+0.1.218 / 2015-02-09
+==================
+
+  * Optimization in API introspection and preload
+  * Updates to Impress RPC, issue #216
+
+0.1.217 / 2015-02-08
+==================
+
+  * Updates to Impress RPC, issue #216
+
+0.1.216 / 2015-02-07
+==================
+
+  * Impress RPC implementation started, issue #216
+  * Fixed testing and development environment
+
+0.1.215 / 2015-02-06
+==================
+
+  * Fixed bug in /lib/api.impress.js method api.impress.log
+  * Repository structure changes to make core development easy to start after clone, close #224
+  * Fixed Travis CI tests
+
 0.1.214 / 2015-02-04
 ==================
 

@@ -3,4 +3,4 @@ module.exports = function(client, callback) {
   client.startSession();
   client.session.userName = client.session.userName || 'user' + application.nextUserId++;
   callback({ name: client.session.userName });
-}
+};

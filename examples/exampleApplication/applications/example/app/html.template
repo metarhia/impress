@@ -26,6 +26,7 @@
   <script type="text/javascript" src="/js/global.browser.js"></script>
   <script type="text/javascript" src="/js/mobilization.js"></script>
   <script type="text/javascript" src="/js/wcl.js"></script>
+  <script type="text/javascript" src="/js/impress.rpc.js"></script>
   <script type="text/javascript" src="/js/scroller/scroller.js"></script>
   <script type="text/javascript" src="/js/jquery.cookie.js"></script>
   <script type="text/javascript" src="/js/jquery.hotkeys.js"></script>
