@@ -64,7 +64,7 @@
     "npm": "npm link npm"
   },
   "jshintConfig": {
-    "predef": [ "api", "impress", "db", "global", "cms", "inArray", "emptyness", "window" ],
+    "predef": [ "api", "impress", "db", "global", "cms", "inArray", "emptyness", "window", "navigator", "document", "frames", "escape" ],
     "node": true,
     "indent": 2,
     "maxcomplexity": 25
