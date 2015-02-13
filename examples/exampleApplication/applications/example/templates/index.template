@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>@title@: @path@</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<style>
+body {background:#0079a1;font-family:Verdana;font-size:10pt}
+body,a {color:#fff;overflow-x: hidden;white-space: nowrap}
+img {float:left;margin:0 10px 0 0}
+div {margin:6px}
+th {text-align:left}
+td, th {padding:2px 15px 2px 2px;font-weight:normal;vertical-align:top}
+tr:nth-child(even) {background: inherit}
+tr:nth-child(odd) {background: #007097}
+tr:hover, tr.selected {background:#78cef9;color:#000;cursor:pointer}
+tr:first-child {background:#fff;color:#000;cursor:default}
+a {color:inherit;text-decoration:none}
+#title {font-size:16pt}
+#msg {font-size:12pt}
+#home {padding:0 0 0 22px;background:url(data:image/gif;base64,R0lGODlhEAAQAKIAADCSs////43D1c/m7QF6oe32+F6qw7ja5SH5BAAAAAAALAAAAAAQABAAAANKSLoEwJCZUkyEIuggrhqaYWhDBBRB4Tho8ChZcBBTRRzhrQlArM0xXAWA25AAk8AA2TJqhiWCcxpgUJ3WTVazrS6M3fBXO+Z6zgkAOw==) no-repeat 0 3px}
+#files {border-spacing:0;margin-top: 15px}
+.size {text-align:right}
+</style>
+<script type='text/javascript'>
+window.onload = function() {
+  var i, table = document.getElementById("files"),
+      rows = table.getElementsByTagName('tr');
+  for (i = 1; i < rows.length; i++) {
+    rows[i].onclick = function() {
+      var a = this.getElementsByTagName('a')[0];
+      document.location.href = a.href;
+      return false;
+    }
+  }
+  var curRow = null, newRow = null;
+  window.onkeydown = function(e) {
+    if (e.keyCode === 13 && curRow) curRow.onclick.apply(curRow);
+    else if (curRow === null && (e.keyCode === 38 || e.keyCode === 40)) newRow = rows[1];
+    else if (curRow) {
+      if (e.keyCode === 38 && curRow.previousSibling &&curRow.previousSibling.previousSibling) newRow = curRow.previousSibling;
+      else if (e.keyCode === 40 && curRow.nextSibling) newRow = curRow.nextSibling;
+    }
+    if (curRow) curRow.className = '';
+    if (newRow) {
+      newRow.className = 'selected';
+      curRow = newRow;
+      curRow.scrollIntoView(false);
+    }
+    return !(e.keyCode === 13 || e.keyCode === 38 || e.keyCode === 40);
+  }
+}
+</script>
+</head>
+<body>
+<a href="/"><img src="data:image/gif;base64,R0lGODlhNwA3AKIAACyQsf///4zD1QB5oc7m7er096/V4WKsxSH5BAAAAAAALAAAAAA3ADcAAAP/OLrc/jDKKY8wpIRNiDgAJY6HoW1oihZCOL4LYKh0vRUHLMp2X+O6yMFHrBFcwcWsyEwBk4BTU8oUBKNEDwA52JaoNesL22uJDgSfWJS2GYLoXo6ypBW4OkEP7xgakw1+dhJkKm+ADYUpaw51KYeIiTZ8XX+RD4KPD44olJcDnBt4AGGfEIobjAOZKKYRejQNbYuuEWABc5Uqd7UQsLQKrAEEMAAHx8U0xAq/KKoRPCu5FDVKNJ6Js8AU2qIK3QHYDKGdIs0bc7c7PpAVNHODFMIpyxPCYvH2PgVn7wr57nrUC5giXSwRt1BMe+VvADhxC+YNGxFqTsUR54ZBXPAwmxiNZ9AEZDAA8lQ+Urt6QRDWrsZClQ4/jqPRDiZKFVzmbUQUaqCCWz5rzXs5r2QkVAH4PUi4Ewa5lx5rNBVBTikEcEmnSiCHi1DCroiiydTnBtCBr0F99WBRjGvWFxmdGIAaQ+Q+rQPiKiN5TMCFr07wRm1CWGNYwIW3RdKb2LArAIyZEKB7SQZiI5SF2mVnBuYEY8dCg/BM+kUCADs=" /></a>
+<div id="title">@title@</div>
+<div id="msg"><a href="/" id="home"></a>@[dirs]@/<a href="@.path@">@.name@</a>@[/dirs]@/</div>
+<table id="files">
+<tr><th>Name</th><th class="size">Size</th><th>Modify time</th></tr>@[files]@<tr><td><a href="@.path@">@.name@</a></td><td class="size">@.size@</td><td>@.mtime@</td>@[/files]@
+</table>
+</body>
+</html>

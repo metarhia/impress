@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>@title@</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<style>
+body {background:#0079a1;font-family:Verdana;font-size:12pt}
+body,a {color:#fff}
+img {float:left;margin:0 10px 0 0}
+div {margin:6px}
+#title {font-size:16pt}
+#refresh {margin:0 0 0 30px;padding:0 0 0 22px;background:url(data:image/gif;base64,R0lGODlhEAAQAKIAAJfJ2SqPsf///9bp8AB5oWCrxO/3+UCbuSH5BAAAAAAALAAAAAAQABAAAANISEoBI2KARaYCMENZhXoCcCgNZECdEVCkFkAr22WNxWKarO987/8EjaCgAwBeGaIMiRSolqfJBnJUHHADxXAmDC2UDMemukgAADs=) no-repeat 0 3px}
+#home {margin:0 0 0 30px;padding:0 0 0 22px;background:url(data:image/gif;base64,R0lGODlhEAAQAKIAADCSs////43D1c/m7QF6oe32+F6qw7ja5SH5BAAAAAAALAAAAAAQABAAAANKSLoEwJCZUkyEIuggrhqaYWhDBBRB4Tho8ChZcBBTRRzhrQlArM0xXAWA25AAk8AA2TJqhiWCcxpgUJ3WTVazrS6M3fBXO+Z6zgkAOw==) no-repeat 0 3px}
+</style>
+</head>
+<body>
+<a href="/"><img src="data:image/gif;base64,R0lGODlhNwA3AKIAACyQsf///4zD1QB5oc7m7er096/V4WKsxSH5BAAAAAAALAAAAAA3ADcAAAP/OLrc/jDKKY8wpIRNiDgAJY6HoW1oihZCOL4LYKh0vRUHLMp2X+O6yMFHrBFcwcWsyEwBk4BTU8oUBKNEDwA52JaoNesL22uJDgSfWJS2GYLoXo6ypBW4OkEP7xgakw1+dhJkKm+ADYUpaw51KYeIiTZ8XX+RD4KPD44olJcDnBt4AGGfEIobjAOZKKYRejQNbYuuEWABc5Uqd7UQsLQKrAEEMAAHx8U0xAq/KKoRPCu5FDVKNJ6Js8AU2qIK3QHYDKGdIs0bc7c7PpAVNHODFMIpyxPCYvH2PgVn7wr57nrUC5giXSwRt1BMe+VvADhxC+YNGxFqTsUR54ZBXPAwmxiNZ9AEZDAA8lQ+Urt6QRDWrsZClQ4/jqPRDiZKFVzmbUQUaqCCWz5rzXs5r2QkVAH4PUi4Ewa5lx5rNBVBTikEcEmnSiCHi1DCroiiydTnBtCBr0F99WBRjGvWFxmdGIAaQ+Q+rQPiKiN5TMCFr07wRm1CWGNYwIW3RdKb2LArAIyZEKB7SQZiI5SF2mVnBuYEY8dCg/BM+kUCADs=" /></a>
+<div id="title">@title@</div>
+<div id="msg">@message@ <a href="" id="refresh">refresh</a> <a href="/" id="home">home</a></div>
+</body>
+</html>
