@@ -1,15 +1,14 @@
-global.onLoad(function() {
+//global.onLoad(function() {
+$(function() {
 
   $('body').addClass('js');
   $.fixCookie('SID');
 
-  //global.disableContextMenu();
-  //global.disableCopy();
-  //global.disableSelection();
-
   panelLeft = $('#panel-left');
   panelCenter = $('#panel-center');
   panelRight = $('#panel-right');
+
+  global.rpc = impress.rpc.ws('ws://127.0.0.1:80/examples/impress.rpc');
 
   var auth = wcl.AjaxDataSource({
     regValidation:  { post: '/api/auth/regvalidation.json' },
@@ -44,7 +43,7 @@ global.onLoad(function() {
         Data = { 'Email': inputEmail.val() };
     auth.regValidation(Data, function(err, json) {
       RegValidation = json;
-      if (RegValidation!=null) {
+      if (RegValidation !== null) {
         Data.Password = inputPassword.val();
         if (RegValidation.Email) {
           inputEmail.removeClass('invalid');
@@ -133,15 +132,15 @@ global.onLoad(function() {
 
     ws.onopen = function() {
       panelCenter.append('Connection opened<hr>');
-    }
+    };
 
     ws.onclose = function() {
       panelCenter.append('Connection closed<hr>');
-    }
+    };
 
     ws.onmessage = function(evt) {
       panelCenter.append('Message from server: ' + evt.data + '<hr>');
-    }
+    };
 
     $('#btnWsClose').on('click', function() {
       ws.close();
@@ -216,11 +215,11 @@ $.ajaxSetup({cache: false});
 
 jQuery.fn.enable = function(flag) {
   if (flag) this.removeClass('disabled'); else this.addClass('disabled');
-}
+};
 
 jQuery.fn.visible = function(flag) {
   if (flag) this.show(); else this.hide();
-}
+};
 
 jQuery.fn.reload = function(url, callback) {
   var panel = this;
@@ -233,13 +232,13 @@ jQuery.fn.reload = function(url, callback) {
     //$('textarea').autoResize({ animateDuration: 300, extraSpace: 20 }).trigger('change');
     //refreshControls();
   });
-}
+};
 
 $.fn.alignCenter = function() {
   var marginLeft = Math.max(40, parseInt($(window).width()/2 - $(this).width()/2)) + 'px';
   var marginTop = Math.max(40, parseInt($(window).height()/2 - $(this).height()/2)) + 'px';
   return $(this).css({'margin-left':marginLeft, 'margin-top':marginTop});
-}
+};
 
 $.fn.togglePopup = function() {
   if ($('#popup').hasClass('hidden')) {
@@ -260,7 +259,7 @@ $.fn.togglePopup = function() {
     $('#popup').toggleClass('hidden').removeAttr('style');
     $('#popup .form').appendTo('#forms');
   }
-}
+};
 
 function closeForm() {
   Form = $('#popup .form');
@@ -291,10 +290,10 @@ function confirmation(Title,Message,eventYes,Buttons) {
   $('.header',form).html(Title);
   $('.message',form).html('<br/>' + Message + '<br/><br/>');
   formConfirmationYes = eventYes;
-  $('#formConfirmationYes').visible($.inArray('Yes', Buttons)>-1);
-  $('#formConfirmationOk').visible($.inArray('Ok', Buttons)>-1);
-  $('#formConfirmationNo').visible($.inArray('No', Buttons)>-1);
-  $('#formConfirmationCancel').visible($.inArray('Cancel', Buttons)>-1);
+  $('#formConfirmationYes').visible(api.impress.inArray('Yes', Buttons)>-1);
+  $('#formConfirmationOk').visible(api.impress.inArray('Ok', Buttons)>-1);
+  $('#formConfirmationNo').visible(api.impress.inArray('No', Buttons)>-1);
+  $('#formConfirmationCancel').visible(api.impress.inArray('Cancel', Buttons)>-1);
   form.togglePopup();
 }
 
