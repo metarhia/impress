@@ -1,3 +1,9 @@
+0.1.222 / 2015-02-14
+==================
+
+  * Implemented separete folder for status, directory index and API introspection templates for applications, close #227
+  * Fixed cycling with "Can't bind to host/post", close #229
+
 0.1.221 / 2015-02-13
 ==================
 
