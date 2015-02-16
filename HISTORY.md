@@ -1,3 +1,12 @@
+0.1.223 / 2015-02-16
+==================
+
+  * Implemented static resources separation from server-side JavaScript and placed in /static
+  * Fixed fork to be compatible with node 0.12, close #233
+  * Fixed init.js
+  * Fixed cookie delete issue if host name is IP address (not alpha-numeric domain name)
+  * Fixed error generation at early start
+
 0.1.222 / 2015-02-14
 ==================
 
