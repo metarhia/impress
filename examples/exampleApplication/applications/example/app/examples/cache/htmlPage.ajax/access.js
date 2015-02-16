@@ -1,4 +1,3 @@
 module.exports = {
-  intro:  false,
-  index:  false
+  intro:  false
 };

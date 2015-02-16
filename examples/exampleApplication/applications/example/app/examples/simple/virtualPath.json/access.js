@@ -4,7 +4,6 @@ module.exports = {
   http:    true,
   https:   true,
   intro:   true,
-  index:   false,
   virtual: true,
   groups: []
 };

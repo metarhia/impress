@@ -1,4 +1,5 @@
-global.onLoad(function() {
+//global.onLoad(function() {
+$(function() {
 
   taCommands = $("#taCommands");
   gridToolbar = $("#gridToolbar");

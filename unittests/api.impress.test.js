@@ -219,6 +219,14 @@ impress.test({
     [ 'wrong-string',           null ],
     [ '',                 2130706433 ],
   ],
+  'api.impress.isIp': [
+    [ '127.0.0.1',         true ],
+    [ '10.0.0.1',          true ],
+    [ '192.168.1.10',      true ],
+    [ 'domain.com',       false ],
+    [ '127.0.0.com',      false ],
+    [ '',                 false ],
+  ],
   'api.impress.escapeRegExp': [
     [ '/path/to/res?search=this.that&a=b', '\\\\/path\\\\/to\\\\/res\\\\?search=this\\\\.that&a=b' ],
     [ '/path/to/res?search=this.that',         '\\\\/path\\\\/to\\\\/res\\\\?search=this\\\\.that' ],

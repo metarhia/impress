@@ -27,11 +27,11 @@ module.exports = {
 
   files: {
     minify:           'false:boolean',
-    static:           '[array]',
     cacheSize:        '100mb:size',
     cacheMaxFileSize: '1mb:size',
     gzip:             'true:boolean',
-    preprocess:       '[array]'
+    preprocess:       '[array]',
+    index:            'false:boolean'
   },
 
   log: {

@@ -1,15 +1,14 @@
-global.onLoad(function() {
+//global.onLoad(function() {
+$(function() {
 
   $('body').addClass('js');
   $.fixCookie('SID');
 
-  //global.disableContextMenu();
-  //global.disableCopy();
-  //global.disableSelection();
-
   panelLeft = $('#panel-left');
   panelCenter = $('#panel-center');
   panelRight = $('#panel-right');
+
+  global.rpc = impress.rpc.ws('ws://127.0.0.1:80/examples/impress.rpc');
 
   var auth = wcl.AjaxDataSource({
     regValidation:  { post: '/api/auth/regvalidation.json' },
@@ -44,12 +43,12 @@ global.onLoad(function() {
         Data = { 'Email': inputEmail.val() };
     auth.regValidation(Data, function(err, json) {
       RegValidation = json;
-      if (RegValidation!=null) {
+      if (RegValidation !== null) {
         Data.Password = inputPassword.val();
         if (RegValidation.Email) {
           inputEmail.removeClass('invalid');
           auth.register(Data, function(err, data) {
-            if (data.Result=='Ok') window.location.reload(true);
+            if (data.Result === 'Ok') window.location.reload(true);
           });
         } else inputEmail.addClass('invalid').focus();
       }
@@ -133,15 +132,15 @@ global.onLoad(function() {
 
     ws.onopen = function() {
       panelCenter.append('Connection opened<hr>');
-    }
+    };
 
     ws.onclose = function() {
       panelCenter.append('Connection closed<hr>');
-    }
+    };
 
     ws.onmessage = function(evt) {
       panelCenter.append('Message from server: ' + evt.data + '<hr>');
-    }
+    };
 
     $('#btnWsClose').on('click', function() {
       ws.close();
@@ -216,34 +215,34 @@ $.ajaxSetup({cache: false});
 
 jQuery.fn.enable = function(flag) {
   if (flag) this.removeClass('disabled'); else this.addClass('disabled');
-}
+};
 
 jQuery.fn.visible = function(flag) {
   if (flag) this.show(); else this.hide();
-}
+};
 
 jQuery.fn.reload = function(url, callback) {
   var panel = this;
   panel.scroller('remove').empty().html('<div class="progress"></div>').load(url, function() {
     //panel.removeAttr('style').scroller('y');
     panel.scroller('y');
-    if (global.platform.iOS) panel.width(panel.width()-1);
+    if (impress.platform.iOS) panel.width(panel.width()-1);
     $('a.default', panel).click();
     if (callback) callback.call(panel);
     //$('textarea').autoResize({ animateDuration: 300, extraSpace: 20 }).trigger('change');
     //refreshControls();
   });
-}
+};
 
 $.fn.alignCenter = function() {
   var marginLeft = Math.max(40, parseInt($(window).width()/2 - $(this).width()/2)) + 'px';
   var marginTop = Math.max(40, parseInt($(window).height()/2 - $(this).height()/2)) + 'px';
   return $(this).css({'margin-left':marginLeft, 'margin-top':marginTop});
-}
+};
 
 $.fn.togglePopup = function() {
   if ($('#popup').hasClass('hidden')) {
-    if (global.platform.IE) {
+    if (impress.platform.IE) {
       $('#darken').height($(document).height()).toggleClass('hidden');
     } else {
       $('#darken').height($(document).height()).toggleClass('hidden').fadeTo('slow', 0.5).click(function(event) {
@@ -260,7 +259,7 @@ $.fn.togglePopup = function() {
     $('#popup').toggleClass('hidden').removeAttr('style');
     $('#popup .form').appendTo('#forms');
   }
-}
+};
 
 function closeForm() {
   Form = $('#popup .form');
@@ -287,19 +286,19 @@ $(document).on('click', '#popup .cancel', function(event) {
 // Buttons: ['Yes','No','Ok','Cancel']
 function confirmation(Title,Message,eventYes,Buttons) {
   var form = $('#formConfirmation');
-  if (typeof(Buttons)=='undefined') Buttons = ['Cancel','Yes'];
+  if (typeof(Buttons) === 'undefined') Buttons = ['Cancel','Yes'];
   $('.header',form).html(Title);
   $('.message',form).html('<br/>' + Message + '<br/><br/>');
   formConfirmationYes = eventYes;
-  $('#formConfirmationYes').visible($.inArray('Yes', Buttons)>-1);
-  $('#formConfirmationOk').visible($.inArray('Ok', Buttons)>-1);
-  $('#formConfirmationNo').visible($.inArray('No', Buttons)>-1);
-  $('#formConfirmationCancel').visible($.inArray('Cancel', Buttons)>-1);
+  $('#formConfirmationYes').visible(api.impress.inArray('Yes', Buttons) > -1);
+  $('#formConfirmationOk').visible(api.impress.inArray('Ok', Buttons) > -1);
+  $('#formConfirmationNo').visible(api.impress.inArray('No', Buttons) > -1);
+  $('#formConfirmationCancel').visible(api.impress.inArray('Cancel', Buttons) > -1);
   form.togglePopup();
 }
 
 $(document).on('click', '#formConfirmation .button.save', function(event) {
-  if (typeof(formConfirmationYes)=='function') formConfirmationYes();
+  if (typeof(formConfirmationYes) === 'function') formConfirmationYes();
   formConfirmationYes = null;
   closeForm();
   return false;
