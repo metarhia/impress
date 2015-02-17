@@ -43,7 +43,7 @@
 
   impress.rpc.initialize = function() {
     try {
-      impress.rpc.supportsLocalStorage = 'localStorage' in window && window['localStorage'] !== null;
+      impress.rpc.supportsLocalStorage = 'localStorage' in window && window.localStorage !== null;
     } catch(e) {
     }
     if (impress.rpc.supportsLocalStorage) impress.rpc.initializeConnection();
@@ -88,7 +88,19 @@
   impress.rpc.checkMaster = function() {
     var masterNow = parseInt(localStorage[impress.rpc.masterTabKey], 10);
     if (Date.now() - masterNow > impress.rpc.heartbeatInterval * 2) {
-      impress.rpc.createMaster();
+      var i, tabId, tabNow, key,
+          keys = Object.keys(localStorage),
+          maxId = 0,
+          now = Date.now();
+      for (i = 0; i < keys.length; i++) {
+        key = keys[i];
+        if (impress.startsWith(key, 'impress.rpc.tab')) {
+          tabId = parseInt(key.match(/\d+/)[0], 10);
+          tabNow = parseInt(localStorage[key], 10);
+          if (now - tabNow < impress.rpc.heartbeatInterval * 2 && tabId > maxId) maxId = tabId;
+        }
+      }
+      if (maxId === impress.rpc.tabId) impress.rpc.createMaster();
     }
   };
 
@@ -106,12 +118,14 @@
   };
 
   impress.rpc.setMaster = function(id) {
+    document.title = 'slave';
     impress.rpc.masterTab = false;
     impress.rpc.masterTabId = id;
     impress.rpc.masterTabKey = 'impress.rpc.tab' + id;
   };
 
   impress.rpc.createMaster = function() {
+    document.title = 'master';
     impress.rpc.masterTab = true;
     impress.rpc.masterTabId = impress.rpc.tabId;
     impress.rpc.masterTabKey = impress.rpc.tabKey;
@@ -129,14 +143,6 @@
     } else {
       if (e.key === 'impress.rpc.master') impress.rpc.setMaster(e.newValue);
     }
-  };
-
-  impress.rpc.createMaster = function() {
-    impress.rpc.masterTab = true;
-    impress.rpc.masterTabId = impress.rpc.tabId;
-    impress.rpc.masterTabKey = impress.rpc.tabKey;
-    localStorage['impress.rpc.master'] = impress.rpc.tabId;
-    impress.rpc.initializeDone();
   };
 
   impress.rpc.emitTabs = function(name, data) {
