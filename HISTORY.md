@@ -1,3 +1,8 @@
+0.1.225 / 2015-02-18
+==================
+
+  * Implemented cross-tab communication for Impress RPC in browser-side
+
 0.1.224 / 2015-02-17
 ==================
 
