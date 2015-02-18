@@ -118,14 +118,12 @@
   };
 
   impress.rpc.setMaster = function(id) {
-    document.title = 'slave';
     impress.rpc.masterTab = false;
     impress.rpc.masterTabId = id;
     impress.rpc.masterTabKey = 'impress.rpc.tab' + id;
   };
 
   impress.rpc.createMaster = function() {
-    document.title = 'master';
     impress.rpc.masterTab = true;
     impress.rpc.masterTabId = impress.rpc.tabId;
     impress.rpc.masterTabKey = impress.rpc.tabKey;
