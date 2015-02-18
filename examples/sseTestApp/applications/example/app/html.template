@@ -14,10 +14,8 @@
   <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <script type="text/javascript" src="/js/global.js"></script>
-  <script type="text/javascript" src="/js/global.browser.js"></script>
+  <script type="text/javascript" src="/js/impress.js"></script>
   <script type="text/javascript" src="/js/eventsource.min.js"></script>
-  <script type="text/javascript" src="/js/wcl.js"></script>
   <script type="text/javascript" src="/js/init.js"></script>
 </head>
 <body>

@@ -1,3 +1,8 @@
+0.1.226 / 2015-02-19
+==================
+
+  * Refactored example projects, moved static files from /app to /static
+
 0.1.225 / 2015-02-18
 ==================
 

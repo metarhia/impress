@@ -1,5 +1,4 @@
-//global.onLoad(function() {
-$(function() {
+impress.onLoad(function() {
 
   $('body').addClass('js');
   $.fixCookie('SID');

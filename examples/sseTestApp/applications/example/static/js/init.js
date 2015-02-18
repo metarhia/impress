@@ -1,13 +1,8 @@
 var api, output;
 
-global.onLoad(function() {
+impress.onLoad(function() {
 
   output = document.getElementById('output');
-
-  api = wcl.AjaxDataSource({
-    mathodOne: { post: '/api/methodOne.json' },
-    mathodTwo: { get:  '/api/methodTwo.json' }
-  });
 
   sseConnect();
 
