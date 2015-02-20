@@ -1,3 +1,9 @@
+0.1.227 / 2015-02-20
+==================
+
+  * DBMI repaired, close #235
+  * If we have duplicate directories name under /static and /app mow we will process /static first, then /app, close #236
+
 0.1.226 / 2015-02-19
 ==================
 
