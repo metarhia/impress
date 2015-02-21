@@ -1,10 +1,15 @@
-var api, output;
+'use strict';
 
 impress.onLoad(function() {
 
-  output = document.getElementById('output');
+  var output = document.getElementById('output');
 
-  sseConnect();
+  function log(message) {
+    var tag = document.createElement('div');
+    tag.innerHTML = message;
+    output.appendChild(tag);
+    output.insertBefore(tag, output.firstChild);
+  }
 
   function sseConnect() {
     var sse = new EventSource('/api/connect.sse');
@@ -22,18 +27,11 @@ impress.onLoad(function() {
       else log('SSE Error: readyState = ' + sse.readyState);
     }, false);
 
-    //sse.close();
-
-    // panelCenter.append('Sending event to server, it should return back.<hr>');
-    // $.get('/examples/events/sendEvent.json', function(res) {
+    // sse.close();
+    // /examples/events/sendEvent.json
 
   }
 
-  function log(message) {
-    var tag = document.createElement('div');
-    tag.innerHTML = message;
-    output.appendChild(tag);
-    output.insertBefore(tag, output.firstChild);
-  }
+  sseConnect();
 
 });

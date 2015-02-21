@@ -1,8 +1,8 @@
+'use strict';
+
 $(function() {
 
   var log = $('#log');
-
-  sseConnect();
 
   function sseConnect() {
     var sse = new EventSource('/events/connect.sse');
@@ -20,5 +20,7 @@ $(function() {
       else log.prepend('SSE Error: readyState=' + sse.readyState + '<br>');
     }, false);
   }
+
+  sseConnect();
 
 });

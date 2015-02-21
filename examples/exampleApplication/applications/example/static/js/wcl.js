@@ -1,4 +1,6 @@
-﻿// WCL Web Component Library
+﻿'use strict';
+
+// WCL Web Component Library
 // Version 0.0.6
 
 (function(wcl) {
@@ -22,7 +24,7 @@
         } else err = new Error("DataSource error: HTTP method is not specified");
       } else err = new Error("DataSource error: AJAX method is not specified");
       callback(err, null);
-    }
+    };
     api.init = function(methods) {
       api.methods = methods;
       var method;
@@ -36,13 +38,13 @@
             });
           }; else api[apiMethod] = function(params, callback) {
             api.request(apiMethod, params, callback);
-          }
+          };
         } ());
       }
-    }
+    };
     api.init(methods);
     return api;
-  }
+  };
 
   wcl.DataSource = function(methods) {
     // just abstract, see implementation below
@@ -55,7 +57,7 @@
     //   introspect(params, callback) populates DataSource.methods with introspection metadata returning from server
     //   metadata(params, callback)   populates DataSource.metadata with metadata from server
     //   find(query, callback)        return multiple records as Array, callback(err, Array)
-  }
+  };
 
   wcl.AjaxDataSource = function(methods) {
     var ds = wcl.AjaxAPI(methods);
@@ -66,9 +68,9 @@
         //
         callback(err, data);
       });
-    }
+    };
     return ds;
-  }
+  };
 
   wcl.MemoryDataSource = function(params) { // { data:Hash, metadata:Hash }
     var ds = {};
@@ -82,33 +84,33 @@
         for (key in params) match = match && (d[key] === params[key]);
         if (match && callback(i)) return;
       }
-    }
+    };
     ds.read = function(params, callback) {
       var data = ds.data;
       ds.each(params, function(key) { callback(null, data[key]); return true; });
       callback(new Error("Record not found"), null);
-    }
+    };
     ds.insert = function(params, callback) {
       ds.data.push(params);
       callback();
-    }
+    };
     ds.update = function(params, callback) {
       var data = ds.data;
       ds.each(params, function(key) { data[key] = params; return true; });
       callback();
-    }
+    };
     ds.delete = function(params, callback) {
       var data = ds.data;
       ds.each(params, function(key) { delete data[key]; });
       callback();
-    }
+    };
     ds.find = function(params, callback) {
       var data = ds.data, result = [];
       ds.each(params, function(key) { result.push(data[key]); });
       callback(null, result);
-    }
+    };
     return ds;
-  }
+  };
   
   wcl.DataObject = function(params) {
     // params: { data:Value, metadata:Hash, record:Record }
@@ -140,9 +142,9 @@
           }
         }
       } else return field.data;
-    }
+    };
     return obj;
-  }
+  };
   
   wcl.Record = function(params) {
     // implemented params: { data:Hash, metadata:Hash, dataSet:DataSet }
@@ -166,29 +168,29 @@
       }
       if (!preventUpdateAll) record.updateAll();
       record.modified = false;
-    }
+    };
     record.each = function(callback) { // callback(fieldName, field)
       var fieldName;
       for (fieldName in record.fields) callback(fieldName, record.fields[fieldName]);
-    }
+    };
     record.toObject = function() {
       var result = {};
       record.each(function(fieldName, field) { result[fieldName] = field.value(); });
       return result;
-    }
+    };
     record.toString = function() {
       return JSON.stringify(record.toObject());
-    }
+    };
     record.deltaObject = function() {
       var result = {};
       record.each(function(fieldName, field) {
         if (field.modified) result[fieldName] = field.value();
       });
       return result;
-    }
+    };
     record.deltaString = function() {
       return JSON.stringify(record.deltaObject());
-    }
+    };
     record.commit = function() {
       if (record.modified) {
         var recNo = record.dataSet.currentRecord,
@@ -199,20 +201,20 @@
         });
         record.modified = false;
       }
-    }
+    };
     record.rollback = function() {
       if (record.modified) {
         var recNo = record.dataSet.currentRecord,
             data = record.dataSet.memory.data[recNo];
         record.assign(data);
       }
-    }
+    };
     record.updateAll = function() {
       record.each(function(fieldName, field) { field.value(field.data, true); });
-    }
+    };
     if (params.data) record.assign(params.data, params.metadata, true);
     return record;
-  }
+  };
 
   wcl.DataSet = function(params) {
     // implemented params: { data:Hash, metadata:Hash }
@@ -231,10 +233,10 @@
         dataSet.assign(data);
         callback();
       });
-    }
+    };
     dataSet.toString = function() {
       return JSON.stringify(dataSet.memory.data);
-    }
+    };
     dataSet.assign = function(data) {
       if (data) {
         dataSet.memory.data = data;
@@ -242,7 +244,7 @@
         dataSet.currentRecord = -1;
         dataSet.first();
       }
-    }
+    };
     dataSet.move = function(recNo) {
       if (recNo !== dataSet.currentRecord && recNo >= 0 && recNo < dataSet.recordCount) {
         var data = dataSet.memory.data[recNo];
@@ -261,56 +263,54 @@
     dataSet.updateCount = 0;
     dataSet.beginUpdate = function() {
       dataSet.updateCount++;
-    }
+    };
     dataSet.endUpdate = function() {
       dataSet.updateCount--;
       if (dataSet.updateCount <= 0) {
         dataSet.updateCount = 0;
         dataSet.updateAll();
       }
-    }
+    };
     dataSet.updateAll = function() {
       dataSet.record.updateAll();
-    }
+    };
     dataSet.commit = function() {
-
-    }
+    };
     dataSet.rollback = function() {
-
-    }
+    };
 
     dataSet.assign(params.data);
     return dataSet;
-  }
+  };
 
   // Nonvisual or visual component
   //
   wcl.components.Component = function(obj) {
-  }
+  };
 
   // Visual component
   wcl.components.Control = function(obj) {
     wcl.components.Component(obj);
     //
-  }
+  };
 
   wcl.components.Iterator = function(obj) {
     wcl.components.Control(obj);
     //
-  }
+  };
 
   wcl.components.Container = function(obj) {
     wcl.components.Control(obj);
     obj.wcl.controls = {};
     if (obj.wcl.dataWcl.dataSet) obj.wcl.dataSet = global[obj.wcl.dataWcl.dataSet];
-  }
+  };
   
   wcl.components.FieldControl = function(obj) {
     wcl.components.Control(obj);
     // obj.wcl.dataSet - autoassigned on load
     obj.wcl.field = obj.wcl.dataSet.record.fields[obj.wcl.dataWcl.field];
     obj.wcl.field.bindings.push(obj);
-  }
+  };
 
   wcl.components.Label = function(obj) {
     wcl.components.FieldControl(obj);
@@ -318,8 +318,8 @@
     obj.value = function(value) {
       if (value === undefined) return obj.textContent;
       else if (obj.textContent !== value) obj.textContent = value;
-    }
-  }
+    };
+  };
   
   wcl.components.Edit = function(obj) {
     wcl.components.FieldControl(obj);
@@ -333,8 +333,8 @@
       var edit = this.children[0];
       if (value === undefined) return edit.value;
       else if (edit.value !== value) edit.value = value;
-    }
-  }
+    };
+  };
 
   wcl.components.Button = function(obj) {
     wcl.components.Control(obj);
@@ -344,12 +344,12 @@
     edit.addEventListener('click', function(e) {
       console.log('button clicked');
     }, false);
-  }
+  };
 
   wcl.components.Table = function(obj) {
     wcl.components.Control(obj);
     //
-  }
+  };
 
   // TODO: autobind on load
   //
@@ -368,29 +368,27 @@
         }
       }
     }
-  }
+  };
 
   wcl.parse = function(json) {
     var result;
     eval('result = new Object(' + json + ')');
     return result;
-  }
+  };
 
   wcl.htmlEscape = function(content) {
-    return content.replace(/[&<>"'\/]/g, function(char) { return (
-      { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', '\'':'&#39;' }[char]
-    )});
-  }
+    return content.replace(/[&<>"'\/]/g,function(char) { return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', '\'':'&#39;' }[char]); });
+  };
 
   wcl.template = function(tpl, data, escapeHtml) {
     return tpl.replace(/@([\-\.0-9a-zA-Z]+)@/g, function(s, key) {
       return escapeHtml ? wcl.htmlEscape(data[key]) : data[key];
     });
-  }
+  };
 
   wcl.templateHtml = function(tpl, data) {
     return wcl.template(tpl, data, true);
-  }
+  };
 
   wcl.request = function(method, url, params, parseResponse, callback) {
     var key, req = new XMLHttpRequest(), data = [], value = '';
@@ -416,18 +414,18 @@
         } else err = new Error("HTTP error code: "+req.status);
         callback(err, res);
       }
-    }
+    };
     try { req.send(data); }
     catch(e) { }
-  }
+  };
 
   wcl.get = function(url, params, callback) {
     wcl.request("GET", url, params, true, callback);
-  }
+  };
 
   wcl.post = function(url, params, callback) {
     wcl.request("POST", url, params, true, callback);
-  }
+  };
 
   wcl.autoInitialization = function() {
     wcl.body = document.body || document.getElementsByTagName('body')[0];
@@ -458,8 +456,7 @@
         }
       }
     }
-
-  }
+  };
 
   //addEvent(global, 'load', wcl.autoInitialization);
 

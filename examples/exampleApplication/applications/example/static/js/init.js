@@ -1,11 +1,15 @@
+'use strict';
+
+var ws, Form;
+
 impress.onLoad(function() {
 
   $('body').addClass('js');
   $.fixCookie('SID');
 
-  panelLeft = $('#panel-left');
-  panelCenter = $('#panel-center');
-  panelRight = $('#panel-right');
+  var panelLeft = $('#panel-left'),
+      panelCenter = $('#panel-center'),
+      panelRight = $('#panel-right');
 
   global.rpc = impress.rpc.ws('ws://127.0.0.1:80/examples/impress.rpc');
 
@@ -234,8 +238,8 @@ jQuery.fn.reload = function(url, callback) {
 };
 
 $.fn.alignCenter = function() {
-  var marginLeft = Math.max(40, parseInt($(window).width()/2 - $(this).width()/2)) + 'px';
-  var marginTop = Math.max(40, parseInt($(window).height()/2 - $(this).height()/2)) + 'px';
+  var marginLeft = Math.max(40, parseInt($(window).width()/2 - $(this).width()/2, 10)) + 'px';
+  var marginTop = Math.max(40, parseInt($(window).height()/2 - $(this).height()/2, 10)) + 'px';
   return $(this).css({'margin-left':marginLeft, 'margin-top':marginTop});
 };
 
@@ -283,12 +287,12 @@ $(document).on('click', '#popup .cancel', function(event) {
 // --- Confirmation ---
 
 // Buttons: ['Yes','No','Ok','Cancel']
-function confirmation(Title,Message,eventYes,Buttons) {
+function confirmation(Title, Message, eventYes, Buttons) {
   var form = $('#formConfirmation');
   if (typeof(Buttons) === 'undefined') Buttons = ['Cancel','Yes'];
   $('.header',form).html(Title);
   $('.message',form).html('<br/>' + Message + '<br/><br/>');
-  formConfirmationYes = eventYes;
+  confirmation.formConfirmationYes = eventYes;
   $('#formConfirmationYes').visible(api.impress.inArray('Yes', Buttons) > -1);
   $('#formConfirmationOk').visible(api.impress.inArray('Ok', Buttons) > -1);
   $('#formConfirmationNo').visible(api.impress.inArray('No', Buttons) > -1);
@@ -297,8 +301,8 @@ function confirmation(Title,Message,eventYes,Buttons) {
 }
 
 $(document).on('click', '#formConfirmation .button.save', function(event) {
-  if (typeof(formConfirmationYes) === 'function') formConfirmationYes();
-  formConfirmationYes = null;
+  if (typeof(confirmation.formConfirmationYes) === 'function') confirmation.formConfirmationYes();
+  confirmation.formConfirmationYes = null;
   closeForm();
   return false;
 });
@@ -312,13 +316,13 @@ function input(Title,Prompt,DefaultValue,eventOk) {
   $('.field .label',form).html(Prompt);
   //if (DefaultValue)
   $('#formInputValue').val(DefaultValue);
-  formInputOk = eventOk;
+  input.formInputOk = eventOk;
   form.togglePopup();
 }
 
 $(document).on('click', '#formInputOk', function(event) {
-  if (formInputOk) formInputOk($('#formInputValue').val());
-  formInputOk = null;
+  if (input.formInputOk) input.formInputOk($('#formInputValue').val());
+  input.formInputOk = null;
   closeForm();
   return false;
 });

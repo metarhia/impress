@@ -1,4 +1,6 @@
-﻿// Impress RPC Client Library
+﻿'use strict';
+
+// Impress RPC Client Library
 
 (function(impress) {
 

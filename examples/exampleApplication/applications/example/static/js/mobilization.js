@@ -1,3 +1,5 @@
+'use strict';
+
 (function($) {
 
 $.platform = {
@@ -5,7 +7,7 @@ $.platform = {
   iPod: navigator.userAgent.match(/iPod/i),
   iPad: navigator.userAgent.match(/iPad/i),
   Android: navigator.userAgent.match(/Android/i)
-}
+};
 
 $.platform.iOS = $.platform.iPhone || $.platform.iPod || $.platform.iPad;
 $.platform.Mobile = $.platform.iOS || $.platform.Android;
