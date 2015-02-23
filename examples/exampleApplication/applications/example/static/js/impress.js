@@ -489,6 +489,41 @@ if (!Date.prototype.now) {
 
   if (platform.IE) platform.IEVersion = parseFloat(navigator.appVersion.split('MSIE')[1]);
 
+  impress.fixLinks = function(persist) {
+    if (platform.iOS) {
+      if (persist === null) persist = true;
+      persist = persist && localStorage;
+      if (persist) {
+        var currentLocation = window.location.pathname + window.location.search,
+            storedLocation = localStorage.getItem('location');
+        if (storedLocation && storedLocation !== currentLocation) window.location = storedLocation;
+      }
+      var link, links = document.getElementsByTagName('a');
+      for (var i = 0; i < links.length; i++) {
+        link = links[i];
+        link.addEventListener('click', function(e) {
+          //e.preventDefault();
+          if (persist && this.host === window.location.host) localStorage.setItem('location', this.pathname + this.search);
+          window.location = this.href;
+        }, false);
+      }
+    }
+  };
+
+  impress.fixCookie = function(sessionCookieName) {
+    if (localStorage && platform.iOS) {
+      var cookieSession = document.cookie.match(new RegExp(sessionCookieName + '=[^;]+')),
+          localSession = localStorage.getItem(sessionCookieName);
+      if (cookieSession) {
+        cookieSession = cookieSession[0].replace(sessionCookieName + '=', '');
+        if (localSession !== cookieSession) localStorage.setItem(sessionCookieName, cookieSession);
+      } else if (localSession && localSession !== cookieSession) {
+        document.cookie = sessionCookieName + '=' + localSession + '; path=/';
+        window.location.reload(true);
+      }
+    }
+  };
+
   // DOM utils
 
   impress.id = function(id) {
@@ -530,6 +565,17 @@ if (!Date.prototype.now) {
     element.className = element.className.replace(regex, '$1').replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
   };
 
+  impress.hasClass = function(element, className) {
+    element = impress.element(element);
+    return element.className.match(new RegExp('(^|\b)' +className+ '($|\b)'));
+  };
+
+  impress.toggleClass = function(element, className) {
+    element = impress.element(element);
+    if (impress.hasClass(element, className)) impress.removeClass(element, className);
+    else impress.addClass(element, className);
+  };
+
   impress.insertAfter = function(parent, node, referenceNode) {
     parent.insertBefore(node, referenceNode.nextSibling);
   };
@@ -558,17 +604,25 @@ if (!Date.prototype.now) {
     } else return false;
   };
 
-  impress.onLoad = function(fn) {
-    impress.addEvent(window, 'load', fn);
+  // Events: 'load', 'unload', 'click', etc.
+  //
+  impress.on = function(event, element, fn) {
+    if (arguments.length === 2) {
+      fn = element;
+      element = window;
+    }
+    element = impress.element(element);
+    if (element) impress.addEvent(element, event, fn);
   };
 
-  impress.onLoad(function() {
+  impress.element = function(element) {
+    if (typeof(element) === 'string') return document.querySelector(element);
+    else return element;
+  }
+
+  impress.on('load', function() {
     impress.body = document.body || document.getElementsByTagName('body')[0];
   });
-
-  impress.onUnload = function(fn) {
-    impress.addEvent(window, 'unload', fn);
-  };
 
   // fn(event) should terurn not empty string for confirmation dialog
   impress.onBeforeUnload = function(fn) {
@@ -580,11 +634,130 @@ if (!Date.prototype.now) {
     });
   };
 
-  // fn(message, source, lineno)
-  impress.onError = function(fn) {
-    impress.addEvent(impress, 'error', fn);
+  // --------------------------------------------------------------
+
+  impress.enable = function(element, flag) {
+    if (flag) impress.removeClass(element, 'disabled');
+    else impress.addClass(element, 'disabled');
   };
 
+  impress.visible = function(element, flag) {
+    if (flag) impress.show();
+    else impress.hide();
+  };
+
+  impress.reload = function(url, callback) {
+    var panel = this;
+    panel.scroller('remove').empty().html('<div class="progress"></div>').load(url, function() {
+      //panel.removeAttr('style').scroller('y');
+      panel.scroller('y');
+      if (impress.platform.iOS) panel.width(panel.width()-1);
+      $('a.default', panel).click();
+      if (callback) callback.call(panel);
+      //$('textarea').autoResize({ animateDuration: 300, extraSpace: 20 }).trigger('change');
+      //refreshControls();
+    });
+  };
+  
+  // $.ajaxSetup({cache: false});
+
+  impress.alignCenter = function(element) {
+    element = impress.element(element);
+    var marginLeft = Math.max(40, parseInt($(window).width()/2 - $(element).width()/2, 10)) + 'px';
+    var marginTop = Math.max(40, parseInt($(window).height()/2 - $(element).height()/2, 10)) + 'px';
+    return $(element).css({ 'margin-left': marginLeft, 'margin-top': marginTop });
+  };
+
+  impress.togglePopup = function(element) {
+    var element = impress.element(element);
+    if ($('#popup').hasClass('hidden')) {
+      if (impress.platform.IE) {
+        $('#darken').height($(document).height()).toggleClass('hidden');
+      } else {
+        $('#darken').height($(document).height()).toggleClass('hidden').fadeTo('slow', 0.5).click(function(event) {
+          event.stopPropagation();
+          var form = document.querySelector('#popup .form');
+          if (form) impress.togglePopup(form);
+        });
+      }
+      $(element).appendTo('#popup');
+      impress.alignCenter('#popup');
+      impress.toggleClass('#popup', 'hidden');
+      $('form :input:visible:enabled:first', element).focus();
+    } else {
+      impress.toggleClass('#darken', 'hidden');
+      $('#darken').removeAttr('style');
+      impress.toggleClass('#popup', 'hidden');
+      $('#popup').removeAttr('style');
+      $('#popup .form').appendTo('#forms');
+    }
+  };
+
+  impress.closeForm = function() {
+    Form = document.querySelector('#popup .form');
+    var $inputs = $('form select:input', Form);
+    $inputs.each(function() {
+      //alert($(this).val());
+      $(this).combobox('destroy');
+    });
+    if (Form) impress.togglePopup(Form);
+  };
+
+  //$(document).keydown(function(event) {
+  //  if (event.keyCode === 27) closeForm();
+  //  else if (event.keyCode === 13) $('#popup .form .save').trigger('click');
+  //});
+
+  //$(document).on('click', '#popup .cancel', function(event) {
+  //  closeForm();
+  //  return false;
+  //});
+
+  // --- Confirmation ---
+
+  // Buttons: ['Yes','No','Ok','Cancel']
+  impress.confirmation = function(Title, Message, eventYes, Buttons) {
+    var form = $('#formConfirmation');
+    if (typeof(Buttons) === 'undefined') Buttons = ['Cancel','Yes'];
+    $('.header',form).html(Title);
+    $('.message',form).html('<br/>' + Message + '<br/><br/>');
+    confirmation.formConfirmationYes = eventYes;
+    $('#formConfirmationYes').visible(api.impress.inArray('Yes', Buttons) > -1);
+    $('#formConfirmationOk').visible(api.impress.inArray('Ok', Buttons) > -1);
+    $('#formConfirmationNo').visible(api.impress.inArray('No', Buttons) > -1);
+    $('#formConfirmationCancel').visible(api.impress.inArray('Cancel', Buttons) > -1);
+    form.togglePopup();
+  };
+
+  $(document).on('click', '#formConfirmation .button.save', function(event) {
+    if (typeof(confirmation.formConfirmationYes) === 'function') confirmation.formConfirmationYes();
+    confirmation.formConfirmationYes = null;
+    closeForm();
+    return false;
+  });
+
+  // --- Input ---
+
+  impress.input = function(Title,Prompt,DefaultValue,eventOk) {
+    var form = $('#formInput');
+    $('.header',form).html(Title);
+    //$('.message',form).html(Message);
+    $('.field .label',form).html(Prompt);
+    //if (DefaultValue)
+    $('#formInputValue').val(DefaultValue);
+    input.formInputOk = eventOk;
+    form.togglePopup();
+  };
+
+  //$(document).on('click', '#formInputOk', function(event) {
+  //  if (input.formInputOk) input.formInputOk($('#formInputValue').val());
+  //  input.formInputOk = null;
+  //  closeForm();
+  //  return false;
+  //});
+
+  // --------------------------------------------------------------
+  
   // Copypaste utils
 
   // Call disableSelection on page load with element to disable or without parameters to disable selection in whole page

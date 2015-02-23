@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.228",
+  "version": "0.1.229",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Multipurpose Application Server for Node.js",
   "keywords": [
@@ -42,7 +42,7 @@
     "async": "0.9.x",
     "colors": "1.0.x",
     "mkdirp": "0.5.x",
-    "ncp": "1.0.x",
+    "ncp": "2.0.x",
     "uglify-js": "2.4.x",
     "multiparty": "4.1.x",
     "iconv-lite": "0.4.x",

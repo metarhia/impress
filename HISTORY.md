@@ -1,3 +1,9 @@
+0.1.229 / 2015-02-23
+==================
+
+  * Updated dependencies and TravisCI configuration
+  * Refactored client-side code
+
 0.1.228 / 2015-02-21
 ==================
 
