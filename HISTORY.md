@@ -1,3 +1,8 @@
+0.1.231 / 2015-02-28
+==================
+
+  * Fixed error message when no virtual host found for required URL, close #238
+
 0.1.230 / 2015-02-27
 ==================
 
