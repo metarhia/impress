@@ -1,3 +1,8 @@
+0.1.230 / 2015-02-27
+==================
+
+  * Fixes in client-side JavaScript code and code style
+
 0.1.229 / 2015-02-23
 ==================
 

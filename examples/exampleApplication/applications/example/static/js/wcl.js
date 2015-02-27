@@ -16,13 +16,13 @@
       var err = null, requestParams = this.methods[apiMethod];
       if (requestParams) {
         var httpMethod, url;
-        if (requestParams.get ) { httpMethod = 'GET';  url = requestParams.get;  }
+        if (requestParams.get ) { httpMethod = 'GET'; url = requestParams.get; }
         if (requestParams.post) { httpMethod = 'POST'; url = requestParams.post; }
         if (httpMethod) {
           wcl.request(httpMethod, url, params, true, callback);
           return;
-        } else err = new Error("DataSource error: HTTP method is not specified");
-      } else err = new Error("DataSource error: AJAX method is not specified");
+        } else err = new Error('DataSource error: HTTP method is not specified');
+      } else err = new Error('DataSource error: AJAX method is not specified');
       callback(err, null);
     };
     api.init = function(methods) {
@@ -88,7 +88,7 @@
     ds.read = function(params, callback) {
       var data = ds.data;
       ds.each(params, function(key) { callback(null, data[key]); return true; });
-      callback(new Error("Record not found"), null);
+      callback(new Error('Record not found'), null);
     };
     ds.insert = function(params, callback) {
       ds.data.push(params);
@@ -113,7 +113,7 @@
   };
   
   wcl.DataObject = function(params) {
-    // params: { data:Value, metadata:Hash, record:Record }
+    // params: { data: Value, metadata: Hash, record: Record }
     //
     var obj = {};
     obj.data = params.data;
@@ -122,7 +122,7 @@
     obj.bindings = [];
     obj.modified = false;
 
-    if (obj.data !== null && typeof(obj.data) === "object") {
+    if (obj.data !== null && typeof(obj.data) === 'object') {
       var key;
       for (key in obj.data) obj.fields[key] = wcl.DataObject({ data:obj.data[key] });
     }
@@ -147,8 +147,8 @@
   };
   
   wcl.Record = function(params) {
-    // implemented params: { data:Hash, metadata:Hash, dataSet:DataSet }
-    // not implemented:    { table:Table, source:DataSource }
+    // implemented params: { data: Hash, metadata: Hash, dataSet: DataSet }
+    // not implemented:    { table: Table, source: DataSource }
     //
     var record = {};
     record.fields = {};
@@ -161,9 +161,9 @@
           record.fields[fieldName].value(data[fieldName]);
           record.fields[fieldName].modified = false;
         } else record.fields[fieldName] = wcl.Field({
-          data:     data[fieldName],
+          data: data[fieldName],
           metadata: metadata ? metadata[fieldName] : null,
-          dataSet:  record.dataSet
+          dataSet: record.dataSet
         });
       }
       if (!preventUpdateAll) record.updateAll();
@@ -217,8 +217,8 @@
   };
 
   wcl.DataSet = function(params) {
-    // implemented params: { data:Hash, metadata:Hash }
-    // not implemented:    { source:DataSource }
+    // implemented params: { data: Hash, metadata: Hash }
+    // not implemented:    { source: DataSource }
     //
     var dataSet = {};
     dataSet.memory = wcl.MemoryDataSource({ data:[] });
@@ -251,14 +251,14 @@
         if (dataSet.record) {
           if (dataSet.record.modified) dataSet.record.commit();
           dataSet.record.assign(data);
-        } else dataSet.record = wcl.Record({ data:data, dataSet:dataSet });
+        } else dataSet.record = wcl.Record({ data: data, dataSet: dataSet });
         dataSet.currentRecord = recNo;
       }
     };
     dataSet.first = function() { dataSet.move(0); };
-    dataSet.next  = function() { dataSet.move(dataSet.currentRecord+1); };
-    dataSet.prev  = function() { dataSet.move(dataSet.currentRecord-1); };
-    dataSet.last  = function() { dataSet.move(dataSet.recordCount-1); };
+    dataSet.next  = function() { dataSet.move(dataSet.currentRecord + 1); };
+    dataSet.prev  = function() { dataSet.move(dataSet.currentRecord - 1); };
+    dataSet.last  = function() { dataSet.move(dataSet.recordCount - 1); };
     //
     dataSet.updateCount = 0;
     dataSet.beginUpdate = function() {
@@ -400,18 +400,18 @@
       data.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
     }
     data = data.join('&');
-    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    req.setRequestHeader("Content-length", data.length);
-    req.setRequestHeader("Connection", "close");
+    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    req.setRequestHeader('Content-length', data.length);
+    req.setRequestHeader('Connection', 'close');
     req.onreadystatechange = function() {
       if (req.readyState === 4) {
         var err = null, res = req.responseText;
         if (req.status === 0 || req.status === 200) {
           if (parseResponse) {
             try { res = JSON.parse(res); }
-            catch(e) { err = new Error("JSON parse code: "+e); }
+            catch(e) { err = new Error('JSON parse code: ' + e); }
           }
-        } else err = new Error("HTTP error code: "+req.status);
+        } else err = new Error('HTTP error code: ' + req.status);
         callback(err, res);
       }
     };
@@ -420,11 +420,11 @@
   };
 
   wcl.get = function(url, params, callback) {
-    wcl.request("GET", url, params, true, callback);
+    wcl.request('GET', url, params, true, callback);
   };
 
   wcl.post = function(url, params, callback) {
-    wcl.request("POST", url, params, true, callback);
+    wcl.request('POST', url, params, true, callback);
   };
 
   wcl.autoInitialization = function() {

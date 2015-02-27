@@ -381,7 +381,7 @@ if (!Date.prototype.now) {
   // Is string ends with given substring
   //
   impress.endsWith = function(str, substring) {
-    if (substring ==='' ) return true;
+    if (substring === '') return true;
     return str.slice(-substring.length) === substring;
   };
 
@@ -396,13 +396,14 @@ if (!Date.prototype.now) {
   impress.html = document.documentElement || document.getElementsByTagName('html')[0];
   impress.head = document.head || document.getElementsByTagName('head')[0];
   impress.body = null;
+  impress.form = null;
 
   // Async script loader
 
   impress.scripts = {};
 
   impress.require = function(scripts, callback) {
-    var counter=0,
+    var counter = 0,
       scriptLoaded = function() {
         counter++;
         this.script.loaded = true;
@@ -415,12 +416,12 @@ if (!Date.prototype.now) {
         impress.head.removeChild(this);
         if (counter === scripts.length && callback) callback();
       };
-    for (var i=0; i<scripts.length; ++i) {
+    for (var i = 0; i < scripts.length; ++i) {
       var path = scripts[i],
-        file = path.replace(/^.*[\\\/]/, ''),
-        namespace = file.replace(/\.[^/.]+$/, '');
+          file = path.replace(/^.*[\\\/]/, ''),
+          namespace = file.replace(/\.[^/.]+$/, '');
       if (!impress.scripts[namespace]) {
-        var script = {"namespace":namespace,"file":file,"url":path,"element":null,"loaded":false};
+        var script = { namespace: namespace, file: file, url: path, element: null, loaded: false };
         script.element = document.createElement('script');
         script.element.script = script;
         impress.addEvent(script.element, 'load', scriptLoaded);
@@ -432,9 +433,9 @@ if (!Date.prototype.now) {
   };
 
   impress.free = function(scripts, callback) {
-    for (var i=0; i<scripts.length; ++i) {
+    for (var i = 0; i < scripts.length; ++i) {
       var namespace = scripts[i],
-        script = impress.scripts[namespace];
+          script = impress.scripts[namespace];
       if (script) {
         impress.head.removeChild(script.element);
         if (impress[namespace]) delete impress[namespace];
@@ -447,12 +448,12 @@ if (!Date.prototype.now) {
   // Other utils
 
   impress.preloadImages = function(images, callback) {
-    var counter=0;
+    var counter = 0;
     function fnEvent() {
       counter++;
       if (counter === images.length) callback();
     }
-    for (var i=0; i<images.length; i++) {
+    for (var i = 0; i < images.length; i++) {
       var img = document.createElement('img');
       impress.addEvent(img, 'load', fnEvent);
       impress.addEvent(img, 'error', fnEvent);
@@ -540,8 +541,8 @@ if (!Date.prototype.now) {
       var list = context.getElementsByTagName('*'),
         classArray = classList.split(/\s+/),
         result = [], i,j;
-      for (i=0; i<list.length; i++) {
-        for(j=0; j<classArray.length; j++) {
+      for (i = 0; i < list.length; i++) {
+        for(j = 0; j < classArray.length; j++) {
           if(list[i].className.search('\\b' + classArray[j] + '\\b') !== -1) {
             result.push(list[i]);
             break;
@@ -567,7 +568,7 @@ if (!Date.prototype.now) {
 
   impress.hasClass = function(element, className) {
     element = impress.element(element);
-    return element.className.match(new RegExp('(^|\b)' +className+ '($|\b)'));
+    return element.className.match(new RegExp('(^|\b)' + className + '($|\b)'));
   };
 
   impress.toggleClass = function(element, className) {
@@ -618,7 +619,7 @@ if (!Date.prototype.now) {
   impress.element = function(element) {
     if (typeof(element) === 'string') return document.querySelector(element);
     else return element;
-  }
+  };
 
   impress.on('load', function() {
     impress.body = document.body || document.getElementsByTagName('body')[0];
@@ -669,7 +670,7 @@ if (!Date.prototype.now) {
   };
 
   impress.togglePopup = function(element) {
-    var element = impress.element(element);
+    element = impress.element(element);
     if ($('#popup').hasClass('hidden')) {
       if (impress.platform.IE) {
         $('#darken').height($(document).height()).toggleClass('hidden');
@@ -694,13 +695,13 @@ if (!Date.prototype.now) {
   };
 
   impress.closeForm = function() {
-    Form = document.querySelector('#popup .form');
-    var $inputs = $('form select:input', Form);
+    impress.form = document.querySelector('#popup .form');
+    var $inputs = $('form select:input', impress.form);
     $inputs.each(function() {
       //alert($(this).val());
       $(this).combobox('destroy');
     });
-    if (Form) impress.togglePopup(Form);
+    if (impress.form) impress.togglePopup(impress.form);
   };
 
   //$(document).keydown(function(event) {
@@ -715,43 +716,45 @@ if (!Date.prototype.now) {
 
   // --- Confirmation ---
 
-  // Buttons: ['Yes','No','Ok','Cancel']
-  impress.confirmation = function(Title, Message, eventYes, Buttons) {
+  // Buttons: ['Yes', 'No', 'Ok', 'Cancel']
+  impress.confirmation = function(title, message, eventYes, buttons) {
     var form = $('#formConfirmation');
-    if (typeof(Buttons) === 'undefined') Buttons = ['Cancel','Yes'];
-    $('.header',form).html(Title);
-    $('.message',form).html('<br/>' + Message + '<br/><br/>');
-    confirmation.formConfirmationYes = eventYes;
-    $('#formConfirmationYes').visible(api.impress.inArray('Yes', Buttons) > -1);
-    $('#formConfirmationOk').visible(api.impress.inArray('Ok', Buttons) > -1);
-    $('#formConfirmationNo').visible(api.impress.inArray('No', Buttons) > -1);
-    $('#formConfirmationCancel').visible(api.impress.inArray('Cancel', Buttons) > -1);
+    if (typeof(buttons) === 'undefined') buttons = ['Cancel', 'Yes'];
+    $('.header', form).html(title);
+    $('.message', form).html('<br/>' + message + '<br/><br/>');
+    impress.confirmation.formConfirmationYes = eventYes;
+    $('#formConfirmationYes').visible(api.impress.inArray('Yes', buttons) > -1);
+    $('#formConfirmationOk').visible(api.impress.inArray('Ok', buttons) > -1);
+    $('#formConfirmationNo').visible(api.impress.inArray('No', buttons) > -1);
+    $('#formConfirmationCancel').visible(api.impress.inArray('Cancel', buttons) > -1);
     form.togglePopup();
   };
 
   $(document).on('click', '#formConfirmation .button.save', function(event) {
-    if (typeof(confirmation.formConfirmationYes) === 'function') confirmation.formConfirmationYes();
-    confirmation.formConfirmationYes = null;
+    if (typeof(impress.confirmation.formConfirmationYes) === 'function') {
+      impress.confirmation.formConfirmationYes();
+    }
+    impress.confirmation.formConfirmationYes = null;
     closeForm();
     return false;
   });
 
   // --- Input ---
 
-  impress.input = function(Title,Prompt,DefaultValue,eventOk) {
+  impress.input = function(title, prompt, defaultValue, eventOk) {
     var form = $('#formInput');
-    $('.header',form).html(Title);
-    //$('.message',form).html(Message);
-    $('.field .label',form).html(Prompt);
-    //if (DefaultValue)
-    $('#formInputValue').val(DefaultValue);
-    input.formInputOk = eventOk;
+    $('.header', form).html(title);
+    //$('.message', form).html(message);
+    $('.field .label', form).html(prompt);
+    //if (defaultValue)
+    $('#formInputValue').val(defaultValue);
+    impress.input.formInputOk = eventOk;
     form.togglePopup();
   };
 
   //$(document).on('click', '#formInputOk', function(event) {
-  //  if (input.formInputOk) input.formInputOk($('#formInputValue').val());
-  //  input.formInputOk = null;
+  //  if (impress.input.formInputOk) impress.input.formInputOk($('#formInputValue').val());
+  //  impress.input.formInputOk = null;
   //  closeForm();
   //  return false;
   //});
@@ -763,13 +766,13 @@ if (!Date.prototype.now) {
   // Call disableSelection on page load with element to disable or without parameters to disable selection in whole page
   impress.disableSelection = function(target) {
     target = target || impress.html;
-    if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = impress.falseness; //For IE
+    if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = impress.falseness; // For IE
     else if (typeof(target.style.MozUserSelect) !== 'undefined') { //For Firefox
       target.style.MozUserSelect='none';
-      //if (target === body || target === impress.html)
-      //  for (var i=0; i<body.children.length; i++)
-      //    body.children[i].style.MozUserSelect='none';
-    } else target.onmousedown = impress.falseness; //All other browsers (Opera)
+      // if (target === body || target === impress.html)
+      //   for (var i = 0; i < body.children.length; i++)
+      //     body.children[i].style.MozUserSelect='none';
+    } else target.onmousedown = impress.falseness; // All other browsers (Opera)
     target.style.cursor = 'default';
   };
 

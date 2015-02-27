@@ -1,6 +1,6 @@
 'use strict';
 
-var ws, Form;
+var ws;
 
 impress.on('load', function() {
 
@@ -42,15 +42,15 @@ impress.on('load', function() {
   impress.on('click', '#formRegDo', function(event) {
     var inputEmail = $('#formRegEmail'),
         inputPassword = $('#formRegPassword'),
-        RegValidation = null,
-        Data = { 'Email': inputEmail.val() };
-    auth.regValidation(Data, function(err, json) {
-      RegValidation = json;
-      if (RegValidation !== null) {
-        Data.Password = inputPassword.val();
-        if (RegValidation.Email) {
+        regValidation = null,
+        data = { Email: inputEmail.val() };
+    auth.regValidation(data, function(err, json) {
+      regValidation = json;
+      if (regValidation !== null) {
+        data.Password = inputPassword.val();
+        if (regValidation.Email) {
           inputEmail.removeClass('invalid');
-          auth.register(Data, function(err, data) {
+          auth.register(data, function(err, data) {
             if (data.Result === 'Ok') window.location.reload(true);
           });
         } else inputEmail.addClass('invalid').focus();
