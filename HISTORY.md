@@ -1,3 +1,9 @@
+0.1.233 / 2015-03-03
+==================
+
+  * Fixed line end, changed CRLF to LF in service file /bin/impress, close #241
+  * Added --allow-natives-syntax to service file /bin/impress
+
 0.1.232 / 2015-03-02
 ==================
 
