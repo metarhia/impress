@@ -1,0 +1,10 @@
+[Unit]
+Description=Impress Application Server
+After=network.target
+[Service]
+ExecStart=/impress/node_modules/impress/bin/impress start
+ExecStop=/impress/node_modules/impress/bin/impress stop
+ExecReload=/impress/node_modules/impress/bin/impress restart
+Type=forking
+[Install]
+WantedBy=multi-user.target

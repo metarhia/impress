@@ -21,6 +21,7 @@ var current = path.dirname(__filename.replace(/\\/g, '/')),
 function installService() {
   exec('chmod +x ./bin/install.sh', function() {
     exec('chmod +x ./bin/uninstall.sh');
+    exec('chmod +x ./bin/impress');
     exec('chmod +x ./server.sh');
     exec('./bin/install.sh');
   });
