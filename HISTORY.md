@@ -1,3 +1,8 @@
+0.1.232 / 2015-03-02
+==================
+
+  * Fixed critical bug in application.loadConfigFile, affected on static file cache disabled in all workers
+
 0.1.231 / 2015-02-28
 ==================
 
