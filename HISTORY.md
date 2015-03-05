@@ -1,3 +1,10 @@
+0.1.234 / 2015-03-05
+==================
+
+  * Cache index optimized, absolute paths changed to relative, issue #230
+  * Fixed rare error on sthutdown, close #244
+  * Added compatibility for systemd services in CentOS 7 , close #239
+
 0.1.233 / 2015-03-03
 ==================
 
