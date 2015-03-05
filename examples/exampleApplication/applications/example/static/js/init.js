@@ -11,7 +11,7 @@ impress.on('load', function() {
       panelCenter = impress.id('panel-center'),
       panelRight = impress.id('panel-right');
 
-  global.rpc = impress.rpc.ws('ws://127.0.0.1:80/examples/impress.rpc');
+  //global.rpc = impress.rpc.ws('ws://127.0.0.1:80/examples/impress.rpc');
 
   var auth = wcl.AjaxDataSource({
     regValidation: { post: '/api/auth/regvalidation.json' },
