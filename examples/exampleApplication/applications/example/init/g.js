@@ -1,4 +1,5 @@
-﻿if (api.cluster.isWorker) {
+﻿/*
+if (api.cluster.isWorker) {
   setInterval(function() {
     console.dir({
       //cache: Object.keys(application.cache),
@@ -15,3 +16,4 @@
     });
   }, 5000);
 }
+*/
