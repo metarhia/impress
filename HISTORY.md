@@ -1,3 +1,9 @@
+0.1.235 / 2015-03-08
+==================
+
+  * Fixed broken fs watching: application.watchCache, close #246
+  * Optimized application.cache.watch hash index, issue #230
+
 0.1.234 / 2015-03-05
 ==================
 
