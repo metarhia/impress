@@ -1,3 +1,9 @@
+0.1.236 / 2015-03-10
+==================
+
+  * Fixed static cache (was disabled a few releases)
+  * Cache index optimizations, issue #230
+
 0.1.235 / 2015-03-08
 ==================
 
