@@ -1,3 +1,9 @@
+0.1.237 / 2015-03-11
+==================
+
+  * Cache index optimizations finished, changed to relative paths and other 8 subissues, close #230
+  * Fixed application.cache.pages, all tested for highloadand and monitored for memory leaks
+
 0.1.236 / 2015-03-10
 ==================
 
