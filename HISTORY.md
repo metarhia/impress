@@ -1,3 +1,34 @@
+0.1.238 / 2015-03-14
+==================
+
+  * Fixed bug in Impress RPC handlers processing when websocket plugin active and RPC plugin is disabled
+  * Added Impress RPC plugin enabled by default
+
+0.1.237 / 2015-03-11
+==================
+
+  * Cache index optimizations finished, changed to relative paths and other 8 subissues, close #230
+  * Fixed application.cache.pages, all tested for highloadand and monitored for memory leaks
+
+0.1.236 / 2015-03-10
+==================
+
+  * Fixed static cache (was disabled a few releases)
+  * Cache index optimizations, issue #230
+
+0.1.235 / 2015-03-08
+==================
+
+  * Fixed broken fs watching: application.watchCache, close #246
+  * Optimized application.cache.watch hash index, issue #230
+
+0.1.234 / 2015-03-05
+==================
+
+  * Cache index optimized, absolute paths changed to relative, issue #230
+  * Fixed rare error on sthutdown, close #244
+  * Added compatibility for systemd services in CentOS 7 , close #239
+
 0.1.233 / 2015-03-03
 ==================
 
