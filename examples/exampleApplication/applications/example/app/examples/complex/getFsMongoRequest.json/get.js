@@ -1,7 +1,7 @@
 ﻿module.exports = function(client, callback) {
   api.async.parallel({
     file: function(callback) {
-      var filePath = application.appDir + client.path + '/test.txt';
+      var filePath = application.dir + '/app' + client.path + '/test.txt';
       api.fs.readFile(filePath, 'utf8', function(error, data) {
         callback(null, data);
       });
