@@ -60,8 +60,8 @@ module.exports = {
     //'api.mail',
     'impress.events',
     'impress.sse',
-    //'impress.websocket',
-    //'impress.rpc',
+    'impress.websocket',
+    'impress.rpc',
     //'impress.passport',
     //'impress.state',
   ]
