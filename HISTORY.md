@@ -1,3 +1,9 @@
+0.1.238 / 2015-03-14
+==================
+
+  * Fixed bug in Impress RPC handlers processing when websocket plugin active and RPC plugin is disabled
+  * Added Impress RPC plugin enabled by default
+
 0.1.237 / 2015-03-11
 ==================
 
