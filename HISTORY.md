@@ -1,3 +1,10 @@
+0.1.239 / 2015-03-15
+==================
+
+  * Remove application.*Dir properties, close #249
+  * Fixed files downloading, close #255
+  * Fixed paths in examples
+
 0.1.238 / 2015-03-14
 ==================
 
