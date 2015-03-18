@@ -252,6 +252,14 @@ impress.test({
     [ '/',            '' ],
     [ '',             '' ],
   ],
+  'api.impress.dirname': [
+    [ '/path/dir/',   '/path/' ],
+    [ '/path/dir',    '/path/' ],
+    [ '/path/',       '/' ],
+    [ '/path',        '/' ],
+    [ '/',            '/' ],
+    [ '',             './' ],
+  ],
   'api.impress.bytesToSize': [
     [                         0, '0'      ],
     [                         1, '1'      ],
