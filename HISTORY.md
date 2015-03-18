@@ -1,3 +1,9 @@
+0.1.241 / 2015-03-18
+==================
+
+  * Fixed bug in systemTemplates caching, close #259
+  * Changed api.impress.addTrailingSlash to api.impress.dirname
+
 0.1.240 / 2015-03-17
 ==================
 
