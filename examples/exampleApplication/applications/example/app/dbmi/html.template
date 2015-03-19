@@ -31,7 +31,6 @@
   <script type="text/javascript" src="/js/impress.js"></script>
   <script type="text/javascript" src="/js/impress.rpc.js"></script>
   <script type="text/javascript" src="/js/wcl.js"></script>
-  <script type="text/javascript" src="/js/mobilization.js"></script>
 
   <script type="text/javascript" src="/js/slickgrid/lib/jquery-ui-1.10.3.custom.min.js"></script>
   <script type="text/javascript" src="/js/slickgrid/lib/jquery.event.drag-2.2.js"></script>
