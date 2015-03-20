@@ -1,3 +1,9 @@
+0.1.243 / 2015-03-21
+==================
+
+  * Fixed client.template, close #265
+  * Fixed directory index, close #262
+
 0.1.242 / 2015-03-20
 ==================
 
