@@ -1,3 +1,9 @@
+0.1.244 / 2015-03-22
+==================
+
+  * Added universal API logging tool: api.impress.logApiMethod, issue #231
+  * Improver Impress feature list and short docs in README.md
+
 0.1.243 / 2015-03-21
 ==================
 

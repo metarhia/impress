@@ -25,9 +25,10 @@ Impress follows alternative way in several aspects:
   - Install as a service for Linux: create directory `/impress` and type: `npm install impress`
   - Install using package.json and `npm install`: not recommended but if you know what you're doing...
   - Installation scripts for empty server (from the scratch)
-    - For CentOS /deploy/centos.sh (tested on CentOS 6.5 64bit minimal)
-    - For Ubuntu /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
-    - For Debian /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
+    - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
+    - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
+    - For Ubuntu 14 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
+    - For Debian 7 /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
   
 You can prepare scripts based on examples above and run at a target server shell:
 `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
@@ -38,10 +39,10 @@ If Impress Application Server is already installed in directory you want to inst
 ## Service (daemon) commands
 
 If Impress installed as a service (daemon) you can use following commands:
-  - `service impress start`
-  - `service impress stop`
-  - `service impress restart` is equal to `stop` and `start` commands
-  - `service impress status` to show Impress processes CPU, MEM, RSS, TIME and other parameters
+  - `service impress start` or `systemctl start impress` (for systemd)
+  - `service impress stop` or `systemctl stop impress` (for systemd)
+  - `service impress restart` or `systemctl restart impress` (for systemd)
+  - `service impress status` or `systemctl status impress` to show CPU, MEM, RSS, TIME and other parameters
   - `service impress update` to update and restart Application Server
 
 ## Features
@@ -58,9 +59,24 @@ If Impress installed as a service (daemon) you can use following commands:
   - URL routing based on file system
     - Caching server-side executable JavaScript in memory
     - File system watching for cache reloading when file changes on disk
+  - Handlers inheritance override override hierarchically uning filesystem
+  - Middleware emulation (adding URL routing to handler-functions programmatically)
   - API development support (simple way for JSON-based WEB-services development)
     - RPC-style API (Stateful, state stored in memory between requests)
     - REST-style API (Stateless, each call is separate, no state in memory)
+    - Impress RPC (long live and full duplex RPC via websocket)
+  - Multiple handlers (all handlers are optional and inheritable/overridable):
+    - access.js - returns access modifiers
+    - request.js - executing for all requests (any HTTP verbs and before verb handler)
+    - HTTP verbs: get.js, post.js, etc. - executes for certain HTTP verb
+    - end.js - executes after HTTP verb handler for all verbs
+    - lazy.js - lazy handler executes after the request has already returned to the client-side
+    - error.js - executed only if an error occurred while processing the request or in any previous handler
+  - Supported multiple RPC result types:
+    - JSON for most APIs (including safe serialization)
+    - JSONP (for cross-domain requests)
+    - CSV (JavaScript Object Notation)
+    - HTML (aor any extension unknown for IAS) - for AJAX server-side HTML rendering
   - Server server-side simple templating
     - Caching templates in memory and ready (rendered) pages optional caching
     - Supports array and hash iterations and sub-templates including
@@ -76,8 +92,11 @@ If Impress installed as a service (daemon) you can use following commands:
   - Built-in sessions support with authentication and user groups and anonymous sessions
     - Sessions and cookies (memory state or persistent sessions with MongoDB)
     - Access modifiers for each folder in access.js files and access inheritance
-  - Implemented SSE (Server-Sent Events) with channels and multi-cast
-  - WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)
+  - Multiple protocols support:
+    - HTTP and HTTPS (node native libraries)
+    - Implemented SSE (Server-Sent Events) with channels and multi-cast
+    - WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)
+    - TCP and UDP sockets support
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
   - Logging: "access", "debug", "error and "slow" logs
     - Log rotation: keep logs N days (configurable) delete files after N days
@@ -94,12 +113,28 @@ If Impress installed as a service (daemon) you can use following commands:
     - Memcached drivers as Impress plug-in
     - Relational schema generator from JSON database schemas
   - Sending Emails functionality using "nodemailer" module as Impress plug-in
-  - IPC support (interprocess communications) for event delivery between Node.js instances
+  - File utilities: upload, download, streaming
   - Integrated DBMI (Web-based management interface for MySQL and MongoDB)
   - GeoIP support, based on "geoip-lite" module as Impress plug-in (uses MaxMind database)
   - Social networking login using Passport.js as plug-in
   - Built-in simple testing framework
   - Server health monitoring
+  - Static preprocessing:
+    - js minification using uglify-js
+    - sass / scss - Syntactically Awesome Stylesheets
+  - Built-in data structures validation and preprocessing library
+  - Process forking:
+    - Long workers with "client" object forwarding to separate process
+    - Task scheduling (interval or certain time)
+  - Cross-process communication
+    - IPC support (interprocess communications) for event delivery between Node.js instances
+    - ZMQ support (Zero MQ) ar an alternative event delivery transport
+    - State synchronization mechanism with transactions and subscription
+  - Implemented V8 features support:
+    - Long stack trace with --stack-trace-limit=1000 and stack output minification
+    - Wrapper for V8 internal functions with --allow-natives-syntax
+    - Manual garbage collection with --nouse-idle-notification --expose-gc
+  - HTTP base authentication implemented (optional omitting local requests)
 
 ## Examples  
 Example #1  
@@ -107,7 +142,7 @@ To create GET request handler for URL `/api/method.json`
 File /api/method.json/get.js
 ```javascript
 module.exports = function(client, callback) {
-  callback({ field: "value" });
+  callback({ field: 'value' });
 }
 ```
 Result: `{ "field": "value" }`
@@ -150,12 +185,11 @@ module.exports = {
 ## Configuration
 
 1. Install Impress as described above.
-2. Example application will start automatically and will open `http://127.0.0.1/`
-3. Edit `/config/*.js` to configure Application Server
-4. You can create a directory for your new application inside `/applications`, for example: `/applications/myapp` and copy `/applications/example` into this directory to start with
-5. Edit `/applications/myapp/config/hosts.js`, change `127.0.0.1` to `myapp.com`, certainly you need to register and configure domain name myapp.com or just add it into `hosts` file in your OS
-6. Place your html to `/applications/myapp/app/html.template` and required files into directories `/js`, `/css`, `/images` and write API in live environment without restart
-7. Run Impress using command `service impress start` (if installed as a service) or `node server.js`
+2. Edit `/config/*.js` to configure Application Server (set IP address in servers.js)
+3. After installation you have `example` application in directory `/applications`, you can rename it and/or place there other applications
+4. Edit `/applications/example/config/hosts.js`, change `127.0.0.1` to `myapp.com`, certainly you need to register and configure domain name myapp.com or just add it into `hosts` file in your OS
+5. Place your html to `/applications/example/app/html.template` and copy required files into directories `/static/js`, `/static/css`, `/static/images` and start application API development
+6. Run Impress using command `service impress start` or `systemctl start impress` (if installed as a service) or `node server.js`
 
 ## Contributors
 
