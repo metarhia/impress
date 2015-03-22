@@ -1,0 +1,6 @@
+if (api.cluster.isWorker) {
+
+  api.impress.logApiMethod('fs.stat');
+  api.impress.logApiMethod('fs.exists');
+
+}
