@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.244",
+  "version": "0.1.245",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impressive Multipurpose Application Server for Node.js",
   "keywords": [
@@ -52,7 +52,7 @@
     "csv": "0.4.x"
   },
   "devDependencies": {
-    "mongodb": "1.4.x"
+    "mongodb": "2.0.x"
   },
   "engines": {
     "node": ">=0.10.6",

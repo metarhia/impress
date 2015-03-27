@@ -1,3 +1,9 @@
+0.1.245 / 2015-03-27
+==================
+
+  * Update dependencies
+  * Unittests and integration tests added for API logging
+
 0.1.244 / 2015-03-22
 ==================
 

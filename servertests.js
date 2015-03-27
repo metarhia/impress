@@ -97,6 +97,7 @@ if (api.cluster.isMaster) {
   console.log('Testing IAS...'.bold.green);
   impress.server.start();
   impress.server.on('start', function() {
+    api.impress.logApiMethod('fs.stat');
     for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
   });
 }

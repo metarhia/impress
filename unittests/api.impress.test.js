@@ -471,4 +471,7 @@ impress.test({
     [ 'abc', '+',     false ],
     [ 'abc', '',      true  ],
   ],
+  'api.impress.logApiMethod': [
+    [ 'fs.stats', undefined ]
+  ]
 });
