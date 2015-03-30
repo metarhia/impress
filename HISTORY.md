@@ -1,3 +1,9 @@
+0.1.246 / 2015-03-30
+==================
+
+  * Added font MIME types
+  * Added HTTP headers "Access-Control-Allow-Origin" and "Access-Control-Allow-Headers" for static files
+
 0.1.245 / 2015-03-27
 ==================
 
