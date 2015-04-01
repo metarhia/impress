@@ -2,8 +2,8 @@
 // Wildcard '*' is allowed for masking random or empty substring
 
 module.exports = [
-  //'*',                // all
-  '127.0.0.1',     // localhost or IP
+  '*',                // all
+  //'127.0.0.1',      // localhost or IP
   // 'domain.com',    // domain name
   // '*.domain.com',  // masked domain name
 ];

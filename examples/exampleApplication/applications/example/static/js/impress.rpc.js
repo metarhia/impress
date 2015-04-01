@@ -149,11 +149,21 @@
     localStorage['impress.rpc.event'] = JSON.stringify({ name: name, data: data, time: Date.now() });
   };
 
+  impress.rpc.absoluteUrl = function(url) {
+    if (url.charAt(0) === '/') {
+      var site = window.location,
+          absoluteUrl = 'ws';
+      if (site.protocol === 'https:') absoluteUrl += 's';
+      absoluteUrl += '://' + site.host + url;
+      return absoluteUrl;
+    } else return url;
+  };
+
   impress.rpc.ws = function(url) {
 
     var rpc = {};
 
-    var socket = new WebSocket(url);
+    var socket = new WebSocket(impress.rpc.absoluteUrl(url));
     rpc.socket = socket;
     rpc.socket.nextMessageId = 0;
     rpc.socket.callCollection = {};

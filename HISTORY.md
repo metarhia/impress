@@ -1,3 +1,9 @@
+0.1.247 / 2015-04-01
+==================
+
+  * Fixed \r\n in linux service files and in /lib, close #239
+  * Fixed client-side init.js and impress.rpc.js
+
 0.1.246 / 2015-03-30
 ==================
 
