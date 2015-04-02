@@ -127,7 +127,8 @@ impress.on('load', function() {
   });
 
   impress.on('click', '#menuWS', function() {
-    ws = new WebSocket('ws://127.0.0.1:80/examples/events/connect.ws');
+    var url = impress.rpc.absoluteUrl('/examples/events/connect.ws');
+    ws = new WebSocket(url);
     $(panelCenter).html(
       '<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> ' +
       '<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>' +

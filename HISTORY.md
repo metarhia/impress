@@ -1,3 +1,10 @@
+0.1.248 / 2015-04-02
+==================
+
+  * Fixed bug in rejecting websockets connections
+  * Fixed bug in setting HTTP headers for unknown MIME types
+  * Added impress.rpc.absoluteUrl in init.js to connect to any host by relative handler path
+
 0.1.247 / 2015-04-01
 ==================
 
