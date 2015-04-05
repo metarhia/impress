@@ -199,6 +199,59 @@ impress.on('load', function() {
   impress.on('click', '#menuSendMail', function() {
   });
 
+  // begin Chat
+
+  impress.on('click', '#menuChat', function() {
+    $(panelCenter).html(
+      '<div id="chatPanel" style="position:relative; height:100%;">' +
+        '<div id="chatMessages" style="position:absolute; top:0; bottom:50px; left:0; right:0; overflow-y: scroll; overflow-x: hidden;"></div>' +
+        '<div style="position:absolute; bottom:0; left:0; right:0">' +
+          '<div style="float:left; width:100px"><input type="text" value="Anonymous" name="chatUserName" class="edit" id="chatUserName" style="width:80px" /></div>' +
+          '<div style="float:right; width:130px"><a class="button silver" id="btnChatSend"><span class="icon handshake"></span>Send message</a></div>' +
+          '<div style="position:absolute; left:100px; right:150px"><input type="text" value="" name="chatMessage" class="edit" id="chatMessage" style="width:100%" /></div>' +
+        '</div>' +
+      '</div>'
+    );
+    chatConnect();
+  });
+
+  function chatConnect() {
+    var chat = new EventSource('/examples/chat/connect.sse'),
+        chatMessages = $('#chatMessages'),
+        chatMessage = $('#chatMessage'),
+        chatUserName = $('#chatUserName');
+
+    chatMessage.focus();
+
+    function msg(s) {
+      chatMessages.append('<div>' + s + '<hr></div>');
+      chatMessages.scrollTop(chatMessages[0].scrollHeight);
+    }
+
+    chat.addEventListener('chat', function(e) {
+      var data = JSON.parse(e.data);
+      msg(data.name + '(' + data.ip + '): ' + data.message);
+    });
+
+    chat.addEventListener('open', function(e) {
+      msg('Connected to chat server');
+    }, false);
+
+    chat.addEventListener('error', function(e) {
+      if (e.readyState === EventSource.CLOSED) msg('Connection closed by server');
+      else msg('Error: readyState=' + chat.readyState);
+    }, false);
+
+    $('#btnChatSend').on('click', function() {
+      $.post('/examples/chat/sendMessage.json', {
+        name: chatUserName.val(),
+        message: chatMessage.val()
+      }, function(res) {});
+    });
+  }
+
+  // end Chat
+
   impress.on('click', '#btnApplySetup', function() {
     var npmModules = $('#npmModules input'),
         npmChecked = [];
