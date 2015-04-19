@@ -1,3 +1,8 @@
+0.1.251 / 2015-04-19
+==================
+
+  * Removed PNG logo and SVG added (scalable), fixed html and css
+
 0.1.250 / 2015-04-08
 ==================
 

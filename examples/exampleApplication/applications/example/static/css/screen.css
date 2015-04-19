@@ -11,7 +11,7 @@ a, a * {
 html, body {
   padding: 0;
   margin: 0;
-  font-family: Tahoma,Arial,sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 9pt;
   overflow: hidden;
   height: 100%;
@@ -40,7 +40,7 @@ ul,ol {
   z-index: 10;
 }
 #header {
-  height: 90px;
+  height: 88px;
   position: fixed;
   left: 0;
   right: 0;
@@ -60,10 +60,16 @@ ul,ol {
 #logo-panel img {
   float: left;
   vertical-align: top;
-  margin: 0 15px 0 0;
+  margin: 0 5px 0 0;
 }
 #logo-panel a {
   text-decoration: none;
+  font-size: 0.7em;
+  color: #aaa;
+}
+#logo-panel a strong {
+  font-size: 1.5em;
+  color: #777;
 }
 #footer {
   bottom: 0;
@@ -72,7 +78,7 @@ ul,ol {
 }
 #footer-panel {
   height: 16px;
-  background: #777777;
+  background: #777;
   color: white;
   padding: 2px 4px;
   font-size: 0.9em;
