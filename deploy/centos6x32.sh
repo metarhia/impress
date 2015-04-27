@@ -4,15 +4,15 @@ yum -y install mc
 yum -y install wget
 yum -y groupinstall "Development Tools"
 cd /usr/src
-wget http://nodejs.org/dist/v0.10.33/node-v0.10.33.tar.gz
-tar zxf node-v0.10.33.tar.gz
-rm ./node-v0.10.33.tar.gz
-cd node-v0.10.33
+wget http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz
+tar zxf node-v0.12.2.tar.gz
+rm ./node-v0.12.2.tar.gz
+cd node-v0.12.2
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v0.10.33
+rm -rf /usr/src/node-v0.12.2
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
