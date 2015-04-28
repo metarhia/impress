@@ -1,3 +1,16 @@
+0.1.253 / 2015-04-28
+==================
+
+  * Fixed folder index priority, if directory exists in /app and in /static, close #274
+  * Fixed \r\n and automated fixing in all files before publishing
+  * Fixed DBMI
+
+0.1.252 / 2015-04-27
+==================
+
+  * Changed Node.js version to 0.12.2 in deploy scripts
+  * Fixes in impress.client.js
+
 0.1.251 / 2015-04-19
 ==================
 

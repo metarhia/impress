@@ -12,3 +12,4 @@ node_modules
 
 *.log
 npm-debug.log
+crlf.js
