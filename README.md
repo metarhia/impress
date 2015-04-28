@@ -1,6 +1,4 @@
-[![impress logo](http://habrastorage.org/files/b70/3f6/02c/b703f602c9f54700a147c1cc1e873098.png)](https://github.com/tshemsedinov/impress)
-
-# Impress
+[![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/tshemsedinov/impress)
 
 [![Build Status](https://travis-ci.org/tshemsedinov/impress.svg?branch=master)](https://travis-ci.org/tshemsedinov/impress)
 [![Dependency Status](https://david-dm.org/tshemsedinov/impress.svg)](https://david-dm.org/tshemsedinov/impress)
