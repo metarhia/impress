@@ -1,4 +1,4 @@
-![impress logo](http://habrastorage.org/storage3/ca7/287/cd2/ca7287cd25f773d75e59a266698258a0.png)
+![impress logo](https://raw.githubusercontent.com/tshemsedinov/impress/master/impress.svg)
 
 # Impress
 
@@ -8,7 +8,7 @@
 [![NPM version](https://badge.fury.io/js/impress.svg)](http://badge.fury.io/js/impress)
 [![Codacy Badge](https://www.codacy.com/project/badge/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/public/tshemsedinov/impress)
 
-[Impress](https://github.com/tshemsedinov/impress)ive Multipurpose Totalitarian-style Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
+[Impress](https://github.com/tshemsedinov/impress) Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
 Impress follows alternative way in several aspects:
   - No callback chain (no middleware), hierarchically inheritable hash routing instead

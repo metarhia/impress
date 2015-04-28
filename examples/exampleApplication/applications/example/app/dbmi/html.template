@@ -46,7 +46,7 @@
 <body>
   <div id="header">
     <div id="header-panel">
-      <div id="logo-panel"><a href="/"><img src="/images/logo.svg" width="87" height="87" border="0" /><h1><strong>Impress</strong>ive<br>&nbsp;&nbsp;Application<br>&nbsp;&nbsp;&nbsp;&nbsp;Server</h1></a></div>
+      <div id="logo-panel"><a href="/"><img src="/images/logo.svg" width="87" height="87" border="0" /><h1><strong>Impress</strong><br>&nbsp;&nbsp;Application<br>&nbsp;&nbsp;&nbsp;&nbsp;Server</h1></a></div>
       <div id="hmenu-panel">
         <div id="hmenu">@[hmenu]@</div>
       </div>
