@@ -1,3 +1,8 @@
+0.1.254 / 2015-04-29
+==================
+
+  * Changed all images to URL-encoded SVG in system templates to scale them for any resolution
+
 0.1.253 / 2015-04-28
 ==================
 

@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.253",
+  "version": "0.1.254",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "keywords": [
@@ -16,12 +16,8 @@
     "restful",
     "web",
     "framework",
-    "site",
-    "template",
-    "templating",
     "router",
     "routing",
-    "proxy",
     "cluster",
     "cloud",
     "cache",
@@ -31,7 +27,11 @@
     "eventstream",
     "static",
     "websocket",
-    "websockets"
+    "websockets",
+    "site",
+    "template",
+    "templating",
+    "proxy"
   ],
   "repository": {
     "type": "git",
