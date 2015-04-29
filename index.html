@@ -1,55 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
+    <meta charset="UTF-8">
     <title>Impress by tshemsedinov</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>Impress</h1>
-        <h2>Impressive totalitarian-style Application Server for node.js. All decisions are made. Ready for applied development.</h2>
-        <a href="https://github.com/tshemsedinov/impress" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">Impress</h1>
+      <h2 class="project-tagline">Impress Application Server for node.js. All decisions are made. Ready for applied development.</h2>
+      <a href="https://github.com/tshemsedinov/impress" class="btn">View on GitHub</a>
+      <a href="https://github.com/tshemsedinov/impress/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/tshemsedinov/impress/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <p><img src="http://habrastorage.org/storage2/c1e/1b7/190/c1e1b7190c8c6685a34d6584e936c4c9.png" alt="impress logo"></p>
+    <section class="main-content">
+      <p><a href="https://github.com/tshemsedinov/impress"><img src="http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png" alt="impress logo"></a></p>
 
-<h1>
-<a name="impress" class="anchor" href="#impress"><span class="octicon octicon-link"></span></a>Impress</h1>
+<p><a href="https://travis-ci.org/tshemsedinov/impress"><img src="https://travis-ci.org/tshemsedinov/impress.svg?branch=master" alt="Build Status"></a>
+<a href="https://david-dm.org/tshemsedinov/impress"><img src="https://david-dm.org/tshemsedinov/impress.svg" alt="Dependency Status"></a>
+<a href="https://david-dm.org/tshemsedinov/impress#info=devDependencies"><img src="https://david-dm.org/tshemsedinov/impress/dev-status.svg" alt="devDependency Status"></a>
+<a href="http://badge.fury.io/js/impress"><img src="https://badge.fury.io/js/impress.svg" alt="NPM version"></a>
+<a href="https://www.codacy.com/public/tshemsedinov/impress"><img src="https://www.codacy.com/project/badge/6fb7b607a9cb445984aebbc08fdeb13c" alt="Codacy Badge"></a></p>
 
-<p><a href="https://github.com/tshemsedinov/impress.git">Impress</a>ive totalitarian-style Application Server for <a href="http://nodejs.org">node.js</a>. All decisions are made. Ready for applied development.</p>
+<p><a href="https://github.com/tshemsedinov/impress">Impress</a> Application Server for <a href="http://nodejs.org">node.js</a>. All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.</p>
 
-<p>The main difference from others that Impress core is monolithic and its approach is to make all in one solution with high code coupling for obligatory things and leave not obligatory to be integrated by applied developers optionally. High coupling in core gives us advantages in performance and code simplicity. For example, why we should implement static files serving or memory caching as a plugin while no one application will omit that.</p>
+<p>Impress follows alternative way in several aspects:</p>
+
+<ul>
+<li>No callback chain (no middleware), hierarchically inheritable hash routing instead</li>
+<li>Monolithic high coupling core with obligatory things optimized for performance</li>
+<li>Extensible plug-ins format for optionally needed things</li>
+<li>Applied code simplicity, API code high-level abstraction and brevity</li>
+<li>Support for both Stateful and Stateless approach</li>
+<li>Application can't include Application Server, quite the opposite, Application Server is a container for Applications</li>
+<li>No I/O is faster even then async I/O, so maximum memory usage and lazy I/O is the choice</li>
+</ul>
 
 <h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation-and-upgrade" class="anchor" href="#installation-and-upgrade" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation and upgrade</h2>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install impress
-</pre></div>
+<ul>
+<li>Install to project folder (mostly for development): <code>npm install impress</code> and configure</li>
+<li>Install as a service for Linux: create directory <code>/impress</code> and type: <code>npm install impress</code>
+</li>
+<li>Install using package.json and <code>npm install</code>: not recommended but if you know what you're doing...</li>
+<li>Installation scripts for empty server (from the scratch)
+
+<ul>
+<li>For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)</li>
+<li>For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)</li>
+<li>For Ubuntu 14 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)</li>
+<li>For Debian 7 /deploy/debian.sh (tested for Debian 7.5 64bit minimal)</li>
+</ul>
+</li>
+</ul>
+
+<p>You can prepare scripts based on examples above and run at a target server shell:
+<code>curl http://host/path/install.sh | sh</code> or <code>wget http://host/path/install.sh -O - | sh</code></p>
+
+<p>To upgrade Impress version you can type 'npm update' in Impress folder, but if Impress installed as a service it is better to use service CLI, see commands below.
+If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.</p>
 
 <h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+<a id="service-daemon-commands" class="anchor" href="#service-daemon-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Service (daemon) commands</h2>
+
+<p>If Impress installed as a service (daemon) you can use following commands:</p>
+
+<ul>
+<li>
+<code>service impress start</code> or <code>systemctl start impress</code> (for systemd)</li>
+<li>
+<code>service impress stop</code> or <code>systemctl stop impress</code> (for systemd)</li>
+<li>
+<code>service impress restart</code> or <code>systemctl restart impress</code> (for systemd)</li>
+<li>
+<code>service impress status</code> or <code>systemctl status impress</code> to show CPU, MEM, RSS, TIME and other parameters</li>
+<li>
+<code>service impress update</code> to update and restart Application Server</li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
 <li>Can serve multiple applications and sites on multiple domains</li>
 <li>Serves multiple ports, network interfaces, hosts and protocols</li>
-<li>Can be run on one or multiple servers</li>
+<li>Can scale on multiple servers</li>
+<li>Supports application sandboxing (configuration, db and memory access isolation)</li>
 <li>Supports one or multiple CPU cores with following instantiation strategies:
 
 <ul>
@@ -63,30 +105,51 @@
 
 <ul>
 <li>Caching server-side executable JavaScript in memory</li>
-<li>Filesystem watching for cache reloading when file changes on disk</li>
+<li>File system watching for cache reloading when file changes on disk</li>
 </ul>
 </li>
+<li>Handlers inheritance override override hierarchically uning filesystem</li>
+<li>Middleware emulation (adding URL routing to handler-functions programmatically)</li>
 <li>API development support (simple way for JSON-based WEB-services development)
 
 <ul>
 <li>RPC-style API (Stateful, state stored in memory between requests)</li>
 <li>REST-style API (Stateless, each call is separate, no state in memory)</li>
+<li>Impress RPC (long live and full duplex RPC via websocket)</li>
 </ul>
 </li>
-<li>Server server-side templating
+<li>Multiple handlers (all handlers are optional and inheritable/overridable):
+
+<ul>
+<li>access.js - returns access modifiers</li>
+<li>request.js - executing for all requests (any HTTP verbs and before verb handler)</li>
+<li>HTTP verbs: get.js, post.js, etc. - executes for certain HTTP verb</li>
+<li>end.js - executes after HTTP verb handler for all verbs</li>
+<li>lazy.js - lazy handler executes after the request has already returned to the client-side</li>
+<li>error.js - executed only if an error occurred while processing the request or in any previous handler</li>
+</ul>
+</li>
+<li>Supported multiple RPC result types:
+
+<ul>
+<li>JSON for most APIs (including safe serialization)</li>
+<li>JSONP (for cross-domain requests)</li>
+<li>CSV (JavaScript Object Notation)</li>
+<li>HTML (aor any extension unknown for IAS) - for AJAX server-side HTML rendering</li>
+</ul>
+</li>
+<li>Server server-side simple templating
 
 <ul>
 <li>Caching templates in memory and ready (rendered) pages optional caching</li>
-<li>Value rendering with @VariableName@ syntax, absolute and relative addressing</li>
-<li>Array and hash iterations with @[arrayName]@ and @[/arrayName]@ syntax</li>
-<li>Including sub-templates @[includeTemplate]@ syntax</li>
+<li>Supports array and hash iterations and sub-templates including</li>
 <li>Template personalization for user groups</li>
 </ul>
 </li>
-<li>Config changes with zero downtime
+<li>Application config changes with zero downtime
 
 <ul>
-<li>Flexible configuration in JSON file</li>
+<li>Flexible configuration in JS or JSON format</li>
 <li>File watch and automatic soft reloading when config.js file changes</li>
 <li>No Impress server hard restarting</li>
 </ul>
@@ -95,8 +158,8 @@
 
 <ul>
 <li>Gzipping and HTTP request field "if-modified-since" field support and HTTP 304 "Not Modified" answer</li>
-<li>Memory caching and filesystem watching for cache reloading when files changed on disk</li>
-<li>JavaScript optional (configurable) minification, based on module "uglify-js" as Impress plugin</li>
+<li>Memory caching and file system watching for cache reloading when files changed on disk</li>
+<li>JavaScript optional (configurable) minification, based on module "uglify-js" as Impress plug-in</li>
 </ul>
 </li>
 <li>Built-in sessions support with authentication and user groups and anonymous sessions
@@ -106,13 +169,22 @@
 <li>Access modifiers for each folder in access.js files and access inheritance</li>
 </ul>
 </li>
-<li>Implemented SSE (Server-Sent Events) with channels and multicast</li>
+<li>Multiple protocols support:
+
+<ul>
+<li>HTTP and HTTPS (node native libraries)</li>
+<li>Implemented SSE (Server-Sent Events) with channels and multi-cast</li>
+<li>WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)</li>
+<li>TCP and UDP sockets support</li>
+</ul>
+</li>
 <li>Reverse-proxy (routing request to external HTTP server with URL-rewriting)</li>
 <li>Logging: "access", "debug", "error and "slow" logs
 
 <ul>
 <li>Log rotation: keep logs N days (configurable) delete files after N days</li>
 <li>Log buffering, write stream flushing interval</li>
+<li>Each application can be logged to own folder and/or to server-wide logs</li>
 </ul>
 </li>
 <li>Connection drivers for database engines:
@@ -127,182 +199,140 @@
 <li>Events: 'query', 'slow'</li>
 </ul>
 </li>
-<li>MongoDB drivers as Impress plugin</li>
-<li>Memcached drivers as Impress plugin</li>
-<li>MySQL schema generator from JSON database schemas</li>
+<li>MongoDB drivers as Impress plug-in</li>
+<li>PgSQL drivers as Impress plug-in</li>
+<li>Memcached drivers as Impress plug-in</li>
+<li>Relational schema generator from JSON database schemas</li>
 </ul>
 </li>
-<li>Sending Emails functionality using "nodemailer" module as Impress plugin</li>
-<li>IPC support (interprocess communications) for event delivery between Node.js instances</li>
+<li>Sending Emails functionality using "nodemailer" module as Impress plug-in</li>
+<li>File utilities: upload, download, streaming</li>
 <li>Integrated DBMI (Web-based management interface for MySQL and MongoDB)</li>
-<li>GeoIP support, based on "geoip-lite" module as Impress plugin (uses MaxMind database)</li>
-</ul><h2>
-<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+<li>GeoIP support, based on "geoip-lite" module as Impress plug-in (uses MaxMind database)</li>
+<li>Social networking login using Passport.js as plug-in</li>
+<li>Built-in simple testing framework</li>
+<li>Server health monitoring</li>
+<li>Static preprocessing:
 
-<ol>
-<li>Install module using npm</li>
-<li>Edit config.js file in project folder (or leave it untouched if you want just to test Impress)</li>
-<li>If you want to store persistent sessions in MongoDB you need this DBMS installed and you need to run "node setup.js" before starting Impress</li>
-<li>Run Impress using command "node server.js"</li>
-</ol><h2>
-<a name="handler-examples-and-file-system-url-mapping" class="anchor" href="#handler-examples-and-file-system-url-mapping"><span class="octicon octicon-link"></span></a>Handler examples and file system url mapping</h2>
+<ul>
+<li>js minification using uglify-js</li>
+<li>sass / scss - Syntactically Awesome Stylesheets</li>
+</ul>
+</li>
+<li>Built-in data structures validation and preprocessing library</li>
+<li>Process forking:
 
-<ol>
-<li>Template example
-Location: http://localhost
-Base template: /sites/localhost/html.template</li>
-<li>Override included "left.template"
-Location: http://localhost/override
-Overriden template: /sites/localhost/override/left.template
-Base template: /sites/localhost/html.template
-Handler: /sites/localhost/request.js</li>
-<li>JSON api method example
-Location: http://localhost/api/examples/methodName.json
-Handler: /sites/localhost/api/examples/methodName.json/get.js</li>
-<li>Start anonymous session
-Location: http://localhost/api/auth/anonymousSession.json
-Handler: /sites/localhost/api/auth/anonymousSession.json/get.js</li>
-<li>POST request handler
-Location: POST http://localhost/api/auth/regvalidation.json
-Handler: /sites/localhost/api/auth/regvalidation.json/post.js</li>
-<li>MongoDB access example
-Location: http://localhost/api/examples/getUsers.json
-Handler: /sites/localhost/api/examples/getUsers.json/get.js</li>
-</ol><h2>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+<ul>
+<li>Long workers with "client" object forwarding to separate process</li>
+<li>Task scheduling (interval or certain time)</li>
+</ul>
+</li>
+<li>Cross-process communication
 
-<p>Following "server.js" is stating file. Run it using command line "node server" for debug or "nohup node server" for production.</p>
+<ul>
+<li>IPC support (interprocess communications) for event delivery between Node.js instances</li>
+<li>ZMQ support (Zero MQ) ar an alternative event delivery transport</li>
+<li>State synchronization mechanism with transactions and subscription</li>
+</ul>
+</li>
+<li>Implemented V8 features support:
 
-<div class="highlight highlight-javascript"><pre><span class="nx">require</span><span class="p">(</span><span class="s1">'impress'</span><span class="p">);</span>
-<span class="nx">impress</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Place here other initialization code</span>
-    <span class="c1">// to be executed after Impress initialization</span>
-<span class="p">});</span>
-</pre></div>
-
-<p>File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.
-If folder not contains "access.js" it will inherit from parent folder and so on. Example:</p>
-
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">guests</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// allow requests from not logged users</span>
-    <span class="nx">logged</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// allow requests from logged users</span>
-    <span class="nx">http</span><span class="o">:</span>   <span class="kc">true</span><span class="p">,</span> <span class="c1">// allow requests using http protocol</span>
-    <span class="nx">https</span><span class="o">:</span>  <span class="kc">true</span><span class="p">,</span> <span class="c1">// allow requests using https protocol (SSL)</span>
-    <span class="nx">groups</span><span class="o">:</span> <span class="p">[]</span>    <span class="c1">// allow access for user groups listed in array</span>
-                  <span class="c1">// or for all if array is empty or no groups field specified</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>File "request.js": place such file in folder to be executed on each request (GET, POST, PUT, etc.).
-If folder not contains "request.js" it will inherit from parent folder and so on. Example:</p>
-
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s2">"Page Title"</span><span class="p">,</span>
-        <span class="nx">users</span><span class="o">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="nx">name</span><span class="o">:</span> <span class="s2">"vasia"</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">22</span><span class="p">,</span>
-                <span class="nx">emails</span><span class="o">:</span> <span class="p">[</span><span class="s2">"user1@gmail.com"</span><span class="p">,</span> <span class="s2">"user2@gmail.com"</span><span class="p">]</span>
-            <span class="p">},{</span>
-                <span class="nx">name</span><span class="o">:</span> <span class="s2">"dima"</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">32</span><span class="p">,</span>
-                <span class="nx">emails</span><span class="o">:</span> <span class="p">[</span><span class="s2">"user3@gmail.com"</span><span class="p">,</span> <span class="s2">"user4@gmail.com"</span><span class="p">,</span> <span class="s2">"user5@gmail.com"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">],</span>
-        <span class="nx">session</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">impress</span><span class="p">.</span><span class="nx">sessions</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">impress</span><span class="p">.</span><span class="nx">session</span><span class="p">])</span>
-    <span class="p">};</span>
-    <span class="nx">callback</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>File "get.js": place such file in folder to be executed on GET request. For POST request "post.js", and so on.
-If folder not contains "get.js" it will inherit from parent folder and so on. Example:</p>
-
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">db</span><span class="p">.</span><span class="nx">polltool</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">'select * from City'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">rows</span><span class="o">:</span><span class="nx">rows</span><span class="p">,</span> <span class="nx">fields</span><span class="o">:</span><span class="nx">fields</span> <span class="p">};</span>
-        <span class="nx">callback</span><span class="p">();</span>
-    <span class="p">});</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>File "html.template": place such file in folder as a main page template. Example:</p>
-
-<div class="highlight highlight-html"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;title&gt;</span>@title@<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;div&gt;</span>
-        Field value: @field@
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div&gt;</span>
-        Include template: @[name]@ - this will include file "./name.template"
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div&gt;</span>
-        This will iterate "res.context.data" from "request.js" example above:
-        @[users]@
-            <span class="nt">&lt;div&gt;</span>
-                User name: @.name@<span class="nt">&lt;br/&gt;</span>
-                User age: @.age@<span class="nt">&lt;br/&gt;</span>
-                Email addresses:
-                <span class="nt">&lt;ul&gt;</span>
-                    @[emails]@
-                        <span class="nt">&lt;li&gt;</span>@.value@<span class="nt">&lt;/li&gt;</span>
-                    @[/emails]@
-                <span class="nt">&lt;/ul&gt;</span>
-            <span class="nt">&lt;/div&gt;</span>
-        @[/users]@
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
+<ul>
+<li>Long stack trace with --stack-trace-limit=1000 and stack output minification</li>
+<li>Wrapper for V8 internal functions with --allow-natives-syntax</li>
+<li>Manual garbage collection with --nouse-idle-notification --expose-gc</li>
+</ul>
+</li>
+<li>HTTP base authentication implemented (optional omitting local requests)</li>
+</ul>
 
 <h2>
-<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>Example #1<br>
+To create GET request handler for URL <code>/api/method.json</code><br>
+File /api/method.json/get.js</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">client</span>, <span class="pl-smi">callback</span>) {
+  callback({ field<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> });
+}</pre></div>
+
+<p>Result: <code>{ "field": "value" }</code></p>
+
+<p>Example #2<br>
+To create POST request handler for URL <code>/api/method.json</code><br>
+File /api/method.json/post.js</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">client</span>, <span class="pl-smi">callback</span>) {
+  dbImpress.users.<span class="pl-c1">find</span>({ group<span class="pl-k">:</span> client.fields.group }).toArray(<span class="pl-k">function</span>(<span class="pl-smi">err</span>, <span class="pl-smi">nodes</span>) {
+    callback(nodes);
+  });
+}</pre></div>
+
+<p>Result:</p>
+
+<div class="highlight highlight-javascript"><pre>[
+  { <span class="pl-s"><span class="pl-pds">"</span>login<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Vasia Pupkin<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>whoami<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>group<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>users<span class="pl-pds">"</span></span> },
+  { <span class="pl-s"><span class="pl-pds">"</span>login<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Marcus Aurelius<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>tomyself<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>group<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>users<span class="pl-pds">"</span></span> }
+]</pre></div>
+
+<p>Example #3<br>
+File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.<br>
+If folder not contains "access.js" it will inherit from parent folder and so on. Example:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c1">module</span>.exports <span class="pl-k">=</span> {
+  guests<span class="pl-k">:</span>  <span class="pl-c1">true</span>,  <span class="pl-c">// Allow requests from anonimous users (not logged or no session)</span>
+  logged<span class="pl-k">:</span>  <span class="pl-c1">true</span>,  <span class="pl-c">// Allow requests from logged users</span>
+  http<span class="pl-k">:</span>    <span class="pl-c1">true</span>,  <span class="pl-c">// Allow requests using http protocol</span>
+  https<span class="pl-k">:</span>   <span class="pl-c1">true</span>,  <span class="pl-c">// Allow requests using https protocol</span>
+  groups<span class="pl-k">:</span>  [],    <span class="pl-c">// Allow access for user groups listed in array</span>
+                  <span class="pl-c">//   or for all if array is empty or no groups field specified</span>
+  intro<span class="pl-k">:</span>   <span class="pl-c1">true</span>,  <span class="pl-c">// Generate introspection for API methods in this directory</span>
+  index<span class="pl-k">:</span>   <span class="pl-c1">false</span>, <span class="pl-c">// Generate directory index</span>
+  virtual<span class="pl-k">:</span> <span class="pl-c1">true</span>   <span class="pl-c">// Allow requests to virtual paths, for CMS and REST URLs, etc.</span>
+}</pre></div>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<ol>
+<li>Install Impress as described above.</li>
+<li>Edit <code>/config/*.js</code> to configure Application Server (set IP address in servers.js)</li>
+<li>After installation you have <code>example</code> application in directory <code>/applications</code>, you can rename it and/or place there other applications</li>
+<li>Edit <code>/applications/example/config/hosts.js</code>, change <code>127.0.0.1</code> to <code>myapp.com</code>, certainly you need to register and configure domain name myapp.com or just add it into <code>hosts</code> file in your OS</li>
+<li>Place your html to <code>/applications/example/app/html.template</code> and copy required files into directories <code>/static/js</code>, <code>/static/css</code>, <code>/static/images</code> and start application API development</li>
+<li>Run Impress using command <code>service impress start</code> or <code>systemctl start impress</code> (if installed as a service) or <code>node server.js</code>
+</li>
+</ol>
+
+<h2>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>
 
 <ul>
 <li>Timur Shemsedinov (marcusaurelius)</li>
-<li>Sergey Andriyaschenko (tblasv)</li>
-</ul><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+<li>See github for full <a href="https://github.com/tshemsedinov/impress/graphs/contributors">contributors list</a>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Dual licensed under the MIT or RUMI licenses.</p>
 
-<p>Copyright (c) 2012-2013 MetaSystems &lt;<a href="mailto:timur.shemsedinov@gmail.com">timur.shemsedinov@gmail.com</a>&gt;</p>
+<p>Copyright (c) 2012-2015 MetaSystems &lt;<a href="mailto:timur.shemsedinov@gmail.com">timur.shemsedinov@gmail.com</a>&gt;</p>
 
-<p>License: RUMI</p>
+<p>RUMI License: Everything that you want, you are already that.<br>
+// Jalal ad-Din Muhammad Rumi</p>
 
-<p>Do you know what you are?
-You are a manuscript of a divine letter.
-You are a mirror reflecting a noble face.
-This universe is not outside of you.
-Look inside yourself;
-everything that you want,
-you are already that.</p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/tshemsedinov/impress">Impress</a> is maintained by <a href="https://github.com/tshemsedinov">tshemsedinov</a>.</span>
 
-<p>Jalal ad-Din Muhammad Rumi
-"Hush, Don't Say Anything to God: Passionate Poems of Rumi"</p>
-        </section>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
 
-        <aside id="sidebar">
-          <a href="https://github.com/tshemsedinov/impress/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/tshemsedinov/impress/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/tshemsedinov/impress"></a> is maintained by <a href="https://github.com/tshemsedinov">tshemsedinov</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+    </section>
 
   
   </body>
 </html>
+
