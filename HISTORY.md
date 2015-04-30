@@ -1,3 +1,9 @@
+0.1.255 / 2015-04-30
+==================
+
+  * Optimized cyclomatic complexity in impress.client.js, close #275
+  * Refreshed dependencies versions and tested on CentOS, Debian, Ubuntu and Mint Linux
+
 0.1.254 / 2015-04-29
 ==================
 
