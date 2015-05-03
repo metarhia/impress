@@ -5,14 +5,14 @@
 require('colors');
 
 var fs = require('fs'),
-    //path = require('path'),
+    path = require('path'),
     ncp = require('ncp').ncp,
-    readline = require('readline');
-    //exec = require('child_process').exec,
-    //spawn = require('child_process').spawn,
-    //async = require('async');
+    readline = require('readline'),
+    exec = require('child_process').exec,
+    spawn = require('child_process').spawn,
+    async = require('async');
 
-// var isWin = !!process.platform.match(/^win/);
+var isWin = !!process.platform.match(/^win/);
 
 ncp.limit = 16;
 
@@ -23,9 +23,11 @@ var rl = readline.createInterface({
 
 var impressPath = 'c:/dropbox/projects/impress',
     applicationsDir = impressPath + '/applications',
-    curDir = process.cwd();
-    //current = path.dirname(__filename.replace(/\\/g, '/'));
-    //parent = path.basename(path.dirname(current));
+    curDir = process.cwd(),
+    commandName, command,
+    parameters = process.argv,
+    current = path.dirname(__filename.replace(/\\/g, '/')),
+    parent = path.basename(path.dirname(current));
 
 global.applications = [];
 
@@ -39,7 +41,13 @@ function showHelp() {
     '  impress list\n'+
     '  impress add [path]\n'+
     '  impress remove [name]\n'+
-    '  impress new [name]'
+    '  impress new [name]\n'+
+    '  impress start\n'+
+    '  impress stop\n'+
+    '  impress restart\n'+
+    '  impress status\n'+
+    '  impress update\n'+
+    '  impress autostart [on|off]'
   );
   doExit();
 }
@@ -50,14 +58,18 @@ function notInstalled() {
 }
 
 var commands = {
+
   list: function() {
     console.log('  Applications: ');
     var i;
     for (i = 0; i < applications.length; i++) console.log('    ' + applications[i].green.bold);
     doExit();
   },
+
   add: function() {
+
     function doInput() {
+      console.log('+doInput');
       rl.question("Enter application name: ", function(answer) {
         if (applications.indexOf(answer) === -1) {
           applicationName = answer;
@@ -71,6 +83,7 @@ var commands = {
     }
 
     function doAdd() {
+      console.log('+doAdd');
       var applicationPath = applicationsDir + '/' + applicationName,
           applicationLink = applicationPath + '/' + 'application.link';
       fs.mkdirSync(applicationPath);
@@ -79,15 +92,57 @@ var commands = {
       doExit();
     }
 
-    var applicationName = process.argv[3];
+    var applicationName = parameters[1];
     if (applicationName) doAdd(); else doInput();
+
   },
+
   remove: function() {
+    console.log('Not implemented');
     doExit();
   },
+
   new: function() {
+    console.log('Not implemented');
+    doExit();
+  },
+
+  start: function() {
+    if (isWin) exec('start cmd /K "cd /d '+impressPath.replace(/\//g, '\\')+' & node server.js"' );
+    else exec('/impress/node_modules/impress/bin/impress start');
+    doExit();
+  },
+
+  stop: function() {
+    if (isWin) console.log('Not implemented');
+    else exec('/impress/node_modules/impress/bin/impress stop');
+    doExit();
+  },
+
+  restart: function() {
+    if (isWin) console.log('Not implemented');
+    else exec('/impress/node_modules/impress/bin/impress restart');
+    doExit();
+  },
+
+  status: function() {
+    if (isWin) console.log('Not implemented');
+    else exec('/impress/node_modules/impress/bin/impress status');
+    doExit();
+  },
+
+  update: function() {
+    exec('npm update');
+    doExit();
+  },
+
+  autostart: function() {
+    if (parameters[1] === 'on') exec('/impress/node_modules/impress/bin/uninstall.sh');
+    else if (parameters[1] === 'off') exec('/impress/node_modules/impress/bin/install.sh');
+    else showHelp();
     doExit();
   }
+
 };
 
 console.log('Impress Application Server CLI'.bold);
@@ -95,10 +150,12 @@ console.log('Impress Application Server CLI'.bold);
 if (!fs.existsSync(impressPath)) notInstalled();
 else {
   applications = fs.readdirSync(applicationsDir);
-  if (process.argv.length < 3) showHelp();
+  if (parameters.length < 3) showHelp();
   else {
-    var commandName = process.argv[2],
-        command = commands[commandName];
+    parameters.shift();
+    parameters.shift();
+    commandName = parameters[0];
+    command = commands[commandName];
     if (!command) showHelp();
     else command();
   }

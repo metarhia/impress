@@ -1,12 +1,11 @@
 {
   "name": "impress",
-  "version": "0.1.255",
+  "version": "0.1.256",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "keywords": [
     "application",
     "server",
-    "impress",
     "api",
     "rpc",
     "soa",
@@ -27,17 +26,14 @@
     "eventstream",
     "static",
     "websocket",
-    "websockets",
-    "site",
-    "template",
-    "templating",
-    "proxy"
+    "websockets"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tshemsedinov/impress.git"
   },
   "main": "./lib/impress",
+  "bin" { "impress": "./bin/cli.js" },
   "dependencies": {
     "async": "0.9.x",
     "colors": "1.1.x",

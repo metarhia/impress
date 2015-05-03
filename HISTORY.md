@@ -1,3 +1,9 @@
+0.1.255 / 2015-05-03
+==================
+
+  * Optimized cyclomatic complexity in impress.client.js, issue #275
+  * Improved CLI, issue #157
+
 0.1.255 / 2015-04-30
 ==================
 

@@ -21,7 +21,7 @@ usage() {
 
 start() {
   cd /impress
-  nohup node --stack-trace-limit=1000 server --allow-natives-syntax > /dev/null 2>&1 &
+  nohup node --stack-trace-limit=1000 --allow-natives-syntax server > /dev/null 2>&1 &
 }
 
 stop() {
