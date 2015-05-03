@@ -33,7 +33,7 @@
     "url": "https://github.com/tshemsedinov/impress.git"
   },
   "main": "./lib/impress",
-  "bin" { "impress": "./bin/cli.js" },
+  "bin": { "impress": "./bin/cli.js" },
   "dependencies": {
     "async": "0.9.x",
     "colors": "1.1.x",
