@@ -1,4 +1,11 @@
-0.1.255 / 2015-05-03
+0.1.257 / 2015-05-04
+==================
+
+  * Fixed Content-Encoding when gzipping output to application.cache.pages, in Client.prototype.end, close #277
+  * Moved Impress CLI to separate package for global installation, issue #276
+  * Multiple code style fixes
+
+0.1.256 / 2015-05-03
 ==================
 
   * Optimized cyclomatic complexity in impress.client.js, issue #275
