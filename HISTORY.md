@@ -1,3 +1,9 @@
+0.1.258 / 2015-05-05
+==================
+
+  * Experiments with Impress CLI, issue #276
+  * Optimized cyclomatic complexity in impress.js
+
 0.1.257 / 2015-05-04
 ==================
 
