@@ -11,3 +11,4 @@ elif [ -f /etc/redhat-release ]; then
   chkconfig --add impress
   chkconfig impress on
 fi
+npm install impress-cli -g

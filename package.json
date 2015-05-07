@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.258",
+  "version": "0.1.259",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "keywords": [
@@ -56,8 +56,7 @@
   "readmeFilename": "README.md",
   "scripts": {
     "install": "node install.js",
-    "npm": "npm link npm",
-    "cli": "npm install impress-cli -g"
+    "npm": "npm link npm"
   },
   "jshintConfig": {
     "predef": [ "api", "impress", "db", "global", "cms", "inArray", "emptyness", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource" ],
