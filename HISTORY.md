@@ -1,3 +1,9 @@
+0.1.260 / 2015-05-09
+==================
+
+  * Extract simple templating into impress.temlating.js, close #279
+  * Added 'use strict' to impress.files.js and impress.index.js
+
 0.1.259 / 2015-05-07
 ==================
 
