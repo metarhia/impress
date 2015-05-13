@@ -1,1 +1,0 @@
-Applied domain-specific models

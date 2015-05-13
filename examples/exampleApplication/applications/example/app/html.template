@@ -16,10 +16,6 @@
   <link rel="stylesheet" type="text/css" href="/css/screen.css" />
   <link rel="stylesheet" type="text/css" href="/js/scroller/scroller.css" />
 
-  <link rel="stylesheet" type="text/css" href="/js/slickgrid/css/smoothness/jquery-ui-1.10.3.custom.css" />
-  <link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.css" />
-  <link rel="stylesheet" type="text/css" href="/js/slickgrid/slick.grid.theme.css" />
-
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/eventsource.min.js"></script>
 
@@ -27,17 +23,9 @@
   <script type="text/javascript" src="/js/impress.rpc.js"></script>
   <script type="text/javascript" src="/js/wcl.js"></script>
 
-  <script type="text/javascript" src="/js/scroller/scroller.js"></script>
+  <!--script type="text/javascript" src="/js/scroller/scroller.js"></script-->
   <script type="text/javascript" src="/js/jquery.cookie.js"></script>
   <script type="text/javascript" src="/js/jquery.hotkeys.js"></script>
-  <script type="text/javascript" src="/js/jstree/jquery.jstree.js"></script>
-
-  <script type="text/javascript" src="/js/slickgrid/lib/jquery-ui-1.10.3.custom.min.js"></script>
-  <script type="text/javascript" src="/js/slickgrid/lib/jquery.event.drag-2.2.js"></script>
-  <script type="text/javascript" src="/js/slickgrid/slick.core.js"></script>
-  <script type="text/javascript" src="/js/slickgrid/slick.dataview.js"></script>
-  <script type="text/javascript" src="/js/slickgrid/slick.grid.js"></script>
-  <script type="text/javascript" src="/js/slickgrid/slick.editors.js"></script>
 
   <script type="text/javascript" src="/js/init.js"></script>
 </head>
