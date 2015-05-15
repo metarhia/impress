@@ -1,3 +1,8 @@
+0.1.265 / 2015-05-15
+==================
+
+  * Comments added and code style fixes, issue #286
+
 0.1.264 / 2015-05-14
 ==================
 
@@ -7,7 +12,7 @@
 0.1.263 / 2015-05-13
 ==================
 
-  * Remove DBMI from Impress examples, issue #263
+  * Removed DBMI from Impress examples, issue #263
   * Removed redundant examples and code, issue #282
 
 0.1.262 / 2015-05-11
