@@ -90,11 +90,11 @@
   impress.rpc.checkMaster = function() {
     var masterNow = parseInt(localStorage[impress.rpc.masterTabKey], 10);
     if (Date.now() - masterNow > impress.rpc.heartbeatInterval * 2) {
-      var i, tabId, tabNow, key,
+      var tabId, tabNow, key,
           keys = Object.keys(localStorage),
           maxId = 0,
           now = Date.now();
-      for (i = 0; i < keys.length; i++) {
+      for (var i = 0; i < keys.length; i++) {
         key = keys[i];
         if (impress.startsWith(key, 'impress.rpc.tab')) {
           tabId = parseInt(key.match(/\d+/)[0], 10);
@@ -107,8 +107,8 @@
   };
 
   impress.rpc.checkTabs = function() {
-    var i, tabNow, key, keys = Object.keys(localStorage);
-    for (i = 0; i < keys.length; i++) {
+    var tabNow, key, keys = Object.keys(localStorage);
+    for (var i = 0; i < keys.length; i++) {
       key = keys[i];
       if (key !== impress.rpc.tabKey && impress.startsWith(key, 'impress.rpc.tab')) {
         tabNow = parseInt(localStorage[key], 10);

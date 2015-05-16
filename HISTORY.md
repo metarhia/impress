@@ -1,3 +1,8 @@
+0.1.266 / 2015-05-16
+==================
+
+  * Code style fixes, unneded code and libraries removed
+
 0.1.265 / 2015-05-15
 ==================
 

@@ -9,8 +9,7 @@ window.global = window;
 if (!Array.prototype.indexOf) {
   Array.prototype.indexOf = function(searchElement, fromIndex) {
     fromIndex = fromIndex || 0;
-    var i;
-    for (i = fromIndex; i < this.length; i++) {
+    for (var i = fromIndex; i < this.length; i++) {
       if (this[i] === searchElement) return i;
     }
     return -1;
@@ -23,8 +22,7 @@ if (!Array.prototype.lastIndexOf) {
   Array.prototype.lastIndexOf = function(searchElement, fromIndex) {
     fromIndex = fromIndex || this.length - 1;
     if (fromIndex > 0) {
-      var i;
-      for (i = fromIndex; i >= 0; i--) {
+      for (var i = fromIndex; i >= 0; i--) {
         if (this[i] === searchElement) return i;
       }
     }
@@ -189,7 +187,7 @@ if (!Date.prototype.now) {
   //
   impress.htmlEscape = function(content) {
     return (content.replace(/[&<>"'\/]/g, function(char) {
-      return ({ '&':'&amp;','<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[char]);
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]);
     }));
   };
 
@@ -391,7 +389,7 @@ if (!Date.prototype.now) {
     return str.indexOf(substring) > -1;
   };
 
-  // DOM utilities --------------------------------------------------------------------------------
+  // DOM utilities
 
   impress.html = document.documentElement || document.getElementsByTagName('html')[0];
   impress.head = document.head || document.getElementsByTagName('head')[0];
@@ -540,7 +538,7 @@ if (!Date.prototype.now) {
       context = context || document;
       var list = context.getElementsByTagName('*'),
         classArray = classList.split(/\s+/),
-        result = [], i,j;
+        result = [], i, j;
       for (i = 0; i < list.length; i++) {
         for(j = 0; j < classArray.length; j++) {
           if(list[i].className.search('\\b' + classArray[j] + '\\b') !== -1) {
@@ -649,9 +647,9 @@ if (!Date.prototype.now) {
 
   impress.reload = function(url, callback) {
     var panel = this;
-    panel.scroller('remove').empty().html('<div class="progress"></div>').load(url, function() {
+    panel/*scroller('remove').*/.empty().html('<div class="progress"></div>').load(url, function() {
       //panel.removeAttr('style').scroller('y');
-      panel.scroller('y');
+      //panel.scroller('y');
       if (impress.platform.iOS) panel.width(panel.width()-1);
       $('a.default', panel).click();
       if (callback) callback.call(panel);

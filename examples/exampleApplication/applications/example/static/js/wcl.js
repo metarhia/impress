@@ -77,8 +77,8 @@
     ds.data = params.data;
     ds.metadata = params.metadata;
     ds.each = function(params, callback) {
-      var i, d, key, match;
-      for (i = 0; i < ds.data.length; i++) {
+      var d, key, match;
+      for (var i = 0; i < ds.data.length; i++) {
         d = ds.data[i];
         match = true;
         for (key in params) match = match && (d[key] === params[key]);
@@ -137,8 +137,7 @@
             field.dataSet.record.modified = true;
           }
           if (field.dataSet.updateCount === 0) {
-            var i;
-            for (i = 0; i < field.bindings.length; i++) field.bindings[i].value(value);
+            for (var i = 0; i < field.bindings.length; i++) field.bindings[i].value(value);
           }
         }
       } else return field.data;
@@ -355,8 +354,8 @@
   //
   wcl.bind = function(params) { // { record:Record, container:element }
     params.container.wcl = { record: params.record };
-    var i, dataWcl, element, component, elements = params.container.getElementsByTagName('div');
-    for (i = 0; i < elements.length; i++) {
+    var dataWcl, element, component, elements = params.container.getElementsByTagName('div');
+    for (var i = 0; i < elements.length; i++) {
       element = elements[i];
       dataWcl = element.getAttribute('data-wcl');
       if (dataWcl) {
@@ -377,7 +376,7 @@
   };
 
   wcl.htmlEscape = function(content) {
-    return content.replace(/[&<>"'\/]/g,function(char) { return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', '\'':'&#39;' }[char]); });
+    return content.replace(/[&<>"'\/]/g,function(char) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[char]); });
   };
 
   wcl.template = function(tpl, data, escapeHtml) {
@@ -429,9 +428,9 @@
 
   wcl.autoInitialization = function() {
     wcl.body = document.body || document.getElementsByTagName('body')[0];
-    var i, container, containerName, element, dataWcl, component,
+    var container, containerName, element, dataWcl, component,
         elements = wcl.body.getElementsByTagName('div');
-    for (i = 0; i < elements.length; i++) {
+    for (var i = 0; i < elements.length; i++) {
       element = elements[i];
       dataWcl = element.getAttribute('data-wcl');
       if (dataWcl) {
@@ -444,8 +443,8 @@
       elements = container.getElementsByTagName('div');
       global[container.wcl.dataWcl.name] = container;
       wcl.components.Container(container);
-      for (i = 0; i < elements.length; i++) {
-        element = elements[i];
+      for (var j = 0; j < elements.length; j++) {
+        element = elements[j];
         if (element.wcl.dataWcl.control) {
           component = wcl.components[element.wcl.dataWcl.control];
           container.wcl.controls[element.wcl.dataWcl.name] = element;

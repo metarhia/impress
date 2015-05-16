@@ -191,8 +191,7 @@ impress.on('load', function() {
 
     $('#btnSseSend').on('click', function() {
       $(panelCenter).append('Sending event to server, it should return back.<hr>');
-      $.get('/examples/events/sendEvent.json', function(res) {
-      });
+      $.get('/examples/events/sendEvent.json', function(res) {});
     });
   }
 
