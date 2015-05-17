@@ -1,3 +1,8 @@
+0.1.267 / 2015-05-17
+==================
+
+  * Load all MongoDB collections if list is not specified in /config/databases.js, close #294
+
 0.1.266 / 2015-05-16
 ==================
 
