@@ -1,4 +1,4 @@
-0.1.268 / 2015-06-01
+0.1.269 / 2015-06-01
 ==================
 
   * Added application.limit and oprional parameter /config/application.js/rpsPerIP, issue #300
