@@ -6,7 +6,7 @@ application.state.data.car = {
 if (api.cluster.isWorker) {
 
   setInterval(function() {
-    console.log('Data: '+impress.nodeId+' '+JSON.stringify(application.state.data.car));
+    console.log('Data: ' + impress.nodeId + ' ' + JSON.stringify(application.state.data.car));
   }, 10000);
 
 }

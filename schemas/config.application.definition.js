@@ -15,7 +15,8 @@ module.exports = {
   application: {
     slowTime:    '2s:duration',
     preload:     'false:boolean',
-    allowOrigin: '[string]'
+    allowOrigin: '[string]',
+    rpsPerIP:    '[number]'
   },
 
   database: {

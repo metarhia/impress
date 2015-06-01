@@ -1,3 +1,12 @@
+0.1.268 / 2015-06-01
+==================
+
+  * Added application.limit and oprional parameter /config/application.js/rpsPerIP, issue #300
+  * Added application.deny: { ips: { <ip>: { sec, rps } } }, issue #301
+  * Implemented Client.prototype.checkRestrictions for issue #301 and issue #300
+  * Fixed application.state examples
+  * Fixed exception 'This socket is closed' in client.rpc.send, close #308
+
 0.1.267 / 2015-05-17
 ==================
 

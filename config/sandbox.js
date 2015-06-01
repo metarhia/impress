@@ -63,7 +63,7 @@ module.exports = {
     'impress.websocket',
     'impress.rpc',
     //'impress.passport',
-    //'impress.state',
+    'impress.state',
   ]
 
 };

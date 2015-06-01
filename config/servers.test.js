@@ -6,7 +6,7 @@ module.exports = {
     protocol:      'http',
     address:       '127.0.0.1',
     port:          8080,
-    nagle:         true,  // Nagle algorithm, default true, set to false for latency optimization
+    nagle:         true,
     slowTime:      '1s'
   },
 };

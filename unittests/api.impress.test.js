@@ -169,7 +169,7 @@ impress.test({
     [ { abc: '123', abcd: '1234', abcde: '12345' }, 'abcd',               { abc: '123' } ],
     [ { abc: '123', abcd: '1234', abcde: '12345' }, 'a',                             { } ],
     [ { abc: '123', abcd: '1234' }, 'qwer',                 { abc: '123', abcd: '1234' } ],
-    [ { abc: '123', abcd: '1234' }, 'abc',                                           { } ]
+    [ { abc: '123', abcd: '1234' }, 'abc',                                           { } ],
   ],
   'api.impress.spinalToCamel': [
     [ 'hello-world',     'helloWorld' ],
@@ -197,6 +197,8 @@ impress.test({
     [ '',                      0 ],
     [ '15',                    0 ],
     [ '10q',                   0 ],
+    [ null,                    0 ],
+    [ undefined,               0 ],
   ],
   'api.impress.generateKey': [
     [ 0, 'ABC', function(value) { return (value.length === 0); } ],
@@ -255,10 +257,10 @@ impress.test({
   'api.impress.dirname': [
     [ '/path/dir/',   '/path/' ],
     [ '/path/dir',    '/path/' ],
-    [ '/path/',       '/' ],
-    [ '/path',        '/' ],
-    [ '/',            '/' ],
-    [ '',             './' ],
+    [ '/path/',            '/' ],
+    [ '/path',             '/' ],
+    [ '/',                 '/' ],
+    [ '',                 './' ],
   ],
   'api.impress.bytesToSize': [
     [                         0, '0'      ],

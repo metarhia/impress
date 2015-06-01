@@ -39,13 +39,16 @@ module.exports = {
   servers: '{{server}}',
 
   server: {
-    protocol: '(http,https)',
-    address:  'string',
-    port:     'number',
-    nagle:    'false:boolean',
-    slowTime: '4s:duration',
-    key:      '[string]',
-    cert:     '[string]'
+    protocol:  '(http,https)',
+    address:   'string',
+    port:      'number',
+    nagle:     'false:boolean',
+    slowTime:  '4s:duration',
+    key:       '[string]',
+    cert:      '[string]',
+    rpsPerIP:  '10:number',
+    rpsPerSID: '20:number',
+    rpsPerURL: '100000:number'
   }
 
 };

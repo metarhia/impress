@@ -9,27 +9,27 @@ if (api.cluster.isWorker) {
 
     setInterval(function() {
       application.state.inc('car.speed', 2, '5s');
-    }, random(1000, 2000));
+    }, api.impress.random(1000, 2000));
 
     setInterval(function() {
       application.state.dec('car.speed', 1, '6s');
-    }, random(2000, 3000));
+    }, api.impress.random(2000, 3000));
 
     setInterval(function() {
       application.state.inc('car.speed', 3, '7s');
-    }, random(1000, 3000));
+    }, api.impress.random(1000, 3000));
 
     setInterval(function() {
       application.state.dec('car.speed', 2, '8s');
-    }, random(2000, 4000));
+    }, api.impress.random(2000, 4000));
 
     setInterval(function() {
       application.state.set('car.name', 'nameOne', '5s');
-    }, random(1000, 5000));
+    }, api.impress.random(1000, 5000));
 
     setInterval(function() {
       application.state.set('car.name', 'nameTwo', '7s');
-    }, random(2000, 6000));
+    }, api.impress.random(2000, 6000));
 
   }
 
