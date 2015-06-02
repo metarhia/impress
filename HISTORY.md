@@ -1,3 +1,8 @@
+0.1.270 / 2015-06-02
+==================
+
+  * Fixed static directory index in Client.prototype.static, close #303
+
 0.1.269 / 2015-06-01
 ==================
 

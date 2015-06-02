@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.269",
+  "version": "0.1.270",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "keywords": [
@@ -34,7 +34,7 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "async": "1.0.x",
+    "async": "1.1.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
