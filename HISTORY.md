@@ -1,3 +1,10 @@
+0.1.271 / 2015-06-03
+==================
+
+  * Set node rss memory limit to 2GB --max_old_space_size=2048, issue #307
+  * Added auto restarting workers before hang or crash, close #307
+  * Optimized date/time operations for cache and all time interval measurement places
+
 0.1.270 / 2015-06-02
 ==================
 
