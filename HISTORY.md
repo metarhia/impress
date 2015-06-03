@@ -1,3 +1,9 @@
+0.1.272 / 2015-06-04
+==================
+
+  * Fixed /init scripts reloading on changes, close #305
+  * Code style fixes and comments added
+
 0.1.271 / 2015-06-03
 ==================
 

@@ -1,8 +1,9 @@
 {
   "name": "impress",
-  "version": "0.1.271",
+  "version": "0.1.272",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
+  "license": "(MIT OR RUMI)",
   "keywords": [
     "application",
     "server",
@@ -31,6 +32,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/tshemsedinov/impress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tshemsedinov/impress/issues",
+    "email": "timur.shemsedinov@gmail.com"
   },
   "main": "./lib/impress",
   "dependencies": {
