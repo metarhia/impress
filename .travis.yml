@@ -6,6 +6,6 @@ node_js:
   - iojs
   - iojs-v1.0.4
 script:
-  - node --stack-trace-limit=1000 --allow-natives-syntax --max_old_space_size=2048 unittests.js
-  - node --stack-trace-limit=1000 --allow-natives-syntax --max_old_space_size=2048 servertests.js
+  - node --stack-trace-limit=1000 --allow-natives-syntax unittests.js
+  - node --stack-trace-limit=1000 --allow-natives-syntax servertests.js
 env: IMPRESS_MODE=test
