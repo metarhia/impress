@@ -1,3 +1,8 @@
+0.1.273 / 2015-06-05
+==================
+
+  * Added default value in application.state.inc, close #298
+
 0.1.272 / 2015-06-04
 ==================
 
