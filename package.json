@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.273",
+  "version": "0.1.274",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "(MIT OR RUMI)",
@@ -49,10 +49,8 @@
     "zip-stream": "0.5.x",
     "websocket": "1.0.x",
     "json-stringify-safe": "5.0.x",
-    "csv": "0.4.x"
-  },
-  "devDependencies": {
-    "mongodb": "2.0.x"
+    "csv": "0.4.x",
+    "node-sass": "3.1.x"
   },
   "engines": {
     "node": ">=0.10.6",

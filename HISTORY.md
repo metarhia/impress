@@ -1,3 +1,9 @@
+0.1.274 / 2015-06-09
+==================
+
+  * Comments added, Inch CI hints processed, close #286
+  * Fixed long workers problem, close #311
+
 0.1.273 / 2015-06-05
 ==================
 
