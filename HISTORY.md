@@ -1,3 +1,8 @@
+0.1.275 / 2015-06-11
+==================
+
+  * Added Impress CLI command to set impress path, issue #286
+
 0.1.274 / 2015-06-09
 ==================
 

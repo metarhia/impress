@@ -16,32 +16,6 @@ Impress follows alternative way in several aspects:
   - Application can't include Application Server, quite the opposite, Application Server is a container for Applications
   - No I/O is faster even then async I/O, so maximum memory usage and lazy I/O is the choice
 
-## Installation and upgrade
-
-  - Install to project folder (mostly for development): `npm install impress` and configure
-  - Install as a service for Linux: create directory `/impress` and type: `npm install impress`
-  - Install using package.json and `npm install`: not recommended but if you know what you're doing...
-  - Installation scripts for empty server (from the scratch)
-    - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
-    - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
-    - For Ubuntu 14 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
-    - For Debian 7 /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
-  
-You can prepare scripts based on examples above and run at a target server shell:
-`curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
-
-To upgrade Impress version you can type 'npm update' in Impress folder, but if Impress installed as a service it is better to use service CLI, see commands below.
-If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.
-
-## Service (daemon) commands
-
-If Impress installed as a service (daemon) you can use following commands:
-  - `service impress start` or `systemctl start impress` (for systemd)
-  - `service impress stop` or `systemctl stop impress` (for systemd)
-  - `service impress restart` or `systemctl restart impress` (for systemd)
-  - `service impress status` or `systemctl status impress` to show CPU, MEM, RSS, TIME and other parameters
-  - `service impress update` to update and restart Application Server
-
 ## Features
 
   - Can serve multiple applications and sites on multiple domains
@@ -178,6 +152,32 @@ module.exports = {
   virtual: true   // Allow requests to virtual paths, for CMS and REST URLs, etc.
 }
 ```
+
+## Installation and upgrade
+
+  - Install to project folder (mostly for development): `npm install impress` and configure
+  - Install as a service for Linux: create directory `/impress` and type: `npm install impress`
+  - Install using package.json and `npm install`: not recommended but if you know what you're doing...
+  - Installation scripts for empty server (from the scratch)
+    - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
+    - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
+    - For Ubuntu 14 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
+    - For Debian 7 /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
+  
+You can prepare scripts based on examples above and run at a target server shell:
+`curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
+
+To upgrade Impress version you can type 'npm update' in Impress folder, but if Impress installed as a service it is better to use service CLI, see commands below.
+If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.
+
+## Service (daemon) commands
+
+If Impress installed as a service (daemon) you can use following commands:
+  - `service impress start` or `systemctl start impress` (for systemd)
+  - `service impress stop` or `systemctl stop impress` (for systemd)
+  - `service impress restart` or `systemctl restart impress` (for systemd)
+  - `service impress status` or `systemctl status impress` to show CPU, MEM, RSS, TIME and other parameters
+  - `service impress update` to update and restart Application Server
 
 ## Configuration
 
