@@ -15,17 +15,16 @@
 ### END INIT INFO
 
 usage() {
-  echo "service impress {start|stop|restart|status|update}"
+  impress help
   exit 0
 }
 
 start() {
-  cd /impress
-  nohup node --stack-trace-limit=1000 --allow-natives-syntax --max_old_space_size=2048 server.js > /dev/null 2>&1 &
+  impress start
 }
 
 stop() {
-  killall "impress srv"
+  impress stop
 }
 
 restart() {
@@ -60,11 +59,11 @@ case $1 in
 
   start)
     echo "Starting Impress Application Server"
-    start
+    impress start
     ;;
   stop)
     echo "Stopping Impress Application Server"
-    stop
+    impress stop
     ;;
   restart|reload)
     echo "Restarting Impress Application Server"

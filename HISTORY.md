@@ -1,3 +1,8 @@
+0.1.276 / 2015-06-13
+==================
+
+  * Move service start/stop functionality to js package impress-cli, issue #313
+
 0.1.275 / 2015-06-11
 ==================
 
