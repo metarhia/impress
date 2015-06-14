@@ -33,7 +33,7 @@ function execute(cmd, callback) {
 function installCLI() {
   execute('npm install impress-cli -g', function() {
     execute('impress path ' + destination, function() {
-      execute('impress autostart on');
+      if (!isWin) execute('impress autostart on');
     });
   });
 }
@@ -59,7 +59,10 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
       if (err) console.error(err);
       ncp(source + '/applications', destination + '/applications', { clobber: false }, function (err) {
         if (err) console.error(err);
-        installCLI();
+        else {
+          if (!isWin) execute('chmod +x ' + source +'/install.sh', installCLI);
+          else installCLI();
+        }
       });
     });
   }
