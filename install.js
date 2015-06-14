@@ -60,7 +60,7 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
       ncp(source + '/applications', destination + '/applications', { clobber: false }, function (err) {
         if (err) console.error(err);
         else {
-          if (!isWin) execute('chmod +x ' + source +'/install.sh', installCLI);
+          if (!isWin) execute('chmod +x ' + destination +'/server.sh', installCLI);
           else installCLI();
         }
       });
