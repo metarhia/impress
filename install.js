@@ -19,9 +19,14 @@ var current = path.dirname(__filename.replace(/\\/g, '/')),
     exists = false;
 
 function installCLI() {
+  console.log('npm install impress-cli -g');
   exec('npm install impress-cli -g', function() {
+    console.log('impress path ' + current);
     exec('impress path ' + current, function() {
-      exec('impress autostart on');
+      console.log('impress path ' + current);
+      exec('impress autostart on', function() {
+        console.log('Done!');
+      });
     });
   });
 }
@@ -37,10 +42,8 @@ async.each(['server.js', 'config', 'applications'], function(file, callback) {
     callback();
   });
 }, function() {
-  if (exists) {
-    console.log('Impress Application Server'.bold.green + ' is already installed and configured in this folder.');
-    installCLI();
-  } else {
+  if (exists) console.log('Impress Application Server'.bold.green + ' is already installed and configured in this folder.');
+  else {
     console.log('Installing Impress Application Server...'.bold.green);
     fs.createReadStream(source + 'server.js').pipe(fs.createWriteStream(destination+'server.js'));
     var shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
