@@ -18,13 +18,24 @@ var current = path.dirname(__filename.replace(/\\/g, '/')),
     source = current + '/examples/exampleApplication/',
     exists = false;
 
+// Execute shell command displaying output and possible errors
+//
+function execute(cmd, callback) {
+  console.log('exec(' + cmd + ')');
+  exec(cmd, function(error, stdout, stderr) {
+    console.log('stdout:' + stdout);
+    if (error) console.log('error:' + error);
+    if (stderr) console.log('stderr:' + );
+    if (callback) callback();
+  });
+}
+
+// Install CLI
+//
 function installCLI() {
-  console.log('npm install impress-cli -g');
-  exec('npm install impress-cli -g', function() {
-    console.log('impress path ' + current);
-    exec('impress path ' + current, function() {
-      console.log('impress path ' + current);
-      exec('impress autostart on', function() {
+  execute('npm install impress-cli -g', function() {
+    execute('impress path ' + destination, function() {
+      execute('impress autostart on', function() {
         console.log('Done!');
       });
     });
