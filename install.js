@@ -22,9 +22,8 @@ var current = path.dirname(__filename.replace(/\\/g, '/')),
 //
 function execute(cmd, callback) {
   exec(cmd, function(error, stdout, stderr) {
-    console.log(stdout);
-    if (error) console.log('error:' + error);
-    if (stderr) console.log('stderr:' + stderr);
+    if (error) console.log(error.toString());
+    else console.log(stdout);
     if (callback) callback();
   });
 }
