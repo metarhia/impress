@@ -1,3 +1,9 @@
+0.1.287 / 2015-06-15
+==================
+
+  * Fixed installation with impress-cli as a service, close #313
+  * Changed documentation about Impress installation and CLI
+
 0.1.286 / 2015-06-15
 ==================
 

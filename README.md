@@ -155,9 +155,8 @@ module.exports = {
 
 ## Installation and upgrade
 
-  - Install to project folder (mostly for development): `npm install impress` and configure
-  - Install as a service for Linux: create directory `/impress` and type: `npm install impress`
-  - Install using package.json and `npm install`: not recommended but if you know what you're doing...
+  - Install to current folder: `npm install impress`
+  - Install using package.json, add to `dependencies` and run `npm install`
   - Installation scripts for empty server (from the scratch)
     - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
     - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
@@ -167,17 +166,23 @@ module.exports = {
 You can prepare scripts based on examples above and run at a target server shell:
 `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
 
-To upgrade Impress version you can type 'npm update' in Impress folder, but if Impress installed as a service it is better to use service CLI, see commands below.
 If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.
 
 ## Service (daemon) commands
 
-If Impress installed as a service (daemon) you can use following commands:
-  - `service impress start` or `systemctl start impress` (for systemd)
-  - `service impress stop` or `systemctl stop impress` (for systemd)
-  - `service impress restart` or `systemctl restart impress` (for systemd)
-  - `service impress status` or `systemctl status impress` to show CPU, MEM, RSS, TIME and other parameters
-  - `service impress update` to update and restart Application Server
+You can use following commands:
+  - `impress path <path>` to display or change path to IAS
+  - `impress start` to start IAS server
+  - `impress stop` to stop IAS server
+  - `impress restart` to restop IAS server
+  - `impress status` to display IAS status
+  - `impress update` to update IAS version
+  - `impress autostart [on|off]` to add/remove IAS to autostart after system reboot
+  - `impress list` to see IAS applications list
+  - `impress add [path]` to add application
+  - `impress remove [name]` to remove application
+  - `impress new [name]` to create application
+
 
 ## Configuration
 
