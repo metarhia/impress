@@ -2,7 +2,7 @@
 sudo apt-get -y update
 sudo apt-get -y install mc
 sudo apt-get -y install wget
-sudo apt-get -y install build-essential openssl libssl-dev pkg-config
+sudo apt-get -y install build-essential openssl libssl-dev pkg-config python
 cd /usr/src
 sudo wget http://nodejs.org/dist/v0.12.4/node-v0.12.4.tar.gz
 sudo tar zxf node-v0.12.4.tar.gz

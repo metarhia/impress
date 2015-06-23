@@ -28,9 +28,10 @@ Impress follows alternative way in several aspects:
     - Multiple instances (multiple processes, one master and identical workers with no sticky)
     - IP sticky (multiple processes, one master and workers with serving sticky by IP)
   - URL routing based on file system
-    - Caching server-side executable JavaScript in memory
+    - No need to write routing manually in code, just create folder if new AJAX API method needed
     - File system watching for cache reloading when file changes on disk
-  - Handlers inheritance override override hierarchically uning filesystem
+    - Caching server-side executable JavaScript in memory
+  - Handlers inheritance override hierarchically uning filesystem
   - Middleware emulation (adding URL routing to handler-functions programmatically)
   - API development support (simple way for JSON-based WEB-services development)
     - RPC-style API (Stateful, state stored in memory between requests)
@@ -43,7 +44,7 @@ Impress follows alternative way in several aspects:
     - end.js - executes after HTTP verb handler for all verbs
     - lazy.js - lazy handler executes after the request has already returned to the client-side
     - error.js - executed only if an error occurred while processing the request or in any previous handler
-  - Supported multiple RPC result types:
+  - Supported multiple AJAX API result types:
     - JSON for most APIs (including safe serialization)
     - JSONP (for cross-domain requests)
     - CSV (JavaScript Object Notation)
@@ -54,12 +55,13 @@ Impress follows alternative way in several aspects:
     - Template personalization for user groups
   - Application config changes with zero downtime
     - Flexible configuration in JS or JSON format
-    - File watch and automatic soft reloading when config.js file changes
+    - File watch and automatic soft reloading when configuration js file changes
     - No Impress server hard restarting
-  - Serving static files
+  - Serving static files with in-memory preprocessing
     - Gzipping and HTTP request field "if-modified-since" field support and HTTP 304 "Not Modified" answer
     - Memory caching and file system watching for cache reloading when files changed on disk
     - JavaScript optional (configurable) minification, based on module "uglify-js" as Impress plug-in
+    - SASS Syntactically Awesome Stylesheets compiling .scss to .css in memory cache
   - Built-in sessions support with authentication and user groups and anonymous sessions
     - Sessions and cookies (memory state or persistent sessions with MongoDB)
     - Access modifiers for each folder in access.js files and access inheritance
@@ -69,7 +71,7 @@ Impress follows alternative way in several aspects:
     - WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)
     - TCP and UDP sockets support
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
-  - Logging: "access", "debug", "error and "slow" logs
+  - Logging: "access", "debug", "error" and "slow" logs
     - Log rotation: keep logs N days (configurable) delete files after N days
     - Log buffering, write stream flushing interval
     - Each application can be logged to own folder and/or to server-wide logs
@@ -90,9 +92,6 @@ Impress follows alternative way in several aspects:
   - Social networking login using Passport.js as plug-in
   - Built-in simple testing framework
   - Server health monitoring
-  - Static preprocessing:
-    - js minification using uglify-js
-    - sass / scss - Syntactically Awesome Stylesheets
   - Built-in data structures validation and preprocessing library
   - Process forking:
     - Long workers with "client" object forwarding to separate process
@@ -168,9 +167,9 @@ You can prepare scripts based on examples above and run at a target server shell
 
 If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.
 
-## Service (daemon) commands
+## Impress CLI commands
 
-You can use following commands:
+You can use following commands from any directory:
   - `impress path <path>` to display or change path to IAS
   - `impress start` to start IAS server
   - `impress stop` to stop IAS server

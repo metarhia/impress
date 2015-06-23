@@ -21,7 +21,7 @@ var current = path.dirname(__filename.replace(/\\/g, '/')),
 // Execute shell command displaying output and possible errors
 //
 function execute(cmd, callback) {
-  exec(cmd, function(error, stdout, stderr) {
+  exec(cmd, function(error, stdout /* stderr */) {
     if (error) console.log(error.toString());
     else console.log(stdout);
     if (callback) callback();
