@@ -24,7 +24,7 @@ module.exports = {
     'impress',
     'definition',
 
-    // Additional modules
+    // Preinstalled modules
     'async',
     'iconv',
     'colors',
@@ -32,15 +32,18 @@ module.exports = {
     'stringify', // npm module json-stringify-safe
     'csv',
 
-    'json-stringify-safe',
-
+    // Additional modules
+    //'mkdirp',
     //'geoip',
     //'nodemailer',
-    //'mkdirp',
     //'request',
+    //'npm',
 
     // Passport providers
-    // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
+    //'passport',
+    //'passport-google-oauth',
+    //'passport-twitter',
+    //'passport-facebook'
   ],
 
   // Plugins to be loaded using require by Impress
@@ -51,7 +54,7 @@ module.exports = {
     //'db.memcached',
     //'db.mysql',
     //'db.pgsql',
-    'impress.log',
+    //'impress.log',
     'impress.security.mongodb',
     //'impress.health',
     //'impress.scale',
@@ -62,8 +65,8 @@ module.exports = {
     'impress.sse',
     'impress.websocket',
     'impress.rpc',
-    //'impress.passport',
     'impress.state',
+    //'impress.passport',
   ]
 
 };

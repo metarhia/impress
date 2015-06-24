@@ -18,7 +18,7 @@ module.exports = {
     // 'multiple'       - multiple processes, one master and identical workers with no sticky (master should listen ports)
     // 'sticky'         - multiple processes, one master and workers with sticky by IP (master should listen ports)
 
-  workers:       1, // api.os.cpus().length, // worker count, e.g. api.os.cpus().length-1 or just number
+  workers:       1, // worker count, e.g. api.os.cpus().length-1 or just number
 
   health:        '5s',   // health monitoring interval
   nagle:         false,  // Nagle algorithm

@@ -1,3 +1,9 @@
+0.1.290 / 2015-06-25
+==================
+
+  * Optimized project path depth, close #318
+  * Renamed /app folder to /server, close #320
+
 0.1.289 / 2015-06-23
 ==================
 
