@@ -1,3 +1,10 @@
+0.1.292 / 2015-06-27
+==================
+
+  * Buffer concatenation optimized, close #323
+  * Fixed jshint issues and changed api.impress.isIp to native net.isIP
+  * Start implementing TCP-based cross-server RPC, issue #321
+
 0.1.291 / 2015-06-25
 ==================
 
