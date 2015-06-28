@@ -1,3 +1,9 @@
+0.1.293 / 2015-06-28
+==================
+
+  * Added TCP packet fragmentation handling (split/merge) across network, issue #321
+  * Code style fixes: removed typeof from compare to undefined
+
 0.1.292 / 2015-06-27
 ==================
 
