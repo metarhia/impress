@@ -1,3 +1,11 @@
+0.1.294 / 2015-06-29
+==================
+
+  * Implemented call and callback, issue #321
+  * Optimized RPC, moved send/receive methods to socket instance using mixin upgradeSocket, issue #321
+  * Optimized TCP packet fragmentation handling, issue #321
+  * Now impress.cloud and socket are instances of EventEmitter, implemented events: socket:packet and impress.cloud:event, issue #321
+
 0.1.293 / 2015-06-28
 ==================
 
