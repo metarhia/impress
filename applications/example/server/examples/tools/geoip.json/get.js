@@ -11,6 +11,8 @@ module.exports = function(client, callback) {
         example: {
           nodejs: {
             host: 'nodejs.org',
+            ip: address,
+            family: family,
             geoip: api.geoip.lookup(address)
           }
         }
