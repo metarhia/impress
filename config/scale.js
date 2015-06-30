@@ -10,14 +10,12 @@ module.exports = {
 
   host:       '127.0.0.1',       // cloud controller ip or host name
   port:       250,               // cloud controller tcp port
-
-  controller: 'tcp://127.0.0.1', // cloud controller IP address
-  subPort:    3000,              // bublisher/subscriber port
-  reqPort:    3001,              // request/reply port
+  subPort:    3000,              // bublisher/subscriber port for ZMQ
+  reqPort:    3001,              // request/reply port for ZMQ
 
   cluster:    'C1',              // Cluster name to identify it in loadbalancing infrastructure
   cookie:     'node',            // Cookie name for loadbalancing (cookie value will be 'C1'+'N1')
-  strategy:   'multiple', // 'multiple', 'single',
+  strategy:   'multiple',
     // 'single'         - one process (no master and workers)
     // 'specialization' - multiple processes, one master and different workers for each server (master should not listen ports)
     // 'multiple'       - multiple processes, one master and identical workers with no sticky (master should listen ports)
