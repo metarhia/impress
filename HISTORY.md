@@ -1,3 +1,10 @@
+0.1.295 / 2015-07-01
+==================
+
+  * Created abstract transport and two implementations: TCP and IPX, issue #321
+  * Changed config file: scale.js, "controller" removed, use "host" instead
+  * Fixed sticky in impress.balancer, close #326
+
 0.1.294 / 2015-06-29
 ==================
 

@@ -17,7 +17,7 @@
     }
   );
 
-  req.on('error', function(e) {
+  req.on('error', function(/*err*/) {
     callback('Can`t get page');
   });
   req.end();
