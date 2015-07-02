@@ -14,6 +14,8 @@ if (api.cluster.isWorker) {
   }
 
   setTimeout(test, 1000);
+  setTimeout(test, 1200);
+  setTimeout(test, 1400);
 
   setInterval(function() {
     var endTime = new Date().getTime(),
