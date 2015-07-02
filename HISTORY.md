@@ -1,3 +1,9 @@
+0.1.296 / 2015-07-02
+==================
+
+  * Refactored loops to cache length, issue #329
+  * Code style fixes and dependency update
+
 0.1.295 / 2015-07-01
 ==================
 
