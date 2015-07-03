@@ -23,5 +23,4 @@ if (api.cluster.isWorker) {
     console.log(impress.nodeId + ' Processing time: ' + processingTime + ' count: ' + count);
   }, 5000);
 
-
 }
