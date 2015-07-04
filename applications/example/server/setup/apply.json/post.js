@@ -9,13 +9,13 @@
       lib = require(npmName);
     } catch (err) {}
     if (!lib && npmChecked.indexOf(npmName) !== -1) {
-      api.npm.commands.install([npmName], function(err, data) {
+      api.npm.commands.install([npmName], function(err /*data*/) {
         if (err) console.log('npm error'.red);
       });
     }
   }
 
-  api.npm.load(npm.config, function(err) {
+  api.npm.load(npm.config, function(/*err*/) {
     api.npm.on('log', function(message) {
       console.log(message);
     });

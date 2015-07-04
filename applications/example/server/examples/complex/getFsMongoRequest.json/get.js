@@ -24,7 +24,7 @@
           });
         }
       );
-      req.on('error', function(e) {
+      req.on('error', function(/*err*/) {
         callback(null, "Can't get page");
       });
       req.end();

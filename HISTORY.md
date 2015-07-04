@@ -1,3 +1,8 @@
+0.1.298 / 2015-07-04
+==================
+
+  * Implemented export/import API namespaces from one application to another, close #314
+
 0.1.297 / 2015-07-03
 ==================
 
