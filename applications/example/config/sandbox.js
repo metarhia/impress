@@ -51,6 +51,18 @@ module.exports = {
     'impress.rpc',
     //'impress.passport',
     'impress.state',
-  ]
+  ],
+
+  // Import from other applications
+  //import: {
+  //  appName: { // application name
+  //    'api.nameExport': 'api.nameImport' // name mapping hash
+  //  }
+  //},
+
+  // Allow to export to other applications
+  //export: [
+  //  'api.nameExport'
+  //]
 
 };

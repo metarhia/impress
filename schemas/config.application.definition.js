@@ -47,7 +47,9 @@ module.exports = {
   sandbox: {
     global:  '[array]',
     api:     '[array]',
-    plugins: '[array]'
+    plugins: '[array]',
+    export:  '[array]',
+    import:  '[hash]'
   },
 
   mail: {

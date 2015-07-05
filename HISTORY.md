@@ -1,3 +1,20 @@
+0.1.298 / 2015-07-04
+==================
+
+  * Implemented export/import API namespaces from one application to another, close #314
+
+0.1.297 / 2015-07-03
+==================
+
+  * Implemented ZMQ transport for RPC, issue #321
+  * Tested RPC transport performance: 2 way (call+callback, serialize/deserialize): ZMQ:9271rps, IPC:18031rps, TCP:24316rps; 1 way (events): ZMQ:18300  rps, IPC:15936rps, TCP:49655rps
+
+0.1.296 / 2015-07-02
+==================
+
+  * Refactored loops to cache length, issue #329
+  * Code style fixes and dependency update
+
 0.1.295 / 2015-07-01
 ==================
 
