@@ -1,3 +1,8 @@
+0.1.299 / 2015-07-05
+==================
+
+  * State synchronization switch to new impress.cloud RPC, issue #332
+
 0.1.298 / 2015-07-04
 ==================
 
