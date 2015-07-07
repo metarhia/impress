@@ -11,9 +11,8 @@ module.exports = {
   instance:   'standalone',
 
   host:       '127.0.0.1',       // cloud controller ip or host name
-  port:       250,               // cloud controller tcp port
-  subPort:    3000,              // bublisher/subscriber port for ZMQ
-  reqPort:    3001,              // request/reply port for ZMQ
+  rpcPort:     250,              // cloud controller tcp port for TCP and ZMQ
+  subPort:     251,              // bublisher/subscriber port for ZMQ
 
   cluster:    'C1',              // Cluster name to identify it in loadbalancing infrastructure
   cookie:     'node',            // Cookie name for loadbalancing (cookie value will be 'C1'+'N1')
