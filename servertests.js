@@ -35,7 +35,7 @@ var config = {
     {  get: '/examples/cache/htmlPage.ajax' },
     {  get: '/examples/cache/apiMethod.json' },
     {  get: '/examples/events/connect.sse' },
-    {  get: '/examples/events/sendEvent.json' },
+//  {  get: '/examples/events/sendEvent.json' },
     {  get: '/examples/simple/csvStringify.csv' },
     {  get: '/examples/simple/jsonpGet.jsonp', data: { callback: 'callbackFunctionName' } },
     { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
