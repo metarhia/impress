@@ -1,5 +1,5 @@
 module.exports = function(client, callback) {
-  application.events.sendGlobal('chat', {
+  application.frontend.emit('chat', {
     ip: client.req.connection.remoteAddress,
     name: client.fields.name,
     message: client.fields.message

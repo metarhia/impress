@@ -170,7 +170,7 @@ impress.on('load', function() {
   function sseConnect() {
     var sse = new EventSource('/examples/events/connect.sse');
 
-    sse.addEventListener('TestEvent', function(e) {
+    sse.addEventListener('test', function(e) {
       $(panelCenter).append('Event: ' + e.type + '; Data: ' + e.data + '<hr>');
     });
 

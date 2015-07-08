@@ -30,7 +30,6 @@ module.exports = {
     'colors',
     'mkdirp',
     'zipstream', // npm modile zip-stream
-    'stringify', // npm module json-stringify-safe
     'csv',
 
     // Additional modules
@@ -45,12 +44,8 @@ module.exports = {
 
   // Plugins that should be mixedin into application and Client instances
   plugins: [
-    'impress.events',
-    'impress.sse',
     'impress.websocket',
-    'impress.rpc',
     //'impress.passport',
-    'impress.state',
   ],
 
   // Import from other applications

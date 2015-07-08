@@ -1,5 +1,5 @@
 module.exports = function(client, callback) {
-  client.eventChannel = 'TestEvent';
+  client.eventChannel = 'test';
   client.heartbeat = true;
   callback();
 };

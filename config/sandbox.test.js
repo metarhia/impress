@@ -15,14 +15,6 @@ module.exports = {
     'iconv',
     'colors',
     'zipstream',
-    'stringify',
     'csv'
-  ],
-
-  // Plugins to be loaded using require by Impress
-  plugins: [
-    'impress.events',
-    'impress.sse'
   ]
-
 };

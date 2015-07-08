@@ -48,7 +48,6 @@
     "iconv-lite": "0.4.x",
     "zip-stream": "0.5.x",
     "websocket": "1.0.x",
-    "json-stringify-safe": "5.0.x",
     "csv": "0.4.x",
     "node-sass": "3.2.x"
   },
