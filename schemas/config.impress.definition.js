@@ -4,11 +4,12 @@ module.exports = {
     check:      '[string]',
 
     cloud:      'string',
-    instance:   '(none,standalone,controller,server)',
+    transport:  '(tcp,ipc,zmq)',
+    instance:   '(standalone,controller,server)',
 
-    controller: 'string',
-    subPort:    '3000:number',
-    reqPort:    '3001:number',
+    host:       'string',
+    rpcPort:    '250:number',
+    subPort:    '251:number',
 
     cluster:    'string',
     cookie:     'node:string',

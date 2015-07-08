@@ -1,4 +1,4 @@
 module.exports = function(client, callback) {
-  application.events.sendGlobal('TestEvent', { test: 'data' });
+  application.frontend.emit('test', { data: 'data' });
   callback('Ok');
 };
