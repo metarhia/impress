@@ -1,3 +1,13 @@
+0.1.300 / 2015-07-08
+==================
+
+  * Multiple improvements in TCP-based cross-server RPC, issue #321
+  * State synchronization switched to new impress.cloud RPC, close #332
+  * Event broker and SSE switched to impress.cloud RPC, close #331
+  * RPC in standalone mode, close #337
+  * Added optional fields to RPC transport: app, target, to, close #333
+  * Added RPC transport to app server config: scale.js, close #339
+
 0.1.299 / 2015-07-05
 ==================
 
