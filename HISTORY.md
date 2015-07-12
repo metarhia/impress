@@ -1,3 +1,8 @@
+0.1.303 / 2015-07-12
+==================
+
+  * Switched state sync to special packet.type: state, close #347
+
 0.1.302 / 2015-07-11
 ==================
 
