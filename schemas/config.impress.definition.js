@@ -16,7 +16,7 @@ module.exports = {
     strategy:   '(single,specialization,multiple,sticky)',
     workers:    '1:number',
 
-    health:     '5s:duration',
+    health:     '0:duration',
     nagle:      'false:boolean',
     gcInterval: '10m:duration',
     watchInterval: '2s:duration'
