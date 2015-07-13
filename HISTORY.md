@@ -1,3 +1,9 @@
+0.1.304 / 2015-07-13
+==================
+
+  * Logging healthfor: node, cluster and cloud, close #350
+  * Reimplementing health monitoring, issue #346
+
 0.1.303 / 2015-07-12
 ==================
 
