@@ -1,3 +1,12 @@
+0.1.305 / 2015-07-14
+==================
+
+  * Reimplemented health monitoring using new RPC, close #346
+  * Fixed ECONNRESET in RPC server, close #351
+  * Fixed TCP reconnecting cloud status
+  * Fixed Content-Transfer-Encoding for attachment of unknown size
+  * Fixed impress.health.networkInterfaces
+
 0.1.304 / 2015-07-13
 ==================
 
