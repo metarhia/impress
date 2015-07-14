@@ -1,3 +1,33 @@
+0.1.305 / 2015-07-14
+==================
+
+  * Reimplemented health monitoring using new RPC, close #346
+  * Fixed ECONNRESET in RPC server, close #351
+  * Fixed TCP reconnecting cloud status
+  * Fixed Content-Transfer-Encoding for attachment of unknown size
+  * Fixed impress.health.networkInterfaces
+
+0.1.304 / 2015-07-13
+==================
+
+  * Logging healthfor: node, cluster and cloud, close #350
+  * Reimplementing health monitoring, issue #346
+
+0.1.303 / 2015-07-12
+==================
+
+  * Switched state sync to special packet.type: state, close #347
+
+0.1.302 / 2015-07-11
+==================
+
+  * Fixed exception in client.cache, close #348
+
+0.1.301 / 2015-07-10
+==================
+
+  * Connection recovery in impress.cloud RPC, close #343
+
 0.1.300 / 2015-07-08
 ==================
 
