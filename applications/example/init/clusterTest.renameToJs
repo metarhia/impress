@@ -9,7 +9,7 @@ if (api.cluster.isWorker) {
 
   function test() {
     count++;
-    impress.cloud.client.call('method1', {}, function(res) {
+    application.backend.call('method1', { sample: "sample" }, function(res) {
       test();
     });
   }
