@@ -1,3 +1,8 @@
+0.1.307 / 2015-07-16
+==================
+
+  * Fixed config schema definition/validation, close #357
+
 0.1.306 / 2015-07-15
 ==================
 
