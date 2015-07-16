@@ -24,8 +24,8 @@ module.exports = {
 
   workers:       1, // worker count, e.g. api.os.cpus().length-1 or just number
 
-  // health:        5000,   // health monitoring interval '5s'
+  health:        '5m',   // health monitoring interval '5s'
   nagle:         false,  // Nagle algorithm
   gcInterval:    0,      // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
-  watchInterval: 2000,   // combine wached file system events if interval less then specified
+  watchInterval: '2s'    // 2000,   // combine wached file system events if interval less then specified
 };
