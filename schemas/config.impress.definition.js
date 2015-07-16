@@ -1,6 +1,6 @@
 module.exports = {
 
-  scalse: {
+  scale: {
     check:      '[string]',
 
     cloud:      'string',
@@ -16,7 +16,7 @@ module.exports = {
     strategy:   '(single,specialization,multiple,sticky)',
     workers:    '1:number',
 
-    health:     '0:duration',
+    health:     '5s:duration',
     nagle:      'false:boolean',
     gcInterval: '10m:duration',
     watchInterval: '2s:duration'
