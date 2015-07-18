@@ -1,3 +1,9 @@
+0.1.309 / 2015-07-18
+==================
+
+  * Fixed critical bug related to issue #360
+  * Added sample static JSON and CSV files
+
 0.1.308 / 2015-07-17
 ==================
 
