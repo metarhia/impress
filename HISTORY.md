@@ -1,3 +1,24 @@
+0.1.309 / 2015-07-18
+==================
+
+  * Fixed critical bug related to issue #360
+  * Added sample static JSON and CSV files
+
+0.1.308 / 2015-07-17
+==================
+
+  * Fixed HTTP 408 for ```/static/*```, close #360
+
+0.1.307 / 2015-07-16
+==================
+
+  * Fixed config schema definition/validation, close #357
+
+0.1.306 / 2015-07-15
+==================
+
+  * Make RPC calls in application context, issue #355
+
 0.1.305 / 2015-07-14
 ==================
 
