@@ -1,3 +1,9 @@
+0.1.311 / 2015-07-19
+==================
+
+  * Fixed directory index error, close #366
+  * Fixed large static files ERR_CONTENT_LENGTH_MISMATCH bug, close #365
+
 0.1.310 / 2015-07-19
 ==================
 
