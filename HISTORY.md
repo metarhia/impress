@@ -1,3 +1,9 @@
+0.1.310 / 2015-07-19
+==================
+
+  * Implemented index.html for static directories, close #363
+  * Safe load optional modules, impress.require instead of require
+
 0.1.309 / 2015-07-18
 ==================
 
