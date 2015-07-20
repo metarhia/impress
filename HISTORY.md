@@ -2,6 +2,7 @@
 ==================
 
   * Fixed cross-server event propagation, close #370
+  * Optimized logging and error handling
 
 0.1.312 / 2015-07-20
 ==================
