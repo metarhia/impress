@@ -1,3 +1,10 @@
+0.1.312 / 2015-07-20
+==================
+
+  * Fixed Client.prototype.stream bug, close #368
+  * Added HTTP timeout to ```/config/servers.js``` (default 30s), close #369
+  * Fixed socket destruction on timeout, close #365
+
 0.1.311 / 2015-07-19
 ==================
 
