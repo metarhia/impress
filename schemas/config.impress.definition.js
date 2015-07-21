@@ -45,6 +45,7 @@ module.exports = {
     port:      'number',
     nagle:     'false:boolean',
     slowTime:  '4s:duration',
+    timeout:   '30s:duration',
     key:       '[string]',
     cert:      '[string]',
     rpsPerIP:  '10:number',

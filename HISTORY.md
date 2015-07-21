@@ -1,3 +1,28 @@
+0.1.313 / 2015-07-21
+==================
+
+  * Fixed cross-server event propagation, close #370
+  * Optimized logging and error handling
+
+0.1.312 / 2015-07-20
+==================
+
+  * Fixed Client.prototype.stream bug, close #368
+  * Added HTTP timeout to ```/config/servers.js``` (default 30s), close #369
+  * Fixed socket destruction on timeout, close #365
+
+0.1.311 / 2015-07-19
+==================
+
+  * Fixed directory index error, close #366
+  * Fixed large static files ERR_CONTENT_LENGTH_MISMATCH bug, close #365
+
+0.1.310 / 2015-07-19
+==================
+
+  * Implemented index.html for static directories, close #363
+  * Safe load optional modules, impress.require instead of require
+
 0.1.309 / 2015-07-18
 ==================
 

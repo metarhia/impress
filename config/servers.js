@@ -6,14 +6,16 @@ module.exports = {
     protocol: 'http',
     address:  '*',
     port:     80,
-    slowTime: '1s'
+    slowTime: '1s',
+    timeout:  '30s'
   },
   //local: {
   //  protocol: 'http',
   //  address:  '127.0.0.1',
   //  port:     80,
   //  nagle:    true, // Nagle algorithm, default true, set to false for latency optimization
-  //  slowTime: '1s'
+  //  slowTime: '1s',
+  //  timeout:  '120s' // default 30s
   //},
   //ssl: {
   //  protocol:  'https',
