@@ -1,3 +1,9 @@
+0.1.314 / 2015-07-22
+==================
+
+  * Fixed bug in directory index implementation, close #366
+  * Trying to fix integration tests on Travis CI
+
 0.1.313 / 2015-07-21
 ==================
 
