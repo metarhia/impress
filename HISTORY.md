@@ -1,3 +1,8 @@
+0.1.315 / 2015-07-23
+==================
+
+  * Implemented application.require and move impress.require to api.impress.require, close #372
+
 0.1.314 / 2015-07-22
 ==================
 
