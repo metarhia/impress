@@ -1,11 +1,12 @@
 'use strict';
 
-require('../lib/impress');
-require('../lib/impress.tests');
+var dir = process.cwd();
+require(dir + '/lib/impress');
+require(dir + '/lib/impress.tests');
 
 impress.test.show.ok = false;
 
-var testsDir = './unittests/',
+var testsDir = dir + '/tests/unittests/',
     tests = api.fs.readdirSync(testsDir);
 
 tests.map(function(fileName) {
