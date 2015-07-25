@@ -1,3 +1,10 @@
+0.1.317 / 2015-07-25
+==================
+
+  * Refactored MongoDB driver
+  * Refactored tests structure, close #376
+  * Fixed global database aliases, close #375
+
 0.1.316 / 2015-07-24
 ==================
 

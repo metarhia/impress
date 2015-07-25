@@ -1,6 +1,7 @@
 'use strict';
 
-require('./lib/impress');
+process.chdir('..');
+require('../lib/impress');
 
 var ncp = require('ncp').ncp,
     querystring = require('querystring'),
