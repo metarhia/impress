@@ -1,3 +1,13 @@
+0.1.318 / 2015-07-26
+==================
+
+  * Added log file for warnings and put all console warnings output to it, close #379
+  * Added application.name to all log files, close #381
+  * Security database provider now loaded automatically for database alias configured with ```security: trye```, close #380
+  * Commented --max_old_space_size=2048 for default start scripts
+  * Сonfig files loading moved before mixin logging plugin, issue #378
+  * Fixed travis.yml, issue #376
+
 0.1.317 / 2015-07-25
 ==================
 

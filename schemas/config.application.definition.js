@@ -41,6 +41,7 @@ module.exports = {
     writeBuffer:    '64kb:size',
     applicationLog: 'false:boolean',
     serverLog:      'true:boolean',
+    files:          '[array]',
     stdout:         '[array]'
   },
 

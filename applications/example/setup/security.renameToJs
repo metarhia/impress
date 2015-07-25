@@ -7,7 +7,5 @@ var rl = api.readline.createInterface({
 
 rl.question('Delete stored data and recreate default structures? [y/n]: ', function(answer) {
   rl.close();
-  if (answer === 'y') application.security.createDataStructures(function() {
-    console.log(api.colors.yellow('OK'));
-  }); else console.log(api.colors.yellow('SKIP'));
+  if (answer === 'y') application.security.createDataStructures(function() {});
 });
