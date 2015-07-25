@@ -26,9 +26,9 @@ module.exports = {
   // MongoDB example database configuration
   //
   //  mongoConnection: {
-  //    url: 'mongodb://localhost:27017/dbname', // connection string (required)
-  //    collections: ['collname1', 'collname2'], // collection to be created automatically if not exists
-  //    slowTime: '2s',                          // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
-  //    security: true,                          // flag to use this database for security subsystem (optional, dafault: false), collections: sessions, users, groups
+  //    url: 'mongodb://localhost:27017/dbname',   // connection string (required)
+  //    collections: [ 'collname1', 'collname2' ], // collection to be created automatically if not exists
+  //    slowTime: '2s',                            // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
+  //    security: true,                            // flag to use this database for security subsystem (optional, dafault: false), collections: sessions, users, groups
   //  }
 };
