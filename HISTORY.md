@@ -1,3 +1,11 @@
+0.1.319 / 2015-07-27
+==================
+
+  * Refactored applications loader, close #378
+  * Fixed exception on HTTP GET to RPC handler, close #373
+  * Fix HTTP 408 for dynamic handlers timeout, close #382
+  * Added killall for CentOS in package impress-cli
+
 0.1.318 / 2015-07-26
 ==================
 
