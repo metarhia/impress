@@ -43,12 +43,6 @@ module.exports = {
     //'passport-google-oauth',
     //'passport-twitter',
     //'passport-facebook'
-  ],
-
-  // Plugins to be loaded using require by Impress
-  plugins: [
-    'impress.websocket',
-    //'impress.passport',
   ]
 
 };

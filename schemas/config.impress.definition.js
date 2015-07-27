@@ -34,8 +34,7 @@ module.exports = {
 
   sandbox: {
     global:  '[array]',
-    api:     '[array]',
-    plugins: '[array]'
+    api:     '[array]'
   },
 
   servers: '{{server}}',

@@ -1,3 +1,9 @@
+0.1.320 / 2015-07-28
+==================
+
+  * Decomposed abd optimized db.openApplicationDatabases
+  * Refactored plugins, see details in github issue, close #319
+
 0.1.319 / 2015-07-27
 ==================
 
