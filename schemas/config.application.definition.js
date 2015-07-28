@@ -20,6 +20,7 @@ module.exports = {
   },
 
   database: {
+    alias:       '[string]',
     url:         'string',
     collections: '[array]',
     slowTime:    '2s:duration',
