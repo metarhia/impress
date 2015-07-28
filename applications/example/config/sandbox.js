@@ -42,12 +42,6 @@ module.exports = {
     // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
   ],
 
-  // Plugins that should be mixedin into application and Client instances
-  plugins: [
-    'impress.websocket',
-    //'impress.passport',
-  ],
-
   // Import from other applications
   //import: {
   //  appName: { // application name

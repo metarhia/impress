@@ -4,12 +4,5 @@ node_modules
 /debug/
 /develop/
 /.idea/
-
-/stresstest.*
-/setup.*
-/lib/*.cp
-/lib/*.new
-
 *.log
-npm-debug.log
 crlf.js

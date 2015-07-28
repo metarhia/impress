@@ -41,13 +41,13 @@ module.exports = {
     writeBuffer:    '64kb:size',
     applicationLog: 'false:boolean',
     serverLog:      'true:boolean',
+    files:          '[array]',
     stdout:         '[array]'
   },
 
   sandbox: {
     global:  '[array]',
     api:     '[array]',
-    plugins: '[array]',
     export:  '[array]',
     import:  '[hash]'
   },
