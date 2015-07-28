@@ -26,30 +26,4 @@
       </div>
     </form>
   </div>
-  <div id="formConfirmation" class="form">
-    <form>
-      <div class="header">Confirmation</div><hr/>
-      <div class="message">Text</div>
-      <div class="buttons">
-        <a class="button silver save" id="formConfirmationYes"><span class="icon check"></span>Yes</a>
-        <a class="button silver save" id="formConfirmationOk"><span class="icon check"></span>Ok</a>
-        <a class="button silver cancel" id="formConfirmationNo"><span class="icon undo"></span>No</a>
-        <a class="button silver cancel" id="formConfirmationCancel"><span class="icon undo"></span>Cancel</a>
-      </div>
-    </form>
-  </div>
-  <div id="formInput" class="form">
-    <form>
-      <div class="header">Input</div><hr/>
-      <table class="fields">
-        <tr class="field"><td class="label">Prompt:</td><td class="value"><input type="text" value="" name="formInputValue" class="edit" id="formInputValue" autocapitalize="off" autocorrect="off" /></td></tr>
-      </table>
-      <div class="buttons">
-        <a class="button silver cancel" id="formInputCancel"><span class="icon undo"></span>No</a>
-        <a class="button silver save" id="formInputOk"><span class="icon check"></span>Ok</a>
-      </div>
-    </form>
-  </div>
 </div>
-<div id="darken" class="hidden"></div>
-<div id="popup" class="hidden"></div>

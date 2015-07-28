@@ -4,7 +4,7 @@ var ws;
 
 impress.on('load', function() {
 
-  impress.addClass(document.body, 'js');
+  impress.addClass(impress.body, 'js');
   impress.fixCookie('SID');
 
   var panelLeft = impress.id('panel-left'),
@@ -23,7 +23,7 @@ impress.on('load', function() {
   // --- Auth Module ---
 
   impress.on('click', '#hmenu-Signin', function() {
-    impress.togglePopup('#formLogin');
+    impress.popup('#formLogin');
     return false;
   });
 
@@ -36,7 +36,7 @@ impress.on('load', function() {
   });
 
   impress.on('click', '#hmenu-Register', function() {
-    impress.togglePopup('#formReg');
+    impress.popup('#formReg');
     return false;
   });
 

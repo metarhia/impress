@@ -626,9 +626,6 @@ div.label {
 
 
 
-#darken { background-color: #000; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 10; margin: 90px 0 0 0; }
-#popup { background-color: #FFF; left: 0; min-width: 300px; position: fixed; top: 0; z-index: 11; box-shadow: 0 0 15px #333; -moz-box-shadow: 0 0 15px #333; -webkit-box-shadow: 0 0 15px #333; padding: 10px; }
-#popup .form.profiler { width: 500px }
 .hidden { display:none; }
 br.clear { clear:both; }
 

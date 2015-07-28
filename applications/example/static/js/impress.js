@@ -69,7 +69,10 @@ if (!Date.prototype.now) {
 }
 
 // Impress API ------------------------------------------------------------------------------------
-
+/**
+ * @name impress
+ * @namespace client.impress
+ */
 (function(impress) {
 
   impress.falseness = function() { return false; };
@@ -459,7 +462,7 @@ if (!Date.prototype.now) {
     }
   };
 
-  if (typeof(JSON) !== 'object') require(['json2.js']);
+  //if (typeof(JSON) !== 'object') require(['json2.js']);//no such lib, probably should be removed
 
   // Platform detection
 
@@ -551,6 +554,13 @@ if (!Date.prototype.now) {
     };
   }
 
+  /**
+   *
+   * @param {HTMLElement} element
+   * @param className
+   * @returns {string|*|className|jQuery.className|.toggleClass.className}
+   * @memberOf impress
+   */
   impress.addClass = function(element, className) {
     var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
     if (regex.test(element.className)) {
@@ -558,7 +568,7 @@ if (!Date.prototype.now) {
       return element.className;
     }
   };
- 
+
   impress.removeClass = function(element, className) {
     var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
     element.className = element.className.replace(regex, '$1').replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
@@ -581,9 +591,16 @@ if (!Date.prototype.now) {
 
   impress.getFrameDocument = function(fname) {
     if (platform.IE) return frames[fname].document;
-    else return impress.id(fname).contentDocument; 
+    else return impress.id(fname).contentDocument;
   };
 
+  /**
+   * Add event listener to given element
+   * @param {Window|Element} element
+   * @param {string} event
+   * @param {function(this:Element, Event)} fn
+   * @returns {boolean}
+   */
   impress.addEvent = function(element, event, fn) {
     if (element.addEventListener) {
       return element.addEventListener(event, fn, false);
@@ -595,16 +612,28 @@ if (!Date.prototype.now) {
     } else return false;
   };
 
+  /**
+   *
+   * @param {Window|Element} element
+   * @param {string} event
+   * @param {function} fn
+   * @returns {boolean}
+   */
   impress.removeEvent = function(element, event, fn) {
     if (element.removeEventListener) {
       return element.removeEventListener(event, fn, false);
-    } else if (element.detachEvent) { 
+    } else if (element.detachEvent) {
       return element.detachEvent('on' + event, fn);
     } else return false;
   };
 
-  // Events: 'load', 'unload', 'click', etc.
-  //
+  /**
+   * Add event listener to given element or to Window
+   * @name impress.on
+   * @param {string} event 'load', 'unload', 'click', etc.
+   * @param {string|HTMLElement|Window|function} [element]  Window by default
+   * @param {function(this:Element, Event)} fn Evant Handler function
+   */
   impress.on = function(event, element, fn) {
     if (arguments.length === 2) {
       fn = element;
@@ -614,17 +643,46 @@ if (!Date.prototype.now) {
     if (element) impress.addEvent(element, event, fn);
   };
 
-  impress.element = function(element) {
-    if (typeof(element) === 'string') return document.querySelector(element);
+  /**
+   * Get element by selector from given context or from document by default
+   * @name element
+   * @class impress
+   * @param {String|HTMLElement} element
+   * @param {HTMLElement} [context]
+   * @returns {HTMLElement} element
+   */
+  impress.element = function(element, context) {
+    context = impress.isElement(context) ? context : document;
+    if (typeof(element) === 'string') return context.querySelector(element);
     else return element;
+  };
+
+  /**
+   * Check if object is DOM Element
+   * @param obj
+   * @returns {boolean}
+   */
+  impress.isElement = function(obj) {
+    try {
+      //Using W3 DOM2 (works for FF, Opera and Chrome)
+      return obj instanceof HTMLElement;
+    }
+    catch (e) {
+      //Browsers not supporting W3 DOM2 don't have HTMLElement and
+      //an exception is thrown and we end up here. Testing some
+      //properties that all elements have. (works on IE7)
+      return (typeof obj === "object") &&
+          (obj.nodeType === 1) && (typeof obj.style === "object") &&
+          (typeof obj.ownerDocument === "object");
+    }
   };
 
   impress.on('load', function() {
     impress.body = document.body || document.getElementsByTagName('body')[0];
   });
 
-  // fn(event) should terurn not empty string for confirmation dialog
-  impress.onBeforeUnload = function(fn) {
+  // fn(event) should return not empty string for confirmation dialog
+  impress.onBeforeUnload = function(fn) {//no usages, but may be useful
     impress.addEvent(impress, 'beforeunload', function(event) {
       var message = fn(event);
       if (typeof(event) === 'undefined') event = window.event;
@@ -634,131 +692,15 @@ if (!Date.prototype.now) {
   };
 
   // --------------------------------------------------------------
-
+  //no usages, but maybe'll be needed
   impress.enable = function(element, flag) {
     if (flag) impress.removeClass(element, 'disabled');
     else impress.addClass(element, 'disabled');
   };
 
-  impress.visible = function(element, flag) {
-    if (flag) impress.show();
-    else impress.hide();
-  };
-
-  impress.reload = function(url, callback) {
-    var panel = this;
-    panel/*scroller('remove').*/.empty().html('<div class="progress"></div>').load(url, function() {
-      //panel.removeAttr('style').scroller('y');
-      //panel.scroller('y');
-      if (impress.platform.iOS) panel.width(panel.width()-1);
-      $('a.default', panel).click();
-      if (callback) callback.call(panel);
-      //$('textarea').autoResize({ animateDuration: 300, extraSpace: 20 }).trigger('change');
-      //refreshControls();
-    });
-  };
-  
-  // $.ajaxSetup({cache: false});
-
-  impress.alignCenter = function(element) {
-    element = impress.element(element);
-    var marginLeft = Math.max(40, parseInt($(window).width()/2 - $(element).width()/2, 10)) + 'px';
-    var marginTop = Math.max(40, parseInt($(window).height()/2 - $(element).height()/2, 10)) + 'px';
-    return $(element).css({ 'margin-left': marginLeft, 'margin-top': marginTop });
-  };
-
-  impress.togglePopup = function(element) {
-    element = impress.element(element);
-    if ($('#popup').hasClass('hidden')) {
-      if (impress.platform.IE) {
-        $('#darken').height($(document).height()).toggleClass('hidden');
-      } else {
-        $('#darken').height($(document).height()).toggleClass('hidden').fadeTo('slow', 0.5).click(function(event) {
-          event.stopPropagation();
-          var form = document.querySelector('#popup .form');
-          if (form) impress.togglePopup(form);
-        });
-      }
-      $(element).appendTo('#popup');
-      impress.alignCenter('#popup');
-      impress.toggleClass('#popup', 'hidden');
-      $('form :input:visible:enabled:first', element).focus();
-    } else {
-      impress.toggleClass('#darken', 'hidden');
-      $('#darken').removeAttr('style');
-      impress.toggleClass('#popup', 'hidden');
-      $('#popup').removeAttr('style');
-      $('#popup .form').appendTo('#forms');
-    }
-  };
-
-  impress.closeForm = function() {
-    impress.form = document.querySelector('#popup .form');
-    var $inputs = $('form select:input', impress.form);
-    $inputs.each(function() {
-      //alert($(this).val());
-      $(this).combobox('destroy');
-    });
-    if (impress.form) impress.togglePopup(impress.form);
-  };
-
-  //$(document).keydown(function(event) {
-  //  if (event.keyCode === 27) closeForm();
-  //  else if (event.keyCode === 13) $('#popup .form .save').trigger('click');
-  //});
-
-  //$(document).on('click', '#popup .cancel', function(event) {
-  //  closeForm();
-  //  return false;
-  //});
-
-  // --- Confirmation ---
-
-  // Buttons: ['Yes', 'No', 'Ok', 'Cancel']
-  impress.confirmation = function(title, message, eventYes, buttons) {
-    var form = $('#formConfirmation');
-    if (typeof(buttons) === 'undefined') buttons = ['Cancel', 'Yes'];
-    $('.header', form).html(title);
-    $('.message', form).html('<br/>' + message + '<br/><br/>');
-    impress.confirmation.formConfirmationYes = eventYes;
-    $('#formConfirmationYes').visible(api.impress.inArray('Yes', buttons) > -1);
-    $('#formConfirmationOk').visible(api.impress.inArray('Ok', buttons) > -1);
-    $('#formConfirmationNo').visible(api.impress.inArray('No', buttons) > -1);
-    $('#formConfirmationCancel').visible(api.impress.inArray('Cancel', buttons) > -1);
-    form.togglePopup();
-  };
-
-  $(document).on('click', '#formConfirmation .button.save', function(event) {
-    if (typeof(impress.confirmation.formConfirmationYes) === 'function') {
-      impress.confirmation.formConfirmationYes();
-    }
-    impress.confirmation.formConfirmationYes = null;
-    closeForm();
-    return false;
-  });
-
-  // --- Input ---
-
-  impress.input = function(title, prompt, defaultValue, eventOk) {
-    var form = $('#formInput');
-    $('.header', form).html(title);
-    //$('.message', form).html(message);
-    $('.field .label', form).html(prompt);
-    //if (defaultValue)
-    $('#formInputValue').val(defaultValue);
-    impress.input.formInputOk = eventOk;
-    form.togglePopup();
-  };
-
-  //$(document).on('click', '#formInputOk', function(event) {
-  //  if (impress.input.formInputOk) impress.input.formInputOk($('#formInputValue').val());
-  //  impress.input.formInputOk = null;
-  //  closeForm();
-  //  return false;
-  //});
-
+  //unused functions removed here
   // --------------------------------------------------------------
-  
+
   // Copypaste utils
 
   // Call disableSelection on page load with element to disable or without parameters to disable selection in whole page
@@ -800,14 +742,14 @@ if (!Date.prototype.now) {
       var key = event.keyCode;
       var ctrlDown = event.ctrlKey || event.metaKey; // Mac support
       var result = true;
-  
+
       console.log('key=' + key + ' ctrlDown=' + ctrlDown);
       // Check for Alt+Gr (http://en.wikipedia.org/wiki/AltGr_key)
       if (ctrlDown && event.altKey) result = true;
       else if (ctrlDown && key === 67) result = false  // ctrl+c
       else if (ctrlDown && key === 86) result = false  // ctrl+v
       else if (ctrlDown && key === 88) result = false; // ctrl+x
-  
+
       event.returnValue = result;
       return result;
     });*/
@@ -830,5 +772,162 @@ if (!Date.prototype.now) {
   impress.deleteCookie = function(name) {
     impress.setCookie(name, null, { expires: -1 });
   };
-  
+
+  /**
+   * Set given styles to element
+   * @param {HTMLElement} element
+   * @param {(object<string,string>|string)} styles object containing styles in key-value pairs or CSS string
+   * @returns {boolean}
+   */
+  impress.setStyles = function(element, styles) {
+    if (!(impress.isElement(element) && styles)) {
+      return false;
+    } else {
+      var props = { //taken from Emmet lib - https://github.com/emmetio/emmet/blob/master/lib/resolver/css.js#L155
+        'webkit': 'animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-clip, background-composite, background-origin, background-size, border-fit, border-horizontal-spacing, border-image, border-vertical-spacing, box-align, box-direction, box-flex, box-flex-group, box-lines, box-ordinal-group, box-orient, box-pack, box-reflect, box-shadow, color-correction, column-break-after, column-break-before, column-break-inside, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-span, column-width, dashboard-region, font-smoothing, highlight, hyphenate-character, hyphenate-limit-after, hyphenate-limit-before, hyphens, line-box-contain, line-break, line-clamp, locale, margin-before-collapse, margin-after-collapse, marquee-direction, marquee-increment, marquee-repetition, marquee-style, mask-attachment, mask-box-image, mask-box-image-outset, mask-box-image-repeat, mask-box-image-slice, mask-box-image-source, mask-box-image-width, mask-clip, mask-composite, mask-image, mask-origin, mask-position, mask-repeat, mask-size, nbsp-mode, perspective, perspective-origin, rtl-ordering, text-combine, text-decorations-in-effect, text-emphasis-color, text-emphasis-position, text-emphasis-style, text-fill-color, text-orientation, text-security, text-stroke-color, text-stroke-width, transform, transition, transform-origin, transform-style, transition-delay, transition-duration, transition-property, transition-timing-function, user-drag, user-modify, user-select, writing-mode, svg-shadow, box-sizing, border-radius',
+        'moz': 'animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-inline-policy, binding, border-bottom-colors, border-image, border-left-colors, border-right-colors, border-top-colors, box-align, box-direction, box-flex, box-ordinal-group, box-orient, box-pack, box-shadow, box-sizing, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-width, float-edge, font-feature-settings, font-language-override, force-broken-image-icon, hyphens, image-region, orient, outline-radius-bottomleft, outline-radius-bottomright, outline-radius-topleft, outline-radius-topright, perspective, perspective-origin, stack-sizing, tab-size, text-blink, text-decoration-color, text-decoration-line, text-decoration-style, text-size-adjust, transform, transform-origin, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-focus, user-input, user-modify, user-select, window-shadow, background-clip, border-radius',
+        'ms': 'accelerator, backface-visibility, background-position-x, background-position-y, behavior, block-progression, box-align, box-direction, box-flex, box-line-progression, box-lines, box-ordinal-group, box-orient, box-pack, content-zoom-boundary, content-zoom-boundary-max, content-zoom-boundary-min, content-zoom-chaining, content-zoom-snap, content-zoom-snap-points, content-zoom-snap-type, content-zooming, filter, flow-from, flow-into, font-feature-settings, grid-column, grid-column-align, grid-column-span, grid-columns, grid-layer, grid-row, grid-row-align, grid-row-span, grid-rows, high-contrast-adjust, hyphenate-limit-chars, hyphenate-limit-lines, hyphenate-limit-zone, hyphens, ime-mode, interpolation-mode, layout-flow, layout-grid, layout-grid-char, layout-grid-line, layout-grid-mode, layout-grid-type, line-break, overflow-style, perspective, perspective-origin, perspective-origin-x, perspective-origin-y, scroll-boundary, scroll-boundary-bottom, scroll-boundary-left, scroll-boundary-right, scroll-boundary-top, scroll-chaining, scroll-rails, scroll-snap-points-x, scroll-snap-points-y, scroll-snap-type, scroll-snap-x, scroll-snap-y, scrollbar-arrow-color, scrollbar-base-color, scrollbar-darkshadow-color, scrollbar-face-color, scrollbar-highlight-color, scrollbar-shadow-color, scrollbar-track-color, text-align-last, text-autospace, text-justify, text-kashida-space, text-overflow, text-size-adjust, text-underline-position, touch-action, transform, transform-origin, transform-origin-x, transform-origin-y, transform-origin-z, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-select, word-break, wrap-flow, wrap-margin, wrap-through, writing-mode',
+        'o': 'dashboard-region, animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, border-image, link, link-source, object-fit, object-position, tab-size, table-baseline, transform, transform-origin, transition, transition-delay, transition-duration, transition-property, transition-timing-function, accesskey, input-format, input-required, marquee-dir, marquee-loop, marquee-speed, marquee-style'
+      };
+      for (var p in props) {
+        props[p] = props[p].split(/\s*,\s*/);
+      }
+
+      //transform CSS string to Object
+      if (typeof  styles == "string") {
+        var stylesStr = styles;
+        styles = {};
+        stylesStr.split(/\s*;\s*/).filter(Boolean).forEach(function(val) {
+          //split by first ":"
+          var delimPos = val.search(/\s*:\s*/);
+          var delimLength = val.match(/\s*:\s*/)[0].length;
+          var key = val.substr(0, delimPos),
+              val = val.substr(delimPos + delimLength);
+          styles[key] = val;//storing to object
+        })
+      }
+
+      if (typeof styles == "object")
+        for (var i in styles) {
+          if (!i || !styles[i])break;
+          var keys = [i];
+          //adding vendor prefixes if needed
+          for (var p in props) {
+            if (props[p].indexOf(i) >= 0) {
+              keys.push('-' + p + '-' + i);
+            }
+          }
+          keys.forEach(function(key) {
+            key = dashedToUpperCase(key);
+            element.style[key] = styles[i];
+          })
+        }
+    }
+    return true;
+
+    function dashedToUpperCase(key) {
+      return key.replace(/-(\w)/g, function(match, p1) {
+        return p1.toUpperCase();
+      })
+    }
+  };
+
+  /**
+   * Create popup
+   * @param {String|HTMLElement} innerContent Selector, HTML or HTMLElement
+   */
+  impress.popup = function(innerContent) {
+    var popup = document.createElement('div'),
+        wrapper = document.createElement('div'),
+        content = document.createElement('div');
+
+    popup.appendChild(content);
+    wrapper.appendChild(popup);
+    impress.body.appendChild(wrapper);
+
+    impress.setStyles(wrapper, {
+      height: window.innerHeight + 'px',
+      width: window.innerWidth + 'px',
+      'line-height': window.innerHeight + 'px',//vertical centering
+      position: 'absolute',
+      'z-index': '10',
+      'text-align': 'center',//horizontal centering
+      overflow: 'hidden',
+      'transition': '0.5s',
+      background: 'rgba(0, 0, 0, 0.5)',
+      opacity: '0',
+    });
+    setTimeout(function() {
+      impress.setStyles(wrapper, {
+        opacity: '1',
+      });
+    }, 50);
+    var POPUP_MARGIN = 10;
+    var POPUP_PADDING = {
+      VER: 20,
+      HOR: 15,
+    };
+    impress.setStyles(popup, {
+      display: 'inline-block',
+      background: 'white',
+      'box-shadow': '2px 2px 10px black',
+      'min-width': '300px',
+      'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 /*- POPUP_PADDING.HOR * 2 - 1*/) + 'px',
+      'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 /*- POPUP_PADDING.VER * 2 - 3*/) + 'px',
+      'min-height': '100px',
+      overflow: 'auto',
+      margin: POPUP_MARGIN + 'px',
+      padding: POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
+      'box-sizing': 'border-box',//include padding to height/width
+      'text-align': 'initial',
+      'line-height': 'initial',
+      'vertical-align': 'middle',//vertical centering
+    });
+    impress.setStyles(content, {
+      display: 'inline-block',
+    });
+    var body_prev_overflow = impress.body.style.overflow;
+    impress.setStyles(impress.body, {
+      overflow: 'hidden'
+    });
+
+    /**@type {HTMLElement}*/
+    var element;
+    try { element = impress.element(innerContent);} catch (e) { }
+    if (element) {
+      var previouseParent = element.parentNode;
+      var previouseSibling = element.nextElementSibling;
+      content.appendChild(element/*.cloneNode(true)*/);
+    } else if (typeof innerContent == "string") {
+      content.innerHTML = innerContent;
+    }
+
+    impress.on('resize', function() {
+      impress.setStyles(wrapper, {
+        height: window.innerHeight + 'px',
+        width: window.innerWidth + 'px',
+        'line-height': window.innerHeight + 'px',
+      });
+      impress.setStyles(popup, {
+        'max-width': (wrapper.offsetWidth - 10 * 2 /*- 15*2 -1*/) + 'px',
+        'max-height': (wrapper.offsetHeight - 10 * 2 /*-20*2 -3*/) + 'px',
+      });
+    });
+
+    impress.on('click', wrapper, function handler(event) {
+      if (event.target != wrapper) return true;
+      impress.setStyles(wrapper, {
+        opacity: '0',
+      });
+      setTimeout(function() {
+        if (previouseParent)previouseParent.insertBefore(content.childNodes.item(0), previouseSibling);
+        impress.body.removeChild(wrapper);
+        impress.body.style.overflow = body_prev_overflow;
+      }, 500);//wait 0.5s for animation end
+      impress.removeEvent(wrapper, 'click', handler);
+      event.stopImmediatePropagation();
+      return false;
+    })
+  };
+
 } (global.impress = global.impress || {}));
