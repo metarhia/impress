@@ -1,3 +1,8 @@
+0.1.322 / 2015-07-30
+==================
+
+  * Fixed reconnecting bugs in cross-server RPC, close #385
+
 0.1.321 / 2015-07-29
 ==================
 
