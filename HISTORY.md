@@ -1,3 +1,9 @@
+0.1.323 / 2015-07-31
+==================
+
+  * Add host:port to error message and log record when IAS can't bind host:port and improved stack trace printing
+  * Fixed bug in mongodb driver
+
 0.1.322 / 2015-07-30
 ==================
 
