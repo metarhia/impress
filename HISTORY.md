@@ -1,3 +1,8 @@
+0.1.324 / 2015-08-01
+==================
+
+  * Fixed critical bug in impress.loadApplications
+
 0.1.323 / 2015-07-31
 ==================
 
