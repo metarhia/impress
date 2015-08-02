@@ -1,3 +1,10 @@
+0.1.325 / 2015-08-02
+==================
+
+  * Decomposed and optimized impress.startServers
+  * Implemented impress.setListenerError for both HTTP and TCP servers
+  * Code style fixes
+
 0.1.324 / 2015-08-01
 ==================
 
