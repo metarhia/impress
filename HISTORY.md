@@ -1,3 +1,9 @@
+0.1.326 / 2015-08-03
+==================
+
+  * Code style fixes and optimizations
+  * Updated deploy scripts to node 0.12.7
+
 0.1.325 / 2015-08-02
 ==================
 
