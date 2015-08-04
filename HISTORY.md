@@ -1,3 +1,9 @@
+0.1.327 / 2015-08-04
+==================
+
+  * Fixed SSE, prevented write after end
+  * Added data structures check in impress.cloud.js and impress.js, it may generate errors on very high load
+
 0.1.326 / 2015-08-03
 ==================
 
