@@ -1,3 +1,8 @@
+0.1.328 / 2015-08-05
+==================
+
+  * Start implementing common API namespace registry, issue #341
+
 0.1.327 / 2015-08-04
 ==================
 
