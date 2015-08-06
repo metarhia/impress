@@ -1,3 +1,10 @@
+0.1.329 / 2015-08-06
+==================
+
+  * Moved db namespace to api.db, close #393
+  * Deprecated impress.API_ALIASES, api.registry used instead, close #391
+  * Changes in common API name registry, issue #341
+
 0.1.328 / 2015-08-05
 ==================
 

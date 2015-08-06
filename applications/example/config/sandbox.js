@@ -15,31 +15,32 @@ module.exports = {
   //
   api: [
     // Node internal modules
-    'os', 'cluster', 'domain', 'crypto', 'util',
-    'net', 'http', 'https', 'dgram', 'dns', 'tls',
-    'url', 'path', 'punycode', 'querystring', 'string_decoder',
-    'fs', 'stream', 'zlib', 'events', 'readline',
+    'console', 'os', 'fs', 'tls','net', 'dns', 'url',
+    'util', 'path', 'zlib', 'http', 'https', 'dgram',
+    'stream', 'domain', 'crypto', 'events', 'punycode',
+    'readline', 'querystring', 'stringDecoder',
 
     // Impress API modules
-    'impress',
-    'definition',
+    'db', 'impress', 'registry', 'definition',
 
     // Preinstalled modules
     'async',
     'iconv',
     'colors',
-    'mkdirp',
-    'zipstream', // npm modile zip-stream
+    'zipStream', // npm module zip-stream
     'csv',
 
     // Additional modules
-    // 'geoip',
-    // 'nodemailer',
-    // 'request',
-    // 'npm',
+    //'mkdirp',
+    //'geoip',
+    //'nodemailer',
+    //'request',
 
     // Passport providers
-    // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
+    //'passport',         // npm install passport
+    //'passportGoogle',   // npm install passport-google-oauth
+    //'passportTwitter',  // npm install passport-twitter
+    //'passportFacebook'  // npm install passport-facebook
   ],
 
   // Import from other applications
