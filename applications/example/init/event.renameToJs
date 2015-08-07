@@ -1,6 +1,6 @@
 // Catch event by name
 
 application.on('test', function(data) {
-  console.log('Event "test" received by: ' + impress.nodeId);
+  console.log('Event "test" received by: ' + application.nodeId);
   console.dir({ data: data });
 });

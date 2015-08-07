@@ -1,3 +1,12 @@
+0.1.330 / 2015-08-07
+==================
+
+  * Common API name registry almost ready to use, close #341
+  * Implemented application events: "start" and "started", before and after initialization, issue #395
+  * Removed impress from application sandbox, close #394
+  * Changes in application.logException to always print stack trace, close #396
+  * Refactored example application
+
 0.1.329 / 2015-08-06
 ==================
 
