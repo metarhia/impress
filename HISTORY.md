@@ -1,3 +1,8 @@
+0.1.331 / 2015-08-08
+==================
+
+  * Implemented application events: "change", "changed" and "stop", close #395
+
 0.1.330 / 2015-08-07
 ==================
 
