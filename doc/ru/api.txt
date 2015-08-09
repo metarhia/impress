@@ -1,31 +1,55 @@
-api.console - Алиас console
-api.os - 
-api.fs - 
-api.tls - 
-api.net - 
-api.dns - 
-api.url - 
-api.util - 
-api.path - 
-api.zlib - 
-api.http - 
-api.https - 
-api.dgram - 
-api.stream - 
-api.domain - 
-api.crypto - 
-api.events - 
-api.punycode - 
-api.readline - 
-api.querystring - 
-api.stringDecoder - 
-api.db - 
-api.con - 
-api.impress - 
-api.registry - 
-api.definition - 
-api.csv - 
-api.async - 
-api.iconv - 
-api.colors - 
-api.zipStream - 
+api.v8 - функции, встроенные в V8, дающие доступ к внутренним механизмам виртуальной машины
+api.exec - ссылка на функцию exec из библиотеки child_process - https://nodejs.org/api/child_process.html
+api.console - псевдоним глобального объекта console - https://nodejs.org/api/console.html
+api.os - https://nodejs.org/api/http.html
+api.vm - https://nodejs.org/api/vm.html
+api.fs - https://nodejs.org/api/fs.html
+api.tls - https://nodejs.org/api/tls.html
+api.net - https://nodejs.org/api/net.html
+api.dns - https://nodejs.org/api/dns.html
+api.url - https://nodejs.org/api/url.html
+api.util - https://nodejs.org/api/util.html
+api.path - https://nodejs.org/api/path.html
+api.zlib - https://nodejs.org/api/zlib.html
+api.http - https://nodejs.org/api/http.html
+api.https - https://nodejs.org/api/https.html
+api.dgram - https://nodejs.org/api/dgram.html
+api.stream - https://nodejs.org/api/stream.html
+api.domain - https://nodejs.org/api/domain.html
+api.crypto - https://nodejs.org/api/crypto.html
+api.events - https://nodejs.org/api/events.html
+api.cluster - https://nodejs.org/api/cluster.html
+api.punycode - https://nodejs.org/api/punycode.html
+api.readline - https://nodejs.org/api/readline.html
+api.querystring - https://nodejs.org/api/querystring.html
+api.childProcess - https://nodejs.org/api/child_process.html
+api.stringDecoder - https://nodejs.org/api/string_decoder.html
+api.db - библиотека Impress, унифицирующая работу с разными БД, подключение к БД из конфигарации приложения и вручную
+api.con - библиотека Impress, отвечающая за работу с консолью
+api.impress - библиотека Impress, содержащая множество вспомогательных функций, необходимых во многих приложениях
+api.registry - библиотека Impress, реестр API
+api.definition - библиотека Impress, валидирующая структуры данных при помощи схем
+api.csv - https://www.npmjs.com/package/csv
+api.zmq - https://www.npmjs.com/package/zmq
+api.ncp - https://www.npmjs.com/package/ncp
+api.sass - https://www.npmjs.com/package/node-sass
+api.geoip - https://www.npmjs.com/package/geoip-lite
+api.iconv - https://www.npmjs.com/package/iconv-lite
+api.async - https://www.npmjs.com/package/async
+api.uglify - https://www.npmjs.com/package/uglify-js
+api.mkdirp - https://www.npmjs.com/package/mkdirp
+api.colors - https://www.npmjs.com/package/colors
+api.request - https://www.npmjs.com/package/request
+api.zipStream - https://www.npmjs.com/package/zip-stream
+api.websocket - https://www.npmjs.com/package/websocket
+api.multiparty - https://www.npmjs.com/package/multiparty
+api.nodemailer - https://www.npmjs.com/package/nodemailer
+api.mongodb - https://www.npmjs.com/package/mongodb
+api.memcached - https://www.npmjs.com/package/memcached
+api.pgsql - https://www.npmjs.com/package/pg
+api.mysql - https://www.npmjs.com/package/mysql
+api.mysqlUtilities - https://www.npmjs.com/package/mysql-utilities
+api.passport - https://www.npmjs.com/package/passport
+api.passportGoogle - https://www.npmjs.com/package/passport-google-oauth
+api.passportTwitter - https://www.npmjs.com/package/passport-twitter
+api.passportFacebook - https://www.npmjs.com/package/passport-facebook

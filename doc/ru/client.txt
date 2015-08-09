@@ -11,7 +11,8 @@ client.access.virtual - флаг виртуальности обработчик
 client.access.groups - массив строк, группы, которым дан доступ к текущу URL
 client.access.allowed - флаг разрешения отправки ответа на те текущий URL
 client.query - поля запроса из URL, например, /path?field1=val1&field2=val2 дадут client.query = { field1: 'val1', field2: 'val2' }
-client.parameters - 
+client.fields - поля POST запроса, переданные не в URL, а теле запроса
+client.parameters - все поля в одном хеше и client.query и client.fields
 client.schema - схема протокола, "http" или "https"
 client.method - метод HTTP запроса, например "get", "post", "head"
 client.slowTime - таймаут в миллисекундах, после достижения которого, запрос попадет в лог медленных запросов
@@ -20,10 +21,22 @@ client.url - полный URL запроса
 client.host - имя хоста или IP адрес из HTTP запроса
 client.path - путь из HTTP запроса
 client.ext - расширение каталога запроса
-client.data - 
+client.data - тело данные HTTP запроса
 client.ip - IP адрес, откуда пришел HTTP запрос
 client.local - флаг, пришел ли запрос с localhost (используется для отключения HTTP base auth)
 client.cookies - хеш cookies из HTTP запроса
 client.preparedCookies - хеш cookies которые нужно будет вернуть в ответ на запрос
 client.context - контекст запроса, в этот хеш можно добавлять пользовательские поля, кроме поля "data"
 client.context.data - данные в контексте запроса, если тип запроса JSON, то данные вернутся в ответ клиентской стороне в ответ на запрос
+client.fork(workerFile) - запуск обработки текущего запроса в отдельном потоке, в поток передаются все параметры запроса
+client.killLongWorker(workerFile) - прервать исполнение обработчика, выполняющегося в отдельном потоке, запущенного через client.fork(workerFile);
+client.startSession() - начать сессию, если она не начата
+client.destroySession() - удалить текущую сессию, если она стартована
+client.setCookie(name, value, host, httpOnly) - установить cookie (готовит их для отправки на клиент, сама отправка произойдет при посылке ответа на запрос)
+client.deleteCookie(name, host) - удалить cookie по имени и хосту (готовит команду удаления cookie для отправки на клиент)
+client.block(msec) - заблокировать на указанное в миллисекундах время текущего пользователя по IP и по идентификатору сессии SID (если сессия существует)
+client.saveSession(callback) - сохраняет сессию в постоянное хранилице при помощи текущего провайдера БД, сконфигурированного для данных системы безопасности
+client.cache(timeout) - кешировать результат запроса на указанный timeout, например, на 30 секунд: client.cache('30s');
+client.error(code, [err]) - завершить запрос с указанным в code HTTP кодом,  error code, необязательный параметр err - экземпляр класса Error, если мы отдаем страницу ошибки
+client.redirect(location) - перенаправление HTTP на URL, указанный в параметре location, например client.redirect('/'); или client.redirect('http://domain.com/');
+client.inherited(callback) - наследовать поведение из обработчика выше по дереву каталогов, callback - функуия, которая вызовется после исполнения кода родительского обработчика

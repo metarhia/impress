@@ -1,15 +1,14 @@
-module
-api
-callInContext
-global
-application
-require
-console
-Buffer
-process
-setTimeout
-clearTimeout
-setInterval
-clearInterval
-setImmediate
-clearImmediate
+module - https://nodejs.org/api/modules.html#modules_the_module_object
+api - хеш со всеми подключенными api
+global - ссылка на глобальный контекст
+application - объект приложения
+require - https://nodejs.org/api/globals.html#globals_require
+console - https://nodejs.org/api/console.html
+Buffer - https://nodejs.org/api/buffer.html
+process - https://nodejs.org/api/process.html
+setTimeout - https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_arg
+clearTimeout - https://nodejs.org/api/timers.html#timers_cleartimeout_timeoutobject
+setInterval - https://nodejs.org/api/timers.html#timers_setinterval_callback_delay_arg
+clearInterval - https://nodejs.org/api/timers.html#timers_clearinterval_intervalobject
+setImmediate - https://nodejs.org/api/timers.html#timers_setimmediate_callback_arg
+clearImmediate - https://nodejs.org/api/timers.html#timers_clearimmediate_immediateobject
