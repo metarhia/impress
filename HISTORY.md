@@ -1,3 +1,10 @@
+0.1.332 / 2015-08-09
+==================
+
+  * Created namespace api.con, close #317
+  * Fixed api.registry and api.impress.require
+  * Multiple minor fixes mostly related to api namespace refactoring
+
 0.1.331 / 2015-08-08
 ==================
 

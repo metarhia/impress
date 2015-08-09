@@ -21,14 +21,14 @@ module.exports = {
     'readline', 'querystring', 'stringDecoder',
 
     // Impress API modules
-    'db', 'impress', 'registry', 'definition',
+    'db', 'con', 'impress', 'registry', 'definition',
 
     // Preinstalled modules
+    'csv',
     'async',
     'iconv',
     'colors',
     'zipStream', // npm module zip-stream
-    'csv',
 
     // Additional modules
     //'mkdirp',

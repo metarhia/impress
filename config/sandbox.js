@@ -22,16 +22,17 @@ module.exports = {
 
     // Impress API modules
     'db',
+    'con',
     'impress',
     'registry',
     'definition',
 
     // Preinstalled modules
+    'csv',
     'async',
     'iconv',
     'colors',
     'zipStream', // npm module zip-stream
-    'csv',
 
     // Additional modules
     //'mkdirp',

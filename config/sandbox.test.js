@@ -8,15 +8,16 @@ module.exports = {
 
     // Preinstalled modules
     'db',
+    'con',
     'impress',
     'registry',
     'definition',
 
     // Preinstalled modules
+    'csv',
     'async',
     'iconv',
     'colors',
     'zipStream',
-    'csv'
   ]
 };
