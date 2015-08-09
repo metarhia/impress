@@ -1,0 +1,15 @@
+module
+api
+callInContext
+global
+application
+require
+console
+Buffer
+process
+setTimeout
+clearTimeout
+setInterval
+clearInterval
+setImmediate
+clearImmediate

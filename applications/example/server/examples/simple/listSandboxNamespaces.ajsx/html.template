@@ -1,0 +1,13 @@
+<html>
+<body>
+<div style="background:silver; padding:10px">
+<b>application:</b>
+  <pre style="background:white; padding:5px">@application@</pre>
+<b>client:</b>
+  <pre style="background:white; padding:5px">@client@</pre>
+<b>api:</b>
+  <pre style="background:white; padding:5px">@api@</pre>
+<b>global:</b>
+  <pre style="background:white; padding:5px">@global@</pre>
+</body>
+</html>
