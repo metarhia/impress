@@ -1,5 +1,5 @@
 <html>
-<body>
+<body style="margin:0; padding:0">
 <div style="background:silver; padding:10px">
 <b>application:</b>
   <pre style="background:white; padding:5px">@application@</pre>

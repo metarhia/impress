@@ -1,79 +1,68 @@
-application.domain
-application.name
-application.dir
-application.backend
-application.frontend
-application.isMaster
-application.isWorker
-application.createApplicationClass
-application.Client
-application.config
-application.tasks
-application.model
-application.users
-application.ips
-application.sessions
-application.channels
-application.workers
-application.longWorkers
-application.limit
-application.deny
-application.isInitialized
-application.catchException
-application.logException
-application.systemTemplates
-application.relative
-application.createScript
-application.require
-application.createSandbox
-application.callInContext
-application.preloadDirectory
-application.loadConfig
-application.loadConfigFile
-application.preprocessConfig
-application.loadPlaces
-application.loadPlaceScripts
-application.loadPlaceFile
-application.setTask
-application.startTask
-application.stopTask
-application.stopTasks
-application.dispatch
-application.dispatchRoute
-application.clearCache
-application.purgeCache
-application.compress
-application.addToCache
-application.shutdownLongWorkers
-application.handler
-application.get
-application.post
-application.put
-application.delete
-application.patch
-application.head
-application.options
-application.updateFileCache
-application.cliearDirectoryCache
-application.updateCache
-application.watchCache
-application.cache
-application.sandbox
-application.extCompressed
-application.extNotCompressed
-application.hostsRx
+application.domain - домен для обработки ошибок приложения
+application.name - имя приложения (имя каталога приложения в /applications)
+application.dir - путь к каталогу приложения
+application.backend - объект EventEmittier для работы с серверными событиями
+application.frontend - объект EventEmittier для работы с клиентскими событиями
+application.isMaster - флаг родительского процесса, то же, что cluster.isMaster
+application.isWorker - флаг дочернего процесса процесса, то же, что cluster.isMaster
+application.Client - прототип объектов client, которые поступают в обработчики первым параметром
+application.config - конфигурация приложения загруженная из /config, каждый файл конфигурации имеет в свой ключ, например: application.config.example
+application.tasks - задачи
+application.model - файлы моделей загруженные из /model
+application.users - хеш пользователей
+application.ips - хеш IP адресов
+application.sessions - хеш сессий
+application.channels - хеш каналов событий
+application.workers - хеш воркеров в рамках кластера
+application.longWorkers - хеш процессов, отделившихся от основных воркеров по запросу из обработчика
+application.limit - 
+application.deny - 
+application.isInitialized - 
+application.catchException - 
+application.logException - 
+application.systemTemplates - 
+application.relative - 
+application.createScript - 
+application.require - 
+application.createSandbox - 
+application.callInContext - 
+application.setTask - 
+application.startTask - 
+application.stopTask - 
+application.stopTasks - 
+application.dispatch - 
+application.dispatchRoute - 
+application.clearCache - офистить кеш приложения (статика, код обработчиков, кеш файловых операций и пути)
+application.purgeCache - удаление устаревших записей из кеша
+application.compress - 
+application.addToCache - 
+application.shutdownLongWorkers - 
+application.handler - 
+application.get - 
+application.post - 
+application.put - 
+application.delete - 
+application.patch - 
+application.head - 
+application.options - 
+application.updateFileCache - 
+application.cliearDirectoryCache - 
+application.updateCache - 
+application.watchCache - 
+application.cache - 
+application.sandbox - песочница приложения, содержимое песочницы это и есть глобальный контекст приложения
 application.log
-application.nodeId
-application.clusterId
-application.scaleStrategy
-application.cloudInstance
-application.databases
-application.security
-application.User
-application.Session
+application.nodeId - идентификатор процесса, например: C2N5 - это кластер 2, нода 5
+application.clusterId - идентификатор кластера, например: C1 - это кластер 1, входит в состав идентификаторо ноды
+application.scaleStrategy - стратегия запуска
+application.cloudInstance - 
+application.databases - хеш баз данных приложения
+application.security - неймспейс безапасности
+application.User - прототип пользователя
+application.Session - прототип сессии
 application.sendToUser
 application.sendToChannel
-application.state
-application.sse
-application.websocket
-application.rpc
+application.state - синхронизируемая между процессами обасть памяти
+application.sse - неймспейс SSE (Server-Sent Events)
+application.websocket - неймспейс вебсокетов
+application.rpc - неймспейс Impress RPC
