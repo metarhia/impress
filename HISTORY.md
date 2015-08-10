@@ -1,3 +1,9 @@
+0.1.334 / 2015-08-11
+==================
+
+  * Escaped special characters in log records, close #401
+  * Implemented ```__filename``` and ```__dirname``` for sandboxed code, issue #399
+
 0.1.333 / 2015-08-10
 ==================
 
