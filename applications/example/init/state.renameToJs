@@ -3,7 +3,7 @@ application.state.data.car = {
   speed: 0
 };
 
-if (api.cluster.isWorker) {
+if (application.isWorker) {
 
   if (application.nodeId === 'C1N2' || application.nodeId === 'C1N3') {
 

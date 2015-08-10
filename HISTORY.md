@@ -1,3 +1,10 @@
+0.1.333 / 2015-08-10
+==================
+
+  * Refactored passport plugin, close #392
+  * Fixed api.impress.require to catch exceptions in broken packages, close #400
+  * Code style fixes and examples refactoring due to last namespace changes
+
 0.1.332 / 2015-08-09
 ==================
 

@@ -1,4 +1,4 @@
-if (api.cluster.isWorker) {
+if (application.isWorker) {
 
   setInterval(function() {
     application.backend.emit('test', { data: 'data' });
