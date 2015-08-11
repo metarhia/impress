@@ -1,8 +1,13 @@
+0.1.335 / 2015-08-12
+==================
+
+  * Shared "SlowBuffer" for sandboxed code and added module api.buffers to api registry, close #399
+
 0.1.334 / 2015-08-11
 ==================
 
   * Escaped special characters in log records, close #401
-  * Implemented ```__filename``` and ```__dirname``` for sandboxed code, issue #399
+  * Implemented "__filename" and "__dirname" for sandboxed code, issue #399
 
 0.1.333 / 2015-08-10
 ==================
@@ -141,7 +146,7 @@
 ==================
 
   * Fixed Client.prototype.stream bug, close #368
-  * Added HTTP timeout to ```/config/servers.js``` (default 30s), close #369
+  * Added HTTP timeout to /config/servers.js (default 30s), close #369
   * Fixed socket destruction on timeout, close #365
 
 0.1.311 / 2015-07-19
