@@ -1,0 +1,10 @@
+api.registry.modules - 
+api.registry.buildIndex - 
+api.registry.default - 
+api.registry.indexByNpm - 
+api.registry.indexByType - 
+api.registry.names - 
+api.registry.defaultNames - 
+api.registry.npmNameToApiName - 
+api.registry.apiNameToNpmName - 
+api.registry.find - 
