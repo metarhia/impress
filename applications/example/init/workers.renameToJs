@@ -1,7 +1,7 @@
-if (api.cluster.isWorker){
+if (application.isWorker){
 
   setInterval(function() {
-    console.log('Worker Process: '+impress.nodeId);
+    console.log('Worker Process: ' + application.nodeId);
     console.dir({ workers: application.workers });
     console.log('---');
   }, 5000);
@@ -9,7 +9,7 @@ if (api.cluster.isWorker){
 } else {
 
   setInterval(function() {
-    console.log('Master Process: '+impress.nodeId);
+    console.log('Master Process: ' + application.nodeId);
     console.dir({ workers: application.workers });
     console.log('---');
   }, 5000);

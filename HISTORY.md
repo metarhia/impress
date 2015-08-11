@@ -1,7 +1,98 @@
+0.1.335 / 2015-08-12
+==================
+
+  * Shared "SlowBuffer" for sandboxed code and added module api.buffers to api registry, close #399
+
+0.1.334 / 2015-08-11
+==================
+
+  * Escaped special characters in log records, close #401
+  * Implemented "__filename" and "__dirname" for sandboxed code, issue #399
+
+0.1.333 / 2015-08-10
+==================
+
+  * Refactored passport plugin, close #392
+  * Fixed api.impress.require to catch exceptions in broken packages, close #400
+  * Code style fixes and examples refactoring due to last namespace changes
+
+0.1.332 / 2015-08-09
+==================
+
+  * Created namespace api.con, close #317
+  * Fixed api.registry and api.impress.require
+  * Multiple minor fixes mostly related to api namespace refactoring
+
+0.1.331 / 2015-08-08
+==================
+
+  * Implemented application events: "change", "changed" and "stop", close #395
+
+0.1.330 / 2015-08-07
+==================
+
+  * Common API name registry almost ready to use, close #341
+  * Implemented application events: "start" and "started", before and after initialization, issue #395
+  * Removed impress from application sandbox, close #394
+  * Changes in application.logException to always print stack trace, close #396
+  * Refactored example application
+
+0.1.329 / 2015-08-06
+==================
+
+  * Moved db namespace to api.db, close #393
+  * Deprecated impress.API_ALIASES, api.registry used instead, close #391
+  * Changes in common API name registry, issue #341
+
+0.1.328 / 2015-08-05
+==================
+
+  * Start implementing common API namespace registry, issue #341
+
+0.1.327 / 2015-08-04
+==================
+
+  * Fixed SSE, prevented write after end
+  * Added data structures check in impress.cloud.js and impress.js, it may generate errors on very high load
+
+0.1.326 / 2015-08-03
+==================
+
+  * Code style fixes and optimizations
+  * Updated deploy scripts to node 0.12.7
+
+0.1.325 / 2015-08-02
+==================
+
+  * Decomposed and optimized impress.startServers
+  * Implemented impress.setListenerError for both HTTP and TCP servers
+  * Code style fixes
+
+0.1.324 / 2015-08-01
+==================
+
+  * Fixed critical bug in impress.loadApplications
+
+0.1.323 / 2015-07-31
+==================
+
+  * Add host:port to error message and log record when IAS can't bind host:port and improved stack trace printing
+  * Fixed bug in mongodb driver
+
+0.1.322 / 2015-07-30
+==================
+
+  * Fixed reconnecting bugs in cross-server RPC, close #385
+
+0.1.321 / 2015-07-29
+==================
+
+  * Refactored database names and aliases, close #384
+
 0.1.320 / 2015-07-28
 ==================
 
-  * Decomposed abd optimized db.openApplicationDatabases
+  * Decomposed and optimized db.openApplicationDatabases
   * Refactored plugins, see details in github issue, close #319
 
 0.1.319 / 2015-07-27
@@ -55,7 +146,7 @@
 ==================
 
   * Fixed Client.prototype.stream bug, close #368
-  * Added HTTP timeout to ```/config/servers.js``` (default 30s), close #369
+  * Added HTTP timeout to /config/servers.js (default 30s), close #369
   * Fixed socket destruction on timeout, close #365
 
 0.1.311 / 2015-07-19

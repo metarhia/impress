@@ -1,6 +1,6 @@
 'use strict';
 
-var application = {};
+var application = new api.events.EventEmitter();
 global.application = application;
 impress.mixinApplication(application);
 

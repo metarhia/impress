@@ -3,10 +3,10 @@ application.state.data.car = {
   speed: 0
 };
 
-if (api.cluster.isWorker) {
+if (application.isWorker) {
 
   setInterval(function() {
-    console.log('Data: ' + impress.nodeId + ' ' + JSON.stringify(application.state.data.car));
+    console.log('Data: ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));
   }, 10000);
 
 }

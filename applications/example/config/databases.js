@@ -2,11 +2,12 @@
 
 module.exports = {
 
-  dbAlias: {
-    url: 'mongodb://localhost:27017/impress',
-    // collections: [ 'sessions', 'users', 'groups', 'testCollection' ],
-    slowTime: '2s',
-    security: true,
+  dbName: {
+    alias: 'dbAlias', // optional alias to access database from global context
+    url: 'mongodb://localhost:27017/impress', // connection string
+    // collections: [ 'sessions', 'users', 'groups', 'testCollection' ], // optional
+    slowTime: '2s', // timeout to mark requests as "slow"
+    security: true, // flag to mark database as data source for security provider
   },
 
   // MySQL example database configuration

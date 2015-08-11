@@ -3,9 +3,9 @@ application.state.data.car = {
   speed: 0
 };
 
-if (api.cluster.isWorker) {
+if (application.isWorker) {
 
-  if (impress.nodeId === 'C1N2' || impress.nodeId === 'C1N3') {
+  if (application.nodeId === 'C1N2' || application.nodeId === 'C1N3') {
 
     setInterval(function() {
       application.state.inc('car.speed', 2, '5s');
@@ -34,15 +34,15 @@ if (api.cluster.isWorker) {
   }
 
   application.state.subscribe('car.speed', function(path, value, remote) {
-    console.log('State subscribe in: ' + impress.nodeId + ' path=' + path + ', value=' + value + ', remote=' + remote);
+    console.log('State subscribe in: ' + application.nodeId + ' path=' + path + ', value=' + value + ', remote=' + remote);
   });
 
   application.state.watch('car', function(path, value, remote) {
-    console.log('State watch in: ' + impress.nodeId + ' path=' + path + ', value=' + value + ', remote=' + remote);
+    console.log('State watch in: ' + application.nodeId + ' path=' + path + ', value=' + value + ', remote=' + remote);
   });
 
   setInterval(function() {
-    console.log('Data: ' + impress.nodeId + ' ' + JSON.stringify(application.state.data.car));
+    console.log('Data: ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));
   }, 10000);
 
 }
