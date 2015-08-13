@@ -35,10 +35,10 @@ module.exports = {
     //'request',
 
     // Passport providers
-    'passport',         // npm install passport
-    'passportGoogle',   // npm install passport-google-oauth
-    'passportTwitter',  // npm install passport-twitter
-    'passportFacebook'  // npm install passport-facebook
+    //'passport',         // npm install passport
+    //'passportGoogle',   // npm install passport-google-oauth
+    //'passportTwitter',  // npm install passport-twitter
+    //'passportFacebook'  // npm install passport-facebook
   ],
 
   // Import from other applications
