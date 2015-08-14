@@ -1,3 +1,9 @@
+0.1.337 / 2015-08-14
+==================
+
+  * impress.eventEmitter moved to api.impress, close #404
+  * Merged application.createScript and application.require, close #402
+
 0.1.336 / 2015-08-13
 ==================
 
