@@ -1,20 +1,16 @@
-if (global.passport) {
-
-  var p = require('passport'),
-      pGoogle = require('passport-google-oauth');
+if (api.passport) {
 
   // used to serialize the user for the session
-  p.serializeUser(function(user, done) {
+  api.passport.serializeUser(function(user, done) {
     done(null, user);
   });
 
   // used to deserialize the user
-  p.deserializeUser(function(user, done) {
+  api.passport.deserializeUser(function(user, done) {
     done(null, user);
   });
 
   module.exports = {
-    lib: p,
     strategies: {
       google: {
         param: {
@@ -22,7 +18,7 @@ if (global.passport) {
           clientSecret: '-place-secret-here-',
           callbackURL: '/api/auth/google/callback'
         },
-        strategy: pGoogle.OAuth2Strategy,
+        strategy: api.passportGoogle.OAuth2Strategy,
         authenticate: function(req, token, refreshToken, profile, done) {
           try {
             if (!req.user) {

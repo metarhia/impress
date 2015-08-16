@@ -58,8 +58,8 @@ impress.test({
     [ { item: { subitem: { value: false     } } }, 'item.subitem.value', false,                 true ],
     [ { item: { subitem: { value: 'Gagarin' } } }, 'item.subitem.none',  undefined,             true ],
     [ { item: { subitem: { value: null      } } }, 'item.subitem.value', null,                  true ],
-    [ { item: { subitem: { value: 'Gagarin' } } }, 'item.none.value',    undefined,            false ],
-    [ { item: { subitem: { value: 'Gagarin' } } }, 'none.value',         123,                  false ],
+    [ { item: { subitem: { value: 'Gagarin' } } }, 'item.none.value',    undefined,             true ],
+    [ { item: { subitem: { value: 'Gagarin' } } }, 'none.value',         123,                   true ],
     [ { item: { subitem: { value: 'Gagarin' } } }, 'item.subitem',       { value: 'Gagarin' },  true ],
   ],
   'api.impress.deleteByPath': [

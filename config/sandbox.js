@@ -7,7 +7,7 @@ module.exports = {
   // You can hide 
   // 
   // global: [
-  //  'require', 'console', 'Buffer', 'process',
+  //  'require', 'console', 'Buffer', 'SlowBuffer', 'process',
   //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate'
   // ],
 
@@ -15,23 +15,22 @@ module.exports = {
   //
   api: [
     // Node internal modules
-    'console', 'os', 'fs', 'tls','net', 'dns', 'url',
-    'util', 'path', 'zlib', 'http', 'https', 'dgram',
-    'stream', 'domain', 'crypto', 'events', 'punycode',
-    'readline', 'querystring', 'stringDecoder',
+    'console', 'os', 'fs', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
+    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'stringDecoder',
 
     // Impress API modules
     'db',
+    'con',
     'impress',
     'registry',
     'definition',
 
     // Preinstalled modules
+    'csv',
     'async',
     'iconv',
     'colors',
     'zipStream', // npm module zip-stream
-    'csv',
 
     // Additional modules
     //'mkdirp',
