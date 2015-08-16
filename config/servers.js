@@ -7,7 +7,8 @@ module.exports = {
     address:  '*',
     port:     80,
     slowTime: '1s',
-    timeout:  '30s'
+    timeout:  '30s',
+    keepAliveTimeout: '5s'
   },
   //local: {
   //  protocol: 'http',

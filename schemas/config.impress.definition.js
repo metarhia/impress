@@ -46,6 +46,7 @@ module.exports = {
     nagle:     'false:boolean',
     slowTime:  '4s:duration',
     timeout:   '30s:duration',
+    keepAliveTimeout: '5s:duration',
     key:       '[string]',
     cert:      '[string]',
     rpsPerIP:  '10:number',
