@@ -1,3 +1,8 @@
+0.1.339 / 2015-08-16
+==================
+
+  * Implemented workaround preventing server timeout after end, close #397
+
 0.1.338 / 2015-08-15
 ==================
 
