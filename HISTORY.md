@@ -1,3 +1,9 @@
+0.1.340 / 2015-08-17
+==================
+
+  * Prevent double minification for JavaScript, close #367
+  * Fixed workaround for server timeout after end, issue #397
+
 0.1.339 / 2015-08-16
 ==================
 
