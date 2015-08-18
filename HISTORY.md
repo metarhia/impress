@@ -1,3 +1,11 @@
+0.1.341 / 2015-08-18
+==================
+
+  * Extended server log with TCP/IP binding messages and RPC connection
+  * Added CLI command "impress version" to show Impress, Node.js, v8, libuv OS versions
+  * Fixed double callback on Client.prototype.runScript lazy, close #410
+  * Refactored try/catch in application.createScript, close #409
+
 0.1.340 / 2015-08-17
 ==================
 
