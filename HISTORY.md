@@ -1,3 +1,8 @@
+0.1.342 / 2015-08-19
+==================
+
+  * Added npm package accept-language and optimized Impress api registry
+
 0.1.341 / 2015-08-18
 ==================
 
