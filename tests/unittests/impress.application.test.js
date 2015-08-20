@@ -11,12 +11,8 @@ impress.test({
   'application.tasks': [ [ [], {} ] ],
   'application.model': [ [ [], {} ] ],
   'application.users': [ [ [], {} ] ],
-  'application.ips': [ [ [], {} ] ],
   'application.sessions': [ [ [], {} ] ],
   'application.workers': [ [ [], {} ] ],
   'application.longWorkers': [ [ [], {} ] ],
   'application.isInitialized': [ [ [], false ] ],
-
-  // Test stub
-
 });

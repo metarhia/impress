@@ -1,3 +1,9 @@
+0.1.343 / 2015-08-20
+==================
+
+  * Web Application Firewall interface stub, issue #301, #300, #289, #288, #287
+  * Removed legacy code for connection limits and deny lists
+
 0.1.342 / 2015-08-19
 ==================
 
