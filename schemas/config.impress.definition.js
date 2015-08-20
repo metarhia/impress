@@ -49,9 +49,11 @@ module.exports = {
     keepAliveTimeout: '5s:duration',
     key:       '[string]',
     cert:      '[string]',
-    rpsPerIP:  '10:number',
-    rpsPerSID: '20:number',
-    rpsPerURL: '100000:number'
+    limit:     '100:number',
+    limitHost: '50:number',
+    limitIP:   '10:number',
+    limitSID:  '10:number',
+    limitURL:  '50:number',
   }
 
 };
