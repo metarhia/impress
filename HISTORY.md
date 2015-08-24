@@ -1,3 +1,9 @@
+0.1.346 / 2015-08-24
+==================
+
+  * Convert IPv4 to IPv6 for client.ip (used in log files and WAF)
+  * Implemented WAF connection counters
+
 0.1.345 / 2015-08-22
 ==================
 
