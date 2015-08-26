@@ -7,7 +7,7 @@
 
 [Impress](https://github.com/tshemsedinov/impress) Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
-Impress follows alternative way in several aspects:
+Impress (Impress Application Server, IAS) follows alternative way in several aspects:
   - No callback chain (no middleware), hierarchically inheritable hash routing instead
   - Monolithic high coupling core with obligatory things optimized for performance
   - Extensible plug-ins format for optionally needed things
@@ -136,8 +136,10 @@ Result:
 ```
 
 Example #3  
-File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.  
-If folder not contains "access.js" it will inherit from parent folder and so on. Example:
+File "access.js" works similar to ".htaccess" and allow one to define access rules for each folder, by simply putting "access.js" in it.  
+If folder does not contain "access.js" it inherits access rules from its parent folder, all the way up to the project root.
+
+Example:
 ```javascript
 module.exports = {
   guests:  true,  // Allow requests from anonimous users (not logged or no session)
@@ -154,9 +156,9 @@ module.exports = {
 
 ## Installation and upgrade
 
-  - Install to current folder: `npm install impress`
+  - Install to the current folder: `npm install impress`
   - Install using package.json, add to `dependencies` and run `npm install`
-  - Installation scripts for empty server (from the scratch)
+  - Installation scripts for an empty server (from the scratch)
     - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
     - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
     - For Ubuntu 14 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
@@ -165,7 +167,7 @@ module.exports = {
 You can prepare scripts based on examples above and run at a target server shell:
 `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
 
-If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, you do not have to worry Impress will detect previous installation and will update just it's own libraries and dependencies.
+If Impress Application Server is already installed in directory you want to install/update it using npm, /applications directory contains applications and /config contains configuration, Impress will safely detect previous installation and update libraries and dependencies.
 
 ## Impress CLI commands
 
@@ -173,10 +175,10 @@ You can use following commands from any directory:
   - `impress path <path>` to display or change path to IAS
   - `impress start` to start IAS server
   - `impress stop` to stop IAS server
-  - `impress restart` to restop IAS server
+  - `impress restart` to restart IAS server
   - `impress status` to display IAS status
   - `impress update` to update IAS version
-  - `impress autostart [on|off]` to add/remove IAS to autostart after system reboot
+  - `impress autostart [on|off]` to add/remove IAS to autostart on system reboot
   - `impress list` to see IAS applications list
   - `impress add [path]` to add application
   - `impress remove [name]` to remove application
