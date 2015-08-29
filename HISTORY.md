@@ -1,3 +1,9 @@
+0.1.348 / 2015-08-28
+==================
+
+  * Moved logException to /lib/api.impress.js to use before Impress init and application loaded
+  * Optimizations for io.js, issue #389
+
 0.1.347 / 2015-08-25
 ==================
 
