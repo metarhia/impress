@@ -1,3 +1,8 @@
+0.1.349 / 2015-08-31
+==================
+
+  * Fixed double stack trace logging on exception, close #417
+
 0.1.348 / 2015-08-28
 ==================
 
