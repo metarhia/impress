@@ -1,3 +1,10 @@
+0.1.350 / 2015-09-01
+==================
+
+  * Reused RegExps are prepared in constants at startup, close #416
+  * Fixed application.prepareScript and other minor changes
+  * Code refactoring
+
 0.1.349 / 2015-08-31
 ==================
 

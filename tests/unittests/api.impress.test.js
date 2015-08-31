@@ -236,12 +236,6 @@ impress.test({
     [ '/path/to/res',                                                   '\\\\/path\\\\/to\\\\/res' ],
     [ '/path',                                                                         '\\\\/path' ],
   ],
-  'api.impress.escapeRegExp.specials': [
-    [ function(arr) { return arr.length === 16; } ],
-  ],
-  'api.impress.escapeRegExp.regex': [
-    [ function(rx) { return rx instanceof RegExp; } ],
-  ],
   'api.impress.addTrailingSlash': [
     [ '/path',   '/path/' ],
     [ '/path/',  '/path/' ],
