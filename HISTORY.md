@@ -1,3 +1,8 @@
+0.1.351 / 2015-09-02
+==================
+
+  * Now each application is npm-compatible, have own package.json and dependencies, close #412
+
 0.1.350 / 2015-09-01
 ==================
 
