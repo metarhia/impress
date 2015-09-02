@@ -1,3 +1,9 @@
+0.1.352 / 2015-09-03
+==================
+
+  * Tested compatibility with newer node and io.js, close #389
+  * Fixed api.impress.require to reduce console output
+
 0.1.351 / 2015-09-02
 ==================
 
