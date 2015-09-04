@@ -1,3 +1,9 @@
+0.1.353 / 2015-09-04
+==================
+
+  * WAF optimizations: waf.objects, waf.objects[name].key(client)
+  * Client class optimizations and fixes: client.server, client.socket, client.schema, client.method, client.allowed
+
 0.1.352 / 2015-09-03
 ==================
 
