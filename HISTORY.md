@@ -1,3 +1,9 @@
+0.1.354 / 2015-09-05
+==================
+
+  * WAF limit connection number for IP, close #287
+  * WAF limit connection number for session, close #288
+
 0.1.353 / 2015-09-04
 ==================
 
