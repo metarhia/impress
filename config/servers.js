@@ -11,7 +11,7 @@ module.exports = {
     keepAliveTimeout: '5s',
     limit:     100,
     limitHost: 50,
-    limitIP:   10,
+    limitIP:   15,
     limitSID:  10,
     limitURL:  50,
   },

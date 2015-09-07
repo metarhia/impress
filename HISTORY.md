@@ -1,3 +1,9 @@
+0.1.355 / 2015-09-07
+==================
+
+  * WAF client.block() now affect current request too, close #420
+  * Fixed bug in Client.prototype.fileHandler, file watching path should be relative
+
 0.1.354 / 2015-09-05
 ==================
 

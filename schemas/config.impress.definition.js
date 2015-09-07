@@ -51,7 +51,7 @@ module.exports = {
     cert:      '[string]',
     limit:     '100:number',
     limitHost: '50:number',
-    limitIP:   '10:number',
+    limitIP:   '15:number',
     limitSID:  '10:number',
     limitURL:  '50:number',
   }
