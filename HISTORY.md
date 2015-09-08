@@ -1,19 +1,24 @@
+0.1.356 / 2015-09-08
+==================
+
+  * WAF: pass events from Client instead of calling inc/dec, close #421
+
 0.1.355 / 2015-09-07
 ==================
 
-  * WAF client.block() now affect current request too, close #420
+  * WAF: client.block() now affect current request too, close #420
   * Fixed bug in Client.prototype.fileHandler, file watching path should be relative
 
 0.1.354 / 2015-09-05
 ==================
 
-  * WAF limit connection number for IP, close #287
-  * WAF limit connection number for session, close #288
+  * WAF: limit connection number for IP, close #287
+  * WAF: limit connection number for session, close #288
 
 0.1.353 / 2015-09-04
 ==================
 
-  * WAF optimizations: waf.objects, waf.objects[name].key(client)
+  * WAF: optimizations: waf.objects, waf.objects[name].key(client)
   * Client class optimizations and fixes: client.server, client.socket, client.schema, client.method, client.allowed
 
 0.1.352 / 2015-09-03
@@ -59,7 +64,7 @@
 0.1.345 / 2015-08-22
 ==================
 
-  * WAF structure optimized
+  * WAF: structure optimized
 
 0.1.344 / 2015-08-21
 ==================
