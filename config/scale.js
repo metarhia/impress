@@ -22,10 +22,23 @@ module.exports = {
     // 'multiple'       - multiple processes, one master and identical workers with no sticky (master should listen ports)
     // 'sticky'         - multiple processes, one master and workers with sticky by IP (master should listen ports)
 
-  workers:       1, // worker count, e.g. api.os.cpus().length-1 or just number
+  workers: 1, // worker count, e.g. api.os.cpus().length-1 or just number
+
+  waf: { // Web Application Firewall config
+    enabled: true,
+    limits: {
+      ip:   20,
+      sid:  10,
+      host: 100,
+      url:  50,
+      app:  200,
+      srv:  500
+    }
+  },
 
   health:        '5m',   // health monitoring interval '5s'
   nagle:         false,  // Nagle algorithm
   gcInterval:    0,      // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
-  watchInterval: '2s'    // 2000,   // combine wached file system events if interval less then specified
+  watchInterval: '2s'    // combine wached file system events if interval less then specified
+
 };

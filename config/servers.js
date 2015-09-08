@@ -8,12 +8,7 @@ module.exports = {
     port:      80,
     slowTime:  '1s',
     timeout:   '30s',
-    keepAliveTimeout: '5s',
-    limit:     100,
-    limitHost: 50,
-    limitIP:   15,
-    limitSID:  10,
-    limitURL:  50,
+    keepAliveTimeout: '5s'
   },
   //local: {
   //  protocol: 'http',

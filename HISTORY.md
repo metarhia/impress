@@ -1,3 +1,13 @@
+0.1.357 / 2015-09-09
+==================
+
+  * WAF: configuration moved from /config/servers.js to /config/scale.js
+  * WAF: implemented connection limit pre application, close #300
+  * WAF: implemented connection limit pre URL, close #289
+  * WAF: implemented connection limit per server
+  * WAF: implemented connection limit per host
+  * Fixed error logging for json handlers in Client.prototype.error
+
 0.1.356 / 2015-09-08
 ==================
 

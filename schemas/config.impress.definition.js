@@ -19,7 +19,22 @@ module.exports = {
     health:     '5s:duration',
     nagle:      'false:boolean',
     gcInterval: '10m:duration',
-    watchInterval: '2s:duration'
+    watchInterval: '2s:duration',
+    waf:        '{waf}'
+  },
+
+  waf: {
+    enabled: 'false:boolean',
+    limits:  '{limits}'
+  },
+
+  limits: {
+    ip:   '20:number',
+    sid:  '10:number',
+    host: '100:number',
+    url:  '50:number',
+    app:  '200:number',
+    srv:  '500:number'
   },
 
   log: {
@@ -33,8 +48,8 @@ module.exports = {
   },
 
   sandbox: {
-    global:  '[array]',
-    api:     '[array]'
+    global: '[array]',
+    api:    '[array]'
   },
 
   servers: '{{server}}',
@@ -48,12 +63,7 @@ module.exports = {
     timeout:   '30s:duration',
     keepAliveTimeout: '5s:duration',
     key:       '[string]',
-    cert:      '[string]',
-    limit:     '100:number',
-    limitHost: '50:number',
-    limitIP:   '15:number',
-    limitSID:  '10:number',
-    limitURL:  '50:number',
+    cert:      '[string]'
   }
 
 };
