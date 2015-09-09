@@ -22,17 +22,17 @@ module.exports = {
     // 'multiple'       - multiple processes, one master and identical workers with no sticky (master should listen ports)
     // 'sticky'         - multiple processes, one master and workers with sticky by IP (master should listen ports)
 
-  workers: 1, // worker count, e.g. api.os.cpus().length-1 or just number
+  workers: api.os.cpus().length, // worker count, e.g. api.os.cpus().length-1 or just number
 
   waf: { // Web Application Firewall config
-    enabled: true,
-    limits: {
-      ip:   20,
-      sid:  10,
-      host: 100,
-      url:  50,
-      app:  200,
-      srv:  500
+    enabled: false,
+    limits: { // limit concurent connection count
+      ip:   20,  // per client ip
+      sid:  10,  // per user session
+      host: 100, // per host name
+      url:  50,  // per url
+      app:  200, // per application
+      srv:  500  // per server port
     }
   },
 
