@@ -17,8 +17,6 @@
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/eventsource.min.js"></script>
   <script type="text/javascript" src="/js/impress.js"></script>
-  <script type="text/javascript" src="/js/impress.rpc.js"></script>
-  <script type="text/javascript" src="/js/wcl.js"></script>
   <script type="text/javascript" src="/js/init.js"></script>
 </head>
 <body>

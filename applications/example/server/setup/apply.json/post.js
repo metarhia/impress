@@ -1,6 +1,6 @@
 ﻿module.exports = function(client, callback) {
 
-  var npmList = [ 'mongodb', 'memcached', 'mysql', 'mysql-utilities', 'nodemailer', 'geoip-lite', 'websocket' ],
+  var npmList = ['mongodb', 'memcached', 'mysql', 'mysql-utilities', 'nodemailer', 'geoip-lite', 'websocket'],
       npmChecked = client.fields.npmChecked.split(',');
 
   function installModule(npmName) {

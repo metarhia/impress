@@ -1,33 +1,31 @@
 'use strict';
 
-var ws;
+api.dom.on('load', function() {
 
-impress.on('load', function() {
+  api.dom.addClass(document.body, 'js');
+  api.dom.fixCookie('SID');
 
-  impress.addClass(document.body, 'js');
-  impress.fixCookie('SID');
+  var panelLeft = api.dom.id('panel-left'),
+      panelCenter = api.dom.id('panel-center'),
+      panelRight = api.dom.id('panel-right');
 
-  var panelLeft = impress.id('panel-left'),
-      panelCenter = impress.id('panel-center'),
-      panelRight = impress.id('panel-right');
-
-  // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
-  global.rpc = impress.rpc.ws('/examples/impress.rpc');
-
-  var auth = wcl.AjaxDataSource({
+  var auth = api.wcl.AjaxDataSource({
     regValidation: { post: '/api/auth/regvalidation.json' },
     register:      { post: '/api/auth/register.json' },
     signOut:       { post: '/api/auth/signOut.json' },
   });
 
+  // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
+  global.rpc = api.rpc.ws('/examples/impress.rpc');
+
   // --- Auth Module ---
 
-  impress.on('click', '#hmenu-Signin', function() {
-    impress.togglePopup('#formLogin');
+  api.dom.on('click', '#hmenu-Signin', function() {
+    api.dom.togglePopup('#formLogin');
     return false;
   });
 
-  impress.on('click', '#hmenu-Signout', function() {
+  api.dom.on('click', '#hmenu-Signout', function() {
     auth.signOut({}, function(err, data) {
       if (localStorage) localStorage.clear();
       window.location.reload(true);
@@ -35,12 +33,12 @@ impress.on('load', function() {
     return false;
   });
 
-  impress.on('click', '#hmenu-Register', function() {
-    impress.togglePopup('#formReg');
+  api.dom.on('click', '#hmenu-Register', function() {
+    api.dom.togglePopup('#formReg');
     return false;
   });
 
-  impress.on('click', '#formRegDo', function(event) {
+  api.dom.on('click', '#formRegDo', function(event) {
     var inputEmail = $('#formRegEmail'),
         inputPassword = $('#formRegPassword'),
         regValidation = null,
@@ -60,18 +58,18 @@ impress.on('load', function() {
     return false;
   });
 
-  impress.on('click', '#formLoginSignIn', function() {
+  api.dom.on('click', '#formLoginSignIn', function() {
     $('#formLoginSubmit').click();
   });
 
   // --- LEFT MENU ---
 
-  impress.on('click', '#menuAJAX', function() {
+  api.dom.on('click', '#menuAJAX', function() {
     var parameterName = 'paramaterValue';
     $(panelCenter).load('/examples/simple/ajaxTest.ajax?parameterName=' + parameterName);
   });
 
-  impress.on('click', '#menuGetJSON', function() {
+  api.dom.on('click', '#menuGetJSON', function() {
     var parameterName = 'paramaterValue';
     $(panelCenter).empty().html('<div class="progress"></div>');
     $.get('/examples/simple/jsonGet.json?parameterName=' + parameterName, function(res) {
@@ -79,7 +77,7 @@ impress.on('load', function() {
     });
   });
 
-  impress.on('click', '#menuPostJSON', function() {
+  api.dom.on('click', '#menuPostJSON', function() {
     var parameterName = 'paramaterValue';
     $(panelCenter).empty().html('<div class="progress"></div>');
     $.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(res) {
@@ -87,48 +85,48 @@ impress.on('load', function() {
     });
   });
 
-  impress.on('click', '#menuForkWorker', function() {
+  api.dom.on('click', '#menuForkWorker', function() {
     $.get('/examples/tools/forkWorker.json', function(res) {
       $(panelCenter).html('Worker process forked, see console for output.');
     });
   });
 
-  impress.on('click', '#menuLongWorker', function() {
+  api.dom.on('click', '#menuLongWorker', function() {
     $.get('/examples/tools/longWorker.json', function(res) {
       $(panelCenter).html('Worker process forked and will terminate in 30 seconds, see console for output.');
     });
   });
 
-  impress.on('click', '#menuTemplate', function() {
+  api.dom.on('click', '#menuTemplate', function() {
     window.location = '/examples/override';
   });
 
-  impress.on('click', '#menuDBMI', function() {
+  api.dom.on('click', '#menuDBMI', function() {
     window.location = '/dbmi';
   });
 
-  impress.on('click', '#menuSetup', function() {
+  api.dom.on('click', '#menuSetup', function() {
     window.location = '/setup';
   });
 
-  impress.on('click', '#menuFileUpload', function() {
+  api.dom.on('click', '#menuFileUpload', function() {
     $(panelCenter).load('/examples/simple/upload.ajax');
   });
 
-  impress.on('click', '#menuDownload', function() {
+  api.dom.on('click', '#menuDownload', function() {
     $(panelCenter).html('<iframe src="/examples/simple/download.ajax" style="display:none"></iframe>');
   });
 
-  impress.on('click', '#menuGeoIP', function() {
+  api.dom.on('click', '#menuGeoIP', function() {
     $(panelCenter).empty().html('<div class="progress"></div>');
     $.get('/examples/tools/geoip.json', function(res) {
       $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
     });
   });
 
-  impress.on('click', '#menuWS', function() {
-    var url = impress.rpc.absoluteUrl('/examples/events/connect.ws');
-    ws = new WebSocket(url);
+  api.dom.on('click', '#menuWS', function() {
+    var url = api.rpc.absoluteUrl('/examples/events/connect.ws');
+    global.ws = new WebSocket(url);
     $(panelCenter).html(
       '<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> ' +
       '<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>' +
@@ -158,7 +156,7 @@ impress.on('load', function() {
     });
   });
   
-  impress.on('click', '#menuSSE', function() {
+  api.dom.on('click', '#menuSSE', function() {
     $(panelCenter).html(
       '<a class="button silver" id="btnSseClose"><span class="icon delete"></span>Close connection</a> ' +
       '<a class="button silver" id="btnSseSend"><span class="icon handshake"></span>Send event to server</a>' +
@@ -195,12 +193,12 @@ impress.on('load', function() {
     });
   }
 
-  impress.on('click', '#menuSendMail', function() {
+  api.dom.on('click', '#menuSendMail', function() {
   });
 
   // begin Chat
 
-  impress.on('click', '#menuChat', function() {
+  api.dom.on('click', '#menuChat', function() {
     $(panelCenter).html(
       '<div id="chatPanel" style="position:relative; height:100%;">' +
         '<div id="chatMessages" style="position:absolute; top:0; bottom:50px; left:0; right:0; overflow-y: scroll; overflow-x: hidden;"></div>' +
@@ -251,7 +249,7 @@ impress.on('load', function() {
 
   // end Chat
 
-  impress.on('click', '#btnApplySetup', function() {
+  api.dom.on('click', '#btnApplySetup', function() {
     var npmModules = $('#npmModules input'),
         npmChecked = [];
     npmModules.each(function() {
@@ -262,7 +260,7 @@ impress.on('load', function() {
     });
   });
 
-  impress.on('click', '#menuAuth', function() {
+  api.dom.on('click', '#menuAuth', function() {
     window.location = '/examples/auth';
   });
 
