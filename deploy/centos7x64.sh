@@ -5,15 +5,15 @@ yum -y install wget
 yum -y install psmisc
 yum -y groupinstall "Development Tools"
 cd /usr/src
-wget http://nodejs.org/dist/v0.12.7/node-v0.12.7.tar.gz
-tar zxf node-v0.12.7.tar.gz
-rm -f ./node-v0.12.7.tar.gz
-cd node-v0.12.7
+wget http://nodejs.org/dist/v4.0.0/node-v4.0.0.tar.gz
+tar zxf node-v4.0.0.tar.gz
+rm -f ./node-v4.0.0.tar.gz
+cd node-v4.0.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v0.12.7
+rm -rf /usr/src/node-v4.0.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
