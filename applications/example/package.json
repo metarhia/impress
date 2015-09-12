@@ -5,5 +5,11 @@
   "description": "Example application",
   "dependencies": {
     "ncp": "2.0.x"
+  },
+  "jshintConfig": {
+    "predef": ["api", "impress", "global", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource"],
+    "node": true,
+    "indent": 2,
+    "maxcomplexity": 25
   }
 }

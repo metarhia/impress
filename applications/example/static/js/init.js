@@ -12,13 +12,13 @@ api.dom.on('load', function() {
   var auth = api.wcl.AjaxDataSource({
     regValidation: { post: '/api/auth/regvalidation.json' },
     register:      { post: '/api/auth/register.json' },
-    signOut:       { post: '/api/auth/signOut.json' },
+    signOut:       { post: '/api/auth/signOut.json' }
   });
 
   // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
-  global.rpc = api.rpc.ws('/examples/impress.rpc');
+  // global.rpc = api.rpc.ws('/examples/impress.rpc');
 
-  // --- Auth Module ---
+  // Auth Module
 
   api.dom.on('click', '#hmenu-Signin', function() {
     api.dom.togglePopup('#formLogin');
@@ -62,7 +62,7 @@ api.dom.on('load', function() {
     $('#formLoginSubmit').click();
   });
 
-  // --- LEFT MENU ---
+  // Left menu
 
   api.dom.on('click', '#menuAJAX', function() {
     var parameterName = 'paramaterValue';
@@ -124,9 +124,10 @@ api.dom.on('load', function() {
     });
   });
 
+  var ws;
   api.dom.on('click', '#menuWS', function() {
     var url = api.rpc.absoluteUrl('/examples/events/connect.ws');
-    global.ws = new WebSocket(url);
+    ws = new WebSocket(url);
     $(panelCenter).html(
       '<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> ' +
       '<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>' +

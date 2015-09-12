@@ -189,8 +189,6 @@ api.dom.onBeforeUnload = function(fn) {
   });
 };
 
-// --------------------------------------------------------------
-
 api.dom.enable = function(element, flag) {
   if (flag) api.dom.removeClass(element, 'disabled');
   else api.dom.addClass(element, 'disabled');
@@ -258,19 +256,9 @@ api.dom.closeForm = function() {
   if (api.dom.form) api.dom.togglePopup(api.dom.form);
 };
 
-//$(document).keydown(function(event) {
-//  if (event.keyCode === 27) closeForm();
-//  else if (event.keyCode === 13) $('#popup .form .save').trigger('click');
-//});
-
-//$(document).on('click', '#popup .cancel', function(event) {
-//  closeForm();
-//  return false;
-//});
-
-// --- Confirmation ---
-
-// Buttons: ['Yes', 'No', 'Ok', 'Cancel']
+// Confirmation
+//   Buttons: ['Yes', 'No', 'Ok', 'Cancel']
+//
 api.dom.confirmation = function(title, message, eventYes, buttons) {
   var form = $('#formConfirmation');
   if (typeof(buttons) === 'undefined') buttons = ['Cancel', 'Yes'];
@@ -289,12 +277,12 @@ $(document).on('click', '#formConfirmation .button.save', function(event) {
     api.dom.confirmation.formConfirmationYes();
   }
   api.dom.confirmation.formConfirmationYes = null;
-  closeForm();
+  api.dom.closeForm();
   return false;
 });
 
-// --- Input ---
-
+// Input
+//
 api.dom.input = function(title, prompt, defaultValue, eventOk) {
   var form = $('#formInput');
   $('.header', form).html(title);
@@ -361,6 +349,7 @@ api.dom.disableCopy = function(target) {
 };
 
 // Cookie utils
+
 api.cookie = {};
 
 api.cookie.get = function(name) {
@@ -683,303 +672,6 @@ api.wcl.AjaxDataSource = function(methods) {
   return ds;
 };
 
-api.wcl.MemoryDataSource = function(params) { // { data:Hash, metadata:Hash }
-  var ds = {};
-  ds.data = params.data;
-  ds.metadata = params.metadata;
-  ds.each = function(params, callback) {
-    var d, key, match;
-    for (var i = 0; i < ds.data.length; i++) {
-      d = ds.data[i];
-      match = true;
-      for (key in params) match = match && (d[key] === params[key]);
-      if (match && callback(i)) return;
-    }
-  };
-  ds.read = function(params, callback) {
-    var data = ds.data;
-    ds.each(params, function(key) { callback(null, data[key]); return true; });
-    callback(new Error('Record not found'), null);
-  };
-  ds.insert = function(params, callback) {
-    ds.data.push(params);
-    callback();
-  };
-  ds.update = function(params, callback) {
-    var data = ds.data;
-    ds.each(params, function(key) { data[key] = params; return true; });
-    callback();
-  };
-  ds.delete = function(params, callback) {
-    var data = ds.data;
-    ds.each(params, function(key) { delete data[key]; });
-    callback();
-  };
-  ds.find = function(params, callback) {
-    var data = ds.data, result = [];
-    ds.each(params, function(key) { result.push(data[key]); });
-    callback(null, result);
-  };
-  return ds;
-};
-
-api.wcl.DataObject = function(params) {
-  // params: { data: Value, metadata: Hash, record: Record }
-  //
-  var obj = {};
-  obj.data = params.data;
-  obj.fields = {};
-  obj.type = typeof(obj.data); // Object, String, Array, Number
-  obj.bindings = [];
-  obj.modified = false;
-
-  if (obj.data !== null && typeof(obj.data) === 'object') {
-    var key;
-    for (key in obj.data) obj.fields[key] = api.wcl.DataObject({ data:obj.data[key] });
-  }
-
-  obj.value = function(value, forceUpdate) {
-    if (value !== undefined) {
-      if ((field.data !== value) || forceUpdate) {
-        //console.log('Field change ' + field.data + ' to ' + value);
-        field.data = value;
-        if (!forceUpdate) {
-          field.modified = true;
-          field.dataSet.record.modified = true;
-        }
-        if (field.dataSet.updateCount === 0) {
-          for (var i = 0; i < field.bindings.length; i++) field.bindings[i].value(value);
-        }
-      }
-    } else return field.data;
-  };
-  return obj;
-};
-
-api.wcl.Record = function(params) {
-  // implemented params: { data: Hash, metadata: Hash, dataSet: DataSet }
-  // not implemented:    { table: Table, source: DataSource }
-  //
-  var record = {};
-  record.fields = {};
-  record.dataSet = params.dataSet;
-  record.modified = false;
-  record.assign = function(data, metadata, preventUpdateAll) {
-    var fieldName;
-    for (fieldName in data) {
-      if (record.fields[fieldName]) {
-        record.fields[fieldName].value(data[fieldName]);
-        record.fields[fieldName].modified = false;
-      } else record.fields[fieldName] = api.wcl.Field({
-        data: data[fieldName],
-        metadata: metadata ? metadata[fieldName] : null,
-        dataSet: record.dataSet
-      });
-    }
-    if (!preventUpdateAll) record.updateAll();
-    record.modified = false;
-  };
-  record.each = function(callback) { // callback(fieldName, field)
-    var fieldName;
-    for (fieldName in record.fields) callback(fieldName, record.fields[fieldName]);
-  };
-  record.toObject = function() {
-    var result = {};
-    record.each(function(fieldName, field) { result[fieldName] = field.value(); });
-    return result;
-  };
-  record.toString = function() {
-    return JSON.stringify(record.toObject());
-  };
-  record.deltaObject = function() {
-    var result = {};
-    record.each(function(fieldName, field) {
-      if (field.modified) result[fieldName] = field.value();
-    });
-    return result;
-  };
-  record.deltaString = function() {
-    return JSON.stringify(record.deltaObject());
-  };
-  record.commit = function() {
-    if (record.modified) {
-      var recNo = record.dataSet.currentRecord,
-          data = record.dataSet.memory.data[recNo];
-      record.each(function(fieldName, field) {
-        if (field.modified) data[fieldName] = field.value();
-        field.modified = false;
-      });
-      record.modified = false;
-    }
-  };
-  record.rollback = function() {
-    if (record.modified) {
-      var recNo = record.dataSet.currentRecord,
-          data = record.dataSet.memory.data[recNo];
-      record.assign(data);
-    }
-  };
-  record.updateAll = function() {
-    record.each(function(fieldName, field) { field.value(field.data, true); });
-  };
-  if (params.data) record.assign(params.data, params.metadata, true);
-  return record;
-};
-
-api.wcl.DataSet = function(params) {
-  // implemented params: { data: Hash, metadata: Hash }
-  // not implemented:    { source: DataSource }
-  //
-  var dataSet = {};
-  dataSet.memory = api.wcl.MemoryDataSource({ data:[] });
-  dataSet.metadata = params.metadata;
-  dataSet.source = params.source;
-  dataSet.record = null;
-  dataSet.recordCount = 0;
-  dataSet.currentRecord = -1;
-  dataSet.modified = false;
-  dataSet.query = function(params, callback) {
-    dataSet.source.find(params, function(err, data) {
-      dataSet.assign(data);
-      callback();
-    });
-  };
-  dataSet.toString = function() {
-    return JSON.stringify(dataSet.memory.data);
-  };
-  dataSet.assign = function(data) {
-    if (data) {
-      dataSet.memory.data = data;
-      dataSet.recordCount = dataSet.memory.data.length;
-      dataSet.currentRecord = -1;
-      dataSet.first();
-    }
-  };
-  dataSet.move = function(recNo) {
-    if (recNo !== dataSet.currentRecord && recNo >= 0 && recNo < dataSet.recordCount) {
-      var data = dataSet.memory.data[recNo];
-      if (dataSet.record) {
-        if (dataSet.record.modified) dataSet.record.commit();
-        dataSet.record.assign(data);
-      } else dataSet.record = api.wcl.Record({ data: data, dataSet: dataSet });
-      dataSet.currentRecord = recNo;
-    }
-  };
-  dataSet.first = function() { dataSet.move(0); };
-  dataSet.next  = function() { dataSet.move(dataSet.currentRecord + 1); };
-  dataSet.prev  = function() { dataSet.move(dataSet.currentRecord - 1); };
-  dataSet.last  = function() { dataSet.move(dataSet.recordCount - 1); };
-  //
-  dataSet.updateCount = 0;
-  dataSet.beginUpdate = function() {
-    dataSet.updateCount++;
-  };
-  dataSet.endUpdate = function() {
-    dataSet.updateCount--;
-    if (dataSet.updateCount <= 0) {
-      dataSet.updateCount = 0;
-      dataSet.updateAll();
-    }
-  };
-  dataSet.updateAll = function() {
-    dataSet.record.updateAll();
-  };
-  dataSet.commit = function() {
-  };
-  dataSet.rollback = function() {
-  };
-
-  dataSet.assign(params.data);
-  return dataSet;
-};
-
-// Nonvisual or visual component
-//
-api.wcl.components.Component = function(obj) {
-};
-
-// Visual component
-api.wcl.components.Control = function(obj) {
-  api.wcl.components.Component(obj);
-  //
-};
-
-api.wcl.components.Iterator = function(obj) {
-  api.wcl.components.Control(obj);
-  //
-};
-
-api.wcl.components.Container = function(obj) {
-  api.wcl.components.Control(obj);
-  obj.wcl.controls = {};
-  if (obj.wcl.dataWcl.dataSet) obj.wcl.dataSet = global[obj.wcl.dataWcl.dataSet];
-};
-
-api.wcl.components.FieldControl = function(obj) {
-  api.wcl.components.Control(obj);
-  // obj.wcl.dataSet - autoassigned on load
-  obj.wcl.field = obj.wcl.dataSet.record.fields[obj.wcl.dataWcl.field];
-  obj.wcl.field.bindings.push(obj);
-};
-
-api.wcl.components.Label = function(obj) {
-  api.wcl.components.FieldControl(obj);
-  obj.innerHTML = '<span>' + obj.wcl.field.data + '</span>';
-  obj.value = function(value) {
-    if (value === undefined) return obj.textContent;
-    else if (obj.textContent !== value) obj.textContent = value;
-  };
-};
-
-api.wcl.components.Edit = function(obj) {
-  api.wcl.components.FieldControl(obj);
-  obj.innerHTML = '<input type="text" name="email">';
-  var edit = obj.children[0];
-  edit.value = obj.wcl.field.data;
-  edit.addEventListener('keyup', function(e) {
-    obj.wcl.field.value(this.value);
-  }, false);
-  obj.value = function(value) {
-    var edit = this.children[0];
-    if (value === undefined) return edit.value;
-    else if (edit.value !== value) edit.value = value;
-  };
-};
-
-api.wcl.components.Button = function(obj) {
-  api.wcl.components.Control(obj);
-  obj.innerHTML = '<a href="" onclick=""></a>';
-  var edit = obj.children[0];
-  edit.value = obj.wcl.field.data;
-  edit.addEventListener('click', function(e) {
-    console.log('button clicked');
-  }, false);
-};
-
-api.wcl.components.Table = function(obj) {
-  api.wcl.components.Control(obj);
-  //
-};
-
-// TODO: autobind on load
-//
-api.wcl.bind = function(params) { // { record:Record, container:element }
-  params.container.wcl = { record: params.record };
-  var dataWcl, element, component, elements = params.container.getElementsByTagName('div');
-  for (var i = 0; i < elements.length; i++) {
-    element = elements[i];
-    dataWcl = element.getAttribute('data-wcl');
-    if (dataWcl) {
-      element.wcl = { dataWcl: api.wcl.parse(dataWcl), record: params.record };
-      if (element.wcl.dataWcl.control) {
-        component = api.wcl.components[element.wcl.dataWcl.control];
-        global[element.wcl.dataWcl.name] = element;
-        component(element);
-      }
-    }
-  }
-};
-
 api.wcl.parse = function(json) {
   var result;
   eval('result = new Object(' + json + ')');
@@ -1067,5 +759,3 @@ api.wcl.autoInitialization = function() {
     }
   }
 };
-
-//addEvent(global, 'load', api.wcl.autoInitialization);
