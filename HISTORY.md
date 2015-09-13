@@ -1,3 +1,9 @@
+0.1.361 / 2015-09-13
+==================
+
+  * WCL deprecated in client-side code
+  * Removed jQuery ajax get and post dependency
+
 0.1.360 / 2015-09-12
 ==================
 

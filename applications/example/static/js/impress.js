@@ -602,51 +602,47 @@ api.rpc.ws = function(url) {
 
 api.rpc.initialize();
 
-// WCL API
-//
-api.wcl = {};
-api.wcl.dataSets = {};
-api.wcl.containers = {};
-api.wcl.components = {};
-api.wcl.utils = {};
-
-api.wcl.AjaxAPI = function(methods) { // params: { method: { get/post:url }, ... }
-  var api = {};
-  api.request = function(apiMethod, params, callback) {
+api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
+  var apiStub = {};
+  apiStub.request = function(apiMethod, params, callback) {
     var err = null, requestParams = this.methods[apiMethod];
     if (requestParams) {
       var httpMethod, url;
       if (requestParams.get ) { httpMethod = 'GET'; url = requestParams.get; }
       if (requestParams.post) { httpMethod = 'POST'; url = requestParams.post; }
       if (httpMethod) {
-        api.wcl.request(httpMethod, url, params, true, callback);
+        api.rpc.request(httpMethod, url, params, true, callback);
         return;
       } else err = new Error('DataSource error: HTTP method is not specified');
     } else err = new Error('DataSource error: AJAX method is not specified');
     callback(err, null);
   };
-  api.init = function(methods) {
-    api.methods = methods;
+  apiStub.init = function(methods) {
+    apiStub.methods = methods;
     var method;
-    for (method in api.methods) {
+    for (method in apiStub.methods) {
       (function() {
         var apiMethod = method;
-        if (apiMethod === 'introspect') api[apiMethod] = function(params, callback) {
-          api.request(apiMethod, params, function(err, data) {
-            api.init(data);
-            callback(err, data);
-          });
-        }; else api[apiMethod] = function(params, callback) {
-          api.request(apiMethod, params, callback);
-        };
+        if (apiMethod === 'introspect') {
+          apiStub[apiMethod] = function(params, callback) {
+            apiStub.request(apiMethod, params, function(err, data) {
+              apiStub.init(data);
+              callback(err, data);
+            });
+          };
+        } else {
+          apiStub[apiMethod] = function(params, callback) {
+            apiStub.request(apiMethod, params, callback);
+          };
+        }
       } ());
     }
   };
-  api.init(methods);
-  return api;
+  apiStub.init(methods);
+  return apiStub;
 };
 
-api.wcl.DataSource = function(methods) {
+api.rpc.dataSource = function(methods) {
   // just abstract, see implementation below
   // should be implemented methods:
   //   read(query, callback)   return one record as object, callback(err, obj)
@@ -654,17 +650,17 @@ api.wcl.DataSource = function(methods) {
   //   update(obj, callback)   update one record, callback(err) on done
   //   delete(query, callback) delete multiple records, callback(err) on done
   // may be implemented methods:
-  //   introspect(params, callback) populates DataSource.methods with introspection metadata returning from server
-  //   metadata(params, callback)   populates DataSource.metadata with metadata from server
+  //   introspect(params, callback) populates dataSource.methods with introspection metadata returning from server
+  //   metadata(params, callback)   populates dataSource.metadata with metadata from server
   //   find(query, callback)        return multiple records as Array, callback(err, Array)
 };
 
-api.wcl.AjaxDataSource = function(methods) {
-  var ds = api.wcl.AjaxAPI(methods);
+api.rpc.ajaxDataSource = function(methods) {
+  var ds = api.rpc.ajax(methods);
   ds.read = function(query, callback) {
     ds.request('read', query, function(err, data) {
       // TODO: autocreate Record
-      //   callback(err, api.wcl.Record({ data:data }));
+      //   callback(err, api.rpc.record({ data: data }));
       //
       callback(err, data);
     });
@@ -672,28 +668,31 @@ api.wcl.AjaxDataSource = function(methods) {
   return ds;
 };
 
-api.wcl.parse = function(json) {
+api.rpc.parse = function(json) {
   var result;
   eval('result = new Object(' + json + ')');
   return result;
 };
 
-api.wcl.htmlEscape = function(content) {
-  return content.replace(/[&<>"'\/]/g,function(char) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[char]); });
-};
-
-api.wcl.template = function(tpl, data, escapeHtml) {
-  return tpl.replace(/@([\-\.0-9a-zA-Z]+)@/g, function(s, key) {
-    return escapeHtml ? api.wcl.htmlEscape(data[key]) : data[key];
+api.rpc.htmlEscape = function(content) {
+  return content.replace(/[&<>"'\/]/g,function(char) {
+    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[char]);
   });
 };
 
-api.wcl.templateHtml = function(tpl, data) {
-  return api.wcl.template(tpl, data, true);
+api.rpc.template = function(tpl, data, escapeHtml) {
+  return tpl.replace(/@([\-\.0-9a-zA-Z]+)@/g, function(s, key) {
+    return escapeHtml ? api.rpc.htmlEscape(data[key]) : data[key];
+  });
 };
 
-api.wcl.request = function(method, url, params, parseResponse, callback) {
-  var key, req = new XMLHttpRequest(), data = [], value = '';
+api.rpc.templateHtml = function(tpl, data) {
+  return api.rpc.template(tpl, data, true);
+};
+
+api.rpc.request = function(method, url, params, parseResponse, callback) {
+  var key, data = [], value = '',
+      req = new XMLHttpRequest();
   req.open(method, url, true);
   for (key in params) {
     if (!params.hasOwnProperty(key)) continue;
@@ -703,59 +702,32 @@ api.wcl.request = function(method, url, params, parseResponse, callback) {
   }
   data = data.join('&');
   req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  req.setRequestHeader('Content-length', data.length);
-  req.setRequestHeader('Connection', 'close');
+  //req.setRequestHeader('Content-length', data.length);
+  //req.setRequestHeader('Connection', 'close');
   req.onreadystatechange = function() {
     if (req.readyState === 4) {
       var err = null, res = req.responseText;
       if (req.status === 0 || req.status === 200) {
         if (parseResponse) {
-          try { res = JSON.parse(res); }
-          catch(e) { err = new Error('JSON parse code: ' + e); }
+          try {
+            res = JSON.parse(res);
+          } catch(e) {
+            err = new Error('JSON parse code: ' + e);
+          }
         }
       } else err = new Error('HTTP error code: ' + req.status);
       callback(err, res);
     }
   };
-  try { req.send(data); }
-  catch(e) { }
+  try {
+    req.send(data);
+  } catch(e) { }
 };
 
-api.wcl.get = function(url, params, callback) {
-  api.wcl.request('GET', url, params, true, callback);
+api.rpc.get = function(url, params, callback) {
+  api.rpc.request('GET', url, params, true, callback);
 };
 
-api.wcl.post = function(url, params, callback) {
-  api.wcl.request('POST', url, params, true, callback);
-};
-
-api.wcl.autoInitialization = function() {
-  api.wcl.body = document.body || document.getElementsByTagName('body')[0];
-  var container, containerName, element, dataWcl, component,
-      elements = api.wcl.body.getElementsByTagName('div');
-  for (var i = 0; i < elements.length; i++) {
-    element = elements[i];
-    dataWcl = element.getAttribute('data-wcl');
-    if (dataWcl) {
-      element.wcl = { dataWcl: api.wcl.parse(dataWcl) }; // record: params.record
-      if (element.wcl.dataWcl.control === 'Container') api.wcl.containers[dataWcl.name] = element;
-    }
-  }
-  for (containerName in api.wcl.containers) {
-    container = api.wcl.containers[containerName];
-    elements = container.getElementsByTagName('div');
-    global[container.wcl.dataWcl.name] = container;
-    api.wcl.components.Container(container);
-    for (var j = 0; j < elements.length; j++) {
-      element = elements[j];
-      if (element.wcl.dataWcl.control) {
-        component = api.wcl.components[element.wcl.dataWcl.control];
-        container.wcl.controls[element.wcl.dataWcl.name] = element;
-        container[element.wcl.dataWcl.name] = element;
-        element.wcl.container = container;
-        element.wcl.dataSet = container.wcl.dataSet;
-        component(element);
-      }
-    }
-  }
+api.rpc.post = function(url, params, callback) {
+  api.rpc.request('POST', url, params, true, callback);
 };

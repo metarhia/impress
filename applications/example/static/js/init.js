@@ -9,7 +9,7 @@ api.dom.on('load', function() {
       panelCenter = api.dom.id('panel-center'),
       panelRight = api.dom.id('panel-right');
 
-  var auth = api.wcl.AjaxDataSource({
+  var auth = api.rpc.ajaxDataSource({
     regValidation: { post: '/api/auth/regvalidation.json' },
     register:      { post: '/api/auth/register.json' },
     signOut:       { post: '/api/auth/signOut.json' }
@@ -72,7 +72,7 @@ api.dom.on('load', function() {
   api.dom.on('click', '#menuGetJSON', function() {
     var parameterName = 'paramaterValue';
     $(panelCenter).empty().html('<div class="progress"></div>');
-    $.get('/examples/simple/jsonGet.json?parameterName=' + parameterName, function(res) {
+    api.rpc.get('/examples/simple/jsonGet.json', { parameterName: parameterName }, function(err, res) {
       $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
     });
   });
@@ -80,19 +80,19 @@ api.dom.on('load', function() {
   api.dom.on('click', '#menuPostJSON', function() {
     var parameterName = 'paramaterValue';
     $(panelCenter).empty().html('<div class="progress"></div>');
-    $.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(res) {
+    api.rpc.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(err, res) {
       $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
     });
   });
 
   api.dom.on('click', '#menuForkWorker', function() {
-    $.get('/examples/tools/forkWorker.json', function(res) {
+    api.rpc.get('/examples/tools/forkWorker.json', {}, function() {
       $(panelCenter).html('Worker process forked, see console for output.');
     });
   });
 
   api.dom.on('click', '#menuLongWorker', function() {
-    $.get('/examples/tools/longWorker.json', function(res) {
+    api.rpc.get('/examples/tools/longWorker.json', {}, function() {
       $(panelCenter).html('Worker process forked and will terminate in 30 seconds, see console for output.');
     });
   });
@@ -119,7 +119,7 @@ api.dom.on('load', function() {
 
   api.dom.on('click', '#menuGeoIP', function() {
     $(panelCenter).empty().html('<div class="progress"></div>');
-    $.get('/examples/tools/geoip.json', function(res) {
+    api.rpc.get('/examples/tools/geoip.json', {}, function(err, res) {
       $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
     });
   });
@@ -190,7 +190,7 @@ api.dom.on('load', function() {
 
     $('#btnSseSend').on('click', function() {
       $(panelCenter).append('Sending event to server, it should return back.<hr>');
-      $.get('/examples/events/sendEvent.json', function(res) {});
+      api.rpc.get('/examples/events/sendEvent.json', {}, function() {});
     });
   }
 
@@ -241,10 +241,11 @@ api.dom.on('load', function() {
     }, false);
 
     $('#btnChatSend').on('click', function() {
-      $.post('/examples/chat/sendMessage.json', {
-        name: chatUserName.val(),
-        message: chatMessage.val()
-      }, function(res) {});
+      api.rpc.post(
+        '/examples/chat/sendMessage.json',
+        { name: chatUserName.val(), message: chatMessage.val() },
+        function(err, res) { }
+      );
     });
   }
 
@@ -256,9 +257,11 @@ api.dom.on('load', function() {
     npmModules.each(function() {
       if ($(this)[0].checked) npmChecked.push($(this).val());
     });
-    $.post('/setup/apply.json', { npmChecked: npmChecked.join(',') }, function(res) {
-      $(panelCenter).html('<pre>Module(s) installing... See console output.</pre>');
-    });
+    api.rpc.post('/setup/apply.json', { npmChecked: npmChecked.join(',') },
+      function(err, res) {
+        $(panelCenter).html('<pre>Module(s) installing... See console output.</pre>');
+      }
+    );
   });
 
   api.dom.on('click', '#menuAuth', function() {
