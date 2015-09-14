@@ -44,6 +44,8 @@ platform.WebKit = platform.Chrome || platform.Safari;
 
 if (platform.IE) platform.IEVersion = parseFloat(navigator.appVersion.split('MSIE')[1]);
 
+// Patch page links to prevent page reload
+//
 api.dom.fixLinks = function(persist) {
 
   function makeLink(link) {
@@ -68,6 +70,8 @@ api.dom.fixLinks = function(persist) {
 
 };
 
+// Save cookies in localstorage
+//
 api.dom.fixCookie = function(sessionCookieName) {
   if (localStorage && platform.iOS) {
     var cookieSession = document.cookie.match(new RegExp(sessionCookieName + '=[^;]+')),
@@ -82,8 +86,8 @@ api.dom.fixCookie = function(sessionCookieName) {
   }
 };
 
-// DOM utils
-
+// Get element by tag id
+//
 api.dom.id = function(id) {
   return document.getElementById(id);
 };
@@ -110,6 +114,8 @@ if (document.getElementsByClassName) {
   };
 }
 
+// Add element class
+//
 api.dom.addClass = function(element, className) {
   var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
   if (regex.test(element.className)) {
@@ -118,31 +124,36 @@ api.dom.addClass = function(element, className) {
   }
 };
 
+// Remove element class
+//
 api.dom.removeClass = function(element, className) {
   var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
   element.className = element.className.replace(regex, '$1').replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
 };
 
+// Check element class
+//
 api.dom.hasClass = function(element, className) {
   element = api.dom.element(element);
   return element.className.match(new RegExp('(^|\b)' + className + '($|\b)'));
 };
 
+// Toggle element class
+//
 api.dom.toggleClass = function(element, className) {
   element = api.dom.element(element);
   if (api.dom.hasClass(element, className)) api.dom.removeClass(element, className);
   else api.dom.addClass(element, className);
 };
 
+// Insert element after
+//
 api.dom.insertAfter = function(parent, node, referenceNode) {
   parent.insertBefore(node, referenceNode.nextSibling);
 };
 
-api.dom.getFrameDocument = function(fname) {
-  if (platform.IE) return frames[fname].document;
-  else return api.dom.id(fname).contentDocument; 
-};
-
+// Add element event
+//
 api.dom.addEvent = function(element, event, fn) {
   if (element.addEventListener) {
     return element.addEventListener(event, fn, false);
@@ -154,6 +165,8 @@ api.dom.addEvent = function(element, event, fn) {
   } else return false;
 };
 
+// Remove element event
+//
 api.dom.removeEvent = function(element, event, fn) {
   if (element.removeEventListener) {
     return element.removeEventListener(event, fn, false);
@@ -173,16 +186,21 @@ api.dom.on = function(event, element, fn) {
   if (element) api.dom.addEvent(element, event, fn);
 };
 
+// Use element or selector
+//
 api.dom.element = function(element) {
   if (typeof(element) === 'string') return document.querySelector(element);
   else return element;
 };
 
+// Get page body reference
+//
 api.dom.on('load', function() {
   api.dom.body = document.body || document.getElementsByTagName('body')[0];
 });
 
 // fn(event) should terurn not empty string for confirmation dialog
+//
 api.dom.onBeforeUnload = function(fn) {
   api.dom.addEvent(api.dom, 'beforeunload', function(event) {
     var message = fn(event);
@@ -192,16 +210,22 @@ api.dom.onBeforeUnload = function(fn) {
   });
 };
 
+// Enable element
+//
 api.dom.enable = function(element, flag) {
   if (flag) api.dom.removeClass(element, 'disabled');
   else api.dom.addClass(element, 'disabled');
 };
 
+// Disable element
+//
 api.dom.visible = function(element, flag) {
   if (flag) api.dom.show();
   else api.dom.hide();
 };
 
+// Load element content using AJAX
+//
 api.dom.load = function(url, element, callback) {
   element.innerHTML = '<div class="progress"></div>';
   api.rpc.get(url, {}, function(err, res) {
@@ -209,6 +233,8 @@ api.dom.load = function(url, element, callback) {
   });
 };
 
+// Center element
+//
 api.dom.alignCenter = function(element) {
   element = api.dom.element(element);
   var marginLeft = Math.max(40, parseInt($(window).width()/2 - $(element).width()/2, 10)) + 'px';
@@ -216,6 +242,8 @@ api.dom.alignCenter = function(element) {
   return $(element).css({ 'margin-left': marginLeft, 'margin-top': marginTop });
 };
 
+// Popup form
+//
 api.dom.togglePopup = function(element) {
   element = api.dom.element(element);
   if ($('#popup').hasClass('hidden')) {
@@ -241,6 +269,8 @@ api.dom.togglePopup = function(element) {
   }
 };
 
+// Close popup form
+//
 api.dom.closeForm = function() {
   api.dom.form = document.querySelector('#popup .form');
   var $inputs = $('form select:input', api.dom.form);
@@ -251,7 +281,7 @@ api.dom.closeForm = function() {
   if (api.dom.form) api.dom.togglePopup(api.dom.form);
 };
 
-// Confirmation
+// Confirmation dialog
 //   Buttons: ['Yes', 'No', 'Ok', 'Cancel']
 //
 api.dom.confirmation = function(title, message, eventYes, buttons) {
@@ -267,6 +297,8 @@ api.dom.confirmation = function(title, message, eventYes, buttons) {
   form.togglePopup();
 };
 
+// Confirmation dialog button
+//
 $(document).on('click', '#formConfirmation .button.save', function(event) {
   if (typeof(api.dom.confirmation.formConfirmationYes) === 'function') {
     api.dom.confirmation.formConfirmationYes();
@@ -276,7 +308,7 @@ $(document).on('click', '#formConfirmation .button.save', function(event) {
   return false;
 });
 
-// Input
+// Input dialog
 //
 api.dom.input = function(title, prompt, defaultValue, eventOk) {
   var form = $('#formInput');
@@ -289,9 +321,8 @@ api.dom.input = function(title, prompt, defaultValue, eventOk) {
   form.togglePopup();
 };
 
-// Copypaste utils
-
 // Call disableSelection on page load with element to disable or without parameters to disable selection in whole page
+//
 api.dom.disableSelection = function(target) {
   target = target || api.dom.html;
   if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = api.impress.falseness; // For IE
@@ -304,6 +335,8 @@ api.dom.disableSelection = function(target) {
   target.style.cursor = 'default';
 };
 
+// Disable browser context menu
+//
 api.dom.disableContextMenu = function(target) {
   target = target || api.dom.html;
   api.dom.addEvent(document, 'contextmenu', function(event) {
@@ -313,6 +346,8 @@ api.dom.disableContextMenu = function(target) {
   });
 };
 
+// Disable browser content copy function
+//
 api.dom.disableCopy = function(target) {
   target = target || api.dom.html;
   var fn = function(event) {
@@ -343,10 +378,34 @@ api.dom.disableCopy = function(target) {
   });*/
 };
 
-// Cookie utils
+// Escape HTML
+//
+api.dom.htmlEscape = function(content) {
+  return content.replace(/[&<>"'\/]/g,function(char) {
+    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[char]);
+  });
+};
 
+// Simple string template
+//
+api.dom.template = function(tpl, data, escapeHtml) {
+  return tpl.replace(/@([\-\.0-9a-zA-Z]+)@/g, function(s, key) {
+    return escapeHtml ? api.dom.htmlEscape(data[key]) : data[key];
+  });
+};
+
+// Simple HTML template
+//
+api.dom.templateHtml = function(tpl, data) {
+  return api.dom.template(tpl, data, true);
+};
+
+// Cookie utils
+//
 api.cookie = {};
 
+// Get cookie value by name
+//
 api.cookie.get = function(name) {
   var matches = document.cookie.match(new RegExp(
     '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
@@ -354,17 +413,21 @@ api.cookie.get = function(name) {
   return matches ? decodeURIComponent(matches[1]) : false;
 };
 
+// Set cookie value
+//
 api.cookie.set = function(name, value) {
   var cookie = name + '=' + escape(value) + '; path=/';
   document.cookie = cookie;
 };
 
+// Delete cookie value
+//
 api.cookie.delete = function(name) {
   api.cookie.set(name, null, { expires: -1 });
 };
 
 // RPC API
-
+//
 api.rpc = {};
 api.rpc.tabId = 0;
 api.rpc.tabKey = '';
@@ -378,12 +441,16 @@ api.rpc.initializationCallbacks = [];
 api.rpc.supportsLocalStorage = false;
 api.rpc.onCallbacks = {};
 
+// Add named event handler
+//
 api.rpc.on = function(name, callback) {
   var namedEvent = api.rpc.onCallbacks[name];
   if (!namedEvent) api.rpc.onCallbacks[name] = [callback];
   else namedEvent.push(callback);
 };
 
+// Emit named event
+//
 api.rpc.emit = function(name, data) {
   var namedEvent = api.rpc.onCallbacks[name];
   if (namedEvent) namedEvent.forEach(function(callback) {
@@ -397,12 +464,14 @@ api.rpc.emit = function(name, data) {
 //   api.rpc.tab2 = Date.now() e.g. 1424185704772
 //   api.rpc.newtab = tabId (signal to master)
 //   api.rpc.event = signal in format { name:s, data:d, time: Date.now() }
-
+//
 api.rpc.initializationWait = function(callback) {
   if (!api.rpc.initialized) api.rpc.initializationCallbacks.push(callback);
   else callback();
 };
 
+// Initialize RPC
+//
 api.rpc.initialize = function() {
   try {
     api.rpc.supportsLocalStorage = 'localStorage' in window && window.localStorage !== null;
@@ -411,6 +480,8 @@ api.rpc.initialize = function() {
   if (api.rpc.supportsLocalStorage) api.rpc.initializeConnection();
 };
 
+// Initialize RPC done
+//
 api.rpc.initializeDone = function() {
   api.rpc.heartbeatEvent = setInterval(api.rpc.listenHandler, api.rpc.heartbeatInterval);
   api.rpc.initialized = true;
@@ -420,12 +491,16 @@ api.rpc.initializeDone = function() {
   api.rpc.initializationCallbacks = [];
 };
 
+// Get free browser tab
+//
 api.rpc.getFreeTab = function() {
   for (var id = 1;;id++) {
     if (typeof(localStorage['impress.rpc.tab' + id]) === 'undefined') return id;
   }
 };
 
+// Initialize RPC connection
+//
 api.rpc.initializeConnection = function() {
   if (!api.rpc.initialized) {
     api.rpc.tabId = api.rpc.getFreeTab();
@@ -441,12 +516,16 @@ api.rpc.initializeConnection = function() {
   api.rpc.initializeDone();
 };
 
+// Master tab heartbeat
+//
 api.rpc.heartbeat = function() {
   localStorage[api.rpc.tabKey] = Date.now();
   if (api.rpc.masterTab) api.rpc.checkTabs();
   else api.rpc.checkMaster();
 };
 
+// Check master tab
+//
 api.rpc.checkMaster = function() {
   var masterNow = parseInt(localStorage[api.rpc.masterTabKey], 10);
   if (Date.now() - masterNow > api.rpc.heartbeatInterval * 2) {
@@ -466,6 +545,8 @@ api.rpc.checkMaster = function() {
   }
 };
 
+// Check browser babs
+//
 api.rpc.checkTabs = function() {
   var tabNow, key, keys = Object.keys(localStorage);
   for (var i = 0; i < keys.length; i++) {
@@ -479,12 +560,16 @@ api.rpc.checkTabs = function() {
   }
 };
 
+// Set master tab
+//
 api.rpc.setMaster = function(id) {
   api.rpc.masterTab = false;
   api.rpc.masterTabId = id;
   api.rpc.masterTabKey = 'impress.rpc.tab' + id;
 };
 
+// Create master tab
+//
 api.rpc.createMaster = function() {
   api.rpc.masterTab = true;
   api.rpc.masterTabId = api.rpc.tabId;
@@ -493,6 +578,8 @@ api.rpc.createMaster = function() {
   api.rpc.initializeDone();
 };
 
+// RPC cross-tab communication using localstorage
+//
 api.rpc.onStorageChange = function(e) {
   if (e.key === 'impress.rpc.event') {  
     var event = JSON.parse(e.newValue);
@@ -505,10 +592,14 @@ api.rpc.onStorageChange = function(e) {
   }
 };
 
+// Emit cross-tab event
+//
 api.rpc.emitTabs = function(name, data) {
   localStorage['impress.rpc.event'] = JSON.stringify({ name: name, data: data, time: Date.now() });
 };
 
+// Make URL absolute
+//
 api.rpc.absoluteUrl = function(url) {
   if (url.charAt(0) === '/') {
     var site = window.location,
@@ -519,6 +610,8 @@ api.rpc.absoluteUrl = function(url) {
   } else return url;
 };
 
+// Create websocket instance with RPC wrapper
+//
 api.rpc.ws = function(url) {
 
   var rpc = {};
@@ -595,8 +688,12 @@ api.rpc.ws = function(url) {
 
 };
 
+// Initialize RPC modile
+//
 api.rpc.initialize();
 
+// Prepare AJAX interface stub
+//
 api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
 
   function createMethod(apiStub, apiMethod) {
@@ -640,6 +737,8 @@ api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
 
 };
 
+// Data source abstract interface
+//
 api.rpc.dataSource = function(methods) {
   // just abstract, see implementation below
   // should be implemented methods:
@@ -653,6 +752,8 @@ api.rpc.dataSource = function(methods) {
   //   find(query, callback)        return multiple records as Array, callback(err, Array)
 };
 
+// AJAX data source interface
+//
 api.rpc.ajaxDataSource = function(methods) {
   var ds = api.rpc.ajax(methods);
   ds.read = function(query, callback) {
@@ -666,22 +767,13 @@ api.rpc.ajaxDataSource = function(methods) {
   return ds;
 };
 
-api.rpc.htmlEscape = function(content) {
-  return content.replace(/[&<>"'\/]/g,function(char) {
-    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[char]);
-  });
-};
-
-api.rpc.template = function(tpl, data, escapeHtml) {
-  return tpl.replace(/@([\-\.0-9a-zA-Z]+)@/g, function(s, key) {
-    return escapeHtml ? api.rpc.htmlEscape(data[key]) : data[key];
-  });
-};
-
-api.rpc.templateHtml = function(tpl, data) {
-  return api.rpc.template(tpl, data, true);
-};
-
+// Send HTTP request
+//   method - HTTP verb (string)
+//   url - request URL (string)
+//   params - request parameters (hash, optional)
+//   parseResponse - boolean flag to parse JSON (boolean, optional)
+//   callback - function to call on response received
+//
 api.rpc.request = function(method, url, params, parseResponse, callback) {
   var key, data = [], value = '',
       req = new XMLHttpRequest();
@@ -706,7 +798,7 @@ api.rpc.request = function(method, url, params, parseResponse, callback) {
           }
         }
       } else err = new Error('HTTP error code: ' + req.status);
-      callback(err, res);
+      if (callback) callback(err, res);
     }
   };
   try {
@@ -714,10 +806,22 @@ api.rpc.request = function(method, url, params, parseResponse, callback) {
   } catch(e) { }
 };
 
+// Send HTTP GET request
+//
 api.rpc.get = function(url, params, callback) {
+  if (arguments.length === 2) {
+    callback = params;
+    params = {};
+  }
   api.rpc.request('GET', url, params, true, callback);
 };
 
+// Send HTTP POST request
+//
 api.rpc.post = function(url, params, callback) {
+  if (arguments.length === 2) {
+    callback = params;
+    params = {};
+  }
   api.rpc.request('POST', url, params, true, callback);
 };

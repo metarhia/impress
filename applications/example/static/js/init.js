@@ -86,13 +86,13 @@ api.dom.on('load', function() {
   });
 
   api.dom.on('click', '#menuForkWorker', function() {
-    api.rpc.get('/examples/tools/forkWorker.json', {}, function() {
+    api.rpc.get('/examples/tools/forkWorker.json', function() {
       panelCenter.innerHTML = 'Worker process forked, see console for output.';
     });
   });
 
   api.dom.on('click', '#menuLongWorker', function() {
-    api.rpc.get('/examples/tools/longWorker.json', {}, function() {
+    api.rpc.get('/examples/tools/longWorker.json', function() {
       panelCenter.innerHTML = 'Worker process forked and will terminate in 30 seconds, see console for output.';
     });
   });
@@ -111,7 +111,7 @@ api.dom.on('load', function() {
 
   api.dom.on('click', '#menuGeoIP', function() {
     panelCenter.innerHTML = '<div class="progress"></div>';
-    api.rpc.get('/examples/tools/geoip.json', {}, function(err, res) {
+    api.rpc.get('/examples/tools/geoip.json', function(err, res) {
       panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
     });
   });
@@ -189,7 +189,7 @@ api.dom.on('load', function() {
 
     api.dom.on('click', '#btnSseSend', function() {
       panelCenter.insertAdjacentHTML('beforeend', 'Sending event to server, it should return back.<hr>');
-      api.rpc.get('/examples/events/sendEvent.json', {}, function() {});
+      api.rpc.get('/examples/events/sendEvent.json');
     });
   }
 
