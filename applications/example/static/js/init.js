@@ -9,7 +9,7 @@ api.dom.on('load', function() {
       panelCenter = api.dom.id('panel-center'),
       panelRight = api.dom.id('panel-right');
 
-  var auth = api.rpc.ajaxDataSource({
+  var auth = api.rpc.ajax({
     regValidation: { post: '/api/auth/regvalidation.json' },
     register:      { post: '/api/auth/register.json' },
     signOut:       { post: '/api/auth/signOut.json' }
@@ -66,34 +66,34 @@ api.dom.on('load', function() {
 
   api.dom.on('click', '#menuAJAX', function() {
     var parameterName = 'paramaterValue';
-    $(panelCenter).load('/examples/simple/ajaxTest.ajax?parameterName=' + parameterName);
+    api.dom.load('/examples/simple/ajaxTest.ajax?parameterName=' + parameterName, panelCenter);
   });
 
   api.dom.on('click', '#menuGetJSON', function() {
     var parameterName = 'paramaterValue';
-    $(panelCenter).empty().html('<div class="progress"></div>');
+    panelCenter.innerHTML ='<div class="progress"></div>';
     api.rpc.get('/examples/simple/jsonGet.json', { parameterName: parameterName }, function(err, res) {
-      $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
+      panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
     });
   });
 
   api.dom.on('click', '#menuPostJSON', function() {
     var parameterName = 'paramaterValue';
-    $(panelCenter).empty().html('<div class="progress"></div>');
+    panelCenter.innerHTML = '<div class="progress"></div>';
     api.rpc.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(err, res) {
-      $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
+      panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
     });
   });
 
   api.dom.on('click', '#menuForkWorker', function() {
     api.rpc.get('/examples/tools/forkWorker.json', {}, function() {
-      $(panelCenter).html('Worker process forked, see console for output.');
+      panelCenter.innerHTML = 'Worker process forked, see console for output.';
     });
   });
 
   api.dom.on('click', '#menuLongWorker', function() {
     api.rpc.get('/examples/tools/longWorker.json', {}, function() {
-      $(panelCenter).html('Worker process forked and will terminate in 30 seconds, see console for output.');
+      panelCenter.innerHTML = 'Worker process forked and will terminate in 30 seconds, see console for output.';
     });
   });
 
@@ -101,64 +101,59 @@ api.dom.on('load', function() {
     window.location = '/examples/override';
   });
 
-  api.dom.on('click', '#menuDBMI', function() {
-    window.location = '/dbmi';
-  });
-
-  api.dom.on('click', '#menuSetup', function() {
-    window.location = '/setup';
-  });
-
   api.dom.on('click', '#menuFileUpload', function() {
-    $(panelCenter).load('/examples/simple/upload.ajax');
+    api.dom.load('/examples/simple/upload.ajax', panelCenter);
   });
 
   api.dom.on('click', '#menuDownload', function() {
-    $(panelCenter).html('<iframe src="/examples/simple/download.ajax" style="display:none"></iframe>');
+    panelCenter.innerHTML = '<iframe src="/examples/simple/download.ajax" style="display:none"></iframe>';
   });
 
   api.dom.on('click', '#menuGeoIP', function() {
-    $(panelCenter).empty().html('<div class="progress"></div>');
+    panelCenter.innerHTML = '<div class="progress"></div>';
     api.rpc.get('/examples/tools/geoip.json', {}, function(err, res) {
-      $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
+      panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
     });
   });
 
   var ws;
   api.dom.on('click', '#menuWS', function() {
     var url = api.rpc.absoluteUrl('/examples/events/connect.ws');
+
     ws = new WebSocket(url);
-    $(panelCenter).html(
+
+    panelCenter.innerHTML = (
       '<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> ' +
       '<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>' +
       '<hr>Connecting...<hr>'
     );
+    var btnWsSend = api.dom.id('btnWsSend');
 
     ws.onopen = function() {
-      $(panelCenter).append('Connection opened<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection opened<hr>');
     };
 
     ws.onclose = function() {
-      $(panelCenter).append('Connection closed<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection closed<hr>');
     };
 
     ws.onmessage = function(evt) {
-      $(panelCenter).append('Message from server: ' + evt.data + '<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Message from server: ' + evt.data + '<hr>');
     };
 
-    $('#btnWsClose').on('click', function() {
+    api.dom.on('click', '#btnWsClose', function() {
       ws.close();
-      $('#btnWsClose').hide();
+      btnWsSend.style.display = 'none';
     });
 
-    $('#btnWsSend').on('click', function() {
-      $(panelCenter).append('Sending to server: Hello<hr>');
+    api.dom.on('click', '#btnWsSend', function() {
+      panelCenter.insertAdjacentHTML('beforeend', 'Sending to server: Hello<hr>');
       ws.send('Hello');
     });
   });
   
   api.dom.on('click', '#menuSSE', function() {
-    $(panelCenter).html(
+    panelCenter.innerHTML = (
       '<a class="button silver" id="btnSseClose"><span class="icon delete"></span>Close connection</a> ' +
       '<a class="button silver" id="btnSseSend"><span class="icon handshake"></span>Send event to server</a>' +
       '<hr>Connecting...<hr>'
@@ -168,39 +163,38 @@ api.dom.on('load', function() {
 
   function sseConnect() {
     var sse = new EventSource('/examples/events/connect.sse');
+    var btnSseClose = api.dom.id('btnSseClose');
 
     sse.addEventListener('test', function(e) {
-      $(panelCenter).append('Event: ' + e.type + '; Data: ' + e.data + '<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Event: ' + e.type + '; Data: ' + e.data + '<hr>');
     });
 
     sse.addEventListener('open', function(e) {
-      $(panelCenter).append('Connection opened<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection opened<hr>');
     }, false);
 
     sse.addEventListener('error', function(e) {
-      if (e.readyState === EventSource.CLOSED) $(panelCenter).append('Connection closed by server<hr>');
-      else $(panelCenter).append('SSE Error: readyState=' + sse.readyState + '<hr>');
+      if (e.readyState === EventSource.CLOSED) {
+        panelCenter.insertAdjacentHTML('beforeend', 'Connection closed by server<hr>');
+      } else {
+        panelCenter.insertAdjacentHTML('beforeend', 'SSE Error: readyState=' + sse.readyState + '<hr>');
+      }
     }, false);
 
-    $('#btnSseClose').on('click', function() {
+    api.dom.on('click', '#btnSseClose', function() {
       sse.close();
-      $(panelCenter).append('Connection closed by user<hr>');
-      $('#btnSseClose').hide();
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection closed by user<hr>');
+      btnSseClose.style.display = 'none';
     });
 
-    $('#btnSseSend').on('click', function() {
-      $(panelCenter).append('Sending event to server, it should return back.<hr>');
+    api.dom.on('click', '#btnSseSend', function() {
+      panelCenter.insertAdjacentHTML('beforeend', 'Sending event to server, it should return back.<hr>');
       api.rpc.get('/examples/events/sendEvent.json', {}, function() {});
     });
   }
 
-  api.dom.on('click', '#menuSendMail', function() {
-  });
-
-  // begin Chat
-
   api.dom.on('click', '#menuChat', function() {
-    $(panelCenter).html(
+    panelCenter.innerHTML = (
       '<div id="chatPanel" style="position:relative; height:100%;">' +
         '<div id="chatMessages" style="position:absolute; top:0; bottom:50px; left:0; right:0; overflow-y: scroll; overflow-x: hidden;"></div>' +
         '<div style="position:absolute; bottom:0; left:0; right:0">' +
@@ -215,15 +209,15 @@ api.dom.on('load', function() {
 
   function chatConnect() {
     var chat = new EventSource('/examples/chat/connect.sse'),
-        chatMessages = $('#chatMessages'),
-        chatMessage = $('#chatMessage'),
-        chatUserName = $('#chatUserName');
+        chatMessages = api.dom.id('chatMessages'),
+        chatMessage = api.dom.id('chatMessage'),
+        chatUserName = api.dom.id('chatUserName');
 
     chatMessage.focus();
 
     function msg(s) {
-      chatMessages.append('<div>' + s + '<hr></div>');
-      chatMessages.scrollTop(chatMessages[0].scrollHeight);
+      chatMessages.insertAdjacentHTML('beforeend', '<div>' + s + '<hr></div>');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     chat.addEventListener('chat', function(e) {
@@ -240,29 +234,14 @@ api.dom.on('load', function() {
       else msg('Error: readyState=' + chat.readyState);
     }, false);
 
-    $('#btnChatSend').on('click', function() {
+    api.dom.on('click', '#btnChatSend', function() {
       api.rpc.post(
         '/examples/chat/sendMessage.json',
-        { name: chatUserName.val(), message: chatMessage.val() },
+        { name: chatUserName.value, message: chatMessage.value },
         function(err, res) { }
       );
     });
   }
-
-  // end Chat
-
-  api.dom.on('click', '#btnApplySetup', function() {
-    var npmModules = $('#npmModules input'),
-        npmChecked = [];
-    npmModules.each(function() {
-      if ($(this)[0].checked) npmChecked.push($(this).val());
-    });
-    api.rpc.post('/setup/apply.json', { npmChecked: npmChecked.join(',') },
-      function(err, res) {
-        $(panelCenter).html('<pre>Module(s) installing... See console output.</pre>');
-      }
-    );
-  });
 
   api.dom.on('click', '#menuAuth', function() {
     window.location = '/examples/auth';

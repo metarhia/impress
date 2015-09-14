@@ -1,3 +1,10 @@
+0.1.362 / 2015-09-14
+==================
+
+  * Fixed application.loadPlaceFile, now setup scripts executing just once and just in master process, close #426
+  * Multiple client-side code optimizations
+  * Removed jQuery dependency in all client-side code except pop-up window
+
 0.1.361 / 2015-09-13
 ==================
 

@@ -45,6 +45,15 @@ platform.WebKit = platform.Chrome || platform.Safari;
 if (platform.IE) platform.IEVersion = parseFloat(navigator.appVersion.split('MSIE')[1]);
 
 api.dom.fixLinks = function(persist) {
+
+  function makeLink(link) {
+    link.addEventListener('click', function(e) {
+      //e.preventDefault();
+      if (persist && this.host === window.location.host) localStorage.setItem('location', this.pathname + this.search);
+      window.location = this.href;
+    }, false);
+  }
+  
   if (platform.iOS) {
     if (persist === null) persist = true;
     persist = persist && localStorage;
@@ -54,15 +63,9 @@ api.dom.fixLinks = function(persist) {
       if (storedLocation && storedLocation !== currentLocation) window.location = storedLocation;
     }
     var link, links = document.getElementsByTagName('a');
-    for (var i = 0; i < links.length; i++) {
-      link = links[i];
-      link.addEventListener('click', function(e) {
-        //e.preventDefault();
-        if (persist && this.host === window.location.host) localStorage.setItem('location', this.pathname + this.search);
-        window.location = this.href;
-      }, false);
-    }
+    for (var i = 0; i < links.length; i++) makeLink(links[i]);
   }
+
 };
 
 api.dom.fixCookie = function(sessionCookieName) {
@@ -199,20 +202,12 @@ api.dom.visible = function(element, flag) {
   else api.dom.hide();
 };
 
-api.dom.reload = function(url, callback) {
-  var panel = this;
-  panel/*scroller('remove').*/.empty().html('<div class="progress"></div>').load(url, function() {
-    //panel.removeAttr('style').scroller('y');
-    //panel.scroller('y');
-    if (api.dom.platform.iOS) panel.width(panel.width()-1);
-    $('a.default', panel).click();
-    if (callback) callback.call(panel);
-    //$('textarea').autoResize({ animateDuration: 300, extraSpace: 20 }).trigger('change');
-    //refreshControls();
+api.dom.load = function(url, element, callback) {
+  element.innerHTML = '<div class="progress"></div>';
+  api.rpc.get(url, {}, function(err, res) {
+    element.innerHTML = res;
   });
 };
-
-// $.ajaxSetup({cache: false});
 
 api.dom.alignCenter = function(element) {
   element = api.dom.element(element);
@@ -603,7 +598,24 @@ api.rpc.ws = function(url) {
 api.rpc.initialize();
 
 api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
+
+  function createMethod(apiStub, apiMethod) {
+    if (apiMethod === 'introspect') {
+      apiStub[apiMethod] = function(params, callback) {
+        apiStub.request(apiMethod, params, function(err, data) {
+          apiStub.init(data);
+          callback(err, data);
+        });
+      };
+    } else {
+      apiStub[apiMethod] = function(params, callback) {
+        apiStub.request(apiMethod, params, callback);
+      };
+    }
+  }
+
   var apiStub = {};
+
   apiStub.request = function(apiMethod, params, callback) {
     var err = null, requestParams = this.methods[apiMethod];
     if (requestParams) {
@@ -617,29 +629,15 @@ api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
     } else err = new Error('DataSource error: AJAX method is not specified');
     callback(err, null);
   };
+
   apiStub.init = function(methods) {
     apiStub.methods = methods;
-    var method;
-    for (method in apiStub.methods) {
-      (function() {
-        var apiMethod = method;
-        if (apiMethod === 'introspect') {
-          apiStub[apiMethod] = function(params, callback) {
-            apiStub.request(apiMethod, params, function(err, data) {
-              apiStub.init(data);
-              callback(err, data);
-            });
-          };
-        } else {
-          apiStub[apiMethod] = function(params, callback) {
-            apiStub.request(apiMethod, params, callback);
-          };
-        }
-      } ());
-    }
+    for (var apiMethod in apiStub.methods) createMethod(apiStub, apiMethod);
   };
+
   apiStub.init(methods);
   return apiStub;
+
 };
 
 api.rpc.dataSource = function(methods) {
@@ -666,12 +664,6 @@ api.rpc.ajaxDataSource = function(methods) {
     });
   };
   return ds;
-};
-
-api.rpc.parse = function(json) {
-  var result;
-  eval('result = new Object(' + json + ')');
-  return result;
 };
 
 api.rpc.htmlEscape = function(content) {
@@ -702,8 +694,6 @@ api.rpc.request = function(method, url, params, parseResponse, callback) {
   }
   data = data.join('&');
   req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  //req.setRequestHeader('Content-length', data.length);
-  //req.setRequestHeader('Connection', 'close');
   req.onreadystatechange = function() {
     if (req.readyState === 4) {
       var err = null, res = req.responseText;
