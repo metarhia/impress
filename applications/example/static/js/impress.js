@@ -49,8 +49,8 @@ if (platform.IE) platform.IEVersion = parseFloat(navigator.appVersion.split('MSI
 api.dom.fixLinks = function(persist) {
 
   function makeLink(link) {
-    link.addEventListener('click', function(e) {
-      //e.preventDefault();
+    link.addEventListener('click', function(/*event*/) {
+      //event.preventDefault();
       if (persist && this.host === window.location.host) localStorage.setItem('location', this.pathname + this.search);
       window.location = this.href;
     }, false);
@@ -64,7 +64,7 @@ api.dom.fixLinks = function(persist) {
           storedLocation = localStorage.getItem('location');
       if (storedLocation && storedLocation !== currentLocation) window.location = storedLocation;
     }
-    var link, links = document.getElementsByTagName('a');
+    var links = document.getElementsByTagName('a');
     for (var i = 0; i < links.length; i++) makeLink(links[i]);
   }
 
@@ -230,6 +230,7 @@ api.dom.load = function(url, element, callback) {
   element.innerHTML = '<div class="progress"></div>';
   api.rpc.get(url, {}, function(err, res) {
     element.innerHTML = res;
+    if (callback) callback(err, res, element);
   });
 };
 
@@ -299,7 +300,7 @@ api.dom.confirmation = function(title, message, eventYes, buttons) {
 
 // Confirmation dialog button
 //
-$(document).on('click', '#formConfirmation .button.save', function(event) {
+$(document).on('click', '#formConfirmation .button.save', function(/*event*/) {
   if (typeof(api.dom.confirmation.formConfirmationYes) === 'function') {
     api.dom.confirmation.formConfirmationYes();
   }
@@ -739,18 +740,16 @@ api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
 
 // Data source abstract interface
 //
-api.rpc.dataSource = function(methods) {
-  // just abstract, see implementation below
-  // should be implemented methods:
-  //   read(query, callback)   return one record as object, callback(err, obj)
-  //   insert(obj, callback)   insert one record, callback(err) on done
-  //   update(obj, callback)   update one record, callback(err) on done
-  //   delete(query, callback) delete multiple records, callback(err) on done
-  // may be implemented methods:
-  //   introspect(params, callback) populates dataSource.methods with introspection metadata returning from server
-  //   metadata(params, callback)   populates dataSource.metadata with metadata from server
-  //   find(query, callback)        return multiple records as Array, callback(err, Array)
-};
+// just abstract, see implementation below
+// should be implemented methods:
+//   read(query, callback)   return one record as object, callback(err, obj)
+//   insert(obj, callback)   insert one record, callback(err) on done
+//   update(obj, callback)   update one record, callback(err) on done
+//   delete(query, callback) delete multiple records, callback(err) on done
+// may be implemented methods:
+//   introspect(params, callback) populates dataSource.methods with introspection metadata returning from server
+//   metadata(params, callback)   populates dataSource.metadata with metadata from server
+//   find(query, callback)        return multiple records as Array, callback(err, Array)
 
 // AJAX data source interface
 //

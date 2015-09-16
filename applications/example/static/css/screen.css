@@ -4,6 +4,7 @@
   outline: none;
   cursor: default;
   -moz-user-select: inherit;
+  -webkit-user-select: inherit;
 }
 a, a * {
   cursor: pointer;
@@ -103,7 +104,7 @@ ul,ol {
   padding: 8px 4px;
   position: fixed;
   top: 90px;
-  right: 0px;
+  right: 0;
   bottom: 18px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -281,28 +282,28 @@ div.label {
 }
 .icon.none { background-position: 16px 16px; }
 
-.icon.silver { background-position: 0px 0px; }
-.icon.yellow { background-position: -16px 0px; }
-.icon.red { background-position: -32px 0px; }
-.icon.green { background-position: -48px 0px; }
-.icon.blue { background-position: -64px 0px; }
-.icon.load.down { background-position: -80px 0px; }
-.icon.load.up { background-position: -96px 0px; }
-.icon.blank { background-position: -112px 0px; }
-.icon.page { background-position: -128px 0px; }
-.icon.list { background-position: -144px 0px; }
-.icon.image { background-position: -160px 0px; }
-.icon.news { background-position: -176px 0px; }
-.icon.notepad { background-position: -192px 0px; }
-.icon.scroll { background-position: -208px 0px; }
-.icon.print { background-position: -224px 0px; }
-.icon.scissors { background-position: -240px 0px; }
-.icon.article { background-position: -256px 0px; }
-.icon.share.page { background-position: -272px 0px; }
-.icon.share.folder { background-position: -288px 0px; }
-.icon.share.image { background-position: -304px 0px; }
+.icon.silver { background-position: 0 0; }
+.icon.yellow { background-position: -16px 0; }
+.icon.red { background-position: -32px 0; }
+.icon.green { background-position: -48px 0; }
+.icon.blue { background-position: -64px 0; }
+.icon.load.down { background-position: -80 0; }
+.icon.load.up { background-position: -96px 0; }
+.icon.blank { background-position: -112px 0; }
+.icon.page { background-position: -128px 0; }
+.icon.list { background-position: -144px 0; }
+.icon.image { background-position: -160px 0; }
+.icon.news { background-position: -176px 0; }
+.icon.notepad { background-position: -192px 0; }
+.icon.scroll { background-position: -208px 0; }
+.icon.print { background-position: -224px 0; }
+.icon.scissors { background-position: -240px 0; }
+.icon.article { background-position: -256px 0; }
+.icon.share.page { background-position: -272px 0; }
+.icon.share.folder { background-position: -288px 0; }
+.icon.share.image { background-position: -304px 0; }
 
-.icon.plus { background-position: 0px -16px; }
+.icon.plus { background-position: 0 -16px; }
 .icon.minus { background-position: -16px -16px; }
 .icon.edit { background-position: -32px -16px; }
 .icon.delete { background-position: -48px -16px; }
@@ -323,7 +324,7 @@ div.label {
 .icon.put { background-position: -288px -16px; }
 .icon.hd { background-position: -304px -16px; }
 
-.icon.person.silver { background-position: 0px -32px; }
+.icon.person.silver { background-position: 0 -32px; }
 .icon.person.yellow { background-position: -16px -32px; }
 .icon.person.red { background-position: -32px -32px; }
 .icon.person.green { background-position: -48px -32px; }
@@ -344,7 +345,7 @@ div.label {
 .icon.skype { background-position: -288px -32px; }
 .icon.properties { background-position: -304px -32px; }
 
-.icon.portfolio { background-position: 0px -48px; }
+.icon.portfolio { background-position: 0 -48px; }
 .icon.folder.close { background-position: -16px -48px; }
 .icon.folder.open { background-position: -32px -48px; }
 .icon.puzzle.green { background-position: -48px -48px; }
@@ -365,7 +366,7 @@ div.label {
 .icon.mic { background-position: -288px -48px; }
 .icon.speaker { background-position: -304px -48px; }
 
-.icon.talk { background-position: 0px -64px; }
+.icon.talk { background-position: 0 -64px; }
 .icon.msg { background-position: -16px -64px; }
 .icon.chat { background-position: -32px -64px; }
 .icon.message { background-position: -48px -64px; }
@@ -386,7 +387,7 @@ div.label {
 .icon.wand { background-position: -288px -64px; }
 .icon.screen { background-position: -304px -64px; }
 
-.icon.heart { background-position: 0px -80px; }
+.icon.heart { background-position: 0 -80px; }
 .icon.seal { background-position: -16px -80px; }
 .icon.abacus { background-position: -32px -80px; }
 .icon.cookie { background-position: -48px -80px; }
@@ -407,7 +408,7 @@ div.label {
 .icon.stamp { background-position: -288px -80px; }
 .icon.pin { background-position: -304px -80px; }
 
-.icon.mail.yellow { background-position: 0px -96px; }
+.icon.mail.yellow { background-position: 0 -96px; }
 .icon.mail.blue { background-position: -16px -96px; }
 .icon.mailto { background-position: -32px -96px; }
 .icon.mail.open { background-position: -48px -96px; }
@@ -428,7 +429,7 @@ div.label {
 .icon.offline { background-position: -288px -96px; }
 .icon.help { background-position: -304px -96px; }
 
-.icon.profile.item { background-position: 0px -112px; }
+.icon.profile.item { background-position: 0 -112px; }
 .icon.profile.card { background-position: -16px -112px; }
 .icon.profile.vcard { background-position: -32px -112px; }
 .icon.addressbook { background-position: -48px -112px; }
@@ -449,7 +450,7 @@ div.label {
 .icon.unify { background-position: -288px -112px; }
 .icon.selection { background-position: -304px -112px; }
 
-.icon.tag.silver { background-position: 0px -128px; }
+.icon.tag.silver { background-position: 0 -128px; }
 .icon.tag.yellow { background-position: -16px -128px; }
 .icon.tag.red { background-position: -32px -128px; }
 .icon.tag.green { background-position: -48px -128px; }
@@ -470,7 +471,7 @@ div.label {
 .icon.next { background-position: -288px -128px; }
 .icon.presentation { background-position: -304px -128px; }
 
-.icon.flag.silver { background-position: 0px -144px; }
+.icon.flag.silver { background-position: 0 -144px; }
 .icon.flag.yellow { background-position: -16px -144px; }
 .icon.flag.red { background-position: -32px -144px; }
 .icon.flag.green { background-position: -48px -144px; }
@@ -491,7 +492,7 @@ div.label {
 .icon.underline { background-position: -288px -144px; }
 .icon.strike { background-position: -304px -144px; }
 
-.icon.star.red { background-position: 0px -160px; }
+.icon.star.red { background-position: 0 -160px; }
 .icon.star.green { background-position: -16px -160px; }
 .icon.star.blue { background-position: -32px -160px; }
 .icon.order.red { background-position: -48px -160px; }
@@ -512,7 +513,7 @@ div.label {
 .icon.align.center { background-position: -288px -160px; }
 .icon.align.right { background-position: -304px -160px; }
 
-.icon.star.silver { background-position: 0px -176px; }
+.icon.star.silver { background-position: 0 -176px; }
 .icon.star.half { background-position: -16px -176px; }
 .icon.star.yellow { background-position: -32px -176px; }
 .icon.handshake { background-position: -48px -176px; }
@@ -533,7 +534,7 @@ div.label {
 .icon.image.center { background-position: -288px -176px; }
 .icon.image.right { background-position: -304px -176px; }
 
-.icon.table { background-position: 0px -192px; }
+.icon.table { background-position: 0 -192px; }
 .icon.table.header { background-position: -16px -192px; }
 .icon.tv { background-position: -32px -192px; }
 .icon.calc { background-position: -48px -192px; }
@@ -554,7 +555,7 @@ div.label {
 .icon.list.ord { background-position: -288px -192px; }
 .icon.list.num { background-position: -304px -192px; }
 
-.icon.paper.empty { background-position: 0px -208px; }
+.icon.paper.empty { background-position: 0 -208px; }
 .icon.paper.text { background-position: -16px -208px; }
 .icon.papers.empty { background-position: -32px -208px; }
 .icon.papers.text { background-position: -48px -208px; }
@@ -575,7 +576,7 @@ div.label {
 .icon.sun.cloud { background-position: -288px -208px; }
 .icon.storm { background-position: -304px -208px; }
 
-.icon.keyboard { background-position: 0px -224px; }
+.icon.keyboard { background-position: 0 -224px; }
 .icon.academy { background-position: -16px -224px; }
 .icon.usb { background-position: -32px -224px; }
 .icon.webcam { background-position: -48px -224px; }
@@ -596,7 +597,7 @@ div.label {
 .icon.unknown4 { background-position: -288px -224px; }
 .icon.unknown5 { background-position: -304px -224px; }
 
-.icon.google { background-position: 0px -240px; }
+.icon.google { background-position: 0 -240px; }
 .icon.facebook { background-position: -16px -240px; }
 .icon.linkedin { background-position: -32px -240px; }
 .icon.twitter { background-position: -48px -240px; }
@@ -617,7 +618,7 @@ div.label {
 .icon.unknown16 { background-position: -288px -240px; }
 .icon.unknown17 { background-position: -304px -240px; }
 
-.icon.x.gray { background-position: 0px -256px; }
+.icon.x.gray { background-position: 0 -256px; }
 .icon.x.white { background-position: -16px -256px; }
 .icon.x.black { background-position: -32px -256px; }
 

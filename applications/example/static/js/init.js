@@ -5,9 +5,7 @@ api.dom.on('load', function() {
   api.dom.addClass(document.body, 'js');
   api.dom.fixCookie('SID');
 
-  var panelLeft = api.dom.id('panel-left'),
-      panelCenter = api.dom.id('panel-center'),
-      panelRight = api.dom.id('panel-right');
+  var panelCenter = api.dom.id('panel-center');
 
   var auth = api.rpc.ajax({
     regValidation: { post: '/api/auth/regvalidation.json' },
@@ -26,7 +24,7 @@ api.dom.on('load', function() {
   });
 
   api.dom.on('click', '#hmenu-Signout', function() {
-    auth.signOut({}, function(err, data) {
+    auth.signOut({}, function(/*err, data*/) {
       if (localStorage) localStorage.clear();
       window.location.reload(true);
     });
@@ -38,7 +36,7 @@ api.dom.on('load', function() {
     return false;
   });
 
-  api.dom.on('click', '#formRegDo', function(event) {
+  api.dom.on('click', '#formRegDo', function(/*event*/) {
     var inputEmail = $('#formRegEmail'),
         inputPassword = $('#formRegPassword'),
         regValidation = null,
@@ -165,15 +163,15 @@ api.dom.on('load', function() {
     var sse = new EventSource('/examples/events/connect.sse');
     var btnSseClose = api.dom.id('btnSseClose');
 
-    sse.addEventListener('test', function(e) {
-      panelCenter.insertAdjacentHTML('beforeend', 'Event: ' + e.type + '; Data: ' + e.data + '<hr>');
+    sse.addEventListener('test', function(event) {
+      panelCenter.insertAdjacentHTML('beforeend', 'Event: ' + event.type + '; Data: ' + event.data + '<hr>');
     });
 
-    sse.addEventListener('open', function(e) {
+    sse.addEventListener('open', function(/*event*/) {
       panelCenter.insertAdjacentHTML('beforeend', 'Connection opened<hr>');
     }, false);
 
-    sse.addEventListener('error', function(e) {
+    sse.addEventListener('error', function(/*event*/) {
       if (e.readyState === EventSource.CLOSED) {
         panelCenter.insertAdjacentHTML('beforeend', 'Connection closed by server<hr>');
       } else {
@@ -220,17 +218,17 @@ api.dom.on('load', function() {
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    chat.addEventListener('chat', function(e) {
-      var data = JSON.parse(e.data);
+    chat.addEventListener('chat', function(event) {
+      var data = JSON.parse(event.data);
       msg(data.name + '(' + data.ip + '): ' + data.message);
     });
 
-    chat.addEventListener('open', function(e) {
+    chat.addEventListener('open', function(/*event*/) {
       msg('Connected to chat server');
     }, false);
 
-    chat.addEventListener('error', function(e) {
-      if (e.readyState === EventSource.CLOSED) msg('Connection closed by server');
+    chat.addEventListener('error', function(/*event*/) {
+      if (event.readyState === EventSource.CLOSED) msg('Connection closed by server');
       else msg('Error: readyState=' + chat.readyState);
     }, false);
 
@@ -238,7 +236,7 @@ api.dom.on('load', function() {
       api.rpc.post(
         '/examples/chat/sendMessage.json',
         { name: chatUserName.value, message: chatMessage.value },
-        function(err, res) { }
+        function(/*err, res*/) { }
       );
     });
   }
