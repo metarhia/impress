@@ -19,7 +19,7 @@ api.dom.on('load', function() {
   // Auth Module
 
   api.dom.on('click', '#hmenu-Signin', function() {
-    api.dom.togglePopup('#formLogin');
+    api.dom.popup('#formLogin');
     return false;
   });
 
@@ -32,32 +32,36 @@ api.dom.on('load', function() {
   });
 
   api.dom.on('click', '#hmenu-Register', function() {
-    api.dom.togglePopup('#formReg');
+    api.dom.popup('#formReg');
     return false;
   });
 
   api.dom.on('click', '#formRegDo', function(/*event*/) {
-    var inputEmail = $('#formRegEmail'),
-        inputPassword = $('#formRegPassword'),
+    var inputEmail = api.dom.id('formRegEmail'),
+        inputPassword = api.dom.id('formRegPassword'),
         regValidation = null,
-        data = { Email: inputEmail.val() };
+        data = { Email: inputEmail.value };
     auth.regValidation(data, function(err, json) {
       regValidation = json;
       if (regValidation !== null) {
-        data.Password = inputPassword.val();
+        data.Password = inputPassword.value;
         if (regValidation.Email) {
-          inputEmail.removeClass('invalid');
+          api.dom.removeClass(inputEmail, 'invalid');
           auth.register(data, function(err, data) {
             if (data.Result === 'Ok') window.location.reload(true);
           });
-        } else inputEmail.addClass('invalid').focus();
+        } else {
+          api.dom.addClass(inputEmail, 'invalid');
+          inputEmail.focus();
+        }
       }
     });
     return false;
   });
 
   api.dom.on('click', '#formLoginSignIn', function() {
-    $('#formLoginSubmit').click();
+    var btn = api.dom.id('formLoginSubmit');
+    api.dom.fireEvent(btn, 'click');
   });
 
   // Left menu

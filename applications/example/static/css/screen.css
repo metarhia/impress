@@ -184,11 +184,7 @@ h2 {
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-
-
-
-
-
+br.clear { clear:both; }
 @media screen and (min-device-width: 801px) {
 }
 @media only screen and (max-device-width: 800px) {
@@ -260,10 +256,6 @@ div.label {
   background: linear-gradient(top, #9698c8 0%,#6265ad 50%,#2e3192 50%,#1f2786 100%);
   background-repeat: no-repeat;
 }
-
-
-
-
 .progress {
   height: 16px;
   width: 16px;
@@ -622,20 +614,6 @@ div.label {
 .icon.x.white { background-position: -16px -256px; }
 .icon.x.black { background-position: -32px -256px; }
 
-
-
-
-
-
-#darken { background-color: #000; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 10; margin: 90px 0 0 0; }
-#popup { background-color: #FFF; left: 0; min-width: 300px; position: fixed; top: 0; z-index: 11; box-shadow: 0 0 15px #333; -moz-box-shadow: 0 0 15px #333; -webkit-box-shadow: 0 0 15px #333; padding: 10px; }
-#popup .form.profiler { width: 500px }
-.hidden { display:none; }
-br.clear { clear:both; }
-
-
-
-
 .form table { width: 100% }
 .form .header, 
 .form .message {
@@ -727,17 +705,14 @@ br.clear { clear:both; }
 .form .shadow {
   box-shadow: 0 30px 10px -28px #999999 inset, 0 -30px 10px -28px #999999 inset;
 }
-
 svg {
   font: 10px sans-serif;
 }
-
 .line {
   fill: none;
   stroke: #000;
   stroke-width: 1.5px;
 }
-
 .axis path,
 .axis line {
   fill: none;

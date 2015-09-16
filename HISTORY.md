@@ -1,3 +1,8 @@
+0.1.364 / 2015-09-16
+==================
+
+  * Removed jQuery dependency in client-side code, close #237
+
 0.1.363 / 2015-09-15
 ==================
 

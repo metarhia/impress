@@ -14,7 +14,6 @@
   <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
   <link rel="stylesheet" type="text/css" href="/css/screen.css" />
 
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/eventsource.min.js"></script>
   <script type="text/javascript" src="/js/impress.js"></script>
   <script type="text/javascript" src="/js/init.js"></script>
@@ -32,12 +31,40 @@
     <div id="content">
       <div id="panel-left">@[left]@</div>
       <div id="panel-center">@[center]@</div>
-      <div id="panel-right">@[right]@</div>
+      <div id="panel-right">Right panel</div>
     </div>
   </div>
   <div id="footer">
     <div id="footer-panel">Copyright &copy; 2013-2015 MetaSystems</div>
   </div>
-  @[forms]@
+  <div id="forms" style="display:none">
+    <div id="formLogin" class="form">
+      <form id="fLogin" name="fLogin" action="/api/auth/signIn.json" method="post">
+        <div class="header">Sign in</div><hr/>
+        <table class="fields">
+          <tr class="field"><td class="label">Login</td><td class="value"><input type="text" value="" name="Login" class="edit" id="formLoginLogin" Nullable="No" autocapitalize="off" autocorrect="off" /></td></tr>
+          <tr class="field"><td class="label">Password</td><td class="value"><input type="password" value="" name="Password" class="edit" id="formLoginPassword" Nullable="No" /></td></tr>
+        </table>
+        <div class="buttons">
+          <a class="button silver save" id="formLoginSignIn"><span class="icon key"></span>Sign in</a>
+          <a class="button silver cancel" id="formLoginCancel"><span class="icon undo"></span>Cancel</a>
+          <input style="display:none;" type="submit" id="formLoginSubmit" name="loginForm" vaule="yes" />
+        </div>
+      </form>
+    </div>
+    <div id="formReg" class="form">
+      <form>
+        <div class="header">Create account</div><hr/>
+        <table class="fields">
+          <tr class="field"><td class="label">E-mail</td><td class="value"><input type="text" value="" name="formRegEmail" class="edit" id="formRegEmail" Nullable="No"  autocapitalize="off" autocorrect="off" /></td></tr>
+          <tr class="field"><td class="label">Password</td><td class="value"><input type="password" value="" name="formRegPassword" class="edit" id="formRegPassword" Nullable="No" /></td></tr>
+        </table>
+        <div class="buttons">
+          <a class="button silver save" id="formRegDo"><span class="icon check"></span>Register</a>
+          <a class="button silver cancel" id="formRegCancel"><span class="icon undo"></span>Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
