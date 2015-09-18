@@ -274,11 +274,14 @@ api.dom.load = function(url, element, callback) {
 // Center element
 //
 api.dom.alignCenter = function(element) {
+  // TODO: implement
 };
 
 // Popup
 //
 api.dom.popup = function(innerContent) {
+  // TODO: decompose
+
   var popup = document.createElement('div'),
       wrapper = document.createElement('div'),
       content = document.createElement('div');
@@ -288,20 +291,20 @@ api.dom.popup = function(innerContent) {
   api.dom.body.appendChild(wrapper);
 
   api.dom.setStyles(wrapper, {
-    height: window.innerHeight + 'px',
-    width: window.innerWidth + 'px',
+    'height': window.innerHeight + 'px',
+    'width': window.innerWidth + 'px',
     'line-height': window.innerHeight + 'px', //vertical centering
-    position: 'absolute',
+    'position': 'absolute',
     'z-index': '10',
     'text-align': 'center', //horizontal centering
-    overflow: 'hidden',
+    'overflow': 'hidden',
     'transition': '0.5s',
-    background: 'rgba(0, 0, 0, 0.5)',
-    opacity: '0',
+    'background': 'rgba(0, 0, 0, 0.5)',
+    'opacity': '0',
   });
   setTimeout(function() {
     api.dom.setStyles(wrapper, {
-      opacity: '1',
+      'opacity': '1',
     });
   }, 50);
   var POPUP_MARGIN = 10;
@@ -317,25 +320,26 @@ api.dom.popup = function(innerContent) {
     'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 /*- POPUP_PADDING.HOR * 2 - 1*/) + 'px',
     'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 /*- POPUP_PADDING.VER * 2 - 3*/) + 'px',
     'min-height': '100px',
-    overflow: 'auto',
-    margin: POPUP_MARGIN + 'px',
-    padding: POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
+    'overflow': 'auto',
+    'margin': POPUP_MARGIN + 'px',
+    'padding': POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
     'box-sizing': 'border-box', //include padding to height/width
     'text-align': 'initial',
     'line-height': 'initial',
     'vertical-align': 'middle', //vertical centering
   });
   api.dom.setStyles(content, {
-    display: 'inline-block',
+    'display': 'inline-block',
   });
   var bodyPrevOverflow = api.dom.body.style.overflow;
   api.dom.setStyles(api.dom.body, {
-    overflow: 'hidden'
+    'overflow': 'hidden'
   });
 
   /**@type {HTMLElement}*/
   var element;
   try {
+    // TODO: do not use try in such places
     element = api.dom.element(innerContent);
   } catch (e) { }
   if (element) {
@@ -348,8 +352,8 @@ api.dom.popup = function(innerContent) {
 
   api.dom.on('resize', function() {
     api.dom.setStyles(wrapper, {
-      height: window.innerHeight + 'px',
-      width: window.innerWidth + 'px',
+      'height': window.innerHeight + 'px',
+      'width': window.innerWidth + 'px',
       'line-height': window.innerHeight + 'px',
     });
     api.dom.setStyles(popup, {
@@ -361,7 +365,7 @@ api.dom.popup = function(innerContent) {
   api.dom.on('click', wrapper, function handler(event) {
     if (event.target !== wrapper) return true;
     api.dom.setStyles(wrapper, {
-      opacity: '0',
+      'opacity': '0'
     });
     setTimeout(function() {
       if (previouseParent)previouseParent.insertBefore(content.childNodes.item(0), previouseSibling);
@@ -377,6 +381,8 @@ api.dom.popup = function(innerContent) {
 // Set given styles to element
 //
 api.dom.setStyles = function(element, styles) {
+  // TODO: decompose
+
   var props = { //taken from Emmet lib - https://github.com/emmetio/emmet/blob/master/lib/resolver/css.js#L155
     'webkit': 'animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-clip, background-composite, background-origin, background-size, border-fit, border-horizontal-spacing, border-image, border-vertical-spacing, box-align, box-direction, box-flex, box-flex-group, box-lines, box-ordinal-group, box-orient, box-pack, box-reflect, box-shadow, color-correction, column-break-after, column-break-before, column-break-inside, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-span, column-width, dashboard-region, font-smoothing, highlight, hyphenate-character, hyphenate-limit-after, hyphenate-limit-before, hyphens, line-box-contain, line-break, line-clamp, locale, margin-before-collapse, margin-after-collapse, marquee-direction, marquee-increment, marquee-repetition, marquee-style, mask-attachment, mask-box-image, mask-box-image-outset, mask-box-image-repeat, mask-box-image-slice, mask-box-image-source, mask-box-image-width, mask-clip, mask-composite, mask-image, mask-origin, mask-position, mask-repeat, mask-size, nbsp-mode, perspective, perspective-origin, rtl-ordering, text-combine, text-decorations-in-effect, text-emphasis-color, text-emphasis-position, text-emphasis-style, text-fill-color, text-orientation, text-security, text-stroke-color, text-stroke-width, transform, transition, transform-origin, transform-style, transition-delay, transition-duration, transition-property, transition-timing-function, user-drag, user-modify, user-select, writing-mode, svg-shadow, box-sizing, border-radius',
     'moz': 'animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-inline-policy, binding, border-bottom-colors, border-image, border-left-colors, border-right-colors, border-top-colors, box-align, box-direction, box-flex, box-ordinal-group, box-orient, box-pack, box-shadow, box-sizing, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-width, float-edge, font-feature-settings, font-language-override, force-broken-image-icon, hyphens, image-region, orient, outline-radius-bottomleft, outline-radius-bottomright, outline-radius-topleft, outline-radius-topright, perspective, perspective-origin, stack-sizing, tab-size, text-blink, text-decoration-color, text-decoration-line, text-decoration-style, text-size-adjust, transform, transform-origin, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-focus, user-input, user-modify, user-select, window-shadow, background-clip, border-radius',
@@ -413,6 +419,7 @@ api.dom.setStyles = function(element, styles) {
           keys.push('-' + p + '-' + i);
         }
       }
+      // TODO: function declarations within for loop should be removed and refactored
       keys.forEach(function(key) {
         key = dashedToUpperCase(key);
         element.style[key] = styles[i];
@@ -432,6 +439,7 @@ api.dom.setStyles = function(element, styles) {
 //   Buttons: ['Yes', 'No', 'Ok', 'Cancel']
 //
 api.dom.confirmation = function(title, message, eventYes, buttons) {
+  // TODO: implement
 };
 
 // Input dialog
@@ -874,7 +882,7 @@ api.rpc.ajaxDataSource = function(methods) {
   var ds = api.rpc.ajax(methods);
   ds.read = function(query, callback) {
     ds.request('read', query, function(err, data) {
-      // TODO: autocreate Record
+      // autocreate Record
       //   callback(err, api.rpc.record({ data: data }));
       //
       callback(err, data);
