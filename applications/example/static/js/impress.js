@@ -219,7 +219,7 @@ api.dom.fireEvent = function(element, eventName) {
     event.initEvent(eventName, true, false);
     element.dispatchEvent(event);
   }
-}
+};
 
 // Enable element
 //
@@ -231,7 +231,7 @@ api.dom.enable = function(element, flag) {
 // Visible element
 //
 api.dom.visible = function(element, flag) {
-  if (flag) api.dom.show(element)
+  if (flag) api.dom.show(element);
   else api.dom.hide(element);
 };
 
@@ -328,7 +328,7 @@ api.dom.popup = function(innerContent) {
   api.dom.setStyles(content, {
     display: 'inline-block',
   });
-  var body_prev_overflow = api.dom.body.style.overflow;
+  var bodyPrevOverflow = api.dom.body.style.overflow;
   api.dom.setStyles(api.dom.body, {
     overflow: 'hidden'
   });
@@ -342,7 +342,7 @@ api.dom.popup = function(innerContent) {
     var previouseParent = element.parentNode;
     var previouseSibling = element.nextElementSibling;
     content.appendChild(element/*.cloneNode(true)*/);
-  } else if (typeof innerContent == "string") {
+  } else if (typeof(innerContent) === 'string') {
     content.innerHTML = innerContent;
   }
 
@@ -359,19 +359,19 @@ api.dom.popup = function(innerContent) {
   });
 
   api.dom.on('click', wrapper, function handler(event) {
-    if (event.target != wrapper) return true;
+    if (event.target !== wrapper) return true;
     api.dom.setStyles(wrapper, {
       opacity: '0',
     });
     setTimeout(function() {
       if (previouseParent)previouseParent.insertBefore(content.childNodes.item(0), previouseSibling);
       api.dom.body.removeChild(wrapper);
-      api.dom.body.style.overflow = body_prev_overflow;
+      api.dom.body.style.overflow = bodyPrevOverflow;
     }, 500); //wait 0.5s for animation end
     api.dom.removeEvent(wrapper, 'click', handler);
     event.stopImmediatePropagation();
     return false;
-  })
+  });
 };
 
 // Set given styles to element
@@ -383,30 +383,32 @@ api.dom.setStyles = function(element, styles) {
     'ms': 'accelerator, backface-visibility, background-position-x, background-position-y, behavior, block-progression, box-align, box-direction, box-flex, box-line-progression, box-lines, box-ordinal-group, box-orient, box-pack, content-zoom-boundary, content-zoom-boundary-max, content-zoom-boundary-min, content-zoom-chaining, content-zoom-snap, content-zoom-snap-points, content-zoom-snap-type, content-zooming, filter, flow-from, flow-into, font-feature-settings, grid-column, grid-column-align, grid-column-span, grid-columns, grid-layer, grid-row, grid-row-align, grid-row-span, grid-rows, high-contrast-adjust, hyphenate-limit-chars, hyphenate-limit-lines, hyphenate-limit-zone, hyphens, ime-mode, interpolation-mode, layout-flow, layout-grid, layout-grid-char, layout-grid-line, layout-grid-mode, layout-grid-type, line-break, overflow-style, perspective, perspective-origin, perspective-origin-x, perspective-origin-y, scroll-boundary, scroll-boundary-bottom, scroll-boundary-left, scroll-boundary-right, scroll-boundary-top, scroll-chaining, scroll-rails, scroll-snap-points-x, scroll-snap-points-y, scroll-snap-type, scroll-snap-x, scroll-snap-y, scrollbar-arrow-color, scrollbar-base-color, scrollbar-darkshadow-color, scrollbar-face-color, scrollbar-highlight-color, scrollbar-shadow-color, scrollbar-track-color, text-align-last, text-autospace, text-justify, text-kashida-space, text-overflow, text-size-adjust, text-underline-position, touch-action, transform, transform-origin, transform-origin-x, transform-origin-y, transform-origin-z, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-select, word-break, wrap-flow, wrap-margin, wrap-through, writing-mode',
     'o': 'dashboard-region, animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, border-image, link, link-source, object-fit, object-position, tab-size, table-baseline, transform, transform-origin, transition, transition-delay, transition-duration, transition-property, transition-timing-function, accesskey, input-format, input-required, marquee-dir, marquee-loop, marquee-speed, marquee-style'
   };
-  for (var p in props) {
+
+  var p;
+  for (p in props) {
     props[p] = props[p].split(/\s*,\s*/);
   }
 
   //transform CSS string to Object
-  if (typeof  styles == "string") {
+  if (typeof(styles) === 'string') {
     var stylesStr = styles;
     styles = {};
     stylesStr.split(/\s*;\s*/).filter(Boolean).forEach(function(val) {
-      //split by first ":"
+      //split by first ':'
       var delimPos = val.search(/\s*:\s*/);
       var delimLength = val.match(/\s*:\s*/)[0].length;
-      var key = val.substr(0, delimPos),
-          val = val.substr(delimPos + delimLength);
-      styles[key] = val;//storing to object
+      var key = val.substr(0, delimPos);
+      val = val.substr(delimPos + delimLength);
+      styles[key] = val; //storing to object
     });
   }
 
-  if (typeof styles == "object") {
+  if (typeof(styles) === 'object') {
     for (var i in styles) {
       if (!i || !styles[i]) break;
       var keys = [i];
       //adding vendor prefixes if needed
-      for (var p in props) {
+      for (p in props) {
         if (props[p].indexOf(i) >= 0) {
           keys.push('-' + p + '-' + i);
         }
