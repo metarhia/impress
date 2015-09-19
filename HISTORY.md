@@ -1,3 +1,9 @@
+0.1.366 / 2015-09-19
+==================
+
+  * Example application code fixes
+  * Changed deploy scripts to use node.js 4.1.0
+
 0.1.365 / 2015-09-17
 ==================
 
@@ -34,7 +40,7 @@
 0.1.359 / 2015-09-11
 ==================
 
-  * Changed deploy scripts to use node.js 4.0
+  * Changed deploy scripts to use node.js 4.0.0
 
 0.1.358 / 2015-09-10
 ==================

@@ -4,5 +4,5 @@ module.exports = function(client, callback) {
     name: client.fields.name,
     message: client.fields.message
   });
-  callback('Ok');
+  callback('ok');
 };

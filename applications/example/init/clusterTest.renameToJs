@@ -9,7 +9,7 @@ if (application.isWorker) {
 
   function test() {
     count++;
-    application.backend.call('method1', { sample: "sample" }, function(res) {
+    application.backend.call('method1', { sample: 'sample' }, function(res) {
       test();
     });
   }

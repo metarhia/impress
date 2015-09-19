@@ -40,15 +40,15 @@ api.dom.on('load', function() {
     var inputEmail = api.dom.id('formRegEmail'),
         inputPassword = api.dom.id('formRegPassword'),
         regValidation = null,
-        data = { Email: inputEmail.value };
+        data = { email: inputEmail.value };
     auth.regValidation(data, function(err, json) {
       regValidation = json;
       if (regValidation !== null) {
         data.Password = inputPassword.value;
-        if (regValidation.Email) {
+        if (regValidation.email) {
           api.dom.removeClass(inputEmail, 'invalid');
           auth.register(data, function(err, data) {
-            if (data.Result === 'Ok') window.location.reload(true);
+            if (data.result === 'ok') window.location.reload(true);
           });
         } else {
           api.dom.addClass(inputEmail, 'invalid');
