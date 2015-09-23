@@ -55,7 +55,7 @@ api.dom.fixLinks = function(persist) {
       window.location = this.href;
     }, false);
   }
-  
+
   if (platform.iOS) {
     if (persist === null) persist = true;
     persist = persist && localStorage;
@@ -170,7 +170,7 @@ api.dom.addEvent = function(element, event, fn) {
 api.dom.removeEvent = function(element, event, fn) {
   if (element.removeEventListener) {
     return element.removeEventListener(event, fn, false);
-  } else if (element.detachEvent) { 
+  } else if (element.detachEvent) {
     return element.detachEvent('on' + event, fn);
   } else return false;
 };
@@ -189,8 +189,17 @@ api.dom.on = function(event, element, fn) {
 // Use element or selector
 //
 api.dom.element = function(element) {
-  if (typeof(element) === 'string') return document.querySelector(element);
-  else return element;
+  if (typeof(element) !== 'string') {
+    return element;
+  }
+  var result;
+  try {
+    //catching DOMException if element is not a valid selector
+    result = document.querySelector(element);
+  } catch (e) {
+    result = null;
+  }
+  return result;
 };
 
 // Get page body reference
@@ -274,13 +283,13 @@ api.dom.load = function(url, element, callback) {
 // Center element
 //
 api.dom.alignCenter = function(element) {
-  // TODO: implement
+  // TODO: implement api.dom.alignCenter
 };
 
 // Popup
 //
 api.dom.popup = function(innerContent) {
-  // TODO: decompose
+  // TODO: decompose api.dom.popup
 
   var popup = document.createElement('div'),
       wrapper = document.createElement('div'),
@@ -317,8 +326,8 @@ api.dom.popup = function(innerContent) {
     background: 'white',
     'box-shadow': '2px 2px 10px black',
     'min-width': '300px',
-    'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 /*- POPUP_PADDING.HOR * 2 - 1*/) + 'px',
-    'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 /*- POPUP_PADDING.VER * 2 - 3*/) + 'px',
+    'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
+    'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
     'min-height': '100px',
     'overflow': 'auto',
     'margin': POPUP_MARGIN + 'px',
@@ -338,14 +347,11 @@ api.dom.popup = function(innerContent) {
 
   /**@type {HTMLElement}*/
   var element;
-  try {
-    // TODO: do not use try in such places
     element = api.dom.element(innerContent);
-  } catch (e) { }
   if (element) {
     var previouseParent = element.parentNode;
     var previouseSibling = element.nextElementSibling;
-    content.appendChild(element/*.cloneNode(true)*/);
+    content.appendChild(element);
   } else if (typeof(innerContent) === 'string') {
     content.innerHTML = innerContent;
   }
@@ -357,8 +363,8 @@ api.dom.popup = function(innerContent) {
       'line-height': window.innerHeight + 'px',
     });
     api.dom.setStyles(popup, {
-      'max-width': (wrapper.offsetWidth - 10 * 2 /*- 15*2 -1*/) + 'px',
-      'max-height': (wrapper.offsetHeight - 10 * 2 /*-20*2 -3*/) + 'px',
+      'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
+      'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
     });
   });
 
@@ -381,7 +387,7 @@ api.dom.popup = function(innerContent) {
 // Set given styles to element
 //
 api.dom.setStyles = function(element, styles) {
-  // TODO: decompose
+  // TODO: decompose api.dom.setStyles
 
   var props = { //taken from Emmet lib - https://github.com/emmetio/emmet/blob/master/lib/resolver/css.js#L155
     'webkit': 'animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-clip, background-composite, background-origin, background-size, border-fit, border-horizontal-spacing, border-image, border-vertical-spacing, box-align, box-direction, box-flex, box-flex-group, box-lines, box-ordinal-group, box-orient, box-pack, box-reflect, box-shadow, color-correction, column-break-after, column-break-before, column-break-inside, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-span, column-width, dashboard-region, font-smoothing, highlight, hyphenate-character, hyphenate-limit-after, hyphenate-limit-before, hyphens, line-box-contain, line-break, line-clamp, locale, margin-before-collapse, margin-after-collapse, marquee-direction, marquee-increment, marquee-repetition, marquee-style, mask-attachment, mask-box-image, mask-box-image-outset, mask-box-image-repeat, mask-box-image-slice, mask-box-image-source, mask-box-image-width, mask-clip, mask-composite, mask-image, mask-origin, mask-position, mask-repeat, mask-size, nbsp-mode, perspective, perspective-origin, rtl-ordering, text-combine, text-decorations-in-effect, text-emphasis-color, text-emphasis-position, text-emphasis-style, text-fill-color, text-orientation, text-security, text-stroke-color, text-stroke-width, transform, transition, transform-origin, transform-style, transition-delay, transition-duration, transition-property, transition-timing-function, user-drag, user-modify, user-select, writing-mode, svg-shadow, box-sizing, border-radius',
@@ -419,11 +425,10 @@ api.dom.setStyles = function(element, styles) {
           keys.push('-' + p + '-' + i);
         }
       }
-      // TODO: function declarations within for loop should be removed and refactored
-      keys.forEach(function(key) {
-        key = dashedToUpperCase(key);
+      for (var j in keys) {
+        var key = dashedToUpperCase(keys[j]);
         element.style[key] = styles[i];
-      });
+      }
     }
   }
   return true;
@@ -439,7 +444,7 @@ api.dom.setStyles = function(element, styles) {
 //   Buttons: ['Yes', 'No', 'Ok', 'Cancel']
 //
 api.dom.confirmation = function(title, message, eventYes, buttons) {
-  // TODO: implement
+  // TODO: implement api.dom.confirmation
 };
 
 // Input dialog
@@ -707,7 +712,7 @@ api.rpc.createMaster = function() {
 // RPC cross-tab communication using localstorage
 //
 api.rpc.onStorageChange = function(e) {
-  if (e.key === 'impress.rpc.event') {  
+  if (e.key === 'impress.rpc.event') {
     var event = JSON.parse(e.newValue);
     api.rpc.emit(event.name, event.data);
   } else if (api.rpc.masterTab) {
