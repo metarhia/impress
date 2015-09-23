@@ -14,7 +14,7 @@ module.exports = function(client, callback) {
       bFalse: false,
       dData: new Date(),
       aArray: [1,2,3],
-      oObj: {k:{l:{m:{n:'oppa'}}}},
+      oObj: { k: { l: { m: { n: 'oppa' } } } },
       users: [
         { name: 'vasia', age: 222, emails: ['user1@gmail.com', 'user2@gmail.com'] },
         { name: 'dima', age: 32, emails: ['user3@gmail.com', 'user4@gmail.com', 'user5@gmail.com'] },

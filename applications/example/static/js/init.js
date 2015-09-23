@@ -1,165 +1,161 @@
 'use strict';
 
-var ws;
+api.dom.on('load', function() {
 
-impress.on('load', function() {
+  api.dom.addClass(document.body, 'js');
+  api.dom.fixCookie('SID');
 
-  impress.addClass(impress.body, 'js');
-  impress.fixCookie('SID');
+  var panelCenter = api.dom.id('panel-center');
 
-  var panelLeft = impress.id('panel-left'),
-      panelCenter = impress.id('panel-center'),
-      panelRight = impress.id('panel-right');
-
-  // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
-  global.rpc = impress.rpc.ws('/examples/impress.rpc');
-
-  var auth = wcl.AjaxDataSource({
+  var auth = api.rpc.ajax({
     regValidation: { post: '/api/auth/regvalidation.json' },
     register:      { post: '/api/auth/register.json' },
-    signOut:       { post: '/api/auth/signOut.json' },
+    signOut:       { post: '/api/auth/signOut.json' }
   });
 
-  // --- Auth Module ---
+  // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
+  // global.rpc = api.rpc.ws('/examples/impress.rpc');
 
-  impress.on('click', '#hmenu-Signin', function() {
-    impress.popup('#formLogin');
+  // Auth Module
+
+  api.dom.on('click', '#hmenu-Signin', function() {
+    api.dom.popup('#formLogin');
     return false;
   });
 
-  impress.on('click', '#hmenu-Signout', function() {
-    auth.signOut({}, function(err, data) {
+  api.dom.on('click', '#hmenu-Signout', function() {
+    auth.signOut({}, function(/*err, data*/) {
       if (localStorage) localStorage.clear();
       window.location.reload(true);
     });
     return false;
   });
 
-  impress.on('click', '#hmenu-Register', function() {
-    impress.popup('#formReg');
+  api.dom.on('click', '#hmenu-Register', function() {
+    api.dom.popup('#formReg');
     return false;
   });
 
-  impress.on('click', '#formRegDo', function(event) {
-    var inputEmail = $('#formRegEmail'),
-        inputPassword = $('#formRegPassword'),
+  api.dom.on('click', '#formRegDo', function(/*event*/) {
+    var inputEmail = api.dom.id('formRegEmail'),
+        inputPassword = api.dom.id('formRegPassword'),
         regValidation = null,
-        data = { Email: inputEmail.val() };
+        data = { email: inputEmail.value };
     auth.regValidation(data, function(err, json) {
       regValidation = json;
       if (regValidation !== null) {
-        data.Password = inputPassword.val();
-        if (regValidation.Email) {
-          inputEmail.removeClass('invalid');
+        data.Password = inputPassword.value;
+        if (regValidation.email) {
+          api.dom.removeClass(inputEmail, 'invalid');
           auth.register(data, function(err, data) {
-            if (data.Result === 'Ok') window.location.reload(true);
+            if (data.result === 'ok') window.location.reload(true);
           });
-        } else inputEmail.addClass('invalid').focus();
+        } else {
+          api.dom.addClass(inputEmail, 'invalid');
+          inputEmail.focus();
+        }
       }
     });
     return false;
   });
 
-  impress.on('click', '#formLoginSignIn', function() {
-    $('#formLoginSubmit').click();
+  api.dom.on('click', '#formLoginSignIn', function() {
+    var btn = api.dom.id('formLoginSubmit');
+    api.dom.fireEvent(btn, 'click');
   });
 
-  // --- LEFT MENU ---
+  // Left menu
 
-  impress.on('click', '#menuAJAX', function() {
+  api.dom.on('click', '#menuAJAX', function() {
     var parameterName = 'paramaterValue';
-    $(panelCenter).load('/examples/simple/ajaxTest.ajax?parameterName=' + parameterName);
+    api.dom.load('/examples/simple/ajaxTest.ajax?parameterName=' + parameterName, panelCenter);
   });
 
-  impress.on('click', '#menuGetJSON', function() {
+  api.dom.on('click', '#menuGetJSON', function() {
     var parameterName = 'paramaterValue';
-    $(panelCenter).empty().html('<div class="progress"></div>');
-    $.get('/examples/simple/jsonGet.json?parameterName=' + parameterName, function(res) {
-      $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
+    panelCenter.innerHTML ='<div class="progress"></div>';
+    api.rpc.get('/examples/simple/jsonGet.json', { parameterName: parameterName }, function(err, res) {
+      panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
     });
   });
 
-  impress.on('click', '#menuPostJSON', function() {
+  api.dom.on('click', '#menuPostJSON', function() {
     var parameterName = 'paramaterValue';
-    $(panelCenter).empty().html('<div class="progress"></div>');
-    $.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(res) {
-      $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
+    panelCenter.innerHTML = '<div class="progress"></div>';
+    api.rpc.post('/examples/simple/jsonPost.json', { parameterName: parameterName }, function(err, res) {
+      panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
     });
   });
 
-  impress.on('click', '#menuForkWorker', function() {
-    $.get('/examples/tools/forkWorker.json', function(res) {
-      $(panelCenter).html('Worker process forked, see console for output.');
+  api.dom.on('click', '#menuForkWorker', function() {
+    api.rpc.get('/examples/tools/forkWorker.json', function() {
+      panelCenter.innerHTML = 'Worker process forked, see console for output.';
     });
   });
 
-  impress.on('click', '#menuLongWorker', function() {
-    $.get('/examples/tools/longWorker.json', function(res) {
-      $(panelCenter).html('Worker process forked and will terminate in 30 seconds, see console for output.');
+  api.dom.on('click', '#menuLongWorker', function() {
+    api.rpc.get('/examples/tools/longWorker.json', function() {
+      panelCenter.innerHTML = 'Worker process forked and will terminate in 30 seconds, see console for output.';
     });
   });
 
-  impress.on('click', '#menuTemplate', function() {
+  api.dom.on('click', '#menuTemplate', function() {
     window.location = '/examples/override';
   });
 
-  impress.on('click', '#menuDBMI', function() {
-    window.location = '/dbmi';
+  api.dom.on('click', '#menuFileUpload', function() {
+    api.dom.load('/examples/simple/upload.ajax', panelCenter);
   });
 
-  impress.on('click', '#menuSetup', function() {
-    window.location = '/setup';
+  api.dom.on('click', '#menuDownload', function() {
+    panelCenter.innerHTML = '<iframe src="/examples/simple/download.ajax" style="display:none"></iframe>';
   });
 
-  impress.on('click', '#menuFileUpload', function() {
-    $(panelCenter).load('/examples/simple/upload.ajax');
-  });
-
-  impress.on('click', '#menuDownload', function() {
-    $(panelCenter).html('<iframe src="/examples/simple/download.ajax" style="display:none"></iframe>');
-  });
-
-  impress.on('click', '#menuGeoIP', function() {
-    $(panelCenter).empty().html('<div class="progress"></div>');
-    $.get('/examples/tools/geoip.json', function(res) {
-      $(panelCenter).html('<pre>' + JSON.stringify(res, null, 2) + '</pre>');
+  api.dom.on('click', '#menuGeoIP', function() {
+    panelCenter.innerHTML = '<div class="progress"></div>';
+    api.rpc.get('/examples/tools/geoip.json', function(err, res) {
+      panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
     });
   });
 
-  impress.on('click', '#menuWS', function() {
-    var url = impress.rpc.absoluteUrl('/examples/events/connect.ws');
+  var ws;
+  api.dom.on('click', '#menuWS', function() {
+    var url = api.rpc.absoluteUrl('/examples/events/connect.ws');
+
     ws = new WebSocket(url);
-    $(panelCenter).html(
+
+    panelCenter.innerHTML = (
       '<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> ' +
       '<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>' +
       '<hr>Connecting...<hr>'
     );
+    var btnWsSend = api.dom.id('btnWsSend');
 
     ws.onopen = function() {
-      $(panelCenter).append('Connection opened<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection opened<hr>');
     };
 
     ws.onclose = function() {
-      $(panelCenter).append('Connection closed<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection closed<hr>');
     };
 
     ws.onmessage = function(evt) {
-      $(panelCenter).append('Message from server: ' + evt.data + '<hr>');
+      panelCenter.insertAdjacentHTML('beforeend', 'Message from server: ' + evt.data + '<hr>');
     };
 
-    $('#btnWsClose').on('click', function() {
+    api.dom.on('click', '#btnWsClose', function() {
       ws.close();
-      $('#btnWsClose').hide();
+      btnWsSend.style.display = 'none';
     });
 
-    $('#btnWsSend').on('click', function() {
-      $(panelCenter).append('Sending to server: Hello<hr>');
+    api.dom.on('click', '#btnWsSend', function() {
+      panelCenter.insertAdjacentHTML('beforeend', 'Sending to server: Hello<hr>');
       ws.send('Hello');
     });
   });
   
-  impress.on('click', '#menuSSE', function() {
-    $(panelCenter).html(
+  api.dom.on('click', '#menuSSE', function() {
+    panelCenter.innerHTML = (
       '<a class="button silver" id="btnSseClose"><span class="icon delete"></span>Close connection</a> ' +
       '<a class="button silver" id="btnSseSend"><span class="icon handshake"></span>Send event to server</a>' +
       '<hr>Connecting...<hr>'
@@ -169,39 +165,38 @@ impress.on('load', function() {
 
   function sseConnect() {
     var sse = new EventSource('/examples/events/connect.sse');
+    var btnSseClose = api.dom.id('btnSseClose');
 
-    sse.addEventListener('test', function(e) {
-      $(panelCenter).append('Event: ' + e.type + '; Data: ' + e.data + '<hr>');
+    sse.addEventListener('test', function(event) {
+      panelCenter.insertAdjacentHTML('beforeend', 'Event: ' + event.type + '; Data: ' + event.data + '<hr>');
     });
 
-    sse.addEventListener('open', function(e) {
-      $(panelCenter).append('Connection opened<hr>');
+    sse.addEventListener('open', function(/*event*/) {
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection opened<hr>');
     }, false);
 
-    sse.addEventListener('error', function(e) {
-      if (e.readyState === EventSource.CLOSED) $(panelCenter).append('Connection closed by server<hr>');
-      else $(panelCenter).append('SSE Error: readyState=' + sse.readyState + '<hr>');
+    sse.addEventListener('error', function(/*event*/) {
+      if (e.readyState === EventSource.CLOSED) {
+        panelCenter.insertAdjacentHTML('beforeend', 'Connection closed by server<hr>');
+      } else {
+        panelCenter.insertAdjacentHTML('beforeend', 'SSE Error: readyState=' + sse.readyState + '<hr>');
+      }
     }, false);
 
-    $('#btnSseClose').on('click', function() {
+    api.dom.on('click', '#btnSseClose', function() {
       sse.close();
-      $(panelCenter).append('Connection closed by user<hr>');
-      $('#btnSseClose').hide();
+      panelCenter.insertAdjacentHTML('beforeend', 'Connection closed by user<hr>');
+      btnSseClose.style.display = 'none';
     });
 
-    $('#btnSseSend').on('click', function() {
-      $(panelCenter).append('Sending event to server, it should return back.<hr>');
-      $.get('/examples/events/sendEvent.json', function(res) {});
+    api.dom.on('click', '#btnSseSend', function() {
+      panelCenter.insertAdjacentHTML('beforeend', 'Sending event to server, it should return back.<hr>');
+      api.rpc.get('/examples/events/sendEvent.json');
     });
   }
 
-  impress.on('click', '#menuSendMail', function() {
-  });
-
-  // begin Chat
-
-  impress.on('click', '#menuChat', function() {
-    $(panelCenter).html(
+  api.dom.on('click', '#menuChat', function() {
+    panelCenter.innerHTML = (
       '<div id="chatPanel" style="position:relative; height:100%;">' +
         '<div id="chatMessages" style="position:absolute; top:0; bottom:50px; left:0; right:0; overflow-y: scroll; overflow-x: hidden;"></div>' +
         '<div style="position:absolute; bottom:0; left:0; right:0">' +
@@ -216,53 +211,41 @@ impress.on('load', function() {
 
   function chatConnect() {
     var chat = new EventSource('/examples/chat/connect.sse'),
-        chatMessages = $('#chatMessages'),
-        chatMessage = $('#chatMessage'),
-        chatUserName = $('#chatUserName');
+        chatMessages = api.dom.id('chatMessages'),
+        chatMessage = api.dom.id('chatMessage'),
+        chatUserName = api.dom.id('chatUserName');
 
     chatMessage.focus();
 
     function msg(s) {
-      chatMessages.append('<div>' + s + '<hr></div>');
-      chatMessages.scrollTop(chatMessages[0].scrollHeight);
+      chatMessages.insertAdjacentHTML('beforeend', '<div>' + s + '<hr></div>');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    chat.addEventListener('chat', function(e) {
-      var data = JSON.parse(e.data);
+    chat.addEventListener('chat', function(event) {
+      var data = JSON.parse(event.data);
       msg(data.name + '(' + data.ip + '): ' + data.message);
     });
 
-    chat.addEventListener('open', function(e) {
+    chat.addEventListener('open', function(/*event*/) {
       msg('Connected to chat server');
     }, false);
 
-    chat.addEventListener('error', function(e) {
-      if (e.readyState === EventSource.CLOSED) msg('Connection closed by server');
+    chat.addEventListener('error', function(/*event*/) {
+      if (event.readyState === EventSource.CLOSED) msg('Connection closed by server');
       else msg('Error: readyState=' + chat.readyState);
     }, false);
 
-    $('#btnChatSend').on('click', function() {
-      $.post('/examples/chat/sendMessage.json', {
-        name: chatUserName.val(),
-        message: chatMessage.val()
-      }, function(res) {});
+    api.dom.on('click', '#btnChatSend', function() {
+      api.rpc.post(
+        '/examples/chat/sendMessage.json',
+        { name: chatUserName.value, message: chatMessage.value },
+        function(/*err, res*/) { }
+      );
     });
   }
 
-  // end Chat
-
-  impress.on('click', '#btnApplySetup', function() {
-    var npmModules = $('#npmModules input'),
-        npmChecked = [];
-    npmModules.each(function() {
-      if ($(this)[0].checked) npmChecked.push($(this).val());
-    });
-    $.post('/setup/apply.json', { npmChecked: npmChecked.join(',') }, function(res) {
-      $(panelCenter).html('<pre>Module(s) installing... See console output.</pre>');
-    });
-  });
-
-  impress.on('click', '#menuAuth', function() {
+  api.dom.on('click', '#menuAuth', function() {
     window.location = '/examples/auth';
   });
 

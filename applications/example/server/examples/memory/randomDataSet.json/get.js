@@ -32,7 +32,7 @@ module.exports = function(client, callback) {
     var obj = {};
     obj.name = test.randomItem(test.names);
     obj.city = test.randomItem(test.cities);
-    obj.birth = test.random(1, 500) + ' ' + test.randomItem([ 'BC', 'AD' ]);
+    obj.birth = test.random(1, 500) + ' ' + test.randomItem(['BC', 'AD']);
     obj.age = test.random(25, 90);
     obj.school = test.randomItem(test.schools);
     res.push(obj);

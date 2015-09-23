@@ -7,7 +7,7 @@ module.exports = {
   // You can hide 
   // 
   // global: [
-  //  'require', 'console', 'Buffer', 'process',
+  //  'require', 'console', 'Buffer', 'SlowBuffer', 'process',
   //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate'
   // ],
 
@@ -15,31 +15,30 @@ module.exports = {
   //
   api: [
     // Node internal modules
-    'os', 'cluster', 'domain', 'crypto', 'util',
-    'net', 'http', 'https', 'dgram', 'dns', 'tls',
-    'url', 'path', 'punycode', 'querystring', 'string_decoder',
-    'fs', 'stream', 'zlib', 'events', 'readline',
+    'console', 'os', 'fs', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
+    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'stringDecoder',
 
     // Impress API modules
-    'impress',
-    'definition',
+    'db', 'con', 'impress', 'registry', 'definition',
 
     // Preinstalled modules
+    'csv',
     'async',
     'iconv',
     'colors',
-    'mkdirp',
-    'zipstream', // npm modile zip-stream
-    'csv',
+    'zipStream', // npm module zip-stream
 
     // Additional modules
-    // 'geoip',
-    // 'nodemailer',
-    // 'request',
-    // 'npm',
+    //'mkdirp',
+    //'geoip',
+    //'nodemailer',
+    //'request',
 
     // Passport providers
-    // 'passport', 'passport-google-oauth', 'passport-twitter', 'passport-facebook'
+    //'passport',         // npm install passport
+    //'passportGoogle',   // npm install passport-google-oauth
+    //'passportTwitter',  // npm install passport-twitter
+    //'passportFacebook'  // npm install passport-facebook
   ],
 
   // Import from other applications

@@ -1,9 +1,9 @@
 {
   "name": "impress",
-  "version": "0.1.320",
+  "version": "0.1.366",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
-  "license": "(MIT OR RUMI)",
+  "license": "MIT",
   "keywords": [
     "application",
     "server",
@@ -39,17 +39,18 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "async": "1.4.x",
+    "async": "1.4.2",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
-    "uglify-js": "2.4.x",
+    "uglify-js": ">=2.4.24",
     "multiparty": "4.1.x",
     "iconv-lite": "0.4.x",
     "zip-stream": "0.5.x",
     "websocket": "1.0.x",
     "csv": "0.4.x",
-    "node-sass": "3.2.x"
+    "node-sass": "3.3.x",
+    "accept-language": "2.0.x"
   },
   "engines": {
     "node": ">=0.10.6",
@@ -61,7 +62,7 @@
     "npm": "npm link npm"
   },
   "jshintConfig": {
-    "predef": [ "api", "impress", "db", "global", "cms", "inArray", "emptyness", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource" ],
+    "predef": ["api", "impress", "global", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource"],
     "node": true,
     "indent": 2,
     "maxcomplexity": 25

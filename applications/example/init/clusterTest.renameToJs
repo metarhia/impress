@@ -1,4 +1,4 @@
-if (api.cluster.isWorker) {
+if (application.isWorker) {
 
   setInterval(function() {
     application.backend.emit('test', { data: 'data' });
@@ -9,7 +9,7 @@ if (api.cluster.isWorker) {
 
   function test() {
     count++;
-    application.backend.call('method1', { sample: "sample" }, function(res) {
+    application.backend.call('method1', { sample: 'sample' }, function(res) {
       test();
     });
   }
@@ -21,7 +21,7 @@ if (api.cluster.isWorker) {
   setInterval(function() {
     var endTime = new Date().getTime(),
         processingTime = endTime - startTime;
-    console.log(impress.nodeId + ' Processing time: ' + processingTime + ' count: ' + count);
+    console.log(application.nodeId + ' Processing time: ' + processingTime + ' count: ' + count);
   }, 5000);
 
 }

@@ -3,11 +3,12 @@
 
 module.exports = {
   www: {
-    protocol: 'http',
-    address:  '*',
-    port:     80,
-    slowTime: '1s',
-    timeout:  '30s'
+    protocol:  'http',
+    address:   '*',
+    port:      80,
+    slowTime:  '1s',
+    timeout:   '30s',
+    keepAliveTimeout: '5s'
   },
   //local: {
   //  protocol: 'http',

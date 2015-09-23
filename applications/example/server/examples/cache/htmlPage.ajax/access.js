@@ -1,3 +1,3 @@
 module.exports = {
-  intro:  false
+  intro: false
 };

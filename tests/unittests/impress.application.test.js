@@ -1,6 +1,6 @@
 'use strict';
 
-var application = {};
+var application = new api.events.EventEmitter();
 global.application = application;
 impress.mixinApplication(application);
 
@@ -11,12 +11,8 @@ impress.test({
   'application.tasks': [ [ [], {} ] ],
   'application.model': [ [ [], {} ] ],
   'application.users': [ [ [], {} ] ],
-  'application.ips': [ [ [], {} ] ],
   'application.sessions': [ [ [], {} ] ],
   'application.workers': [ [ [], {} ] ],
   'application.longWorkers': [ [ [], {} ] ],
   'application.isInitialized': [ [ [], false ] ],
-
-  // Test stub
-
 });

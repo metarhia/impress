@@ -1,20 +1,21 @@
 module.exports = {
   api: [
     // Node internal modules
-    'os', 'cluster', 'domain', 'crypto', 'util',
-    'net', 'http', 'https', 'dgram', 'dns', 'tls',
-    'url', 'path', 'punycode', 'querystring', 'string_decoder',
-    'fs', 'stream', 'zlib', 'events', 'readline',
+    'console', 'os', 'fs', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
+    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'stringDecoder',
 
-    // Impress API modules
+    // Preinstalled modules
+    'db',
+    'con',
     'impress',
+    'registry',
     'definition',
 
     // Preinstalled modules
+    'csv',
     'async',
     'iconv',
     'colors',
-    'zipstream',
-    'csv'
+    'zipStream',
   ]
 };

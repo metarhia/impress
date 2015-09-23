@@ -1,7 +1,276 @@
+0.1.366 / 2015-09-19
+==================
+
+  * Example application code fixes
+  * Changed deploy scripts to use node.js 4.1.0
+
+0.1.365 / 2015-09-17
+==================
+
+  * Client-side code style fixes
+
+0.1.364 / 2015-09-16
+==================
+
+  * Removed jQuery dependency in client-side code, close #237
+
+0.1.363 / 2015-09-15
+==================
+
+  * Client-side code refactoring
+
+0.1.362 / 2015-09-14
+==================
+
+  * Fixed application.loadPlaceFile, now setup scripts executing just once and just in master process, close #426
+  * Multiple client-side code optimizations
+  * Removed jQuery dependency in all client-side code except pop-up window
+
+0.1.361 / 2015-09-13
+==================
+
+  * WCL deprecated in client-side code
+  * Removed jQuery ajax get and post dependency
+
+0.1.360 / 2015-09-12
+==================
+
+  * Fixes in client-side code
+
+0.1.359 / 2015-09-11
+==================
+
+  * Changed deploy scripts to use node.js 4.0.0
+
+0.1.358 / 2015-09-10
+==================
+
+  * Impress client-side code refactoring started
+
+0.1.357 / 2015-09-09
+==================
+
+  * WAF: configuration moved from /config/servers.js to /config/scale.js
+  * WAF: implemented connection limit pre application, close #300
+  * WAF: implemented connection limit pre URL, close #289
+  * WAF: implemented connection limit per server
+  * WAF: implemented connection limit per host
+  * Fixed error logging for json handlers in Client.prototype.error
+
+0.1.356 / 2015-09-08
+==================
+
+  * WAF: pass events from Client instead of calling inc/dec, close #421
+
+0.1.355 / 2015-09-07
+==================
+
+  * WAF: client.block() now affect current request too, close #420
+  * Fixed bug in Client.prototype.fileHandler, file watching path should be relative
+
+0.1.354 / 2015-09-05
+==================
+
+  * WAF: limit connection number for IP, close #287
+  * WAF: limit connection number for session, close #288
+
+0.1.353 / 2015-09-04
+==================
+
+  * WAF: optimizations: waf.objects, waf.objects[name].key(client)
+  * Client class optimizations and fixes: client.server, client.socket, client.schema, client.method, client.allowed
+
+0.1.352 / 2015-09-03
+==================
+
+  * Tested compatibility with newer node and io.js, close #389
+  * Fixed api.impress.require to reduce console output
+
+0.1.351 / 2015-09-02
+==================
+
+  * Now each application is npm-compatible, have own package.json and dependencies, close #412
+
+0.1.350 / 2015-09-01
+==================
+
+  * Reused RegExps are prepared in constants at startup, close #416
+  * Fixed application.prepareScript and other minor changes
+  * Code refactoring
+
+0.1.349 / 2015-08-31
+==================
+
+  * Fixed double stack trace logging on exception, close #417
+
+0.1.348 / 2015-08-28
+==================
+
+  * Moved logException to /lib/api.impress.js to use before Impress init and application loaded
+  * Optimizations for io.js, issue #389
+
+0.1.347 / 2015-08-25
+==================
+
+  * Added SSE, WS and RPC connections logging, close #413
+
+0.1.346 / 2015-08-24
+==================
+
+  * Convert IPv4 to IPv6 for client.ip (used in log files and WAF)
+  * Implemented WAF connection counters
+
+0.1.345 / 2015-08-22
+==================
+
+  * WAF: structure optimized
+
+0.1.344 / 2015-08-21
+==================
+
+  * Implemented client.block() for WAF, close #301
+
+0.1.343 / 2015-08-20
+==================
+
+  * Web Application Firewall interface stub, issue #301, #300, #289, #288, #287
+  * Removed legacy code for connection limits and deny lists
+
+0.1.342 / 2015-08-19
+==================
+
+  * Added npm package accept-language and optimized Impress api registry
+
+0.1.341 / 2015-08-18
+==================
+
+  * Extended server log with TCP/IP binding messages and RPC connection
+  * Added CLI command "impress version" to show Impress, Node.js, v8, libuv OS versions
+  * Fixed double callback on Client.prototype.runScript lazy, close #410
+  * Refactored try/catch in application.createScript, close #409
+
+0.1.340 / 2015-08-17
+==================
+
+  * Prevent double minification for JavaScript, close #367
+  * Fixed workaround for server timeout after end, issue #397
+
+0.1.339 / 2015-08-16
+==================
+
+  * Implemented workaround preventing server timeout after end, close #397
+
+0.1.338 / 2015-08-15
+==================
+
+  * Fixed security database detection error, issue #405
+
+0.1.337 / 2015-08-14
+==================
+
+  * impress.eventEmitter moved to api.impress, close #404
+  * Merged application.createScript and application.require, close #402
+
+0.1.336 / 2015-08-13
+==================
+
+  * Fixed state sync in cloud, close #388
+
+0.1.335 / 2015-08-12
+==================
+
+  * Shared "SlowBuffer" for sandboxed code and added module api.buffers to api registry, close #399
+
+0.1.334 / 2015-08-11
+==================
+
+  * Escaped special characters in log records, close #401
+  * Implemented "__filename" and "__dirname" for sandboxed code, issue #399
+
+0.1.333 / 2015-08-10
+==================
+
+  * Refactored passport plugin, close #392
+  * Fixed api.impress.require to catch exceptions in broken packages, close #400
+  * Code style fixes and examples refactoring due to last namespace changes
+
+0.1.332 / 2015-08-09
+==================
+
+  * Created namespace api.con, close #317
+  * Fixed api.registry and api.impress.require
+  * Multiple minor fixes mostly related to api namespace refactoring
+
+0.1.331 / 2015-08-08
+==================
+
+  * Implemented application events: "change", "changed" and "stop", close #395
+
+0.1.330 / 2015-08-07
+==================
+
+  * Common API name registry almost ready to use, close #341
+  * Implemented application events: "start" and "started", before and after initialization, issue #395
+  * Removed impress from application sandbox, close #394
+  * Changes in application.logException to always print stack trace, close #396
+  * Refactored example application
+
+0.1.329 / 2015-08-06
+==================
+
+  * Moved db namespace to api.db, close #393
+  * Deprecated impress.API_ALIASES, api.registry used instead, close #391
+  * Changes in common API name registry, issue #341
+
+0.1.328 / 2015-08-05
+==================
+
+  * Start implementing common API namespace registry, issue #341
+
+0.1.327 / 2015-08-04
+==================
+
+  * Fixed SSE, prevented write after end
+  * Added data structures check in impress.cloud.js and impress.js, it may generate errors on very high load
+
+0.1.326 / 2015-08-03
+==================
+
+  * Code style fixes and optimizations
+  * Updated deploy scripts to node 0.12.7
+
+0.1.325 / 2015-08-02
+==================
+
+  * Decomposed and optimized impress.startServers
+  * Implemented impress.setListenerError for both HTTP and TCP servers
+  * Code style fixes
+
+0.1.324 / 2015-08-01
+==================
+
+  * Fixed critical bug in impress.loadApplications
+
+0.1.323 / 2015-07-31
+==================
+
+  * Add host:port to error message and log record when IAS can't bind host:port and improved stack trace printing
+  * Fixed bug in mongodb driver
+
+0.1.322 / 2015-07-30
+==================
+
+  * Fixed reconnecting bugs in cross-server RPC, close #385
+
+0.1.321 / 2015-07-29
+==================
+
+  * Refactored database names and aliases, close #384
+
 0.1.320 / 2015-07-28
 ==================
 
-  * Decomposed abd optimized db.openApplicationDatabases
+  * Decomposed and optimized db.openApplicationDatabases
   * Refactored plugins, see details in github issue, close #319
 
 0.1.319 / 2015-07-27
@@ -55,7 +324,7 @@
 ==================
 
   * Fixed Client.prototype.stream bug, close #368
-  * Added HTTP timeout to ```/config/servers.js``` (default 30s), close #369
+  * Added HTTP timeout to /config/servers.js (default 30s), close #369
   * Fixed socket destruction on timeout, close #365
 
 0.1.311 / 2015-07-19
