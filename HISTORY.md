@@ -1,3 +1,16 @@
+0.1.368 / 2015-09-26
+==================
+
+  * Refactored client-side WebSocket API: api.ws
+  * Refactored client-side Server-Sent Events API: api.sse
+  * Refactored client-side RPC API: api.rpc, issue #216
+  * Refactored client-side AJAX API: api.ajax
+
+0.1.367 / 2015-09-23
+==================
+
+  * Client-side code refactoring
+
 0.1.366 / 2015-09-19
 ==================
 

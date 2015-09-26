@@ -1,4 +1,4 @@
-﻿﻿'use strict';
+﻿'use strict';
 
 window.global = window;
 global.api = {};
@@ -8,6 +8,55 @@ global.application = {};
 api.impress.falseness = function() { return false; };
 api.impress.trueness = function() { return true; };
 api.impress.emptyness = function() { };
+
+// Make URL absolute
+//
+api.impress.absoluteUrl = function(url) {
+  if (url.charAt(0) === '/') {
+    var site = window.location,
+        absoluteUrl = 'ws';
+    if (site.protocol === 'https:') absoluteUrl += 's';
+    absoluteUrl += '://' + site.host + url;
+    return absoluteUrl;
+  } else return url;
+};
+
+// Simple EventEmitter implementation
+//
+api.events = {};
+
+// EventEmitter class
+//
+api.events.EventEmitter = function() {
+  api.events.mixinEmitter(this);
+};
+
+// EventEmitter mixin
+//
+api.events.mixinEmitter = function(ee) {
+
+  ee.listeners = {};
+
+  // Add named event handler
+  //
+  ee.on = function(name, callback) {
+    var namedEvent = ee.listeners[name];
+    if (!namedEvent) ee.listeners[name] = [callback];
+    else namedEvent.push(callback);
+  };
+
+  // Emit named event
+  //
+  ee.emit = function(name, data) {
+    var namedEvent = ee.listeners[name];
+    if (namedEvent) namedEvent.forEach(function(callback) {
+      callback(data);
+    });
+  };
+
+  return ee;
+
+};
 
 // DOM utilities
 //
@@ -274,7 +323,7 @@ api.dom.show = function(element) {
 //
 api.dom.load = function(url, element, callback) {
   element.innerHTML = '<div class="progress"></div>';
-  api.rpc.get(url, {}, function(err, res) {
+  api.ajax.get(url, {}, function(err, res) {
     element.innerHTML = res;
     if (callback) callback(err, res, element);
   });
@@ -564,134 +613,116 @@ api.cookie.delete = function(name) {
   api.cookie.set(name, null, { expires: -1 });
 };
 
-// RPC API
+// Tabs API
 //
-api.rpc = {};
-api.rpc.tabId = 0;
-api.rpc.tabKey = '';
-api.rpc.masterTab = false;
-api.rpc.masterTabId = 0;
-api.rpc.masterTabKey = '';
-api.rpc.heartbeatInterval = 2000;
-api.rpc.heartbeatEvent = null;
-api.rpc.initialized = false;
-api.rpc.initializationCallbacks = [];
-api.rpc.supportsLocalStorage = false;
-api.rpc.onCallbacks = {};
-
-// Add named event handler
-//
-api.rpc.on = function(name, callback) {
-  var namedEvent = api.rpc.onCallbacks[name];
-  if (!namedEvent) api.rpc.onCallbacks[name] = [callback];
-  else namedEvent.push(callback);
-};
-
-// Emit named event
-//
-api.rpc.emit = function(name, data) {
-  var namedEvent = api.rpc.onCallbacks[name];
-  if (namedEvent) namedEvent.forEach(function(callback) {
-    callback(name, data);
-  });
-};
+api.tabs = new api.events.EventEmitter();
+api.tabs.tabId = 0;
+api.tabs.tabKey = '';
+api.tabs.masterTab = false;
+api.tabs.masterTabId = 0;
+api.tabs.masterTabKey = '';
+api.tabs.heartbeatInterval = 2000;
+api.tabs.heartbeatEvent = null;
+api.tabs.initialized = false;
+api.tabs.initializationCallbacks = [];
+api.tabs.supportsLocalStorage = false;
 
 // localStorage structure:
-//   api.rpc.master = tabId e.g. 1
-//   api.rpc.tab1 = Date.now() e.g. 1424185702490
-//   api.rpc.tab2 = Date.now() e.g. 1424185704772
-//   api.rpc.newtab = tabId (signal to master)
-//   api.rpc.event = signal in format { name:s, data:d, time: Date.now() }
+//   api.tabs.master = tabId e.g. 1
+//   api.tabs.tab1 = Date.now() e.g. 1424185702490
+//   api.tabs.tab2 = Date.now() e.g. 1424185704772
+//   api.tabs.newtab = tabId (signal to master)
+//   api.tabs.event = signal in format { name:s, data:d, time: Date.now() }
 //
-api.rpc.initializationWait = function(callback) {
-  if (!api.rpc.initialized) api.rpc.initializationCallbacks.push(callback);
+api.tabs.initializationWait = function(callback) {
+  if (!api.tabs.initialized) api.tabs.initializationCallbacks.push(callback);
   else callback();
 };
 
-// Initialize RPC
+// Initialize tabs
 //
-api.rpc.initialize = function() {
+api.tabs.initialize = function() {
   try {
-    api.rpc.supportsLocalStorage = 'localStorage' in window && window.localStorage !== null;
+    api.tabs.supportsLocalStorage = 'localStorage' in window && window.localStorage !== null;
   } catch(e) {
   }
-  if (api.rpc.supportsLocalStorage) api.rpc.initializeConnection();
+  if (api.tabs.supportsLocalStorage) api.tabs.initializeConnection();
 };
 
-// Initialize RPC done
+// Initialize tabs done
 //
-api.rpc.initializeDone = function() {
-  api.rpc.heartbeatEvent = setInterval(api.rpc.listenHandler, api.rpc.heartbeatInterval);
-  api.rpc.initialized = true;
-  api.rpc.initializationCallbacks.forEach(function(callback) {
+api.tabs.initializeDone = function() {
+  api.tabs.heartbeatEvent = setInterval(api.tabs.listenHandler, api.tabs.heartbeatInterval);
+  api.tabs.initialized = true;
+  api.tabs.initializationCallbacks.forEach(function(callback) {
     callback();
   });
-  api.rpc.initializationCallbacks = [];
+  api.tabs.initializationCallbacks = [];
 };
 
 // Get free browser tab
 //
-api.rpc.getFreeTab = function() {
+api.tabs.getFreeTab = function() {
   for (var id = 1;;id++) {
-    if (typeof(localStorage['impress.rpc.tab' + id]) === 'undefined') return id;
+    if (typeof(localStorage['impress.tab' + id]) === 'undefined') return id;
   }
 };
 
-// Initialize RPC connection
+// Initialize tabs connection
 //
-api.rpc.initializeConnection = function() {
-  if (!api.rpc.initialized) {
-    api.rpc.tabId = api.rpc.getFreeTab();
-    api.rpc.tabKey = 'impress.rpc.tab' + api.rpc.tabId;
-    api.rpc.heartbeat();
-    api.rpc.heartbeatEvent = setInterval(api.rpc.heartbeat, api.rpc.heartbeatInterval);
-    localStorage['impress.rpc.newtab'] = api.rpc.tabId;
-    global.addEventListener('storage', api.rpc.onStorageChange, false);
+api.tabs.initializeConnection = function() {
+  if (!api.tabs.initialized) {
+    api.tabs.tabId = api.tabs.getFreeTab();
+    api.tabs.tabKey = 'impress.tab' + api.tabs.tabId;
+    api.tabs.heartbeat();
+    api.tabs.heartbeatEvent = setInterval(api.tabs.heartbeat, api.tabs.heartbeatInterval);
+    localStorage['impress.newtab'] = api.tabs.tabId;
+    global.addEventListener('storage', api.tabs.onStorageChange, false);
   }
-  var master = localStorage['impress.rpc.master'];
-  if (master) api.rpc.setMaster(master);
-  else api.rpc.createMaster();
-  api.rpc.initializeDone();
+  var master = localStorage['impress.master'];
+  if (master) api.tabs.setMaster(master);
+  else api.tabs.createMaster();
+  api.tabs.initializeDone();
 };
 
 // Master tab heartbeat
 //
-api.rpc.heartbeat = function() {
-  localStorage[api.rpc.tabKey] = Date.now();
-  if (api.rpc.masterTab) api.rpc.checkTabs();
-  else api.rpc.checkMaster();
+api.tabs.heartbeat = function() {
+  localStorage[api.tabs.tabKey] = Date.now();
+  if (api.tabs.masterTab) api.tabs.checkTabs();
+  else api.tabs.checkMaster();
 };
 
 // Check master tab
 //
-api.rpc.checkMaster = function() {
-  var masterNow = parseInt(localStorage[api.rpc.masterTabKey], 10);
-  if (Date.now() - masterNow > api.rpc.heartbeatInterval * 2) {
+api.tabs.checkMaster = function() {
+  var masterNow = parseInt(localStorage[api.tabs.masterTabKey], 10);
+  if (Date.now() - masterNow > api.tabs.heartbeatInterval * 2) {
     var tabId, tabNow, key,
         keys = Object.keys(localStorage),
         maxId = 0,
         now = Date.now();
     for (var i = 0; i < keys.length; i++) {
       key = keys[i];
-      if (key.indexOf('impress.rpc.tab') === 0) {
+      if (key.indexOf('impress.tab') === 0) {
         tabId = parseInt(key.match(/\d+/)[0], 10);
         tabNow = parseInt(localStorage[key], 10);
-        if (now - tabNow < api.rpc.heartbeatInterval * 2 && tabId > maxId) maxId = tabId;
+        if (now - tabNow < api.tabs.heartbeatInterval * 2 && tabId > maxId) maxId = tabId;
       }
     }
-    if (maxId === api.rpc.tabId) api.rpc.createMaster();
+    if (maxId === api.tabs.tabId) api.tabs.createMaster();
   }
 };
 
 // Check browser babs
 //
-api.rpc.checkTabs = function() {
+api.tabs.checkTabs = function() {
   var tabNow, key, keys = Object.keys(localStorage);
   for (var i = 0; i < keys.length; i++) {
     key = keys[i];
-    if (key !== api.rpc.tabKey && key.indexOf('impress.rpc.tab') === 0) {
+    if (key !== api.tabs.tabKey && key.indexOf('impress.tab') === 0) {
       tabNow = parseInt(localStorage[key], 10);
-      if (Date.now() - tabNow > api.rpc.heartbeatInterval * 2) {
+      if (Date.now() - tabNow > api.tabs.heartbeatInterval * 2) {
         localStorage.removeItem(key);
       }
     }
@@ -700,61 +731,53 @@ api.rpc.checkTabs = function() {
 
 // Set master tab
 //
-api.rpc.setMaster = function(id) {
-  api.rpc.masterTab = false;
-  api.rpc.masterTabId = id;
-  api.rpc.masterTabKey = 'impress.rpc.tab' + id;
+api.tabs.setMaster = function(id) {
+  api.tabs.masterTab = false;
+  api.tabs.masterTabId = id;
+  api.tabs.masterTabKey = 'impress.tab' + id;
 };
 
 // Create master tab
 //
-api.rpc.createMaster = function() {
-  api.rpc.masterTab = true;
-  api.rpc.masterTabId = api.rpc.tabId;
-  api.rpc.masterTabKey = api.rpc.tabKey;
-  localStorage['impress.rpc.master'] = api.rpc.tabId;
-  api.rpc.initializeDone();
+api.tabs.createMaster = function() {
+  api.tabs.masterTab = true;
+  api.tabs.masterTabId = api.tabs.tabId;
+  api.tabs.masterTabKey = api.tabs.tabKey;
+  localStorage['impress.master'] = api.tabs.tabId;
+  api.tabs.initializeDone();
 };
 
-// RPC cross-tab communication using localstorage
+// Impress cross-tab communication using localstorage
 //
-api.rpc.onStorageChange = function(e) {
-  if (e.key === 'impress.rpc.event') {
+api.tabs.onStorageChange = function(e) {
+  if (e.key === 'impress.event') {
     var event = JSON.parse(e.newValue);
-    api.rpc.emit(event.name, event.data);
-  } else if (api.rpc.masterTab) {
-    if (e.key === 'impress.rpc.newtab') api.rpc.heartbeat();
-    else if (e.key === 'impress.rpc.master') console.log('WARNING: master collision');
+    api.tabs.emit(event.name, event.data);
+  } else if (api.tabs.masterTab) {
+    if (e.key === 'impress.newtab') api.tabs.heartbeat();
+    else if (e.key === 'impress.master') console.log('WARNING: master collision');
   } else {
-    if (e.key === 'impress.rpc.master') api.rpc.setMaster(e.newValue);
+    if (e.key === 'impress.master') api.tabs.setMaster(e.newValue);
   }
 };
 
 // Emit cross-tab event
 //
-api.rpc.emitTabs = function(name, data) {
-  localStorage['impress.rpc.event'] = JSON.stringify({ name: name, data: data, time: Date.now() });
+api.tabs.emitTabs = function(name, data) {
+  localStorage['impress.event'] = JSON.stringify({ name: name, data: data, time: Date.now() });
 };
 
-// Make URL absolute
+// Initialize tabs modile
 //
-api.rpc.absoluteUrl = function(url) {
-  if (url.charAt(0) === '/') {
-    var site = window.location,
-        absoluteUrl = 'ws';
-    if (site.protocol === 'https:') absoluteUrl += 's';
-    absoluteUrl += '://' + site.host + url;
-    return absoluteUrl;
-  } else return url;
-};
+api.tabs.initialize();
 
-// Create websocket instance with RPC wrapper
+// Create persistent RPC connection
 //
-api.rpc.ws = function(url) {
+api.rpc = function(url) {
 
   var rpc = {};
 
-  var socket = new WebSocket(api.rpc.absoluteUrl(url));
+  var socket = new WebSocket(api.impress.absoluteUrl(url));
   rpc.socket = socket;
   rpc.socket.nextMessageId = 0;
   rpc.socket.callCollection = {};
@@ -826,13 +849,9 @@ api.rpc.ws = function(url) {
 
 };
 
-// Initialize RPC modile
-//
-api.rpc.initialize();
-
 // Prepare AJAX interface stub
 //
-api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
+api.ajax = function(methods) { // params: { method: { get/post:url }, ... }
 
   function createMethod(apiStub, apiMethod) {
     if (apiMethod === 'introspect') {
@@ -858,7 +877,7 @@ api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
       if (requestParams.get ) { httpMethod = 'GET'; url = requestParams.get; }
       if (requestParams.post) { httpMethod = 'POST'; url = requestParams.post; }
       if (httpMethod) {
-        api.rpc.request(httpMethod, url, params, true, callback);
+        api.ajax.request(httpMethod, url, params, true, callback);
         return;
       } else err = new Error('DataSource error: HTTP method is not specified');
     } else err = new Error('DataSource error: AJAX method is not specified');
@@ -890,12 +909,12 @@ api.rpc.ajax = function(methods) { // params: { method: { get/post:url }, ... }
 
 // AJAX data source interface
 //
-api.rpc.ajaxDataSource = function(methods) {
-  var ds = api.rpc.ajax(methods);
+api.ajax.ajaxDataSource = function(methods) {
+  var ds = api.ajax.ajax(methods);
   ds.read = function(query, callback) {
     ds.request('read', query, function(err, data) {
       // autocreate Record
-      //   callback(err, api.rpc.record({ data: data }));
+      //   callback(err, api.ajax.record({ data: data }));
       //
       callback(err, data);
     });
@@ -910,7 +929,7 @@ api.rpc.ajaxDataSource = function(methods) {
 //   parseResponse - boolean flag to parse JSON (boolean, optional)
 //   callback - function to call on response received
 //
-api.rpc.request = function(method, url, params, parseResponse, callback) {
+api.ajax.request = function(method, url, params, parseResponse, callback) {
   var key, data = [], value = '',
       req = new XMLHttpRequest();
   req.open(method, url, true);
@@ -944,20 +963,65 @@ api.rpc.request = function(method, url, params, parseResponse, callback) {
 
 // Send HTTP GET request
 //
-api.rpc.get = function(url, params, callback) {
+api.ajax.get = function(url, params, callback) {
   if (arguments.length === 2) {
     callback = params;
     params = {};
   }
-  api.rpc.request('GET', url, params, true, callback);
+  api.ajax.request('GET', url, params, true, callback);
 };
 
 // Send HTTP POST request
 //
-api.rpc.post = function(url, params, callback) {
+api.ajax.post = function(url, params, callback) {
   if (arguments.length === 2) {
     callback = params;
     params = {};
   }
-  api.rpc.request('POST', url, params, true, callback);
+  api.ajax.request('POST', url, params, true, callback);
+};
+
+// Create websocket instance
+//
+api.ws = function(url) {
+
+  var ws = new api.events.EventEmitter(),
+      socket = new WebSocket(api.impress.absoluteUrl(url));
+
+  ws.socket = socket; 
+
+  socket.onopen = function() {
+    ws.emit('open');
+  };
+
+  socket.onclose = function() {
+    ws.emit('close');
+  };
+
+  socket.onmessage = function(event) {
+    ws.emit('message', event);
+  };
+
+  ws.close = function() {
+    socket.close();
+    ws.socket = null;
+    ws.emit('close');
+  };
+
+  ws.send = function(data) {
+    socket.send(data);
+  };
+
+  return ws;
+
+};
+
+// Create Server-Sent Events instance
+//
+api.sse = function(url) {
+
+  var sse = new EventSource(url);
+  sse.on = sse.addEventListener;
+  return sse;
+
 };
