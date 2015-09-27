@@ -14,14 +14,17 @@ api.dom.on('load', function() {
   });
 
   // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
-  /*
+  //
   var rpc = api.rpc('/examples/impress.rpc');
-  setTimeout(function() {
+  rpc.on('open', function() {
     rpc.get('/examples/simple/jsonGet.json', { parameterName: 'abc' }, function(err, res) {
       console.log(res);
     });
-  }, 1000);
-  */
+    rpc.events.send('test1', { aaa: 111 });
+    rpc.events.on('test2', function(data) {
+      console.dir({ data: data });
+    });
+  });
 
   // Auth Module
 

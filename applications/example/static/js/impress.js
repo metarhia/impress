@@ -764,109 +764,6 @@ api.tabs.emitTabs = function(name, data) {
 //
 api.tabs.initialize();
 
-// Create persistent RPC connection
-//
-api.rpc = function(url) {
-
-  var rpc = {};
-
-  var socket = new WebSocket(api.impress.absoluteUrl(url));
-  rpc.socket = socket;
-  rpc.socket.nextMessageId = 0;
-  rpc.socket.callCollection = {};
-
-  socket.onopen = function() {
-    console.log('Connection opened');
-  };
-
-  socket.onclose = function() {
-    console.log('Connection closed');
-  };
-
-  socket.onmessage = function(event) {
-    console.log('Message from server: ' + event.data);
-    var data = JSON.parse(event.data);
-    /*if (data.type === 'introspection') {
-      var nName, mName, mPath, namespace, obj, parts, sub;
-      for (nName in data.namespaces) {
-        namespace = data.namespaces[nName];
-        obj = {};
-        rpc[nName] = obj;
-        for (mName in namespace) {
-          mPath = nName + '.' + mName;
-          if (mName.indexOf('.') > -1) {
-            parts = mName.split('.');
-            sub = {};
-            sub[parts[1]] = fn(mPath);
-            obj[parts[0]] = sub;
-          } else obj[mName] = fn(mPath);
-        }
-      }
-    } else if (data.id) {*/
-      var call = rpc.socket.callCollection[data.id];
-      if (call) {
-        delete rpc.socket.callCollection[data.id];
-        if (typeof(call.callback) === 'function') call.callback(data.result);
-      }
-    //}
-  };
-
-  function fn(path) {
-    return function() {
-      var parameters = [];
-      Array.prototype.push.apply(parameters, arguments);
-      var cb = parameters.pop();
-      rpc.request('post', path, parameters, cb);
-    };
-  }
-
-  // Close RPC connection
-  //
-  rpc.close = function() {
-    socket.close();
-    rpc.socket = null;
-  };
-
-  // Send request over RPC
-  //
-  rpc.request = function(method, name, parameters, callback) {
-    rpc.socket.nextMessageId++;
-    var data = {
-      id: 'C' + rpc.socket.nextMessageId,
-      type: 'call',
-      method: method,
-      name: name,
-      data: parameters
-    };
-    data.callback = callback;
-    rpc.socket.callCollection[data.id] = data;
-    socket.send(JSON.stringify(data));
-  };
-
-  // Send GET request over RPC
-  //
-  rpc.get = function(url, params, callback) {
-    if (arguments.length === 2) {
-      callback = params;
-      params = {};
-    }
-    rpc.request('GET', url, params, true, callback);
-  };
-
-  // Send POST request over RPC
-  //
-  rpc.post = function(url, params, callback) {
-    if (arguments.length === 2) {
-      callback = params;
-      params = {};
-    }
-    rpc.request('POST', url, params, true, callback);
-  };
-
-  return rpc;
-
-};
-
 // Prepare AJAX interface stub
 //
 api.ajax = function(methods) { // params: { method: { get/post:url }, ... }
@@ -999,6 +896,123 @@ api.ajax.post = function(url, params, callback) {
   api.ajax.request('POST', url, params, true, callback);
 };
 
+// Create persistent RPC connection
+//
+api.rpc = function(url) {
+
+  var rpc = new api.events.EventEmitter();
+
+  var socket = new WebSocket(api.impress.absoluteUrl(url));
+  rpc.socket = socket;
+  rpc.socket.nextMessageId = 0;
+  rpc.socket.callCollection = {};
+
+  socket.onopen = function() {
+    rpc.emit('open');
+  };
+
+  socket.onclose = function() {
+    rpc.emit('close');
+  };
+
+  socket.onmessage = function(event) {
+    var packet = JSON.parse(event.data);
+    if (packet.id) {
+      if (packet.type === 'result') {
+        var call = socket.callCollection[packet.id];
+        if (call) {
+          delete socket.callCollection[packet.id];
+          if (typeof(call.callback) === 'function') call.callback(packet.result);
+        }
+      } else if (packet.type === 'event') {
+        rpc.emit('event', event);
+        rpc.events.emit(packet.name, packet.data);
+      } else if (packet.type === 'call') {
+        rpc.emit('call', event);
+      }
+    }
+  };
+
+  // Close RPC connection
+  //
+  rpc.close = function() {
+    socket.close();
+    rpc.socket = null;
+  };
+
+  // Send call over RPC
+  //
+  rpc.call = function(method, name, parameters, callback) {
+    socket.nextMessageId++;
+    var packet = {
+      id: 'C' + socket.nextMessageId,
+      type: 'call',
+      method: method,
+      name: name,
+      data: parameters
+    };
+    packet.callback = callback;
+    socket.callCollection[packet.id] = packet;
+    socket.send(JSON.stringify(packet));
+  };
+
+  // Send GET request over RPC
+  //
+  rpc.get = function(url, params, callback) {
+    if (arguments.length === 2) {
+      callback = params;
+      params = {};
+    }
+    rpc.call('GET', url, params, true, callback);
+  };
+
+  // Send POST request over RPC
+  //
+  rpc.post = function(url, params, callback) {
+    if (arguments.length === 2) {
+      callback = params;
+      params = {};
+    }
+    rpc.call('POST', url, params, true, callback);
+  };
+
+  rpc.events = {};
+  rpc.events.listeners = {};
+
+  // Send event over RPC
+  //
+  rpc.events.send = function(name, parameters) {
+    socket.nextMessageId++;
+    var packet = {
+      id: 'C' + socket.nextMessageId,
+      type: 'event',
+      name: name,
+      data: parameters
+    };
+    socket.send(JSON.stringify(packet));
+  };
+
+  // Add named event handler
+  //
+  rpc.events.on = function(name, callback) {
+    var namedEvent = rpc.events.listeners[name];
+    if (!namedEvent) rpc.events.listeners[name] = [callback];
+    else namedEvent.push(callback);
+  };
+
+  // Emit named event
+  //
+  rpc.events.emit = function(name, parameters) {
+    var namedEvent = rpc.events.listeners[name];
+    if (namedEvent) namedEvent.forEach(function(callback) {
+      callback(parameters);
+    });
+  };
+
+  return rpc;
+
+};
+
 // Create websocket instance
 //
 api.ws = function(url) {
@@ -1023,7 +1037,6 @@ api.ws = function(url) {
   ws.close = function() {
     socket.close();
     ws.socket = null;
-    ws.emit('close');
   };
 
   ws.send = function(data) {
