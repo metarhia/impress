@@ -786,7 +786,7 @@ api.rpc = function(url) {
   socket.onmessage = function(event) {
     console.log('Message from server: ' + event.data);
     var data = JSON.parse(event.data);
-    if (data.type === 'introspection') {
+    /*if (data.type === 'introspection') {
       var nName, mName, mPath, namespace, obj, parts, sub;
       for (nName in data.namespaces) {
         namespace = data.namespaces[nName];
@@ -802,12 +802,13 @@ api.rpc = function(url) {
           } else obj[mName] = fn(mPath);
         }
       }
-    } else if (data.id) {
+    } else if (data.id) {*/
       var call = rpc.socket.callCollection[data.id];
       if (call) {
+        delete rpc.socket.callCollection[data.id];
         if (typeof(call.callback) === 'function') call.callback(data.result);
       }
-    }
+    //}
   };
 
   function fn(path) {
@@ -815,27 +816,51 @@ api.rpc = function(url) {
       var parameters = [];
       Array.prototype.push.apply(parameters, arguments);
       var cb = parameters.pop();
-      rpc.call('post', path, parameters, cb);
+      rpc.request('post', path, parameters, cb);
     };
   }
 
+  // Close RPC connection
+  //
   rpc.close = function() {
     socket.close();
     rpc.socket = null;
   };
 
-  rpc.call = function(method, name, parameters, callback) {
+  // Send request over RPC
+  //
+  rpc.request = function(method, name, parameters, callback) {
     rpc.socket.nextMessageId++;
     var data = {
       id: 'C' + rpc.socket.nextMessageId,
       type: 'call',
-      method: 'get',
+      method: method,
       name: name,
       data: parameters
     };
     data.callback = callback;
     rpc.socket.callCollection[data.id] = data;
     socket.send(JSON.stringify(data));
+  };
+
+  // Send GET request over RPC
+  //
+  rpc.get = function(url, params, callback) {
+    if (arguments.length === 2) {
+      callback = params;
+      params = {};
+    }
+    rpc.request('GET', url, params, true, callback);
+  };
+
+  // Send POST request over RPC
+  //
+  rpc.post = function(url, params, callback) {
+    if (arguments.length === 2) {
+      callback = params;
+      params = {};
+    }
+    rpc.request('POST', url, params, true, callback);
   };
 
   return rpc;
