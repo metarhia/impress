@@ -922,7 +922,9 @@ api.rpc = function(url) {
         var call = socket.callCollection[packet.id];
         if (call) {
           delete socket.callCollection[packet.id];
-          if (typeof(call.callback) === 'function') call.callback(packet.result);
+          if (typeof(call.callback) === 'function') {
+            call.callback(null, packet.result);
+          }
         }
       } else if (packet.type === 'event') {
         rpc.emit('event', event);
@@ -963,7 +965,7 @@ api.rpc = function(url) {
       callback = params;
       params = {};
     }
-    rpc.call('GET', url, params, true, callback);
+    rpc.call('GET', url, params, callback);
   };
 
   // Send POST request over RPC
@@ -973,7 +975,7 @@ api.rpc = function(url) {
       callback = params;
       params = {};
     }
-    rpc.call('POST', url, params, true, callback);
+    rpc.call('POST', url, params, callback);
   };
 
   rpc.events = {};
@@ -1055,4 +1057,20 @@ api.sse = function(url) {
   sse.on = sse.addEventListener;
   return sse;
 
+};
+
+// Backend and frontend event emitters
+//
+application.backend = new api.events.EventEmitter();
+application.frontend = new api.events.EventEmitter();
+
+// Main Impress RPC binding to server-side
+//
+application.rpc = null;
+
+// Main Impress RPC binding to server-side
+//
+application.connect = function(url, callback) {
+  application.rpc = api.rpc(url);
+  if (callback ) application.rpc.on('open', callback);
 };

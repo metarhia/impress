@@ -1,3 +1,8 @@
+0.1.370 / 2015-09-29
+==================
+
+  * Changes and fixes in Impress client-server RPC over WebSocket, issue #216
+
 0.1.369 / 2015-09-27
 ==================
 

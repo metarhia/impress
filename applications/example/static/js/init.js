@@ -15,6 +15,7 @@ api.dom.on('load', function() {
 
   // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
   //
+  /*
   var rpc = api.rpc('/examples/impress.rpc');
   rpc.on('open', function() {
     rpc.get('/examples/simple/jsonGet.json', { parameterName: 'abc' }, function(err, res) {
@@ -25,6 +26,11 @@ api.dom.on('load', function() {
       console.dir({ data: data });
     });
   });
+  */
+
+  // Application may be connected using single RPC socket
+  //
+  //application.connect('/examples/impress.rpc');
 
   // Auth Module
 
