@@ -166,6 +166,11 @@ if (document.getElementsByClassName) {
 // Add element class
 //
 api.dom.addClass = function(element, className) {
+  element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.add(className);
+  }
   var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
   if (regex.test(element.className)) {
     element.className = (element.className + ' ' + className).replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
@@ -176,6 +181,11 @@ api.dom.addClass = function(element, className) {
 // Remove element class
 //
 api.dom.removeClass = function(element, className) {
+  element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.remove(className);
+  }
   var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
   element.className = element.className.replace(regex, '$1').replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
 };
@@ -184,12 +194,21 @@ api.dom.removeClass = function(element, className) {
 //
 api.dom.hasClass = function(element, className) {
   element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.contains(className);
+  }
   return element.className.match(new RegExp('(^|\b)' + className + '($|\b)'));
 };
 
 // Toggle element class
 //
 api.dom.toggleClass = function(element, className) {
+  element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.toggle(className);
+  }
   element = api.dom.element(element);
   if (api.dom.hasClass(element, className)) api.dom.removeClass(element, className);
   else api.dom.addClass(element, className);
@@ -204,6 +223,8 @@ api.dom.insertAfter = function(parent, node, referenceNode) {
 // Add element event
 //
 api.dom.addEvent = function(element, event, fn) {
+  element = api.dom.element(element);
+  if (!element) return false;
   if (element.addEventListener) {
     return element.addEventListener(event, fn, false);
   } else if (element.attachEvent) {
@@ -217,6 +238,12 @@ api.dom.addEvent = function(element, event, fn) {
 // Remove element event
 //
 api.dom.removeEvent = function(element, event, fn) {
+  if (arguments.length === 2) {
+    fn = element;
+    element = window;
+  }
+  element = api.dom.element(element);
+  if (!element) return false;
   if (element.removeEventListener) {
     return element.removeEventListener(event, fn, false);
   } else if (element.detachEvent) {
@@ -231,8 +258,7 @@ api.dom.on = function(event, element, fn) {
     fn = element;
     element = window;
   }
-  element = api.dom.element(element);
-  if (element) api.dom.addEvent(element, event, fn);
+  api.dom.addEvent(element, event, fn);
 };
 
 // Use element or selector
@@ -331,81 +357,58 @@ api.dom.load = function(url, element, callback) {
 
 // Center element
 //
-api.dom.alignCenter = function(element) {
-  // TODO: implement api.dom.alignCenter
-};
+api.dom.alignCenter = function(element, context, styles) {
+  var wrapper;
+  var POPUP_MARGIN = (element.style.margin.match(/\d+/) || [0])[0] || 0;
 
-// Popup
-//
-api.dom.popup = function(innerContent) {
-  // TODO: decompose api.dom.popup
-
-  var popup = document.createElement('div'),
-      wrapper = document.createElement('div'),
-      content = document.createElement('div');
-
-  popup.appendChild(content);
-  wrapper.appendChild(popup);
-  api.dom.body.appendChild(wrapper);
-
+  if (api.dom.hasClass(element.parentNode, 'centering-wrapper')) {
+    wrapper = element.parentNode;
+  } else {
+    wrapper = api.dom.wrapElement(element, 'centering-wrapper');
+    if (styles) api.dom.setStyles(wrapper, styles);
+    if (context && context.appendChild) {
+      context.appendChild(wrapper);
+    }
+    api.dom.setStyles(wrapper, {
+      'position': 'absolute',
+      'z-index': '10',
+      'text-align': 'center', //horizontal centering
+      'overflow': 'hidden',
+    });
+    api.dom.setStyles(element, {
+      'display': 'inline-block',      //text-like behaviour for centering by line-height and vertical-align
+      'box-sizing': 'border-box',     //include padding to height/width
+      'text-align': 'initial',        //rewrite wrapper's value
+      'line-height': 'normal',        //rewrite wrapper's value
+      'vertical-align': 'middle',     //vertical centering
+    });
+  }
   api.dom.setStyles(wrapper, {
     'height': window.innerHeight + 'px',
     'width': window.innerWidth + 'px',
     'line-height': window.innerHeight + 'px', //vertical centering
-    'position': 'absolute',
-    'z-index': '10',
-    'text-align': 'center', //horizontal centering
-    'overflow': 'hidden',
-    'transition': 'opacity 0.5s',
-    'background': 'rgba(0, 0, 0, 0.5)',
-    'opacity': '0',
   });
-  setTimeout(function() {
-    api.dom.setStyles(wrapper, {
-      'opacity': '1',
-    });
-  }, 50);
-  var POPUP_MARGIN = 10;
-  var POPUP_PADDING = {
-    VER: 20,
-    HOR: 15,
-  };
-  api.dom.setStyles(popup, {
-    display: 'inline-block',
-    background: 'white',
-    'box-shadow': '2px 2px 10px black',
-    'min-width': '300px',
+  api.dom.setStyles(element, {
     'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
     'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
-    'min-height': '100px',
-    'overflow': 'auto',
-    'margin': POPUP_MARGIN + 'px',
-    'padding': POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
-    'box-sizing': 'border-box', //include padding to height/width
-    'text-align': 'initial',
-    'line-height': 'initial',
-    'vertical-align': 'middle', //vertical centering
-  });
-  api.dom.setStyles(content, {
-    'display': 'inline-block',
-  });
-  var bodyPrevOverflow = api.dom.body.style.overflow;
-  api.dom.setStyles(api.dom.body, {
-    'overflow': 'hidden'
   });
 
-  /**@type {HTMLElement}*/
-  var element;
-    element = api.dom.element(innerContent);
-  if (element) {
-    var previouseParent = element.parentNode;
-    var previouseSibling = element.nextElementSibling;
-    content.appendChild(element);
-  } else if (typeof(innerContent) === 'string') {
-    content.innerHTML = innerContent;
+  return wrapper;
+};
+
+// Popup
+//
+api.dom.wrapElement = function(element, classname) {
+  var wrapper = document.createElement('div');
+  if (classname) {
+    api.dom.addClass(wrapper, classname);
   }
+  wrapper.appendChild(element);
+  return wrapper;
+};
 
-  api.dom.on('resize', function() {
+api.dom.generateResizeHandler = function(wrapper, popup, POPUP_MARGIN) {
+  return function() {
     api.dom.setStyles(wrapper, {
       'height': window.innerHeight + 'px',
       'width': window.innerWidth + 'px',
@@ -415,22 +418,99 @@ api.dom.popup = function(innerContent) {
       'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
       'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
     });
-  });
-
-  api.dom.on('click', wrapper, function handler(event) {
+  };
+};
+api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, prevPlaceRefs) {
+  var wrapperClickHandler = function(event) {
     if (event.target !== wrapper) return true;
     api.dom.setStyles(wrapper, {
       'opacity': '0'
     });
     setTimeout(function() {
-      if (previouseParent)previouseParent.insertBefore(content.childNodes.item(0), previouseSibling);
+      if (prevPlaceRefs.previousParent)prevPlaceRefs.previousParent.insertBefore(content.childNodes.item(0),
+                                                                                 prevPlaceRefs.previousSibling);
       api.dom.body.removeChild(wrapper);
-      api.dom.body.style.overflow = bodyPrevOverflow;
+      api.dom.body.style.overflow = api.dom.body.bodyPrevOverflow;
     }, 500); //wait 0.5s for animation end
-    api.dom.removeEvent(wrapper, 'click', handler);
+    api.dom.removeEvent(wrapper, 'click', wrapperClickHandler);
+    api.dom.removeEvent('resize', resizeHandler);
     event.stopImmediatePropagation();
     return false;
+  };
+  return wrapperClickHandler;
+};
+function injectInnerContent(content, contentHolder) {
+  var contentNode = api.dom.element(content);
+  if (contentNode) {
+    var prevPlaceRefs = {};
+    prevPlaceRefs.previousParent = contentNode.parentNode;
+    prevPlaceRefs.previousSibling = contentNode.nextElementSibling;
+    contentHolder.appendChild(contentNode);
+  } else if (typeof(content) === 'string') {
+    contentHolder.innerHTML = content;
+  }
+  return prevPlaceRefs;
+}
+api.dom.popup = function(content) {
+  var POPUP_MARGIN = 10;
+  var POPUP_PADDING = {
+    VER: 20,
+    HOR: api.dom.detectScrollbarWidth() || 20,
+  };
+
+  var popup = document.createElement('div'),
+      contentHolder = document.createElement('div');
+
+  popup.appendChild(contentHolder);
+
+  api.dom.setStyles(popup, {
+    'background': 'white',
+    'box-shadow': '2px 2px 10px black',
+    'min-width': '300px',
+    'min-height': '100px',
+    'overflow': 'auto',
+    'margin': POPUP_MARGIN + 'px',
+    'padding': POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
   });
+
+  var wrapper = api.dom.alignCenter(popup, api.dom.body, {
+    'transition': 'opacity 0.5s',
+    'background': 'rgba(0, 0, 0, 0.5)',
+    'opacity': '0',
+  });
+  api.dom.setStyles(wrapper, {
+    'opacity': '1',
+  });
+  api.dom.setStyles(contentHolder, {
+    'display': 'inline-block',
+  });
+
+  api.dom.body.bodyPrevOverflow = api.dom.body.style.overflow;
+  api.dom.setStyles(api.dom.body, {
+    'overflow': 'hidden'
+  });
+  var prevPlaceRefs = injectInnerContent(content, contentHolder);
+  var resizeHandler = api.dom.alignCenter.bind(null, popup);
+  var wrapperClickHandler = api.dom.generateWrapperClickHandler(wrapper, contentHolder, resizeHandler, prevPlaceRefs);
+  api.dom.on('resize', resizeHandler);
+  api.dom.on('click', wrapper, wrapperClickHandler);
+};
+
+api.dom.detectScrollbarWidth = function() {
+  var scrollDiv = document.createElement("div");
+  api.dom.setStyles(scrollDiv, {
+    'width': '100px',
+    'height': '100px',
+    'overflow': 'scroll',
+    'position': 'absolute',
+    'top': '-9999px',
+  });
+  api.dom.body.appendChild(scrollDiv);
+
+  var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+  document.body.removeChild(scrollDiv);
+
+  return scrollbarWidth;
 };
 
 var dashedToUpperCase = function(key) {
@@ -988,7 +1068,7 @@ api.ws = function(url) {
   var ws = new api.events.EventEmitter(),
       socket = new WebSocket(api.impress.absoluteUrl(url));
 
-  ws.socket = socket; 
+  ws.socket = socket;
 
   socket.onopen = function() {
     ws.emit('open');
