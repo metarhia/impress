@@ -359,7 +359,7 @@ api.dom.load = function(url, element, callback) {
 //
 api.dom.alignCenter = function(element, context, styles) {
   var wrapper;
-  var POPUP_MARGIN = (element.style.margin.match(/\d+/) || [0])[0] || 0;
+  var popupMargin = (element.style.margin.match(/\d+/) || [0])[0] || 0;
 
   if (api.dom.hasClass(element.parentNode, 'centering-wrapper')) {
     wrapper = element.parentNode;
@@ -373,24 +373,24 @@ api.dom.alignCenter = function(element, context, styles) {
       'position': 'absolute',
       'z-index': '10',
       'text-align': 'center', //horizontal centering
-      'overflow': 'hidden',
+      'overflow': 'hidden'
     });
     api.dom.setStyles(element, {
-      'display': 'inline-block',      //text-like behaviour for centering by line-height and vertical-align
-      'box-sizing': 'border-box',     //include padding to height/width
-      'text-align': 'initial',        //rewrite wrapper's value
-      'line-height': 'normal',        //rewrite wrapper's value
-      'vertical-align': 'middle',     //vertical centering
+      'display': 'inline-block',  //text-like behaviour for centering by line-height and vertical-align
+      'box-sizing': 'border-box', //include padding to height/width
+      'text-align': 'initial',    //rewrite wrapper's value
+      'line-height': 'normal',    //rewrite wrapper's value
+      'vertical-align': 'middle'  //vertical centering
     });
   }
   api.dom.setStyles(wrapper, {
     'height': window.innerHeight + 'px',
     'width': window.innerWidth + 'px',
-    'line-height': window.innerHeight + 'px', //vertical centering
+    'line-height': window.innerHeight + 'px' //vertical centering
   });
   api.dom.setStyles(element, {
-    'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
-    'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
+    'max-width': (wrapper.offsetWidth - popupMargin * 2) + 'px',
+    'max-height': (wrapper.offsetHeight - popupMargin * 2) + 'px'
   });
 
   return wrapper;
@@ -400,26 +400,25 @@ api.dom.alignCenter = function(element, context, styles) {
 //
 api.dom.wrapElement = function(element, classname) {
   var wrapper = document.createElement('div');
-  if (classname) {
-    api.dom.addClass(wrapper, classname);
-  }
+  if (classname) api.dom.addClass(wrapper, classname);
   wrapper.appendChild(element);
   return wrapper;
 };
 
-api.dom.generateResizeHandler = function(wrapper, popup, POPUP_MARGIN) {
+api.dom.generateResizeHandler = function(wrapper, popup, popupMargin) {
   return function() {
     api.dom.setStyles(wrapper, {
       'height': window.innerHeight + 'px',
       'width': window.innerWidth + 'px',
-      'line-height': window.innerHeight + 'px',
+      'line-height': window.innerHeight + 'px'
     });
     api.dom.setStyles(popup, {
-      'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
-      'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
+      'max-width': (wrapper.offsetWidth - popupMargin * 2) + 'px',
+      'max-height': (wrapper.offsetHeight - popupMargin * 2) + 'px'
     });
   };
 };
+
 api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, prevPlaceRefs) {
   var wrapperClickHandler = function(event) {
     if (event.target !== wrapper) return true;
@@ -427,8 +426,12 @@ api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, 
       'opacity': '0'
     });
     setTimeout(function() {
-      if (prevPlaceRefs.previousParent)prevPlaceRefs.previousParent.insertBefore(content.childNodes.item(0),
-                                                                                 prevPlaceRefs.previousSibling);
+      if (prevPlaceRefs.previousParent) {
+        prevPlaceRefs.previousParent.insertBefore(
+          content.childNodes.item(0),
+          prevPlaceRefs.previousSibling
+        );
+      }
       api.dom.body.removeChild(wrapper);
       api.dom.body.style.overflow = api.dom.body.bodyPrevOverflow;
     }, 500); //wait 0.5s for animation end
@@ -439,10 +442,12 @@ api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, 
   };
   return wrapperClickHandler;
 };
+
 function injectInnerContent(content, contentHolder) {
-  var contentNode = api.dom.element(content);
+  var contentNode = api.dom.element(content),
+      prevPlaceRefs;
   if (contentNode) {
-    var prevPlaceRefs = {};
+    prevPlaceRefs = {};
     prevPlaceRefs.previousParent = contentNode.parentNode;
     prevPlaceRefs.previousSibling = contentNode.nextElementSibling;
     contentHolder.appendChild(contentNode);
@@ -451,11 +456,12 @@ function injectInnerContent(content, contentHolder) {
   }
   return prevPlaceRefs;
 }
+
 api.dom.popup = function(content) {
-  var POPUP_MARGIN = 10;
-  var POPUP_PADDING = {
-    VER: 20,
-    HOR: api.dom.detectScrollbarWidth() || 20,
+  var popupMargin = 10;
+  var popupPadding = {
+    x: api.dom.detectScrollbarWidth() || 20,
+    y: 20,
   };
 
   var popup = document.createElement('div'),
@@ -469,22 +475,20 @@ api.dom.popup = function(content) {
     'min-width': '300px',
     'min-height': '100px',
     'overflow': 'auto',
-    'margin': POPUP_MARGIN + 'px',
-    'padding': POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
+    'margin': popupMargin + 'px',
+    'padding': popupPadding.y + 'px ' + popupPadding.x + 'px'
   });
-
   var wrapper = api.dom.alignCenter(popup, api.dom.body, {
     'transition': 'opacity 0.5s',
     'background': 'rgba(0, 0, 0, 0.5)',
-    'opacity': '0',
+    'opacity': '0'
   });
   api.dom.setStyles(wrapper, {
-    'opacity': '1',
+    'opacity': '1'
   });
   api.dom.setStyles(contentHolder, {
-    'display': 'inline-block',
+    'display': 'inline-block'
   });
-
   api.dom.body.bodyPrevOverflow = api.dom.body.style.overflow;
   api.dom.setStyles(api.dom.body, {
     'overflow': 'hidden'
@@ -503,7 +507,7 @@ api.dom.detectScrollbarWidth = function() {
     'height': '100px',
     'overflow': 'scroll',
     'position': 'absolute',
-    'top': '-9999px',
+    'top': '-9999px'
   });
   api.dom.body.appendChild(scrollDiv);
 
@@ -513,7 +517,7 @@ api.dom.detectScrollbarWidth = function() {
   return scrollbarWidth;
 };
 
-var dashedToUpperCase = function(key) {
+function dashedToUpperCase(key) {
   return key.replace(/-(\w)/g, function(match, p1) {
     return p1.toUpperCase();
   });
@@ -537,7 +541,7 @@ var cssStringToObject = function(styles) {
   return styles;
 };
 
-var extractPrefixedStyles = function(styleName) {
+function extractPrefixedStyles(styleName) {
   styleName = styleName || styleName;
   var keys = [styleName];
   //adding vendor prefixes if needed
@@ -851,84 +855,6 @@ api.tabs.emitTabs = function(name, data) {
 //
 api.tabs.initialize();
 
-// Create persistent RPC connection
-//
-api.rpc = function(url) {
-
-  var rpc = {};
-
-  var socket = new WebSocket(api.impress.absoluteUrl(url));
-  rpc.socket = socket;
-  rpc.socket.nextMessageId = 0;
-  rpc.socket.callCollection = {};
-
-  socket.onopen = function() {
-    console.log('Connection opened');
-  };
-
-  socket.onclose = function() {
-    console.log('Connection closed');
-  };
-
-  socket.onmessage = function(event) {
-    console.log('Message from server: ' + event.data);
-    var data = JSON.parse(event.data);
-    if (data.type === 'introspection') {
-      var nName, mName, mPath, namespace, obj, parts, sub;
-      for (nName in data.namespaces) {
-        namespace = data.namespaces[nName];
-        obj = {};
-        rpc[nName] = obj;
-        for (mName in namespace) {
-          mPath = nName + '.' + mName;
-          if (mName.indexOf('.') > -1) {
-            parts = mName.split('.');
-            sub = {};
-            sub[parts[1]] = fn(mPath);
-            obj[parts[0]] = sub;
-          } else obj[mName] = fn(mPath);
-        }
-      }
-    } else if (data.id) {
-      var call = rpc.socket.callCollection[data.id];
-      if (call) {
-        if (typeof(call.callback) === 'function') call.callback(data.result);
-      }
-    }
-  };
-
-  function fn(path) {
-    return function() {
-      var parameters = [];
-      Array.prototype.push.apply(parameters, arguments);
-      var cb = parameters.pop();
-      rpc.call('post', path, parameters, cb);
-    };
-  }
-
-  rpc.close = function() {
-    socket.close();
-    rpc.socket = null;
-  };
-
-  rpc.call = function(method, name, parameters, callback) {
-    rpc.socket.nextMessageId++;
-    var data = {
-      id: 'C' + rpc.socket.nextMessageId,
-      type: 'call',
-      method: 'get',
-      name: name,
-      data: parameters
-    };
-    data.callback = callback;
-    rpc.socket.callCollection[data.id] = data;
-    socket.send(JSON.stringify(data));
-  };
-
-  return rpc;
-
-};
-
 // Prepare AJAX interface stub
 //
 api.ajax = function(methods) { // params: { method: { get/post:url }, ... }
@@ -1061,6 +987,125 @@ api.ajax.post = function(url, params, callback) {
   api.ajax.request('POST', url, params, true, callback);
 };
 
+// Create persistent RPC connection
+//
+api.rpc = function(url) {
+
+  var rpc = new api.events.EventEmitter();
+
+  var socket = new WebSocket(api.impress.absoluteUrl(url));
+  rpc.socket = socket;
+  rpc.socket.nextMessageId = 0;
+  rpc.socket.callCollection = {};
+
+  socket.onopen = function() {
+    rpc.emit('open');
+  };
+
+  socket.onclose = function() {
+    rpc.emit('close');
+  };
+
+  socket.onmessage = function(event) {
+    var packet = JSON.parse(event.data);
+    if (packet.id) {
+      if (packet.type === 'result') {
+        var call = socket.callCollection[packet.id];
+        if (call) {
+          delete socket.callCollection[packet.id];
+          if (typeof(call.callback) === 'function') {
+            call.callback(null, packet.result);
+          }
+        }
+      } else if (packet.type === 'event') {
+        rpc.emit('event', event);
+        rpc.events.emit(packet.name, packet.data);
+      } else if (packet.type === 'call') {
+        rpc.emit('call', event);
+      }
+    }
+  };
+
+  // Close RPC connection
+  //
+  rpc.close = function() {
+    socket.close();
+    rpc.socket = null;
+  };
+
+  // Send call over RPC
+  //
+  rpc.call = function(method, name, parameters, callback) {
+    socket.nextMessageId++;
+    var packet = {
+      id: 'C' + socket.nextMessageId,
+      type: 'call',
+      method: method,
+      name: name,
+      data: parameters
+    };
+    packet.callback = callback;
+    socket.callCollection[packet.id] = packet;
+    socket.send(JSON.stringify(packet));
+  };
+
+  // Send GET request over RPC
+  //
+  rpc.get = function(url, params, callback) {
+    if (arguments.length === 2) {
+      callback = params;
+      params = {};
+    }
+    rpc.call('GET', url, params, callback);
+  };
+
+  // Send POST request over RPC
+  //
+  rpc.post = function(url, params, callback) {
+    if (arguments.length === 2) {
+      callback = params;
+      params = {};
+    }
+    rpc.call('POST', url, params, callback);
+  };
+
+  rpc.events = {};
+  rpc.events.listeners = {};
+
+  // Send event over RPC
+  //
+  rpc.events.send = function(name, parameters) {
+    socket.nextMessageId++;
+    var packet = {
+      id: 'C' + socket.nextMessageId,
+      type: 'event',
+      name: name,
+      data: parameters
+    };
+    socket.send(JSON.stringify(packet));
+  };
+
+  // Add named event handler
+  //
+  rpc.events.on = function(name, callback) {
+    var namedEvent = rpc.events.listeners[name];
+    if (!namedEvent) rpc.events.listeners[name] = [callback];
+    else namedEvent.push(callback);
+  };
+
+  // Emit named event
+  //
+  rpc.events.emit = function(name, parameters) {
+    var namedEvent = rpc.events.listeners[name];
+    if (namedEvent) namedEvent.forEach(function(callback) {
+      callback(parameters);
+    });
+  };
+
+  return rpc;
+
+};
+
 // Create websocket instance
 //
 api.ws = function(url) {
@@ -1085,7 +1130,6 @@ api.ws = function(url) {
   ws.close = function() {
     socket.close();
     ws.socket = null;
-    ws.emit('close');
   };
 
   ws.send = function(data) {
@@ -1099,9 +1143,23 @@ api.ws = function(url) {
 // Create Server-Sent Events instance
 //
 api.sse = function(url) {
-
   var sse = new EventSource(url);
   sse.on = sse.addEventListener;
   return sse;
+};
 
+// Backend and frontend event emitters
+//
+application.backend = new api.events.EventEmitter();
+application.frontend = new api.events.EventEmitter();
+
+// Main Impress RPC binding to server-side
+//
+application.rpc = null;
+
+// Main Impress RPC binding to server-side
+//
+application.connect = function(url, callback) {
+  application.rpc = api.rpc(url);
+  if (callback ) application.rpc.on('open', callback);
 };

@@ -1,3 +1,19 @@
+0.1.371 / 2015-10-02
+==================
+
+  * Client-side code refactoring, issue #427
+
+0.1.370 / 2015-09-29
+==================
+
+  * Changes and fixes in Impress client-server RPC over WebSocket, issue #216
+
+0.1.369 / 2015-09-27
+==================
+
+  * Implemented RPC request/get/post methods for Impress client-server RPC over WebSocket, issue #216
+  * Changed deploy scripts to use node.js 4.1.1
+
 0.1.368 / 2015-09-26
 ==================
 
