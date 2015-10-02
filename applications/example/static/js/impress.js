@@ -359,7 +359,7 @@ api.dom.load = function(url, element, callback) {
 //
 api.dom.alignCenter = function(element, context, styles) {
   var wrapper;
-  var POPUP_MARGIN = (element.style.margin.match(/\d+/) || [0])[0] || 0;
+  var popupMargin = (element.style.margin.match(/\d+/) || [0])[0] || 0;
 
   if (api.dom.hasClass(element.parentNode, 'centering-wrapper')) {
     wrapper = element.parentNode;
@@ -373,24 +373,24 @@ api.dom.alignCenter = function(element, context, styles) {
       'position': 'absolute',
       'z-index': '10',
       'text-align': 'center', //horizontal centering
-      'overflow': 'hidden',
+      'overflow': 'hidden'
     });
     api.dom.setStyles(element, {
-      'display': 'inline-block',      //text-like behaviour for centering by line-height and vertical-align
-      'box-sizing': 'border-box',     //include padding to height/width
-      'text-align': 'initial',        //rewrite wrapper's value
-      'line-height': 'normal',        //rewrite wrapper's value
-      'vertical-align': 'middle',     //vertical centering
+      'display': 'inline-block',  //text-like behaviour for centering by line-height and vertical-align
+      'box-sizing': 'border-box', //include padding to height/width
+      'text-align': 'initial',    //rewrite wrapper's value
+      'line-height': 'normal',    //rewrite wrapper's value
+      'vertical-align': 'middle'  //vertical centering
     });
   }
   api.dom.setStyles(wrapper, {
     'height': window.innerHeight + 'px',
     'width': window.innerWidth + 'px',
-    'line-height': window.innerHeight + 'px', //vertical centering
+    'line-height': window.innerHeight + 'px' //vertical centering
   });
   api.dom.setStyles(element, {
-    'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
-    'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
+    'max-width': (wrapper.offsetWidth - popupMargin * 2) + 'px',
+    'max-height': (wrapper.offsetHeight - popupMargin * 2) + 'px'
   });
 
   return wrapper;
@@ -400,26 +400,25 @@ api.dom.alignCenter = function(element, context, styles) {
 //
 api.dom.wrapElement = function(element, classname) {
   var wrapper = document.createElement('div');
-  if (classname) {
-    api.dom.addClass(wrapper, classname);
-  }
+  if (classname) api.dom.addClass(wrapper, classname);
   wrapper.appendChild(element);
   return wrapper;
 };
 
-api.dom.generateResizeHandler = function(wrapper, popup, POPUP_MARGIN) {
+api.dom.generateResizeHandler = function(wrapper, popup, popupMargin) {
   return function() {
     api.dom.setStyles(wrapper, {
       'height': window.innerHeight + 'px',
       'width': window.innerWidth + 'px',
-      'line-height': window.innerHeight + 'px',
+      'line-height': window.innerHeight + 'px'
     });
     api.dom.setStyles(popup, {
-      'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
-      'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
+      'max-width': (wrapper.offsetWidth - popupMargin * 2) + 'px',
+      'max-height': (wrapper.offsetHeight - popupMargin * 2) + 'px'
     });
   };
 };
+
 api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, prevPlaceRefs) {
   var wrapperClickHandler = function(event) {
     if (event.target !== wrapper) return true;
@@ -427,8 +426,12 @@ api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, 
       'opacity': '0'
     });
     setTimeout(function() {
-      if (prevPlaceRefs.previousParent)prevPlaceRefs.previousParent.insertBefore(content.childNodes.item(0),
-                                                                                 prevPlaceRefs.previousSibling);
+      if (prevPlaceRefs.previousParent) {
+        prevPlaceRefs.previousParent.insertBefore(
+          content.childNodes.item(0),
+          prevPlaceRefs.previousSibling
+        );
+      }
       api.dom.body.removeChild(wrapper);
       api.dom.body.style.overflow = api.dom.body.bodyPrevOverflow;
     }, 500); //wait 0.5s for animation end
@@ -439,10 +442,12 @@ api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, 
   };
   return wrapperClickHandler;
 };
+
 function injectInnerContent(content, contentHolder) {
-  var contentNode = api.dom.element(content);
+  var contentNode = api.dom.element(content),
+      prevPlaceRefs;
   if (contentNode) {
-    var prevPlaceRefs = {};
+    prevPlaceRefs = {};
     prevPlaceRefs.previousParent = contentNode.parentNode;
     prevPlaceRefs.previousSibling = contentNode.nextElementSibling;
     contentHolder.appendChild(contentNode);
@@ -451,11 +456,12 @@ function injectInnerContent(content, contentHolder) {
   }
   return prevPlaceRefs;
 }
+
 api.dom.popup = function(content) {
-  var POPUP_MARGIN = 10;
-  var POPUP_PADDING = {
-    VER: 20,
-    HOR: api.dom.detectScrollbarWidth() || 20,
+  var popupMargin = 10;
+  var popupPadding = {
+    x: api.dom.detectScrollbarWidth() || 20,
+    y: 20,
   };
 
   var popup = document.createElement('div'),
@@ -469,22 +475,20 @@ api.dom.popup = function(content) {
     'min-width': '300px',
     'min-height': '100px',
     'overflow': 'auto',
-    'margin': POPUP_MARGIN + 'px',
-    'padding': POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
+    'margin': popupMargin + 'px',
+    'padding': popupPadding.y + 'px ' + popupPadding.x + 'px'
   });
-
   var wrapper = api.dom.alignCenter(popup, api.dom.body, {
     'transition': 'opacity 0.5s',
     'background': 'rgba(0, 0, 0, 0.5)',
-    'opacity': '0',
+    'opacity': '0'
   });
   api.dom.setStyles(wrapper, {
-    'opacity': '1',
+    'opacity': '1'
   });
   api.dom.setStyles(contentHolder, {
-    'display': 'inline-block',
+    'display': 'inline-block'
   });
-
   api.dom.body.bodyPrevOverflow = api.dom.body.style.overflow;
   api.dom.setStyles(api.dom.body, {
     'overflow': 'hidden'
@@ -503,7 +507,7 @@ api.dom.detectScrollbarWidth = function() {
     'height': '100px',
     'overflow': 'scroll',
     'position': 'absolute',
-    'top': '-9999px',
+    'top': '-9999px'
   });
   api.dom.body.appendChild(scrollDiv);
 
@@ -513,7 +517,7 @@ api.dom.detectScrollbarWidth = function() {
   return scrollbarWidth;
 };
 
-var dashedToUpperCase = function(key) {
+function dashedToUpperCase(key) {
   return key.replace(/-(\w)/g, function(match, p1) {
     return p1.toUpperCase();
   });
@@ -537,7 +541,7 @@ var cssStringToObject = function(styles) {
   return styles;
 };
 
-var extractPrefixedStyles = function(styleName) {
+function extractPrefixedStyles(styleName) {
   styleName = styleName || styleName;
   var keys = [styleName];
   //adding vendor prefixes if needed
@@ -1139,11 +1143,9 @@ api.ws = function(url) {
 // Create Server-Sent Events instance
 //
 api.sse = function(url) {
-
   var sse = new EventSource(url);
   sse.on = sse.addEventListener;
   return sse;
-
 };
 
 // Backend and frontend event emitters
