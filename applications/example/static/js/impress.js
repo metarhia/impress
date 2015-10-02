@@ -166,6 +166,11 @@ if (document.getElementsByClassName) {
 // Add element class
 //
 api.dom.addClass = function(element, className) {
+  element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.add(className);
+  }
   var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
   if (regex.test(element.className)) {
     element.className = (element.className + ' ' + className).replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
@@ -176,6 +181,11 @@ api.dom.addClass = function(element, className) {
 // Remove element class
 //
 api.dom.removeClass = function(element, className) {
+  element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.remove(className);
+  }
   var regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
   element.className = element.className.replace(regex, '$1').replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
 };
@@ -184,12 +194,21 @@ api.dom.removeClass = function(element, className) {
 //
 api.dom.hasClass = function(element, className) {
   element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.contains(className);
+  }
   return element.className.match(new RegExp('(^|\b)' + className + '($|\b)'));
 };
 
 // Toggle element class
 //
 api.dom.toggleClass = function(element, className) {
+  element = api.dom.element(element);
+  if (!element) return false;
+  if (element.classList) {
+    return element.classList.toggle(className);
+  }
   element = api.dom.element(element);
   if (api.dom.hasClass(element, className)) api.dom.removeClass(element, className);
   else api.dom.addClass(element, className);
@@ -204,6 +223,8 @@ api.dom.insertAfter = function(parent, node, referenceNode) {
 // Add element event
 //
 api.dom.addEvent = function(element, event, fn) {
+  element = api.dom.element(element);
+  if (!element) return false;
   if (element.addEventListener) {
     return element.addEventListener(event, fn, false);
   } else if (element.attachEvent) {
@@ -217,6 +238,12 @@ api.dom.addEvent = function(element, event, fn) {
 // Remove element event
 //
 api.dom.removeEvent = function(element, event, fn) {
+  if (arguments.length === 2) {
+    fn = element;
+    element = window;
+  }
+  element = api.dom.element(element);
+  if (!element) return false;
   if (element.removeEventListener) {
     return element.removeEventListener(event, fn, false);
   } else if (element.detachEvent) {
@@ -231,8 +258,7 @@ api.dom.on = function(event, element, fn) {
     fn = element;
     element = window;
   }
-  element = api.dom.element(element);
-  if (element) api.dom.addEvent(element, event, fn);
+  api.dom.addEvent(element, event, fn);
 };
 
 // Use element or selector
@@ -331,81 +357,58 @@ api.dom.load = function(url, element, callback) {
 
 // Center element
 //
-api.dom.alignCenter = function(element) {
-  // TODO: implement api.dom.alignCenter
-};
+api.dom.alignCenter = function(element, context, styles) {
+  var wrapper;
+  var POPUP_MARGIN = (element.style.margin.match(/\d+/) || [0])[0] || 0;
 
-// Popup
-//
-api.dom.popup = function(innerContent) {
-  // TODO: decompose api.dom.popup
-
-  var popup = document.createElement('div'),
-      wrapper = document.createElement('div'),
-      content = document.createElement('div');
-
-  popup.appendChild(content);
-  wrapper.appendChild(popup);
-  api.dom.body.appendChild(wrapper);
-
+  if (api.dom.hasClass(element.parentNode, 'centering-wrapper')) {
+    wrapper = element.parentNode;
+  } else {
+    wrapper = api.dom.wrapElement(element, 'centering-wrapper');
+    if (styles) api.dom.setStyles(wrapper, styles);
+    if (context && context.appendChild) {
+      context.appendChild(wrapper);
+    }
+    api.dom.setStyles(wrapper, {
+      'position': 'absolute',
+      'z-index': '10',
+      'text-align': 'center', //horizontal centering
+      'overflow': 'hidden',
+    });
+    api.dom.setStyles(element, {
+      'display': 'inline-block',      //text-like behaviour for centering by line-height and vertical-align
+      'box-sizing': 'border-box',     //include padding to height/width
+      'text-align': 'initial',        //rewrite wrapper's value
+      'line-height': 'normal',        //rewrite wrapper's value
+      'vertical-align': 'middle',     //vertical centering
+    });
+  }
   api.dom.setStyles(wrapper, {
     'height': window.innerHeight + 'px',
     'width': window.innerWidth + 'px',
     'line-height': window.innerHeight + 'px', //vertical centering
-    'position': 'absolute',
-    'z-index': '10',
-    'text-align': 'center', //horizontal centering
-    'overflow': 'hidden',
-    'transition': '0.5s',
-    'background': 'rgba(0, 0, 0, 0.5)',
-    'opacity': '0',
   });
-  setTimeout(function() {
-    api.dom.setStyles(wrapper, {
-      'opacity': '1',
-    });
-  }, 50);
-  var POPUP_MARGIN = 10;
-  var POPUP_PADDING = {
-    VER: 20,
-    HOR: 15,
-  };
-  api.dom.setStyles(popup, {
-    display: 'inline-block',
-    background: 'white',
-    'box-shadow': '2px 2px 10px black',
-    'min-width': '300px',
+  api.dom.setStyles(element, {
     'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
     'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
-    'min-height': '100px',
-    'overflow': 'auto',
-    'margin': POPUP_MARGIN + 'px',
-    'padding': POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
-    'box-sizing': 'border-box', //include padding to height/width
-    'text-align': 'initial',
-    'line-height': 'initial',
-    'vertical-align': 'middle', //vertical centering
-  });
-  api.dom.setStyles(content, {
-    'display': 'inline-block',
-  });
-  var bodyPrevOverflow = api.dom.body.style.overflow;
-  api.dom.setStyles(api.dom.body, {
-    'overflow': 'hidden'
   });
 
-  /**@type {HTMLElement}*/
-  var element;
-    element = api.dom.element(innerContent);
-  if (element) {
-    var previouseParent = element.parentNode;
-    var previouseSibling = element.nextElementSibling;
-    content.appendChild(element);
-  } else if (typeof(innerContent) === 'string') {
-    content.innerHTML = innerContent;
+  return wrapper;
+};
+
+// Popup
+//
+api.dom.wrapElement = function(element, classname) {
+  var wrapper = document.createElement('div');
+  if (classname) {
+    api.dom.addClass(wrapper, classname);
   }
+  wrapper.appendChild(element);
+  return wrapper;
+};
 
-  api.dom.on('resize', function() {
+api.dom.generateResizeHandler = function(wrapper, popup, POPUP_MARGIN) {
+  return function() {
     api.dom.setStyles(wrapper, {
       'height': window.innerHeight + 'px',
       'width': window.innerWidth + 'px',
@@ -415,42 +418,110 @@ api.dom.popup = function(innerContent) {
       'max-width': (wrapper.offsetWidth - POPUP_MARGIN * 2 ) + 'px',
       'max-height': (wrapper.offsetHeight - POPUP_MARGIN * 2 ) + 'px',
     });
-  });
-
-  api.dom.on('click', wrapper, function handler(event) {
+  };
+};
+api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, prevPlaceRefs) {
+  var wrapperClickHandler = function(event) {
     if (event.target !== wrapper) return true;
     api.dom.setStyles(wrapper, {
       'opacity': '0'
     });
     setTimeout(function() {
-      if (previouseParent)previouseParent.insertBefore(content.childNodes.item(0), previouseSibling);
+      if (prevPlaceRefs.previousParent)prevPlaceRefs.previousParent.insertBefore(content.childNodes.item(0),
+                                                                                 prevPlaceRefs.previousSibling);
       api.dom.body.removeChild(wrapper);
-      api.dom.body.style.overflow = bodyPrevOverflow;
+      api.dom.body.style.overflow = api.dom.body.bodyPrevOverflow;
     }, 500); //wait 0.5s for animation end
-    api.dom.removeEvent(wrapper, 'click', handler);
+    api.dom.removeEvent(wrapper, 'click', wrapperClickHandler);
+    api.dom.removeEvent('resize', resizeHandler);
     event.stopImmediatePropagation();
     return false;
+  };
+  return wrapperClickHandler;
+};
+function injectInnerContent(content, contentHolder) {
+  var contentNode = api.dom.element(content);
+  if (contentNode) {
+    var prevPlaceRefs = {};
+    prevPlaceRefs.previousParent = contentNode.parentNode;
+    prevPlaceRefs.previousSibling = contentNode.nextElementSibling;
+    contentHolder.appendChild(contentNode);
+  } else if (typeof(content) === 'string') {
+    contentHolder.innerHTML = content;
+  }
+  return prevPlaceRefs;
+}
+api.dom.popup = function(content) {
+  var POPUP_MARGIN = 10;
+  var POPUP_PADDING = {
+    VER: 20,
+    HOR: api.dom.detectScrollbarWidth() || 20,
+  };
+
+  var popup = document.createElement('div'),
+      contentHolder = document.createElement('div');
+
+  popup.appendChild(contentHolder);
+
+  api.dom.setStyles(popup, {
+    'background': 'white',
+    'box-shadow': '2px 2px 10px black',
+    'min-width': '300px',
+    'min-height': '100px',
+    'overflow': 'auto',
+    'margin': POPUP_MARGIN + 'px',
+    'padding': POPUP_PADDING.VER + 'px ' + POPUP_PADDING.HOR + 'px',
+  });
+
+  var wrapper = api.dom.alignCenter(popup, api.dom.body, {
+    'transition': 'opacity 0.5s',
+    'background': 'rgba(0, 0, 0, 0.5)',
+    'opacity': '0',
+  });
+  api.dom.setStyles(wrapper, {
+    'opacity': '1',
+  });
+  api.dom.setStyles(contentHolder, {
+    'display': 'inline-block',
+  });
+
+  api.dom.body.bodyPrevOverflow = api.dom.body.style.overflow;
+  api.dom.setStyles(api.dom.body, {
+    'overflow': 'hidden'
+  });
+  var prevPlaceRefs = injectInnerContent(content, contentHolder);
+  var resizeHandler = api.dom.alignCenter.bind(null, popup);
+  var wrapperClickHandler = api.dom.generateWrapperClickHandler(wrapper, contentHolder, resizeHandler, prevPlaceRefs);
+  api.dom.on('resize', resizeHandler);
+  api.dom.on('click', wrapper, wrapperClickHandler);
+};
+
+api.dom.detectScrollbarWidth = function() {
+  var scrollDiv = document.createElement("div");
+  api.dom.setStyles(scrollDiv, {
+    'width': '100px',
+    'height': '100px',
+    'overflow': 'scroll',
+    'position': 'absolute',
+    'top': '-9999px',
+  });
+  api.dom.body.appendChild(scrollDiv);
+
+  var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+  document.body.removeChild(scrollDiv);
+
+  return scrollbarWidth;
+};
+
+var dashedToUpperCase = function(key) {
+  return key.replace(/-(\w)/g, function(match, p1) {
+    return p1.toUpperCase();
   });
 };
 
-// Set given styles to element
+//transform CSS string to Object
 //
-api.dom.setStyles = function(element, styles) {
-  // TODO: decompose api.dom.setStyles
-
-  var props = { //taken from Emmet lib - https://github.com/emmetio/emmet/blob/master/lib/resolver/css.js#L155
-    'webkit': 'animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-clip, background-composite, background-origin, background-size, border-fit, border-horizontal-spacing, border-image, border-vertical-spacing, box-align, box-direction, box-flex, box-flex-group, box-lines, box-ordinal-group, box-orient, box-pack, box-reflect, box-shadow, color-correction, column-break-after, column-break-before, column-break-inside, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-span, column-width, dashboard-region, font-smoothing, highlight, hyphenate-character, hyphenate-limit-after, hyphenate-limit-before, hyphens, line-box-contain, line-break, line-clamp, locale, margin-before-collapse, margin-after-collapse, marquee-direction, marquee-increment, marquee-repetition, marquee-style, mask-attachment, mask-box-image, mask-box-image-outset, mask-box-image-repeat, mask-box-image-slice, mask-box-image-source, mask-box-image-width, mask-clip, mask-composite, mask-image, mask-origin, mask-position, mask-repeat, mask-size, nbsp-mode, perspective, perspective-origin, rtl-ordering, text-combine, text-decorations-in-effect, text-emphasis-color, text-emphasis-position, text-emphasis-style, text-fill-color, text-orientation, text-security, text-stroke-color, text-stroke-width, transform, transition, transform-origin, transform-style, transition-delay, transition-duration, transition-property, transition-timing-function, user-drag, user-modify, user-select, writing-mode, svg-shadow, box-sizing, border-radius',
-    'moz': 'animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-inline-policy, binding, border-bottom-colors, border-image, border-left-colors, border-right-colors, border-top-colors, box-align, box-direction, box-flex, box-ordinal-group, box-orient, box-pack, box-shadow, box-sizing, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-width, float-edge, font-feature-settings, font-language-override, force-broken-image-icon, hyphens, image-region, orient, outline-radius-bottomleft, outline-radius-bottomright, outline-radius-topleft, outline-radius-topright, perspective, perspective-origin, stack-sizing, tab-size, text-blink, text-decoration-color, text-decoration-line, text-decoration-style, text-size-adjust, transform, transform-origin, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-focus, user-input, user-modify, user-select, window-shadow, background-clip, border-radius',
-    'ms': 'accelerator, backface-visibility, background-position-x, background-position-y, behavior, block-progression, box-align, box-direction, box-flex, box-line-progression, box-lines, box-ordinal-group, box-orient, box-pack, content-zoom-boundary, content-zoom-boundary-max, content-zoom-boundary-min, content-zoom-chaining, content-zoom-snap, content-zoom-snap-points, content-zoom-snap-type, content-zooming, filter, flow-from, flow-into, font-feature-settings, grid-column, grid-column-align, grid-column-span, grid-columns, grid-layer, grid-row, grid-row-align, grid-row-span, grid-rows, high-contrast-adjust, hyphenate-limit-chars, hyphenate-limit-lines, hyphenate-limit-zone, hyphens, ime-mode, interpolation-mode, layout-flow, layout-grid, layout-grid-char, layout-grid-line, layout-grid-mode, layout-grid-type, line-break, overflow-style, perspective, perspective-origin, perspective-origin-x, perspective-origin-y, scroll-boundary, scroll-boundary-bottom, scroll-boundary-left, scroll-boundary-right, scroll-boundary-top, scroll-chaining, scroll-rails, scroll-snap-points-x, scroll-snap-points-y, scroll-snap-type, scroll-snap-x, scroll-snap-y, scrollbar-arrow-color, scrollbar-base-color, scrollbar-darkshadow-color, scrollbar-face-color, scrollbar-highlight-color, scrollbar-shadow-color, scrollbar-track-color, text-align-last, text-autospace, text-justify, text-kashida-space, text-overflow, text-size-adjust, text-underline-position, touch-action, transform, transform-origin, transform-origin-x, transform-origin-y, transform-origin-z, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-select, word-break, wrap-flow, wrap-margin, wrap-through, writing-mode',
-    'o': 'dashboard-region, animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, border-image, link, link-source, object-fit, object-position, tab-size, table-baseline, transform, transform-origin, transition, transition-delay, transition-duration, transition-property, transition-timing-function, accesskey, input-format, input-required, marquee-dir, marquee-loop, marquee-speed, marquee-style'
-  };
-
-  var p;
-  for (p in props) {
-    props[p] = props[p].split(/\s*,\s*/);
-  }
-
-  //transform CSS string to Object
+var cssStringToObject = function(styles) {
   if (typeof(styles) === 'string') {
     var stylesStr = styles;
     styles = {};
@@ -463,31 +534,47 @@ api.dom.setStyles = function(element, styles) {
       styles[key] = val; //storing to object
     });
   }
+  return styles;
+};
 
-  if (typeof(styles) === 'object') {
-    for (var i in styles) {
-      if (!i || !styles[i]) break;
-      var keys = [i];
-      //adding vendor prefixes if needed
-      for (p in props) {
-        if (props[p].indexOf(i) >= 0) {
-          keys.push('-' + p + '-' + i);
-        }
-      }
-      for (var j in keys) {
-        var key = dashedToUpperCase(keys[j]);
-        element.style[key] = styles[i];
-      }
+var extractPrefixedStyles = function(styleName) {
+  styleName = styleName || styleName;
+  var keys = [styleName];
+  //adding vendor prefixes if needed
+  for (var pref in api.dom.styleProps) {
+    if (api.dom.styleProps[pref].indexOf(styleName) >= 0) {
+      keys.push('-' + pref + '-' + styleName);
+    }
+  }
+  return keys;
+};
+
+// Set given styles to element
+//
+api.dom.setStyles = function(element, styles) {
+  styles = cssStringToObject(styles);
+  if (typeof(styles) !== 'object') return false;
+
+  for (var styleName in styles) {
+    if (!styles[styleName]) break;
+    var styleNames = extractPrefixedStyles(styleName);
+    for (var dashedName in styleNames) {
+      var key = dashedToUpperCase(styleNames[dashedName]);
+      element.style[key] = styles[styleName];
     }
   }
   return true;
-
-  function dashedToUpperCase(key) {
-    return key.replace(/-(\w)/g, function(match, p1) {
-      return p1.toUpperCase();
-    });
-  }
 };
+
+api.dom.styleProps = { //taken from Emmet lib - https://github.com/emmetio/emmet/blob/master/lib/resolver/css.js#L155
+  'webkit': 'animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-clip, background-composite, background-origin, background-size, border-fit, border-horizontal-spacing, border-image, border-vertical-spacing, box-align, box-direction, box-flex, box-flex-group, box-lines, box-ordinal-group, box-orient, box-pack, box-reflect, box-shadow, color-correction, column-break-after, column-break-before, column-break-inside, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-span, column-width, dashboard-region, font-smoothing, highlight, hyphenate-character, hyphenate-limit-after, hyphenate-limit-before, hyphens, line-box-contain, line-break, line-clamp, locale, margin-before-collapse, margin-after-collapse, marquee-direction, marquee-increment, marquee-repetition, marquee-style, mask-attachment, mask-box-image, mask-box-image-outset, mask-box-image-repeat, mask-box-image-slice, mask-box-image-source, mask-box-image-width, mask-clip, mask-composite, mask-image, mask-origin, mask-position, mask-repeat, mask-size, nbsp-mode, perspective, perspective-origin, rtl-ordering, text-combine, text-decorations-in-effect, text-emphasis-color, text-emphasis-position, text-emphasis-style, text-fill-color, text-orientation, text-security, text-stroke-color, text-stroke-width, transform, transition, transform-origin, transform-style, transition-delay, transition-duration, transition-property, transition-timing-function, user-drag, user-modify, user-select, writing-mode, svg-shadow, box-sizing, border-radius',
+  'moz': 'animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-inline-policy, binding, border-bottom-colors, border-image, border-left-colors, border-right-colors, border-top-colors, box-align, box-direction, box-flex, box-ordinal-group, box-orient, box-pack, box-shadow, box-sizing, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-width, float-edge, font-feature-settings, font-language-override, force-broken-image-icon, hyphens, image-region, orient, outline-radius-bottomleft, outline-radius-bottomright, outline-radius-topleft, outline-radius-topright, perspective, perspective-origin, stack-sizing, tab-size, text-blink, text-decoration-color, text-decoration-line, text-decoration-style, text-size-adjust, transform, transform-origin, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-focus, user-input, user-modify, user-select, window-shadow, background-clip, border-radius',
+  'ms': 'accelerator, backface-visibility, background-position-x, background-position-y, behavior, block-progression, box-align, box-direction, box-flex, box-line-progression, box-lines, box-ordinal-group, box-orient, box-pack, content-zoom-boundary, content-zoom-boundary-max, content-zoom-boundary-min, content-zoom-chaining, content-zoom-snap, content-zoom-snap-points, content-zoom-snap-type, content-zooming, filter, flow-from, flow-into, font-feature-settings, grid-column, grid-column-align, grid-column-span, grid-columns, grid-layer, grid-row, grid-row-align, grid-row-span, grid-rows, high-contrast-adjust, hyphenate-limit-chars, hyphenate-limit-lines, hyphenate-limit-zone, hyphens, ime-mode, interpolation-mode, layout-flow, layout-grid, layout-grid-char, layout-grid-line, layout-grid-mode, layout-grid-type, line-break, overflow-style, perspective, perspective-origin, perspective-origin-x, perspective-origin-y, scroll-boundary, scroll-boundary-bottom, scroll-boundary-left, scroll-boundary-right, scroll-boundary-top, scroll-chaining, scroll-rails, scroll-snap-points-x, scroll-snap-points-y, scroll-snap-type, scroll-snap-x, scroll-snap-y, scrollbar-arrow-color, scrollbar-base-color, scrollbar-darkshadow-color, scrollbar-face-color, scrollbar-highlight-color, scrollbar-shadow-color, scrollbar-track-color, text-align-last, text-autospace, text-justify, text-kashida-space, text-overflow, text-size-adjust, text-underline-position, touch-action, transform, transform-origin, transform-origin-x, transform-origin-y, transform-origin-z, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-select, word-break, wrap-flow, wrap-margin, wrap-through, writing-mode',
+  'o': 'dashboard-region, animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, border-image, link, link-source, object-fit, object-position, tab-size, table-baseline, transform, transform-origin, transition, transition-delay, transition-duration, transition-property, transition-timing-function, accesskey, input-format, input-required, marquee-dir, marquee-loop, marquee-speed, marquee-style'
+};
+for (var i in api.dom.styleProps) {
+  api.dom.styleProps[i] = api.dom.styleProps[i].split(/\s*,\s*/);
+}
 
 // Confirmation dialog
 //   Buttons: ['Yes', 'No', 'Ok', 'Cancel']
@@ -1022,7 +1109,7 @@ api.ws = function(url) {
   var ws = new api.events.EventEmitter(),
       socket = new WebSocket(api.impress.absoluteUrl(url));
 
-  ws.socket = socket; 
+  ws.socket = socket;
 
   socket.onopen = function() {
     ws.emit('open');
