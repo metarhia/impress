@@ -35,7 +35,8 @@ api.dom.on('load', function() {
   // Auth Module
 
   api.dom.on('click', '#hmenu-Signin', function() {
-    api.dom.popup('#formLogin');
+    var closePopup = api.dom.popup('#formLogin');
+    closePopup.closeElement = api.dom.element('#formLoginCancel');
     return false;
   });
 
@@ -48,7 +49,8 @@ api.dom.on('load', function() {
   });
 
   api.dom.on('click', '#hmenu-Register', function() {
-    api.dom.popup('#formReg');
+    var closePopup = api.dom.popup('#formReg');
+    closePopup.closeElement = api.dom.element('#formRegCancel');
     return false;
   });
 

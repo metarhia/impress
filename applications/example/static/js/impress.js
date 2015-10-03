@@ -419,9 +419,9 @@ api.dom.generateResizeHandler = function(wrapper, popup, popupMargin) {
   };
 };
 
-api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, prevPlaceRefs) {
-  var wrapperClickHandler = function(event) {
-    if (event.target !== wrapper) return true;
+api.dom.generateClosePopup = function(wrapper, content, resizeHandler, prevPlaceRefs) {
+  var closePopup = function(event) {
+    if (event.target !== wrapper && event.target !== closePopup.closeElement) return true;
     api.dom.setStyles(wrapper, {
       'opacity': '0'
     });
@@ -435,12 +435,12 @@ api.dom.generateWrapperClickHandler = function(wrapper, content, resizeHandler, 
       api.dom.body.removeChild(wrapper);
       api.dom.body.style.overflow = api.dom.body.bodyPrevOverflow;
     }, 500); //wait 0.5s for animation end
-    api.dom.removeEvent(wrapper, 'click', wrapperClickHandler);
+    api.dom.removeEvent(wrapper, 'click', closePopup);
     api.dom.removeEvent('resize', resizeHandler);
     event.stopImmediatePropagation();
     return false;
   };
-  return wrapperClickHandler;
+  return closePopup;
 };
 
 function injectInnerContent(content, contentHolder) {
@@ -471,7 +471,7 @@ api.dom.popup = function(content) {
 
   api.dom.setStyles(popup, {
     'background': 'white',
-    'box-shadow': '2px 2px 10px black',
+    'box-shadow': '0 0 15px #333',
     'min-width': '300px',
     'min-height': '100px',
     'overflow': 'auto',
@@ -495,9 +495,10 @@ api.dom.popup = function(content) {
   });
   var prevPlaceRefs = injectInnerContent(content, contentHolder);
   var resizeHandler = api.dom.alignCenter.bind(null, popup);
-  var wrapperClickHandler = api.dom.generateWrapperClickHandler(wrapper, contentHolder, resizeHandler, prevPlaceRefs);
+  var closePopup = api.dom.generateClosePopup(wrapper, contentHolder, resizeHandler, prevPlaceRefs);
   api.dom.on('resize', resizeHandler);
-  api.dom.on('click', wrapper, wrapperClickHandler);
+  api.dom.on('click', wrapper, closePopup);
+  return closePopup;
 };
 
 api.dom.detectScrollbarWidth = function() {
