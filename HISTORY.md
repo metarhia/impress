@@ -1,3 +1,10 @@
+0.1.373 / 2015-10-04
+==================
+
+  * Deprecated scale strategy ```specialization```, close #441
+  * New scale strategy ```bundle```, changed configs, see examples, close #440
+  * Start implementing software balancer, issue #434
+
 0.1.372 / 2015-10-03
 ==================
 

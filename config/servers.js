@@ -6,6 +6,7 @@ module.exports = {
     protocol:  'http',
     address:   '*',
     port:      80,
+    bundle:    true, // for scaling strategy 'bundle'
     slowTime:  '1s',
     timeout:   '30s',
     keepAliveTimeout: '5s'
