@@ -30,7 +30,7 @@ api.dom.on('load', function() {
 
   // Application may be connected using single RPC socket
   //
-  //application.connect('/examples/impress.rpc');
+  // application.connect();
 
   // Auth Module
 

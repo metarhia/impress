@@ -21,6 +21,16 @@ api.impress.absoluteUrl = function(url) {
   } else return url;
 };
 
+// Return random number less then one argument random(100) or between two argumants random(50,150)
+//
+api.impress.random = function(min, max) {
+  if (arguments.length === 1) {
+    max = min;
+    min = 0;
+  }
+  return min + Math.floor(Math.random() * (max - min + 1));
+};
+
 // Simple EventEmitter implementation
 //
 api.events = {};
@@ -856,7 +866,7 @@ api.tabs.emitTabs = function(name, data) {
 //
 api.tabs.initialize();
 
-// Prepare AJAX interface stub
+// Prepare AJAX namespace stub
 //
 api.ajax = function(methods) { // params: { method: { get/post:url }, ... }
 
@@ -1036,11 +1046,11 @@ api.rpc = function(url) {
 
   // Send call over RPC
   //
-  rpc.call = function(method, name, parameters, callback) {
+  rpc.ajax = function(method, name, parameters, callback) {
     socket.nextMessageId++;
     var packet = {
       id: 'C' + socket.nextMessageId,
-      type: 'call',
+      type: 'ajax',
       method: method,
       name: name,
       data: parameters
@@ -1057,7 +1067,7 @@ api.rpc = function(url) {
       callback = params;
       params = {};
     }
-    rpc.call('GET', url, params, callback);
+    rpc.ajax('GET', url, params, callback);
   };
 
   // Send POST request over RPC
@@ -1067,7 +1077,7 @@ api.rpc = function(url) {
       callback = params;
       params = {};
     }
-    rpc.call('POST', url, params, callback);
+    rpc.ajax('POST', url, params, callback);
   };
 
   rpc.events = {};
@@ -1158,9 +1168,85 @@ application.frontend = new api.events.EventEmitter();
 //
 application.rpc = null;
 
+// Client-side load balancer
+//
+application.balancer = {};
+application.balancer.servers = {};
+application.balancer.sequence = [];
+application.balancer.sequenceIndex = 0;
+application.balancer.currentServer = null;
+application.balancer.currentNode = null;
+application.balancer.currentRetry = 0;
+application.balancer.currentRetryMax = 10;
+application.balancer.globalRetry = 0;
+application.balancer.retryInterval = 3000;
+
 // Main Impress RPC binding to server-side
 //
-application.connect = function(url, callback) {
-  application.rpc = api.rpc(url);
+application.connect = function(callback) {
+  api.ajax.get('/api/application/balancer.json', {}, function(err, res) {
+    if (!err) {
+      application.balancer.servers = res.servers;
+      application.balancer.generateSequence();
+      application.reconnect();
+    }
+  });
   if (callback ) application.rpc.on('open', callback);
+};
+
+application.reconnect = function() {
+  var node = application.balancer.getNextNode(),
+      schema = node.server.secure ? 'wss' : 'ws',
+      path = '/examples/impress.rpc',
+      url = schema + '://' + node.host + path;
+  application.rpc = api.rpc(url);
+  application.rpc.on('open', function() {
+    application.connect.url = url;
+    console.log('opened ' + url);
+  });
+  application.rpc.on('close', function() {
+    console.log('closed ' + url);
+    setTimeout(function() {
+      application.reconnect();
+    }, application.balancer.retryInterval);
+  });
+};
+
+application.balancer.generateSequence = function() {
+  var i, server, serverName,
+      servers = application.balancer.servers;
+  if (servers) {
+    for (serverName in servers) {
+      server = servers[serverName];
+      for (i = 0; i < server.ports.length; i++) {
+        application.balancer.sequence.push({
+          server: server,
+          host: server.host + ':' + server.ports[i]
+        });
+      }
+    }
+  }
+};
+
+application.balancer.getNextNode = function() {
+  var balancer = application.balancer;
+  balancer.globalRetry++;
+  if (balancer.currentRetry < balancer.currentRetryMax) {
+    // Next retry
+    balancer.currentRetry++;
+  } else {
+    // New node
+    balancer.currentRetry = 0;
+    if (balancer.sequenceIndex < balancer.sequence.length) {
+      // Next node
+      balancer.sequenceIndex++;
+    } else {
+      // First node
+      balancer.sequenceIndex = 0;
+    }
+  }
+  var node = balancer.sequence[balancer.sequenceIndex];
+  balancer.currentNode = node;
+  balancer.currentServer = node.server;
+  return node;
 };

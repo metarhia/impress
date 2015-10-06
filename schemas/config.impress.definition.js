@@ -13,7 +13,7 @@ module.exports = {
 
     cluster:    'string',
     cookie:     'node:string',
-    strategy:   '(single,specialization,multiple,sticky)',
+    strategy:   '(single,bundle,multiple,sticky)',
     workers:    '1:number',
 
     health:     '5s:duration',
@@ -58,6 +58,7 @@ module.exports = {
     protocol:  '(http,https)',
     address:   'string',
     port:      'number',
+    bundle:    'false:boolean',
     nagle:     'false:boolean',
     slowTime:  '4s:duration',
     timeout:   '30s:duration',
