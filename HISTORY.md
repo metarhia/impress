@@ -1,3 +1,9 @@
+0.1.375 / 2015-10-07
+==================
+
+  * Changes in software balancer, issue #434
+  * Changed deploy scripts to use node.js 4.1.2
+
 0.1.374 / 2015-10-05
 ==================
 

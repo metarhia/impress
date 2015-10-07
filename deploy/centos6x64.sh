@@ -4,15 +4,15 @@ yum -y install mc
 yum -y install wget
 yum -y groupinstall "Development Tools"
 cd /usr/src
-wget http://nodejs.org/dist/v4.1.1/node-v4.1.1.tar.gz
-tar zxf node-v4.1.1.tar.gz
-rm -f ./node-v4.1.1.tar.gz
-cd node-v4.1.1
+wget http://nodejs.org/dist/v4.1.2/node-v4.1.2.tar.gz
+tar zxf node-v4.1.2.tar.gz
+rm -f ./node-v4.1.2.tar.gz
+cd node-v4.1.2
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v4.1.1
+rm -rf /usr/src/node-v4.1.2
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
