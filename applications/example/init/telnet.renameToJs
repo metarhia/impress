@@ -1,5 +1,5 @@
 // TCP example: telnet server
-// Requires /config/cluster.js/strategy === 'multiple' or 'sticky'
+// Requires /config/cluster.js/strategy === 'cluster' or 'sticky'
 
 var server = null,
     port = 3000,

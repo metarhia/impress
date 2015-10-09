@@ -13,7 +13,7 @@ module.exports = {
 
     cluster:    'string',
     cookie:     'node:string',
-    strategy:   '(single,bundle,multiple,sticky)',
+    strategy:   '(single,bundle,cluster,sticky)',
     workers:    '1:number',
 
     health:     '5s:duration',

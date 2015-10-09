@@ -1,3 +1,9 @@
+0.1.377 / 2015-10-09
+==================
+
+  * Removed unused code and added comments
+  * Renamed scale strategy ```multiple``` to ```cluster```, close #445
+
 0.1.376 / 2015-10-08
 ==================
 
