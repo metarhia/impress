@@ -1025,15 +1025,16 @@ api.rpc = function(url) {
         if (call) {
           delete socket.callCollection[packet.id];
           if (typeof(call.callback) === 'function') {
-            call.callback(null, packet.result);
+            call.callback(null, JSON.parse(packet.result));
           }
         }
-      } else if (packet.type === 'event') {
-        rpc.emit('event', event);
-        rpc.events.emit(packet.name, packet.data);
       } else if (packet.type === 'call') {
         rpc.emit('call', event);
       }
+    } else if (packet.type === 'event') {
+      rpc.emit('event', event);
+      if (application.rpc === rpc) application.frontend.emit(packet.name, packet.data);
+      else rpc.events.emit(packet.name, packet.data);
     }
   };
 
@@ -1164,6 +1165,12 @@ api.sse = function(url) {
 application.backend = new api.events.EventEmitter();
 application.frontend = new api.events.EventEmitter();
 
+application.frontend.send = function(name, parameters) {
+  if (application.rpc) {
+    application.rpc.events.send(name, parameters);
+  }
+}
+
 // Main Impress RPC binding to server-side
 //
 application.rpc = null;
@@ -1189,9 +1196,9 @@ application.connect = function(callback) {
       application.balancer.servers = res.servers;
       application.balancer.generateSequence();
       application.reconnect();
+      if (callback) application.rpc.on('open', callback);
     }
   });
-  if (callback ) application.rpc.on('open', callback);
 };
 
 application.reconnect = function() {

@@ -30,7 +30,14 @@ api.dom.on('load', function() {
 
   // Application may be connected using single RPC socket
   //
-  // application.connect();
+  /*
+  application.connect(function() {
+    application.frontend.on('aaa', function(d) {
+      console.dir(d);
+    });
+    application.frontend.send('aaa', { bbb: 'ccc' });
+  });
+  */
 
   // Auth Module
 

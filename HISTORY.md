@@ -1,7 +1,13 @@
+0.1.378 / 2015-10-10
+==================
+
+  * Enhanced req/res stubs, tested parameters translation to server and back to client, close #437
+  * Implemented event (re-)translation over client-server RPC, close #446
+
 0.1.377 / 2015-10-09
 ==================
 
-  * Removed unused code and added comments
+  * Removed unused code, code style fixes and comments added
   * Renamed scale strategy ```multiple``` to ```cluster```, close #445
 
 0.1.376 / 2015-10-08

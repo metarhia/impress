@@ -2,6 +2,7 @@
   callback({
     query: client.query,
     path: client.path,
-    fields: client.fields
+    fields: client.fields,
+    parameters: client.parameters
   });
 };
