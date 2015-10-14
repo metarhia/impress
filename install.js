@@ -30,7 +30,7 @@ function execute(cmd, callback) {
 // Install CLI
 //
 function installCLI() {
-  execute('npm install impress-cli -g', function() {
+  execute('npm install --unsafe-perm impress-cli -g', function() {
     execute('impress path ' + destination, function() {
       if (!isWin) execute('impress autostart on');
     });
