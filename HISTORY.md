@@ -1,3 +1,8 @@
+0.1.379 / 2015-10-15
+==================
+
+  * Fixed virtual (programmatically defined) handlers, close #451
+
 0.1.378 / 2015-10-10
 ==================
 

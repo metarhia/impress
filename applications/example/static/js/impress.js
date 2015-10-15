@@ -891,7 +891,7 @@ api.ajax = function(methods) { // params: { method: { get/post:url }, ... }
     var err = null, requestParams = this.methods[apiMethod];
     if (requestParams) {
       var httpMethod, url;
-      if (requestParams.get ) { httpMethod = 'GET'; url = requestParams.get; }
+      if (requestParams.get) { httpMethod = 'GET'; url = requestParams.get; }
       if (requestParams.post) { httpMethod = 'POST'; url = requestParams.post; }
       if (httpMethod) {
         api.ajax.request(httpMethod, url, params, true, callback);
@@ -1045,7 +1045,7 @@ api.rpc = function(url) {
     rpc.socket = null;
   };
 
-  // Send call over RPC
+  // Send AJAX over RPC
   //
   rpc.ajax = function(method, name, parameters, callback) {
     socket.nextMessageId++;
@@ -1114,6 +1114,22 @@ api.rpc = function(url) {
     });
   };
 
+  // Send RPC call
+  //
+  rpc.call = function(parameters, callback) {
+    socket.nextMessageId++;
+    var packet = {
+      id: 'C' + socket.nextMessageId,
+      type: 'ajax',
+      method: method,
+      name: name,
+      data: parameters
+    };
+    packet.callback = callback;
+    socket.callCollection[packet.id] = packet;
+    socket.send(JSON.stringify(packet));
+  };
+
   return rpc;
 
 };
@@ -1169,7 +1185,7 @@ application.frontend.send = function(name, parameters) {
   if (application.rpc) {
     application.rpc.events.send(name, parameters);
   }
-}
+};
 
 // Main Impress RPC binding to server-side
 //

@@ -80,6 +80,7 @@ function httpTask(task) {
           if (err) throw err;
         });
       } else {
+        console.log(('Error: ' + request.method + ' ' + request.path).bold.red);
         throw new Error('HTTP ' + res.statusCode);
       }
       taskExit();
