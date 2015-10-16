@@ -14,7 +14,7 @@ module.exports = {
   rpcPort:     250,              // cloud controller tcp port for TCP and ZMQ
   subPort:     251,              // bublisher/subscriber port for ZMQ
 
-  cluster:    'C1',              // Cluster name to identify it in loadbalancing infrastructure
+  cluster:    'S1',              // Cluster name to identify it in loadbalancing infrastructure
   cookie:     'node',            // Cookie name for loadbalancing (cookie value will be 'C1'+'N1')
   strategy:   'cluster',
     // 'single'  - one process (no master and workers)

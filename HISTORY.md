@@ -1,3 +1,9 @@
+0.1.380 / 2015-10-16
+==================
+
+  * Fixed live reload for new files, close #448
+  * Fixed CLI command "impress stop", changed process title, close #450
+
 0.1.379 / 2015-10-15
 ==================
 
