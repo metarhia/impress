@@ -1,3 +1,9 @@
+0.1.381 / 2015-10-18
+==================
+
+  * Fixed bug in long worker termination
+  * Changed deploy scripts to use node.js 4.2.1
+
 0.1.380 / 2015-10-16
 ==================
 
