@@ -46,7 +46,7 @@
     "uglify-js": ">=2.4.24",
     "multiparty": "4.1.x",
     "iconv-lite": "0.4.x",
-    "zip-stream": "0.5.x",
+    "zip-stream": "0.6.x",
     "websocket": "1.0.x",
     "csv": "0.4.x",
     "node-sass": "3.3.x",
