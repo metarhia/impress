@@ -31,4 +31,4 @@ npm install mongodb
 npm install nodemailer
 npm install websocket
 npm install geoip-lite
-npm install impress
+npm install impress --unsafe-perm
