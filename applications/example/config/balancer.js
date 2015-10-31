@@ -8,7 +8,16 @@ module.exports = {
       ssl: false,
       host: '127.0.0.1',
       ports: [80]
-      // ports: [80, 81, 82, 83]
+      // 
+      // Notes:
+      //
+      // 80 port is good just for example and tests,
+      // we propose to use 4000+ ports as in following example
+      // especially for "bundle" scale strategy
+      // so port 80 will be always free for HTTP API, not for WS
+      //
+      // ports: [4000, 4001, 4002, 4003]
+      //
     }
   }
 
