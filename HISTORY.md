@@ -1,3 +1,8 @@
+0.1.384 / 2015-11-18
+==================
+
+  * Fixed bug in api.impress.each, .eachSeries and .series, close #456
+
 0.1.383 / 2015-11-13
 ==================
 
