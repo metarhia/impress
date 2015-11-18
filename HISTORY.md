@@ -1,3 +1,17 @@
+0.1.383 / 2015-11-13
+==================
+
+  * Deploy scripts fixed, added --unsafe-perm to installation Impress from npm
+  * Removed async.series where possible, issue #453
+  * Updated dependencies versions (because of uglify-js Regular Expression Denial of Service warning)
+
+0.1.382 / 2015-10-31
+==================
+
+  * Software balancer done and tested, close #434
+  * Removed async dependency in speed critical code, close #453
+  * Changed deploy scripts to use node.js 5.0.0, updated dependencies versions and tested
+
 0.1.381 / 2015-10-18
 ==================
 
