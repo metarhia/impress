@@ -8,7 +8,9 @@ node_js:
   - "iojs-v3"
   - "4.0"
   - "4.1"
+  - "4.2"
   - "5.0"
+  - "5.1"
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js

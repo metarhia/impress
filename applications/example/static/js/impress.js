@@ -532,7 +532,7 @@ function dashedToUpperCase(key) {
   return key.replace(/-(\w)/g, function(match, p1) {
     return p1.toUpperCase();
   });
-};
+}
 
 //transform CSS string to Object
 //
@@ -562,7 +562,7 @@ function extractPrefixedStyles(styleName) {
     }
   }
   return keys;
-};
+}
 
 // Set given styles to element
 //
@@ -1121,8 +1121,9 @@ api.rpc = function(url) {
     var packet = {
       id: 'C' + socket.nextMessageId,
       type: 'ajax',
-      method: method,
-      name: name,
+      // TODO: check this two fields
+      //method: method,
+      //name: name,
       data: parameters
     };
     packet.callback = callback;

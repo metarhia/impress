@@ -1,3 +1,9 @@
+0.1.385 / 2015-12-04
+==================
+
+  * Changed localhost to 127.0.0.1 because it can't be resolver in some OS offlile mode
+  * Fixed Client.prototype.restoreSession, security plugin detection added
+
 0.1.384 / 2015-11-18
 ==================
 

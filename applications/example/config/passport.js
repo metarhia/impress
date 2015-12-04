@@ -38,4 +38,4 @@ if (api.passport) {
     }
   };
 
-};
+}
