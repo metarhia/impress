@@ -1,3 +1,8 @@
+0.1.386 / 2015-12-08
+==================
+
+  * Fixed impress.loadApplication (affects WS and SSE loading), close #459
+
 0.1.385 / 2015-12-04
 ==================
 
