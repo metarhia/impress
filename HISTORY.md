@@ -1,3 +1,15 @@
+0.1.388 / 2015-12-10
+==================
+
+  * Optimized virtualhost routing
+  * Optimized serving static files, directory index and memory cache
+  * Changed deploy scripts to use node.js 5.2.0
+
+0.1.387 / 2015-12-09
+==================
+
+  * Changed deploy scripts to use node.js 5.1.1
+
 0.1.386 / 2015-12-08
 ==================
 

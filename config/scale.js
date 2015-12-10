@@ -16,7 +16,7 @@ module.exports = {
 
   cluster:    'S1',              // Cluster name to identify it in loadbalancing infrastructure
   cookie:     'node',            // Cookie name for loadbalancing (cookie value will be 'C1'+'N1')
-  strategy:   'cluster',
+  strategy:   'single',
     // 'single'  - one process (no master and workers)
     // 'bundle'  - multiple processes, one master and different workers for each server (master should not listen ports)
     // 'cluster' - multiple processes, one master and identical workers with no sticky (master should listen ports)
