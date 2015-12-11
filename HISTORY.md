@@ -1,3 +1,9 @@
+0.1.389 / 2015-12-11
+==================
+
+  * Optimized fs operations and memory cache
+  * Fixed api.impress.logApiMethod
+
 0.1.388 / 2015-12-10
 ==================
 
