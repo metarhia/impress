@@ -36,5 +36,5 @@ if (application.isWorker) {
 }
 
 setInterval(function() {
-  console.log('Data in ' + application.nodeId + ' ' + JSON.stringify(application.state.data));
+  console.log('Data in ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));
 }, 10000);
