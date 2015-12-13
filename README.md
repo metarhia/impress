@@ -156,8 +156,8 @@ module.exports = {
 
 ## Installation and upgrade
 
-  - Install to the current folder: `npm install impress`
-  - Install using package.json, add to `dependencies` and run `npm install`
+  - Install to the current folder: `npm install impress` or `sudo npm install impress`
+  - Install using package.json, add to `dependencies` and run `npm install` or `sudo npm install`
   - Installation scripts for an empty server (from the scratch)
     - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
     - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)

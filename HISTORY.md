@@ -1,4 +1,9 @@
-0.1.390 / 2015-12-11
+0.1.391 / 2015-12-13
+==================
+
+  * Added `/` for directory index with redirection, close #461
+
+0.1.390 / 2015-12-12
 ==================
 
   * Fixed application backend events, close #458
