@@ -1,3 +1,8 @@
+0.1.392 / 2015-12-14
+==================
+
+  * Changes in deploy scripts, default folder for impress is /ias now to avoid naming conflicts
+
 0.1.391 / 2015-12-13
 ==================
 
