@@ -12,6 +12,7 @@ node_js:
   - "5.0"
   - "5.1"
   - "5.2"
+  - "5.3"
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js

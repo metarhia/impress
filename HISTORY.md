@@ -1,3 +1,8 @@
+0.1.393 / 2015-12-20
+==================
+
+  * Changed deploy scripts to use node.js 5.3.0 added Travis CI testing case and tested
+
 0.1.392 / 2015-12-14
 ==================
 
