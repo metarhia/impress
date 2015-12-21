@@ -26,7 +26,7 @@ EOL
 yum -y install mongo-10gen mongo-10gen-server
 service mongod start
 chkconfig mongod on
-mkdir /ias
+sudo mkdir /ias
 cd /ias
-npm install mongodb nodemailer websocket geoip-lite
+sudo npm install mongodb nodemailer websocket geoip-lite
 sudo npm install impress --unsafe-perm

@@ -1,3 +1,9 @@
+0.1.394 / 2015-12-21
+==================
+
+  * Fixed database alias linking for application sandbox in /lib/db.js
+  * Changed deploy scripts, sudo added
+
 0.1.393 / 2015-12-20
 ==================
 

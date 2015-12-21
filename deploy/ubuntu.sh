@@ -18,7 +18,7 @@ sudo apt-get -y update
 sudo apt-get -y --force-yes install mongodb-org
 sudo service mongod start
 sudo update-rc.d mongod defaults
-mkdir /ias
+sudo mkdir /ias
 cd /ias
-npm install mongodb nodemailer websocket geoip-lite
+sudo npm install mongodb nodemailer websocket geoip-lite
 sudo npm install impress --unsafe-perm
