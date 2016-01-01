@@ -1,3 +1,10 @@
+0.1.395 / 2016-01-01
+==================
+
+  * Added static pre-gzipped files support, issue #465, #466, #467
+  * Fixed bug in API serving, issue #468
+  * Fixed API introspection and directory index bugs, issue #471
+
 0.1.394 / 2015-12-21
 ==================
 
