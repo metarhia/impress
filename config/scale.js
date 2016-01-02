@@ -22,7 +22,7 @@ module.exports = {
     // 'cluster' - multiple processes, one master and identical workers with no sticky (master should listen ports)
     // 'sticky'  - multiple processes, one master and workers with sticky by IP (master should listen ports)
 
-  workers: api.os.cpus().length, // worker count, e.g. api.os.cpus().length-1 or just number
+  workers: 1, // api.os.cpus().length, // worker count, e.g. api.os.cpus().length-1 or just number
 
   waf: { // Web Application Firewall config
     enabled: false,
