@@ -14,7 +14,7 @@ module.exports = {
   health: '5m', // health monitoring interval '5s'
   nagle: false, // Nagle algorithm
   gcInterval: 0, // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
-  watchInterval: '2s', // combine wached file system events if interval less then specified
+  fsWatch: '2s', // combine wached file system events if interval less then specified
 
   slowTime: '1s', // request processing time to put it to slow log
   timeout: '30s', // critical request processing to return timeout error

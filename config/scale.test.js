@@ -10,7 +10,7 @@ module.exports = {
   health: '5m',
   nagle: false,
   gcInterval: 0,
-  watchInterval: '2s',
+  fsWatch: '2s',
 
   slowTime: '5s',
   timeout: '30s',
