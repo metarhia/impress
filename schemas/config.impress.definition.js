@@ -5,27 +5,32 @@ module.exports = {
 
     cloud:      'string',
     transport:  '(tcp,ipc,zmq)',
-    instance:   '(standalone,controller,server)',
 
-    host:       'string',
     rpcPort:    '250:number',
     subPort:    '251:number',
 
-    cluster:    'string',
-    cookie:     'node:string',
-    strategy:   '(single,bundle,cluster,sticky)',
-    workers:    '1:number',
-
     health:     '5s:duration',
-    nagle:      'false:boolean',
     gcInterval: '10m:duration',
-    watchInterval: '2s:duration',
-    waf:        '{waf}'
+    fsWatch:    '2s:duration',
+    cookie:     'node:string',
+    nagle:      'false:boolean',
+    slowTime:   '4s:duration',
+    timeout:    '30s:duration',
+    keepAlive:  '5s:duration',
+
+    waf:        '{waf}',
+    servers:    '{{server}}',
+    ssl:        '{ssl}'
   },
 
   waf: {
     enabled: 'false:boolean',
     limits:  '{limits}'
+  },
+
+  ssl: {
+    key:  '[string]',
+    cert: '[string]'
   },
 
   limits: {
@@ -52,19 +57,22 @@ module.exports = {
     api:    '[array]'
   },
 
-  servers: '{{server}}',
-
   server: {
-    protocol:  '(http,https)',
-    address:   'string',
-    port:      'number',
-    bundle:    'false:boolean',
-    nagle:     'false:boolean',
-    slowTime:  '4s:duration',
-    timeout:   '30s:duration',
-    keepAliveTimeout: '5s:duration',
-    key:       '[string]',
-    cert:      '[string]'
+    instance:     '(standalone,controller,server)',
+    strategy:     '(single,bundle,cluster,sticky)',
+    workers:      '1:number',
+    addresses:    '[array]',
+    applications: '[array]',
+    services:     '{services}'
+  },
+
+  services: {
+    http:   '[array]',
+    https:  '[array]',
+    static: '[array]',
+    ws:     '[array]',
+    sse:    '[array]',
+    rpc:    '[array]'
   }
 
 };

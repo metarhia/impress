@@ -10,12 +10,11 @@ module.exports = {
   rpcPort: 250, // cloud controller tcp port for TCP and ZMQ
   subPort: 251, // bublisher/subscriber port for ZMQ
 
-  cookie: 'node', // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')
   health: '5m', // health monitoring interval '5s'
-  nagle: false, // Nagle algorithm
   gcInterval: 0, // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
   fsWatch: '2s', // combine wached file system events if interval less then specified
-
+  cookie: 'node', // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')
+  nagle: false, // Nagle algorithm
   slowTime: '1s', // request processing time to put it to slow log
   timeout: '30s', // critical request processing to return timeout error
   keepAlive: '5s', // keep alive timeout

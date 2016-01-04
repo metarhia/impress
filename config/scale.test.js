@@ -6,12 +6,11 @@ module.exports = {
   rpcPort: 8250,
   subPort: 8251,
 
-  cookie: 'node',
   health: '5m',
-  nagle: false,
   gcInterval: 0,
   fsWatch: '2s',
-
+  cookie: 'node',
+  nagle: false,
   slowTime: '5s',
   timeout: '30s',
   keepAlive: '5s',
