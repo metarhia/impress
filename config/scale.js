@@ -26,7 +26,7 @@ module.exports = {
 
   servers: {
     S1: {
-      instance: 'controller',
+      instance: 'standalone',
       strategy: 'bundle',
       services: {
         http: [80, 4001, 4002],
@@ -36,6 +36,7 @@ module.exports = {
       }
     },
     S2: {
+      host: '10.0.0.10', // server identifying IP address or undefined for any
       instance: 'server', // cloud instance type: standalone, controller, server
       strategy: 'bundle',
       // single - one process (no master and workers)
@@ -43,8 +44,8 @@ module.exports = {
       // cluster - multiple processes, one master and identical workers with no sticky (master should listen ports)
       // sticky - multiple processes, one master and workers with sticky by IP (master should listen ports)
       workers: 1, // worker count, e.g. api.os.cpus().length-1 or just number
-      addresses: ['10.0.0.10'], // IP list or no value for all
-      applications: ['example'], // applications list or no value for all
+      addresses: ['127.0.0.1', '10.0.0.10'], // IP list or undefined for all
+      applications: ['example'], // applications list or undefined for all
       services: {
         http: [80, 81, 82, 83],
         https: [443]
