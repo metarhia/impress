@@ -1,45 +1,18 @@
 module.exports = {
 
-  scale: {
-    check:      '[string]',
-
-    cloud:      'string',
-    transport:  '(tcp,ipc,zmq)',
-
-    rpcPort:    '250:number',
-    subPort:    '251:number',
-
-    health:     '5s:duration',
-    gcInterval: '10m:duration',
-    fsWatch:    '2s:duration',
-    cookie:     'node:string',
-    nagle:      'false:boolean',
-    slowTime:   '4s:duration',
-    timeout:    '30s:duration',
-    keepAlive:  '5s:duration',
-
-    waf:        '{waf}',
-    servers:    '{{server}}',
-    ssl:        '{ssl}'
+  cloud: {
+    cloud: 'string',
+    rpc:   '{rpc}',
   },
 
-  waf: {
-    enabled: 'false:boolean',
-    limits:  '{limits}'
+  rpc: {
+    transport: '(tcp,ipc,zmq)',
+    port:      '250:number'
   },
 
-  ssl: {
-    key:  '[string]',
-    cert: '[string]'
-  },
-
-  limits: {
-    ip:   '20:number',
-    sid:  '10:number',
-    host: '100:number',
-    url:  '50:number',
-    app:  '200:number',
-    srv:  '500:number'
+  sandbox: {
+    global: '[array]',
+    api:    '[array]'
   },
 
   log: {
@@ -52,18 +25,65 @@ module.exports = {
     stdout:         '[array]'
   },
 
-  sandbox: {
-    global: '[array]',
-    api:    '[array]'
+  waf: {
+    enabled: 'false:boolean',
+    limits:  '{limits}'
   },
 
-  server: {
+  limits: {
+    ip:   '20:number',
+    sid:  '10:number',
+    host: '100:number',
+    url:  '50:number',
+    app:  '200:number',
+    srv:  '500:number'
+  },
+
+  preset: {
     instance:     '(standalone,controller,server)',
     strategy:     '(single,bundle,cluster,sticky)',
     workers:      '1:number',
+
     addresses:    '[array]',
     applications: '[array]',
-    services:     '{services}'
+
+    check:        '[string]',
+    health:       '5s:duration',
+    gcInterval:   '10m:duration',
+    fsWatch:      '2s:duration',
+    cookie:       'node:string',
+    nagle:        'false:boolean',
+    slowTime:     '4s:duration',
+    timeout:      '30s:duration',
+    keepAlive:    '5s:duration',
+
+    services:     '{services}',
+    ssl:          '{ssl}'
+  },
+
+  server: {
+    host:         '[string]',
+    preset:       '[string]',
+
+    instance:     '(standalone,controller,server)',
+    strategy:     '(single,bundle,cluster,sticky)',
+    workers:      '1:number',
+
+    addresses:    '[array]',
+    applications: '[array]',
+
+    check:        '[string]',
+    health:       '5s:duration',
+    gcInterval:   '10m:duration',
+    fsWatch:      '2s:duration',
+    cookie:       'node:string',
+    nagle:        'false:boolean',
+    slowTime:     '4s:duration',
+    timeout:      '30s:duration',
+    keepAlive:    '5s:duration',
+
+    services:     '{services}',
+    ssl:          '{ssl}'
   },
 
   services: {
@@ -73,6 +93,11 @@ module.exports = {
     ws:     '[array]',
     sse:    '[array]',
     rpc:    '[array]'
+  },
+
+  ssl: {
+    key:  '[string]',
+    cert: '[string]'
   }
 
 };
