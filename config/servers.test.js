@@ -1,10 +1,20 @@
 module.exports = {
-  test: {
-    protocol:  'http',
-    address:   '127.0.0.1',
-    port:      8080,
-    nagle:     true,
-    slowTime:  '1s',
-    timeout:   '10s'
+
+  servers: {
+    S1: {
+      strategy: 'single',
+      services: {
+        http: [80]
+      },
+      health: '5m',
+      gcInterval: 0,
+      fsWatch: '2s',
+      cookie: 'node',
+      nagle: false,
+      slowTime: '1s',
+      timeout: '30s',
+      keepAlive: '5s'
+    }
   }
+
 };
