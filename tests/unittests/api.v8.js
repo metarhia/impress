@@ -55,7 +55,7 @@ impress.test({
     [ [], function(i) { typeof(i) === 'string'; } ],
   ],*/
   'api.v8.OPT_STATUS': [
-    [ [], function(value) { return Array.isArray(value) && value.length === 7; } ],
+    [ [], function(value) { return Array.isArray(value) && value.length === 8; } ],
   ],
   'api.v8.optimizationStatus': [
     [ -1, undefined ],
