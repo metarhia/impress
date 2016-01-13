@@ -9,11 +9,11 @@ cd ~
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
 [mongodb]
 name=MongoDB Repository
-baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/stable/x86_64/
 gpgcheck=0
 enabled=1
 EOL
-yum -y install mongo-10gen mongo-10gen-server
+sudo yum install -y mongodb-org
 service mongod start
 chkconfig mongod on
 sudo mkdir /ias

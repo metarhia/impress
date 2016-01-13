@@ -1,3 +1,8 @@
+0.1.398 / 2016-01-15
+==================
+
+  * Changed deploy scripts to install latest MongoDB versions for CentOS 7
+
 0.1.397 / 2016-01-14
 ==================
 
