@@ -8,7 +8,7 @@ fs.exists('./tests', function(fileExists) {
   //api.impress.logApiMethod('fs.readdir');
   before();
   console.log('---');
-  runit();
+  for (var i = 0; i < 1000; i++) runit();
   after();
   impress.server.start();
 });
