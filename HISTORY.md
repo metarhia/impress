@@ -1,3 +1,9 @@
+0.1.396 / 2016-01-13
+==================
+
+  * Fixed problem deploying to CentOS 6 32bit
+  * Changed deploy scripts to use node.js 5.4.1
+
 0.1.395 / 2016-01-01
 ==================
 

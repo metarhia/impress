@@ -2,17 +2,20 @@
 yum -y update
 yum -y install mc
 yum -y install wget
-yum -y groupinstall "Development Tools"
+sudo wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo
+sudo rpm --import http://ftp.scientificlinux.org/linux/scientific/5x/x86_64/RPM-GPG-KEYs/RPM-GPG-KEY-cern
+sudo yum install devtoolset-2
+scl enable devtoolset-2 bash
 cd /usr/src
-wget http://nodejs.org/dist/v5.3.0/node-v5.3.0.tar.gz
-tar zxf node-v5.3.0.tar.gz
-rm -f ./node-v5.3.0.tar.gz
-cd node-v5.3.0
+wget http://nodejs.org/dist/v5.4.1/node-v5.4.1.tar.gz
+tar zxf node-v5.4.1.tar.gz
+rm -f ./node-v5.4.1.tar.gz
+cd node-v5.4.1
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v5.3.0
+rm -rf /usr/src/node-v5.4.1
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
