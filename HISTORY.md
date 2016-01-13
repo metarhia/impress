@@ -1,3 +1,9 @@
+0.1.397 / 2016-01-14
+==================
+
+  * Changed deploy scripts to install nodejs from binaries
+  * Building nodejs from sources renamed to ```/deploy/*-src.sh```
+
 0.1.396 / 2016-01-13
 ==================
 
