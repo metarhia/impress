@@ -2,9 +2,18 @@
 yum -y update
 yum -y install wget mc
 yum -y groupinstall "Development Tools"
-curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
-yum -y install nodejs
+cd /usr/src
+wget http://nodejs.org/dist/v5.4.1/node-v5.4.1.tar.gz
+tar zxf node-v5.4.1.tar.gz
+rm -f ./node-v5.4.1.tar.gz
+cd node-v5.4.1
+./configure
+make
+make install
 cd ~
+rm -rf /usr/src/node-v5.4.1
+ln -s /usr/local/bin/node /bin
+ln -s /usr/local/bin/npm /bin
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
 [mongodb]
 name=MongoDB Repository

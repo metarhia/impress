@@ -1,3 +1,20 @@
+0.1.398 / 2016-01-15
+==================
+
+  * Changed deploy scripts to install latest MongoDB versions for CentOS 7
+
+0.1.397 / 2016-01-14
+==================
+
+  * Changed deploy scripts to install nodejs from binaries
+  * Building nodejs from sources renamed to ```/deploy/*-src.sh```
+
+0.1.396 / 2016-01-13
+==================
+
+  * Fixed problem deploying to CentOS 6 32bit
+  * Changed deploy scripts to use node.js 5.4.1
+
 0.1.395 / 2016-01-01
 ==================
 
