@@ -1,4 +1,4 @@
-﻿module.exports = function(client, callback) {
+module.exports = function(client, callback) {
   api.async.parallel({
     file: function(callback) {
       var filePath = application.dir + '/server' + client.path + '/test.txt';

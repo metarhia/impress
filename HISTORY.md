@@ -1,3 +1,9 @@
+0.1.399 / 2016-01-27
+==================
+
+  * Removed BOM in example application files
+  * Changed deploy scripts to use node.js 5.5.0
+
 0.1.398 / 2016-01-15
 ==================
 

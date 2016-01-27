@@ -1,4 +1,4 @@
-﻿module.exports = function(client, callback) {
+module.exports = function(client, callback) {
 
   application.stateTest = application.stateTest || { counter: 0, addresses: [] };
   application.stateTest.counter++;
