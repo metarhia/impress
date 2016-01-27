@@ -1,3 +1,9 @@
+0.1.400 / 2016-01-28
+==================
+
+  * Fixed changed CRLF to LF in /schemas
+  * Added Travis CI testing case for 5.5.0
+
 0.1.399 / 2016-01-27
 ==================
 

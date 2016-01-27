@@ -1,4 +1,4 @@
-﻿module.exports = {
+module.exports = {
 
   caption: 'Impress security database schema for MongoDB',
   version: 1,
