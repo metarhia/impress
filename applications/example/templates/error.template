@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <style>
-body {background:#0079a1;font-family:Verdana;font-size:12pt}
+body {background:#0079a1;font-family:Verdana, sans-serif;font-size:12pt}
 body,a {color:#fff}
 img {float:left;margin:0 10px 0 0}
 div {margin:6px}
