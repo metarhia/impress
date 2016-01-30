@@ -1,3 +1,11 @@
+0.1.402 / 2016-01-30
+==================
+
+  * Removed node-sass from dependencies, now it is optional for most projects
+  * Added parameter "soft" to api.impress.require, default to false
+  * Addes flag soft=true for some libraries into api.impress.require call
+  * Updated dependencies versions
+
 0.1.401 / 2016-01-29
 ==================
 
