@@ -15,7 +15,7 @@ module.exports = {
   //
   api: [
     // Node internal modules
-    'console', 'os', 'fs', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
+    'console', 'os', 'fs', 'tls', 'net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
     'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'stringDecoder',
 
     // Impress API modules

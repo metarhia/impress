@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 window.global = window;
 global.api = {};

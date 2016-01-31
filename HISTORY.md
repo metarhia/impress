@@ -1,3 +1,45 @@
+0.1.402 / 2016-01-30
+==================
+
+  * Removed node-sass from dependencies, now it is optional for most projects
+  * Added parameter "soft" to api.impress.require, default to false
+  * Addes flag soft=true for some libraries into api.impress.require call
+  * Updated dependencies versions
+
+0.1.401 / 2016-01-29
+==================
+
+  * Minor changes in web server default templates
+
+0.1.400 / 2016-01-28
+==================
+
+  * Fixed changed CRLF to LF in /schemas
+  * Added Travis CI testing case for 5.5.0
+
+0.1.399 / 2016-01-27
+==================
+
+  * Removed BOM in example application files
+  * Changed deploy scripts to use node.js 5.5.0
+
+0.1.398 / 2016-01-15
+==================
+
+  * Changed deploy scripts to install latest MongoDB versions for CentOS 7
+
+0.1.397 / 2016-01-14
+==================
+
+  * Changed deploy scripts to install nodejs from binaries
+  * Building nodejs from sources renamed to ```/deploy/*-src.sh```
+
+0.1.396 / 2016-01-13
+==================
+
+  * Fixed problem deploying to CentOS 6 32bit
+  * Changed deploy scripts to use node.js 5.4.1
+
 0.1.395 / 2016-01-01
 ==================
 

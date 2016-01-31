@@ -1,4 +1,4 @@
-﻿var meta = {
+var meta = {
   description: 'Test method description for POST',
   parameters: {
     par1: 'number    // Parameter #1',
