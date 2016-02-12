@@ -56,7 +56,7 @@ window.onload = function() {
 <div id="title">@title@</div>
 <div id="msg"><a href="/" id="home"></a>@[dirs]@/<a href="@.path@">@.name@</a>@[/dirs]@/</div>
 <table id="files">
-<tr><th>Call</th><th>Method</th><th>Modify time</th></tr>@[files]@<tr><td><a href="@.path@">@.name@</a></td><td>@.method@</td><td>@.mtime@</td>@[/files]@
+<tr><th>Call</th><th>Method</th><th>Modify time</th></tr>@[files]@<tr><td><a href="@.path@">@.name@</a></td><td>@.method@</td><td>@.mtime@</td></tr>@[/files]@
 </table>
 </body>
 </html>

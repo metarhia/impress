@@ -4,15 +4,15 @@ apt-get -y install wget mc
 apt-get -y install build-essential openssl libssl-dev pkg-config
 apt-get -y install python
 cd /usr/src
-wget http://nodejs.org/dist/v5.5.0/node-v5.5.0.tar.gz
-tar zxf node-v5.5.0.tar.gz
-rm -f ./node-v5.5.0.tar.gz
-cd node-v5.5.0
+wget http://nodejs.org/dist/v5.6.0/node-v5.6.0.tar.gz
+tar zxf node-v5.6.0.tar.gz
+rm -f ./node-v5.6.0.tar.gz
+cd node-v5.6.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v5.5.0
+rm -rf /usr/src/node-v5.6.0
 echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
 apt-get -y update
 apt-get -y --force-yes install mongodb-org

@@ -1,3 +1,9 @@
+0.1.403 / 2016-02-12
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.6.0
+  * Web server default templates changed
+
 0.1.402 / 2016-01-30
 ==================
 
