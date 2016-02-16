@@ -4,7 +4,7 @@ yum -y install wget mc
 sudo wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo
 sudo rpm --import http://ftp.scientificlinux.org/linux/scientific/5x/x86_64/RPM-GPG-KEYs/RPM-GPG-KEY-cern
 sudo yum -y install devtoolset-2
-scl enable devtoolset-2 bash
+source scl_source enable devtoolset-2
 cd /usr/src
 wget http://nodejs.org/dist/v5.6.0/node-v5.6.0.tar.gz
 tar zxf node-v5.6.0.tar.gz

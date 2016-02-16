@@ -3,6 +3,13 @@ apt-get -y update
 apt-get -y install wget mc
 apt-get -y install build-essential openssl libssl-dev pkg-config
 apt-get -y install python
+sed -i 's/wheezy/jessie/g' /etc/apt/sources.list
+apt-get -y update
+export DEBIAN_FRONTEND='noninteractive'
+apt-get -y install g++-4.8
+sed -i 's/wheezy/jessie/g' /etc/apt/sources.list
+apt-get -y update
+export DEBIAN_FRONTEND=''
 cd /usr/src
 wget http://nodejs.org/dist/v5.6.0/node-v5.6.0.tar.gz
 tar zxf node-v5.6.0.tar.gz
@@ -13,9 +20,10 @@ make
 make install
 cd ~
 rm -rf /usr/src/node-v5.6.0
-echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | sudo tee /etc/apt/sources.list.d/mongodb.list
 apt-get -y update
-apt-get -y --force-yes install mongodb-org
+sudo apt-get -y install mongodb-org
 service mongod start
 update-rc.d mongod defaults
 sudo mkdir /ias
