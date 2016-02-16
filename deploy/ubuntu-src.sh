@@ -1,7 +1,15 @@
 #!/bin/bash
+RELEASE=$(lsb_release -sc)
 sudo apt-get -y update
 sudo apt-get -y install wget mc
 sudo apt-get -y install build-essential openssl libssl-dev pkg-config python
+if [ $RELEASE = 'precise' ]; then
+sudo apt-get -y install python-software-properties
+sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+sudo apt-get -y update
+sudo apt-get -y install g++-4.8
+sudo update-alternatives --quiet --install  /usr/bin/g++ g++ /usr/bin/g++-4.8 1
+fi
 cd /usr/src
 sudo wget http://nodejs.org/dist/v5.6.0/node-v5.6.0.tar.gz
 sudo tar zxf node-v5.6.0.tar.gz
@@ -12,9 +20,10 @@ sudo make
 sudo make install
 cd ~
 sudo rm -rf /usr/src/node-v5.6.0
-echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu "$RELEASE"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list
 sudo apt-get -y update
-sudo apt-get -y --force-yes install mongodb-org
+sudo apt-get -y install mongodb-org
 sudo service mongod start
 sudo update-rc.d mongod defaults
 sudo mkdir /ias

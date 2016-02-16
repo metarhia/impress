@@ -6,9 +6,10 @@ apt-get -y install python
 curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
 sudo apt-get install -y nodejs
 cd ~
-echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | sudo tee /etc/apt/sources.list.d/mongodb.list
 apt-get -y update
-apt-get -y --force-yes install mongodb-org
+sudo apt-get install -y mongodb-org
 service mongod start
 update-rc.d mongod defaults
 sudo mkdir /ias
