@@ -1,3 +1,9 @@
+0.1.404 / 2016-02-18
+==================
+
+  * Fixed api.impress.each incorrect behavior with empty arrays
+  * In deploy scripts: added mongodb 3.2 support and g++ support for node.js compilation
+
 0.1.403 / 2016-02-12
 ==================
 
