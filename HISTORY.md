@@ -1,3 +1,10 @@
+0.1.405 / 2016-02-19
+==================
+
+  * Load setup scripts if they have been modified since last run
+  * Fixed initialization impress.security before initializing application.databases, close #484
+  * Refactored application.processPlaceFile
+
 0.1.404 / 2016-02-18
 ==================
 
