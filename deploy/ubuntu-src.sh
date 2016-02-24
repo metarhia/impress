@@ -11,15 +11,15 @@ sudo apt-get -y install g++-4.8
 sudo update-alternatives --quiet --install  /usr/bin/g++ g++ /usr/bin/g++-4.8 1
 fi
 cd /usr/src
-sudo wget http://nodejs.org/dist/v5.6.0/node-v5.6.0.tar.gz
-sudo tar zxf node-v5.6.0.tar.gz
-sudo rm -f ./node-v5.6.0.tar.gz
-cd node-v5.6.0
+sudo wget http://nodejs.org/dist/v5.7.0/node-v5.7.0.tar.gz
+sudo tar zxf node-v5.7.0.tar.gz
+sudo rm -f ./node-v5.7.0.tar.gz
+cd node-v5.7.0
 sudo ./configure
 sudo make
 sudo make install
 cd ~
-sudo rm -rf /usr/src/node-v5.6.0
+sudo rm -rf /usr/src/node-v5.7.0
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu "$RELEASE"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list
 sudo apt-get -y update

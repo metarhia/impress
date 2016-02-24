@@ -1,3 +1,9 @@
+0.1.406 / 2016-02-25
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.7.0
+  * Removed 2 redundant lines, issue #486
+
 0.1.405 / 2016-02-19
 ==================
 
