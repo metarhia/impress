@@ -21,7 +21,11 @@ sudo make install
 cd ~
 sudo rm -rf /usr/src/node-v5.7.0
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-echo "deb http://repo.mongodb.org/apt/ubuntu "$RELEASE"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list
+if [ $RELEASE = 'wily' ]; then
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list
+else
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list
+fi
 sudo apt-get -y update
 sudo apt-get -y install mongodb-org
 sudo service mongod start
