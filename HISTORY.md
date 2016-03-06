@@ -1,3 +1,8 @@
+0.1.407 / 2016-03-07
+==================
+
+  * Changed deploy scripts: added support for Debian 8.3, Ubuntu 15.10 and node.js 5.7.1
+
 0.1.406 / 2016-02-25
 ==================
 
