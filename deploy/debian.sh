@@ -1,16 +1,18 @@
 #!/bin/bash
-apt-get -y update
-apt-get -y install wget mc
-apt-get -y install build-essential openssl libssl-dev pkg-config
-apt-get -y install python
+apt-get install sudo
+sudo apt-get -y update
+sudo apt-get -y install wget mc curl
+sudo apt-get -y install build-essential openssl libssl-dev pkg-config
+sudo apt-get -y install python
 curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
-sudo apt-get install -y nodejs
+sudo apt-get -y install nodejs
 cd ~
-echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
-apt-get -y update
-apt-get -y --force-yes install mongodb-org
-service mongod start
-update-rc.d mongod defaults
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | sudo tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-get -y update
+sudo apt-get install -y mongodb-org
+sudo service mongod start
+sudo update-rc.d mongod defaults
 sudo mkdir /ias
 cd /ias
 sudo npm install mongodb nodemailer websocket geoip-lite

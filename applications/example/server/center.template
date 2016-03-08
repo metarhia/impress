@@ -1,4 +1,4 @@
-﻿<h3>Template</h3>
+<h3>Template</h3>
 <hr>
 SID: @.sid@; Empty: @.empty@; Title: @title@,<br>
 nNull: @.nNull@, bTrue: @.bTrue@, bFalse: @.bFalse@, dData: @.dData@, aArray: @.aArray@,<br>

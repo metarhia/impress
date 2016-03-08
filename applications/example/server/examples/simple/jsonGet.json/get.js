@@ -1,4 +1,4 @@
-﻿module.exports = function(client, callback) {
+module.exports = function(client, callback) {
   callback({
     query: client.query,
     path: client.path,

@@ -1,4 +1,4 @@
-﻿// Middleware-styl programmatically added handler
+// Middleware-styl programmatically added handler
 //
 application.get('/helloWorld.ajax', function(req, res, next) {
   res.write('<h1>Middleware handler style</h1>');

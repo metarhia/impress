@@ -1,4 +1,4 @@
-﻿module.exports = function(client, callback) {
+module.exports = function(client, callback) {
   client.attachment('fileName.csv');
   callback([
     ['name1', 11, 21.1],

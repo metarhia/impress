@@ -1,4 +1,4 @@
-﻿application.test = {};
+application.test = {};
 
 application.test.names = [
   'Plato', 'Zeno', 'Persaeus', 'Aristo', 'Apollophanes', 'Eudromus', 'Crates', 'Diogenes', 'Zenodotus', 'Basilides',

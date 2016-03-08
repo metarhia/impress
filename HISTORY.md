@@ -1,3 +1,58 @@
+0.1.407 / 2016-03-07
+==================
+
+  * Changed deploy scripts: added support for Debian 8.3, Ubuntu 15.10 and node.js 5.7.1
+
+0.1.406 / 2016-02-25
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.7.0
+  * Removed 2 redundant lines, issue #486
+
+0.1.405 / 2016-02-19
+==================
+
+  * Load setup scripts if they have been modified since last run
+  * Fixed initialization impress.security before initializing application.databases, close #484
+  * Refactored application.processPlaceFile
+
+0.1.404 / 2016-02-18
+==================
+
+  * Fixed api.impress.each incorrect behavior with empty arrays
+  * In deploy scripts: added mongodb 3.2 support and g++ support for node.js compilation
+
+0.1.403 / 2016-02-12
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.6.0
+  * Web server default templates changed
+
+0.1.402 / 2016-01-30
+==================
+
+  * Removed node-sass from dependencies, now it is optional for most projects
+  * Added parameter "soft" to api.impress.require, default to false
+  * Addes flag soft=true for some libraries into api.impress.require call
+  * Updated dependencies versions
+
+0.1.401 / 2016-01-29
+==================
+
+  * Minor changes in web server default templates
+
+0.1.400 / 2016-01-28
+==================
+
+  * Fixed changed CRLF to LF in /schemas
+  * Added Travis CI testing case for 5.5.0
+
+0.1.399 / 2016-01-27
+==================
+
+  * Removed BOM in example application files
+  * Changed deploy scripts to use node.js 5.5.0
+
 0.1.398 / 2016-01-15
 ==================
 
