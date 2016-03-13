@@ -1,3 +1,10 @@
+0.1.408 / 2016-03-13
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.8.0
+  * Changed deploy scripts: added support for Fedora 22 and 23 x64
+  * Some core functions optimized
+
 0.1.407 / 2016-03-07
 ==================
 

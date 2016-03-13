@@ -156,13 +156,14 @@ module.exports = {
 
 ## Installation and upgrade
 
-  - Install to the current folder: `npm install impress` or `sudo npm install impress`
-  - Install using package.json, add to `dependencies` and run `npm install` or `sudo npm install`
-  - Installation scripts for an empty server (from the scratch)
-    - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
-    - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
-    - For Ubuntu 14 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
-    - For Debian 7 /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
+- Install to the current folder: `npm install impress` or `sudo npm install impress`
+- Install using package.json, add to `dependencies` and run `npm install` or `sudo npm install`
+- Installation scripts for an empty server (from the scratch)
+  - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
+  - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
+  - For Ubuntu 14 and 15 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
+  - For Debian 7 and 8 /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
+  - For Fedora 22 and 23 x64 /deploy/fedora.sh
   
 You can prepare scripts based on examples above and run at a target server shell:
 `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`
@@ -184,7 +185,6 @@ You can use following commands from any directory:
   - `impress remove [name]` to remove application
   - `impress new [name]` to create application
 
-
 ## Configuration
 
 1. Install Impress as described above.
@@ -196,14 +196,13 @@ You can use following commands from any directory:
 
 ## Contributors
 
-  - Timur Shemsedinov (marcusaurelius)
-  - See github for full [contributors list](https://github.com/tshemsedinov/impress/graphs/contributors)
+- Timur Shemsedinov (marcusaurelius)
+- See github for full [contributors list](https://github.com/tshemsedinov/impress/graphs/contributors)
 
 ## License
 
-Dual licensed under the MIT or RUMI licenses.
-
-Copyright (c) 2012-2015 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
+Dual licensed under the MIT or RUMI licenses.  
+Copyright (c) 2012-2016 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
 
 RUMI License: Everything that you want, you are already that.  
 // Jalal ad-Din Muhammad Rumi
