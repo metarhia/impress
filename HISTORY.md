@@ -1,3 +1,40 @@
+0.1.408 / 2016-03-13
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.8.0
+  * Changed deploy scripts: added support for Fedora 22 and 23 x64
+  * Some core functions optimized
+
+0.1.407 / 2016-03-07
+==================
+
+  * Changed deploy scripts: added support for Debian 8.3, Ubuntu 15.10 and node.js 5.7.1
+
+0.1.406 / 2016-02-25
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.7.0
+  * Removed 2 redundant lines, issue #486
+
+0.1.405 / 2016-02-19
+==================
+
+  * Load setup scripts if they have been modified since last run
+  * Fixed initialization impress.security before initializing application.databases, close #484
+  * Refactored application.processPlaceFile
+
+0.1.404 / 2016-02-18
+==================
+
+  * Fixed api.impress.each incorrect behavior with empty arrays
+  * In deploy scripts: added mongodb 3.2 support and g++ support for node.js compilation
+
+0.1.403 / 2016-02-12
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.6.0
+  * Web server default templates changed
+
 0.1.402 / 2016-01-30
 ==================
 
