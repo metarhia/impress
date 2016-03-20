@@ -1,3 +1,9 @@
+0.1.409 / 2016-03-20
+==================
+
+  * Code style fixes
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.9.0
+
 0.1.408 / 2016-03-13
 ==================
 
