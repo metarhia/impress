@@ -1,3 +1,9 @@
+0.1.410 / 2016-03-25
+==================
+
+  * Changed repository ownership and URLs `tshemsedinov/impress` to `metarhia/Impress`
+  * Changed deploy scripts for node.js 5.9.1
+
 0.1.409 / 2016-03-20
 ==================
 
@@ -2165,7 +2171,7 @@
 0.1.40 / 2014-06-10
 ==================
 
-  * Implemented log files separation for applications, see: https://github.com/tshemsedinov/impress/issues/47
+  * Implemented log files separation for applications, see #47
   * Refactored /lib/impress.log.js
   * Added wcl.js to example application for accessing server-side APIs (predefined and introspective)
   * Fixed impress.security.js
