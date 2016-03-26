@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/metarhia/Impress.svg?branch=master)](https://travis-ci.org/metarhia/Impress)
 [![Dependency Status](https://david-dm.org/metarhia/Impress.svg)](https://david-dm.org/metarhia/Impress)
 [![Codacy Badge](https://www.codacy.com/project/badge/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/public/metarhia/Impress)
-[![Inline docs](http://inch-ci.org/github/metarhia/Impress.svg?branch=master)](http://inch-ci.org/metarhia/Impress)
+[![Inline docs](http://inch-ci.org/github/metarhia/Impress.svg?branch=master)](http://inch-ci.org/github/metarhia/Impress)
 
 [Impress](https://github.com/metarhia/Impress) Application Server for [node.js](http://nodejs.org). All decisions are made. Solutions are scaled. Tools are provided and optimized for high load. Ready for applied development and production.
 
