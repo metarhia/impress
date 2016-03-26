@@ -1,3 +1,9 @@
+0.1.411 / 2016-03-26
+==================
+
+  * Code style fixes
+  * Badge fixed for: TravisCI, David and InchCI
+
 0.1.410 / 2016-03-25
 ==================
 
