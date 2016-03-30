@@ -1,15 +1,15 @@
-client.req - запрос экземпляр http.IncomingMessage, https://nodejs.org/api/http.html#http_http_incomingmessage
+client.req - запрос, экземпляр http.IncomingMessage, https://nodejs.org/api/http.html#http_http_incomingmessage
 client.res - ответ, экземпляр http.ServerResponse, https://nodejs.org/api/http.html#http_class_http_serverresponse
 client.application - ссылка на приложение, кроме того, application находится в глобальном контексте
-client.startTime - время начала обработки запооса в миллисекундах
-client.access.guests - флаг разрешения не аутентифицированный пользователям делать запросы к текущему URL
+client.startTime - время начала обработки запроса в миллисекундах
+client.access.guests - флаг разрешения неаутентифицированным пользователям делать запросы к текущему URL
 client.access.logged - флаг разрешения аутентифицированным пользователям делать запросы к текущему URL
 client.access.http - флаг разрешения на HTTP запросы в текущем URL
 client.access.https - флаг разрешения на HTTPS запросы в текущем URL
 client.access.intro - флаг разрешения интроспекции в текущем URL
 client.access.virtual - флаг виртуальности обработчика
 client.access.groups - массив строк, группы, которым дан доступ к текущу URL
-client.access.allowed - флаг разрешения отправки ответа на те текущий URL
+client.access.allowed - флаг разрешения отправки ответа на текущий URL
 client.query - поля запроса из URL, например, /path?field1=val1&field2=val2 дадут client.query = { field1: 'val1', field2: 'val2' }
 client.fields - поля POST запроса, переданные не в URL, а теле запроса
 client.parameters - все поля в одном хеше и client.query и client.fields
@@ -21,7 +21,7 @@ client.url - полный URL запроса
 client.host - имя хоста или IP адрес из HTTP запроса
 client.path - путь из HTTP запроса
 client.ext - расширение каталога запроса
-client.data - тело данные HTTP запроса
+client.data - тело данных HTTP запроса
 client.ip - IP адрес, откуда пришел HTTP запрос
 client.local - флаг, пришел ли запрос с localhost (используется для отключения HTTP base auth)
 client.cookies - хеш cookies из HTTP запроса
