@@ -1,3 +1,8 @@
+0.1.411 / 2016-04-02
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 5.10.0
+
 0.1.411 / 2016-03-26
 ==================
 
