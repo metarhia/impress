@@ -1,11 +1,11 @@
-0.1.412 / 2016-04-03
+0.1.413 / 2016-04-03
 ==================
 
   * Fixed `Client.prototype.restoreSession`
   * Fix security config, removed `security` flag in database config, now security
   database specifyed in `application.config.sessions.database`, close #502
 
-0.1.411 / 2016-04-02
+0.1.412 / 2016-04-02
 ==================
 
   * Changed deploy scripts and Travis CI testing cases for node.js 5.10.0
