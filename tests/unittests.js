@@ -2,9 +2,9 @@
 
 var dir = process.cwd();
 require(dir + '/lib/impress');
-require(dir + '/lib/impress.tests');
+require(dir + '/lib/api.test');
 
-impress.test.show.ok = false;
+api.test.case.show.ok = false;
 
 var testsDir = dir + '/tests/unittests/',
     tests = api.fs.readdirSync(testsDir);
@@ -13,4 +13,4 @@ tests.map(function(fileName) {
   require(testsDir + fileName);
 });
 
-impress.test.printReport();
+api.test.case.printReport();

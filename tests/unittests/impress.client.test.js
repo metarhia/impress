@@ -1,6 +1,6 @@
 'use strict';
 
-impress.test({
+api.test.case({
 
   // Test stub
 

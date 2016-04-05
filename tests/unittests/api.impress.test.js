@@ -14,7 +14,7 @@ methodConteiner.method = function(obj) {
   return obj;
 };
 
-impress.test({
+api.test.case({
   'api.impress.falseness': [ [ [], false ] ],
   'api.impress.trueness': [ [ [], true ] ],
   'api.impress.emptyness': [ [ [], undefined ] ],
