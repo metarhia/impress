@@ -1,3 +1,10 @@
+0.1.414 / 2016-04-06
+==================
+
+  * Added [JSTP](https://github.com/metarhia/JSTP) interface stub, issue #491
+  * Refactored: speed tests and unit tests
+  * Updated dependencies
+
 0.1.413 / 2016-04-03
 ==================
 
