@@ -1,3 +1,10 @@
+0.1.415 / 2016-04-10
+==================
+
+  * Added Global Storage: `api.gs.*`
+  * Added place: `/api`
+  * Changed deploy scripts for node.js 5.10.1
+
 0.1.414 / 2016-04-06
 ==================
 
