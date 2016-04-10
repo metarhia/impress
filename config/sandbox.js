@@ -21,6 +21,7 @@ module.exports = {
     // Impress API modules
     'db',
     'con',
+    'common',
     'impress',
     'registry',
     'definition',

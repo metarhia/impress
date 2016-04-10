@@ -38,7 +38,7 @@ api.news.getNext = function() {
 };
 
 api.news.shuffle = function() {
-  api.impress.shuffle(api.news.data);
+  api.common.shuffle(api.news.data);
 };
 
 api.news.getItem = function(n) {

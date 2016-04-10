@@ -5,7 +5,7 @@ module.exports = function(client, callback) {
 
   client.context.data = {
     title: 'Page Title',
-    key: api.impress.generateKey(2, '0123456789'),
+    key: api.common.generateKey(2, '0123456789'),
     center: {
       sid: client.sid,
       empty: '',

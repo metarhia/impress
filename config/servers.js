@@ -3,9 +3,19 @@
 
 module.exports = {
   www: {
-    protocol:  'http',
+    protocol:  'http', // http, https, tcp, tls
     address:   '*',
     port:      80,
+    bundle:    false,
+    slowTime:  '1s',
+    timeout:   '30s',
+    keepAliveTimeout: '5s'
+  },
+  rpc: {
+    protocol:  'jstp',
+    transport: 'tcp',
+    address:   '*',
+    port:      api.common.range(81, 83),
     bundle:    true, // for scaling strategy 'bundle'
     slowTime:  '1s',
     timeout:   '30s',

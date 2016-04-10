@@ -19,7 +19,7 @@ module.exports = {
     'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'stringDecoder',
 
     // Impress API modules
-    'db', 'con', 'impress', 'registry', 'definition',
+    'db', 'con', 'common', 'impress', 'registry', 'definition',
 
     // Preinstalled modules
     'csv',
