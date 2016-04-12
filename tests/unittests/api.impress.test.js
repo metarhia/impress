@@ -8,12 +8,6 @@ var config = {
   }
 };
 
-var methodConteiner = {};
-methodConteiner.method = function(obj) {
-  obj.field = 'value';
-  return obj;
-};
-
 api.test.case({
   'api.impress.localIPs': [
     [ [], function(value) { return Array.isArray(value); } ],

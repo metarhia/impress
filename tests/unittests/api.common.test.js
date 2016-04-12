@@ -1,13 +1,5 @@
 'use strict';
 
-var config = {
-  sessions: {
-    characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
-    secret:     'secret',
-    length:     64
-  }
-};
-
 var methodConteiner = {};
 methodConteiner.method = function(obj) {
   obj.field = 'value';

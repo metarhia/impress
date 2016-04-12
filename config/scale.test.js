@@ -1,4 +1,5 @@
 module.exports = {
+
   cloud:      'PrivateCloud',
   transport:  'tcp',
   instance:   'standalone',

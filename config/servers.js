@@ -3,7 +3,7 @@
 
 module.exports = {
   www: {
-    protocol:  'http', // http, https, tcp, tls
+    protocol:  'http', // http, https, jstp, jstps
     address:   '*',
     port:      80,
     bundle:    false,
@@ -13,7 +13,6 @@ module.exports = {
   },
   rpc: {
     protocol:  'jstp',
-    transport: 'tcp',
     address:   '*',
     port:      api.common.range(81, 83),
     bundle:    true, // for scaling strategy 'bundle'

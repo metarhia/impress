@@ -55,7 +55,7 @@ module.exports = {
   servers: '{{server}}',
 
   server: {
-    protocol:  '(http,https)',
+    protocol:  '(http,https,jstp,jstps)',
     address:   'string',
     port:      'number',
     bundle:    'false:boolean',
