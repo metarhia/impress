@@ -4,7 +4,8 @@ module.exports = {
   // check:      'http://127.0.0.1/', // if we can get this page it means that another copy is running
 
   cloud:      'PrivateCloud',    // cloud name
-  transport:  'tcp',             // RPC transport: tcp, ipc, zmq
+  //transport:  'jstp',            // RPC transport: tcp, ipc, zmq, jstp
+  transport:  'tcp',             // RPC transport: tcp, ipc, zmq, jstp
 
   instance:   'controller', // cloud instance type: standalone, controller, server
   //instance:   'server',

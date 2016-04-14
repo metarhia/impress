@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.408",
+  "version": "0.1.415",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -31,10 +31,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/tshemsedinov/impress.git"
+    "url": "https://github.com/metarhia/Impress"
   },
   "bugs": {
-    "url": "https://github.com/tshemsedinov/impress/issues",
+    "url": "https://github.com/metarhia/Impress/issues",
     "email": "timur.shemsedinov@gmail.com"
   },
   "main": "./lib/impress",
@@ -46,7 +46,7 @@
     "uglify-js": "2.6.x",
     "multiparty": "4.1.x",
     "iconv-lite": "0.4.x",
-    "zip-stream": "0.8.x",
+    "zip-stream": "1.0.x",
     "websocket": "1.0.x",
     "csv": "0.4.x",
     "accept-language": "2.0.x"

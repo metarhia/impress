@@ -21,7 +21,7 @@ module.exports = function(client, callback) {
         callback(api.news.data[api.news.current]);
       },
       shuffle: function(callback) {
-        api.impress.shuffle(api.news.data);
+        api.common.shuffle(api.news.data);
         callback(true);
       },
       getItem: function(n, callback) {

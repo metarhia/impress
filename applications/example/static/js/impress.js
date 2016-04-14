@@ -2,16 +2,18 @@
 
 window.global = window;
 global.api = {};
-global.api.impress = {};
 global.application = {};
 
-api.impress.falseness = function() { return false; };
-api.impress.trueness = function() { return true; };
-api.impress.emptyness = function() { };
+api.impress = {};
+api.common = {};
+
+api.common.falseness = function() { return false; };
+api.common.trueness = function() { return true; };
+api.common.emptyness = function() { };
 
 // Make URL absolute
 //
-api.impress.absoluteUrl = function(url) {
+api.common.absoluteUrl = function(url) {
   if (url.charAt(0) === '/') {
     var site = window.location,
         absoluteUrl = 'ws';
@@ -23,7 +25,7 @@ api.impress.absoluteUrl = function(url) {
 
 // Return random number less then one argument random(100) or between two argumants random(50,150)
 //
-api.impress.random = function(min, max) {
+api.common.random = function(min, max) {
   if (arguments.length === 1) {
     max = min;
     min = 0;
@@ -607,13 +609,13 @@ api.dom.input = function(title, prompt, defaultValue, eventOk) {
 //
 api.dom.disableSelection = function(target) {
   target = target || api.dom.html;
-  if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = api.impress.falseness; // For IE
+  if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = api.common.falseness; // For IE
   else if (typeof(target.style.MozUserSelect) !== 'undefined') { //For Firefox
     target.style.MozUserSelect='none';
     // if (target === body || target === api.dom.html)
     //   for (var i = 0; i < body.children.length; i++)
     //     body.children[i].style.MozUserSelect='none';
-  } else target.onmousedown = api.impress.falseness; // All other browsers (Opera)
+  } else target.onmousedown = api.common.falseness; // All other browsers (Opera)
   target.style.cursor = 'default';
 };
 
@@ -1004,7 +1006,7 @@ api.rpc = function(url) {
 
   var rpc = new api.events.EventEmitter();
 
-  var socket = new WebSocket(api.impress.absoluteUrl(url));
+  var socket = new WebSocket(api.common.absoluteUrl(url));
   rpc.socket = socket;
   rpc.socket.nextMessageId = 0;
   rpc.socket.callCollection = {};
@@ -1140,7 +1142,7 @@ api.rpc = function(url) {
 api.ws = function(url) {
 
   var ws = new api.events.EventEmitter(),
-      socket = new WebSocket(api.impress.absoluteUrl(url));
+      socket = new WebSocket(api.common.absoluteUrl(url));
 
   ws.socket = socket;
 

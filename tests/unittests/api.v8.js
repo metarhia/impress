@@ -12,7 +12,7 @@ optimizedFunction(1, 2);
 api.v8.optimizeFunctionOnNextCall(optimizedFunction);
 optimizedFunction(1, 2);
 
-impress.test({
+api.test.case({
   'api.v8.optimizeFunctionOnNextCall': [
     [ optimizedFunction, undefined ],
   ],
