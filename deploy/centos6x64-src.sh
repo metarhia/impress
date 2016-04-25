@@ -7,15 +7,15 @@ rpm --import http://ftp.mirrorservice.org/sites/ftp.scientificlinux.org/linux/sc
 yum -y install devtoolset-3
 source scl_source enable devtoolset-3
 cd /usr/src
-wget http://nodejs.org/dist/v5.10.1/node-v5.10.1.tar.gz
-tar zxf node-v5.10.1.tar.gz
-rm -f ./node-v5.10.1.tar.gz
-cd node-v5.10.1
+wget http://nodejs.org/dist/v5.11.0/node-v5.11.0.tar.gz
+tar zxf node-v5.11.0.tar.gz
+rm -f ./node-v5.11.0.tar.gz
+cd node-v5.11.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v5.10.1
+rm -rf /usr/src/node-v5.11.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
