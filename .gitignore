@@ -7,3 +7,4 @@ node_modules
 *.log
 crlf.js
 *.done
+.DS_Store
