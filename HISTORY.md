@@ -1,3 +1,11 @@
+0.1.418 / 2016-05-19
+==================
+
+  * Added loadApi and loadApiInterface for application, access using `application.api` namespace
+  * Implemented mamory cache of `application.api` and file system watch for `/api`
+  * Changed deploy scripts for node.js 6.2.0
+  * Changed Travis CI testing cases for node.js 4.3.0, 4.4.0 and 6.2.0
+
 0.1.417 / 2016-05-12
 ==================
 
