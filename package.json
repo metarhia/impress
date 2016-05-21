@@ -48,7 +48,7 @@
     "iconv-lite": "0.4.x",
     "zip-stream": "1.0.x",
     "websocket": "1.0.x",
-    "csv": "0.4.x",
+    "csv": "1.1.x",
     "accept-language": "2.0.x"
   },
   "engines": {
