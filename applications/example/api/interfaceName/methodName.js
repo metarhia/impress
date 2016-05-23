@@ -1,3 +1,3 @@
-module.exports = function(client, args, callback) {
+module.exports = function(con, args, callback) {
   callback({ example: 'Hello' });
 };
