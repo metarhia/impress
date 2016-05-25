@@ -1,6 +1,6 @@
 'use strict';
 
-var PACKET_DELIMITER = ',[[[\f]]],';
+var PACKET_DELIMITER = ',{\f},';
 var net = require('net');
 var client = net.connect({ port: 81 }, function() {
   console.log('connected to server!');
