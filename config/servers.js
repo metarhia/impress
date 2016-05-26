@@ -14,7 +14,7 @@ module.exports = {
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    port:      api.common.range(81, 83),
+    port:      81,  // api.common.range(81, 83),
     bundle:    true, // for scaling strategy 'bundle'
     slowTime:  '1s',
     timeout:   '30s',
