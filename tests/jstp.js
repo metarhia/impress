@@ -18,7 +18,7 @@ var сonnection = api.jstp.connect('impress', '127.0.0.1', 81);
 setTimeout(function() {
 
   console.log('connecting');
-  сonnection.handshake('example', 'user', 'passwordHash', function(res) {
+  сonnection.handshake('example', 'user', 'passwordHash', function() {
     console.log('handshake done');
     сonnection.call('interfaceName', 'methodName', [1, 2, 3], function(res) {
       console.log('result1 received');
@@ -30,6 +30,7 @@ setTimeout(function() {
       сonnection.call('interfaceName', 'methodName', [7, 8, 9], function(res) {
         console.log('result13 received');
         console.dir(res);
+        process.exit(0);
       });
     });
   });
