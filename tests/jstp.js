@@ -20,9 +20,16 @@ setTimeout(function() {
     console.log('handshake done');
     console.dir(res);
     сonnection.call('interfaceName', 'methodName', [1, 2, 3], function(res) {
-      console.log('result received');
+      console.log('result1 received');
       console.dir(res);
-      process.exit(0);
+    });
+    сonnection.call('interfaceName', 'methodName', [4, 5, 6], function(res) {
+      console.log('result2 received');
+      console.dir(res);
+      сonnection.call('interfaceName', 'methodName', [7, 8, 9], function(res) {
+        console.log('result13 received');
+        console.dir(res);
+      });
     });
   });
 
