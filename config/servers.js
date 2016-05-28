@@ -16,9 +16,7 @@ module.exports = {
     address:   '*',
     port:      81,  // api.common.range(81, 83),
     bundle:    true, // for scaling strategy 'bundle'
-    slowTime:  '1s',
-    timeout:   '30s',
-    keepAliveTimeout: '5s'
+    slowTime:  '1s'
   },
   //local: {
   //  protocol: 'http',
