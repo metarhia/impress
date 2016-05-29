@@ -5,8 +5,8 @@ module.exports = {
   www: {
     protocol:  'http', // http, https, jstp, jstps
     address:   '*',
-    port:      80,
-    bundle:    false,
+    port:      80,    // [81,82,83] or api.common.range(81, 83),
+    bundle:    false, // for scaling strategy 'bundle'
     slowTime:  '1s',
     timeout:   '30s',
     keepAliveTimeout: '5s'
@@ -14,8 +14,8 @@ module.exports = {
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    port:      81,  // api.common.range(81, 83),
-    bundle:    true, // for scaling strategy 'bundle'
+    port:      81,
+    bundle:    true,
     slowTime:  '1s'
   },
   //local: {
