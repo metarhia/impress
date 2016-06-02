@@ -2,15 +2,17 @@
 // Each server is named server on specified address and port
 
 module.exports = {
+
   www: {
     protocol:  'http', // http, https, jstp, jstps
     address:   '*',
-    port:      80,    // [81,82,83] or api.common.range(81, 83),
-    bundle:    false, // for scaling strategy 'bundle'
+    port:      80,   // [81,82,83] or api.common.range(81, 83),
+    bundle:    true, // for scaling strategy 'bundle'
     slowTime:  '1s',
     timeout:   '30s',
     keepAliveTimeout: '5s'
   },
+
   rpc: {
     protocol:  'jstp',
     address:   '*',
@@ -18,6 +20,7 @@ module.exports = {
     bundle:    true,
     slowTime:  '1s'
   },
+
   //local: {
   //  protocol: 'http',
   //  address:  '127.0.0.1',
@@ -26,6 +29,7 @@ module.exports = {
   //  slowTime: '1s',
   //  timeout:  '120s' // default 30s
   //},
+
   //ssl: {
   //  protocol:  'https',
   //  address:   '127.0.0.1',
@@ -33,10 +37,12 @@ module.exports = {
   //  key:       'example.key',
   //  cert:      'example.cer'
   //},
+
   //static: {
   //  protocol:  'http',
   //  address:   '127.0.0.1',
   //  port:      8080,
   //  slowTime:  1000
   //}
+
 };

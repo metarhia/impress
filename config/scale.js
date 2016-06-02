@@ -11,6 +11,7 @@ module.exports = {
 
   host: '127.0.0.1', // cloud controller ip or host name
   port: 250,         // cloud controller tcp port
+  key: '19nm58993eJ747845fk78A2z7854W90D', // Cloud access key
 
   cluster:  'S1',     // Cluster name to identify it in loadbalancing infrastructure
   cookie:   'node',   // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')

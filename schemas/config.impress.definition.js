@@ -8,6 +8,7 @@ module.exports = {
 
     host:       'string',
     port:       '250:number',
+    key:        '[string]',
 
     cluster:    'string',
     cookie:     'node:string',
