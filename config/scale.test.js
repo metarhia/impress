@@ -1,17 +1,15 @@
 module.exports = {
 
-  cloud:      'PrivateCloud',
-  transport:  'tcp',
-  instance:   'standalone',
+  cloud:    'PrivateCloud',
+  instance: 'standalone',
 
-  host:       '127.0.0.1',
-  rpcPort:     8250,
-  subPort:     8251,
+  host: '127.0.0.1',
+  port: 8250,
 
-  cluster:    'C1',
-  cookie:     'node',
-  strategy:   'single',
-  workers:    1,
+  cluster:  'C1',
+  cookie:   'node',
+  strategy: 'single',
+  workers:  1,
 
   waf: {
     enabled: false
