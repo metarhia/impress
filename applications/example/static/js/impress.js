@@ -11,6 +11,14 @@ api.common.falseness = function() { return false; };
 api.common.trueness = function() { return true; };
 api.common.emptyness = function() { };
 
+// Extend obj with properties of ext
+//
+api.common.extend = function(obj, ext) {
+  if (obj === undefined) obj = null;
+  for (var property in ext) obj[property] = ext[property];
+  return obj;
+};
+
 // Make URL absolute
 //
 api.common.absoluteUrl = function(url) {
@@ -1001,6 +1009,241 @@ api.ajax.post = function(url, params, callback) {
     params = {};
   }
   api.ajax.request('POST', url, params, true, callback);
+};
+
+// Node.js vm module emulation
+// (ported from https://github.com/sun1x/vm-browser)
+//
+api.vm = {};
+
+api.vm.contextifiedSandboxes = [];
+
+api.vm.createIFrame = function() {
+  var iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  return iframe;
+};
+
+api.vm.createIFrameWithContext = function(sandbox) {
+  var iframe = api.vm.createIFrame();
+  var key;
+  document.body.appendChild(iframe);
+  if (sandbox) {
+    for (key in sandbox) {
+      if (sandbox.hasOwnProperty(key)) {
+        iframe.contentWindow[key] = sandbox[key];
+      }
+    }
+    api.vm.contextifiedSandboxes.push(sandbox);
+  }
+  return iframe;
+};
+
+api.vm.runCodeInNewContext = function(code, sandbox) {
+  var iframe = api.vm.createIFrameWithContext(sandbox);
+  var result = iframe.contentWindow.eval(code);
+  document.body.removeChild(iframe);
+  return result;
+};
+
+api.vm.runCodeInContext = function(code, context) {
+  if (!context) {
+    throw new Error('Context cannot be undefined');
+  }
+  return context.eval(code);
+};
+
+api.vm.Script = function(code) {
+  this.code = code;
+};
+
+api.vm.Script.prototype.runInContext = function(context) {
+  return api.vm.runCodeInContext(this.code, context);
+};
+
+api.vm.Script.prototype.runInNewContext = function(sandbox) {
+  return api.vm.runCodeInNewContext(this.code, sandbox);
+};
+
+api.vm.Script.prototype.runInThisContext = function() {
+  return api.vm.runCodeInContext(this.code, window);
+};
+
+api.vm.createContext = function(sandbox) {
+  return api.vm.createIFrameWithContext(sandbox).contentWindow;
+};
+
+api.vm.isContext = function(sandbox) {
+  return api.vm.contextifiedSandboxes.indexOf(sandbox) !== -1;
+};
+
+api.vm.runInContext = function(code, context) {
+  return api.vm.runCodeInContext(code, context);
+};
+
+api.vm.runInDebugContext = function() {
+  throw new Error('vm.runInDebugContext(code) does not work in browsers');
+};
+
+api.vm.runInNewContext = function(code, sandbox) {
+  return api.vm.runCodeInNewContext(code, sandbox);
+};
+
+api.vm.runInThisContext = function(code) {
+  return api.vm.runCodeInContext(code, window);
+};
+
+api.vm.createScript = function(code) {
+  return new api.vm.Script(code);
+};
+
+// JavaScript Transfer Protocol
+//
+api.jstp = {};
+
+// Deserialize string to object, just data: objects and arrays
+// no expressions and functions allowed in object definition
+//   str - object serialized to string
+//   return - deserialized JavaScript object
+// Example: api.jstp.parse("{ field: 'value', node: { a: [5,6,7] } }")
+//
+api.jstp.parse = function(str) {
+  var sandbox = api.vm.createContext({});
+  var script = api.vm.createScript('(' + str + ')');
+  return script.runInNewContext(sandbox);
+};
+
+// Serializer factory
+//   additionalTypes - parsers for custom data types
+//
+api.jstp.createSerializer = function(additionalTypes) {
+  function serialize(obj, i, arr) {
+    var type;
+    if (obj instanceof Array) type = 'array';
+    else if (obj instanceof Date) type = 'date';
+    else if (obj === null) type = 'undefined';
+    else type = typeof(obj);
+    var fn = serialize.types[type];
+    return fn(obj, arr);
+  };
+
+  serialize.types = api.common.extend({
+    number: function(n) { return n + ''; },
+    string: function(s) { return '\'' + s.replace(/'/g, '\\\'') + '\''; },
+    boolean: function(b) { return b ? 'true' : 'false'; },
+    undefined: function(u, arr) { return !!arr ? '' : 'undefined'; },
+    array: function(a) {
+      return '[' + a.map(serialize).join(',') + ']';
+    },
+    object: function(obj) {
+      var a = [], s, key;
+      for (key in obj) {
+        s = serialize(obj[key]);
+        if (s !== 'undefined') {
+          a.push(key + ':' + s);
+        }
+      }
+      return '{' + a.join(',') + '}';
+    }
+  }, additionalTypes);
+
+  return serialize;
+};
+
+// Serialize object to string, just data: objects and arrays
+// no expressions and functions will be serialized
+//   obj - JavaScript object to be serialized
+//   return - object serialized to string
+// Example: api.jstp.stringify({ field: 'value', node: { a: [5,6,7] } })
+//
+api.jstp.stringify = api.jstp.createSerializer({
+  function: function() { return 'undefined'; },
+  date: function(d) {
+    return '\'' + d.toISOString().split('T')[0] + '\'';
+  }
+});
+
+// Serialize object to string. Allowed: objects, arrays, functions
+//   obj - JavaScript object to be serialized
+//   return - object serialized to string
+// Example: api.jstp.dump({ field: 'value', func: () => {} })
+//
+api.jstp.dump = api.jstp.createSerializer({
+  function: function(fn) {
+    return fn.toString();
+  },
+  date: function(d) {
+    var date = d.toISOString().split('T')[0];
+    return 'new Date(\'' + date + '\')';
+  }
+});
+
+// Deserialize string to object with functions allowed in object definition
+//   str - object serialized to string
+//   return - deserialized JavaScript object
+//
+api.jstp.interprete = function(str) {
+  var sandbox = api.vm.createContext({});
+  var script = api.vm.createScript('(' + str + ')');
+  var exported = script.runInNewContext(sandbox);
+  for (var key in exported) {
+    sandbox[key] = exported[key];
+  }
+  return exported;
+};
+
+// Serialize object to string, data and functions
+// functions will be serialized with source code
+//   obj - JavaScript object to be serialized
+//   return - object serialized to string
+// Example: api.jstp.serialize([['a','b'],[5,7],'c',5])
+//
+api.jstp.serialize = function(a, i, arr) {
+  // Try to implement better then api.jstp.stringify
+  if (a instanceof Array) {
+    return '[' + a.map(api.jstp.serialize).join(',') + ']';
+  } else {
+    return a; // a may be number, boolean, string, etc.
+    // like in api.jstp.stringify
+    // also if a is { ... } we use ''
+  }
+};
+
+// Deserialize array of scalar or array of array
+// no objects allowed, just arrays and values
+//   str - array serialized to string
+//   return - deserialized JavaScript array
+//
+api.jstp.deserialize = function(str) {
+  // Try to implement better then api.jstp.parse
+};
+
+// Connect to a JSTP endpoint and create persistent connection
+//
+api.jstp.connect = function(url) {
+  var jstp = new api.events.EventEmitter();
+
+  var socket = new WebSocket(api.common.absoluteUrl(url));
+
+  socket.onopen = function() {
+    jstp.emit('open');
+  };
+
+  socket.onclose = function() {
+    jstp.emit('close');
+  };
+
+  socket.onmessage = function(message) {
+    var data = message[message.type + 'Data'],
+        event = api.jstp.parse(data);
+    jstp.emit('message', event);
+  };
+
+  jstp.send = function(message) {
+    socket.send(api.jstp.stringify(message));
+  };
+
+  return jstp;
 };
 
 // Create persistent RPC connection
