@@ -1,3 +1,3 @@
-module.exports = function(con, args, callback) {
+(connection, data, callback) => {
   callback({ example: 'Hello' });
-};
+}
