@@ -16,7 +16,7 @@ module.exports = {
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    port:      81,
+    port:      [81, 82],
     bundle:    true,
     slowTime:  '1s'
   },
