@@ -1,3 +1,18 @@
+0.1.419 / 2016-06-17
+==================
+
+  * Implemented servr-side JSTP library
+  * Implemented a simple client-side JSTP library
+  * Implemented IPC over JSTP
+  * Deprecated cloud transports: zmq, tcp, ipc
+  * Added simple JSTP test/example
+  * Added application.Connection class
+  * Implemented arrow handler, issue #529
+  * Added impress.USE_STRICT, issue #529
+  * Resolved bundle problem, issue #521
+  * JSTP as configuration format, issue #496
+  * Changed deploy scripts for node.js 6.2.1
+
 0.1.418 / 2016-05-19
 ==================
 
