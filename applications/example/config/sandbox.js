@@ -1,6 +1,5 @@
-// Modules available in application sandbox
-
-module.exports = {
+{
+  // Modules available in application sandbox
 
   // Following identifiers will be visible in sandbox global
   // There is no need to uncomment this if you you do not want to override list
@@ -53,4 +52,4 @@ module.exports = {
   //  'api.nameExport'
   //]
 
-};
+}

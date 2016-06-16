@@ -1,5 +1,4 @@
-module.exports = {
-
+{
   cloud:    'PrivateCloud',
   instance: 'standalone',
 
@@ -19,5 +18,4 @@ module.exports = {
   nagle:      false,
   gcInterval: 0,
   watchInterval: '2s'
-
-};
+}

@@ -1,4 +1,4 @@
-module.exports = {
+{
   test: {
     protocol:  'http',
     address:   '127.0.0.1',
@@ -7,4 +7,4 @@ module.exports = {
     slowTime:  '1s',
     timeout:   '10s'
   }
-};
+}

@@ -1,7 +1,6 @@
-// Application specific configuration
-// You can place js file in this directory with your own structure and it will be loaded as an application config section
-
-module.exports = {
+{
+  // Application specific configuration
+  // You can place js file in this directory with your own structure and it will be loaded as an application config section
 
   servers: {
     S0: {
@@ -21,4 +20,4 @@ module.exports = {
     }
   }
 
-};
+}

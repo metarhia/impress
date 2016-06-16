@@ -1,6 +1,6 @@
-// Cloud and health configuration
+{
+  // Cloud and health configuration
 
-module.exports = {
   // check: 'http://127.0.0.1/', // if we can get this page it means that another copy is running
 
   cloud: 'PrivateCloud', // cloud name
@@ -40,4 +40,4 @@ module.exports = {
   gcInterval:    0,      // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
   watchInterval: '2s'    // combine wached file system events if interval less then specified
 
-};
+}

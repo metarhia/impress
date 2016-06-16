@@ -1,7 +1,7 @@
-// Server ports bind configuration
-// Each server is named server on specified address and port
+{
 
-module.exports = {
+  // Server ports bind configuration
+  // Each server is named server on specified address and port
 
   www: {
     protocol:  'http', // http, https, jstp, jstps
@@ -16,7 +16,7 @@ module.exports = {
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    port:      [81, 82],
+    port:      api.common.range(81, 83), // [81, 82],
     bundle:    true,
     slowTime:  '1s'
   },
@@ -45,4 +45,4 @@ module.exports = {
   //  slowTime:  1000
   //}
 
-};
+}
