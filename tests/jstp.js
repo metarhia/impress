@@ -28,7 +28,7 @@ setTimeout(function() {
       console.log('result2 received');
       console.dir(res);
       сonnection.call('interfaceName', 'methodName', [7, 8, 9], function(res) {
-        console.log('result13 received');
+        console.log('result3 received');
         console.dir(res);
         process.exit(0);
       });
