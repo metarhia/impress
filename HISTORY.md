@@ -1,3 +1,11 @@
+0.1.420 / 2016-06-18
+==================
+
+  * Removed configuration: scale.strategy, issue #531
+  * Removed configuration: scale.workers
+  * Removed configuration: servers[name].bundle
+  * Changed deploy scripts for node.js 6.2.2
+
 0.1.419 / 2016-06-17
 ==================
 
