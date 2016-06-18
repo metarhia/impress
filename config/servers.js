@@ -6,8 +6,8 @@
   www: {
     protocol:  'http', // http, https, jstp, jstps
     address:   '*',
-    port:      80,   // [81,82,83] or api.common.range(81, 83),
-    bundle:    true, // for scaling strategy 'bundle'
+    port:      80, // [81,82,83], [81,,91], { start: 81, end: 91 }
+                   // { start: 81, count: 8 } { start: 81, count: -2 }
     slowTime:  '1s',
     timeout:   '30s',
     keepAliveTimeout: '5s'
@@ -16,8 +16,7 @@
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    port:      api.common.range(81, 83), // [81, 82],
-    bundle:    true,
+    port:      [81, 82],
     slowTime:  '1s'
   },
 

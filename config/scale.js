@@ -15,13 +15,6 @@
 
   cluster:  'S1',     // Cluster name to identify it in loadbalancing infrastructure
   cookie:   'node',   // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')
-  strategy: 'bundle',
-    // 'single'  - one process (no master and workers)
-    // 'bundle'  - multiple processes, one master and different workers for each server (master should not listen ports)
-    // 'cluster' - multiple processes, one master and identical workers with no sticky (master should listen ports)
-    // 'sticky'  - multiple processes, one master and workers with sticky by IP (master should listen ports)
-
-  workers: 1, // api.os.cpus().length, // worker count, e.g. api.os.cpus().length-1 or just number
 
   waf: { // Web Application Firewall config
     enabled: false,

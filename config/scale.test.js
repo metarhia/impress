@@ -7,8 +7,6 @@
 
   cluster:  'C1',
   cookie:   'node',
-  strategy: 'single',
-  workers:  1,
 
   waf: {
     enabled: false
