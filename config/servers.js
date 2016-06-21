@@ -6,8 +6,11 @@
   www: {
     protocol:  'http', // http, https, jstp, jstps
     address:   '*',
-    port:      80, // [81,82,83], [81,,91], { start: 81, end: 91 }
-                   // { start: 81, count: 8 } { start: 81, count: -2 }
+    port:      80,
+    // list [81,82,83]
+    // range from..to [81,,91]
+    // range from..count [81, [8]]
+    // range from..cpu-n [81, [-2]]
     slowTime:  '1s',
     timeout:   '30s',
     keepAliveTimeout: '5s'
@@ -16,7 +19,7 @@
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    port:      [81, 82],
+    port:      [81,,85],
     slowTime:  '1s'
   },
 

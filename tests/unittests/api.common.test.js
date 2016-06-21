@@ -370,5 +370,9 @@ api.test.case({
     [ 'abc', 'abcde', false ],
     [ 'abc', '+',     false ],
     [ 'abc', '',      true  ],
+  ],
+  'api.common.range': [
+    [ 1, 5,  [1, 2, 3, 4, 5] ],
+    [ 8, 9,           [8, 9] ],
   ]
 });
