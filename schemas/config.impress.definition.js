@@ -54,7 +54,7 @@ module.exports = {
   server: {
     protocol:  '(http,https,jstp,jstps)',
     address:   'string',
-    port:      '*',
+    ports:     '[array]',
     bundle:    'false:boolean',
     nagle:     'false:boolean',
     slowTime:  '4s:duration',
