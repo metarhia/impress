@@ -1,3 +1,11 @@
+0.1.421 / 2016-06-23
+==================
+
+  * Implemented range in port assign syntax for config, issue #532
+  * Changed port assign syntax for config, issue #532
+  * Renamed config:server.port to ports, issue #539
+  * Added api.common.range(from, to)
+
 0.1.420 / 2016-06-18
 ==================
 
