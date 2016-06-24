@@ -8,3 +8,4 @@ node_modules
 crlf.js
 *.done
 .DS_Store
+.*.swp
