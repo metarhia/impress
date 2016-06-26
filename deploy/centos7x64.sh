@@ -3,7 +3,7 @@ yum -y update
 yum -y install wget mc
 yum -y install psmisc
 yum -y groupinstall "Development Tools"
-curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
+curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 yum -y install nodejs
 cd ~
 cat >/etc/yum.repos.d/mongodb.repo <<EOL
