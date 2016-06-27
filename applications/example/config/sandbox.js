@@ -1,13 +1,12 @@
-// Modules available in application sandbox
-
-module.exports = {
+{
+  // Modules available in application sandbox
 
   // Following identifiers will be visible in sandbox global
   // There is no need to uncomment this if you you do not want to override list
   // You can hide 
   // 
   // global: [
-  //  'require', 'console', 'Buffer', 'SlowBuffer', 'process',
+  //  'require', 'console', 'Buffer', 'SlowBuffer',
   //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate'
   // ],
 
@@ -15,11 +14,11 @@ module.exports = {
   //
   api: [
     // Node internal modules
-    'console', 'os', 'fs', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
-    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'stringDecoder',
+    'console', 'os', 'fs', 'sd', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
+    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'process',
 
     // Impress API modules
-    'db', 'con', 'impress', 'registry', 'definition',
+    'db', 'con', 'common', 'impress', 'registry', 'definition',
 
     // Preinstalled modules
     'csv',
@@ -53,4 +52,4 @@ module.exports = {
   //  'api.nameExport'
   //]
 
-};
+}

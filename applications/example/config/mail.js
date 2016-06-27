@@ -1,6 +1,6 @@
-// Mail configuration
+{
+  // Mail configuration
 
-module.exports = {
   enabled: false, // enable or disable smtp transport
   robot: 'Robot name <robotname@gmail.com>',
   options: {
@@ -10,4 +10,4 @@ module.exports = {
       pass: 'password'
     }
   }
-};
+}

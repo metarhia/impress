@@ -1,37 +1,50 @@
-// Cloud configuration
+{
 
-module.exports = {
+  // Server ports bind configuration
+  // Each server is named server on specified address and port
 
-  servers: {
-    S1: {
-      instance: 'standalone', // cloud instance type: standalone, controller, server
-      strategy: 'bundle',
-      // single - one process (no master and workers)
-      // bundle - multiple processes, one master and different workers for each server (master should not listen ports)
-      // cluster - multiple processes, one master and identical workers with no sticky (master should listen ports)
-      // sticky - multiple processes, one master and workers with sticky by IP (master should listen ports)
-      workers: 1, // worker count, e.g. api.os.cpus().length-1 or just number
-      services: {
-        http: [80, 4001, 4002],
-        https: [443],
-        static: [80],
-        ws: [4001, 4002],
-        rpc: [4001, 4002]
-      },
-      ssl: {
-        key: 'example.key',
-        cert: 'example.cer'
-      },
-      // check: 'http://127.0.0.1/', // if we can get this page it means that another copy is running
-      health: '5m', // health monitoring interval
-      gcInterval: 0, // garbage collector interval
-      fsWatch: '2s', // combine wached file system events if interval less then specified
-      cookie: 'node', // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')
-      nagle: false, // Nagle algorithm
-      slowTime: '1s', // request processing time to put it to slow log
-      timeout: '30s', // critical request processing to return timeout error
-      keepAlive: '5s', // keep alive timeout
-    }
-  }
+  www: {
+    protocol:  'http', // http, https, jstp, jstps
+    address:   '*',
+    ports:     [80],
+    // list [81,82,83]
+    // range from..to [81,,91]
+    // range from..count [81, [8]]
+    // range from..cpu-n [81, [-2]]
+    slowTime:  '1s',
+    timeout:   '30s',
+    keepAliveTimeout: '5s'
+  },
 
-};
+  rpc: {
+    protocol:  'jstp',
+    address:   '*',
+    ports:     [81,[-1]],
+    slowTime:  '1s'
+  },
+
+  //local: {
+  //  protocol: 'http',
+  //  address:  '127.0.0.1',
+  //  port:     80,
+  //  nagle:    true, // Nagle algorithm, default true, set to false for latency optimization
+  //  slowTime: '1s',
+  //  timeout:  '120s' // default 30s
+  //},
+
+  //ssl: {
+  //  protocol:  'https',
+  //  address:   '127.0.0.1',
+  //  port:      443,
+  //  key:       'example.key',
+  //  cert:      'example.cer'
+  //},
+
+  //static: {
+  //  protocol:  'http',
+  //  address:   '127.0.0.1',
+  //  port:      8080,
+  //  slowTime:  1000
+  //}
+
+}

@@ -12,7 +12,7 @@ optimizedFunction(1, 2);
 api.v8.optimizeFunctionOnNextCall(optimizedFunction);
 optimizedFunction(1, 2);
 
-impress.test({
+api.test.case({
   'api.v8.optimizeFunctionOnNextCall': [
     [ optimizedFunction, undefined ],
   ],
@@ -50,6 +50,8 @@ impress.test({
   'api.v8.isInPrototypeChain': [
     [ Array, Object, false ],
     [ 'Hello', Object, false ],
+    [ Object.prototype, Array, true ],
+    [ Object.prototype, 'Hello', true ],
   ],
   /*'api.v8.getV8Version': [
     [ [], function(i) { typeof(i) === 'string'; } ],

@@ -14,5 +14,3 @@ application.extNotCompressed = [
   'bas','js','php','pl','pm','py','c','cpp','cs','d','e','h','inc','java','m','pas','dpr','prg','asp','aspx','ini','asm','res','bat','cmd',
   'exe','dll','com','obj','ocx','sys','msi'
 ];
-
-module.exports = {};

@@ -1,6 +1,6 @@
-// Sessions configuration
+{
+  // Sessions configuration
 
-module.exports = {
   anonymous:  true,      // Allow anonymous sessions (client should request /api/auth/anonymous to generate SID)
   cookie:     'SID',     // Session cookie name
   characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', // Possible characters for SID
@@ -13,6 +13,6 @@ module.exports = {
   //confirmTime:  '1m',
   //expireTime:   '2m',
   
-  database:   'impress', // Database connection name to store sessions
+  database:   'dbName', // Database connection name to store sessions
   // domain:     'name.com' // optional domain for cookie '.domain.com' for all subdomains
-};
+}

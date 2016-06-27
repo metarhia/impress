@@ -2,16 +2,26 @@
 
 window.global = window;
 global.api = {};
-global.api.impress = {};
 global.application = {};
 
-api.impress.falseness = function() { return false; };
-api.impress.trueness = function() { return true; };
-api.impress.emptyness = function() { };
+api.impress = {};
+api.common = {};
+
+api.common.falseness = function() { return false; };
+api.common.trueness = function() { return true; };
+api.common.emptyness = function() { };
+
+// Extend obj with properties of ext
+//
+api.common.extend = function(obj, ext) {
+  if (obj === undefined) obj = null;
+  for (var property in ext) obj[property] = ext[property];
+  return obj;
+};
 
 // Make URL absolute
 //
-api.impress.absoluteUrl = function(url) {
+api.common.absoluteUrl = function(url) {
   if (url.charAt(0) === '/') {
     var site = window.location,
         absoluteUrl = 'ws';
@@ -23,7 +33,7 @@ api.impress.absoluteUrl = function(url) {
 
 // Return random number less then one argument random(100) or between two argumants random(50,150)
 //
-api.impress.random = function(min, max) {
+api.common.random = function(min, max) {
   if (arguments.length === 1) {
     max = min;
     min = 0;
@@ -581,12 +591,15 @@ api.dom.setStyles = function(element, styles) {
   return true;
 };
 
+/* jshint ignore:start */
 api.dom.styleProps = { //taken from Emmet lib - https://github.com/emmetio/emmet/blob/master/lib/resolver/css.js#L155
   'webkit': 'animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-clip, background-composite, background-origin, background-size, border-fit, border-horizontal-spacing, border-image, border-vertical-spacing, box-align, box-direction, box-flex, box-flex-group, box-lines, box-ordinal-group, box-orient, box-pack, box-reflect, box-shadow, color-correction, column-break-after, column-break-before, column-break-inside, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-span, column-width, dashboard-region, font-smoothing, highlight, hyphenate-character, hyphenate-limit-after, hyphenate-limit-before, hyphens, line-box-contain, line-break, line-clamp, locale, margin-before-collapse, margin-after-collapse, marquee-direction, marquee-increment, marquee-repetition, marquee-style, mask-attachment, mask-box-image, mask-box-image-outset, mask-box-image-repeat, mask-box-image-slice, mask-box-image-source, mask-box-image-width, mask-clip, mask-composite, mask-image, mask-origin, mask-position, mask-repeat, mask-size, nbsp-mode, perspective, perspective-origin, rtl-ordering, text-combine, text-decorations-in-effect, text-emphasis-color, text-emphasis-position, text-emphasis-style, text-fill-color, text-orientation, text-security, text-stroke-color, text-stroke-width, transform, transition, transform-origin, transform-style, transition-delay, transition-duration, transition-property, transition-timing-function, user-drag, user-modify, user-select, writing-mode, svg-shadow, box-sizing, border-radius',
   'moz': 'animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, appearance, backface-visibility, background-inline-policy, binding, border-bottom-colors, border-image, border-left-colors, border-right-colors, border-top-colors, box-align, box-direction, box-flex, box-ordinal-group, box-orient, box-pack, box-shadow, box-sizing, column-count, column-gap, column-rule-color, column-rule-style, column-rule-width, column-width, float-edge, font-feature-settings, font-language-override, force-broken-image-icon, hyphens, image-region, orient, outline-radius-bottomleft, outline-radius-bottomright, outline-radius-topleft, outline-radius-topright, perspective, perspective-origin, stack-sizing, tab-size, text-blink, text-decoration-color, text-decoration-line, text-decoration-style, text-size-adjust, transform, transform-origin, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-focus, user-input, user-modify, user-select, window-shadow, background-clip, border-radius',
   'ms': 'accelerator, backface-visibility, background-position-x, background-position-y, behavior, block-progression, box-align, box-direction, box-flex, box-line-progression, box-lines, box-ordinal-group, box-orient, box-pack, content-zoom-boundary, content-zoom-boundary-max, content-zoom-boundary-min, content-zoom-chaining, content-zoom-snap, content-zoom-snap-points, content-zoom-snap-type, content-zooming, filter, flow-from, flow-into, font-feature-settings, grid-column, grid-column-align, grid-column-span, grid-columns, grid-layer, grid-row, grid-row-align, grid-row-span, grid-rows, high-contrast-adjust, hyphenate-limit-chars, hyphenate-limit-lines, hyphenate-limit-zone, hyphens, ime-mode, interpolation-mode, layout-flow, layout-grid, layout-grid-char, layout-grid-line, layout-grid-mode, layout-grid-type, line-break, overflow-style, perspective, perspective-origin, perspective-origin-x, perspective-origin-y, scroll-boundary, scroll-boundary-bottom, scroll-boundary-left, scroll-boundary-right, scroll-boundary-top, scroll-chaining, scroll-rails, scroll-snap-points-x, scroll-snap-points-y, scroll-snap-type, scroll-snap-x, scroll-snap-y, scrollbar-arrow-color, scrollbar-base-color, scrollbar-darkshadow-color, scrollbar-face-color, scrollbar-highlight-color, scrollbar-shadow-color, scrollbar-track-color, text-align-last, text-autospace, text-justify, text-kashida-space, text-overflow, text-size-adjust, text-underline-position, touch-action, transform, transform-origin, transform-origin-x, transform-origin-y, transform-origin-z, transform-style, transition, transition-delay, transition-duration, transition-property, transition-timing-function, user-select, word-break, wrap-flow, wrap-margin, wrap-through, writing-mode',
   'o': 'dashboard-region, animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function, border-image, link, link-source, object-fit, object-position, tab-size, table-baseline, transform, transform-origin, transition, transition-delay, transition-duration, transition-property, transition-timing-function, accesskey, input-format, input-required, marquee-dir, marquee-loop, marquee-speed, marquee-style'
 };
+/* jshint ignore:end */
+
 for (var i in api.dom.styleProps) {
   api.dom.styleProps[i] = api.dom.styleProps[i].split(/\s*,\s*/);
 }
@@ -607,13 +620,13 @@ api.dom.input = function(title, prompt, defaultValue, eventOk) {
 //
 api.dom.disableSelection = function(target) {
   target = target || api.dom.html;
-  if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = api.impress.falseness; // For IE
+  if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = api.common.falseness; // For IE
   else if (typeof(target.style.MozUserSelect) !== 'undefined') { //For Firefox
     target.style.MozUserSelect='none';
     // if (target === body || target === api.dom.html)
     //   for (var i = 0; i < body.children.length; i++)
     //     body.children[i].style.MozUserSelect='none';
-  } else target.onmousedown = api.impress.falseness; // All other browsers (Opera)
+  } else target.onmousedown = api.common.falseness; // All other browsers (Opera)
   target.style.cursor = 'default';
 };
 
@@ -998,13 +1011,248 @@ api.ajax.post = function(url, params, callback) {
   api.ajax.request('POST', url, params, true, callback);
 };
 
+// Node.js vm module emulation
+// (ported from https://github.com/sun1x/vm-browser)
+//
+api.vm = {};
+
+api.vm.contextifiedSandboxes = [];
+
+api.vm.createIFrame = function() {
+  var iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  return iframe;
+};
+
+api.vm.createIFrameWithContext = function(sandbox) {
+  var iframe = api.vm.createIFrame();
+  var key;
+  document.body.appendChild(iframe);
+  if (sandbox) {
+    for (key in sandbox) {
+      if (sandbox.hasOwnProperty(key)) {
+        iframe.contentWindow[key] = sandbox[key];
+      }
+    }
+    api.vm.contextifiedSandboxes.push(sandbox);
+  }
+  return iframe;
+};
+
+api.vm.runCodeInNewContext = function(code, sandbox) {
+  var iframe = api.vm.createIFrameWithContext(sandbox);
+  var result = iframe.contentWindow.eval(code);
+  document.body.removeChild(iframe);
+  return result;
+};
+
+api.vm.runCodeInContext = function(code, context) {
+  if (!context) {
+    throw new Error('Context cannot be undefined');
+  }
+  return context.eval(code);
+};
+
+api.vm.Script = function(code) {
+  this.code = code;
+};
+
+api.vm.Script.prototype.runInContext = function(context) {
+  return api.vm.runCodeInContext(this.code, context);
+};
+
+api.vm.Script.prototype.runInNewContext = function(sandbox) {
+  return api.vm.runCodeInNewContext(this.code, sandbox);
+};
+
+api.vm.Script.prototype.runInThisContext = function() {
+  return api.vm.runCodeInContext(this.code, window);
+};
+
+api.vm.createContext = function(sandbox) {
+  return api.vm.createIFrameWithContext(sandbox).contentWindow;
+};
+
+api.vm.isContext = function(sandbox) {
+  return api.vm.contextifiedSandboxes.indexOf(sandbox) !== -1;
+};
+
+api.vm.runInContext = function(code, context) {
+  return api.vm.runCodeInContext(code, context);
+};
+
+api.vm.runInDebugContext = function() {
+  throw new Error('vm.runInDebugContext(code) does not work in browsers');
+};
+
+api.vm.runInNewContext = function(code, sandbox) {
+  return api.vm.runCodeInNewContext(code, sandbox);
+};
+
+api.vm.runInThisContext = function(code) {
+  return api.vm.runCodeInContext(code, window);
+};
+
+api.vm.createScript = function(code) {
+  return new api.vm.Script(code);
+};
+
+// JavaScript Transfer Protocol
+//
+api.jstp = {};
+
+// Deserialize string to object, just data: objects and arrays
+// no expressions and functions allowed in object definition
+//   str - object serialized to string
+//   return - deserialized JavaScript object
+// Example: api.jstp.parse("{ field: 'value', node: { a: [5,6,7] } }")
+//
+api.jstp.parse = function(str) {
+  var sandbox = api.vm.createContext({});
+  var script = api.vm.createScript('(' + str + ')');
+  return script.runInNewContext(sandbox);
+};
+
+// Serializer factory
+//   additionalTypes - parsers for custom data types
+//
+api.jstp.createSerializer = function(additionalTypes) {
+  function serialize(obj, i, arr) {
+    var type;
+    if (obj instanceof Array) type = 'array';
+    else if (obj instanceof Date) type = 'date';
+    else if (obj === null) type = 'undefined';
+    else type = typeof(obj);
+    var fn = serialize.types[type];
+    return fn(obj, arr);
+  };
+
+  serialize.types = api.common.extend({
+    number: function(n) { return n + ''; },
+    string: function(s) { return '\'' + s.replace(/'/g, '\\\'') + '\''; },
+    boolean: function(b) { return b ? 'true' : 'false'; },
+    undefined: function(u, arr) { return !!arr ? '' : 'undefined'; },
+    array: function(a) {
+      return '[' + a.map(serialize).join(',') + ']';
+    },
+    object: function(obj) {
+      var a = [], s, key;
+      for (key in obj) {
+        s = serialize(obj[key]);
+        if (s !== 'undefined') {
+          a.push(key + ':' + s);
+        }
+      }
+      return '{' + a.join(',') + '}';
+    }
+  }, additionalTypes);
+
+  return serialize;
+};
+
+// Serialize object to string, just data: objects and arrays
+// no expressions and functions will be serialized
+//   obj - JavaScript object to be serialized
+//   return - object serialized to string
+// Example: api.jstp.stringify({ field: 'value', node: { a: [5,6,7] } })
+//
+api.jstp.stringify = api.jstp.createSerializer({
+  function: function() { return 'undefined'; },
+  date: function(d) {
+    return '\'' + d.toISOString().split('T')[0] + '\'';
+  }
+});
+
+// Serialize object to string. Allowed: objects, arrays, functions
+//   obj - JavaScript object to be serialized
+//   return - object serialized to string
+// Example: api.jstp.dump({ field: 'value', func: () => {} })
+//
+api.jstp.dump = api.jstp.createSerializer({
+  function: function(fn) {
+    return fn.toString();
+  },
+  date: function(d) {
+    var date = d.toISOString().split('T')[0];
+    return 'new Date(\'' + date + '\')';
+  }
+});
+
+// Deserialize string to object with functions allowed in object definition
+//   str - object serialized to string
+//   return - deserialized JavaScript object
+//
+api.jstp.interprete = function(str) {
+  var sandbox = api.vm.createContext({});
+  var script = api.vm.createScript('(' + str + ')');
+  var exported = script.runInNewContext(sandbox);
+  for (var key in exported) {
+    sandbox[key] = exported[key];
+  }
+  return exported;
+};
+
+// Serialize object to string, data and functions
+// functions will be serialized with source code
+//   obj - JavaScript object to be serialized
+//   return - object serialized to string
+// Example: api.jstp.serialize([['a','b'],[5,7],'c',5])
+//
+api.jstp.serialize = function(a, i, arr) {
+  // Try to implement better then api.jstp.stringify
+  if (a instanceof Array) {
+    return '[' + a.map(api.jstp.serialize).join(',') + ']';
+  } else {
+    return a; // a may be number, boolean, string, etc.
+    // like in api.jstp.stringify
+    // also if a is { ... } we use ''
+  }
+};
+
+// Deserialize array of scalar or array of array
+// no objects allowed, just arrays and values
+//   str - array serialized to string
+//   return - deserialized JavaScript array
+//
+api.jstp.deserialize = function(str) {
+  // Try to implement better then api.jstp.parse
+};
+
+// Connect to a JSTP endpoint and create persistent connection
+//
+api.jstp.connect = function(url) {
+  var jstp = new api.events.EventEmitter();
+
+  var socket = new WebSocket(api.common.absoluteUrl(url));
+
+  socket.onopen = function() {
+    jstp.emit('open');
+  };
+
+  socket.onclose = function() {
+    jstp.emit('close');
+  };
+
+  socket.onmessage = function(message) {
+    var data = message[message.type + 'Data'],
+        event = api.jstp.parse(data);
+    jstp.emit('message', event);
+  };
+
+  jstp.send = function(message) {
+    socket.send(api.jstp.stringify(message));
+  };
+
+  return jstp;
+};
+
 // Create persistent RPC connection
 //
 api.rpc = function(url) {
 
   var rpc = new api.events.EventEmitter();
 
-  var socket = new WebSocket(api.impress.absoluteUrl(url));
+  var socket = new WebSocket(api.common.absoluteUrl(url));
   rpc.socket = socket;
   rpc.socket.nextMessageId = 0;
   rpc.socket.callCollection = {};
@@ -1140,7 +1388,7 @@ api.rpc = function(url) {
 api.ws = function(url) {
 
   var ws = new api.events.EventEmitter(),
-      socket = new WebSocket(api.impress.absoluteUrl(url));
+      socket = new WebSocket(api.common.absoluteUrl(url));
 
   ws.socket = socket;
 

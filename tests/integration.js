@@ -94,11 +94,15 @@ function httpTask(task) {
   }
 }
 
-if (api.cluster.isMaster) {
+if (process.isMaster) {
   console.log('Testing IAS...'.bold.green);
   impress.server.start();
   impress.server.on('start', function() {
-    api.impress.logApiMethod('fs.stat');
-    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
+    setTimeout(function() {
+      //api.impress.logApiMethod('fs.stat');
+      for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
+    }, 500);
   });
+} else {
+  impress.server.start();
 }
