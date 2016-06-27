@@ -1,20 +1,20 @@
 module.exports = function(client, callback) {
   callback({
     process: {
-      execPath: api.process.execPath,
-      execArgv: api.process.execArgv,
-      cwd: api.process.cwd(),
-      env: api.process.env,
-      version: api.process.version,
-      versions: api.process.versions,
-      config: api.process.config,
-      memoryUsage: api.process.memoryUsage(),
-      pid: api.process.pid,
-      title: api.process.title,
-      arch: api.process.arch,
-      platform: api.process.platform,
-      uptime: api.process.uptime(),
-      hrtime: api.process.hrtime()
+      execPath: process.execPath,
+      execArgv: process.execArgv,
+      cwd: process.cwd(),
+      env: process.env,
+      version: process.version,
+      versions: process.versions,
+      config: process.config,
+      memoryUsage: process.memoryUsage(),
+      pid: process.pid,
+      title: process.title,
+      arch: process.arch,
+      platform: process.platform,
+      uptime: process.uptime(),
+      hrtime: process.hrtime()
     },
     os: {
       tmpdir: api.os.tmpdir(),

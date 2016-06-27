@@ -30,7 +30,7 @@ if (application.isWorker) {
   }, 6000);
 
   setInterval(function() {
-    application.state.set(application.nodeId + '.pid', api.process.pid, '7s');
+    application.state.set(application.nodeId + '.pid', process.pid, '7s');
   }, 7000);
 
 }

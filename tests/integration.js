@@ -94,7 +94,7 @@ function httpTask(task) {
   }
 }
 
-if (api.process.isMaster) {
+if (process.isMaster) {
   console.log('Testing IAS...'.bold.green);
   impress.server.start();
   impress.server.on('start', function() {
