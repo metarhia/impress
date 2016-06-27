@@ -1,3 +1,53 @@
+0.1.421 / 2016-06-23
+==================
+
+  * Implemented range in port assign syntax for config, issue #532
+  * Changed port assign syntax for config, issue #532
+  * Renamed config:server.port to ports, issue #539
+  * Added api.common.range(from, to)
+
+0.1.420 / 2016-06-18
+==================
+
+  * Removed configuration: scale.strategy, issue #531
+  * Removed configuration: scale.workers
+  * Removed configuration: servers[name].bundle
+  * Changed deploy scripts for node.js 6.2.2
+
+0.1.419 / 2016-06-17
+==================
+
+  * Implemented servr-side JSTP library
+  * Implemented a simple client-side JSTP library
+  * Implemented IPC over JSTP
+  * Deprecated cloud transports: zmq, tcp, ipc
+  * Added simple JSTP test/example
+  * Added application.Connection class
+  * Implemented arrow handler, issue #529
+  * Added impress.USE_STRICT, issue #529
+  * Resolved bundle problem, issue #521
+  * JSTP as configuration format, issue #496
+  * Changed deploy scripts for node.js 6.2.1
+
+0.1.418 / 2016-05-19
+==================
+
+  * Added loadApi and loadApiInterface for application, access using `application.api` namespace
+  * Implemented mamory cache of `application.api` and file system watch for `/api`
+  * Changed deploy scripts for node.js 6.2.0
+  * Changed Travis CI testing cases for node.js 4.3.0, 4.4.0 and 6.2.0
+
+0.1.417 / 2016-05-12
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 6.1.0
+
+0.1.416 / 2016-04-27
+==================
+
+  * Changed deploy scripts and Travis CI testing cases for node.js 6.0.0
+  * Fixed compatibility for node.js 6.0.0
+
 0.1.415 / 2016-04-10
 ==================
 

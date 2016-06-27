@@ -1,8 +1,7 @@
-// URL rewriting and request forwarding rules
+[
+  // URL rewriting and request forwarding rules
 
-module.exports = [
-
-/*
+  /*
   {
     url:      '/api/(one|two)/(.*)',        // parse url using '()' as parameters, '|' as alternatives and '.*'
     rewrite:  '/example/[1].json?par1=[2]'  // rewrite url using [1]..[N] array (optional parameter)
@@ -19,7 +18,7 @@ module.exports = [
     url:      '^/(?!client)(.*)',
     rewrite:  '/client/[1]'
   }
-*/
+  */
 
   {
     url : '^/portfolio/(.+)/([0-9]{1,3})',
@@ -32,4 +31,4 @@ module.exports = [
     escaping: false
   }
 
-];
+]

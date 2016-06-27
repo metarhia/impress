@@ -22,22 +22,19 @@ Impress (Impress Application Server, IAS) follows alternative way in several asp
   - Serves multiple ports, network interfaces, hosts and protocols
   - Can scale on multiple servers
   - Supports application sandboxing (configuration, db and memory access isolation)
-  - Supports one or multiple CPU cores with following instantiation strategies:
-    - Single instance (one process)
-    - Instance specialization (multiple processes, one master and different workers for each server)
-    - Multiple instances (multiple processes, one master and identical workers with no sticky)
-    - IP sticky (multiple processes, one master and workers with serving sticky by IP)
-  - URL routing based on file system
-    - No need to write routing manually in code, just create folder if new AJAX API method needed
-    - File system watching for cache reloading when file changes on disk
-    - Caching server-side executable JavaScript in memory
-  - Handlers inheritance override hierarchically uning filesystem
+  - Utilize multiple CPU cores with instances/workers
+    - Cross-process communication
+    - State synchronization mechanism with transactions and subscription
+  - No need to write routing manually in code, just create handler files and functions
+  - File system watching for cache reloading when file changes on disk
+  - Caching server-side executable JavaScript in memory
+  - Handlers inheritance override hierarchically
   - Middleware emulation (adding URL routing to handler-functions programmatically)
   - API development support (simple way for JSON-based WEB-services development)
     - RPC-style API (Stateful, state stored in memory between requests)
     - REST-style API (Stateless, each call is separate, no state in memory)
-    - Impress RPC (long live and full duplex RPC via websocket)
-  - Multiple handlers (all handlers are optional and inheritable/overridable):
+    - Implements JSTP (long live and full duplex RPC/MQ over TCP or websockets)
+  - Multiple handlers for HTTP API (all handlers are optional and inheritable/overridable):
     - access.js - returns access modifiers
     - request.js - executing for all requests (any HTTP verbs and before verb handler)
     - HTTP verbs: get.js, post.js, etc. - executes for certain HTTP verb
@@ -53,53 +50,41 @@ Impress (Impress Application Server, IAS) follows alternative way in several asp
     - Caching templates in memory and ready (rendered) pages optional caching
     - Supports array and hash iterations and sub-templates including
     - Template personalization for user groups
-  - Application config changes with zero downtime
-    - Flexible configuration in JS or JSON format
-    - File watch and automatic soft reloading when configuration js file changes
-    - No Impress server hard restarting
   - Serving static files with in-memory preprocessing
-    - Gzipping and HTTP request field "if-modified-since" field support and HTTP 304 "Not Modified" answer
+    - Gzipping and HTTP request field `if-modified-since` field support and HTTP 304 "Not Modified" answer
     - Memory caching and file system watching for cache reloading when files changed on disk
-    - JavaScript optional (configurable) minification, based on module "uglify-js" as Impress plug-in
+    - JavaScript optional (configurable) minification, based on module `uglify-js` as Impress plug-in
     - SASS Syntactically Awesome Stylesheets compiling .scss to .css in memory cache
   - Built-in sessions support with authentication and user groups and anonymous sessions
     - Sessions and cookies (memory state or persistent sessions with MongoDB)
     - Access modifiers for each folder in access.js files and access inheritance
   - Multiple protocols support:
     - HTTP and HTTPS (node native libraries)
+    - JSTP (JavaScript Transfer Protocol) for RPC and MQ (https://github.com/metarhia/JSTP)
     - Implemented SSE (Server-Sent Events) with channels and multi-cast
     - WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)
     - TCP and UDP sockets support
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
-  - Logging: "access", "debug", "error" and "slow" logs
+  - Logging files: `access`, `error`, `debug`, `slow`, `server`, `node`, `cluster`, `cloud`, `warning`
     - Log rotation: keep logs N days (configurable) delete files after N days
     - Log buffering, write stream flushing interval
     - Each application can be logged to own folder and/or to server-wide logs
   - Connection drivers for database engines:
-    - MySQL data access layer based on felixge/mysql low-level drivers (separate module "musql-utilities")
-      - MySQL Data Access Methods: queryRow, queryValue, queryCol, queryHash, queryKeyValue
-      - MySQL Introspection Methods: primary, foreign, constraints, fields, databases, tables, databaseTables, tableInfo, indexes, processes, globalVariables, globalStatus, users
-      - MySQL SQL Autogenerating Methods: select, insert, update, upsert, count, delete
-      - Events: 'query', 'slow'
     - MongoDB drivers as Impress plug-in
     - PgSQL drivers as Impress plug-in
+    - MySQL data access layer based on felixge/mysql low-level drivers (separate module `musql-utilities`)
     - Memcached drivers as Impress plug-in
     - Relational schema generator from JSON database schemas
-  - Sending Emails functionality using "nodemailer" module as Impress plug-in
+  - Sending Emails functionality using `nodemailer` module as Impress plug-in
   - File utilities: upload, download, streaming
-  - Integrated DBMI (Web-based management interface for MySQL and MongoDB)
-  - GeoIP support, based on "geoip-lite" module as Impress plug-in (uses MaxMind database)
+  - GeoIP support, based on `geoip-lite` module as Impress plug-in (uses MaxMind database)
   - Social networking login using Passport.js as plug-in
   - Built-in simple testing framework
   - Server health monitoring
   - Built-in data structures validation and preprocessing library
   - Process forking:
-    - Long workers with "client" object forwarding to separate process
+    - Long workers with `client` object forwarding to separate process
     - Task scheduling (interval or certain time)
-  - Cross-process communication
-    - IPC support (interprocess communications) for event delivery between Node.js instances
-    - ZMQ support (Zero MQ) ar an alternative event delivery transport
-    - State synchronization mechanism with transactions and subscription
   - Implemented V8 features support:
     - Long stack trace with --stack-trace-limit=1000 and stack output minification
     - Wrapper for V8 internal functions with --allow-natives-syntax
@@ -113,9 +98,16 @@ File /api/method.json/get.js
 ```javascript
 module.exports = function(client, callback) {
   callback({ field: 'value' });
-}
+};
 ```
 Result: `{ "field": "value" }`
+
+Handler also may look like (ES6 should be supported by node.js version):
+```javascript
+(client, callback) => {
+  callback({ field: 'value' });
+}
+```
 
 Example #2  
 To create POST request handler for URL `/api/method.json`  
@@ -125,7 +117,7 @@ module.exports = function(client, callback) {
   dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
     callback(nodes);
   });
-}
+};
 ```
 Result:
 ```javascript
@@ -136,8 +128,8 @@ Result:
 ```
 
 Example #3  
-File "access.js" works similar to ".htaccess" and allow one to define access rules for each folder, by simply putting "access.js" in it.  
-If folder does not contain "access.js" it inherits access rules from its parent folder, all the way up to the project root.
+File `access.js` works similar to `.htaccess` and allow one to define access rules for each folder, by simply putting `access.js` in it.  
+If folder does not contain `access.js` it inherits access rules from its parent folder, all the way up to the project root.
 
 Example:
 ```javascript
@@ -159,11 +151,11 @@ module.exports = {
 - Install to the current folder: `npm install impress` or `sudo npm install impress`
 - Install using package.json, add to `dependencies` and run `npm install` or `sudo npm install`
 - Installation scripts for an empty server (from the scratch)
-  - For CentOS 6 /deploy/centos6x32.sh and centos6x64.sh (tested on CentOS 6.6 32/64bit minimal)
-  - For CentOS 7 /deploy/centos7x64.sh (tested on CentOS 7.0 with systemd 64bit minimal)
-  - For Ubuntu 14 and 15 /deploy/ubuntu.sh (tested on Ubuntu 14.04 64bit minimal)
-  - For Debian 7 and 8 /deploy/debian.sh (tested for Debian 7.5 64bit minimal)
-  - For Fedora 22 and 23 x64 /deploy/fedora.sh
+  - For CentOS 6 `/deploy/centos6x32.sh` and `centos6x64.sh` (tested on CentOS 6.6 32/64bit minimal)
+  - For CentOS 7 `/deploy/centos7x64.sh` (tested on CentOS 7.0 with systemd 64bit minimal)
+  - For Ubuntu 14 and 15 `/deploy/ubuntu.sh` (tested on Ubuntu 14.04 64bit minimal)
+  - For Debian 7 and 8 `/deploy/debian.sh` (tested for Debian 7.5 64bit minimal)
+  - For Fedora 22, 23 and 24 for x64 `/deploy/fedora.sh`
   
 You can prepare scripts based on examples above and run at a target server shell:
 `curl http://host/path/install.sh | sh` or `wget http://host/path/install.sh -O - | sh`

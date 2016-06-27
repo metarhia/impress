@@ -9,6 +9,8 @@ node_js:
   - "4.0"
   - "4.1"
   - "4.2"
+  - "4.3"
+  - "4.4"
   - "5.0"
   - "5.1"
   - "5.2"
@@ -20,6 +22,10 @@ node_js:
   - "5.8"
   - "5.9"
   - "5.10"
+  - "5.11"
+  - "6.0"
+  - "6.1"
+  - "6.2"
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js

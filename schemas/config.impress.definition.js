@@ -4,17 +4,14 @@ module.exports = {
     check:      '[string]',
 
     cloud:      'string',
-    transport:  '(tcp,ipc,zmq)',
     instance:   '(standalone,controller,server)',
 
     host:       'string',
-    rpcPort:    '250:number',
-    subPort:    '251:number',
+    port:       '250:number',
+    key:        '[string]',
 
     cluster:    'string',
     cookie:     'node:string',
-    strategy:   '(single,bundle,cluster,sticky)',
-    workers:    '1:number',
 
     health:     '5s:duration',
     nagle:      'false:boolean',
@@ -57,7 +54,7 @@ module.exports = {
   server: {
     protocol:  '(http,https,jstp,jstps)',
     address:   'string',
-    port:      'number',
+    ports:     '[array]',
     bundle:    'false:boolean',
     nagle:     'false:boolean',
     slowTime:  '4s:duration',

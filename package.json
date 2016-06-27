@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.1.415",
+  "version": "0.1.421",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -48,7 +48,7 @@
     "iconv-lite": "0.4.x",
     "zip-stream": "1.0.x",
     "websocket": "1.0.x",
-    "csv": "0.4.x",
+    "csv": "1.1.x",
     "accept-language": "2.0.x"
   },
   "engines": {

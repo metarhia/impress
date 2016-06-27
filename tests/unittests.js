@@ -14,3 +14,7 @@ tests.map(function(fileName) {
 });
 
 api.test.case.printReport();
+
+if (api.test.case.result.errors !== 0) {
+  process.exit(1);
+}

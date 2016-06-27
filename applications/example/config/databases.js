@@ -1,6 +1,5 @@
-// Databases including persistent session storage and application specific
-
-module.exports = {
+{
+  // Databases including persistent session storage and application specific
 
   dbName: {
     alias: 'dbAlias', // optional alias to access database from global context
@@ -31,4 +30,4 @@ module.exports = {
   //    slowTime: '2s'                           // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
   //  }
 
-};
+}
