@@ -6,7 +6,7 @@
   // You can hide 
   // 
   // global: [
-  //  'require', 'console', 'Buffer', 'SlowBuffer', 'process',
+  //  'require', 'console', 'Buffer', 'SlowBuffer',
   //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate'
   // ],
 
@@ -15,7 +15,7 @@
   api: [
     // Node internal modules
     'console', 'os', 'fs', 'sd', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
-    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring',
+    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'process',
 
     // Impress API modules
     'db', 'con', 'common', 'impress', 'registry', 'definition',
