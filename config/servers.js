@@ -3,6 +3,13 @@
   // Server ports bind configuration
   // Each server is named server on specified address and port
 
+  cloud: {
+    protocol:  'jstp',
+    address:   '127.0.0.1',
+    ports:     [250],
+    slowTime:  '1s'
+  },
+
   www: {
     protocol:  'http', // http, https, jstp, jstps
     address:   '*',
@@ -19,7 +26,7 @@
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    ports:     [81,[-1]],
+    ports:     [3130, [4]], // Example: [81, [-1]]
     slowTime:  '1s'
   },
 

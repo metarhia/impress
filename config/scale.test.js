@@ -1,11 +1,9 @@
 {
   cloud:    'PrivateCloud',
+  cluster:  'C1',
   instance: 'standalone',
 
-  host: '127.0.0.1',
-  port: 8250,
-
-  cluster:  'C1',
+  key:      '19nm58993eJ747845fk78A2z7854W90D', // Cloud access key
   cookie:   'node',
 
   waf: {
