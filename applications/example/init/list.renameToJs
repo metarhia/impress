@@ -5,7 +5,7 @@ application.state.data.car = {
 
 if (application.isWorker) {
 
-  setInterval(function() {
+  api.timers.setInterval(function() {
     console.log('Data: ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));
   }, 10000);
 

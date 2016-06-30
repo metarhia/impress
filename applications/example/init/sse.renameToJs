@@ -1,6 +1,6 @@
 if (application.isWorker) {
 
-  setInterval(function() {
+  api.timers.setInterval(function() {
     application.frontend.emit('test', { time: new Date() });
   }, 5000);
 

@@ -5,6 +5,6 @@ application.backend.on('test', function(data) {
   console.log('  data: ' + JSON.stringify(data));
 });
 
-setInterval(function() {
+api.timers.setInterval(function() {
   application.backend.emit('test', { sender: application.nodeId, data: 'data' });
 }, 5000);

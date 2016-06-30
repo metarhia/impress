@@ -3,7 +3,7 @@ dnf -y update
 dnf -y install wget mc
 dnf -y install psmisc
 dnf -y groupinstall "Development Tools"
-curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
+curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 dnf -y install nodejs
 cd ~
 cat >/etc/yum.repos.d/mongodb.repo <<EOL

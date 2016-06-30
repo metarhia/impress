@@ -3,7 +3,7 @@ RELEASE=$(lsb_release -sc)
 sudo apt-get -y update
 sudo apt-get -y install wget mc curl
 sudo apt-get -y install build-essential openssl libssl-dev pkg-config python
-curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 cd ~
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
