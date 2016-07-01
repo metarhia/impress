@@ -1,6 +1,6 @@
 if (application.isWorker) {
 
-  setInterval(function() {
+  api.timers.setInterval(function() {
     application.backend.emit('test', { data: 'data' });
   }, 5000);
 
@@ -14,11 +14,11 @@ if (application.isWorker) {
     });
   }
 
-  setTimeout(test, 1000);
-  setTimeout(test, 1200);
-  setTimeout(test, 1400);
+  api.timers.setTimeout(test, 1000);
+  api.timers.setTimeout(test, 1200);
+  api.timers.setTimeout(test, 1400);
 
-  setInterval(function() {
+  api.timers.setInterval(function() {
     var endTime = new Date().getTime(),
         processingTime = endTime - startTime;
     console.log(application.nodeId + ' Processing time: ' + processingTime + ' count: ' + count);
