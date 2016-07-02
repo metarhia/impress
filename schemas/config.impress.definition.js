@@ -4,13 +4,10 @@ module.exports = {
     check:      '[string]',
 
     cloud:      'string',
+    cluster:    'string',
     instance:   '(standalone,controller,server)',
 
-    host:       'string',
-    port:       '250:number',
     key:        '[string]',
-
-    cluster:    'string',
     cookie:     'node:string',
 
     health:     '5s:duration',

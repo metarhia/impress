@@ -5,7 +5,7 @@ module.exports = {
     version:    '[number]',
     _other:     '{{table}}'
   },
-  
+
   table: {
     caption:    '[string]',
     captions:   '{{caption}}',

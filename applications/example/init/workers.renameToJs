@@ -1,6 +1,6 @@
 if (application.isWorker){
 
-  setInterval(function() {
+  api.timers.setInterval(function() {
     console.log('Worker Process: ' + application.nodeId);
     console.dir({ workers: application.workers });
     console.log('---');
@@ -8,7 +8,7 @@ if (application.isWorker){
 
 } else {
 
-  setInterval(function() {
+  api.timers.setInterval(function() {
     console.log('Master Process: ' + application.nodeId);
     console.dir({ workers: application.workers });
     console.log('---');
