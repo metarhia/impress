@@ -26,7 +26,7 @@
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    ports:     [3010, [4]], // Example: [81, [-1]]
+    ports:     [90], // Example: [81, [-1]]
     slowTime:  '1s'
   },
 

@@ -1,3 +1,9 @@
+0.1.423 / 2016-07-01
+==================
+
+  * Remove socket passing to workers, related to issue #535
+  * Forking fixed, close # 551
+
 0.1.422 / 2016-06-29
 ==================
 
