@@ -1,3 +1,10 @@
+0.1.422 / 2016-06-29
+==================
+
+  * Cluster library deprecated, we use child_process instead, issue #535
+  * Timers moved to api.timers, issue #530
+  * Require deprecated, issue #530
+
 0.1.421 / 2016-06-23
 ==================
 

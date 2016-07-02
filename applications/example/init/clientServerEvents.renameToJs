@@ -4,7 +4,7 @@ if (application.isWorker) {
     console.dir(data);
   });
 
-  setInterval(function() {
+  api.timers.setInterval(function() {
     application.frontend.send('test', { field: 'value' });
   }, 10000);
 
