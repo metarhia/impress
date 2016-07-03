@@ -1,4 +1,4 @@
-module.exports = {
+{
   guests:  true,
   logged:  true,
   http:    true,
@@ -6,4 +6,4 @@ module.exports = {
   intro:   true,
   virtual: true,
   groups: []
-};
+}

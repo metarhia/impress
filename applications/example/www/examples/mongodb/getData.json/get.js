@@ -1,5 +1,5 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   dbAlias.testCollection.find({}).toArray(function(err, nodes) {
     callback(nodes);
   });
-};
+}

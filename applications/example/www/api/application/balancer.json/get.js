@@ -1,5 +1,5 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   callback({
     servers: application.config.balancer.servers
   });
-};
+}

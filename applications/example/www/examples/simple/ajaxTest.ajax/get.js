@@ -1,3 +1,3 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   callback({ parameterName: client.query.parameterName });
-};
+}

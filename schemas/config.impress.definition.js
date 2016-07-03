@@ -1,4 +1,4 @@
-module.exports = {
+{
 
   scale: {
     check:      '[string]',
@@ -61,4 +61,4 @@ module.exports = {
     cert:      '[string]'
   }
 
-};
+}

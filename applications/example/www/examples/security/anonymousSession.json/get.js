@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   client.startSession();
   callback({ sid: client.sid });
-};
+}

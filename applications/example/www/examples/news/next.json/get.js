@@ -1,3 +1,3 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   callback(api.news.getNext());
-};
+}

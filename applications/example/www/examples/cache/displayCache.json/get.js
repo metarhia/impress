@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   callback({
     //cache: Object.keys(application.cache),
     templates: Object.keys(application.cache.templates),
@@ -12,4 +12,4 @@ module.exports = function(client, callback) {
     //pages: Object.keys(application.cache.pages),
     //size: Object.keys(application.cache.size)
   });
-};
+}
