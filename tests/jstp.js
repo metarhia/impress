@@ -13,7 +13,7 @@ api.events = require('events');
 require(dir + '/lib/api.common.js');
 require(dir + '/lib/api.jstp.js');
 
-var сonnection = api.jstp.connect('impress', '127.0.0.1', 81);
+var сonnection = api.jstp.connect('impress', '127.0.0.1', 3000);
 
 setTimeout(function() {
 
