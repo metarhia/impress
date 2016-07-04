@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   application.security.signIn(
     client, client.fields.Login, client.fields.Password,
     function(isSuccess) {
@@ -6,4 +6,4 @@ module.exports = function(client, callback) {
       callback({ result: isSuccess ? 'ok' : 'error' });
     }
   );
-};
+}

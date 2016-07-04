@@ -1,13 +1,4 @@
-var meta = {
-  description: 'Test method description',
-  parameters: {
-    parameterName: 'string // Parameter #1',
-    par2: '5:string // Parameter #2',
-  },
-  result: 'Returns JSON { a: 1 }'
-};
-
-module.exports = function(client, callback) {
+(client, callback) => {
   application.requestCounter = application.requestCounter || 0;
   if (client.fields.parameterName) {
     callback({
@@ -17,6 +8,4 @@ module.exports = function(client, callback) {
       requestCounter: application.requestCounter++
     });
   } else callback({ error: 'POST parameter "parameterName" required' });
-};
-
-module.exports.meta = meta;
+}

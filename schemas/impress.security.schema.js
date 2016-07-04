@@ -1,4 +1,4 @@
-module.exports = {
+{
 
   caption: 'Impress security database schema for MongoDB',
   version: 1,
@@ -17,7 +17,7 @@ module.exports = {
   groups: {
     caption: 'System Groups',
     fields: {
-      _id:      { caption: 'Id',        type: 'id' },
+      _id:      { caption: 'Id',   type: 'id' },
       name:     { caption: 'Name', type: 'str', size: 64, nullable: false, index: { unique: true } }
     },
     data: [ { name: 'users' }, { name: 'admins' }, { name: 'employees' } ]
@@ -33,4 +33,4 @@ module.exports = {
     }
   }
 
-};
+}

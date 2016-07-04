@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   api.dns.lookup('nodejs.org', 4, function(err, address, family) {
     if (api.geoip) {
       client.context.data = {
@@ -20,4 +20,4 @@ module.exports = function(client, callback) {
     } else client.context.data = 'GeoIP plugin is not loaded';
     callback();
   });
-};
+}

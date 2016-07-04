@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   api.news.shuffle();
   callback({ list: api.news.data });
-};
+}

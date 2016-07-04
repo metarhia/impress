@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   var num = api.path.basename(client.path);
   dbCity.buildings.update(
     { num: num },
@@ -7,4 +7,4 @@ module.exports = function(client, callback) {
       callback({ success: !err });
     }
   );
-};
+}

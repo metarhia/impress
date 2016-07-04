@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   if (client.rpc) client.rpc.accept({
     ajax: true,
     interface1: {
@@ -30,4 +30,4 @@ module.exports = function(client, callback) {
     }
   });
   callback();
-};
+}

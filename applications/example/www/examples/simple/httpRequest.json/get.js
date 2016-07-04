@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   var req = api.http.request(
     {
       hostname: 'ietf.org',
@@ -21,4 +21,4 @@ module.exports = function(client, callback) {
     callback('Can`t get page');
   });
   req.end();
-};
+}
