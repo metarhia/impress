@@ -1,4 +1,4 @@
-module.exports = {
+{
 
   caption: 'Impress System Core Database Schema',
   version: 9,
@@ -108,4 +108,4 @@ module.exports = {
     }
   }
 
-};
+}

@@ -1,4 +1,4 @@
-module.exports = {
+{
 
   caption: 'Impress CMS Database Schema',
   version: 5,
@@ -124,4 +124,4 @@ module.exports = {
     }
   }
 
-};
+}

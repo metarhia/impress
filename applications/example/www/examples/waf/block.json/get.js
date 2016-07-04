@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   client.block();
   callback();
-};
+}

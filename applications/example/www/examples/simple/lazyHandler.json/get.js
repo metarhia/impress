@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
   console.log('Verb handler: get.js');
   callback({ handler: 'get' });
-};
+}

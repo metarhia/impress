@@ -1,4 +1,4 @@
-module.exports = {
+{
 
   schema: {
     caption:    'string',
@@ -96,4 +96,4 @@ module.exports = {
     validationMessages: '[hash]'
   }
 
-};
+}

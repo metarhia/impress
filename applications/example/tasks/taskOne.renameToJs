@@ -1,7 +1,4 @@
-// Task
-
-module.exports = {
-
+{
   caption:   'Task Caption',
   place:     'master', // place to be executed: master, worker, cloud
 
@@ -25,5 +22,4 @@ module.exports = {
   //  executing: false,   // current status
   //  active:    false,   // is active in current process
   //  count:     0,       // executing count
-
-};
+}

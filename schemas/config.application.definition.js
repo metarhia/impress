@@ -1,4 +1,4 @@
-module.exports = {
+{
 
   config: {
     databases: '{{database}}',
@@ -89,4 +89,4 @@ module.exports = {
     database:     '[string]'
   }
 
-};
+}

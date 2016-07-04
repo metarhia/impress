@@ -1,4 +1,4 @@
-module.exports = function(client, callback) {
+(client, callback) => {
 
   // client.redirect('/'); // HTTP redirection
   // client.cache('30s');  // Cache result for 30 seconds
@@ -24,4 +24,4 @@ module.exports = function(client, callback) {
 
   callback(/* you can assign result to client.context.data or place here as callback first parameter */);
 
-};
+}
