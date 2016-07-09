@@ -47,5 +47,4 @@ api.news.getItem = function(n) {
 
 api.timers.setTimeout(function() {
   //process.exit(1);
-  f.b();
 }, 5000);
