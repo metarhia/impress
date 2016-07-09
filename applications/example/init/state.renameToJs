@@ -3,37 +3,33 @@ application.state.data.car = {
   speed: 0
 };
 
-if (application.isWorker) {
+api.timers.setInterval(function() {
+  application.state.inc('car.speed', 2, '5s');
+}, 1000);
 
-  api.timers.setInterval(function() {
-    application.state.inc('car.speed', 2, '5s');
-  }, 1000);
+api.timers.setInterval(function() {
+  application.state.dec('car.speed', 1, '6s');
+}, 2000);
 
-  api.timers.setInterval(function() {
-    application.state.dec('car.speed', 1, '6s');
-  }, 2000);
+api.timers.setInterval(function() {
+  application.state.inc('car.speed', 3, '7s');
+}, 3000);
 
-  api.timers.setInterval(function() {
-    application.state.inc('car.speed', 3, '7s');
-  }, 3000);
+api.timers.setInterval(function() {
+  application.state.dec('car.speed', 2, '8s');
+}, 4000);
 
-  api.timers.setInterval(function() {
-    application.state.dec('car.speed', 2, '8s');
-  }, 4000);
+api.timers.setInterval(function() {
+  application.state.set('car.name', 'nameOne', '5s');
+}, 5000);
 
-  api.timers.setInterval(function() {
-    application.state.set('car.name', 'nameOne', '5s');
-  }, 5000);
+api.timers.setInterval(function() {
+  application.state.set('car.name', 'nameTwo', '7s');
+}, 6000);
 
-  api.timers.setInterval(function() {
-    application.state.set('car.name', 'nameTwo', '7s');
-  }, 6000);
-
-  api.timers.setInterval(function() {
-    application.state.set(application.nodeId + '.pid', process.pid, '7s');
-  }, 7000);
-
-}
+api.timers.setInterval(function() {
+  application.state.set(application.nodeId + '.pid', process.pid, '7s');
+}, 7000);
 
 api.timers.setInterval(function() {
   console.log('Data in ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));

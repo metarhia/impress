@@ -1,27 +1,23 @@
-if (application.isWorker) {
+api.timers.setInterval(function() {
+  application.backend.emit('test', { data: 'data' });
+}, 5000);
 
-  api.timers.setInterval(function() {
-    application.backend.emit('test', { data: 'data' });
-  }, 5000);
+var startTime = new Date().getTime();
+var count = 0;
 
-  var startTime = new Date().getTime();
-  var count = 0;
-
-  function test() {
-    count++;
-    application.backend.call('method1', { sample: 'sample' }, function(res) {
-      test();
-    });
-  }
-
-  api.timers.setTimeout(test, 1000);
-  api.timers.setTimeout(test, 1200);
-  api.timers.setTimeout(test, 1400);
-
-  api.timers.setInterval(function() {
-    var endTime = new Date().getTime(),
-        processingTime = endTime - startTime;
-    console.log(application.nodeId + ' Processing time: ' + processingTime + ' count: ' + count);
-  }, 5000);
-
+function test() {
+  count++;
+  application.backend.call('method1', { sample: 'sample' }, function(res) {
+    test();
+  });
 }
+
+api.timers.setTimeout(test, 1000);
+api.timers.setTimeout(test, 1200);
+api.timers.setTimeout(test, 1400);
+
+api.timers.setInterval(function() {
+  var endTime = new Date().getTime(),
+      processingTime = endTime - startTime;
+  console.log(application.nodeId + ' Processing time: ' + processingTime + ' count: ' + count);
+}, 5000);
