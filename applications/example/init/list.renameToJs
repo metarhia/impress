@@ -3,10 +3,6 @@ application.state.data.car = {
   speed: 0
 };
 
-if (application.isWorker) {
-
-  api.timers.setInterval(function() {
-    console.log('Data: ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));
-  }, 10000);
-
-}
+api.timers.setInterval(function() {
+  console.log('Data: ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));
+}, 10000);
