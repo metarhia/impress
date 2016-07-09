@@ -3,7 +3,7 @@
   // Server ports bind configuration
   // Each server is named server on specified address and port
 
-  cloud: {
+  master: {
     protocol:  'jstp',
     address:   '127.0.0.1',
     ports:     [250],
@@ -20,13 +20,14 @@
     // range from..cpu-n [81, [-2]]
     slowTime:  '1s',
     timeout:   '30s',
-    keepAliveTimeout: '5s'
+    keepAliveTimeout: '5s',
+    applications: ['example'] // undefined for all
   },
 
   rpc: {
     protocol:  'jstp',
     address:   '*',
-    ports:     [81, [2]], // Example: [81, [-1]]
+    ports:     [3000, [1]], // Example: [81, [-1]]
     slowTime:  '1s'
   },
 

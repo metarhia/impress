@@ -1,4 +1,4 @@
-module.exports = {
+{
 
   scale: {
     check:      '[string]',
@@ -49,16 +49,17 @@ module.exports = {
   servers: '{{server}}',
 
   server: {
-    protocol:  '(http,https,jstp,jstps)',
-    address:   'string',
-    ports:     '[array]',
-    bundle:    'false:boolean',
-    nagle:     'false:boolean',
-    slowTime:  '4s:duration',
-    timeout:   '30s:duration',
+    protocol:     '(http,https,jstp,jstps)',
+    address:      'string',
+    ports:        '[array]',
+    bundle:       'false:boolean',
+    nagle:        'false:boolean',
+    slowTime:     '4s:duration',
+    timeout:      '30s:duration',
     keepAliveTimeout: '5s:duration',
-    key:       '[string]',
-    cert:      '[string]'
+    key:          '[string]',
+    cert:         '[string]',
+    applications: '[array]'
   }
 
-};
+}
