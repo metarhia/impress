@@ -1,6 +1,6 @@
 {
   cloud:    'PrivateCloud',
-  cluster:  'C1',
+  server:   'S1',
   instance: 'standalone',
 
   key:      '19nm58993eJ747845fk78A2z7854W90D', // Cloud access key

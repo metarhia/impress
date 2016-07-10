@@ -4,7 +4,7 @@
   // check: 'http://127.0.0.1/', // if we can get this page it means that another copy is running
 
   cloud: 'PrivateCloud', // cloud name
-  cluster: 'S1', // Cluster name to identify it in loadbalancing infrastructure
+  server: 'S1', // Server name to identify it in loadbalancing infrastructure
   instance: 'controller', // cloud instance type: standalone, controller, server
   //instance: 'server',
   //instance: 'standalone',
