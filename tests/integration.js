@@ -95,13 +95,9 @@ function httpTask(task) {
 
 if (process.isMaster) {
   console.log('Testing IAS...'.bold.green);
-  impress.server.start();
-  impress.server.on('start', function() {
-    setTimeout(function() {
-      //api.impress.logApiMethod('fs.stat');
-      for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
-    }, 500);
+  impress.server.on('started', function() {
+    //api.impress.logApiMethod('fs.stat');
+    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
   });
-} else {
-  impress.server.start();
 }
+impress.server.start();

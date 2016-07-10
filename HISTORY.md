@@ -1,3 +1,9 @@
+0.3.5 / 2016-07-11
+==================
+
+  * Critical bugs fixed, core refactored, Travis CI tests fixed
+  * Added event `impress.server.on('started')` after all apps loaded, processes forked and ports opened
+
 0.3.4 / 2016-07-10
 ==================
 

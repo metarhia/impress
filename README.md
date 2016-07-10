@@ -65,7 +65,7 @@ Impress (Impress Application Server, IAS) follows alternative way in several asp
     - WebSockets support (even on shared host/port with other handlers, using regular connection upgrade)
     - TCP and UDP sockets support
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
-  - Logging files: `access`, `error`, `debug`, `slow`, `server`, `node`, `cluster`, `cloud`, `warning`
+  - Logging files: `access`, `error`, `debug`, `slow`, `server`, `node`, `cloud`, `warning`
     - Log rotation: keep logs N days (configurable) delete files after N days
     - Log buffering, write stream flushing interval
     - Each application can be logged to own folder and/or to server-wide logs
