@@ -44,13 +44,3 @@ api.news.shuffle = function() {
 api.news.getItem = function(n) {
   return api.news.data[n];
 };
-
-/*
-if (application.isWorker) {
-
-api.timers.setTimeout(function() {
-  process.exit(1);
-}, 5000);
-
-}
-*/

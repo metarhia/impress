@@ -1,7 +1,3 @@
-if (application.isWorker) {
-
-  api.timers.setInterval(function() {
-    application.backend.emit('test', { data: 'data' });
-  }, 5000);
-
-}
+api.timers.setInterval(function() {
+  application.backend.emit('test', { data: 'data' });
+}, 5000);

@@ -4,7 +4,7 @@
     check:      '[string]',
 
     cloud:      'string',
-    cluster:    'string',
+    server:     'string',
     instance:   '(standalone,controller,server)',
 
     key:        '[string]',
