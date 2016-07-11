@@ -15,30 +15,33 @@ require(dir + '/lib/api.jstp.js');
 
 var connection = api.jstp.connect('impress', '127.0.0.1', 3000);
 
-connection.on('event', function(iface, event, args) {
-  console.log('Event', event, 'on interface', iface);
-  console.log('Data:', args);
-});
-
 setTimeout(function() {
-
   console.log('connecting');
   connection.handshake('example', 'user', 'passwordHash', function() {
     console.log('handshake done');
-    connection.call('interfaceName', 'methodName', [1, 2, 3], function(res) {
-      console.log('result1 received');
-      console.dir(res);
-    });
-    connection.call('interfaceName', 'sendEvent', '', function(res) { });
-    connection.call('interfaceName', 'methodName', [4, 5, 6], function(res) {
-      console.log('result2 received');
-      console.dir(res);
-      connection.call('interfaceName', 'methodName', [7, 8, 9], function(res) {
-        console.log('result3 received');
-        console.dir(res);
-        process.exit(0);
-      });
-    });
+    connection.inspect('interfaceName', runTests);
+  });
+}, 2000);
+
+function runTests(interfaceName) {
+  interfaceName.on('eventName', function(args) {
+    console.log('Got event, data:', args);
   });
 
-}, 2000);
+  interfaceName.methodName([1, 2, 3], function(res) {
+    console.log('result1 received');
+    console.dir(res);
+  });
+
+  interfaceName.sendEvent(function(res) { });
+
+  interfaceName.methodName([4, 5, 6], function(res) {
+    console.log('result2 received');
+    console.dir(res);
+    interfaceName.methodName([7, 8, 9], function(res) {
+      console.log('result3 received');
+      console.dir(res);
+      process.exit(0);
+    });
+  });
+}
