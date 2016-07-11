@@ -32,7 +32,6 @@ var config = {
     {  get: '/examples/tools/serverHealth.json' },
     {  get: '/examples/simple/virtualPath.json/a/b/c' },
     {  get: '/examples/simple/jsonGet.json?field=value' },
-    {  get: '/examples/middleware/getHandler.json' },
     {  get: '/examples/cache/htmlPage.ajax' },
     {  get: '/examples/cache/apiMethod.json' },
     {  get: '/examples/events/connect.sse' },
@@ -96,13 +95,9 @@ function httpTask(task) {
 
 if (process.isMaster) {
   console.log('Testing IAS...'.bold.green);
-  impress.server.start();
-  impress.server.on('start', function() {
-    setTimeout(function() {
-      //api.impress.logApiMethod('fs.stat');
-      for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
-    }, 500);
+  impress.server.on('started', function() {
+    //api.impress.logApiMethod('fs.stat');
+    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
   });
-} else {
-  impress.server.start();
 }
+impress.server.start();
