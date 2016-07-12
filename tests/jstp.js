@@ -13,26 +13,43 @@ api.events = require('events');
 require(dir + '/lib/api.common.js');
 require(dir + '/lib/api.jstp.js');
 
-var сonnection = api.jstp.connect('impress', '127.0.0.1', 3000);
+var connection = api.jstp.connect('impress', '127.0.0.1', 3000);
 
 setTimeout(function() {
-
   console.log('connecting');
-  сonnection.handshake('example', 'user', 'passwordHash', function() {
-    console.log('handshake done');
-    сonnection.call('interfaceName', 'methodName', [1, 2, 3], function(res) {
-      console.log('result1 received');
-      console.dir(res);
-    });
-    сonnection.call('interfaceName', 'methodName', [4, 5, 6], function(res) {
-      console.log('result2 received');
-      console.dir(res);
-      сonnection.call('interfaceName', 'methodName', [7, 8, 9], function(res) {
-        console.log('result3 received');
-        console.dir(res);
-        process.exit(0);
-      });
-    });
+  connection.handshake('example', 'user', 'passwordHash', function(err, session) {
+    if (err) throw err;
+    console.log('handshake done, sid =', session);
+    connection.inspect('interfaceName', runTests);
+  });
+}, 2000);
+
+function runTests(err, interfaceName) {
+  if (err) throw err;
+
+  interfaceName.on('eventName', function(args) {
+    console.log('Got event, data:', args);
   });
 
-}, 2000);
+  interfaceName.methodName([1, 2, 3], function(err, res) {
+    if (err) throw err;
+    console.log('result1 received');
+    console.dir(res);
+  });
+
+  interfaceName.sendEvent(function(err) {
+    if (err) throw err;
+  });
+
+  interfaceName.methodName([4, 5, 6], function(err, res) {
+    if (err) throw err;
+    console.log('result2 received');
+    console.dir(res);
+    interfaceName.methodName([7, 8, 9], function(err, res) {
+      if (err) throw err;
+      console.log('result3 received');
+      console.dir(res);
+      process.exit(0);
+    });
+  });
+}
