@@ -17,28 +17,36 @@ var connection = api.jstp.connect('impress', '127.0.0.1', 3000);
 
 setTimeout(function() {
   console.log('connecting');
-  connection.handshake('example', 'user', 'passwordHash', function() {
-    console.log('handshake done');
+  connection.handshake('example', 'user', 'passwordHash', function(err, session) {
+    if (err) throw err;
+    console.log('handshake done, sid =', session);
     connection.inspect('interfaceName', runTests);
   });
 }, 2000);
 
-function runTests(interfaceName) {
+function runTests(err, interfaceName) {
+  if (err) throw err;
+
   interfaceName.on('eventName', function(args) {
     console.log('Got event, data:', args);
   });
 
-  interfaceName.methodName([1, 2, 3], function(res) {
+  interfaceName.methodName([1, 2, 3], function(err, res) {
+    if (err) throw err;
     console.log('result1 received');
     console.dir(res);
   });
 
-  interfaceName.sendEvent(function(res) { });
+  interfaceName.sendEvent(function(err) {
+    if (err) throw err;
+  });
 
-  interfaceName.methodName([4, 5, 6], function(res) {
+  interfaceName.methodName([4, 5, 6], function(err, res) {
+    if (err) throw err;
     console.log('result2 received');
     console.dir(res);
-    interfaceName.methodName([7, 8, 9], function(res) {
+    interfaceName.methodName([7, 8, 9], function(err, res) {
+      if (err) throw err;
       console.log('result3 received');
       console.dir(res);
       process.exit(0);

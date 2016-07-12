@@ -1,3 +1,3 @@
 (connection, data, callback) => {
-  callback({ example: 'Hello' });
+  callback(null, { example: 'Hello' });
 }
