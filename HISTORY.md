@@ -1,3 +1,8 @@
+0.3.7 / 2016-07-13
+==================
+
+  * Changed JSTP methods invocation conventions, issue #561
+
 0.3.6 / 2016-07-13
 ==================
 
