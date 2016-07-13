@@ -1,4 +1,4 @@
-(connection, data, callback) => {
+(callback) => {
   connection.event('interfaceName', 'eventName', {
     example: 'hello'
   });
