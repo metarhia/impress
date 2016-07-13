@@ -31,7 +31,7 @@ function runTests(err, interfaceName) {
     console.log('Got event, data:', args);
   });
 
-  interfaceName.methodName([1, 2, 3], function(err, res) {
+  interfaceName.methodName(1, 2, 3, function(err, res) {
     if (err) throw err;
     console.log('result1 received');
     console.dir(res);
@@ -41,11 +41,11 @@ function runTests(err, interfaceName) {
     if (err) throw err;
   });
 
-  interfaceName.methodName([4, 5, 6], function(err, res) {
+  interfaceName.methodName(4, 5, 6, function(err, res) {
     if (err) throw err;
     console.log('result2 received');
     console.dir(res);
-    interfaceName.methodName([7, 8, 9], function(err, res) {
+    interfaceName.methodName(7, 8, 9, function(err, res) {
       if (err) throw err;
       console.log('result3 received');
       console.dir(res);
