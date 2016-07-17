@@ -1,3 +1,13 @@
+0.2.4 / 2016-07-17
+==================
+
+  * Finally removed async from Impress core, issue #453
+  * Changed JSTP methods invocation conventions, issue #561
+  * Implemented remote methods and remote eventEmitter
+  * Added new packet type for JSTP: inspect
+  * Added Connection.prototype.inspect method and wrappers for remote methods
+  * Improved JSTP callbacks functionality, added RemoteError
+
 0.2.3 / 2016-07-11
 ==================
 

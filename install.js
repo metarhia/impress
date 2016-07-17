@@ -2,25 +2,25 @@
 
 require('colors');
 
-var fs = require('fs'),
-    path = require('path'),
-    ncp = require('ncp').ncp,
-    exec = require('child_process').exec,
-    async = require('async');
+global.api = {};
+api.fs = require('fs');
+api.cp = require('child_process');
+api.ncp = require('ncp').ncp;
+api.path = require('path');
 
 var isWin = !!process.platform.match(/^win/);
 
-ncp.limit = 16;
+api.ncp.limit = 16;
 
-var current = path.dirname(__filename.replace(/\\/g, '/')),
-    parent = path.basename(path.dirname(current)),
-    destination = path.dirname(path.dirname(current)),
+var current = api.path.dirname(__filename.replace(/\\/g, '/')),
+    parent = api.path.basename(api.path.dirname(current)),
+    destination = api.path.dirname(api.path.dirname(current)),
     exists = false;
 
 // Execute shell command displaying output and possible errors
 //
 function execute(cmd, callback) {
-  exec(cmd, function(error, stdout /* stderr */) {
+  api.cp.exec(cmd, function(error, stdout /* stderr */) {
     if (error) console.log(error.toString());
     else console.log(stdout);
     if (callback) callback();
@@ -42,8 +42,8 @@ if (parent !== 'node_modules') {
   process.exit(0);
 }
 
-async.each(['package.json', 'server.js', 'config', 'applications'], function(file, callback) {
-  fs.exists(destination + '/' + file, function(fileExists) {
+api.common.each(['package.json', 'server.js', 'config', 'applications'], function(file, callback) {
+  api.fs.exists(destination + '/' + file, function(fileExists) {
     exists = exists || fileExists;
     callback();
   });
@@ -51,13 +51,13 @@ async.each(['package.json', 'server.js', 'config', 'applications'], function(fil
   if (exists) console.log('Impress Application Server'.bold.green + ' is already installed and configured in this folder.');
   else {
     console.log('Installing Impress Application Server...'.bold.green);
-    fs.createReadStream(current + '/server.js').pipe(fs.createWriteStream(destination + '/server.js'));
-    fs.createReadStream(current + '/lib/package.template.json').pipe(fs.createWriteStream(destination + '/package.json'));
+    api.fs.createReadStream(current + '/server.js').pipe(api.fs.createWriteStream(destination + '/server.js'));
+    api.fs.createReadStream(current + '/lib/package.template.json').pipe(api.fs.createWriteStream(destination + '/package.json'));
     var shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
-    fs.createReadStream(current + '/' + shellScript).pipe(fs.createWriteStream(destination + '/' + shellScript));
-    ncp(current + '/config', destination + '/config', { clobber: false }, function (err) {
+    api.fs.createReadStream(current + '/' + shellScript).pipe(api.fs.createWriteStream(destination + '/' + shellScript));
+    api.ncp(current + '/config', destination + '/config', { clobber: false }, function (err) {
       if (err) console.error(err);
-      ncp(current + '/applications', destination + '/applications', { clobber: false }, function (err) {
+      api.ncp(current + '/applications', destination + '/applications', { clobber: false }, function (err) {
         if (err) console.error(err);
         else {
           if (!isWin) execute('chmod +x ' + destination +'/server.sh', installCLI);

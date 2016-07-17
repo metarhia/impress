@@ -1,3 +1,3 @@
-module.exports = function(connection, data, callback) {
-  callback({ example: 'Hello' });
+module.exports = function(a, b, c, callback) {
+  callback(null, { example: 'Hello' });
 };

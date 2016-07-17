@@ -28,7 +28,7 @@ module.exports = function(client, callback) {
       },
       connectivity: {
         wifi: '802.11 b,g,n',
-        bluetooth: 'Bluetooth® Class 2, Version 4.0 LE+EDR',
+        bluetooth: 'Bluetoothï¿½ Class 2, Version 4.0 LE+EDR',
         hotspot: '4G Mobile Hotspot',
         connectors: ['Micro USB', 'micro HDMI'],
         usb: 'USB 2.0 (High Speed, 480 Mbps)',
