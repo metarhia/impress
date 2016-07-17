@@ -39,7 +39,7 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "async": "1.5.x",
+    "async": "2.0.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
