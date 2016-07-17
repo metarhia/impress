@@ -1,3 +1,10 @@
+0.3.8 / 2016-07-17
+==================
+
+  * Refactor RemoteError class constructor
+  * Finally removed async from Impress core, issue #453
+  * Fixed impress.js
+
 0.3.7 / 2016-07-13
 ==================
 
