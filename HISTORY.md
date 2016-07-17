@@ -1,4 +1,4 @@
-0.2.4 / 2016-07-17
+0.2.5 / 2016-07-17
 ==================
 
   * Finally removed async from Impress core, issue #453

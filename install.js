@@ -7,6 +7,8 @@ api.fs = require('fs');
 api.cp = require('child_process');
 api.ncp = require('ncp').ncp;
 api.path = require('path');
+api.common = {};
+require(process.cwd() + '/lib/api.common.js');
 
 var isWin = !!process.platform.match(/^win/);
 
