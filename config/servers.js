@@ -20,7 +20,7 @@
     // range from..cpu-n [81, [-2]]
     slowTime:  '1s',
     timeout:   '30s',
-    keepAliveTimeout: '5s',
+    keepAlive: '5s',
     applications: ['example'] // undefined for all
   },
 

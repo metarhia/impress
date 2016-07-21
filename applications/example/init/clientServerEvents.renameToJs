@@ -1,7 +1,0 @@
-application.frontend.on('test', function(data) {
-  console.dir(data);
-});
-
-api.timers.setInterval(function() {
-  application.frontend.send('test', { field: 'value' });
-}, 10000);

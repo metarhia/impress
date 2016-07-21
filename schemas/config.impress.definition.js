@@ -12,12 +12,12 @@
 
     health:     '5s:duration',
     nagle:      'false:boolean',
-    gcInterval: '10m:duration',
-    watchInterval: '2s:duration',
-    waf:        '{waf}'
+    gc:         '10m:duration',
+    watch:      '2s:duration',
+    firewall:   '{firewall}'
   },
 
-  waf: {
+  firewall: {
     enabled: 'false:boolean',
     limits:  '{limits}'
   },
@@ -56,7 +56,7 @@
     nagle:        'false:boolean',
     slowTime:     '4s:duration',
     timeout:      '30s:duration',
-    keepAliveTimeout: '5s:duration',
+    keepAlive:    '5s:duration',
     key:          '[string]',
     cert:         '[string]',
     applications: '[array]'

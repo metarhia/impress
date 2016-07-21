@@ -1599,21 +1599,6 @@ api.sse = function(url) {
   return sse;
 };
 
-// Backend and frontend event emitters
-//
-application.backend = new api.events.EventEmitter();
-application.frontend = new api.events.EventEmitter();
-
-application.frontend.send = function(name, parameters) {
-  if (application.rpc) {
-    application.rpc.events.send(name, parameters);
-  }
-};
-
-// Main Impress RPC binding to server-side
-//
-application.rpc = null;
-
 // Client-side load balancer
 //
 application.balancer = {};
@@ -1627,15 +1612,17 @@ application.balancer.currentRetryMax = 10;
 application.balancer.globalRetry = 0;
 application.balancer.retryInterval = 3000;
 
-// Main Impress RPC binding to server-side
+// Main Impress binding to server-side
+//   TODO: use JSTP here after get ip:port from balancer
 //
+/*
 application.connect = function(callback) {
   api.ajax.get('/api/application/balancer.json', {}, function(err, res) {
     if (!err) {
       application.balancer.servers = res.servers;
       application.balancer.generateSequence();
       application.reconnect();
-      if (callback) application.rpc.on('open', callback);
+      if (callback) application.on('connect', callback);
     }
   });
 };
@@ -1657,6 +1644,7 @@ application.reconnect = function() {
     }, application.balancer.retryInterval);
   });
 };
+*/
 
 application.balancer.generateSequence = function() {
   var i, server, serverName,
