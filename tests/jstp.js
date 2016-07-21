@@ -8,12 +8,22 @@ var dir = process.cwd();
 
 api.vm = require('vm');
 api.net = require('net');
+api.tls = require('tls');
 api.util = require('util');
 api.events = require('events');
 require(dir + '/lib/api.common.js');
 require(dir + '/lib/api.jstp.js');
 
-var connection = api.jstp.connect('impress', '127.0.0.1', 3000);
+var port, tls;
+if (process.argv.indexOf('--tls') !== -1) {
+  port = 4000;
+  tls = true;
+} else {
+  port = 3000;
+  tls = false;
+}
+
+var connection = api.jstp.connect('impress', '127.0.0.1', port, tls);
 
 setTimeout(function() {
   console.log('connecting');

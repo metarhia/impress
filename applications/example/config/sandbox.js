@@ -23,6 +23,7 @@
     // Preinstalled modules
     'metasync',
     'csv',
+    'jstp',
     'async',
     'iconv',
     'colors',

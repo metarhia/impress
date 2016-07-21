@@ -31,6 +31,15 @@
     slowTime:  '1s'
   },
 
+  //secureRpc: {
+  //  protocol:  'jstps',
+  //  address:   '*',
+  //  ports:     [4000, [1]],
+  //  slowTime:  '1s',
+  //  key:       'example.key',
+  //  cert:      'example.cer'
+  //},
+
   //local: {
   //  protocol: 'http',
   //  address:  '127.0.0.1',
