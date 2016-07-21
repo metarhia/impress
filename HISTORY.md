@@ -1,3 +1,17 @@
+0.3.10 / 2016-07-22
+==================
+
+  * Implemented JSTP over TLS
+  * Implemented JSTP over and WebSocket (both HTTP and HTTPS)
+  * Implemented client-side JSTP over WebSocket in browser
+  * Implemented client-side Sandbox class
+  * Removed old AJAX and WebSocket RPC
+  * Renamed plugin impress.waf.js to impress.firewall.js
+  * Renamed config keepAliveTimeout to keepAlive
+  * Renamed config watchInterval to watch
+  * Renamed config waf to firewall
+  * Renamed config gcInterval to gc
+
 0.3.9 / 2016-07-19
 ==================
 
