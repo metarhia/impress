@@ -21,7 +21,9 @@
     'db', 'con', 'common', 'impress', 'registry', 'definition',
 
     // Preinstalled modules
+    'metasync',
     'csv',
+    'jstp',
     'async',
     'iconv',
     'colors',

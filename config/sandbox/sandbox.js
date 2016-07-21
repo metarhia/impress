@@ -21,12 +21,14 @@ module.exports = {
     // Impress API modules
     'db',
     'con',
+    'jstp',
     'common',
     'impress',
     'registry',
     'definition',
 
     // Preinstalled modules
+    'metasync',
     'csv',
     'async',
     'iconv',
