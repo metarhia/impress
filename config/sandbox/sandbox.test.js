@@ -7,6 +7,7 @@ module.exports = {
     // Preinstalled modules
     'db',
     'con',
+    'jstp',
     'common',
     'impress',
     'registry',

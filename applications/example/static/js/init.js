@@ -13,32 +13,6 @@ api.dom.on('load', function() {
     signOut:       { post: '/api/auth/signOut.json' }
   });
 
-  // Open RPC to absolute or relative URL, e.g. ws://127.0.0.1:80/examples/impress.rpc
-  //
-  /*
-  var rpc = api.rpc('/examples/impress.rpc');
-  rpc.on('open', function() {
-    rpc.get('/examples/simple/jsonGet.json', { parameterName: 'abc' }, function(err, res) {
-      console.log(res);
-    });
-    rpc.events.send('test1', { aaa: 111 });
-    rpc.events.on('test2', function(data) {
-      console.dir({ data: data });
-    });
-  });
-  */
-
-  // Application may be connected using single RPC socket
-  //
-  /*
-  application.connect(function() {
-    application.frontend.on('aaa', function(d) {
-      console.dir(d);
-    });
-    application.frontend.send('aaa', { bbb: 'ccc' });
-  });
-  */
-
   // Auth Module
 
   api.dom.on('click', '#hmenu-Signin', function() {
@@ -176,7 +150,84 @@ api.dom.on('load', function() {
       ws.send('Hello');
     });
   });
-  
+
+  api.dom.on('click', '#menuJSTP', function() {
+    panelCenter.innerHTML = (
+      '<div id="jstpLog"></div>' +
+      '<button id="jstpDisconnect">Disconnect</button>'
+    );
+    jstpConnect();
+  });
+
+  function jstpConnect() {
+    application.api = {
+    };
+
+    var messageBlock = api.dom.id('jstpLog');
+
+    function print() {
+      var msg = Array.prototype.join.call(arguments, ' ');
+      if (messageBlock.innerText) {
+        messageBlock.innerText += msg;
+      } else {
+        messageBlock.textContent += msg;
+      }
+      messageBlock.innerHTML += '<br>';
+    }
+
+    var connection = api.jstp.connect('/api/application/jstp.ws');
+
+    connection.on('open', function() {
+      print('connection opened');
+
+      api.dom.on('click', '#jstpDisconnect', function() {
+        connection.socket.close();
+        print('connection closed');
+      });
+
+      connection.handshake('example', 'user', 'pass', function(err, session) {
+        if (err) {
+          print(err);
+          return;
+        }
+        print('handshake done, sid =', session);
+        connection.inspect('interfaceName', runTests);
+      });
+    });
+
+    function runTests(err, interfaceName) {
+      if (err) {
+        print(err);
+        return;
+      }
+
+      interfaceName.on('eventName', function(args) {
+        print('Got event, data:', api.jstp.stringify(args));
+      });
+
+      interfaceName.methodName(1, 2, 3, function(err, res) {
+        if (err) return print(err);
+        print('result1 received');
+        print(res);
+      });
+
+      interfaceName.sendEvent(function(err) {
+        if (err) return print(err);
+      });
+
+      interfaceName.methodName(4, 5, 6, function(err, res) {
+        if (err) return print(err);
+        print('result2 received');
+        print(res);
+        interfaceName.methodName(7, 8, 9, function(err, res) {
+          if (err) return print(err);
+          print('result3 received');
+          print(res);
+        });
+      });
+    }
+  }
+
   api.dom.on('click', '#menuSSE', function() {
     panelCenter.innerHTML = (
       '<a class="button silver" id="btnSseClose"><span class="icon delete"></span>Close connection</a> ' +

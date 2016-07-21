@@ -20,7 +20,7 @@
     // range from..cpu-n [81, [-2]]
     slowTime:  '1s',
     timeout:   '30s',
-    keepAliveTimeout: '5s',
+    keepAlive: '5s',
     applications: ['example'] // undefined for all
   },
 
@@ -30,6 +30,15 @@
     ports:     [3000, [1]], // Example: [81, [-1]]
     slowTime:  '1s'
   },
+
+  //secureRpc: {
+  //  protocol:  'jstps',
+  //  address:   '*',
+  //  ports:     [4000, [1]],
+  //  slowTime:  '1s',
+  //  key:       'example.key',
+  //  cert:      'example.cer'
+  //},
 
   //local: {
   //  protocol: 'http',

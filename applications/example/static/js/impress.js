@@ -1011,95 +1011,96 @@ api.ajax.post = function(url, params, callback) {
   api.ajax.request('POST', url, params, true, callback);
 };
 
-// Node.js vm module emulation
-// (ported from https://github.com/sun1x/vm-browser)
-//
-api.vm = {};
-
-api.vm.contextifiedSandboxes = [];
-
-api.vm.createIFrame = function() {
-  var iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-  return iframe;
-};
-
-api.vm.createIFrameWithContext = function(sandbox) {
-  var iframe = api.vm.createIFrame();
-  var key;
-  document.body.appendChild(iframe);
-  if (sandbox) {
-    for (key in sandbox) {
-      if (sandbox.hasOwnProperty(key)) {
-        iframe.contentWindow[key] = sandbox[key];
-      }
-    }
-    api.vm.contextifiedSandboxes.push(sandbox);
-  }
-  return iframe;
-};
-
-api.vm.runCodeInNewContext = function(code, sandbox) {
-  var iframe = api.vm.createIFrameWithContext(sandbox);
-  var result = iframe.contentWindow.eval(code);
-  document.body.removeChild(iframe);
-  return result;
-};
-
-api.vm.runCodeInContext = function(code, context) {
-  if (!context) {
-    throw new Error('Context cannot be undefined');
-  }
-  return context.eval(code);
-};
-
-api.vm.Script = function(code) {
-  this.code = code;
-};
-
-api.vm.Script.prototype.runInContext = function(context) {
-  return api.vm.runCodeInContext(this.code, context);
-};
-
-api.vm.Script.prototype.runInNewContext = function(sandbox) {
-  return api.vm.runCodeInNewContext(this.code, sandbox);
-};
-
-api.vm.Script.prototype.runInThisContext = function() {
-  return api.vm.runCodeInContext(this.code, window);
-};
-
-api.vm.createContext = function(sandbox) {
-  return api.vm.createIFrameWithContext(sandbox).contentWindow;
-};
-
-api.vm.isContext = function(sandbox) {
-  return api.vm.contextifiedSandboxes.indexOf(sandbox) !== -1;
-};
-
-api.vm.runInContext = function(code, context) {
-  return api.vm.runCodeInContext(code, context);
-};
-
-api.vm.runInDebugContext = function() {
-  throw new Error('vm.runInDebugContext(code) does not work in browsers');
-};
-
-api.vm.runInNewContext = function(code, sandbox) {
-  return api.vm.runCodeInNewContext(code, sandbox);
-};
-
-api.vm.runInThisContext = function(code) {
-  return api.vm.runCodeInContext(code, window);
-};
-
-api.vm.createScript = function(code) {
-  return new api.vm.Script(code);
-};
-
 // JavaScript Transfer Protocol
 //
 api.jstp = {};
+
+// Packet delimiter used to separate packets
+//
+api.jstp.PACKET_DELIMITER = ',{\f},';
+api.jstp.DELIMITER_LENGTH = api.jstp.PACKET_DELIMITER.length;
+api.jstp.CHUNKS_FIRST = '[';
+api.jstp.CHUNKS_LAST = ']';
+
+// Chunks is an Array of String
+//
+api.jstp.Chunks = function() {
+  this.items = [api.jstp.CHUNKS_FIRST];
+};
+
+// Chunks.add method adds new chunk to array and return
+// packets (if any) as a string or null
+//  chunk - instance of String
+//
+api.jstp.Chunks.prototype.add = function(chunk) {
+  if (chunk.endsWith(api.jstp.PACKET_DELIMITER)) {
+    var chunks = this.items;
+    this.items = [api.jstp.CHUNKS_FIRST];
+    chunks.push(chunk.slice(0, -api.jstp.DELIMITER_LENGTH));
+    chunks.push(api.jstp.CHUNKS_LAST);
+    return api.jstp.parse(chunks.join(''));
+  } else {
+    this.items.push(chunk);
+    return null;
+  }
+};
+
+// Filter delimiters from from packets
+//   packets - array of object with expected delimiters
+//   returns - array of object without delemiters
+//
+api.jstp.removeDelimiters = function(packets) {
+  return packets.filter(function(packet, i) {
+    return (i % 2 === 0);
+  });
+};
+
+// Packet constructor
+//
+api.jstp.Packet = function(kind, id, iface, verb, args) {
+  this[kind] = [id];
+  if (iface) this[kind].push(iface);
+  this[verb] = args;
+};
+
+// Sandbox class used for parsing
+//   context - optional hash of properties to add to sandbox context
+//
+api.jstp.Sandbox = function(context) {
+  this.iframe = document.createElement('iframe');
+  this.iframe.style.display = 'none';
+  this.iframe.sandbox = "allow-same-origin allow-scripts";
+
+  if (context) {
+    this.addProperties(context);
+  }
+
+  document.body.appendChild(this.iframe);
+};
+
+// Add properties of an object to the sandbox context
+//   obj - a hash of properties
+//
+api.jstp.Sandbox.prototype.addProperties = function(obj) {
+  for (var key in obj) {
+    if (!obj.hasOwnProperty(key)) {
+      continue;
+    }
+    this.iframe.contentWindow[key] = obj[key];
+  }
+};
+
+// Remove the sandbox from DOM
+//
+api.jstp.Sandbox.prototype.destroy = function() {
+  document.body.removeChild(this.iframe);
+};
+
+// Evaluate JavaScript code in the sandbox
+//
+api.jstp.Sandbox.prototype.eval = function(code) {
+  return this.iframe.contentWindow.eval(code);
+};
 
 // Deserialize string to object, just data: objects and arrays
 // no expressions and functions allowed in object definition
@@ -1108,9 +1109,10 @@ api.jstp = {};
 // Example: api.jstp.parse("{ field: 'value', node: { a: [5,6,7] } }")
 //
 api.jstp.parse = function(str) {
-  var sandbox = api.vm.createContext({});
-  var script = api.vm.createScript('(' + str + ')');
-  return script.runInNewContext(sandbox);
+  var sandbox = new api.jstp.Sandbox();
+  var result = sandbox.eval('(' + str + ')');
+  sandbox.destroy();
+  return result;
 };
 
 // Serializer factory
@@ -1183,12 +1185,9 @@ api.jstp.dump = api.jstp.createSerializer({
 //   return - deserialized JavaScript object
 //
 api.jstp.interprete = function(str) {
-  var sandbox = api.vm.createContext({});
-  var script = api.vm.createScript('(' + str + ')');
-  var exported = script.runInNewContext(sandbox);
-  for (var key in exported) {
-    sandbox[key] = exported[key];
-  }
+  var sandbox = new api.jstp.Sandbox();
+  var exported = sandbox.eval('(' + str + ')');
+  sandbox.addProperties(exported);
   return exported;
 };
 
@@ -1221,167 +1220,342 @@ api.jstp.deserialize = function(str) {
 // Connect to a JSTP endpoint and create persistent connection
 //
 api.jstp.connect = function(url) {
-  var jstp = new api.events.EventEmitter();
-
   var socket = new WebSocket(api.common.absoluteUrl(url));
+  var connection = new api.jstp.Connection(socket);
 
   socket.onopen = function() {
-    jstp.emit('open');
+    connection.emit('open');
   };
 
-  socket.onclose = function() {
-    jstp.emit('close');
-  };
+  return connection;
+};
+
+// JSTP Connection Class
+//   socket - instance of WebSocket connection
+//
+var Connection = function(socket) {
+  var connection = this;
+  api.events.EventEmitter.call(this);
+
+  socket.connection = connection;
+  connection.socket = socket;
+  connection.cid = 0;
+  connection.packetId = 0;
+  connection.startTime = Date.now();
+  connection.kind = 'client';
+  connection.deltaId = 1;
+  connection.chunks = new api.jstp.Chunks();
+  connection.callbacks = {};
+  connection.interfaces = {};
 
   socket.onmessage = function(message) {
-    var data = message[message.type + 'Data'],
-        event = api.jstp.parse(data);
-    jstp.emit('message', event);
-  };
-
-  jstp.send = function(message) {
-    socket.send(api.jstp.stringify(message));
-  };
-
-  return jstp;
-};
-
-// Create persistent RPC connection
-//
-api.rpc = function(url) {
-
-  var rpc = new api.events.EventEmitter();
-
-  var socket = new WebSocket(api.common.absoluteUrl(url));
-  rpc.socket = socket;
-  rpc.socket.nextMessageId = 0;
-  rpc.socket.callCollection = {};
-
-  socket.onopen = function() {
-    rpc.emit('open');
+    var data = message.data;
+    var packets = connection.chunks.add(data);
+    if (packets) {
+      packets = api.jstp.removeDelimiters(packets);
+      connection.process(packets);
+    }
   };
 
   socket.onclose = function() {
-    rpc.emit('close');
+    connection.emit('close', connection);
   };
 
-  socket.onmessage = function(event) {
-    var packet = JSON.parse(event.data);
-    if (packet.id) {
-      if (packet.type === 'result') {
-        var call = socket.callCollection[packet.id];
-        if (call) {
-          delete socket.callCollection[packet.id];
-          if (typeof(call.callback) === 'function') {
-            call.callback(null, JSON.parse(packet.result));
-          }
-        }
-      } else if (packet.type === 'call') {
-        rpc.emit('call', event);
-      }
-    } else if (packet.type === 'event') {
-      rpc.emit('event', event);
-      if (application.rpc === rpc) application.frontend.emit(packet.name, packet.data);
-      else rpc.events.emit(packet.name, packet.data);
+  socket.onerror = function(err) {
+    if (err.code === 'ECONNRESET') {
+      // console.log('Connection terminated by remote client');
     }
   };
-
-  // Close RPC connection
-  //
-  rpc.close = function() {
-    socket.close();
-    rpc.socket = null;
-  };
-
-  // Send AJAX over RPC
-  //
-  rpc.ajax = function(method, name, parameters, callback) {
-    socket.nextMessageId++;
-    var packet = {
-      id: 'C' + socket.nextMessageId,
-      type: 'ajax',
-      method: method,
-      name: name,
-      data: parameters
-    };
-    packet.callback = callback;
-    socket.callCollection[packet.id] = packet;
-    socket.send(JSON.stringify(packet));
-  };
-
-  // Send GET request over RPC
-  //
-  rpc.get = function(url, params, callback) {
-    if (arguments.length === 2) {
-      callback = params;
-      params = {};
-    }
-    rpc.ajax('GET', url, params, callback);
-  };
-
-  // Send POST request over RPC
-  //
-  rpc.post = function(url, params, callback) {
-    if (arguments.length === 2) {
-      callback = params;
-      params = {};
-    }
-    rpc.ajax('POST', url, params, callback);
-  };
-
-  rpc.events = {};
-  rpc.events.listeners = {};
-
-  // Send event over RPC
-  //
-  rpc.events.send = function(name, parameters) {
-    socket.nextMessageId++;
-    var packet = {
-      id: 'C' + socket.nextMessageId,
-      type: 'event',
-      name: name,
-      data: parameters
-    };
-    socket.send(JSON.stringify(packet));
-  };
-
-  // Add named event handler
-  //
-  rpc.events.on = function(name, callback) {
-    var namedEvent = rpc.events.listeners[name];
-    if (!namedEvent) rpc.events.listeners[name] = [callback];
-    else namedEvent.push(callback);
-  };
-
-  // Emit named event
-  //
-  rpc.events.emit = function(name, parameters) {
-    var namedEvent = rpc.events.listeners[name];
-    if (namedEvent) namedEvent.forEach(function(callback) {
-      callback(parameters);
-    });
-  };
-
-  // Send RPC call
-  //
-  rpc.call = function(parameters, callback) {
-    socket.nextMessageId++;
-    var packet = {
-      id: 'C' + socket.nextMessageId,
-      type: 'ajax',
-      // TODO: check this two fields
-      //method: method,
-      //name: name,
-      data: parameters
-    };
-    packet.callback = callback;
-    socket.callCollection[packet.id] = packet;
-    socket.send(JSON.stringify(packet));
-  };
-
-  return rpc;
 
 };
+
+Object.setPrototypeOf(Connection.prototype,
+                      api.events.EventEmitter.prototype);
+api.jstp.Connection = Connection;
+
+// Process received packets
+//   packets - array of packet
+//
+Connection.prototype.process = function(packets) {
+  var cb, keys, kind, kindHandler, packet, packetId,
+      connection = this;
+
+  function sendCallback() {
+    var error  = arguments[0],
+        result = Array.prototype.slice.call(arguments, 1);
+    if (error && error instanceof RemoteError) {
+      error = error.jstpArray;
+    } else if (error && !Array.isArray(error)) {
+      error = [0, error.toString()];
+    }
+    application.connection = null;
+    connection.callback(packetId, error, result);
+  }
+
+  var kinds = {
+
+    handshake: function () {
+      packetId = packet.handshake[0];
+      if (packet.ok) {
+        cb = connection.callbacks[packetId];
+        if (cb) {
+          delete connection.callbacks[packetId];
+          cb(null, packet.ok);
+        }
+      } else if (packet.error) {
+        cb = connection.callbacks[packetId];
+        if (cb) {
+          delete connection.callbacks[packetId];
+          cb(new RemoteError(packet.error[0], packet.error[1]));
+        }
+      }
+    },
+
+    call: function () {
+      packetId = packet.call[0];
+      var ifName = packet.call[1],
+          apiInterface = application.api[ifName],
+          methodName = keys[1],
+          args = packet[methodName];
+      if (!apiInterface) {
+        connection.callback(packetId, RemoteError.INTERFACE_NOT_FOUND.jstpArray);
+        return;
+      }
+      var method = apiInterface[methodName];
+      if (!method) {
+        connection.callback(packetId, RemoteError.METHOD_NOT_FOUND.jstpArray);
+        return;
+      }
+      application.connection = connection;
+      args.push(sendCallback);
+      method.apply(application, args);
+    },
+
+    callback: function () {
+      packetId = packet.callback[0];
+      cb = connection.callbacks[packetId];
+      if (cb) {
+        delete connection.callbacks[packetId];
+        if (packet.ok) {
+          cb.apply(connection, [null].concat(packet.ok));
+        } else if (packet.error) {
+          cb(new RemoteError(packet.error[0], packet.error[1]));
+        }
+      }
+    },
+
+    event: function () {
+      packetId = packet.event[0];
+      var interfaceName = packet.event[1],
+          eventName = keys[1],
+          eventArgs = packet[eventName];
+      connection.emit('event', interfaceName, eventName, eventArgs);
+      var interfaceProxy = connection.interfaces[interfaceName];
+      if (interfaceProxy) {
+        interfaceProxy.emit(eventName, eventArgs, true);
+      }
+    },
+
+    inspect: function () {
+      packetId = packet.inspect[0];
+      var ifName = packet.inspect[1],
+          iface  = application.api[ifName];
+      if (iface) {
+        connection.callback(packetId, null, Object.keys(iface));
+      } else {
+        connection.callback(packetId, RemoteError.INTERFACE_NOT_FOUND.jstpArray);
+      }
+    }
+
+  };
+
+  while (packets.length) {
+    packet = packets.shift();
+    keys = Object.keys(packet);
+    kind = keys[0];
+    kindHandler = kinds[kind];
+    if (kindHandler) kindHandler();
+  }
+};
+
+// Create packet for connection
+//   kind - packet classification: call, callback, event, state, stream, handshake, health
+//   iface - interface name, optional string
+//   verb - method name, string
+//   args - arguments
+//
+Connection.prototype.packet = function(kind, iface, verb, args) {
+  var packet = new api.jstp.Packet(kind, this.packetId, iface, verb, args);
+  this.packetId += this.deltaId;
+  return packet;
+};
+
+// Send data
+//   data - hash or object
+//
+Connection.prototype.send = function(data) {
+  var packet = api.jstp.stringify(data) + api.jstp.PACKET_DELIMITER;
+  this.socket.send(packet);
+};
+
+// Send data and close socket
+//   data - hash or object
+//
+Connection.prototype.end = function(data) {
+  var packet = api.jstp.stringify(data) + api.jstp.PACKET_DELIMITER;
+  this.socket.send(packet);
+  this.socket.close();
+};
+
+// Send call packet
+//   interfaceName - interface containing required method
+//   methodName - method name to be called
+//   parameters - method call parameters
+//   callback - function
+//
+Connection.prototype.call = function(interfaceName, methodName, parameters, callback) {
+  var packet = this.packet('call', interfaceName, methodName, parameters),
+      packetId = packet.call[0];
+  this.callbacks[packetId] = callback;
+  this.send(packet);
+};
+
+// Send callback packet
+//   packetId - id of original `call` packet
+//   result - return this tesult to callback function
+//
+Connection.prototype.callback = function(packetId, error, result) {
+  var packet;
+  if (error) {
+    packet = this.packet('callback', null, 'error', error);
+  } else {
+    packet = this.packet('callback', null, 'ok', result);
+  }
+  packet.callback[0] = packetId;
+  this.send(packet);
+};
+
+// Send event packet
+//   interfaceName - name of interface sending event to
+//   eventName - name of event
+//   parameters - hash or object, event parameters
+//
+Connection.prototype.event = function(interfaceName, eventName, parameters) {
+  var packet = this.packet('event', interfaceName, eventName, parameters);
+  this.send(packet);
+};
+
+// Send state packet
+//   path - path in data structure to be changed
+//   verb - operation with data inc, dec, let, delete, push, pop, shift, unshift
+//   value - delta or new value
+//
+Connection.prototype.state = function(path, verb, value) {
+  var packet = this.packet('state', path, verb, value);
+  this.send(packet);
+};
+
+// Send handshake packet
+//   appName - application name
+//   login - user login
+//   password - password hash
+//   callback - function callback
+//
+Connection.prototype.handshake = function(appName, login, password, callback) {
+  var packet = this.packet('handshake', appName, login, password),
+      packetId = packet.handshake[0];
+  if (callback) this.callbacks[packetId] = callback;
+  this.send(packet);
+};
+
+// Send introspection request packet
+//   interfaceName - name of the interface to inspect
+//   callback - callback function proxy object is passed to
+//
+Connection.prototype.inspect = function(interfaceName, callback) {
+  var packet = this.packet('inspect', interfaceName, null, null),
+      packetId = packet.inspect[0],
+      connection = this;
+
+  this.callbacks[packetId] = function(err) {
+    if (err) return callback(err);
+    var methods = Array.prototype.slice.call(arguments, 1);
+
+    var proxy = new api.events.EventEmitter(),
+        clientEmit = proxy.emit;
+    proxy.emit = function(eventName, eventArgs, dontRetranslate) {
+      if (!dontRetranslate) {
+        connection.event(interfaceName, eventName, eventArgs);
+      }
+      clientEmit.call(proxy, eventName, eventArgs);
+    };
+
+    for (var i = 0; i < methods.length; i++) {
+      connection.wrapRemoteMethod(proxy, interfaceName, methods[i]);
+    }
+    connection.interfaces[interfaceName] = proxy;
+    callback(null, proxy);
+  };
+
+  this.send(packet);
+};
+
+// Wrap a remote method using the current connection
+// and save into a proxy object
+//   proxy - the proxy object
+//   ifName - name of the interface
+//   methodName - name of the method
+//
+Connection.prototype.wrapRemoteMethod = function(proxy, ifName, methodName) {
+  var connection = this;
+  proxy[methodName] = function() {
+    var callback = arguments[arguments.length - 1];
+    var args = Array.prototype.slice.call(arguments, 0, -1);
+    connection.call(ifName, methodName, args, callback);
+  };
+};
+
+// JSTP remote error class
+// TODO: implement RPC stacktrace
+//   code - error code
+//   message - optional error message
+//
+function RemoteError(code, message) {
+  message = message || RemoteError.defaultMessages[code];
+  Error.call(this, message);
+
+  this.code = code;
+  this.message = message;
+
+  if (message) {
+    this.jstpArray = [code, message];
+  } else {
+    this.message = code;
+    this.jstpArray = [code];
+  }
+
+  this.name = 'RemoteError';
+}
+
+Object.setPrototypeOf(RemoteError.prototype, Error.prototype);
+api.jstp.RemoteError = RemoteError;
+
+// Default messages for predefined error codes
+// (see JSTP specs at https://github.com/metarhia/JSTP)
+//
+RemoteError.defaultMessages = {
+  10: 'Application not found',
+  11: 'Authentication failed',
+  12: 'Interface not found',
+  13: 'Incompatible interface',
+  14: 'Method not found'
+};
+
+RemoteError.APP_NOT_FOUND = new RemoteError(10);
+RemoteError.AUTH_FAILED = new RemoteError(11);
+RemoteError.INTERFACE_NOT_FOUND = new RemoteError(12);
+RemoteError.INTERFACE_INCOMPATIBLE = new RemoteError(13);
+RemoteError.METHOD_NOT_FOUND = new RemoteError(14);
 
 // Create websocket instance
 //
@@ -1425,21 +1599,6 @@ api.sse = function(url) {
   return sse;
 };
 
-// Backend and frontend event emitters
-//
-application.backend = new api.events.EventEmitter();
-application.frontend = new api.events.EventEmitter();
-
-application.frontend.send = function(name, parameters) {
-  if (application.rpc) {
-    application.rpc.events.send(name, parameters);
-  }
-};
-
-// Main Impress RPC binding to server-side
-//
-application.rpc = null;
-
 // Client-side load balancer
 //
 application.balancer = {};
@@ -1453,15 +1612,17 @@ application.balancer.currentRetryMax = 10;
 application.balancer.globalRetry = 0;
 application.balancer.retryInterval = 3000;
 
-// Main Impress RPC binding to server-side
+// Main Impress binding to server-side
+//   TODO: use JSTP here after get ip:port from balancer
 //
+/*
 application.connect = function(callback) {
   api.ajax.get('/api/application/balancer.json', {}, function(err, res) {
     if (!err) {
       application.balancer.servers = res.servers;
       application.balancer.generateSequence();
       application.reconnect();
-      if (callback) application.rpc.on('open', callback);
+      if (callback) application.on('connect', callback);
     }
   });
 };
@@ -1483,6 +1644,7 @@ application.reconnect = function() {
     }, application.balancer.retryInterval);
   });
 };
+*/
 
 application.balancer.generateSequence = function() {
   var i, server, serverName,
