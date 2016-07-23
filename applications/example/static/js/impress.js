@@ -1069,7 +1069,7 @@ api.jstp.Packet = function(kind, id, iface, verb, args) {
 api.jstp.Sandbox = function(context) {
   this.iframe = document.createElement('iframe');
   this.iframe.style.display = 'none';
-  this.iframe.sandbox = "allow-same-origin allow-scripts";
+  this.iframe.sandbox = 'allow-same-origin allow-scripts';
 
   if (context) {
     this.addProperties(context);
@@ -1224,7 +1224,7 @@ api.jstp.connect = function(url) {
   var connection = new api.jstp.Connection(socket);
 
   socket.onopen = function() {
-    connection.emit('open');
+    connection.emit('connect', connection);
   };
 
   return connection;
@@ -1262,9 +1262,7 @@ var Connection = function(socket) {
   };
 
   socket.onerror = function(err) {
-    if (err.code === 'ECONNRESET') {
-      // console.log('Connection terminated by remote client');
-    }
+    connection.emit('error', connection);
   };
 
 };
@@ -1298,6 +1296,7 @@ Connection.prototype.process = function(packets) {
       packetId = packet.handshake[0];
       if (packet.ok) {
         cb = connection.callbacks[packetId];
+        connection.emit('handshake', packet.ok, connection);
         if (cb) {
           delete connection.callbacks[packetId];
           cb(null, packet.ok);
@@ -1371,6 +1370,7 @@ Connection.prototype.process = function(packets) {
 
   while (packets.length) {
     packet = packets.shift();
+    connection.emit('packet', packet, connection);
     keys = Object.keys(packet);
     kind = keys[0];
     kindHandler = kinds[kind];

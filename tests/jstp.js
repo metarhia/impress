@@ -25,14 +25,14 @@ if (process.argv.indexOf('--tls') !== -1) {
 
 var connection = api.jstp.connect('impress', '127.0.0.1', port, tls);
 
-setTimeout(function() {
-  console.log('connecting');
+connection.on('connect', function() {
+  console.log('connected');
   connection.handshake('example', 'user', 'passwordHash', function(err, session) {
     if (err) throw err;
     console.log('handshake done, sid =', session);
     connection.inspect('interfaceName', runTests);
   });
-}, 2000);
+});
 
 function runTests(err, interfaceName) {
   if (err) throw err;
