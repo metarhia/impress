@@ -15,21 +15,15 @@ else
 sudo apt-get -y install g++
 fi
 cd /usr/src
-wget http://nodejs.org/dist/v6.3.0/node-v6.3.0.tar.gz
-tar zxf node-v6.3.0.tar.gz
-rm -f ./node-v6.3.0.tar.gz
-cd node-v6.3.0
+wget http://nodejs.org/dist/v6.3.1/node-v6.3.1.tar.gz
+tar zxf node-v6.3.1.tar.gz
+rm -f ./node-v6.3.1.tar.gz
+cd node-v6.3.1
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v6.3.0
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | sudo tee /etc/apt/sources.list.d/mongodb.list
-sudo apt-get -y update
-sudo apt-get -y install mongodb-org
-sudo service mongod start
-sudo update-rc.d mongod defaults
+rm -rf /usr/src/node-v6.3.1
 sudo mkdir /ias
 cd /ias
 sudo npm install mongodb nodemailer websocket geoip-lite
