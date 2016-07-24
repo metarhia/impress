@@ -177,7 +177,7 @@ api.dom.on('load', function() {
 
     var connection = api.jstp.connect('/api/application/jstp.ws');
 
-    connection.on('open', function() {
+    connection.on('connect', function() {
       print('connection opened');
 
       api.dom.on('click', '#jstpDisconnect', function() {
