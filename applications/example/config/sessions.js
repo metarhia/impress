@@ -12,7 +12,7 @@
   perUserLimit: '5',
   //confirmTime:  '1m',
   //expireTime:   '2m',
-  
+
   database:   'dbName', // Database connection name to store sessions
   // domain:     'name.com' // optional domain for cookie '.domain.com' for all subdomains
 }
