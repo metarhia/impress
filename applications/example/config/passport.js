@@ -29,7 +29,6 @@ if (api.passport) {
             } else {
               done(null, req.user);
             }
-
           } catch (e) { console.trace(); }
         },
         successRedirect: '/api/auth/userInfo.json',
