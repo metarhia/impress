@@ -1,3 +1,10 @@
+0.3.11 / 2016-07-27
+==================
+
+  * Implemented events for JSTP connection, issue #518
+  * Fixed critical port binding bug, issue #574
+  * Changes in asynchronous utilities, issue #569
+
 0.3.10 / 2016-07-22
 ==================
 
