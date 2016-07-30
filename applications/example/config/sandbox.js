@@ -3,8 +3,8 @@
 
   // Following identifiers will be visible in sandbox global
   // There is no need to uncomment this if you you do not want to override list
-  // You can hide 
-  // 
+  // You can hide
+  //
   // global: [
   //  'require', 'console', 'Buffer', 'SlowBuffer',
   //  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'setImmediate', 'clearImmediate'
@@ -18,12 +18,10 @@
     'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'process', 'timers',
 
     // Impress API modules
-    'db', 'con', 'common', 'impress', 'registry', 'definition',
+    'db', 'con', 'jstp', 'common', 'impress', 'metasync', 'registry', 'definition',
 
     // Preinstalled modules
-    'metasync',
     'csv',
-    'jstp',
     'async',
     'iconv',
     'colors',
