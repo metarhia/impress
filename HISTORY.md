@@ -1,3 +1,10 @@
+0.3.12 / 2016-07-31
+==================
+
+  * Implemented events for JSTP connection, issue #518
+  * Moved all asynchronous utilities to metasync, issue #569
+  * Fixed event mapping in WebSocketAdapter
+
 0.3.11 / 2016-07-27
 ==================
 
