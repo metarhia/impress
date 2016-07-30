@@ -40,7 +40,7 @@
   "main": "./lib/impress",
   "dependencies": {
     "async": "2.0.x",
-    "metasync": "0.0.x",
+    "metasync": "^0.0.4",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
