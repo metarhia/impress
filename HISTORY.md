@@ -1,3 +1,12 @@
+0.2.7 / 2016-07-31
+==================
+
+  * Implemented events for JSTP connection, issue #518
+  * Fixed critical port binding bug, issue #574
+  * Fixed event mapping in WebSocketAdapter
+  * Moved all asynchronous utilities to metasync, issue #569
+  * Dependency versioning fixed
+
 0.2.6 / 2016-07-22
 ==================
 
