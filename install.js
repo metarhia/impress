@@ -44,7 +44,7 @@ if (parent !== 'node_modules') {
   process.exit(0);
 }
 
-api.common.each(['package.json', 'server.js', 'config', 'applications'], function(file, callback) {
+api.metasync.each(['package.json', 'server.js', 'config', 'applications'], function(file, callback) {
   api.fs.exists(destination + '/' + file, function(fileExists) {
     exists = exists || fileExists;
     callback();
