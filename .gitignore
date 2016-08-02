@@ -2,10 +2,9 @@ node_modules
 /log/
 /test/
 /debug/
-/develop/
 /.idea/
 *.log
 crlf.js
 *.done
 .DS_Store
-.*.swp
+*.swp

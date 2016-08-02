@@ -1,4 +1,4 @@
-﻿*.js eol=lf
+*.js eol=lf
 *.css eol=lf
 *.template eol=lf
 *.txt eol=lf
