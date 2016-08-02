@@ -1,3 +1,9 @@
+0.3.13 / 2016-08-03
+==================
+
+  * Fixed critical bug in install.js
+  * Finally remove async from package.json, issue #569
+
 0.3.12 / 2016-07-31
 ==================
 
