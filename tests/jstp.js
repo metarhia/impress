@@ -64,9 +64,6 @@ function runTests(err, interfaceName) {
   });
 }
 
-//
-
-
 // Define Data Source
 
 var data = [
@@ -76,8 +73,6 @@ var data = [
   ['Mao Zedong','1893-12-26','Shaoshan'],
   ['Rene Descartes','1596-03-31','La Haye en Touraine']
 ];
-
-api.jstp.assignMetadata(data, metadata);
 
 // Define Person prototype with calculating field
 
