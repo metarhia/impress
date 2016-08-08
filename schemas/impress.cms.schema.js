@@ -98,7 +98,7 @@
       Content:     { caption: 'Content',  type: 'text' }
     },
     indexes: {
-      idxCmsPost: { fields: [ 'PageId', 'LangiageId' ], unique: false }
+      idxCmsPost: { fields: [ 'PageId', 'LanguageId' ], unique: false }
     }
   },
 
