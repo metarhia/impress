@@ -1,3 +1,10 @@
+0.3.14 / 2016-08-18
+==================
+
+  * Update Node.js and MetaSync versions
+  * Changes in api.jstp.accessors
+  * Refactored namespaces, rename JSON to api.json, issue #530
+
 0.3.13 / 2016-08-03
 ==================
 
