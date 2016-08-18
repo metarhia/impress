@@ -18,7 +18,7 @@
     'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'process', 'timers',
 
     // Impress API modules
-    'db', 'con', 'jstp', 'common', 'impress', 'metasync', 'registry', 'definition',
+    'db', 'con', 'jstp', 'json', 'common', 'impress', 'metasync', 'registry', 'definition',
 
     // Preinstalled modules
     'csv',
