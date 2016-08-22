@@ -1,3 +1,9 @@
+0.3.15 / 2016-08-22
+==================
+
+  * Added simple logging for JSTP api, to be improved
+  * Fixed invalid socket creation which caused TLS working not properly
+
 0.3.14 / 2016-08-18
 ==================
 
