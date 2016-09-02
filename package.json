@@ -39,6 +39,7 @@
   },
   "main": "./lib/impress",
   "dependencies": {
+    "metarhia-jstp": "0.1.x",
     "metasync": ">=0.0.8",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
