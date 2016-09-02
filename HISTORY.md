@@ -1,3 +1,9 @@
+0.3.16 / 2016-09-03
+==================
+
+  * Changed Teavis CI tests and deploy scripts for node.js 6.5.0
+  * Added parsing timeout
+
 0.3.15 / 2016-08-22
 ==================
 
