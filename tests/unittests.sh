@@ -1,2 +1,2 @@
-cd ..
-node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
+node --stack-trace-limit=1000 --allow-natives-syntax $DIR/unittests.js
