@@ -14,6 +14,16 @@
   //    url: 'mysql://impress:password@127.0.0.1/impress', // connection string (required)
   //    slowTime: 1000                                     // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
   //  },
+  
+    //  mysqlConnectionSocket: {
+  //    opt : {
+//            user     : 'user',
+//		        password : 'password',
+//		        socketPath : 'socketPath',
+//		        database : 'impress'  
+//          }
+  //    slowTime: 1000                                     // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
+  //  },
 
   // PgSQL example database configuration
   //
