@@ -15,15 +15,15 @@ else
 sudo apt-get -y install g++
 fi
 cd /usr/src
-wget http://nodejs.org/dist/v6.5.0/node-v6.5.0.tar.gz
-tar zxf node-v6.5.0.tar.gz
-rm -f ./node-v6.5.0.tar.gz
-cd node-v6.5.0
+wget http://nodejs.org/dist/v6.6.0/node-v6.6.0.tar.gz
+tar zxf node-v6.6.0.tar.gz
+rm -f ./node-v6.6.0.tar.gz
+cd node-v6.6.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v6.5.0
+rm -rf /usr/src/node-v6.6.0
 sudo mkdir /ias
 cd /ias
 sudo npm install mongodb nodemailer websocket geoip-lite
