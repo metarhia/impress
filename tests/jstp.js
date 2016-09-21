@@ -4,15 +4,13 @@ global.api = {};
 api.common = {};
 api.jstp = {};
 
-var dir = process.cwd();
-
 api.vm = require('vm');
 api.net = require('net');
 api.tls = require('tls');
 api.util = require('util');
 api.events = require('events');
-require(dir + '/lib/api.common.js');
-require(dir + '/lib/api.jstp.js');
+require('../lib/api.common.js');
+require('../lib/api.jstp.js');
 
 var port, tls;
 if (process.argv.indexOf('--tls') !== -1) {

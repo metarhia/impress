@@ -39,6 +39,7 @@
   },
   "main": "./lib/impress",
   "dependencies": {
+    "metarhia-jstp": "0.1.x",
     "metasync": ">=0.0.8",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
@@ -49,7 +50,7 @@
     "zip-stream": "1.1.x",
     "websocket": "1.0.x",
     "csv": "1.1.x",
-    "accept-language": "2.0.x"
+    "accept-language": "3.0.x"
   },
   "engines": {
     "node": ">=4.0.0"

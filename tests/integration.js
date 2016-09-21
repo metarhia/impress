@@ -1,13 +1,15 @@
 'use strict';
 
-var dir = process.cwd();
-require(dir + '/lib/impress');
-
 var ncp = require('ncp').ncp,
     querystring = require('querystring'),
-    taskCount = 0;
+    path = require('path');
+
+process.chdir(path.resolve(__dirname, '..'));
+require('../lib/impress');
 
 ncp.limit = 16;
+
+var taskCount = 0;
 
 var config = {
   host:    '127.0.0.1',

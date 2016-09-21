@@ -1,16 +1,17 @@
 'use strict';
 
-var dir = process.cwd();
-require(dir + '/lib/impress');
-require(dir + '/lib/api.test');
+require('../lib/impress');
+require('../lib/api.test');
+
+api.path = require('path');
 
 api.test.case.show.ok = false;
 
-var testsDir = dir + '/tests/unittests/',
+var testsDir = api.path.resolve(__dirname, '../tests/unittests'),
     tests = api.fs.readdirSync(testsDir);
 
 tests.map(function(fileName) {
-  require(testsDir + fileName);
+  require(api.path.join(testsDir, fileName));
 });
 
 api.test.case.printReport();
