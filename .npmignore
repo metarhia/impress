@@ -4,5 +4,6 @@ node_modules
 /debug/
 /.idea/
 *.log
-crlf.js
 *.done
+crlf.js
+.DS_Store
