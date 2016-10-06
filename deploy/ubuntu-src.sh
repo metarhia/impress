@@ -22,5 +22,5 @@ cd ~
 sudo rm -rf /usr/src/node-v6.7.0
 sudo mkdir /ias
 cd /ias
-sudo npm install mongodb nodemailer websocket geoip-lite
+sudo npm install nodemailer websocket geoip-lite
 sudo npm install impress --unsafe-perm

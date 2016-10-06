@@ -1,4 +1,6 @@
 #!/bin/bash
 sudo dnf install -y mongodb-server
-service mongod start
-chkconfig mongod on
+sudo service mongod start
+sudo chkconfig mongod on
+cd /ias
+sudo npm install mongodb
