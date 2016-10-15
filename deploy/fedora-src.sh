@@ -4,15 +4,15 @@ dnf -y install wget mc gcc-c++
 dnf -y install psmisc
 dnf -y groupinstall "Development Tools"
 cd /usr/src
-wget http://nodejs.org/dist/v6.7.0/node-v6.7.0.tar.gz
-tar zxf node-v6.7.0.tar.gz
-rm -f ./node-v6.7.0.tar.gz
-cd node-v6.7.0
+wget http://nodejs.org/dist/v6.8.0/node-v6.8.0.tar.gz
+tar zxf node-v6.8.0.tar.gz
+rm -f ./node-v6.8.0.tar.gz
+cd node-v6.8.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v6.7.0
+rm -rf /usr/src/node-v6.8.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 sudo mkdir /ias
