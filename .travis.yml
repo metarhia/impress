@@ -26,8 +26,8 @@ node_js:
   - "6.4"
   - "6.5"
   - "6.6"
-  - "6.8"
   - "6.7"
+  - "6.8"
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js
