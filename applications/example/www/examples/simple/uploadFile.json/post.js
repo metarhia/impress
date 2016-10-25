@@ -1,4 +1,4 @@
-(client, callback) => {
+module.exports = function(client, callback) {
 
   callback(client.files);
 
@@ -8,4 +8,4 @@
     console.log('All ' + doneCount + ' file(s) are uploaded.');
   });
 
-}
+};

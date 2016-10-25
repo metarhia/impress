@@ -1,4 +1,4 @@
-(client, callback) => {
+module.exports = function(client, callback) {
   client.attachment('fileName.csv');
   callback([
     ['name1', 11, 21.1],
@@ -7,4 +7,4 @@
     ['name4', 14, 24.4],
     ['name5', 15, 25.5],
   ]);
-}
+};

@@ -96,21 +96,28 @@ Example #1
 To create GET request handler for URL `/api/method.json`  
 File `/api/method.json/get.js`
 ```javascript
+module.exports = function(client, callback) {
+  callback({ field: 'value' });
+};
+```
+Result: `{ "field": "value" }`
+
+Handler also may look like (ES6 should be supported by node.js version):
+```javascript
 (client, callback) => {
   callback({ field: 'value' });
 }
 ```
-Result: `{ "field": "value" }`
 
 Example #2  
 To create POST request handler for URL `/api/method.json`  
 File `/api/method.json/post.js`
 ```javascript
-(client, callback) => {
-  dbImpress.users
-  .find({ group: client.fields.group })
-  .toArray((err, nodes) => callback(nodes));
-}
+module.exports = function(client, callback) {
+  dbImpress.users.find({ group: client.fields.group }).toArray(function(err, nodes) {
+    callback(nodes);
+  });
+};
 ```
 Result:
 ```javascript
@@ -126,8 +133,8 @@ If folder does not contain `access.js` it inherits access rules from its parent 
 
 Example:
 ```javascript
-{
-  guests:  true,  // Allow requests from anonymous (not logged) users
+module.exports = {
+  guests:  true,  // Allow requests from anonimous users (not logged or no session)
   logged:  true,  // Allow requests from logged users
   http:    true,  // Allow requests using http protocol
   https:   true,  // Allow requests using https protocol

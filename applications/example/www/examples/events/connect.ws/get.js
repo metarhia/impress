@@ -1,4 +1,4 @@
-(client, callback) => {
+module.exports = function(client, callback) {
   var connection = client.websocket.accept();
   if (connection) {
     connection.send('Hello world');
@@ -10,4 +10,4 @@
     //});
   }
   callback();
-}
+};

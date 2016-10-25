@@ -1,3 +1,3 @@
-(a, b, c, callback) => {
-  callback(null, a + b + c);
-}
+module.exports = function(a, b, c, callback) {
+  callback(null, { example: 'Hello' });
+};

@@ -1,4 +1,4 @@
-(client, callback) => {
+module.exports = function(client, callback) {
   callback({
     title: 'Override Page Title',
     center: {
@@ -10,4 +10,4 @@
       ],
     }
   });
-}
+};

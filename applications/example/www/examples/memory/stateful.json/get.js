@@ -1,4 +1,4 @@
-(client, callback) => {
+module.exports = function(client, callback) {
 
   application.stateTest = application.stateTest || { counter: 0, addresses: [] };
   application.stateTest.counter++;
@@ -8,4 +8,4 @@
   if (st.addresses.indexOf(ip) === -1) st.addresses.push(ip);
   callback(st);
 
-}
+};

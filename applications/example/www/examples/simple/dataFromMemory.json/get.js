@@ -1,4 +1,4 @@
-(client, callback) => {
+module.exports = function(client, callback) {
   callback({
     phone: {
       model: 'Motorola Photom Q 4G LTE',
@@ -54,4 +54,4 @@
       }
     }
   });
-}
+};
