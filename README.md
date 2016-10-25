@@ -127,7 +127,7 @@ If folder does not contain `access.js` it inherits access rules from its parent 
 Example:
 ```javascript
 {
-  guests:  true,  // Allow requests from anonimous (not logged) users
+  guests:  true,  // Allow requests from anonymous (not logged) users
   logged:  true,  // Allow requests from logged users
   http:    true,  // Allow requests using http protocol
   https:   true,  // Allow requests using https protocol

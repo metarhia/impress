@@ -60,7 +60,7 @@
           <tr class="field"><td class="label">Password</td><td class="value"><input type="password" value="" name="formRegPassword" class="edit" id="formRegPassword" Nullable="No" /></td></tr>
         </table>
         <div class="buttons">
-          <a class="button silver save" id="formRegDo"><span class="icon check"></span>Register</a>
+          <a class="button silver save" id="formRegDo"><span class="icon check"></span>Sign up</a>
           <a class="button silver cancel" id="formRegCancel"><span class="icon undo"></span>Cancel</a>
         </div>
       </form>

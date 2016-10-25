@@ -7,5 +7,5 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo mkdir /ias
 cd /ias
-sudo npm install mongodb nodemailer websocket geoip-lite
+sudo npm install nodemailer websocket geoip-lite
 sudo npm install impress --unsafe-perm

@@ -15,16 +15,16 @@ else
 sudo apt-get -y install g++
 fi
 cd /usr/src
-wget http://nodejs.org/dist/v6.7.0/node-v6.7.0.tar.gz
-tar zxf node-v6.7.0.tar.gz
-rm -f ./node-v6.7.0.tar.gz
-cd node-v6.7.0
+wget http://nodejs.org/dist/v6.9.1/node-v6.9.1.tar.gz
+tar zxf node-v6.9.1.tar.gz
+rm -f ./node-v6.9.1.tar.gz
+cd node-v6.9.1
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v6.7.0
+rm -rf /usr/src/node-v6.9.1
 sudo mkdir /ias
 cd /ias
-sudo npm install mongodb nodemailer websocket geoip-lite
+sudo npm install nodemailer websocket geoip-lite
 sudo npm install impress --unsafe-perm
