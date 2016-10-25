@@ -215,10 +215,10 @@ api.test.case({
     [ 10, 10, 10 ],
   ],
   'api.common.shuffle': [
-    [ [1,2,3],   function(result) { return JSON.stringify(result.sort()) === '[1,2,3]'; }   ],
-    [ ['a','b'], function(result) { return JSON.stringify(result.sort()) === '["a","b"]'; } ],
-    [ [1,'a',3], function(result) { return JSON.stringify(result.sort()) === '[1,3,"a"]'; } ],
-    [ [],        function(result) { return JSON.stringify(result.sort()) === '[]'; }        ],
+    [ [1,2,3],   function(result) { return api.json.stringify(result.sort()) === '[1,2,3]'; }   ],
+    [ ['a','b'], function(result) { return api.json.stringify(result.sort()) === '["a","b"]'; } ],
+    [ [1,'a',3], function(result) { return api.json.stringify(result.sort()) === '[1,3,"a"]'; } ],
+    [ [],        function(result) { return api.json.stringify(result.sort()) === '[]'; }        ],
   ],
   'api.common.extend': [
     [ { f1:1 },                 { f1:1 } ],

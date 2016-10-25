@@ -1,7 +1,7 @@
-﻿*.js eol=lf
-*.css eol=lf
-*.template eol=lf
-*.txt eol=lf
-*.md eol=lf
-*.json eol=lf
-*.sh eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.template text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.sh text eol=lf

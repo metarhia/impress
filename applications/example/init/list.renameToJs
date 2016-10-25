@@ -4,5 +4,5 @@ application.state.data.car = {
 };
 
 api.timers.setInterval(function() {
-  console.log('Data: ' + application.nodeId + ' ' + JSON.stringify(application.state.data.car));
+  console.log('Data: ' + application.nodeId + ' ' + api.json.stringify(application.state.data.car));
 }, 10000);

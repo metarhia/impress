@@ -9,8 +9,8 @@ api.dom.on('load', function() {
 
   var auth = api.ajax({
     regValidation: { post: '/api/auth/regvalidation.json' },
-    register:      { post: '/api/auth/register.json' },
-    signOut:       { post: '/api/auth/signOut.json' }
+    signUp: { post: '/api/auth/signUp.json' },
+    signOut: { post: '/api/auth/signOut.json' }
   });
 
   // Auth Module
@@ -29,7 +29,7 @@ api.dom.on('load', function() {
     return false;
   });
 
-  api.dom.on('click', '#hmenu-Register', function() {
+  api.dom.on('click', '#hmenu-SignUp', function() {
     var closePopup = api.dom.popup('#formReg');
     closePopup.closeElement = api.dom.element('#formRegCancel');
     return false;
@@ -38,15 +38,15 @@ api.dom.on('load', function() {
   api.dom.on('click', '#formRegDo', function(/*event*/) {
     var inputEmail = api.dom.id('formRegEmail'),
         inputPassword = api.dom.id('formRegPassword'),
-        regValidation = null,
         data = { email: inputEmail.value };
     auth.regValidation(data, function(err, json) {
-      regValidation = json;
-      if (regValidation !== null) {
-        data.Password = inputPassword.value;
-        if (regValidation.email) {
+      console.dir(json);
+      if (json) {
+        data.password = inputPassword.value;
+        console.dir(data);
+        if (json.email) {
           api.dom.removeClass(inputEmail, 'invalid');
-          auth.register(data, function(err, data) {
+          auth.signUp(data, function(err, data) {
             if (data.result === 'ok') window.location.reload(true);
           });
         } else {
