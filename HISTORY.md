@@ -1,3 +1,18 @@
+0.3.18 / 2016-10-25
+==================
+
+  * Changed Teavis CI tests and deploy scripts for node.js 6.9.1
+  * Fixed DB connection interface
+  * Security interface refactoring (just first step)
+  * Added GlobalStorage DB driver
+
+0.3.17 / 2016-10-06
+==================
+
+  * Fixed TypeError: client.res.setHeader is not a function, issue #593
+  * Fixed TypeError: api.common.metasync is not a function, issue #594
+  * Fixed bug in setup scripts, issue #602
+
 0.3.16 / 2016-09-03
 ==================
 
