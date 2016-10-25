@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -39,22 +39,21 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "async": "2.0.x",
-    "metasync": "^0.0.4",
+    "metasync": ">=0.0.8",
+    "globalstorage": "0.0.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
     "uglify-js": "2.6.x",
     "multiparty": "4.1.x",
     "iconv-lite": "0.4.x",
-    "zip-stream": "1.0.x",
+    "zip-stream": "1.1.x",
     "websocket": "1.0.x",
     "csv": "1.1.x",
-    "accept-language": "2.0.x"
+    "accept-language": "3.0.x"
   },
   "engines": {
-    "node": ">=0.10.6",
-    "iojs": ">=1.0.0"
+    "node": ">=4.0.0"
   },
   "readmeFilename": "README.md",
   "scripts": {

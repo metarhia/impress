@@ -6,6 +6,6 @@
   writeBuffer:    64*1024, // Buffer size 64kb
   applicationLog: false,   // Write log to application folder
   serverLog:      true,    // Write log to server global folder
-  files:          ['access', 'error', 'debug', 'slow', 'server', 'node', 'cloud', 'warning'], // write to files
+  files:          ['access', 'api', 'error', 'debug', 'slow', 'server', 'node', 'cloud', 'warning'], // write to files
   stdout:         ['error', 'debug', 'warning'] // output log files to stdout
 }
