@@ -5,9 +5,11 @@
 
   cloud: 'PrivateCloud', // cloud name
   server: 'S1', // Server name to identify it in loadbalancing infrastructure
+  controller: 'host or IP', // uplink to Impress Cloud Controller
   instance: 'controller', // cloud instance type: standalone, controller, server
   //instance: 'server',
   //instance: 'standalone',
+
 
   key: '19nm58993eJ747845fk78A2z7854W90D', // Cloud access key
   cookie: 'node', // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')

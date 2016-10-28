@@ -6,6 +6,7 @@
     cloud:      'string',
     server:     'string',
     instance:   '(standalone,controller,server)',
+    controller: '[string]',
 
     key:        '[string]',
     cookie:     'node:string',
