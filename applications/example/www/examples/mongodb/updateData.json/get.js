@@ -1,8 +1,8 @@
 (client, callback) => {
   dbAlias.Category('testCategory', (err, category) => {
-    category.new(client.query, (err, objectId) => {
+    category.update(client.query, (err) => {
       if (err) return callback({ error: err });
-      callback({ objectId: objectId });
+      callback({});
     });
   });
 }
