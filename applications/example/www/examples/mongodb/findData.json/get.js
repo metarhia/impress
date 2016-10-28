@@ -1,8 +1,9 @@
 (client, callback) => {
   dbAlias.category('testCategory', (err, category) => {
-    category.deleteById(client.query.objectId, (err) => {
+    if (err) return callback(err);
+    category.findOne(client.query, (err, data) => {
       if (err) return callback(err);
-      callback({});
+      callback(data);
     });
   });
 }
