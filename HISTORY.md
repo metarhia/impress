@@ -1,10 +1,11 @@
 0.3.18 / 2016-10-25
 ==================
 
-  * Changed Teavis CI tests and deploy scripts for node.js 6.9.1
+  * Changed Teavis CI tests and deploy scripts for node.js 7.0.0
   * Fixed DB connection interface
   * Security interface refactoring (just first step)
   * Added GlobalStorage DB driver
+  * Added api.common.buffer
 
 0.3.17 / 2016-10-06
 ==================
