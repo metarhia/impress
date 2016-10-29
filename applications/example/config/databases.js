@@ -8,6 +8,12 @@
     slowTime: '2s' // timeout to mark requests as "slow"
   },
 
+  gs: {
+    alias: 'gs',
+    url: 'gs://metarhia.com/',
+    storage: 'dbAlias'
+  },
+
   // MySQL example database configuration
   //
   //  mysqlConnection: {

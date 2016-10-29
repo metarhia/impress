@@ -15,7 +15,7 @@
   api: [
     // Node internal modules
     'console', 'os', 'fs', 'sd', 'tls','net', 'dns', 'url', 'util', 'path', 'zlib', 'http', 'https', 'dgram',
-    'stream', 'buffer', 'domain', 'crypto', 'events', 'punycode', 'readline', 'querystring', 'process', 'timers',
+    'stream', 'buffer', 'domain', 'crypto', 'events', 'readline', 'querystring', 'process', 'timers',
 
     // Impress API modules
     'db', 'con', 'jstp', 'json', 'common', 'impress', 'metasync', 'registry', 'definition',

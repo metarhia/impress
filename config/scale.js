@@ -5,6 +5,7 @@
 
   cloud: 'PrivateCloud', // cloud name
   server: 'S1', // Server name to identify it in loadbalancing infrastructure
+  controller: 'host or IP', // uplink to Impress Cloud Controller
   instance: 'controller', // cloud instance type: standalone, controller, server
   //instance: 'server',
   //instance: 'standalone',

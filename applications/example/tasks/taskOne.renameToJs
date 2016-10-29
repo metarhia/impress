@@ -1,6 +1,6 @@
 {
   caption:   'Task Caption',
-  place:     'master', // place to be executed: master, worker, cloud
+  place:     'worker', // place to be executed: master, worker, cloud
 
   // You can use either time or interval
   //time:    '12:30',  // run at certain time, NOT IMPLEMENTED
