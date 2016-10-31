@@ -11,7 +11,7 @@
   gs: {
     alias: 'gs',
     url: 'gs://metarhia.com/',
-    storage: 'dbAlias'
+    storage: 'dbName'
   },
 
   // MySQL example database configuration
