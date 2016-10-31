@@ -1,0 +1,6 @@
+gs.connection.create({ field: 'value' }, function(err, data) {
+  console.dir({ err: err, insertedId: data.insertedId });
+  gs.connection.find({}, function(err, data) {
+    console.dir({ err: err, data: data });
+  });
+});
