@@ -40,3 +40,5 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-6
+services:
+  - mongodb
