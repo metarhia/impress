@@ -1,3 +1,10 @@
+0.3.21 / 2016-11-07
+==================
+
+  * Multiple changes in GlobalStorage DB driver
+  * Refactired Impress DB API and fixed Mongodb Storage Provider
+  * Fixed setup execution in forked processes
+
 0.3.18 / 2016-10-25
 ==================
 
