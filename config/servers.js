@@ -40,6 +40,15 @@
   //  cert:      'example.cer'
   //},
 
+  webRpc: {
+    protocol:  'jstp-ws',
+    address:   '*',
+    ports:     [8000],
+    slowTime:  '1s',
+    timeout:   '30s',
+    keepAlive: '5s'
+  },
+
   //local: {
   //  protocol: 'http',
   //  address:  '127.0.0.1',

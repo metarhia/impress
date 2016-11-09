@@ -1,5 +1,5 @@
 (callback) => {
-  connection.event('interfaceName', 'eventName', {
+  connection.emitRemoteEvent('interfaceName', 'eventName', {
     example: 'hello'
   });
   callback();

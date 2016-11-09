@@ -40,6 +40,18 @@ function installCLI() {
   });
 }
 
+// Copy the browser version of JSTP
+//
+['jstp.min.js', 'jstp.min.js.map'].forEach(function(file) {
+  var source = api.path.resolve(__dirname,
+    'node_modules/metarhia-jstp/dist', file);
+  var dest = api.path.resolve(__dirname,
+    'applications/example/static/js', file);
+
+  var data = api.fs.readFileSync(source);
+  api.fs.writeFileSync(dest, data);
+});
+
 if (parent !== 'node_modules') {
   console.log('Running in developer mode');
   process.exit(0);

@@ -18,7 +18,7 @@
     'stream', 'buffer', 'domain', 'crypto', 'events', 'readline', 'querystring', 'process', 'timers',
 
     // Impress API modules
-    'db', 'con', 'jstp', 'json', 'common', 'impress', 'metasync', 'registry', 'definition',
+    'db', 'con', 'json', 'common', 'impress', 'registry', 'definition',
 
     // Preinstalled modules
     'csv',
@@ -26,6 +26,10 @@
     'iconv',
     'colors',
     'zipStream', // npm module zip-stream
+
+    // Metarhia modules
+    'jstp',
+    'metasync',
 
     // Additional modules
     //'mkdirp',

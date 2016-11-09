@@ -7,3 +7,5 @@ node_modules
 *.done
 crlf.js
 .DS_Store
+*.min.js
+*.min.js.map
