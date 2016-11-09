@@ -1,3 +1,9 @@
+0.3.22 / 2016-11-09
+==================
+
+  * Fixed DB library and MongoDB driver to load configured collections
+  * Fixed security provider
+
 0.3.21 / 2016-11-07
 ==================
 
