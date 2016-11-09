@@ -15,10 +15,14 @@ var isWin = !!process.platform.match(/^win/);
 
 api.ncp.limit = 16;
 
-var current = api.path.dirname(__filename.replace(/\\/g, '/')),
-    parent = api.path.basename(api.path.dirname(current)),
-    destination = api.path.dirname(api.path.dirname(current)),
-    exists = false;
+var current = api.path.dirname(__filename.replace(/\\/g, '/'));
+var parent = api.path.basename(api.path.dirname(current));
+var destination = api.path.dirname(api.path.dirname(current));
+var exists = false;
+
+var jstpPath = api.path.dirname(require.resolve('metarhia-jstp'));
+var jstpDistPath = api.path.join(jstpPath, 'dist');
+var staticJsDir = api.path.resolve(__dirname, 'applications/example/static/js');
 
 // Execute shell command displaying output and possible errors
 //
@@ -43,13 +47,12 @@ function installCLI() {
 // Copy the browser version of JSTP
 //
 ['jstp.min.js', 'jstp.min.js.map'].forEach(function(file) {
-  var source = api.path.resolve(__dirname,
-    'node_modules/metarhia-jstp/dist', file);
-  var dest = api.path.resolve(__dirname,
-    'applications/example/static/js', file);
+  var source = api.path.join(jstpDistPath, file);
+  var dest = api.path.join(staticJsDir, file);
 
-  var data = api.fs.readFileSync(source);
-  api.fs.writeFileSync(dest, data);
+  var inputStream = api.fs.createReadStream(source);
+  var outputStream = api.fs.createWriteStream(dest);
+  inputStream.pipe(outputStream);
 });
 
 if (parent !== 'node_modules') {
