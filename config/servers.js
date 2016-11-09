@@ -5,13 +5,15 @@
 
   master: {
     protocol:  'jstp',
+    transport: 'tcp',
     address:   '127.0.0.1',
     ports:     [250],
     slowTime:  '1s'
   },
 
   www: {
-    protocol:  'http', // http, https, jstp, jstps
+    protocol:  'http', // http or jstp
+    transport: 'tcp',  // tcp or tls for http; tcp, tls, ws or wss for jstp
     address:   '*',
     ports:     [80],
     // list [81,82,83]
@@ -26,13 +28,15 @@
 
   rpc: {
     protocol:  'jstp',
+    transport: 'tcp',
     address:   '*',
     ports:     [3000, [1]], // Example: [81, [-1]]
     slowTime:  '1s'
   },
 
   //secureRpc: {
-  //  protocol:  'jstps',
+  //  protocol:  'jstp',
+  //  transport: 'tls',
   //  address:   '*',
   //  ports:     [4000, [1]],
   //  slowTime:  '1s',
@@ -41,25 +45,26 @@
   //},
 
   webRpc: {
-    protocol:  'jstp-ws',
+    protocol:  'jstp',
+    transport: 'ws',
     address:   '*',
     ports:     [8000],
-    slowTime:  '1s',
-    timeout:   '30s',
-    keepAlive: '5s'
+    slowTime:  '1s'
   },
 
   //local: {
-  //  protocol: 'http',
-  //  address:  '127.0.0.1',
-  //  ports:    [80],
-  //  nagle:    true, // Nagle algorithm, default true, set to false for latency optimization
-  //  slowTime: '1s',
-  //  timeout:  '120s' // default 30s
+  //  protocol:  'http',
+  //  transport: 'tcp',
+  //  address:   '127.0.0.1',
+  //  ports:     [80],
+  //  nagle:     true, // Nagle algorithm, default true, set to false for latency optimization
+  //  slowTime:  '1s',
+  //  timeout:   '120s' // default 30s
   //},
 
   //ssl: {
-  //  protocol:  'https',
+  //  protocol:  'http',
+  //  transport: 'tls',
   //  address:   '127.0.0.1',
   //  ports:     [443],
   //  key:       'example.key',
@@ -68,6 +73,7 @@
 
   //static: {
   //  protocol:  'http',
+  //  transport: 'tcp',
   //  address:   '127.0.0.1',
   //  ports:     [8080],
   //  slowTime:  1000

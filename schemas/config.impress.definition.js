@@ -55,7 +55,8 @@
   servers: '{{server}}',
 
   server: {
-    protocol:     '(http,https,jstp,jstps,jstp-ws,jstp-wss)',
+    protocol:     '(http,jstp)',
+    transport:    '(tcp,tls,ws,wss)',
     address:      'string',
     ports:        '[array]',
     bundle:       'false:boolean',
