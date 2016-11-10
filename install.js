@@ -50,9 +50,8 @@ function installCLI() {
   var source = api.path.join(jstpDistPath, file);
   var dest = api.path.join(staticJsDir, file);
 
-  var inputStream = api.fs.createReadStream(source);
-  var outputStream = api.fs.createWriteStream(dest);
-  inputStream.pipe(outputStream);
+  var data = api.fs.readFileSync(source);
+  api.fs.writeFileSync(dest, data);
 });
 
 if (parent !== 'node_modules') {
