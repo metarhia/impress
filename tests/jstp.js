@@ -15,7 +15,7 @@ var client = jstp.tcp.createClient({
   host: '127.0.0.1',
   port: port,
   secure: tls
-}, new jstp.ClientApplicationProvider('example', {}));
+});
 
 client.connect(function(error, connection) {
   if (error) throw error;
