@@ -1,6 +1,5 @@
 (client, callback) => {
 
-  console.log('---1');
   // client.redirect('/'); // HTTP redirection
   // client.cache('30s');  // Cache result for 30 seconds
 
