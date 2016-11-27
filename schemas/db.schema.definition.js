@@ -15,7 +15,7 @@
     indexes:    '[{{compositeIndex}}]',
     server:     '[hash]',
     client:     '[hash]',
-    data:       '[array]'   // '{{data}}' insert default data
+    data:       '[array]'   // '{{data}}' insert default data      
   },
 
   caption: {

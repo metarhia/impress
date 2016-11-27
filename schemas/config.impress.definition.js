@@ -6,7 +6,7 @@
     cloud:      'string',
     server:     'string',
     instance:   '(standalone,controller,server)',
-    controller: '[string]',
+    controller: '{controller}',
 
     key:        '[string]',
     cookie:     'node:string',
@@ -16,6 +16,11 @@
     gc:         '10m:duration',
     watch:      '2s:duration',
     firewall:   '{firewall}'
+  },
+
+  controller: {
+    host: 'string',
+    port: 'number'
   },
 
   firewall: {
@@ -50,7 +55,8 @@
   servers: '{{server}}',
 
   server: {
-    protocol:     '(http,https,jstp,jstps)',
+    protocol:     '(http,jstp)',
+    transport:    '(tcp,tls,ws,wss)',
     address:      'string',
     ports:        '[array]',
     bundle:       'false:boolean',

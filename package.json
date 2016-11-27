@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.3.22",
+  "version": "0.3.30",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -39,8 +39,9 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "metasync": ">=0.0.8",
+    "metasync": "0.0.12",
     "globalstorage": "0.0.x",
+    "metarhia-jstp": ">=0.4.0",
     "bcrypt": "0.8.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
@@ -59,7 +60,8 @@
   "readmeFilename": "README.md",
   "scripts": {
     "install": "node install.js",
-    "npm": "npm link npm"
+    "npm": "npm link npm",
+    "test": "./tests/integration.sh"
   },
   "jshintConfig": {
     "predef": ["api", "impress", "global", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource"],

@@ -160,9 +160,6 @@ api.dom.on('load', function() {
   });
 
   function jstpConnect() {
-    application.api = {
-    };
-
     var messageBlock = api.dom.id('jstpLog');
 
     function print() {
@@ -175,23 +172,29 @@ api.dom.on('load', function() {
       messageBlock.innerHTML += '<br>';
     }
 
-    var connection = api.jstp.connect('/api/application/jstp.ws');
+    var client = api.jstp.ws.createClient('ws://localhost:8000',
+      new api.jstp.ClientApplicationProvider('example', {}));
 
-    connection.on('connect', function() {
+    client.connect(function(error, connection) {
+      if (error) {
+        print(error);
+        return;
+      }
+
       print('connection opened');
 
       api.dom.on('click', '#jstpDisconnect', function() {
-        connection.socket.close();
+        client.disconnect();
         print('connection closed');
       });
 
-      connection.handshake('example', 'user', 'pass', function(err, session) {
+      connection.handshake('example', null, null, function(err, session) {
         if (err) {
           print(err);
           return;
         }
         print('handshake done, sid =', session);
-        connection.inspect('interfaceName', runTests);
+        connection.inspectInterface('interfaceName', runTests);
       });
     });
 
