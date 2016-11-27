@@ -1,3 +1,9 @@
+0.3.30 / 2016-11-28
+==================
+
+  * Fixed killing workers
+  * Core refactoring and code style
+
 0.3.22 / 2016-11-09
 ==================
 
