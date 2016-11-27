@@ -59,28 +59,54 @@ if (parent !== 'node_modules') {
   process.exit(0);
 }
 
-api.metasync.each(['package.json', 'server.js', 'config', 'applications'], function(file, callback) {
+var checkFiles = ['package.json', 'server.js', 'config', 'applications'];
+api.metasync.each(checkFiles, check, done);
+
+function check(file, callback) {
   api.fs.exists(destination + '/' + file, function(fileExists) {
     exists = exists || fileExists;
     callback();
   });
-}, function() {
-  if (exists) console.log('Impress Application Server'.bold.green + ' is already installed and configured in this folder.');
-  else {
+}
+
+function done() {
+  if (exists) {
+    console.log(
+      'Impress Application Server'.bold.green +
+      ' is already installed and configured in this folder.'
+    );
+  } else {
     console.log('Installing Impress Application Server...'.bold.green);
-    api.fs.createReadStream(current + '/server.js').pipe(api.fs.createWriteStream(destination + '/server.js'));
-    api.fs.createReadStream(current + '/lib/package.template.json').pipe(api.fs.createWriteStream(destination + '/package.json'));
+    var sSrv = api.fs.createReadStream(current + '/server.js');
+    var dSrv = api.fs.createWriteStream(destination + '/server.js');
+    sSrv.pipe(dSrv);
+    var sPkg = api.fs.createReadStream(current + '/lib/package.template.json');
+    var dPkg = api.fs.createWriteStream(destination + '/package.json');
+    sPkg.pipe(dPkg);
     var shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
-    api.fs.createReadStream(current + '/' + shellScript).pipe(api.fs.createWriteStream(destination + '/' + shellScript));
-    api.ncp(current + '/config', destination + '/config', { clobber: false }, function(err) {
-      if (err) console.error(err);
-      api.ncp(current + '/applications', destination + '/applications', { clobber: false }, function(err) {
+    var sScr = api.fs.createReadStream(current + '/' + shellScript);
+    var dScr = api.fs.createWriteStream(destination + '/' + shellScript);
+    sScr.pipe(dScr);
+    api.ncp(
+      current + '/config',
+      destination + '/config',
+      { clobber: false },
+      function(err) {
         if (err) console.error(err);
-        else {
-          if (!isWin) execute('chmod +x ' + destination +'/server.sh', installCLI);
-          else installCLI();
-        }
-      });
-    });
+        api.ncp(
+          current + '/applications',
+          destination + '/applications',
+          { clobber: false },
+          function(err) {
+            if (err) console.error(err);
+            else {
+              if (!isWin) {
+                execute('chmod +x ' + destination +'/server.sh', installCLI);
+              } else installCLI();
+            }
+          }
+        );
+      }
+    );
   }
-});
+}

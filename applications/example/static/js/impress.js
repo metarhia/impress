@@ -4,7 +4,6 @@ window.global = window;
 global.api = {};
 global.application = {};
 
-api.impress = {};
 api.common = {};
 
 api.common.falseness = function() { return false; };
