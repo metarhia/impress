@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.3.29",
+  "version": "0.3.30",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -60,7 +60,8 @@
   "readmeFilename": "README.md",
   "scripts": {
     "install": "node install.js",
-    "npm": "npm link npm"
+    "npm": "npm link npm",
+    "test": "./tests/integration.sh"
   },
   "jshintConfig": {
     "predef": ["api", "impress", "global", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource"],
