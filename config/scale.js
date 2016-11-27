@@ -5,6 +5,10 @@
 
   cloud: 'PrivateCloud', // cloud name
   server: 'S1', // Server name to identify it in loadbalancing infrastructure
+  controller: { // uplink to Impress Cloud Controller
+    host: '127.0.0.1',
+    port: 250
+  },
   instance: 'controller', // cloud instance type: standalone, controller, server
   //instance: 'server',
   //instance: 'standalone',
@@ -28,5 +32,4 @@
   nagle: false, // Nagle algorithm
   gc: 0, // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
   watch: '2s' // combine wached file system events if interval less then specified
-
 }

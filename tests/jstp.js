@@ -1,16 +1,6 @@
 'use strict';
 
-global.api = {};
-api.common = {};
-api.jstp = {};
-
-api.vm = require('vm');
-api.net = require('net');
-api.tls = require('tls');
-api.util = require('util');
-api.events = require('events');
-require('../lib/api.common.js');
-require('../lib/api.jstp.js');
+var jstp = require('metarhia-jstp');
 
 var port, tls;
 if (process.argv.indexOf('--tls') !== -1) {
@@ -21,14 +11,19 @@ if (process.argv.indexOf('--tls') !== -1) {
   tls = false;
 }
 
-var connection = api.jstp.connect('impress', '127.0.0.1', port, tls);
+var client = jstp.tcp.createClient({
+  host: '127.0.0.1',
+  port: port,
+  secure: tls
+});
 
-connection.on('connect', function() {
+client.connect(function(error, connection) {
+  if (error) throw error;
   console.log('connected');
-  connection.handshake('example', 'user', 'passwordHash', function(err, session) {
+  connection.handshake('example', null, null, function(err, session) {
     if (err) throw err;
     console.log('handshake done, sid =', session);
-    connection.inspect('interfaceName', runTests);
+    connection.inspectInterface('interfaceName', runTests);
   });
 });
 
@@ -62,41 +57,43 @@ function runTests(err, interfaceName) {
   });
 }
 
-// Define Data Source
-
-var data = [
-  ['Marcus Aurelius','212-04-26','Rome'],
-  ['Victor Glushkov','1923-08-24','Rostov on Don'],
-  ['Ibn Arabi','1165-11-16','Murcia'],
-  ['Mao Zedong','1893-12-26','Shaoshan'],
-  ['Rene Descartes','1596-03-31','La Haye en Touraine']
-];
-
-// Define Person prototype with calculating field
-
-var metadata = {
-  name: 'string',
-  birth: 'Date',
-  city: 'string',
-  age: function() {
-    var difference = new Date() - this.birth;
-    return Math.floor(difference / 31536000000);
-  }
-};
-
-// Define Query
-
-var query = (person) => (
-  person.name !== '' &&
-  person.age > 18 &&
-  person.city === 'Rome'
-);
-
-// Build prototype and assign to array elements
-
-api.jstp.assignMetadata(data, metadata);
-
-// Filter Data using Query
-
-var res = data.filter(query);
-console.dir(res);
+/*
+ *  // Define Data Source
+ *
+ *  var data = [
+ *    ['Marcus Aurelius','212-04-26','Rome'],
+ *    ['Victor Glushkov','1923-08-24','Rostov on Don'],
+ *    ['Ibn Arabi','1165-11-16','Murcia'],
+ *    ['Mao Zedong','1893-12-26','Shaoshan'],
+ *    ['Rene Descartes','1596-03-31','La Haye en Touraine']
+ *  ];
+ *
+ *  // Define Person prototype with calculating field
+ *
+ *  var metadata = {
+ *    name: 'string',
+ *    birth: 'Date',
+ *    city: 'string',
+ *    age: function() {
+ *      var difference = new Date() - this.birth;
+ *      return Math.floor(difference / 31536000000);
+ *    }
+ *  };
+ *
+ *  // Define Query
+ *
+ *  var query = (person) => (
+ *    person.name !== '' &&
+ *    person.age > 18 &&
+ *    person.city === 'Rome'
+ *  );
+ *
+ *  // Build prototype and assign to array elements
+ *
+ *  api.jstp.assignMetadata(data, metadata);
+ *
+ *  // Filter Data using Query
+ *
+ *  var res = data.filter(query);
+ *  console.dir(res);
+ */

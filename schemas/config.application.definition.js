@@ -85,8 +85,7 @@
     perIpLimit:   '20:number',
     confirmTime:  '1d:duration',
     expireTime:   '10d:duration',
-    perUserLimit: '5:number',
-    database:     '[string]'
+    perUserLimit: '5:number'
   }
 
 }

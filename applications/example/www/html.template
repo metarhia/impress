@@ -16,6 +16,7 @@
 
   <script type="text/javascript" src="/js/eventsource.min.js"></script>
   <script type="text/javascript" src="/js/impress.js"></script>
+  <script type="text/javascript" src="/js/jstp.min.js"></script>
   <script type="text/javascript" src="/js/init.js"></script>
 </head>
 <body>

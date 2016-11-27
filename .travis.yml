@@ -35,6 +35,12 @@ node_js:
   - "6.7"
   - "6.8"
   - "6.9"
+  - "7.0"
+  - "7.1"
+  - "7.2"
+install:
+  - npm install
+  - npm install mongodb
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js
@@ -45,3 +51,5 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-6
+services:
+  - mongodb
