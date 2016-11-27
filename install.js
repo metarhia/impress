@@ -72,9 +72,9 @@ api.metasync.each(['package.json', 'server.js', 'config', 'applications'], funct
     api.fs.createReadStream(current + '/lib/package.template.json').pipe(api.fs.createWriteStream(destination + '/package.json'));
     var shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
     api.fs.createReadStream(current + '/' + shellScript).pipe(api.fs.createWriteStream(destination + '/' + shellScript));
-    api.ncp(current + '/config', destination + '/config', { clobber: false }, function (err) {
+    api.ncp(current + '/config', destination + '/config', { clobber: false }, function(err) {
       if (err) console.error(err);
-      api.ncp(current + '/applications', destination + '/applications', { clobber: false }, function (err) {
+      api.ncp(current + '/applications', destination + '/applications', { clobber: false }, function(err) {
         if (err) console.error(err);
         else {
           if (!isWin) execute('chmod +x ' + destination +'/server.sh', installCLI);
