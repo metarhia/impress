@@ -41,7 +41,7 @@
   "dependencies": {
     "metasync": "0.0.12",
     "globalstorage": "0.0.x",
-    "metarhia-jstp": ">=0.4.0",
+    "metarhia-jstp": ">=0.4.4",
     "bcrypt": "0.8.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
