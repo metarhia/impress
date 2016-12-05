@@ -1,21 +1,24 @@
 {
 
   scale: {
-    check:      '[string]',
+    check:        '[string]',
 
-    cloud:      'string',
-    server:     'string',
-    instance:   '(standalone,controller,server)',
-    controller: '{controller}',
+    cloud:        'string',
+    server:       'string',
+    instance:     '(standalone,controller,server)',
+    controller:   '{controller}',
 
-    key:        '[string]',
-    cookie:     'node:string',
+    key:          '[string]',
+    cookie:       'node:string',
 
-    health:     '5s:duration',
-    nagle:      'false:boolean',
-    gc:         '10m:duration',
-    watch:      '2s:duration',
-    firewall:   '{firewall}'
+    health:       '5s:duration',
+    nagle:        'false:boolean',
+    gc:           '10m:duration',
+    watch:        '2s:duration',
+    firewall:     '{firewall}',
+
+    characters:   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:string',
+    length:       '64:number',
   },
 
   controller: {
