@@ -31,5 +31,8 @@
   health: '5m', // health monitoring interval '5s'
   nagle: false, // Nagle algorithm
   gc: 0, // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
-  watch: '2s' // combine wached file system events if interval less then specified
+  watch: '2s', // combine wached file system events if interval less then specified
+
+  characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', // JSTP session token characters
+  length: 64,  // JSTP session token length
 }
