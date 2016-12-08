@@ -1,3 +1,21 @@
+0.3.33 / 2016-12-05
+==================
+
+  * Reimplemented security subsystem with Globalstorage support
+  * Separated auth functionality into impress.client.js and impress.security.js 
+  * Removed Mongodb security provider impress.security.mongodb.js
+  * Check remote API methods arguments count
+
+0.3.32 / 2016-12-02
+==================
+
+  * Unescape URLs for static files (#636)
+
+0.3.31 / 2016-11-30
+==================
+
+  * Implemented basic logging for JSTP RPC
+
 0.3.30 / 2016-11-28
 ==================
 
