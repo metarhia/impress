@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.3.33",
+  "version": "0.3.34",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -42,7 +42,7 @@
     "metasync": "0.0.x",
     "globalstorage": "0.0.x",
     "metarhia-jstp": ">=0.4.5",
-    "bcrypt": "1.0.x",
+    "bcrypt": "0.8.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
