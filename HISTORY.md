@@ -1,3 +1,9 @@
+0.3.34 / 2016-12-09
+==================
+
+* User and Session instantiation refactored
+* Back to bcrypt 0.8.x because 1.0.x not working
+
 0.3.33 / 2016-12-05
 ==================
 
