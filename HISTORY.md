@@ -1,3 +1,9 @@
+0.3.35 / 2016-12-10
+==================
+
+  * Merged v8 library and v8 native functions to api.v8
+  * Fixed Impress logging
+
 0.3.34 / 2016-12-09
 ==================
 
