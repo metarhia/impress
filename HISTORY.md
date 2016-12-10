@@ -1,3 +1,15 @@
+0.2.10 / 2016-12-10
+==================
+
+  * Implement basic logging for JSTP RPC
+  * Unescape URLs for static files
+  * Reimplemented security subsystem with Globalstorage support
+  * Check remote API methods arguments count
+  * Use Impress session keys for JSTP sessions
+  * User and Session instantiation refactored
+  * Merged v8 library and v8 native functions to api.v8
+  * Fixed Impress logging
+
 0.2.9 / 2016-11-28
 ==================
 

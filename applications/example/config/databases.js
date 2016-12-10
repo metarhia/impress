@@ -5,14 +5,14 @@
     alias: 'dbAlias', // optional alias to access database from global context
     url: 'mongodb://127.0.0.1:27017/impress', // connection string
     collections: ['sessions', 'users', 'groups', 'testCollection'], // optional
-    slowTime: '2s', // timeout to mark requests as "slow"
-    security: true
+    slowTime: '2s' // timeout to mark requests as "slow"
   },
 
   gs: {
     alias: 'gs',
     url: 'gs://metarhia.com/',
-    storage: 'dbName'
+    storage: 'dbName',
+    security: true
   },
 
   // MySQL example database configuration
