@@ -32,5 +32,8 @@ api.timers.setInterval(function() {
 }, 7000);
 
 api.timers.setInterval(function() {
-  console.log('Data in ' + application.nodeId + ' ' + api.json.stringify(application.state.data.car));
+  console.log(
+    'Data in ' + application.nodeId + ' ' +
+    api.json.stringify(application.state.data.car)
+  );
 }, 10000);

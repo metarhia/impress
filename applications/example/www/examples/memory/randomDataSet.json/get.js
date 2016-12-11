@@ -1,19 +1,23 @@
 application.test = {};
 
 application.test.names = [
-  'Plato', 'Zeno', 'Persaeus', 'Aristo', 'Apollophanes', 'Eudromus', 'Crates', 'Diogenes', 'Zenodotus', 'Basilides',
-  'Antipater', 'Apollodorus', 'Archedemus', 'Panaetius', 'Boethus', 'Polemon', 'Marcus', 'Heraclides', 'Dardanus',
-  'Mnesarchus', 'Stilo', 'Dionysius', 'Quintus', 'Hecato', 'Diotimus', 'Posidonius', 'Crinis', 'Diodotus', 'Jason'
+  'Plato', 'Zeno', 'Persaeus', 'Aristo', 'Apollophanes', 'Eudromus',
+  'Crates', 'Diogenes', 'Zenodotus', 'Basilides', 'Antipater', 'Apollodorus',
+  'Archedemus', 'Panaetius', 'Boethus', 'Polemon', 'Marcus', 'Heraclides',
+  'Dardanus', 'Mnesarchus', 'Stilo', 'Dionysius', 'Quintus', 'Hecato',
+  'Diotimus', 'Posidonius', 'Crinis', 'Diodotus', 'Jason'
 ];
 
 application.test.cities = [
-  'Sidon', 'Rhodes', 'Chios', 'Antioch', 'Carthage', 'Assos', 'Cyrene', 'Amphipolis', 'Soli', 'Tarsus', 'Mallus',
-  'Babylon', 'Seleucia', 'Athens', 'Cyrene', 'Apamea', 'Cordylion', 'Tyre', 'Nysa', 'Alexandria', 'Hierapolis'
+  'Sidon', 'Rhodes', 'Chios', 'Antioch', 'Carthage', 'Assos', 'Cyrene',
+  'Amphipolis', 'Soli', 'Tarsus', 'Mallus', 'Babylon', 'Seleucia', 'Athens',
+  'Cyrene', 'Apamea', 'Cordylion', 'Tyre', 'Nysa', 'Alexandria', 'Hierapolis'
 ];
 
 application.test.schools = [
-  'Milesian', 'Xenophanes', 'Pythagoreanism', 'Heraclitus', 'Eleatic philosophy', 'Pluralism', 'Atomism',
-  'Sophistry', 'Socrates', 'Plato', 'Aristotle', 'Hellenistic'
+  'Milesian', 'Xenophanes', 'Pythagoreanism', 'Heraclitus',
+  'Eleatic philosophy', 'Pluralism', 'Atomism', 'Sophistry', 'Socrates',
+  'Plato', 'Aristotle', 'Hellenistic'
 ];
 
 application.test.randomItem = function(arr) {

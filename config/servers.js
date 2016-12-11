@@ -13,10 +13,10 @@
 
   www: {
     protocol:  'http', // http or jstp
-    transport: 'tcp',  // tcp or tls for http; tcp, tls, ws or wss for jstp
+    transport: 'tcp', // tcp or tls for http; tcp, tls, ws or wss for jstp
     address:   '*',
     ports:     [80],
-    // list [81,82,83]
+    // list [81, 82, 83]
     // range from..to [81,,91]
     // range from..count [81, [8]]
     // range from..cpu-n [81, [-2]]
@@ -57,7 +57,8 @@
   //  transport: 'tcp',
   //  address:   '127.0.0.1',
   //  ports:     [80],
-  //  nagle:     true, // Nagle algorithm, default true, set to false for latency optimization
+  // Nagle algorithm, default true, set to false for latency optimization
+  //  nagle:     true,
   //  slowTime:  '1s',
   //  timeout:   '120s' // default 30s
   //},

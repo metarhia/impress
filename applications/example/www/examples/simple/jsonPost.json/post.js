@@ -7,5 +7,7 @@
       valueLength: client.fields.parameterName.length,
       requestCounter: application.requestCounter++
     });
-  } else callback({ error: 'POST parameter "parameterName" required' });
+  } else {
+    callback({ error: 'POST parameter "parameterName" required' });
+  }
 }

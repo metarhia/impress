@@ -1,7 +1,8 @@
 {
   // Cloud and health configuration
 
-  // check: 'http://127.0.0.1/', // if we can get this page it means that another copy is running
+  // check: 'http://127.0.0.1/',
+  // if we can get this page it means that another copy is running
 
   cloud: 'PrivateCloud', // cloud name
   server: 'S1', // Server name to identify it in loadbalancing infrastructure
@@ -13,8 +14,10 @@
   //instance: 'server',
   //instance: 'standalone',
 
-  key: '19nm58993eJ747845fk78A2z7854W90D', // Cloud access key
-  cookie: 'node', // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')
+  // Cloud access key
+  key: '19nm58993eJ747845fk78A2z7854W90D',
+  // Cookie name for loadbalancing (cookie value will be 'S1'+'N1')
+  cookie: 'node',
 
   firewall: { // Web Application Firewall config
     enabled: false,
@@ -31,8 +34,10 @@
   health: '5m', // health monitoring interval '5s'
   nagle: false, // Nagle algorithm
   gc: 0, // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
-  watch: '2s', // combine wached file system events if interval less then specified
+  watch: '2s', // combine wached file system events if in interval
 
-  characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', // JSTP session token characters
+  // JSTP session token characters
+  characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
   length: 64,  // JSTP session token length
+
 }
