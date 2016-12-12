@@ -5,6 +5,7 @@ globals:
   api: false
   impress: false
   application: false
+  connection: false
 rules:
   indent:
     - error
