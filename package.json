@@ -54,6 +54,9 @@
     "csv": "1.1.x",
     "accept-language": "3.0.x"
   },
+  "devDependencies": {
+    "eslint": "3.x"
+  },
   "engines": {
     "node": ">=4.0.0"
   },
@@ -61,7 +64,8 @@
   "scripts": {
     "install": "node install.js",
     "npm": "npm link npm",
-    "test": "./tests/unittests.sh && ./tests/integration.sh"
+    "test": "./tests/unittests.sh && ./tests/integration.sh",
+    "lint": "eslint ."
   },
   "jshintConfig": {
     "predef": ["api", "impress", "global", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource"],

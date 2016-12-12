@@ -2,9 +2,9 @@ env:
   node: true
 extends: 'eslint:recommended'
 globals:
-  api: true
-  impress: true
-  global: true
+  api: false
+  impress: false
+  application: false
 rules:
   indent:
     - error
