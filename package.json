@@ -42,7 +42,7 @@
     "metasync": "0.0.x",
     "globalstorage": "0.0.x",
     "metarhia-jstp": ">=0.4.5",
-    "bcrypt": "0.8.x",
+    "bcrypt": "1.0.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
