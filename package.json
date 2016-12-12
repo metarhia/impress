@@ -55,7 +55,8 @@
     "accept-language": "3.0.x"
   },
   "devDependencies": {
-    "eslint": "3.x"
+    "eslint": "3.x",
+    "eslint-plugin-impress": "1.x"
   },
   "engines": {
     "node": ">=4.0.0"
