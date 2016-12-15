@@ -31,7 +31,7 @@
     transport: 'tcp',
     address:   '*',
     ports:     [3000, [1]], // Example: [81, [-1]]
-    slowTime:  '1s'
+    heartbeat: '2s'
   },
 
   //secureRpc: {
@@ -39,7 +39,6 @@
   //  transport: 'tls',
   //  address:   '*',
   //  ports:     [4000, [1]],
-  //  slowTime:  '1s',
   //  key:       'example.key',
   //  cert:      'example.cer'
   //},

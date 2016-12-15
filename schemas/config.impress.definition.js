@@ -67,6 +67,7 @@
     slowTime:     '4s:duration',
     timeout:      '30s:duration',
     keepAlive:    '5s:duration',
+    heartbeat:    '[duration]',
     key:          '[string]',
     cert:         '[string]',
     applications: '[array]'
