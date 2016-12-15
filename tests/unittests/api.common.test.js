@@ -459,14 +459,6 @@ api.test.case({
     [ { abc: '123', abcd: '1234' }, 'qwer',                 { abc: '123', abcd: '1234' } ],
     [ { abc: '123', abcd: '1234' }, 'abc',                                           { } ],
   ],
-  'api.net.isIP': [
-    [ '127.0.0.1',         4 ],
-    [ '10.0.0.1',          4 ],
-    [ '192.168.1.10',      4 ],
-    [ 'domain.com',        0 ],
-    [ '127.0.0.com',       0 ],
-    [ '',                  0 ],
-  ],
   'api.common.logApiMethod': [
     [ 'fs.stats', undefined ]
   ]

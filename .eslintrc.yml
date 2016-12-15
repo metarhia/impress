@@ -74,7 +74,7 @@ rules:
       ignoreUrls: true
   max-nested-callbacks:
     - error
-    - max: 5
+    - max: 7
   new-cap:
     - error
     - newIsCap: true

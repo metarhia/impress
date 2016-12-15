@@ -13,7 +13,7 @@
       bTrue: true,
       bFalse: false,
       dData: new Date(),
-      aArray: [1,2,3],
+      aArray: [1, 2, 3],
       oObj: { k: { l: { m: { n: 'oppa' } } } },
       users: [
         {
