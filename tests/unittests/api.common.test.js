@@ -383,6 +383,12 @@ api.test.case({
     [ 1, 5,  [1, 2, 3, 4, 5] ],
     [ 8, 9,           [8, 9] ],
   ],
+  'api.common.sequence': [
+    [ [81, 82, 83],  [81, 82, 83] ],
+    [ [81,,83],      [81, 82, 83] ],
+    [ [81, [3]],     [81, 82, 83] ],
+    [ [81, [-2]], 5, [81, 82, 83] ],
+  ],
   'api.common.localIPs': [
     [ [], function(value) { return Array.isArray(value); } ],
   ],
