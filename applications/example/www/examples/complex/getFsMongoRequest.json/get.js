@@ -17,7 +17,7 @@
         function(response) {
           var data = '';
           response.on('data', function(chunk) {
-            data = data+chunk;
+            data += chunk;
           });
           response.on('end', function() {
             callback(null, data);
@@ -25,7 +25,7 @@
         }
       );
       req.on('error', function(/*err*/) {
-        callback(null, "Can't get page");
+        callback(null, 'Can\'t get page');
       });
       req.end();
     },

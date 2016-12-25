@@ -76,7 +76,7 @@
       PermissionName: { caption: 'Name',   type: 'str', size: 64, nullable: false, index: { unique: true } }
     }
   },
-  
+
   SystemGroupPermission: {
     caption: 'System Group Permission',
     fields: {
@@ -92,7 +92,7 @@
       PermissionId:  { caption: 'Permission',  type: 'uid', master: { dataset: 'SystemPermission' }, primary: true }
     }
   },
-  
+
   SystemLog: {
     caption: 'System Log',
     fields: {

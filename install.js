@@ -98,12 +98,11 @@ function done() {
           destination + '/applications',
           { clobber: false },
           function(err) {
-            if (err) console.error(err);
-            else {
-              if (!isWin) {
-                execute('chmod +x ' + destination +'/server.sh', installCLI);
-              } else installCLI();
-            }
+            if (err) {
+              console.error(err);
+            } else if (!isWin) {
+              execute('chmod +x ' + destination + '/server.sh', installCLI);
+            } else installCLI();
           }
         );
       }

@@ -32,6 +32,7 @@ node_js:
   - "7.0"
   - "7.1"
   - "7.2"
+  - "7.3"
 install:
   - npm install
   - npm install mongodb
