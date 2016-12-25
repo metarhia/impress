@@ -70,7 +70,8 @@
     heartbeat:    '[duration]',
     key:          '[string]',
     cert:         '[string]',
-    applications: '[array]'
+    applications: '[array]',
+    inspect:      '[number]'
   }
 
 }
