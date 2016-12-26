@@ -17,7 +17,9 @@ module.exports = function(client, callback) {
           }
         }
       };
-    } else client.context.data = 'GeoIP plugin is not loaded';
+    } else {
+      client.context.data = 'GeoIP plugin is not loaded';
+    }
     callback();
   });
 };

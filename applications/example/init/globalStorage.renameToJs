@@ -2,9 +2,20 @@ function print(data) {
   console.log(JSON.stringify(data, null, 2));
 }
 
-var flower1 = { category: 'Flower', name: 'Bellis ' + process.pid };
-var flower2 = { category: 'Flower', name: 'Erythronium ' + process.pid };
-var kpi = { category: 'University', name: 'Kiev Polytechnic Institute ' + process.pid };
+var flower1 = {
+  category: 'Flower',
+  name: 'Bellis ' + process.pid
+};
+
+var flower2 = {
+  category: 'Flower',
+  name: 'Erythronium ' + process.pid
+};
+
+var kpi = {
+  category: 'University',
+  name: 'Kiev Polytechnic Institute ' + process.pid
+};
 
 gs.connection.delete({ category: 'Flower' }, function(err, data) {
   print({ deleteFlowers: { err: err, data: data } });

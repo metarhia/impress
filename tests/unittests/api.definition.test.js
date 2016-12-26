@@ -23,10 +23,10 @@ api.test.case({
     [ '{{name}}',        { type: 'collection', optional: false, name: 'name', str: '{{name}}' } ],
   ],
   'api.definition.validate': [
-    [ { a: 5, b: 'b', c: [1,2,3] },
+    [ { a: 5, b: 'b', c: [1, 2, 3] },
       { schema: { a: 'number', b: 'string', c: 'array' } }, 'schema',
       { valid: true,  errors: [] } ],
-    [ { a: '5', b: 'b', c: [1,2,3] },
+    [ { a: '5', b: 'b', c: [1, 2, 3] },
       { schema: { a: 'number', b: 'string', c: 'array' } }, 'schema',
       { valid: false, errors: [ { path: '.a', error: 'Unexpected value "5" for definition: number' } ] } ],
     [ { a: { b: { c: { d: 'e' } } } },

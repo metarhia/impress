@@ -41,8 +41,8 @@
   "dependencies": {
     "metasync": "0.0.x",
     "globalstorage": "0.0.x",
-    "metarhia-jstp": ">=0.4.5",
-    "bcrypt": "0.8.x",
+    "metarhia-jstp": ">=0.5.0",
+    "bcrypt": "1.0.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
@@ -54,6 +54,10 @@
     "csv": "1.1.x",
     "accept-language": "3.0.x"
   },
+  "devDependencies": {
+    "eslint": "3.x",
+    "eslint-plugin-impress": "1.x"
+  },
   "engines": {
     "node": ">=4.0.0"
   },
@@ -61,7 +65,8 @@
   "scripts": {
     "install": "node install.js",
     "npm": "npm link npm",
-    "test": "./tests/integration.sh"
+    "test": "./tests/unittests.sh && ./tests/integration.sh",
+    "lint": "eslint ."
   },
   "jshintConfig": {
     "predef": ["api", "impress", "global", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource"],

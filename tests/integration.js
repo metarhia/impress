@@ -16,31 +16,37 @@ var config = {
   port:    8080,
   timeout: 10000,
   tasks: [
-    {  get: '/' },
-    {  get: '/examples/simple/ajaxTest.ajax' },
-    {  get: '/examples/simple/dataFromMemory.json' },
-    {  get: '/examples/simple/fsAccess.json' },
-    {  get: '/examples/simple/sysInfo.json' },
-    {  get: '/examples/simple/lazyHandler.json' },
-    {  get: '/examples/simple/endHandler.json' },
-    {  get: '/examples/memory/stateful.json' },
-    {  get: '/examples/override/' },
-    {  get: '/examples/tools/forkWorker.json' },
-    {  get: '/examples/tools/serverHealth.json' },
-    {  get: '/examples/simple/httpRequest.json' },
-    {  get: '/examples/security/anonymousSession.json' },
-    {  get: '/examples/security/userInfo.json' },
-    {  get: '/examples/tools/longWorker.json/' },
-    {  get: '/examples/tools/serverHealth.json' },
-    {  get: '/examples/simple/virtualPath.json/a/b/c' },
-    {  get: '/examples/simple/jsonGet.json?field=value' },
-    {  get: '/examples/cache/htmlPage.ajax' },
-    {  get: '/examples/cache/apiMethod.json' },
-    {  get: '/examples/events/connect.sse' },
-//  {  get: '/examples/events/sendEvent.json' },
-    {  get: '/examples/simple/csvStringify.csv' },
-    {  get: '/examples/simple/jsonpGet.jsonp', data: { callback: 'callbackFunctionName' } },
-    { post: '/examples/simple/jsonPost.json', data: { parameterName:'value' } },
+    { get: '/' },
+    { get: '/examples/simple/ajaxTest.ajax' },
+    { get: '/examples/simple/dataFromMemory.json' },
+    { get: '/examples/simple/fsAccess.json' },
+    { get: '/examples/simple/sysInfo.json' },
+    { get: '/examples/simple/lazyHandler.json' },
+    { get: '/examples/simple/endHandler.json' },
+    { get: '/examples/memory/stateful.json' },
+    { get: '/examples/override/' },
+    { get: '/examples/tools/forkWorker.json' },
+    { get: '/examples/tools/serverHealth.json' },
+    { get: '/examples/simple/httpRequest.json' },
+    { get: '/examples/security/anonymousSession.json' },
+    { get: '/examples/security/userInfo.json' },
+    { get: '/examples/tools/longWorker.json/' },
+    { get: '/examples/tools/serverHealth.json' },
+    { get: '/examples/simple/virtualPath.json/a/b/c' },
+    { get: '/examples/simple/jsonGet.json?field=value' },
+    { get: '/examples/cache/htmlPage.ajax' },
+    { get: '/examples/cache/apiMethod.json' },
+    { get: '/examples/events/connect.sse' },
+//  { get: '/examples/events/sendEvent.json' },
+    { get: '/examples/simple/csvStringify.csv' },
+    {
+      get: '/examples/simple/jsonpGet.jsonp',
+      data: { callback: 'callbackFunctionName' }
+    },
+    {
+      post: '/examples/simple/jsonPost.json',
+      data: { parameterName: 'value' }
+    }
   ]
 };
 
@@ -72,12 +78,15 @@ function httpTask(task) {
   }
   if (request.path) {
     var req = api.http.request(request);
-    req.on('response', function (res) {
+    req.on('response', function(res) {
       if (res.statusCode === 200) {
-        var msg = 'Request: http://' + config.host + ':' + config.port + ' ' + request.method + ' ' + request.path +
-            ' -> HTTP ' + res.statusCode + ' read: '+res.socket.bytesRead;
+        var msg = (
+          'Request: http://' + config.host + ':' + config.port + ' ' +
+          request.method + ' ' + request.path +
+          ' -> HTTP ' + res.statusCode + ' read: ' + res.socket.bytesRead
+        );
         console.log('  ' + msg);
-        res.on('error', function (err) {
+        res.on('error', function(err) {
           if (err) throw err;
         });
       } else {
@@ -86,7 +95,7 @@ function httpTask(task) {
       }
       taskExit();
     });
-    req.on('error', function (err) {
+    req.on('error', function(err) {
       if (err) throw err;
       taskExit();
     });

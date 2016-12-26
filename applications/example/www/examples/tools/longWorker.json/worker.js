@@ -12,5 +12,5 @@ module.exports = function(client, callback) {
     console.log('Forked worker terminated after 30 seconds');
     callback();
   }, 30000);
-  
+
 };
