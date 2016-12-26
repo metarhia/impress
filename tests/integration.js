@@ -112,3 +112,5 @@ if (process.isMaster) {
   });
 }
 impress.server.start();
+
+console.dir(Object.keys(Array.prototype));
