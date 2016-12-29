@@ -24,6 +24,7 @@
     timeout:   '30s',
     keepAlive: '5s',
     applications: ['example'] // undefined for all
+    // inspect: 2000 // inspect Chrome developer tools
   },
 
   rpc: {
