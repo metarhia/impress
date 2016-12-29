@@ -69,6 +69,7 @@
     "lint": "eslint ."
   },
   "jshintConfig": {
+    "esversion": 6,
     "predef": ["api", "impress", "global", "window", "navigator", "document", "frames", "escape", "localStorage", "WebSocket", "XMLHttpRequest", "EventSource"],
     "node": true,
     "indent": 2,
