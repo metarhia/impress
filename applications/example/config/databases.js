@@ -18,23 +18,33 @@
   // MySQL example database configuration
   //
   //  mysqlConnection: {
-  //    url: 'mysql://impress:password@127.0.0.1/impress', // connection string (required)
-  //    slowTime: 1000                                     // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
+  //    // Connection string (required)
+  //    url: 'mysql://impress:password@127.0.0.1/impress',
+  //    // Time to log query as slow
+  //    // (optional, default: '2s', in milliseconds or string like '5s')
+  //    slowTime: 1000
   //  },
 
   // PgSQL example database configuration
   //
   //  pgsqlConnection: {
-  //    url: 'postgres://impress:password@127.0.0.1/test', // connection string (required)
-  //    slowTime: 1000                                     // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
+  //    // Connection string (required)
+  //    url: 'postgres://impress:password@127.0.0.1/test',
+  //    // Time to log query as slow
+  //    // (optional, default: '2s', in milliseconds or string like '5s')
+  //    slowTime: 1000
   //  },
 
   // MongoDB example database configuration
   //
   //  mongoConnection: {
-  //    url: 'mongodb://127.0.0.1:27017/dbname', // connection string (required)
-  //    collections: ['collname1', 'collname2'], // collection to be created automatically if not exists
-  //    slowTime: '2s'                           // time to log query as slow (optional, default: '2s', in milliseconds or string like '5s')
+  //    // Connection string (required)
+  //    url: 'mongodb://127.0.0.1:27017/dbname',
+  //    // Collection to be created automatically if not exists
+  //    collections: ['collname1', 'collname2'],
+  //    // Time to log query as slow
+  //    // (optional, default: '2s', in milliseconds or string like '5s')
+  //    slowTime: '2s'
   //  }
 
 }

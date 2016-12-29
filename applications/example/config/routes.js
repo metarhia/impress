@@ -3,20 +3,30 @@
 
   /*
   {
-    url:      '/api/(one|two)/(.*)',        // parse url using '()' as parameters, '|' as alternatives and '.*'
-    rewrite:  '/example/[1].json?par1=[2]'  // rewrite url using [1]..[N] array (optional parameter)
+    // parse url using '()' as parameters, '|' as alternatives and '.*'
+    url: '/api/(one|two)/(.*)',
+
+    // rewrite url using [1]..[N] array (optional parameter)
+    rewrite: '/example/[1].json?par1=[2]'
   },
   {
-    url:      '/api/(name1|name2|name3)/(.*)', // parse url using '()' as parameters, '|' as alternatives and '.*'
-    rewrite:  '/api/[1]/[2]',                  // rewrite url using [1]..[N] array (optional parameter)
-    host:     'example.com',                   // forward requests to specified host and port
-    port:     80,
+    // parse url using '()' as parameters, '|' as alternatives and '.*'
+    url: '/api/(name1|name2|name3)/(.*)',
+
+    // rewrite url using [1]..[N] array (optional parameter)
+    rewrite: '/api/[1]/[2]',
+
+    // forward requests to specified host and port
+    host: 'example.com',
+
+    port: 80,
     slowTime: '1s'
   },
   {
-    escaping: false,              // use full regexp syntax, no escaping for '?' and '.'
-    url:      '^/(?!client)(.*)',
-    rewrite:  '/client/[1]'
+    // use full regexp syntax, no escaping for '?' and '.'
+    escaping: false,
+    url: '^/(?!client)(.*)',
+    rewrite: '/client/[1]'
   }
   */
 

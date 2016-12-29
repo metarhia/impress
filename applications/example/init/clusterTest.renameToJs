@@ -7,7 +7,7 @@ var count = 0;
 
 function test() {
   count++;
-  application.backend.call('method1', { sample: 'sample' }, function(res) {
+  application.backend.call('method1', { sample: 'sample' }, function(/*res*/) {
     test();
   });
 }
@@ -19,5 +19,7 @@ api.timers.setTimeout(test, 1400);
 api.timers.setInterval(function() {
   var endTime = new Date().getTime(),
       processingTime = endTime - startTime;
-  console.log(application.nodeId + ' Processing time: ' + processingTime + ' count: ' + count);
+  console.log(
+    application.nodeId + ' Processing time: ' + processingTime + ' count: ' + count
+  );
 }, 5000);

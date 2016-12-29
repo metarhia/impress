@@ -6,5 +6,7 @@ application.backend.on('test', function(data) {
 });
 
 api.timers.setInterval(function() {
-  application.backend.emit('test', { sender: application.nodeId, data: 'data' });
+  application.backend.emit(
+    'test', { sender: application.nodeId, data: 'data' }
+  );
 }, 5000);
