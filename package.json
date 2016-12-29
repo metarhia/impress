@@ -59,7 +59,7 @@
     "eslint-plugin-impress": "1.x"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "readmeFilename": "README.md",
   "scripts": {
