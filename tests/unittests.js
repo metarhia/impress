@@ -7,10 +7,10 @@ api.path = require('path');
 
 api.test.case.show.ok = false;
 
-var testsDir = api.path.resolve(__dirname, '../tests/unittests'),
+let testsDir = api.path.resolve(__dirname, '../tests/unittests'),
     tests = api.fs.readdirSync(testsDir);
 
-tests.map(function(fileName) {
+tests.map((fileName) => {
   require(api.path.join(testsDir, fileName));
 });
 

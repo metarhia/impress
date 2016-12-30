@@ -1,7 +1,7 @@
 'use strict';
 
 var methodConteiner = {};
-methodConteiner.method = function(obj) {
+methodConteiner.method = (obj) => {
   obj.field = 'value';
   return obj;
 };
@@ -213,20 +213,20 @@ api.test.case({
     [   '1 Yb', 1000000000000000000000000 ],
   ],
   'api.common.sizeToBytes.units': [
-    [ function(obj) { return Object.keys(obj).length === 8; } ],
+    [ (obj) => { return Object.keys(obj).length === 8; } ],
   ],
   'api.common.random': [
-    [  0, 10, function(result) { return (result >=  0 && result <= 10); } ],
-    [  1, 10, function(result) { return (result >=  1 && result <= 10); } ],
-    [ -1, 10, function(result) { return (result >= -1 && result <= 10); } ],
-    [ 10, 0,  function(result) { return (result >=  0 && result <= 10); } ],
+    [  0, 10, (result) => (result >=  0 && result <= 10) ],
+    [  1, 10, (result) => (result >=  1 && result <= 10) ],
+    [ -1, 10, (result) => (result >= -1 && result <= 10) ],
+    [ 10, 0,  (result) => (result >=  0 && result <= 10) ],
     [ 10, 10, 10 ],
   ],
   'api.common.shuffle': [
-    [ [1, 2, 3],   function(result) { return api.json.stringify(result.sort()) === '[1,2,3]'; }   ],
-    [ ['a', 'b'],  function(result) { return api.json.stringify(result.sort()) === '["a","b"]'; } ],
-    [ [1, 'a', 3], function(result) { return api.json.stringify(result.sort()) === '[1,3,"a"]'; } ],
-    [ [],          function(result) { return api.json.stringify(result.sort()) === '[]'; }        ],
+    [ [1, 2, 3],   (result) => (api.json.stringify(result.sort()) === '[1,2,3]')   ],
+    [ ['a', 'b'],  (result) => (api.json.stringify(result.sort()) === '["a","b"]') ],
+    [ [1, 'a', 3], (result) => (api.json.stringify(result.sort()) === '[1,3,"a"]') ],
+    [ [],          (result) => (api.json.stringify(result.sort()) === '[]')        ],
   ],
   'api.common.clone': [
     [ {}, {} ],
@@ -310,15 +310,20 @@ api.test.case({
     [ [81, [-2]], 5, [81, 82, 83] ],
   ],
   'api.common.localIPs': [
-    [ [], function(value) { return Array.isArray(value); } ],
+    [ [], (value) => Array.isArray(value) ],
   ],
   'api.common.generateSID': [
-    [ config, function(result) { return result.length === 64; } ],
+    [ config, (result) => (result.length === 64) ],
   ],
   'api.common.crcSID': [
-    [ config, api.common.generateKey(config.sessions.length - 4, config.sessions.characters), function(result) {
-      return result.length === 4;
-    } ]
+    [
+      config,
+      api.common.generateKey(
+        config.sessions.length - 4,
+        config.sessions.characters
+      ),
+      (result)  => (result.length === 4)
+    ]
   ],
   'api.common.validateSID': [
     [ config, 'ag0DEZqImmOPOQxl1DCIJh5KvSr4OX6wE2tDoVybqNrs1jLhimN7zV6mCPyl5b96', true  ],
@@ -380,10 +385,10 @@ api.test.case({
     [ { name: '123' }, { name: 'name' }, -1 ],
   ],
   'api.common.clearCacheStartingWith': [
-    [ { abc: '123', abcd: '1234', abcde: '12345' }, 'abcd',               { abc: '123' } ],
-    [ { abc: '123', abcd: '1234', abcde: '12345' }, 'a',                             { } ],
-    [ { abc: '123', abcd: '1234' }, 'qwer',                 { abc: '123', abcd: '1234' } ],
-    [ { abc: '123', abcd: '1234' }, 'abc',                                           { } ],
+    [ { abc: '123', abcd: '1234', abcde: '12345' }, 'abcd',  { abc: '123' } ],
+    [ { abc: '123', abcd: '1234', abcde: '12345' }, 'a',                { } ],
+    [ { abc: '123', abcd: '1234' }, 'qwer',    { abc: '123', abcd: '1234' } ],
+    [ { abc: '123', abcd: '1234' }, 'abc',                              { } ],
   ],
   'api.common.logApiMethod': [
     [ 'fs.stats', undefined ]

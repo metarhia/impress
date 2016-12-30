@@ -1,6 +1,6 @@
 'use strict';
 
-var ncp = require('ncp').ncp,
+let ncp = require('ncp').ncp,
     querystring = require('querystring'),
     path = require('path');
 
@@ -9,11 +9,11 @@ require('../lib/impress');
 
 ncp.limit = 16;
 
-var taskCount = 0;
+let taskCount = 0;
 
-var config = {
-  host:    '127.0.0.1',
-  port:    8080,
+let config = {
+  host: '127.0.0.1',
+  port: 8080,
   timeout: 10000,
   tasks: [
     { get: '/' },
@@ -57,7 +57,7 @@ function taskExit() {
 
 function httpTask(task) {
   taskCount++;
-  var request = {
+  let request = {
     host: config.host,
     port: config.port,
     agent: false
@@ -77,16 +77,16 @@ function httpTask(task) {
     };
   }
   if (request.path) {
-    var req = api.http.request(request);
-    req.on('response', function(res) {
+    let req = api.http.request(request);
+    req.on('response', (res) => {
       if (res.statusCode === 200) {
-        var msg = (
+        let msg = (
           'Request: http://' + config.host + ':' + config.port + ' ' +
           request.method + ' ' + request.path +
           ' -> HTTP ' + res.statusCode + ' read: ' + res.socket.bytesRead
         );
         console.log('  ' + msg);
-        res.on('error', function(err) {
+        res.on('error', (err) => {
           if (err) throw err;
         });
       } else {
@@ -95,7 +95,7 @@ function httpTask(task) {
       }
       taskExit();
     });
-    req.on('error', function(err) {
+    req.on('error', (err) => {
       if (err) throw err;
       taskExit();
     });
@@ -106,9 +106,11 @@ function httpTask(task) {
 
 if (process.isMaster) {
   console.log('Testing IAS...'.bold.green);
-  impress.server.on('started', function() {
+  impress.server.on('started', () => {
     //api.common.logApiMethod('fs.stat');
-    for (var i = 0; i < config.tasks.length; i++) httpTask(config.tasks[i]);
+    for (let i = 0; i < config.tasks.length; i++) {
+      httpTask(config.tasks[i]);
+    }
   });
 }
 impress.server.start();

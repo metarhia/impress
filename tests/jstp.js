@@ -1,8 +1,8 @@
 'use strict';
 
-var jstp = require('metarhia-jstp');
+const jstp = require('metarhia-jstp');
 
-var port, tls;
+let port, tls;
 if (process.argv.indexOf('--tls') !== -1) {
   port = 4000;
   tls = true;
@@ -11,16 +11,16 @@ if (process.argv.indexOf('--tls') !== -1) {
   tls = false;
 }
 
-var client = jstp.tcp.createClient({
+let client = jstp.tcp.createClient({
   host: '127.0.0.1',
   port: port,
   secure: tls
 });
 
-client.connect(function(error, connection) {
+client.connect((error, connection) => {
   if (error) throw error;
   console.log('connected');
-  connection.handshake('example', null, null, function(err, session) {
+  connection.handshake('example', null, null, (err, session) => {
     if (err) throw err;
     console.log('handshake done, sid =', session);
     connection.inspectInterface('interfaceName', runTests);
@@ -30,25 +30,25 @@ client.connect(function(error, connection) {
 function runTests(err, interfaceName) {
   if (err) throw err;
 
-  interfaceName.on('eventName', function(args) {
+  interfaceName.on('eventName', (args) => {
     console.log('Got event, data:', args);
   });
 
-  interfaceName.methodName(1, 2, 3, function(err, res) {
+  interfaceName.methodName(1, 2, 3, (err, res) => {
     if (err) throw err;
     console.log('result1 received');
     console.dir(res);
   });
 
-  interfaceName.sendEvent(function(err) {
+  interfaceName.sendEvent((err) => {
     if (err) throw err;
   });
 
-  interfaceName.methodName(4, 5, 6, function(err, res) {
+  interfaceName.methodName(4, 5, 6, (err, res) => {
     if (err) throw err;
     console.log('result2 received');
     console.dir(res);
-    interfaceName.methodName(7, 8, 9, function(err, res) {
+    interfaceName.methodName(7, 8, 9, (err, res) => {
       if (err) throw err;
       console.log('result3 received');
       console.dir(res);
@@ -60,7 +60,7 @@ function runTests(err, interfaceName) {
 /*
  *  // Define Data Source
  *
- *  var data = [
+ *  let data = [
  *    ['Marcus Aurelius','212-04-26','Rome'],
  *    ['Victor Glushkov','1923-08-24','Rostov on Don'],
  *    ['Ibn Arabi','1165-11-16','Murcia'],
@@ -70,19 +70,19 @@ function runTests(err, interfaceName) {
  *
  *  // Define Person prototype with calculating field
  *
- *  var metadata = {
+ *  let metadata = {
  *    name: 'string',
  *    birth: 'Date',
  *    city: 'string',
- *    age: function() {
- *      var difference = new Date() - this.birth;
+ *    age: () => {
+ *      let difference = new Date() - this.birth;
  *      return Math.floor(difference / 31536000000);
  *    }
  *  };
  *
  *  // Define Query
  *
- *  var query = (person) => (
+ *  let query = (person) => (
  *    person.name !== '' &&
  *    person.age > 18 &&
  *    person.city === 'Rome'
@@ -94,6 +94,6 @@ function runTests(err, interfaceName) {
  *
  *  // Filter Data using Query
  *
- *  var res = data.filter(query);
+ *  let res = data.filter(query);
  *  console.dir(res);
  */

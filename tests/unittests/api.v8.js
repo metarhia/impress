@@ -29,42 +29,42 @@ api.test.case({
   ],
   'api.v8.clearFunctionTypeFeedback': [
     [ notOptimizedFunction, undefined ],
-    [ optimizedFunction, undefined ],
+    [ optimizedFunction,    undefined ],
   ],
   'api.v8.debugPrint': [
-    [ 5, 5 ],
-    [ {}, {} ],
-    [ [], [] ],
-    [ { a: 5 }, { a: 5 } ],
+    [ 5,                 5 ],
+    [ {},               {} ],
+    [ [],               [] ],
+    [ { a: 5 },   { a: 5 } ],
     [ { a: {} }, { a: {} } ],
     [ { a: [] }, { a: [] } ],
   ],
   'api.v8.collectGarbage': [ [] ],
   /*'api.v8.getHeapUsage': [
-    [ [], function(i) { typeof(i) === 'number'; } ],
+    [ [], (i) => (typeof(i) === 'number') ],
   ],*/
   'api.v8.functionGetName': [
     [ notOptimizedFunction, 'notOptimizedFunction' ],
-    [ optimizedFunction, 'optimizedFunction' ],
+    [ optimizedFunction,       'optimizedFunction' ],
   ],
   'api.v8.isInPrototypeChain': [
-    [ Array, Object, false ],
-    [ 'Hello', Object, false ],
-    [ Object.prototype, Array, true ],
+    [ Array, Object,            false ],
+    [ 'Hello', Object,          false ],
+    [ Object.prototype,   Array, true ],
     [ Object.prototype, 'Hello', true ],
   ],
   /*'api.v8.getV8Version': [
-    [ [], function(i) { typeof(i) === 'string'; } ],
+    [ [], (i) => (typeof(i) === 'string') ],
   ],*/
   'api.v8.OPT_STATUS': [
-    [ [], function(value) { return Array.isArray(value) && value.length === 8; } ],
+    [ [], (value) => (Array.isArray(value) && value.length === 8) ],
   ],
   'api.v8.optimizationStatus': [
-    [ -1, undefined ],
-    [ 0, 'unknown' ],
-    [ 1, 'optimized' ],
-    [ 2, 'not optimized' ],
-    [ null, undefined ],
+    [ -1,        undefined ],
+    [ 0,         'unknown' ],
+    [ 1,       'optimized' ],
+    [ 2,   'not optimized' ],
+    [ null,      undefined ],
     [ undefined, undefined ],
   ],
 });
