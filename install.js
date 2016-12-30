@@ -11,23 +11,23 @@ api.metasync = require('metasync');
 api.common = {};
 require(process.cwd() + '/lib/api.common.js');
 
-var isWin = !!process.platform.match(/^win/);
+const isWin = !!process.platform.match(/^win/);
 
 api.ncp.limit = 16;
 
-var current = api.path.dirname(__filename.replace(/\\/g, '/'));
-var parent = api.path.basename(api.path.dirname(current));
-var destination = api.path.dirname(api.path.dirname(current));
-var exists = false;
+let current = api.path.dirname(__filename.replace(/\\/g, '/'));
+let parent = api.path.basename(api.path.dirname(current));
+let destination = api.path.dirname(api.path.dirname(current));
+let exists = false;
 
-var jstpPath = api.path.dirname(require.resolve('metarhia-jstp'));
-var jstpDistPath = api.path.join(jstpPath, 'dist');
-var staticJsDir = api.path.resolve(__dirname, 'applications/example/static/js');
+let jstpPath = api.path.dirname(require.resolve('metarhia-jstp'));
+let jstpDistPath = api.path.join(jstpPath, 'dist');
+let staticJsDir = api.path.resolve(__dirname, 'applications/example/static/js');
 
 // Execute shell command displaying output and possible errors
 //
 function execute(cmd, callback) {
-  api.cp.exec(cmd, function(error, stdout /* stderr */) {
+  api.cp.exec(cmd, (error, stdout /* stderr */) => {
     if (error) console.log(error.toString());
     else console.log(stdout);
     if (callback) callback();
@@ -37,8 +37,8 @@ function execute(cmd, callback) {
 // Install CLI
 //
 function installCLI() {
-  execute('npm install --unsafe-perm impress-cli -g', function() {
-    execute('impress path ' + destination, function() {
+  execute('npm install --unsafe-perm impress-cli -g', () => {
+    execute('impress path ' + destination, () => {
       if (!isWin) execute('impress autostart on');
     });
   });
@@ -46,11 +46,11 @@ function installCLI() {
 
 // Copy the browser version of JSTP
 //
-['jstp.min.js', 'jstp.min.js.map'].forEach(function(file) {
-  var source = api.path.join(jstpDistPath, file);
-  var dest = api.path.join(staticJsDir, file);
+['jstp.min.js', 'jstp.min.js.map'].forEach((file) => {
+  let source = api.path.join(jstpDistPath, file);
+  let dest = api.path.join(staticJsDir, file);
 
-  var data = api.fs.readFileSync(source);
+  let data = api.fs.readFileSync(source);
   api.fs.writeFileSync(dest, data);
 });
 
@@ -59,11 +59,11 @@ if (parent !== 'node_modules') {
   process.exit(0);
 }
 
-var checkFiles = ['package.json', 'server.js', 'config', 'applications'];
+let checkFiles = ['package.json', 'server.js', 'config', 'applications'];
 api.metasync.each(checkFiles, check, done);
 
 function check(file, callback) {
-  api.fs.exists(destination + '/' + file, function(fileExists) {
+  api.fs.exists(destination + '/' + file, (fileExists) => {
     exists = exists || fileExists;
     callback();
   });
@@ -77,27 +77,27 @@ function done() {
     );
   } else {
     console.log('Installing Impress Application Server...'.bold.green);
-    var sSrv = api.fs.createReadStream(current + '/server.js');
-    var dSrv = api.fs.createWriteStream(destination + '/server.js');
+    let sSrv = api.fs.createReadStream(current + '/server.js');
+    let dSrv = api.fs.createWriteStream(destination + '/server.js');
     sSrv.pipe(dSrv);
-    var sPkg = api.fs.createReadStream(current + '/lib/package.template.json');
-    var dPkg = api.fs.createWriteStream(destination + '/package.json');
+    let sPkg = api.fs.createReadStream(current + '/lib/package.template.json');
+    let dPkg = api.fs.createWriteStream(destination + '/package.json');
     sPkg.pipe(dPkg);
-    var shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
-    var sScr = api.fs.createReadStream(current + '/' + shellScript);
-    var dScr = api.fs.createWriteStream(destination + '/' + shellScript);
+    let shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
+    let sScr = api.fs.createReadStream(current + '/' + shellScript);
+    let dScr = api.fs.createWriteStream(destination + '/' + shellScript);
     sScr.pipe(dScr);
     api.ncp(
       current + '/config',
       destination + '/config',
       { clobber: false },
-      function(err) {
+      (err) => {
         if (err) console.error(err);
         api.ncp(
           current + '/applications',
           destination + '/applications',
           { clobber: false },
-          function(err) {
+          (err) => {
             if (err) {
               console.error(err);
             } else if (!isWin) {
