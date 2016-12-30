@@ -4,17 +4,17 @@ console.log(
   )
 );
 
-var rl = api.readline.createInterface({
+let rl = api.readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 rl.question(
   'Delete stored data and recreate default structures? [y/n]: ',
-  function(answer) {
+  (answer) => {
     rl.close();
     if (answer === 'y') {
-      application.createDataStructures(function() {});
+      application.createDataStructures(() => {});
     }
   }
 );

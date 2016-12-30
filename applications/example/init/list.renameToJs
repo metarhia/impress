@@ -3,7 +3,7 @@ application.state.data.car = {
   speed: 0
 };
 
-api.timers.setInterval(function() {
+api.timers.setInterval(() => {
   console.log(
     'Data: ' + application.nodeId + ' ' +
     api.json.stringify(application.state.data.car)

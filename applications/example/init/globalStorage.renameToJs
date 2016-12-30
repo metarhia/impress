@@ -2,32 +2,32 @@ function print(data) {
   console.log(JSON.stringify(data, null, 2));
 }
 
-var flower1 = {
+let flower1 = {
   category: 'Flower',
   name: 'Bellis ' + process.pid
 };
 
-var flower2 = {
+let flower2 = {
   category: 'Flower',
   name: 'Erythronium ' + process.pid
 };
 
-var kpi = {
+let kpi = {
   category: 'University',
   name: 'Kiev Polytechnic Institute ' + process.pid
 };
 
-gs.connection.delete({ category: 'Flower' }, function(err, data) {
+gs.connection.delete({ category: 'Flower' }, (err, data) => {
   print({ deleteFlowers: { err: err, data: data } });
-  gs.connection.delete({ category: 'University' }, function(err, data) {
+  gs.connection.delete({ category: 'University' }, (err, data) => {
     print({ deleteUniversities: { err: err, data: data } });
-    gs.connection.create(flower1, function(err, data) {
+    gs.connection.create(flower1, (err, data) => {
       print({ createFlower1: { err: err, data: data } });
-      gs.connection.create(flower2, function(err, data) {
+      gs.connection.create(flower2, (err, data) => {
         print({ createFlower2: { err: err, data: data } });
-        gs.connection.find({ category: 'Flower' }, function(err, data) {
+        gs.connection.find({ category: 'Flower' }, (err, data) => {
           print({ findFlowers: { err: err, data: data } });
-          gs.connection.delete(data.id, function(err, data) {
+          gs.connection.delete(data.id, (err, data) => {
             print({ deleteFlower: { err: err, data: data } });
           });
         });

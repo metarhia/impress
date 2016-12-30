@@ -45,22 +45,16 @@ api.news.data = [
 
 api.news.current = -1;
 
-api.news.listTitles = function() {
-  return api.news.data.map(function(item) {
-    return item.title;
-  });
-};
+api.news.listTitles = () => api.news.data.map(item => item.title);
 
-api.news.getNext = function() {
+api.news.getNext = () => {
   api.news.current++;
-  if (api.news.current >= api.news.data.length) api.news.current = 0;
+  if (api.news.current >= api.news.data.length) {
+    api.news.current = 0;
+  }
   return api.news.data[api.news.current];
 };
 
-api.news.shuffle = function() {
-  api.common.shuffle(api.news.data);
-};
+api.news.shuffle = () => api.common.shuffle(api.news.data);
 
-api.news.getItem = function(n) {
-  return api.news.data[n];
-};
+api.news.getItem = (n) => api.news.data[n];
