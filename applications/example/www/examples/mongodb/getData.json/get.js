@@ -1,7 +1,5 @@
 (client, callback) => {
   dbAlias.testCollection
     .find({})
-    .toArray(function(err, nodes) {
-      callback(nodes);
-    });
+    .toArray((err, nodes) => callback(nodes));
 }

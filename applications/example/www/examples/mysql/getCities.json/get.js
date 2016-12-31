@@ -1,5 +1,5 @@
 (client, callback) => {
-  aliasNameMy.query('select * from City', function(err, rows, fields) {
+  aliasNameMy.query('select * from City', (err, rows, fields) => {
     callback({ rows: rows, fields: fields });
   });
 }

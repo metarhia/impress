@@ -2,7 +2,7 @@
   client.signIn(
     client.fields.Login,
     client.fields.Password,
-    function(isSuccess) {
+    (isSuccess) => {
       if (client.fields.loginForm) client.redirect('/');
       callback({ result: isSuccess ? 'ok' : 'error' });
     }

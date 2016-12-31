@@ -1,6 +1,6 @@
 (client, callback) => {
   console.log('/over before inherited');
-  client.inherited(function() {
+  client.inherited(() => {
     console.log('/over after inherited');
     callback();
   });

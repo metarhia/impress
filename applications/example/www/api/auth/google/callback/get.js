@@ -1,5 +1,5 @@
 (client, callback) => {
-  client.passportInit(function() {
+  client.passportInit(() => {
     client.passport.strategies.google.authenticateCallback(
       client.req, client.res, callback
     );

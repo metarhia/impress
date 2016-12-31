@@ -1,23 +1,19 @@
 (client, callback) => {
-  var req = api.http.request(
+  let req = api.http.request(
     {
       hostname: 'ietf.org',
       port: 80,
       path: '/',
       method: 'get'
     },
-    function(response) {
-      var data = '';
-      response.on('data', function(chunk) {
-        data += chunk;
-      });
-      response.on('end', function() {
-        callback(data);
-      });
+    (response) => {
+      let data = '';
+      response.on('data', chunk => data += chunk);
+      response.on('end', () => callback(data));
     }
   );
 
-  req.on('error', function(/*err*/) {
+  req.on('error', (/*err*/) => {
     callback('Can`t get page');
   });
   req.end();

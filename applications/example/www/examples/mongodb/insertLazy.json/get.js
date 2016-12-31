@@ -1,5 +1,5 @@
 (client, callback) => {
-  dbAlias.testCollection.insert(client.query, function(err) {
+  dbAlias.testCollection.insert(client.query, (err) => {
     callback(!err);
   });
 }

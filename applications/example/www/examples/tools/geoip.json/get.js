@@ -1,5 +1,5 @@
 (client, callback) => {
-  api.dns.lookup('nodejs.org', 4, function(err, address, family) {
+  api.dns.lookup('nodejs.org', 4, (err, address, family) => {
     if (api.geoip) {
       client.context.data = {
         req: {

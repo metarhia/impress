@@ -1,5 +1,5 @@
 (client, callback) => {
-  client.getUser(client.fields.email, function(err, user) {
+  client.getUser(client.fields.email, (err, user) => {
     callback({ email: !user });
   });
 }

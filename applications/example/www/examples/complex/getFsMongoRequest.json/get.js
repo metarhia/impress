@@ -1,40 +1,36 @@
 (client, callback) => {
   api.async.parallel({
-    file: function(callback) {
-      var filePath = application.dir + '/www' + client.path + '/test.txt';
-      api.fs.readFile(filePath, 'utf8', function(error, data) {
+    file: (callback) => {
+      let filePath = application.dir + '/www' + client.path + '/test.txt';
+      api.fs.readFile(filePath, 'utf8', (error, data) => {
         callback(null, data);
       });
     },
-    request: function(callback) {
-      var req = api.http.request(
+    request: (callback) => {
+      let req = api.http.request(
         {
           hostname: 'google.com',
           port: 80,
           path: '/',
           method: 'get'
         },
-        function(response) {
-          var data = '';
-          response.on('data', function(chunk) {
-            data += chunk;
-          });
-          response.on('end', function() {
-            callback(null, data);
-          });
+        (response) => {
+          let data = '';
+          response.on('data', chunk => data += chunk);
+          response.on('end', () => callback(null, data));
         }
       );
-      req.on('error', function(/*err*/) {
+      req.on('error', (/*err*/) => {
         callback(null, 'Can\'t get page');
       });
       req.end();
     },
-    mongo: function(callback) {
-      dbAlias.testCollection.find({}).toArray(function(err, nodes) {
+    mongo: (callback) => {
+      dbAlias.testCollection.find({}).toArray((err, nodes) => {
         callback(null, nodes);
       });
     }
-  }, function(err, results) {
+  }, (err, results) => {
     callback(results);
   });
 }

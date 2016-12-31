@@ -20,20 +20,20 @@ application.test.schools = [
   'Plato', 'Aristotle', 'Hellenistic'
 ];
 
-application.test.randomItem = function(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
+application.test.randomItem = (arr) => (
+  arr[Math.floor(Math.random() * arr.length)]
+);
 
-application.test.random = function(min, max) {
-  return min + Math.floor(Math.random() * (max - min + 1));
-};
+application.test.random = (min, max) => (
+  min + Math.floor(Math.random() * (max - min + 1))
+);
 
-module.exports = function(client, callback) {
+module.exports = (client, callback) => {
 
-  var test = application.test,
+  let test = application.test,
       res = [];
-  for (var i = 0; i < 10; i++) {
-    var obj = {};
+  for (let i = 0; i < 10; i++) {
+    let obj = {};
     obj.name = test.randomItem(test.names);
     obj.city = test.randomItem(test.cities);
     obj.birth = test.random(1, 500) + ' ' + test.randomItem(['BC', 'AD']);

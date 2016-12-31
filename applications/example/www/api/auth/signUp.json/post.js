@@ -2,7 +2,7 @@
   client.signUp(
     client.fields.email,
     client.fields.password,
-    function(err, user) {
+    (err, user) => {
       callback({ result: user ? 'ok' : 'error' });
     }
   );
