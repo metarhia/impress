@@ -1,12 +1,12 @@
 'use strict';
 
-var methodConteiner = {};
+const methodConteiner = {};
 methodConteiner.method = (obj) => {
   obj.field = 'value';
   return obj;
 };
 
-var config = {
+const config = {
   sessions: {
     characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
     secret:     'secret',
@@ -213,7 +213,7 @@ api.test.case({
     [   '1 Yb', 1000000000000000000000000 ],
   ],
   'api.common.sizeToBytes.units': [
-    [ (obj) => { return Object.keys(obj).length === 8; } ],
+    [ (obj) => Object.keys(obj).length === 8 ],
   ],
   'api.common.random': [
     [  0, 10, (result) => (result >=  0 && result <= 10) ],
@@ -292,7 +292,7 @@ api.test.case({
   ],
   'api.common.sequence': [
     [ [81, 82, 83],  [81, 82, 83] ],
-    [ [81,,83],      [81, 82, 83] ],
+    [ [81,, 83],      [81, 82, 83] ],
     [ [81, [3]],     [81, 82, 83] ],
     [ [81, [-2]], 5, [81, 82, 83] ],
   ],

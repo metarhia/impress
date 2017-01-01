@@ -11,9 +11,9 @@ if (process.argv.indexOf('--tls') !== -1) {
   tls = false;
 }
 
-let client = jstp.tcp.createClient({
+const client = jstp.tcp.createClient({
   host: '127.0.0.1',
-  port: port,
+  port,
   secure: tls
 });
 

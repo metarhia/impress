@@ -1,8 +1,8 @@
 'use strict';
 
-let ncp = require('ncp').ncp,
-    querystring = require('querystring'),
-    path = require('path');
+const ncp = require('ncp').ncp;
+const querystring = require('querystring');
+const path = require('path');
 
 process.chdir(path.resolve(__dirname, '..'));
 require('../lib/impress');
@@ -11,7 +11,7 @@ ncp.limit = 16;
 
 let taskCount = 0;
 
-let config = {
+const config = {
   host: '127.0.0.1',
   port: 8080,
   timeout: 10000,
@@ -57,7 +57,7 @@ function taskExit() {
 
 function httpTask(task) {
   taskCount++;
-  let request = {
+  const request = {
     host: config.host,
     port: config.port,
     agent: false
@@ -77,10 +77,10 @@ function httpTask(task) {
     };
   }
   if (request.path) {
-    let req = api.http.request(request);
+    const req = api.http.request(request);
     req.on('response', (res) => {
       if (res.statusCode === 200) {
-        let msg = (
+        const msg = (
           'Request: http://' + config.host + ':' + config.port + ' ' +
           request.method + ' ' + request.path +
           ' -> HTTP ' + res.statusCode + ' read: ' + res.socket.bytesRead
