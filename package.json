@@ -39,9 +39,9 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "metasync": "0.0.x",
-    "globalstorage": "0.0.x",
-    "metarhia-jstp": ">=0.5.0",
+    "metasync": "0.1.x",
+    "globalstorage": "0.1.x",
+    "metarhia-jstp": "0.5.1",
     "bcrypt": "1.0.x",
     "colors": "1.1.x",
     "mkdirp": "0.5.x",

@@ -15,14 +15,14 @@ const isWin = !!process.platform.match(/^win/);
 
 api.ncp.limit = 16;
 
-let current = api.path.dirname(__filename.replace(/\\/g, '/'));
-let parent = api.path.basename(api.path.dirname(current));
-let destination = api.path.dirname(api.path.dirname(current));
+const current = api.path.dirname(__filename.replace(/\\/g, '/'));
+const parent = api.path.basename(api.path.dirname(current));
+const destination = api.path.dirname(api.path.dirname(current));
 let exists = false;
 
-let jstpPath = api.path.dirname(require.resolve('metarhia-jstp'));
-let jstpDistPath = api.path.join(jstpPath, 'dist');
-let staticJsDir = api.path.resolve(__dirname, 'applications/example/static/js');
+const jstpPath = api.path.dirname(require.resolve('metarhia-jstp'));
+const jstpDistPath = api.path.join(jstpPath, 'dist');
+const staticDir = api.path.resolve(__dirname, 'applications/example/static/js');
 
 // Execute shell command displaying output and possible errors
 //
@@ -47,10 +47,10 @@ function installCLI() {
 // Copy the browser version of JSTP
 //
 ['jstp.min.js', 'jstp.min.js.map'].forEach((file) => {
-  let source = api.path.join(jstpDistPath, file);
-  let dest = api.path.join(staticJsDir, file);
+  const source = api.path.join(jstpDistPath, file);
+  const dest = api.path.join(staticDir, file);
 
-  let data = api.fs.readFileSync(source);
+  const data = api.fs.readFileSync(source);
   api.fs.writeFileSync(dest, data);
 });
 
@@ -59,7 +59,7 @@ if (parent !== 'node_modules') {
   process.exit(0);
 }
 
-let checkFiles = ['package.json', 'server.js', 'config', 'applications'];
+const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
 api.metasync.each(checkFiles, check, done);
 
 function check(file, callback) {
@@ -77,15 +77,27 @@ function done() {
     );
   } else {
     console.log('Installing Impress Application Server...'.bold.green);
-    let sSrv = api.fs.createReadStream(current + '/server.js');
-    let dSrv = api.fs.createWriteStream(destination + '/server.js');
+    const sSrv = api.fs.createReadStream(
+      current + '/server.js'
+    );
+    const dSrv = api.fs.createWriteStream(
+      destination + '/server.js'
+    );
     sSrv.pipe(dSrv);
-    let sPkg = api.fs.createReadStream(current + '/lib/package.template.json');
-    let dPkg = api.fs.createWriteStream(destination + '/package.json');
+    const sPkg = api.fs.createReadStream(
+      current + '/lib/package.template.json'
+    );
+    const dPkg = api.fs.createWriteStream(
+      destination + '/package.json'
+    );
     sPkg.pipe(dPkg);
-    let shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
-    let sScr = api.fs.createReadStream(current + '/' + shellScript);
-    let dScr = api.fs.createWriteStream(destination + '/' + shellScript);
+    const shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
+    const sScr = api.fs.createReadStream(
+      current + '/' + shellScript
+    );
+    const dScr = api.fs.createWriteStream(
+      destination + '/' + shellScript
+    );
     sScr.pipe(dScr);
     api.ncp(
       current + '/config',
