@@ -108,7 +108,8 @@ if (process.isMaster) {
   console.log('Testing IAS...'.bold.green);
   impress.server.on('started', () => {
     //api.common.logApiMethod('fs.stat');
-    for (let i = 0; i < config.tasks.length; i++) {
+    let i;
+    for (i = 0; i < config.tasks.length; i++) {
       httpTask(config.tasks[i]);
     }
   });
