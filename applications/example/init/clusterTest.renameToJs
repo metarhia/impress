@@ -2,7 +2,7 @@ api.timers.setInterval(() => {
   application.backend.emit('test', { data: 'data' });
 }, 5000);
 
-let startTime = new Date().getTime();
+const startTime = new Date().getTime();
 let count = 0;
 
 function test() {
@@ -17,8 +17,8 @@ api.timers.setTimeout(test, 1200);
 api.timers.setTimeout(test, 1400);
 
 api.timers.setInterval(() => {
-  let endTime = new Date().getTime(),
-      processingTime = endTime - startTime;
+  const endTime = new Date().getTime();
+  const processingTime = endTime - startTime;
   console.log(
     application.nodeId + ' Processing time: ' +
     processingTime + ' count: ' + count

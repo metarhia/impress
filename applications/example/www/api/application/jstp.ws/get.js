@@ -1,5 +1,5 @@
 (client, callback) => {
-  let connection = client.websocket.accept();
+  const connection = client.websocket.accept();
   if (connection) {
     api.jstp.serveOverWebsocket(connection);
   }

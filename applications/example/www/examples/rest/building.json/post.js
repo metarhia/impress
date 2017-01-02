@@ -1,5 +1,5 @@
 (client, callback) => {
-  let num = api.path.basename(client.path);
+  const num = api.path.basename(client.path);
   dbCity.buildings.update(
     { num: num },
     api.json.parse(client.fields.building),

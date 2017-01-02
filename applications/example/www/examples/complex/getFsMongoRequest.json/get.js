@@ -1,13 +1,13 @@
 (client, callback) => {
   api.async.parallel({
     file: (callback) => {
-      let filePath = application.dir + '/www' + client.path + '/test.txt';
+      const filePath = application.dir + '/www' + client.path + '/test.txt';
       api.fs.readFile(filePath, 'utf8', (error, data) => {
         callback(null, data);
       });
     },
     request: (callback) => {
-      let req = api.http.request(
+      const req = api.http.request(
         {
           hostname: 'google.com',
           port: 80,

@@ -2,17 +2,17 @@ function print(data) {
   console.log(JSON.stringify(data, null, 2));
 }
 
-let flower1 = {
+const flower1 = {
   category: 'Flower',
   name: 'Bellis ' + process.pid
 };
 
-let flower2 = {
+const flower2 = {
   category: 'Flower',
   name: 'Erythronium ' + process.pid
 };
 
-let kpi = {
+const kpi = {
   category: 'University',
   name: 'Kiev Polytechnic Institute ' + process.pid
 };

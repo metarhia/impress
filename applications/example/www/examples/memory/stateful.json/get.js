@@ -5,8 +5,8 @@
   );
   application.stateTest.counter++;
 
-  let st = application.stateTest,
-      ip = client.req.connection.remoteAddress;
+  const st = application.stateTest;
+  const ip = client.req.connection.remoteAddress;
   if (st.addresses.indexOf(ip) === -1) {
     st.addresses.push(ip);
   }

@@ -1,5 +1,5 @@
 (client, callback) => {
-  let item = api.news.getItem(client.query.id);
+  const item = api.news.getItem(client.query.id);
   if (!item) callback({ error: 'id not specified' }, 404);
   else callback(item);
 }

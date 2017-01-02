@@ -1,5 +1,5 @@
 (client, callback) => {
-  let req = api.http.request(
+  const req = api.http.request(
     {
       hostname: 'ietf.org',
       port: 80,

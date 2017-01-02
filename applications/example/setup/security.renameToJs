@@ -4,7 +4,7 @@ console.log(
   )
 );
 
-let rl = api.readline.createInterface({
+const rl = api.readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
