@@ -25,12 +25,12 @@ const config = {
     { get: '/examples/simple/endHandler.json' },
     { get: '/examples/memory/stateful.json' },
     { get: '/examples/override/' },
-    { get: '/examples/tools/forkWorker.json' },
+//  { get: '/examples/tools/forkWorker.json' },
     { get: '/examples/tools/serverHealth.json' },
     { get: '/examples/simple/httpRequest.json' },
     { get: '/examples/security/anonymousSession.json' },
     { get: '/examples/security/userInfo.json' },
-    { get: '/examples/tools/longWorker.json/' },
+//  { get: '/examples/tools/longWorker.json/' },
     { get: '/examples/tools/serverHealth.json' },
     { get: '/examples/simple/virtualPath.json/a/b/c' },
     { get: '/examples/simple/jsonGet.json?field=value' },
@@ -105,7 +105,7 @@ function httpTask(task) {
 }
 
 if (process.isMaster) {
-  console.log('Testing IAS...'.bold.green);
+  console.log('Testing Impress...'.bold.green);
   impress.server.on('started', () => {
     //api.common.logApiMethod('fs.stat');
     let i;
