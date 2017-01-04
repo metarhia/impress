@@ -1,10 +1,10 @@
 [![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/metarhia/Impress)
 
-[![Build Status](https://travis-ci.org/metarhia/Impress.svg?branch=master&label=linux)](https://travis-ci.org/metarhia/Impress)
-[![Dependency Status](https://david-dm.org/metarhia/Impress.svg)](https://david-dm.org/metarhia/Impress)
-[![Codacy Badge](https://www.codacy.com/project/badge/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/public/metarhia/Impress)
-[![NPM Version](https://img.shields.io/npm/v/impress.svg)](https://npmjs.org/package/impress)
-[![NPM Downloads](https://img.shields.io/npm/dm/impress.svg)](https://npmjs.org/package/impress)
+[![TravisCI Build](https://img.shields.io/travis/metarhia/Impress.svg?branch=master&style=flat-square)](https://travis-ci.org/metarhia/Impress)<!--([![David Dependency](https://img.shields.io/david/metarhia/Impress.svg?style=flat-square)](https://david-dm.org/metarhia/Impress)-->
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fb7b607a9cb445984aebbc08fdeb13c?style=flat-square)](https://www.codacy.com/app/metarhia/impress)
+[![NPM Version](https://img.shields.io/npm/v/impress.svg?style=flat-square)](https://www.npmjs.com/package/impress)
+[![NPM Downloads/Month](https://img.shields.io/npm/dm/impress.svg?style=flat-square)](https://www.npmjs.com/package/impress)
+[![NPM Downloads](https://img.shields.io/npm/dt/impress.svg?style=flat-square)](https://www.npmjs.com/package/impress)
 
 [Impress](https://github.com/metarhia/Impress) Application Server for
 [node.js](http://nodejs.org). All decisions are made. Solutions are scaled.
