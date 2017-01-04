@@ -1,9 +1,10 @@
 [![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/metarhia/Impress)
 
-[![Build Status](https://travis-ci.org/metarhia/Impress.svg?branch=master)](https://travis-ci.org/metarhia/Impress)
+[![Build Status](https://travis-ci.org/metarhia/Impress.svg?branch=master&label=linux)](https://travis-ci.org/metarhia/Impress)
 [![Dependency Status](https://david-dm.org/metarhia/Impress.svg)](https://david-dm.org/metarhia/Impress)
 [![Codacy Badge](https://www.codacy.com/project/badge/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/public/metarhia/Impress)
-[![Inline docs](http://inch-ci.org/github/metarhia/Impress.svg?branch=master)](http://inch-ci.org/github/metarhia/Impress)
+[![NPM Version](https://img.shields.io/npm/v/impress.svg)](https://npmjs.org/package/impress)
+[![NPM Downloads](https://img.shields.io/npm/dm/impress.svg)](https://npmjs.org/package/impress)
 
 [Impress](https://github.com/metarhia/Impress) Application Server for
 [node.js](http://nodejs.org). All decisions are made. Solutions are scaled.
