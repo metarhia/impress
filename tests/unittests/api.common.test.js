@@ -7,11 +7,9 @@ methodConteiner.method = (obj) => {
 };
 
 const config = {
-  sessions: {
-    characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
-    secret:     'secret',
-    length:     64
-  }
+  characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+  secret: 'secret',
+  length: 64
 };
 
 api.test.case({
@@ -306,15 +304,15 @@ api.test.case({
     [
       config,
       api.common.generateKey(
-        config.sessions.length - 4,
-        config.sessions.characters
+        config.length - 4,
+        config.characters
       ),
       (result)  => (result.length === 4)
     ]
   ],
   'api.common.validateSID': [
-    [ config, 'ag0DEZqImmOPOQxl1DCIJh5KvSr4OX6wE2tDoVybqNrs1jLhimN7zV6mCPyl5b96', true  ],
-    [ config, 'ag0DEZqImmOfOQxl1DCIJh5KvSr4OX6wE2tDoVybqNrs1jLhimN7zV6mCPyl5b96', false ],
+    [ config, 'XFHczfaqXaaUmIcKfHNF9YAY4BRaMX5Z4Bx99rsB5UA499mTjmewlrWTKTCp77bc', true  ],
+    [ config, 'XFHczfaqXaaUmIcKfHNF9YAY4BRaMX5Z4Bx99rsB5UA499mTjmewlrWTKTCp77bK', false ],
     [ config, '2XpU8oAewXwKJJSQeY0MByY403AyXprFdhB96zPFbpJxlBqHA3GfBYeLxgHxBhhZ', false ],
     [ config, 'WRONG-STRING', false ],
     [ config, '',             false ],
