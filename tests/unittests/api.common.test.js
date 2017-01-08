@@ -226,15 +226,6 @@ api.test.case({
     [ [1, 'a', 3], (result) => (api.json.stringify(result.sort()) === '[1,3,"a"]') ],
     [ [],          (result) => (api.json.stringify(result.sort()) === '[]')        ],
   ],
-  'api.common.clone': [
-    [ {}, {} ],
-    [ [], [] ],
-    [ null, null ],
-    [ { f1: 1 }, { f1: 1 } ],
-    [ { f1: 1 }, { f2: 2 }, { f1: 1, f2: 2 } ],
-    [ { f1: 1, sub: { f2: 2, a1: [1, 2] } }, { f1: 1, sub: { f2: 2, a1: [1, 2] } } ],
-    [ { f1: 1, sub: { f2: 2, a1: [1, 2] } }, { f3: 3, a2: [3, 4] }, { f1: 1, sub: { f2: 2, a1: [1, 2] }, f3: 3, a2: [3, 4] } ],
-  ],
   'api.common.capitalize': [
     [ 'abc', 'Abc' ],
     [ 'Abc', 'Abc' ],
