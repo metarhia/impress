@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "unused-ignores": [
+      "accept-language",
+      "csv",
+      "websocket",
+      "zip-stream",
+      "iconv-lite",
+      "multiparty",
+      "uglify-js",
+      "mkdirp",
+      "bcrypt",
+      "globalstorage"
+    ]
+  },
+  "critics": {
+    "lint": {
+      "engine": "eslint"
+    },
+    "wc": {
+      "limit": 1500
+    }
+  },
+  "ignore": [
+    "**/config/*.js",
+    "applications/example/static/js/*.js",
+    "applications/example/api/**",
+    "applications/example/lib/**",
+    "applications/example/www/**",
+    "**/node_modules/**"
+  ],
+  "test": [
+    "tests/**"
+  ]
+}

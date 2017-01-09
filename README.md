@@ -1,7 +1,8 @@
 [![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/metarhia/Impress)
 
-[![TravisCI Build](https://img.shields.io/travis/metarhia/Impress.svg?branch=master&style=flat-square)](https://travis-ci.org/metarhia/Impress)<!--([![David Dependency](https://img.shields.io/david/metarhia/Impress.svg?style=flat-square)](https://david-dm.org/metarhia/Impress)-->
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fb7b607a9cb445984aebbc08fdeb13c?style=flat-square)](https://www.codacy.com/app/metarhia/impress)
+[![TravisCI](https://img.shields.io/travis/metarhia/Impress.svg?branch=master&style=flat-square)](https://travis-ci.org/metarhia/Impress)
+[![bitHound](https://img.shields.io/bithound/dependencies/github/metarhia/Impress.svg?style=flat-square)](https://www.bithound.io/github/metarhia/Impress)
+[![Codacy](https://api.codacy.com/project/badge/Grade/6fb7b607a9cb445984aebbc08fdeb13c?style=flat-square)](https://www.codacy.com/app/metarhia/impress)
 [![NPM Version](https://img.shields.io/npm/v/impress.svg?style=flat-square)](https://www.npmjs.com/package/impress)
 [![NPM Downloads/Month](https://img.shields.io/npm/dm/impress.svg?style=flat-square)](https://www.npmjs.com/package/impress)
 [![NPM Downloads](https://img.shields.io/npm/dt/impress.svg?style=flat-square)](https://www.npmjs.com/package/impress)
