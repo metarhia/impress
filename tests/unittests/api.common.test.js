@@ -226,15 +226,6 @@ api.test.case({
     [ [1, 'a', 3], (result) => (api.json.stringify(result.sort()) === '[1,3,"a"]') ],
     [ [],          (result) => (api.json.stringify(result.sort()) === '[]')        ],
   ],
-  'api.common.clone': [
-    [ {}, {} ],
-    [ [], [] ],
-    [ null, null ],
-    [ { f1: 1 }, { f1: 1 } ],
-    [ { f1: 1 }, { f2: 2 }, { f1: 1, f2: 2 } ],
-    [ { f1: 1, sub: { f2: 2, a1: [1, 2] } }, { f1: 1, sub: { f2: 2, a1: [1, 2] } } ],
-    [ { f1: 1, sub: { f2: 2, a1: [1, 2] } }, { f3: 3, a2: [3, 4] }, { f1: 1, sub: { f2: 2, a1: [1, 2] }, f3: 3, a2: [3, 4] } ],
-  ],
   'api.common.capitalize': [
     [ 'abc', 'Abc' ],
     [ 'Abc', 'Abc' ],
@@ -368,12 +359,6 @@ api.test.case({
     [ { name: 'abc' }, { name: 'a' },     1 ],
     [ { name: 'a' },   { name: 'abc' },  -1 ],
     [ { name: '123' }, { name: 'name' }, -1 ],
-  ],
-  'api.common.clearCacheStartingWith': [
-    [ { abc: '123', abcd: '1234', abcde: '12345' }, 'abcd',  { abc: '123' } ],
-    [ { abc: '123', abcd: '1234', abcde: '12345' }, 'a',                { } ],
-    [ { abc: '123', abcd: '1234' }, 'qwer',    { abc: '123', abcd: '1234' } ],
-    [ { abc: '123', abcd: '1234' }, 'abc',                              { } ],
   ],
   'api.common.logApiMethod': [
     [ 'fs.stats', undefined ]

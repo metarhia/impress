@@ -1,4 +1,4 @@
 node_modules/
 lib/api.v8.js
 lib/api.v8.pre5.js
-/applications/example/static
+applications/example/static
