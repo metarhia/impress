@@ -22,12 +22,14 @@
     }
   },
   "ignore": [
-    "**/config/*.js",
     "applications/example/static/js/*.js",
     "applications/example/api/**",
     "applications/example/lib/**",
     "applications/example/www/**",
-    "**/node_modules/**"
+    "**/node_modules/**",
+    "**/config/*.js",
+    "schemas/**",
+    "tests/**"
   ],
   "test": [
     "tests/**"

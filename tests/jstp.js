@@ -3,7 +3,7 @@
 const jstp = require('metarhia-jstp');
 
 let port, tls;
-if (process.argv.indexOf('--tls') !== -1) {
+if (process.argv.includes('--tls')) {
   port = 4000;
   tls = true;
 } else {
