@@ -24,16 +24,16 @@ a {color:inherit;text-decoration:none}
 </style>
 <script type='text/javascript'>
 window.onload = function() {
-  var i, table = document.getElementById("files"),
+  let i, table = document.getElementById("files"),
       rows = table.getElementsByTagName('tr');
   for (i = 1; i < rows.length; i++) {
     rows[i].onclick = function() {
-      var a = this.getElementsByTagName('a')[0];
+      let a = this.getElementsByTagName('a')[0];
       document.location.href = a.href;
       return false;
     }
   }
-  var curRow = null, newRow = null;
+  let curRow = null, newRow = null;
   window.onkeydown = function(e) {
     if (e.keyCode === 13 && curRow) curRow.onclick.apply(curRow);
     else if (curRow === null && (e.keyCode === 38 || e.keyCode === 40)) newRow = rows[1];

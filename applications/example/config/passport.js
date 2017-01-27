@@ -1,12 +1,12 @@
 if (api.passport) {
 
   // used to serialize the user for the session
-  api.passport.serializeUser(function(user, done) {
+  api.passport.serializeUser((user, done) => {
     done(null, user);
   });
 
   // used to deserialize the user
-  api.passport.deserializeUser(function(user, done) {
+  api.passport.deserializeUser((user, done) => {
     done(null, user);
   });
 
