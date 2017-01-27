@@ -4,28 +4,28 @@ api.news = {};
 
 api.news.data = [
   {
-    title: 'Version 0.1.195 released',
-    date: '2015-01-11',
+    title: 'Version 0.1.1 released',
+    date: '2015-01-01',
     author: 'Marcus Aurelius',
     changes: [
       'Fixed MongoDB schema validation',
-      'Fixed double context initialization using application.callInContext(impress.initContext);',
-      'Moved merge and inArray from global context to api.impress namespace, issue #189'
+      'Fixed double context initialization',
+      'Moved merge and inArray from global context to api.impress namespace'
     ]
   },
   {
-    title: 'Version 0.1.194 released',
-    date: '2015-01-10',
+    title: 'Version 0.1.2 released',
+    date: '2015-01-02',
     author: 'Marcus Aurelius',
     changes: [
-      'Fixed ReferenceError: login is not defined, issue #194',
+      'Fixed ReferenceError: login is not defined',
       'Fixed name collision dispatch/dispatcher',
       'Minor code refactoring'
     ]
   },
   {
-    title: 'Version 0.1.193 released',
-    date: '2015-01-09',
+    title: 'Version 0.1.3 released',
+    date: '2015-01-05',
     author: 'Marcus Aurelius',
     changes: [
       'Decomposed application.dispatcher to application.dispatchRoute',
@@ -33,12 +33,12 @@ api.news.data = [
     ]
   },
   {
-    title: 'Version 0.1.192 released',
+    title: 'Version 0.1.4 released',
     date: '2015-01-08',
     author: 'Marcus Aurelius',
     changes: [
-      'Decomposed method dispatcher into: impress.dispatcher and application.dispatcher',
-      'Avoid inheritance for classes User and Session, issue #193'
+      'Decomposed method dispatcher into: impress.dispatcher',
+      'Avoid inheritance for classes User and Session'
     ]
   }
 ];

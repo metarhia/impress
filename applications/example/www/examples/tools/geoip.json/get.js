@@ -12,7 +12,7 @@
           nodejs: {
             host: 'nodejs.org',
             ip: address,
-            family: family,
+            family,
             geoip: api.geoip.lookup(address)
           }
         }
