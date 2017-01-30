@@ -2,10 +2,8 @@ node_modules
 /log/
 /test/
 /debug/
-/.idea/
 *.log
 *.done
-crlf.js
 .DS_Store
 *.min.js
 *.min.js.map
