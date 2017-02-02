@@ -22,7 +22,7 @@ install:
 script:
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js
-  - eslint .
+  - npm run lint
 env: IMPRESS_MODE=test CXX=g++-6
 addons:
   apt:
