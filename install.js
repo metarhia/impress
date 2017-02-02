@@ -63,8 +63,8 @@ const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
 api.metasync.each(checkFiles, check, done);
 
 function check(file, callback) {
-  api.fs.exists(destination + '/' + file, (fileExists) => {
-    exists = exists || fileExists;
+  api.fs.access(destination + '/' + file, (err) => {
+    exists = exists || !err;
     callback();
   });
 }
