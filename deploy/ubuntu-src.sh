@@ -11,7 +11,7 @@ sudo apt-get -y install g++-4.8
 sudo update-alternatives --quiet --install  /usr/bin/g++ g++ /usr/bin/g++-4.8 1
 fi
 cd /usr/src
-sudo wget http://nodejs.org/dist/v7.5.0/node-v7.5.0.tar.gz
+sudo wget https://nodejs.org/dist/v7.5.0/node-v7.5.0.tar.gz
 sudo tar zxf node-v7.5.0.tar.gz
 sudo rm -f ./node-v7.5.0.tar.gz
 cd node-v7.5.0

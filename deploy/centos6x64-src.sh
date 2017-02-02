@@ -7,7 +7,7 @@ rpm --import http://ftp.mirrorservice.org/sites/ftp.scientificlinux.org/linux/sc
 yum -y install devtoolset-3
 source scl_source enable devtoolset-3
 cd /usr/src
-wget http://nodejs.org/dist/v7.5.0/node-v7.5.0.tar.gz
+wget https://nodejs.org/dist/v7.5.0/node-v7.5.0.tar.gz
 tar zxf node-v7.5.0.tar.gz
 rm -f ./node-v7.5.0.tar.gz
 cd node-v7.5.0
