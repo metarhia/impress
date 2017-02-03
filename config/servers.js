@@ -23,7 +23,7 @@
     slowTime:  '1s',
     timeout:   '30s',
     keepAlive: '5s',
-    applications: ['example'] // undefined for all
+    applications: ['example'], // undefined for all
     // inspect: 2000 // inspect Chrome developer tools
   },
 
@@ -32,6 +32,7 @@
     transport: 'tcp',
     address:   '*',
     ports:     [3000, [1]], // Example: [81, [-1]]
+    applications: ['example'],
     heartbeat: '2s'
   },
 
@@ -49,6 +50,7 @@
     transport: 'ws',
     address:   '*',
     ports:     [8000],
+    applications: ['example'],
     slowTime:  '1s'
   },
 
@@ -57,7 +59,8 @@
   //  transport: 'tcp',
   //  address:   '127.0.0.1',
   //  ports:     [80],
-  // Nagle algorithm, default true, set to false for latency optimization
+  //  applications: ['example'],
+  //Nagle algorithm, default true, set to false for latency optimization
   //  nagle:     true,
   //  slowTime:  '1s',
   //  timeout:   '120s' // default 30s
@@ -67,6 +70,7 @@
   //  protocol:  'http',
   //  transport: 'tls',
   //  address:   '127.0.0.1',
+  //  applications: ['example'],
   //  ports:     [443],
   //  key:       'example.key',
   //  cert:      'example.cer'
@@ -76,6 +80,7 @@
   //  protocol:  'http',
   //  transport: 'tcp',
   //  address:   '127.0.0.1',
+  //  applications: ['example'],
   //  ports:     [8080],
   //  slowTime:  1000
   //}
