@@ -36,7 +36,7 @@ aspects:
     - State synchronization mechanism with transactions and subscription
   - No need to write routing manually in code, just create handler files and functions
   - File system watching for cache reloading when file changes on disk
-  - Caching server-side executable JavaScript in memory
+  - Cache server-side executable JavaScript in memory
   - Handlers inheritance override hierarchically
   - API development support (simple way for JSON-based WEB-services development)
     - RPC-style API (Stateful, state stored in memory between requests)
@@ -54,8 +54,8 @@ aspects:
   serialization); JSONP (for cross-domain requests); CSV; HTML (aor any extension
   unknown for IAS) for AJAX server-side HTML rendering; JSTP (for JavaScript
   Transfer Protocol)
-  - Server server-side simple templating with caching, data structures iterators
-  and personalization based on user groups
+  - Server-side simple templating with caching, data structures iterators and
+  personalization based on user groups
   - Serving static files with in-memory preprocessing: gzipping and HTTP
   `if-modified-since` support with HTTP 304 "Not Modified" answer; memory caching
   and file system watching for cache reloading when files changed on disk;
@@ -67,15 +67,13 @@ aspects:
     (https://github.com/metarhia/JSTP)
     - HTTP and HTTPS (node native libraries)
     - Implemented SSE (Server-Sent Events) with channels and multi-cast
-    - WebSockets support (even on shared host/port with other handlers, using
-    regular connection upgrade)
+    - WebSockets support
     - TCP and UDP sockets support
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
   - Server-wide or application-specific logging, with log buffering (lazy write)
   and rotation (keep logs N days)
-  - Connection drivers for database engines: MongoDB, PgSQL, MySQL (based on
-  `felixge/mysql` and `musql-utilities`), Memcached, Relational schema generator
-  from JSON database schemas
+  - Connection drivers for database engines: MongoDB, PgSQL, MySQL, Memcached,
+  Relational schema generator from JSON database schemas
   - File utilities: upload, download, streaming
   - GeoIP support, based on `geoip-lite` module (uses MaxMind database)
   - Sending emails using `nodemailer`
@@ -90,7 +88,7 @@ aspects:
     - Long stack trace with --stack-trace-limit=1000 and stack output minification
     - Wrapper for V8 internal functions with --allow-natives-syntax
     - Manual garbage collection with --nouse-idle-notification --expose-gc
-  - HTTP base authentication implemented (optional omitting local requests)
+  - HTTP basic authentication implemented (optional omitting local requests)
 
 ## Examples
 
