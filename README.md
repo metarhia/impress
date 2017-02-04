@@ -133,9 +133,9 @@ Example:
   https:   true,  // Allow requests using https protocol
   groups:  [],    // Allow access for user groups listed in array
                   //   or for all if array is empty or no groups specified
-  intro:   true,  // Generate introspection for API methods in this directory
+  intro:   true,  // Generate introspection for API in this directory
   index:   false, // Generate directory index
-  virtual: true   // Allow requests to virtual paths, for CMS, REST URLs, etc.
+  virtual: true   // Allow requests to virtual paths, for CMS and REST URLs
 }
 ```
 
@@ -152,7 +152,7 @@ Example:
   (tested on Ubuntu 14.04 64bit minimal)
   - For Debian 7 and 8 `/deploy/debian.sh`
   (tested for Debian 7.5 64bit minimal)
-  - For Fedora 22, 23 and 24 for x64 `/deploy/fedora.sh`
+  - For Fedora 22, 23, 24 and 25 for x64 `/deploy/fedora.sh`
   
 You can prepare scripts based on examples above and run at a target server shell:
 `curl http://.../install.sh | sh` or `wget http://.../install.sh -O - | sh`
