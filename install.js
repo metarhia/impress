@@ -44,29 +44,37 @@ function installCLI() {
   });
 }
 
-// Copy the browser version of JSTP
+// Symlink the browser version of JSTP
 //
-['jstp.min.js', 'jstp.min.js.map'].forEach((file) => {
+api.metasync.each(['jstp.min.js', 'jstp.min.js.map'], (file, callback) => {
   const source = api.path.join(jstpDistPath, file);
   const dest = api.path.join(staticDir, file);
 
-  const data = api.fs.readFileSync(source);
-  api.fs.writeFileSync(dest, data);
-});
-
-if (parent !== 'node_modules') {
-  console.log('Running in developer mode');
-  process.exit(0);
-}
-
-const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
-api.metasync.each(checkFiles, check, done);
-
-function check(file, callback) {
-  api.fs.access(destination + '/' + file, (err) => {
-    exists = exists || !err;
-    callback();
+  api.fs.unlink(dest, () => {  // Errors are ignored intentionally
+    api.fs.symlink(source, dest, (err) => {
+      if (err) throw err;
+      callback();
+    });
   });
+}, installImpress);
+
+// Install Impress Application Server
+//
+function installImpress() {
+  if (parent !== 'node_modules') {
+    console.log('Running in developer mode');
+    process.exit(0);
+  }
+
+  const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
+  api.metasync.each(checkFiles, check, done);
+
+  function check(file, callback) {
+    api.fs.access(destination + '/' + file, (err) => {
+      exists = exists || !err;
+      callback();
+    });
+  }
 }
 
 function done() {
