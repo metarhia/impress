@@ -173,7 +173,7 @@ api.dom.on('load', function() {
     }
 
     var client = api.jstp.ws.createClient('ws://localhost:8000',
-      new api.jstp.ClientApplicationProvider('example', {}));
+      new api.jstp.Application('example', {}));
 
     client.connect(function(error, connection) {
       if (error) {
