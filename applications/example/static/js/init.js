@@ -151,13 +151,15 @@ api.dom.on('load', function() {
     });
   });
 
-  api.dom.on('click', '#menuJSTP', function() {
+  api.dom.on('click', '#menuJSTP', runJstpExample);
+
+  function runJstpExample() {
     panelCenter.innerHTML = (
       '<div id="jstpLog"></div>' +
       '<button id="jstpDisconnect">Disconnect</button>'
     );
     jstpConnect();
-  });
+  }
 
   function jstpConnect() {
     var messageBlock = api.dom.id('jstpLog');
@@ -183,10 +185,13 @@ api.dom.on('load', function() {
 
       print('connection opened');
 
-      api.dom.on('click', '#jstpDisconnect', function() {
+      var button = api.dom.id('jstpDisconnect');
+      button.onclick = function() {
         client.disconnect();
         print('connection closed');
-      });
+        button.innerHTML = 'Connect';
+        button.onclick = runJstpExample;
+      };
 
       connection.handshake('example', null, null, function(err, session) {
         if (err) {
