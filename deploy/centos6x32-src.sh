@@ -6,15 +6,15 @@ sudo rpm --import http://ftp.scientificlinux.org/linux/scientific/5x/x86_64/RPM-
 sudo yum -y install devtoolset-2
 source scl_source enable devtoolset-2
 cd /usr/src
-wget https://nodejs.org/dist/v7.5.0/node-v7.5.0.tar.gz
-tar zxf node-v7.5.0.tar.gz
-rm -f ./node-v7.5.0.tar.gz
-cd node-v7.5.0
+wget https://nodejs.org/dist/v7.6.0/node-v7.6.0.tar.gz
+tar zxf node-v7.6.0.tar.gz
+rm -f ./node-v7.6.0.tar.gz
+cd node-v7.6.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v7.5.0
+rm -rf /usr/src/node-v7.6.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 sudo mkdir /ias
