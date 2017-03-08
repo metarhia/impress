@@ -39,6 +39,7 @@
   },
   "main": "./lib/impress",
   "dependencies": {
+    "metarhia-common": "0.0.x",
     "metasync": "0.1.x",
     "globalstorage": "0.1.x",
     "metarhia-jstp": "0.6.x",

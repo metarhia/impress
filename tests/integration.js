@@ -25,19 +25,18 @@ const config = {
     { get: '/examples/simple/endHandler.json' },
     { get: '/examples/memory/stateful.json' },
     { get: '/examples/override/' },
-//  { get: '/examples/tools/forkWorker.json' },
+    { get: '/examples/tools/forkWorker.json' },
     { get: '/examples/tools/serverHealth.json' },
-    { get: '/examples/simple/httpRequest.json' },
     { get: '/examples/security/anonymousSession.json' },
     { get: '/examples/security/userInfo.json' },
-//  { get: '/examples/tools/longWorker.json/' },
+    { get: '/examples/tools/longWorker.json/' },
     { get: '/examples/tools/serverHealth.json' },
     { get: '/examples/simple/virtualPath.json/a/b/c' },
     { get: '/examples/simple/jsonGet.json?field=value' },
     { get: '/examples/cache/htmlPage.ajax' },
     { get: '/examples/cache/apiMethod.json' },
     { get: '/examples/events/connect.sse' },
-//  { get: '/examples/events/sendEvent.json' },
+    { get: '/examples/events/sendEvent.json' },
     { get: '/examples/simple/csvStringify.csv' },
     {
       get: '/examples/simple/jsonpGet.jsonp',
@@ -107,11 +106,11 @@ function httpTask(task) {
 if (process.isMaster) {
   console.log('Testing Impress...'.bold.green);
   impress.server.on('started', () => {
-    //api.common.logApiMethod('fs.stat');
     let i;
     for (i = 0; i < config.tasks.length; i++) {
       httpTask(config.tasks[i]);
     }
   });
 }
+
 impress.server.start();
