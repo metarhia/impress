@@ -76,11 +76,6 @@ api.test.case({
     [ '1234-12-12', '1234-12-12',  true ],
     [ '1234-12-12', '4321-12-21', false ],
   ],
-  'api.common.pad2': [
-    [  0, '00' ],
-    [  5, '05' ],
-    [ 10, '10' ],
-  ],
   'api.common.nowDate': [
     [ new Date('2014-12-12 12:30:15.150'), '2014-12-12' ],
     [ new Date('2014-12-12 12:30:15'),     '2014-12-12' ],
@@ -330,14 +325,14 @@ api.test.case({
     [ ['/css/*.css'],         '^\\/css\\/.*\\.css$' ],
     [ ['*/css/*'],            '^.*\\/css\\/.*$' ],
   ],
-  'api.common.sortCompareConfig': [
-    [ 'files.js', 'sandbox.js',       1 ],
-    [ 'filestorage.js', 'routes.js', -1 ],
-    [ 'unknown.js', 'sandbox.js',     1 ],
-    [ 'log.js', 'sandbox.js',         1 ],
-    [ 'sandbox.js', 'sandbox.js',     0 ],
-    [ 'log.js', 'log.js',             0 ],
-    [ 'tasks.js', 'application.js',  -1 ],
+  'api.common.sortComparePriority': [
+    [ impress.CONFIG_FILES_PRIORITY, 'files.js', 'sandbox.js',       1 ],
+    [ impress.CONFIG_FILES_PRIORITY, 'filestorage.js', 'routes.js', -1 ],
+    [ impress.CONFIG_FILES_PRIORITY, 'unknown.js', 'sandbox.js',     1 ],
+    [ impress.CONFIG_FILES_PRIORITY, 'log.js', 'sandbox.js',         1 ],
+    [ impress.CONFIG_FILES_PRIORITY, 'sandbox.js', 'sandbox.js',     0 ],
+    [ impress.CONFIG_FILES_PRIORITY, 'log.js', 'log.js',             0 ],
+    [ impress.CONFIG_FILES_PRIORITY, 'tasks.js', 'application.js',  -1 ],
   ],
   'api.common.sortCompareDirectories': [
     [ { name: '/abc' },     { name: 'abc.ext' },  -1 ],
@@ -360,7 +355,7 @@ api.test.case({
     [ { name: 'a' },   { name: 'abc' },  -1 ],
     [ { name: '123' }, { name: 'name' }, -1 ],
   ],
-  'api.common.logApiMethod': [
+  'impress.logApiMethod': [
     [ 'fs.stats', undefined ]
   ]
 });

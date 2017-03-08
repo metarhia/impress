@@ -8,8 +8,7 @@ api.cp = require('child_process');
 api.ncp = require('ncp').ncp;
 api.path = require('path');
 api.metasync = require('metasync');
-api.common = {};
-require(process.cwd() + '/lib/api.common.js');
+api.common = require('metarhia-common');
 
 const isWin = !!process.platform.match(/^win/);
 
