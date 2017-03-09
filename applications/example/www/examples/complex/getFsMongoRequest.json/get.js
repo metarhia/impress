@@ -1,12 +1,12 @@
 (client, callback) => {
-  api.async.parallel({
-    file: (callback) => {
+  api.metasync.parallel[
+    (callback) => {
       const filePath = application.dir + '/www' + client.path + '/test.txt';
       api.fs.readFile(filePath, 'utf8', (error, data) => {
         callback(null, data);
       });
     },
-    request: (callback) => {
+    (callback) => {
       const req = api.http.request(
         {
           hostname: 'google.com',
@@ -25,12 +25,12 @@
       });
       req.end();
     },
-    mongo: (callback) => {
+    (callback) => {
       dbAlias.testCollection.find({}).toArray((err, nodes) => {
         callback(null, nodes);
       });
     }
-  }, (err, results) => {
+  ], (err, results) => {
     callback(results);
   });
 }

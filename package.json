@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.4.11",
+  "version": "0.4.12",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "colors": "1.1.x",
     "mkdirp": "0.5.x",
     "ncp": "2.0.x",
-    "uglify-js": "2.7.x",
+    "uglify-js": "2.8.x",
     "multiparty": "4.1.x",
     "iconv-lite": "0.4.x",
     "zip-stream": "1.1.x",
@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "eslint": "3.x",
-    "eslint-plugin-impress": "1.x"
+    "eslint-plugin-impress": "2.x"
   },
   "engines": {
     "node": ">=6.0.0"

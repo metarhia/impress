@@ -24,7 +24,6 @@
 
     // Preinstalled modules
     'csv',
-    'async',
     'iconv',
     'colors',
     'zipStream', // npm module zip-stream
@@ -38,6 +37,7 @@
     //'geoip',
     //'nodemailer',
     //'request',
+    //'async',
 
     // Passport providers
     //'passport',         // npm install passport
