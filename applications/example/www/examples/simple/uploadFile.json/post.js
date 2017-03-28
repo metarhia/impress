@@ -2,10 +2,10 @@
 
   callback(client.files);
 
-  client.upload((file) => {
+  client.upload((err, file) => {
     console.dir({ uploadedFile: file });
-  }, (doneCount) => {
-    console.log('All ' + doneCount + ' file(s) are uploaded.');
+  }, (err, count) => {
+    console.log('All ' + count + ' file(s) are uploaded.');
   });
 
 }
