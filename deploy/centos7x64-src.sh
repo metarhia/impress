@@ -4,15 +4,15 @@ yum -y install wget mc
 yum -y install psmisc
 yum -y groupinstall "Development Tools"
 cd /usr/src
-wget https://nodejs.org/dist/v7.7.1/node-v7.7.1.tar.gz
-tar zxf node-v7.7.1.tar.gz
-rm -f ./node-v7.7.1.tar.gz
-cd node-v7.7.1
+wget https://nodejs.org/dist/v7.8.0/node-v7.8.0.tar.gz
+tar zxf node-v7.8.0.tar.gz
+rm -f ./node-v7.8.0.tar.gz
+cd node-v7.8.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v7.7.1
+rm -rf /usr/src/node-v7.8.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 sudo mkdir /ias

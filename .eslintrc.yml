@@ -7,8 +7,8 @@ globals:
   impress: false
   application: false
   connection: false
-#plugins:
-#  - impress
+plugins:
+  - impress
 rules:
   indent:
     - error
