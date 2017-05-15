@@ -1,12 +1,13 @@
 (client, callback) => {
   api.metasync.parallel([
-    (callback) => {
+    (data, callback) => {
       const filePath = application.dir + '/www' + client.path + '/test.txt';
-      api.fs.readFile(filePath, 'utf8', (error, data) => {
-        callback(null, data);
+      api.fs.readFile(filePath, 'utf8', (error, file) => {
+        data.readFile = 'File size: ' + file.length;
+        callback();
       });
     },
-    (callback) => {
+    (data, callback) => {
       const req = api.http.request(
         {
           hostname: 'google.com',
@@ -15,22 +16,32 @@
           method: 'get'
         },
         (response) => {
-          let data = '';
-          response.on('data', chunk => data += chunk);
-          response.on('end', () => callback(null, data));
+          let buffer = '';
+          response.on('data', chunk => buffer += chunk);
+          response.on('end', () => {
+            data.page = 'Page size: ' + buffer.length;
+            callback();
+          });
         }
       );
-      req.on('error', (/*err*/) => {
-        callback(null, 'Can\'t get page');
+      req.on('error', (err) => {
+        data.getError = err.toString();
+        callback();
       });
       req.end();
     },
-    (callback) => {
-      dbAlias.testCollection.find({}).toArray((err, nodes) => {
-        callback(null, nodes);
-      });
+    (data, callback) => {
+      if (application.databases.dbAlias) {
+        dbAlias.testCollection.find({}).toArray((err, nodes) => {
+          data.nodes = nodes;
+          callback();
+        });
+      } else {
+        data.db = 'No database';
+        callback();
+      }
     }
   ], (err, results) => {
-    callback(results);
+    callback({ results });
   });
 }
