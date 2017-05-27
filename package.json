@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.4.18",
+  "version": "0.4.19",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -31,10 +31,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/metarhia/Impress"
+    "url": "https://github.com/metarhia/impress"
   },
   "bugs": {
-    "url": "https://github.com/metarhia/Impress/issues",
+    "url": "https://github.com/metarhia/impress/issues",
     "email": "timur.shemsedinov@gmail.com"
   },
   "main": "./lib/impress",
