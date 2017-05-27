@@ -1,23 +1,23 @@
-[![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/metarhia/Impress)
+[![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/metarhia/impress)
 
-[![TravisCI](https://travis-ci.org/metarhia/Impress.svg?branch=master)](https://travis-ci.org/metarhia/Impress)
-[![bitHound](https://www.bithound.io/github/metarhia/Impress/badges/score.svg)](https://www.bithound.io/github/metarhia/Impress)
+[![TravisCI](https://travis-ci.org/metarhia/impress.svg?branch=master)](https://travis-ci.org/metarhia/impress)
+[![bitHound](https://www.bithound.io/github/metarhia/impress/badges/score.svg)](https://www.bithound.io/github/metarhia/impress)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/app/metarhia/impress)
 [![NPM Version](https://badge.fury.io/js/impress.svg)](https://badge.fury.io/js/impress)
 [![NPM Downloads/Month](https://img.shields.io/npm/dm/impress.svg)](https://www.npmjs.com/package/impress)
 [![NPM Downloads](https://img.shields.io/npm/dt/impress.svg)](https://www.npmjs.com/package/impress)
 
-[Impress](https://github.com/metarhia/Impress) Application Server for
+[Impress](https://github.com/metarhia/impress) Application Server for
 [node.js](http://nodejs.org). All decisions are made. Solutions are scaled.
 Tools are provided and optimized for high load. Ready for applied development
 and production.
 
 Impress (Impress Application Server, IAS) follows alternative way in several
 aspects:
-  - No callback chain (no middleware);
-  - Monolithic high-coupling core with obligatory things optimized for
+  - No middleware;
+  - Monolithic high-coupling core with must-have things optimized for
   performance;
-  - Extensible plug-ins format for optionally needed things;
+  - Extensible plug-ins system for optionally needed things;
   - Applied code simplicity, API code high-level abstraction and brevity;
   - Support for both Stateful and Stateless approach;
   - Application can't include Application Server, quite the opposite,
@@ -196,7 +196,7 @@ and start application API development
 ## Contributors
 
 - Timur Shemsedinov (marcusaurelius)
-- See github for full [contributors list](https://github.com/metarhia/Impress/graphs/contributors)
+- See github for full [contributors list](https://github.com/metarhia/impress/graphs/contributors)
 
 ## License
 
