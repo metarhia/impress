@@ -16,20 +16,12 @@ api.test.case({
   'api.v8.optimizeFunctionOnNextCall': [
     [ optimizedFunction, undefined ],
   ],
-  'api.v8.getOptimizationStatus': [
-    [ notOptimizedFunction, 2 ],
-    [ optimizedFunction, 1 ],
-  ],
   'api.v8.getOptimizationCount': [
     [ notOptimizedFunction, 0 ],
     [ optimizedFunction, 1 ],
   ],
   'api.v8.deoptimizeFunction': [
     [ optimizedFunction, undefined ],
-  ],
-  'api.v8.clearFunctionTypeFeedback': [
-    [ notOptimizedFunction, undefined ],
-    [ optimizedFunction,    undefined ],
   ],
   'api.v8.debugPrint': [
     [ 5,                 5 ],
