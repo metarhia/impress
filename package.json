@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.4.20",
+  "version": "0.4.21",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -39,25 +39,25 @@
   },
   "main": "./lib/impress",
   "dependencies": {
-    "metarhia-common": "0.0.x",
-    "metasync": "0.2.x",
-    "globalstorage": "0.1.x",
-    "metarhia-jstp": "0.6.x",
-    "bcrypt": "1.0.x",
-    "colors": "1.1.x",
-    "mkdirp": "0.5.x",
-    "ncp": "2.0.x",
-    "uglify-js": "3.0.x",
-    "multiparty": "4.1.x",
-    "iconv-lite": "0.4.x",
-    "zip-stream": "1.1.x",
-    "websocket": "1.0.x",
-    "csv": "1.1.x",
-    "accept-language": "3.0.x"
+    "metarhia-common": "^0.0.12",
+    "metasync": "^0.2.10",
+    "globalstorage": "^0.1.7",
+    "metarhia-jstp": "^0.6.8",
+    "bcrypt": "^1.0.2",
+    "colors": "^1.1.2",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "uglify-js": "^3.0.23",
+    "multiparty": "^4.1.3",
+    "iconv-lite": "^0.4.18",
+    "zip-stream": "^1.2.0",
+    "websocket": "^1.0.24",
+    "csv": "^1.1.1",
+    "accept-language": "^3.0.17"
   },
   "devDependencies": {
-    "eslint": "3.x",
-    "eslint-plugin-impress": "2.x"
+    "eslint": "^4.1.1",
+    "eslint-plugin-impress": "^2.0.0"
   },
   "engines": {
     "node": ">=6.0.0"

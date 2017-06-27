@@ -11,6 +11,7 @@ node_js:
   - "6.8"
   - "6.9"
   - "6.10"
+  - "6.11"
   - "7.0"
   - "7.1"
   - "7.2"
@@ -23,6 +24,7 @@ node_js:
   - "7.9"
   - "7.10"
   - "8.0"
+  - "8.1"
 install:
   - npm install
   - npm install mongodb
