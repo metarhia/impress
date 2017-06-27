@@ -14,34 +14,33 @@ and production.
 
 Impress (Impress Application Server, IAS) follows alternative way in several
 aspects:
-  - No middleware;
-  - Monolithic high-coupling core with must-have things optimized for
-  performance;
-  - Extensible plug-ins system for optionally needed things;
+  - No middleware (avoid such evil as long callback chains);
+  - Monolithic high cohesion core, must-have things optimized for performance;
   - Applied code simplicity, API code high-level abstraction and brevity;
   - Support for both Stateful and Stateless approach;
+  - Extensible plug-ins system for optionally needed features;
   - Application can't include Application Server, quite the opposite,
-  Application Server is a container for Applications;
-  - No I/O is faster even then async I/O, so maximum memory usage and lazy I/O
-  is the choice;
+    Application Server is a container for Applications;
+  - No I/O is faster even then async I/O, so maximum memory usage and
+    lazy I/O is the choice;
 
 ## Features
 
-  - Can serve multiple applications and sites on multiple domains
-  - Serves multiple ports, network interfaces, hosts and protocols
-  - Can scale on multiple servers
-  - Supports application sandboxing (configuration, db and memory access isolation)
-  - Utilize multiple CPU cores with instances/workers
-    - Cross-process communication (not using built-in node.js cluster library)
-    - State synchronization mechanism with transactions and subscription
-  - No need to write routing manually in code, just create handler files and functions
-  - File system watching for cache reloading when file changes on disk
-  - Cache server-side executable JavaScript in memory
-  - Handlers inheritance override hierarchically
-  - API development support (simple way for JSON-based WEB-services development)
-    - RPC-style API (Stateful, state stored in memory between requests)
-    - REST-style API (Stateless, each call is separate, no state in memory)
-    - Implements JSTP (long live and full duplex RPC/MQ over TCP or websockets)
+  - Can serve multiple applications and sites on multiple domains;
+  - Serves multiple ports, network interfaces, hosts and protocols;
+  - Can scale on multiple servers;
+  - Supports application sandboxing (configuration, db and memory access isolation);
+  - Utilize multiple CPU cores with instances/workers:
+    - Cross-process communication (not using built-in node.js cluster library);
+    - State synchronization mechanism with transactions and subscription;
+  - No need to write routing manually in code, just create handler files and functions;
+  - File system watching for cache reloading when file changes on disk;
+  - Cache server-side executable JavaScript in memory;
+  - Handlers inheritance override hierarchically;
+  - API development support (simple way for JSON-based WEB-services development):
+    - RPC-style API (Stateful, state stored in memory between requests);
+    - REST-style API (Stateless, each call is separate, no state in memory);
+    - Implements JSTP (long live and full duplex RPC/MQ over TCP or websockets);
   - Multiple handlers for HTTP API (all handlers are optional and
   inheritable/overridable): `access.js` returns access modifiers; `request.js`
   executing for all requests (any HTTP verbs and before verb handler); HTTP
@@ -49,46 +48,43 @@ aspects:
   executes after HTTP verb handler for all verbs; `lazy.js` lazy handler executes
   after the request has already returned to the client-side; `error.js` executed
   only if an error occurred while processing the request or in any previous
-  handler
+  handler;
   - Supported multiple AJAX API result types: JSON for most APIs (including safe
   serialization); JSONP (for cross-domain requests); CSV; HTML (aor any extension
   unknown for IAS) for AJAX server-side HTML rendering; JSTP (for JavaScript
-  Transfer Protocol)
+  Transfer Protocol);
   - Server-side simple templating with caching, data structures iterators and
-  personalization based on user groups
+  personalization based on user groups;
   - Serving static files with in-memory preprocessing: gzipping and HTTP
   `if-modified-since` support with HTTP 304 "Not Modified" answer; memory caching
   and file system watching for cache reloading when files changed on disk;
   JavaScript minification with `uglify-js`; SASS compiling styles from `.scss` to
-  `.css` in memory cache
-  - Built-in sessions support with authentication, groups and anonymous sessions
+  `.css` in memory cache;
+  - Built-in sessions support with authentication, groups and anonymous sessions;
   - Multiple protocols support:
-    - JSTP (JavaScript Transfer Protocol) for RPC and MQ
-    (https://github.com/metarhia/JSTP)
-    - HTTP and HTTPS (node native libraries)
-    - Implemented SSE (Server-Sent Events) with channels and multi-cast
-    - WebSockets support
-    - TCP and UDP sockets support
-  - Reverse-proxy (routing request to external HTTP server with URL-rewriting)
-  - Server-wide or application-specific logging, with log buffering (lazy write)
-  and rotation (keep logs N days)
-  - Connection drivers for database engines: MongoDB, PgSQL, MySQL, Memcached,
-  Relational schema generator from JSON database schemas
-  - File utilities: upload, download, streaming
-  - GeoIP support, based on `geoip-lite` module (uses MaxMind database)
-  - Sending emails using `nodemailer`
-  - Social networking login using `Passport.js`
-  - Built-in simple testing framework
-  - Server health monitoring
-  - Built-in data structures validation and preprocessing library
+    - JSTP (JavaScript Transfer Protocol) for RPC and MQ; (https://github.com/metarhia/jstp);
+    - HTTP and HTTPS (node native libraries);
+    - Implemented SSE (Server-Sent Events) with channels and multi-cast;
+    - WebSockets support;
+    - TCP and UDP sockets support;
+  - Reverse-proxy (routing request to external HTTP server with URL-rewriting);
+  - Server-wide or application-specific logging, with log buffering (lazy write) and rotation (keep logs N days);
+  - Connection drivers for database engines: MongoDB, PgSQL, MySQL, Memcached, Relational schema generator from JSON database schemas;
+  - File utilities: upload, download, streaming;
+  - GeoIP support, based on `geoip-lite` module (uses MaxMind database);
+  - Sending emails using `nodemailer`;
+  - Social networking login using `Passport.js`;
+  - Built-in simple testing framework;
+  - Server health monitoring;
+  - Built-in data structures validation and preprocessing library;
   - Process forking:
-    - Long workers with `client` object forwarding to separate process
-    - Task scheduling (interval or certain time)
+    - Long workers with `client` object forwarding to separate process;
+    - Task scheduling (interval or certain time);
   - V8 features support:
-    - Long stack trace with --stack-trace-limit=1000 and stack output minification
-    - Wrapper for V8 internal functions with --allow-natives-syntax
-    - Manual garbage collection with --nouse-idle-notification --expose-gc
-  - HTTP basic authentication implemented (optional omitting local requests)
+    - Long stack trace with `--stack-trace-limit=1000` and stack output minification;
+    - Wrapper for V8 internal functions with `--allow-natives-syntax`;
+    - Manual garbage collection with `--nouse-idle-notification` and `--expose-gc`;
+  - HTTP basic authentication implemented (optional omitting local requests);
 
 ## Examples
 
@@ -121,8 +117,10 @@ Result:
 ```
 
 Example #3  
-File `access.js` works similar to `.htaccess` and allow one to define access rules for each folder, by simply putting `access.js` in it.  
-If folder does not contain `access.js` it inherits access rules from its parent folder, all the way up to the project root.
+File `access.js` works similar to `.htaccess` and allow one to define access
+rules for each folder, by simply putting `access.js` in it.  
+If folder does not contain `access.js` it inherits access rules from its parent
+folder, all the way up to the project root.
 
 Example:
 ```javascript
