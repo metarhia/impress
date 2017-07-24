@@ -15,15 +15,15 @@ else
 sudo apt-get -y install g++
 fi
 cd /usr/src
-wget https://nodejs.org/dist/v8.1.2/node-v8.1.2.tar.gz
-tar zxf node-v8.1.2.tar.gz
-rm -f ./node-v8.1.2.tar.gz
-cd node-v8.1.2
+wget https://nodejs.org/dist/v8.2.1/node-v8.2.1.tar.gz
+tar zxf node-v8.2.1.tar.gz
+rm -f ./node-v8.2.1.tar.gz
+cd node-v8.2.1
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v8.1.2
+rm -rf /usr/src/node-v8.2.1
 sudo mkdir /ias
 cd /ias
 sudo npm install nodemailer websocket geoip-lite
