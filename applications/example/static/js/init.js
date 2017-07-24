@@ -214,21 +214,33 @@ api.dom.on('load', function() {
       });
 
       interfaceName.methodName(1, 2, 3, function(err, res) {
-        if (err) return print(err);
+        if (err) {
+          print(err);
+          return;
+        }
         print('result1 received');
         print(res);
       });
 
       interfaceName.sendEvent(function(err) {
-        if (err) return print(err);
+        if (err) {
+          print(err);
+          return;
+        }
       });
 
       interfaceName.methodName(4, 5, 6, function(err, res) {
-        if (err) return print(err);
+        if (err) {
+          print(err);
+          return;
+        }
         print('result2 received');
         print(res);
         interfaceName.methodName(7, 8, 9, function(err, res) {
-          if (err) return print(err);
+          if (err) {
+            print(err);
+            return;
+          }
           print('result3 received');
           print(res);
         });

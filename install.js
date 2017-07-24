@@ -117,8 +117,14 @@ function done() {
           destination + '/applications',
           { clobber: false },
           (err) => {
-            if (err) return console.error(err);
-            if (isWin) return installCLI();
+            if (err) {
+              console.error(err);
+              return;
+            }
+            if (isWin) {
+              installCLI();
+              return;
+            }
             execute('chmod +x ' + destination + '/server.sh', installCLI);
           }
         );
