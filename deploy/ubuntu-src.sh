@@ -11,15 +11,15 @@ sudo apt-get -y install g++-4.8
 sudo update-alternatives --quiet --install  /usr/bin/g++ g++ /usr/bin/g++-4.8 1
 fi
 cd /usr/src
-sudo wget https://nodejs.org/dist/v8.1.2/node-v8.1.2.tar.gz
-sudo tar zxf node-v8.1.2.tar.gz
-sudo rm -f ./node-v8.1.2.tar.gz
-cd node-v8.1.2
+sudo wget https://nodejs.org/dist/v8.2.1/node-v8.2.1.tar.gz
+sudo tar zxf node-v8.2.1.tar.gz
+sudo rm -f ./node-v8.2.1.tar.gz
+cd node-v8.2.1
 sudo ./configure
 sudo make
 sudo make install
 cd ~
-sudo rm -rf /usr/src/node-v8.1.2
+sudo rm -rf /usr/src/node-v8.2.1
 sudo mkdir /ias
 cd /ias
 sudo npm install nodemailer websocket geoip-lite
