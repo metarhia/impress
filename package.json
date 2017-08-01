@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.4.21",
+  "version": "0.4.22",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "websocket",
     "websockets"
   ],
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/metarhia/impress"
@@ -38,10 +39,19 @@
     "email": "timur.shemsedinov@gmail.com"
   },
   "main": "./lib/impress",
+  "scripts": {
+    "install": "node install.js",
+    "npm": "npm link npm",
+    "test": "./tests/unittests.sh && ./tests/integration.sh",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "dependencies": {
-    "metarhia-common": "^0.0.12",
-    "metasync": "^0.2.10",
-    "globalstorage": "^0.1.7",
+    "metarhia-common": "^0.0.19",
+    "metasync": "^0.3.7",
+    "globalstorage": "^0.1.9",
     "metarhia-jstp": "^0.6.8",
     "bcrypt": "^1.0.2",
     "colors": "^1.1.2",
@@ -56,37 +66,7 @@
     "accept-language": "^3.0.17"
   },
   "devDependencies": {
-    "eslint": "^4.1.1",
+    "eslint": "^4.3.0",
     "eslint-plugin-impress": "^2.0.0"
-  },
-  "engines": {
-    "node": ">=6.0.0"
-  },
-  "readmeFilename": "README.md",
-  "scripts": {
-    "install": "node install.js",
-    "npm": "npm link npm",
-    "test": "./tests/unittests.sh && ./tests/integration.sh",
-    "lint": "eslint ."
-  },
-  "jshintConfig": {
-    "esversion": 6,
-    "predef": [
-      "api",
-      "impress",
-      "global",
-      "window",
-      "navigator",
-      "document",
-      "frames",
-      "escape",
-      "localStorage",
-      "WebSocket",
-      "XMLHttpRequest",
-      "EventSource"
-    ],
-    "node": true,
-    "indent": 2,
-    "maxcomplexity": 25
   }
 }
