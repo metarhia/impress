@@ -205,9 +205,6 @@ api.test.case({
     [  '10 Zb',   10000000000000000000000 ],
     [   '1 Yb', 1000000000000000000000000 ],
   ],
-  'api.common.sizeToBytes.units': [
-    [ (obj) => Object.keys(obj).length === 8 ],
-  ],
   'api.common.random': [
     [  0, 10, (result) => (result >=  0 && result <= 10) ],
     [  1, 10, (result) => (result >=  1 && result <= 10) ],
