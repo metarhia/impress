@@ -1,7 +1,5 @@
 'use strict';
 
-require('colors');
-
 global.api = {};
 api.fs = require('fs');
 api.cp = require('child_process');
@@ -9,6 +7,7 @@ api.ncp = require('ncp').ncp;
 api.path = require('path');
 api.metasync = require('metasync');
 api.common = require('metarhia-common');
+api.concolor = require('concolor');
 
 const isWin = !!process.platform.match(/^win/);
 
@@ -77,13 +76,16 @@ function installImpress() {
 }
 
 function done() {
+  const em = api.concolor('b,green');
   if (exists) {
     console.log(
-      'Impress Application Server'.bold.green +
+      em('Impress Application Server') +
       ' is already installed and configured in this folder.'
     );
   } else {
-    console.log('Installing Impress Application Server...'.bold.green);
+    console.log(
+      api.concolor('b')('Installing Impress Application Server...')
+    );
     const sSrv = api.fs.createReadStream(
       current + '/server.js'
     );
