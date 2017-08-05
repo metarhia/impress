@@ -25,7 +25,6 @@
     // Preinstalled modules
     'csv',
     'iconv',
-    'colors',
     'zipStream', // npm module zip-stream
 
     // Metarhia modules

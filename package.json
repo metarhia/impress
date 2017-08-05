@@ -49,21 +49,21 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "metarhia-common": "^0.0.19",
-    "metasync": "^0.3.7",
-    "globalstorage": "^0.1.9",
-    "metarhia-jstp": "^0.6.8",
+    "accept-language": "^3.0.17",
     "bcrypt": "^1.0.2",
-    "colors": "^1.1.2",
+    "concolor": "^0.1.3",
+    "csv": "^1.1.1",
+    "globalstorage": "^0.1.9",
+    "iconv-lite": "^0.4.18",
+    "metarhia-common": "^0.0.19",
+    "metarhia-jstp": "^0.6.8",
+    "metasync": "^0.3.7",
     "mkdirp": "^0.5.1",
+    "multiparty": "^4.1.3",
     "ncp": "^2.0.0",
     "uglify-js": "^3.0.23",
-    "multiparty": "^4.1.3",
-    "iconv-lite": "^0.4.18",
-    "zip-stream": "^1.2.0",
     "websocket": "^1.0.24",
-    "csv": "^1.1.1",
-    "accept-language": "^3.0.17"
+    "zip-stream": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^4.3.0",

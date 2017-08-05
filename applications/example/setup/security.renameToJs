@@ -1,8 +1,4 @@
-console.log(
-  api.colors.green(
-    api.colors.bold('Impress Security database setup')
-  )
-);
+console.log('Impress Security database setup');
 
 const rl = api.readline.createInterface({
   input: process.stdin,

@@ -89,7 +89,9 @@ function httpTask(task) {
           if (err) throw err;
         });
       } else {
-        console.log(('Error: ' + request.method + ' ' + request.path).bold.red);
+        console.log(
+          api.concolor('b,red')('Error: ' + request.method + ' ' + request.path)
+        );
         throw new Error('HTTP ' + res.statusCode);
       }
       taskExit();
@@ -104,7 +106,9 @@ function httpTask(task) {
 }
 
 if (process.isMaster) {
-  console.log('Testing Impress...'.bold.green);
+  console.log(
+    api.concolor('b,green')('Testing Impress...')
+  );
   impress.server.on('started', () => {
     let i;
     for (i = 0; i < config.tasks.length; i++) {
