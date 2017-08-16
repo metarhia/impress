@@ -1,6 +1,6 @@
 SET IMPRESS_MODE=prod
 
-node --stack-trace-limit=1000 --allow-natives-syntax --no-warnings server.js
+node --stack-trace-limit=1000 --no-warnings server.js
 
 @REM Add following parameter to extend process memory to 2 Gb
 @REM --max_old_space_size=2048
