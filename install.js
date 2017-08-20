@@ -36,9 +36,7 @@ function execute(cmd, callback) {
 //
 function installCLI() {
   execute('npm install --unsafe-perm impress-cli -g', () => {
-    execute('impress path ' + destination, () => {
-      if (!isWin) execute('impress autostart on');
-    });
+    execute('impress path ' + destination);
   });
 }
 
