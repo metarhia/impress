@@ -6,15 +6,15 @@ sudo rpm --import http://ftp.scientificlinux.org/linux/scientific/5x/x86_64/RPM-
 sudo yum -y install devtoolset-2
 source scl_source enable devtoolset-2
 cd /usr/src
-wget https://nodejs.org/dist/v8.2.1/node-v8.2.1.tar.gz
-tar zxf node-v8.2.1.tar.gz
-rm -f ./node-v8.2.1.tar.gz
-cd node-v8.2.1
+wget https://nodejs.org/dist/v8.4.0/node-v8.4.0.tar.gz
+tar zxf node-v8.4.0.tar.gz
+rm -f ./node-v8.4.0.tar.gz
+cd node-v8.4.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v8.2.1
+rm -rf /usr/src/node-v8.4.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 sudo mkdir /ias
