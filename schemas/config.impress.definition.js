@@ -41,11 +41,10 @@
   },
 
   log: {
+    enabled:        'true:boolean',
     keepDays:       '100:number',
     writeInterval:  '5s:duration',
     writeBuffer:    '64kb:size',
-    applicationLog: 'false:boolean',
-    serverLog:      'true:boolean',
     files:          '[array]',
     stdout:         '[array]'
   },
