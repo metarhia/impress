@@ -1,8 +1,16 @@
 language: node_js
 node_js:
-  - "6"
-  - "7"
-  - "8"
+  - 6
+  - 7
+  - 8
+os:
+  - linux
+dist: trusty
+sudo: false
+osx_image: xcode8.3
+env: IMPRESS_MODE=test
+services:
+  - mongodb
 install:
   - npm install
   - npm install mongodb
@@ -10,12 +18,3 @@ script:
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js
   - npm run lint
-env: IMPRESS_MODE=test CXX=g++-6
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-6
-services:
-  - mongodb
