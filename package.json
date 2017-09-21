@@ -57,7 +57,7 @@
     "iconv-lite": "^0.4.19",
     "maojian": "^0.0.4",
     "metarhia-common": "^0.0.24",
-    "metarhia-jstp": "^0.6.8",
+    "metarhia-jstp": "^1.1.0",
     "metaschema": "^0.0.6",
     "metasync": "^0.3.19",
     "mkdirp": "^0.5.1",

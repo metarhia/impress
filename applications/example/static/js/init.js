@@ -174,34 +174,29 @@ api.dom.on('load', function() {
       messageBlock.innerHTML += '<br>';
     }
 
-    var client = api.jstp.ws.createClient('ws://localhost:8000',
-      new api.jstp.Application('example', {}));
-
-    client.connect(function(error, connection) {
-      if (error) {
-        print(error);
-        return;
-      }
-
-      print('connection opened');
-
-      var button = api.dom.id('jstpDisconnect');
-      button.onclick = function() {
-        client.disconnect();
-        print('connection closed');
-        button.innerHTML = 'Connect';
-        button.onclick = runJstpExample;
-      };
-
-      connection.handshake('example', null, null, function(err, session) {
-        if (err) {
-          print(err);
+    api.jstp.ws.connect('example',
+      new api.jstp.Application('example', {}),
+      'ws://localhost:8000',
+      function(error, connection, session) {
+        if (error) {
+          print(error);
           return;
         }
+
+        print('connection opened');
         print('handshake done, sid =', session);
+
+        const button = api.dom.id('jstpDisconnect');
+        button.onclick = function() {
+          connection.disconnect();
+          print('connection closed');
+          button.innerHTML = 'Connect';
+          button.onclick = runJstpExample;
+        };
+
         connection.inspectInterface('interfaceName', runTests);
-      });
-    });
+      }
+    );
 
     function runTests(err, interfaceName) {
       if (err) {
