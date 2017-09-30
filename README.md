@@ -69,7 +69,7 @@ aspects:
     - TCP and UDP sockets support;
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting);
   - Server-wide or application-specific logging, with log buffering (lazy write) and rotation (keep logs N days);
-  - Connection drivers for database engines: MongoDB, PgSQL, MySQL, Memcached, Relational schema generator from JSON database schemas;
+  - Connection drivers for database engines: MongoDB, PgSQL, MySQL, Relational schema generator from JSON database schemas;
   - File utilities: upload, download, streaming;
   - GeoIP support, based on `geoip-lite` module (uses MaxMind database);
   - Sending emails using `nodemailer`;
