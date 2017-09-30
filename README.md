@@ -73,7 +73,6 @@ aspects:
   - File utilities: upload, download, streaming;
   - GeoIP support, based on `geoip-lite` module (uses MaxMind database);
   - Sending emails using `nodemailer`;
-  - Social networking login using `Passport.js`;
   - Built-in simple testing framework;
   - Server health monitoring;
   - Built-in data structures validation and preprocessing library;
