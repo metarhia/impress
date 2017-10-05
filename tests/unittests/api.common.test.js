@@ -12,6 +12,22 @@ const config = {
   length: 64
 };
 
+const CONFIG_FILES_PRIORITY = [
+  'sandbox.js',
+  'log.js',
+  'scale.js',
+  'servers.js',
+  'databases.js',
+  'sessions.js',
+  'tasks.js',
+  'application.js',
+  'files.js',
+  'filestorage.js',
+  'mail.js',
+  'hosts.js',
+  'routes.js'
+];
+
 api.test.case({
   'api.common.falseness': [ [ [], false ] ],
   'api.common.trueness': [ [ [], true ] ],
@@ -323,13 +339,13 @@ api.test.case({
     [ ['*/css/*'],            '^.*\\/css\\/.*$' ],
   ],
   'api.common.sortComparePriority': [
-    [ impress.CONFIG_FILES_PRIORITY, 'files.js', 'sandbox.js',       1 ],
-    [ impress.CONFIG_FILES_PRIORITY, 'filestorage.js', 'routes.js', -1 ],
-    [ impress.CONFIG_FILES_PRIORITY, 'unknown.js', 'sandbox.js',     1 ],
-    [ impress.CONFIG_FILES_PRIORITY, 'log.js', 'sandbox.js',         1 ],
-    [ impress.CONFIG_FILES_PRIORITY, 'sandbox.js', 'sandbox.js',     0 ],
-    [ impress.CONFIG_FILES_PRIORITY, 'log.js', 'log.js',             0 ],
-    [ impress.CONFIG_FILES_PRIORITY, 'tasks.js', 'application.js',  -1 ],
+    [ CONFIG_FILES_PRIORITY, 'files.js', 'sandbox.js',       1 ],
+    [ CONFIG_FILES_PRIORITY, 'filestorage.js', 'routes.js', -1 ],
+    [ CONFIG_FILES_PRIORITY, 'unknown.js', 'sandbox.js',     1 ],
+    [ CONFIG_FILES_PRIORITY, 'log.js', 'sandbox.js',         1 ],
+    [ CONFIG_FILES_PRIORITY, 'sandbox.js', 'sandbox.js',     0 ],
+    [ CONFIG_FILES_PRIORITY, 'log.js', 'log.js',             0 ],
+    [ CONFIG_FILES_PRIORITY, 'tasks.js', 'application.js',  -1 ],
   ],
   'api.common.sortCompareDirectories': [
     [ { name: '/abc' },     { name: 'abc.ext' },  -1 ],
