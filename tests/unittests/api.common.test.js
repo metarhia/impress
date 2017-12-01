@@ -133,7 +133,7 @@ api.test.case({
     [ null,                    0 ],
     [ undefined,               0 ],
   ],
-  'api.common.ip2int': [
+  'api.common.ipToInt': [
     [ '127.0.0.1',        2130706433 ],
     [ '10.0.0.1',          167772161 ],
     [ '192.168.1.10',    -1062731510 ],
