@@ -11,4 +11,4 @@ sudo apt-get -y install mongodb-org
 sudo service mongod start
 sudo update-rc.d mongod defaults
 cd /ias
-sudo npm install mongodb
+sudo npm install mongodb@2

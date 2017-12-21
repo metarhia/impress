@@ -10,4 +10,4 @@ yum -y install mongo-10gen mongo-10gen-server
 service mongod start
 chkconfig mongod on
 cd /ias
-sudo npm install mongodb
+sudo npm install mongodb@2

@@ -10,4 +10,4 @@ sudo yum install -y mongodb-org
 service mongod start
 chkconfig mongod on
 cd /ias
-sudo npm install mongodb
+sudo npm install mongodb@2
