@@ -25,9 +25,13 @@ const staticDir = api.path.resolve(__dirname, 'applications/example/static/js');
 // Execute shell command displaying output and possible errors
 //
 function execute(cmd, callback) {
-  api.cp.exec(cmd, (error, stdout /* stderr */) => {
-    if (error) console.log(error.toString());
-    else console.log(stdout);
+  api.cp.exec(cmd, (error, stdout, stderr) => {
+    if (error) {
+      console.error(error.toString());
+      console.error(stderr);
+    } else {
+      console.log(stdout);
+    }
     if (callback) callback();
   });
 }
