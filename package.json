@@ -64,6 +64,7 @@
     "multiparty": "^4.1.3",
     "ncp": "^2.0.0",
     "sandboxed-fs": "^0.1.0",
+    "tap": "^11.0.1",
     "uglify-js": "^3.3.4",
     "websocket": "^1.0.25",
     "zip-stream": "^1.2.0"
