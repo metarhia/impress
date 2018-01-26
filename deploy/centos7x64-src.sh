@@ -4,15 +4,15 @@ yum -y install wget mc
 yum -y install psmisc
 yum -y groupinstall "Development Tools"
 cd /usr/src
-wget https://nodejs.org/dist/v9.0.0/node-v9.0.0.tar.gz
-tar zxf node-v9.0.0.tar.gz
-rm -f ./node-v9.0.0.tar.gz
-cd node-v9.0.0
+wget https://nodejs.org/dist/v9.4.0/node-v9.4.0.tar.gz
+tar zxf node-v9.4.0.tar.gz
+rm -f ./node-v9.4.0.tar.gz
+cd node-v9.4.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v9.0.0
+rm -rf /usr/src/node-v9.4.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 sudo mkdir /ias
