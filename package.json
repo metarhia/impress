@@ -53,7 +53,7 @@
     "bcrypt": "^1.0.3",
     "concolor": "^0.1.5",
     "csv": "^2.0.0",
-    "globalstorage": "^0.1.10",
+    "globalstorage": "^0.1.11",
     "iconv-lite": "^0.4.19",
     "maojian": "^0.0.4",
     "metarhia-common": "^0.0.24",
