@@ -1,14 +1,9 @@
 language: node_js
 node_js:
   - 6
-  - 7
   - 8
   - 9
-os:
-  - linux
-dist: trusty
 sudo: false
-osx_image: xcode8.3
 env: IMPRESS_MODE=test
 services:
   - mongodb
