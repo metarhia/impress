@@ -24,7 +24,7 @@ const staticDir = api.path.resolve(__dirname, 'applications/example/static/js');
 
 // Execute shell command displaying output and possible errors
 //
-function execute(cmd, callback) {
+const execute = (cmd, callback) => {
   api.cp.exec(cmd, (error, stdout, stderr) => {
     if (error) {
       console.error(error.toString());
@@ -34,50 +34,17 @@ function execute(cmd, callback) {
     }
     if (callback) callback();
   });
-}
+};
 
 // Install CLI
 //
-function installCLI() {
+const installCLI = () => {
   execute('npm install --unsafe-perm impress-cli -g', () => {
     execute('impress path ' + destination);
   });
-}
+};
 
-// Symlink the browser version of JSTP
-//
-api.metasync.each(['jstp.min.js', 'jstp.min.js.map'], (file, callback) => {
-  const source = api.path.join(jstpDistPath, file);
-  const dest = api.path.join(staticDir, file);
-
-  api.fs.unlink(dest, () => {  // Errors are ignored intentionally
-    api.fs.symlink(source, dest, (err) => {
-      if (err) throw err;
-      callback();
-    });
-  });
-}, installImpress);
-
-// Install Impress Application Server
-//
-function installImpress() {
-  if (parent !== 'node_modules') {
-    console.log('Running in developer mode');
-    process.exit(0);
-  }
-
-  const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
-  api.metasync.each(checkFiles, check, done);
-
-  function check(file, callback) {
-    api.fs.access(destination + '/' + file, (err) => {
-      exists = exists || !err;
-      callback();
-    });
-  }
-}
-
-function done() {
+const done = () => {
   const em = api.concolor('b,green');
   if (exists) {
     console.log(
@@ -135,4 +102,38 @@ function done() {
       }
     );
   }
-}
+};
+
+// Install Impress Application Server
+//
+const installImpress = () => {
+  if (parent !== 'node_modules') {
+    console.log('Running in developer mode');
+    process.exit(0);
+  }
+
+  const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
+
+  const check = (file, callback) => {
+    api.fs.access(destination + '/' + file, (err) => {
+      exists = exists || !err;
+      callback();
+    });
+  };
+
+  api.metasync.each(checkFiles, check, done);
+};
+
+// Symlink the browser version of JSTP
+//
+api.metasync.each(['jstp.min.js', 'jstp.min.js.map'], (file, callback) => {
+  const source = api.path.join(jstpDistPath, file);
+  const dest = api.path.join(staticDir, file);
+
+  api.fs.unlink(dest, () => {  // Errors are ignored intentionally
+    api.fs.symlink(source, dest, (err) => {
+      if (err) throw err;
+      callback();
+    });
+  });
+}, installImpress);
