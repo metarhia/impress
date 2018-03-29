@@ -5,7 +5,6 @@ const cp = require('child_process');
 const ncp = require('ncp').ncp;
 const path = require('path');
 const metasync = require('metasync');
-const common = require('metarhia-common');
 const concolor = require('concolor');
 
 const isWin = !!process.platform.match(/^win/);
