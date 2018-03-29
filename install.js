@@ -63,7 +63,7 @@ const done = () => {
     );
     sSrv.pipe(dSrv);
     const sPkg = api.fs.createReadStream(
-      current + '/lib/package.template.json'
+      current + '/lib/package.template'
     );
     const dPkg = api.fs.createWriteStream(
       destination + '/package.json'
