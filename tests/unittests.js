@@ -1,6 +1,6 @@
 'use strict';
 
-require('../lib/impress');
+require('../lib/core');
 require('../lib/api.test');
 
 api.path = require('path');

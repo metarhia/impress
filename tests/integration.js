@@ -5,7 +5,7 @@ const querystring = require('querystring');
 const path = require('path');
 
 process.chdir(path.resolve(__dirname, '..'));
-require('../lib/impress');
+require('../lib/core');
 
 ncp.limit = 16;
 

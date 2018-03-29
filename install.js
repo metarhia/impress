@@ -1,31 +1,30 @@
 'use strict';
 
-global.api = {};
-api.fs = require('fs');
-api.cp = require('child_process');
-api.ncp = require('ncp').ncp;
-api.path = require('path');
-api.metasync = require('metasync');
-api.common = require('metarhia-common');
-api.concolor = require('concolor');
+const fs = require('fs');
+const cp = require('child_process');
+const ncp = require('ncp').ncp;
+const path = require('path');
+const metasync = require('metasync');
+const common = require('metarhia-common');
+const concolor = require('concolor');
 
 const isWin = !!process.platform.match(/^win/);
 
-api.ncp.limit = 16;
+ncp.limit = 16;
 
-const current = api.path.dirname(__filename.replace(/\\/g, '/'));
-const parent = api.path.basename(api.path.dirname(current));
-const destination = api.path.dirname(api.path.dirname(current));
+const current = path.dirname(__filename.replace(/\\/g, '/'));
+const parent = path.basename(path.dirname(current));
+const destination = path.dirname(path.dirname(current));
 let exists = false;
 
-const jstpPath = api.path.dirname(require.resolve('metarhia-jstp'));
-const jstpDistPath = api.path.join(jstpPath, 'dist');
-const staticDir = api.path.resolve(__dirname, 'applications/example/static/js');
+const jstpPath = path.dirname(require.resolve('metarhia-jstp'));
+const jstpDistPath = path.join(jstpPath, 'dist');
+const staticDir = path.resolve(__dirname, 'applications/example/static/js');
 
 // Execute shell command displaying output and possible errors
 //
 const execute = (cmd, callback) => {
-  api.cp.exec(cmd, (error, stdout, stderr) => {
+  cp.exec(cmd, (error, stdout, stderr) => {
     if (error) {
       console.error(error.toString());
       console.error(stderr);
@@ -45,7 +44,7 @@ const installCLI = () => {
 };
 
 const done = () => {
-  const em = api.concolor('b,green');
+  const em = concolor('b,green');
   if (exists) {
     console.log(
       em('Impress Application Server') +
@@ -53,37 +52,25 @@ const done = () => {
     );
   } else {
     console.log(
-      api.concolor('b')('Installing Impress Application Server...')
+      concolor('b')('Installing Impress Application Server...')
     );
-    const sSrv = api.fs.createReadStream(
-      current + '/server.js'
-    );
-    const dSrv = api.fs.createWriteStream(
-      destination + '/server.js'
-    );
+    const sSrv = fs.createReadStream(current + '/impress.js');
+    const dSrv = fs.createWriteStream(destination + '/impress.js');
     sSrv.pipe(dSrv);
-    const sPkg = api.fs.createReadStream(
-      current + '/lib/package.template'
-    );
-    const dPkg = api.fs.createWriteStream(
-      destination + '/package.json'
-    );
+    const sPkg = fs.createReadStream(current + '/lib/package.template');
+    const dPkg = fs.createWriteStream(destination + '/package.json');
     sPkg.pipe(dPkg);
     const shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
-    const sScr = api.fs.createReadStream(
-      current + '/' + shellScript
-    );
-    const dScr = api.fs.createWriteStream(
-      destination + '/' + shellScript
-    );
+    const sScr = fs.createReadStream(current + '/' + shellScript);
+    const dScr = fs.createWriteStream(destination + '/' + shellScript);
     sScr.pipe(dScr);
-    api.ncp(
+    ncp(
       current + '/config',
       destination + '/config',
       { clobber: false },
       (err) => {
         if (err) console.error(err);
-        api.ncp(
+        ncp(
           current + '/applications',
           destination + '/applications',
           { clobber: false },
@@ -112,26 +99,26 @@ const installImpress = () => {
     process.exit(0);
   }
 
-  const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
+  const checkFiles = ['package.json', 'impress.js', 'config', 'applications'];
 
   const check = (file, callback) => {
-    api.fs.access(destination + '/' + file, (err) => {
+    fs.access(destination + '/' + file, (err) => {
       exists = exists || !err;
       callback();
     });
   };
 
-  api.metasync.each(checkFiles, check, done);
+  metasync.each(checkFiles, check, done);
 };
 
 // Symlink the browser version of JSTP
 //
-api.metasync.each(['jstp.min.js', 'jstp.min.js.map'], (file, callback) => {
-  const source = api.path.join(jstpDistPath, file);
-  const dest = api.path.join(staticDir, file);
+metasync.each(['jstp.min.js', 'jstp.min.js.map'], (file, callback) => {
+  const source = path.join(jstpDistPath, file);
+  const dest = path.join(staticDir, file);
 
-  api.fs.unlink(dest, () => {  // Errors are ignored intentionally
-    api.fs.symlink(source, dest, (err) => {
+  fs.unlink(dest, () => {  // Errors are ignored intentionally
+    fs.symlink(source, dest, (err) => {
       if (err) throw err;
       callback();
     });

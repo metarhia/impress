@@ -14,9 +14,6 @@
     ]
   },
   "critics": {
-    "lint": {
-      "engine": "eslint"
-    },
     "wc": {
       "limit": 40000
     }
