@@ -45,7 +45,7 @@
     keepDays:       '100:number',
     writeInterval:  '5s:duration',
     writeBuffer:    '64kb:size',
-    files:          '[array]',
+    toFile:         '[array]',
     stdout:         '[array]'
   },
 
