@@ -80,8 +80,7 @@ function httpTask(task) {
     req.on('response', (res) => {
       if (res.statusCode === 200) {
         const msg = (
-          'Request: http://' + config.host + ':' + config.port + ' ' +
-          request.method + ' ' + request.path +
+          'Request: ' + request.method + ' ' + request.path +
           ' -> HTTP ' + res.statusCode + ' read: ' + res.socket.bytesRead
         );
         impress.log.debug(msg);
