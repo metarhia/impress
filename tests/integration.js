@@ -85,16 +85,15 @@ function httpTask(task) {
         );
         impress.log.debug(msg);
         res.on('error', (err) => {
-          if (err) throw err;
+          impress.log.error(err.stack);
         });
       } else {
         impress.log.error('Error: ' + request.method + ' ' + request.path);
-        throw new Error('HTTP ' + res.statusCode);
       }
       taskExit();
     });
     req.on('error', (err) => {
-      if (err) throw err;
+      impress.log.error(err.stack);
       taskExit();
     });
     if (task.data) req.write(task.data);
@@ -103,7 +102,6 @@ function httpTask(task) {
 }
 
 if (process.isMaster) {
-  //impress.log.debug('Testing Impress...');
   impress.server.on('started', () => {
     let i;
     for (i = 0; i < config.tasks.length; i++) {
