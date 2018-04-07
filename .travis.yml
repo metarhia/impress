@@ -11,6 +11,6 @@ install:
   - npm install
   - npm install mongodb@2
 script:
+  - npm run lint
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/integration.js
-  - npm run lint
