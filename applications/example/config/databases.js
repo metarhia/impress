@@ -35,6 +35,13 @@
   //    slowTime: 1000
   //  },
 
+  // Oracle example database configuration
+  //
+  // oracleConnection: {
+  //   url: 'oracle://user:password@host:port/database',
+  //   slowTime: 1000
+  // },
+
   // MongoDB example database configuration
   //
   //  mongoConnection: {
