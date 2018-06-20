@@ -1,5 +1,5 @@
 (client, callback) => {
-  oracle.connection.execute(`select * from dual`, (err, result) => {
+  oracle.query('select * from dual', (err, result) => {
     if (err) {
       callback({ error: err.message });
       return;
