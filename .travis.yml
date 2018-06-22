@@ -3,13 +3,14 @@ node_js:
   - 6
   - 8
   - 9
+  - 10
 sudo: false
 env: IMPRESS_MODE=test
 services:
   - mongodb
 install:
   - npm install
-  - npm install mongodb@2
+  - npm install mongodb
 script:
   - npm run lint
   - node --stack-trace-limit=1000 --allow-natives-syntax ./tests/unittests.js
