@@ -1,7 +1,6 @@
 [![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/metarhia/impress)
 
 [![TravisCI](https://travis-ci.org/metarhia/impress.svg?branch=master)](https://travis-ci.org/metarhia/impress)
-[![bitHound](https://www.bithound.io/github/metarhia/impress/badges/score.svg)](https://www.bithound.io/github/metarhia/impress)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/app/metarhia/impress)
 [![NPM Version](https://badge.fury.io/js/impress.svg)](https://badge.fury.io/js/impress)
 [![NPM Downloads/Month](https://img.shields.io/npm/dm/impress.svg)](https://www.npmjs.com/package/impress)
