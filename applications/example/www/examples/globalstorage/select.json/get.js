@@ -1,4 +1,5 @@
 (client, callback) => {
+  //callback({ gs: Object.keys(gs) });
   gs.connection.select({
     category: 'test',
   }).fetch((err, result) => {
