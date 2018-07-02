@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -52,7 +52,7 @@
     "accept-language": "^3.0.18",
     "concolor": "^0.1.8",
     "csv": "^2.0.0",
-    "globalstorage": "^0.2.4",
+    "globalstorage": "^0.2.5",
     "iconv-lite": "^0.4.23",
     "metalog": "^0.0.12",
     "metarhia-common": "^0.0.29",
