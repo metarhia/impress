@@ -53,8 +53,8 @@ const done = () => {
     console.log(
       concolor('b')('Installing Impress Application Server...')
     );
-    const sSrv = fs.createReadStream(current + '/impress.js');
-    const dSrv = fs.createWriteStream(destination + '/impress.js');
+    const sSrv = fs.createReadStream(current + '/server.js');
+    const dSrv = fs.createWriteStream(destination + '/server.js');
     sSrv.pipe(dSrv);
     const sPkg = fs.createReadStream(current + '/lib/package.template');
     const dPkg = fs.createWriteStream(destination + '/package.json');
@@ -98,7 +98,7 @@ const installImpress = () => {
     process.exit(0);
   }
 
-  const checkFiles = ['package.json', 'impress.js', 'config', 'applications'];
+  const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
 
   const check = (file, callback) => {
     fs.access(destination + '/' + file, (err) => {
