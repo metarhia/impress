@@ -283,7 +283,7 @@ api.dom.on = function(event, element, fn) {
 // Use element or selector
 //
 api.dom.element = function(element) {
-  if (typeof(element) !== 'string') {
+  if (typeof element  !== 'string') {
     return element;
   }
   var result;
@@ -307,7 +307,7 @@ api.dom.on('load', function() {
 api.dom.onBeforeUnload = function(fn) {
   api.dom.addEvent(api.dom, 'beforeunload', function(event) {
     var message = fn(event);
-    if (typeof(event) === 'undefined') event = window.event;
+    if (typeof event === 'undefined') event = window.event;
     if (event) event.returnValue = message;
     return message;
   });
@@ -470,7 +470,7 @@ function injectInnerContent(content, contentHolder) {
     prevPlaceRefs.previousParent = contentNode.parentNode;
     prevPlaceRefs.previousSibling = contentNode.nextElementSibling;
     contentHolder.appendChild(contentNode);
-  } else if (typeof(content) === 'string') {
+  } else if (typeof content === 'string') {
     contentHolder.innerHTML = content;
   }
   return prevPlaceRefs;
@@ -546,7 +546,7 @@ function dashedToUpperCase(key) {
 //transform CSS string to Object
 //
 var cssStringToObject = function(styles) {
-  if (typeof(styles) === 'string') {
+  if (typeof styles === 'string') {
     var stylesStr = styles;
     styles = {};
     stylesStr.split(/\s*;\s*/).filter(Boolean).forEach(function(val) {
@@ -577,7 +577,7 @@ function extractPrefixedStyles(styleName) {
 //
 api.dom.setStyles = function(element, styles) {
   styles = cssStringToObject(styles);
-  if (typeof(styles) !== 'object') return false;
+  if (typeof styles !== 'object') return false;
 
   for (var styleName in styles) {
     if (!styles[styleName]) break;
@@ -619,8 +619,8 @@ api.dom.input = function(title, prompt, defaultValue, eventOk) {
 //
 api.dom.disableSelection = function(target) {
   target = target || api.dom.html;
-  if (typeof(target.onselectstart) !== 'undefined') target.onselectstart = api.common.falseness; // For IE
-  else if (typeof(target.style.MozUserSelect) !== 'undefined') { //For Firefox
+  if (typeof target.onselectstart !== 'undefined') target.onselectstart = api.common.falseness; // For IE
+  else if (typeof target.style.MozUserSelect !== 'undefined') { //For Firefox
     target.style.MozUserSelect='none';
     // if (target === body || target === api.dom.html)
     //   for (var i = 0; i < body.children.length; i++)
@@ -771,7 +771,7 @@ api.tabs.initializeDone = function() {
 //
 api.tabs.getFreeTab = function() {
   for (var id = 1;;id++) {
-    if (typeof(localStorage['impress.tab' + id]) === 'undefined') return id;
+    if (typeof localStorage['impress.tab' + id] === 'undefined') return id;
   }
 };
 
@@ -965,7 +965,7 @@ api.ajax.request = function(method, url, params, parseResponse, callback) {
   for (key in params) {
     if (!params.hasOwnProperty(key)) continue;
     value = params[key];
-    if (typeof(value) !== 'string') value = JSON.stringify(value);
+    if (typeof value !== 'string') value = JSON.stringify(value);
     data.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
   }
   data = data.join('&');
