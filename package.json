@@ -55,6 +55,7 @@
     "csv": "^2.0.0",
     "globalstorage": "^0.2.5",
     "iconv-lite": "^0.4.23",
+    "mdsf": "^1.0.0",
     "metalog": "^0.0.12",
     "metarhia-common": "^0.0.30",
     "metarhia-jstp": "^1.1.1",
