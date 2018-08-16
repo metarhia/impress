@@ -205,7 +205,7 @@ api.dom.on('load', function() {
       }
 
       interfaceName.on('eventName', function(args) {
-        print('Got event, data:', api.jstp.stringify(args));
+        print('Got event, data:', api.mdsf.stringify(args));
       });
 
       interfaceName.methodName(1, 2, 3, function(err, res) {
