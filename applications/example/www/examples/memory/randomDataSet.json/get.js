@@ -2,9 +2,8 @@
 
   const test = application.test;
   const res = [];
-  let i, obj;
-  for (i = 0; i < 10; i++) {
-    obj = {};
+  for (let i = 0; i < 10; i++) {
+    const obj = {};
     obj.name = test.randomItem(test.names);
     obj.city = test.randomItem(test.cities);
     obj.birth = test.random(1, 500) + ' ' + test.randomItem(['BC', 'AD']);
