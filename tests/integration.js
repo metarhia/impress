@@ -103,8 +103,7 @@ function httpTask(task) {
 
 if (process.isMaster) {
   impress.on('started', () => {
-    let i;
-    for (i = 0; i < config.tasks.length; i++) {
+    for (let i = 0; i < config.tasks.length; i++) {
       httpTask(config.tasks[i]);
     }
   });

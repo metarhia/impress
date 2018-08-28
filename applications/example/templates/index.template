@@ -24,9 +24,9 @@ a {color:inherit;text-decoration:none}
 </style>
 <script type='text/javascript'>
 window.onload = function() {
-  let i, table = document.getElementById("files"),
+  let table = document.getElementById("files"),
       rows = table.getElementsByTagName('tr');
-  for (i = 1; i < rows.length; i++) {
+  for (let i = 1; i < rows.length; i++) {
     rows[i].onclick = function() {
       let a = this.getElementsByTagName('a')[0];
       document.location.href = a.href;

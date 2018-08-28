@@ -169,9 +169,9 @@ if (document.getElementsByClassName) {
     context = context || document;
     var list = context.getElementsByTagName('*'),
       classArray = classList.split(/\s+/),
-      result = [], i, j;
-    for (i = 0; i < list.length; i++) {
-      for(j = 0; j < classArray.length; j++) {
+      result = [];
+    for (var i = 0; i < list.length; i++) {
+      for(var j = 0; j < classArray.length; j++) {
         if(list[i].className.search('\\b' + classArray[j] + '\\b') !== -1) {
           result.push(list[i]);
           break;
@@ -959,10 +959,10 @@ api.ajax.ajaxDataSource = function(methods) {
 //   callback - function to call on response received
 //
 api.ajax.request = function(method, url, params, parseResponse, callback) {
-  var key, data = [], value = '',
+  var data = [], value = '',
       req = new XMLHttpRequest();
   req.open(method, url, true);
-  for (key in params) {
+  for (var key in params) {
     if (!params.hasOwnProperty(key)) continue;
     value = params[key];
     if (typeof value !== 'string') value = JSON.stringify(value);
@@ -1100,12 +1100,11 @@ application.reconnect = function() {
 */
 
 application.balancer.generateSequence = function() {
-  var i, server, serverName,
-      servers = application.balancer.servers;
+  var servers = application.balancer.servers;
   if (servers) {
-    for (serverName in servers) {
-      server = servers[serverName];
-      for (i = 0; i < server.ports.length; i++) {
+    for (var serverName in servers) {
+      var server = servers[serverName];
+      for (var i = 0; i < server.ports.length; i++) {
         application.balancer.sequence.push({
           server: server,
           host: server.host + ':' + server.ports[i]
