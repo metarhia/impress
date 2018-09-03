@@ -73,6 +73,7 @@
     "eslint": "^4.19.1",
     "eslint-config-metarhia": "^2.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-impress": "^2.1.0"
+    "eslint-plugin-impress": "^2.1.0",
+    "metatests": "^0.2.0"
   }
 }

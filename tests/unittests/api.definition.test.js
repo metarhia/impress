@@ -1,6 +1,6 @@
 'use strict';
 
-api.test.case({
+api.test.case('Impress unittests', { api }, {
   'api.definition.parse': [
     [ 'number',          { type: 'number',   optional: false, str: 'number'   } ],
     [ 'string',          { type: 'string',   optional: false, str: 'string'   } ],
