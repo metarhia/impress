@@ -1,7 +1,8 @@
 'use strict';
 
 require('../lib/core');
-require('../lib/api.test');
+
+api.test = require('metatests');
 
 api.path = require('path');
 
