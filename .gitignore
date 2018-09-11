@@ -5,5 +5,3 @@ node_modules
 *.log
 *.done
 .DS_Store
-*.min.js
-*.min.js.map
