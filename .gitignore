@@ -7,3 +7,5 @@ node_modules
 .DS_Store
 *.min.js
 *.min.js.map
+*.umd.js
+*.umd.js.map

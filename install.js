@@ -16,7 +16,7 @@ const parent = path.basename(path.dirname(current));
 const destination = path.dirname(path.dirname(current));
 let exists = false;
 
-const jstpPath = path.dirname(require.resolve('metarhia-jstp'));
+const jstpPath = path.dirname(require.resolve('@metarhia/jstp'));
 const jstpDistPath = path.join(jstpPath, 'dist');
 const staticDir = path.resolve(__dirname, 'applications/example/static/js');
 
@@ -112,7 +112,7 @@ const installImpress = () => {
 
 // Symlink the browser version of JSTP
 //
-metasync.each(['jstp.min.js', 'jstp.min.js.map'], (file, callback) => {
+metasync.each(['jstp.umd.js', 'jstp.umd.js.map'], (file, callback) => {
   const source = path.join(jstpDistPath, file);
   const dest = path.join(staticDir, file);
 
