@@ -26,5 +26,8 @@ cd ~
 rm -rf /usr/src/node-v10.5.0
 sudo mkdir /ias
 cd /ias
+curl -O https://dl.eff.org/certbot-auto
+chmod a+x certbot-auto
 sudo npm install nodemailer websocket geoip-lite
 sudo npm install impress --unsafe-perm
+echo 'To generate certificates run "/ias/certbot-auto certonly" under root'
