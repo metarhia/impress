@@ -3,6 +3,11 @@ RELEASE=$(lsb_release -sc)
 sudo apt-get -y update
 sudo apt-get -y install wget mc
 sudo apt-get -y install build-essential openssl libssl-dev pkg-config python
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository -y ppa:certbot/certbot
+sudo apt-get -y update
+sudo apt-get -y install certbot
+curl -sL https://deb.nodesource.c
 if [ $RELEASE = 'precise' ]; then
 sudo apt-get -y install python-software-properties
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
@@ -24,3 +29,4 @@ sudo mkdir /ias
 cd /ias
 sudo npm install nodemailer websocket geoip-lite
 sudo npm install impress --unsafe-perm
+echo 'To generate certificates run "certbot certonly" under root'
