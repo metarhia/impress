@@ -1,5 +1,4 @@
 #!/bin/bash
-RELEASE=$(lsb_release -sc)
 apt-get install sudo
 sudo apt-get -y update
 sudo apt-get -y install wget mc curl
