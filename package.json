@@ -49,7 +49,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "@metarhia/jstp": "^2.0.0",
+    "@metarhia/jstp": "^2.0.1",
     "accept-language": "^3.0.18",
     "argon2": "^0.19.3",
     "concolor": "^0.1.9",
