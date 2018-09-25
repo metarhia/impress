@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -49,24 +49,24 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "@metarhia/jstp": "^2.0.0",
+    "@metarhia/jstp": "^2.0.1",
     "accept-language": "^3.0.18",
     "argon2": "^0.19.3",
-    "concolor": "^0.1.8",
+    "concolor": "^0.1.9",
     "csv": "^2.0.0",
     "globalstorage": "^0.2.6",
     "iconv-lite": "^0.4.24",
     "mdsf": "^1.0.1",
     "metalog": "^0.0.12",
-    "metarhia-common": "^0.0.31",
-    "metaschema": "^0.0.13",
+    "metarhia-common": "^0.0.34",
+    "metaschema": "^0.0.22",
     "metasync": "^0.3.29",
     "mkdirp": "^0.5.1",
     "multiparty": "^4.2.1",
     "ncp": "^2.0.0",
     "sandboxed-fs": "^0.3.2",
-    "uglify-js": "^3.4.7",
-    "websocket": "^1.0.26",
+    "uglify-js": "^3.4.9",
+    "websocket": "^1.0.28",
     "zip-stream": "^1.2.0"
   },
   "devDependencies": {
