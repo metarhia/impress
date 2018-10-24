@@ -7,7 +7,7 @@ sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:certbot/certbot
 sudo apt-get -y update
 sudo apt-get -y install certbot
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 sudo apt-get -y install nodejs
 sudo mkdir /ias
 cd /ias

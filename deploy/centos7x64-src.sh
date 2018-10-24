@@ -6,15 +6,15 @@ yum -y groupinstall "Development Tools"
 yum -y install epel-release
 yum -y install certbot
 cd /usr/src
-wget https://nodejs.org/dist/v10.5.0/node-v10.5.0.tar.gz
-tar zxf node-v10.5.0.tar.gz
-rm -f ./node-v10.5.0.tar.gz
-cd node-v10.5.0
+wget https://nodejs.org/dist/v11.1.0/node-v11.1.0.tar.gz
+tar zxf node-v11.1.0.tar.gz
+rm -f ./node-v11.1.0.tar.gz
+cd node-v11.1.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v10.5.0
+rm -rf /usr/src/node-v11.1.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 sudo mkdir /ias
