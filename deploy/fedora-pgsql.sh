@@ -1,7 +1,7 @@
 #!/bin/bash
-sudo dnf -y install postgresql-server postgresql-contrib
+sudo dnf -y install postgresql postgresql-server postgresql-contrib
 sudo systemctl enable postgresql
+sudo postgresql-setup --initdb --unit postgresql
 sudo systemctl start postgresql
-sudo postgresql-setup initdb
 cd /ias
 sudo npm install pg
