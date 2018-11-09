@@ -33,7 +33,7 @@ const config = {
     { get: '/examples/tools/serverHealth.json' },
     { get: '/examples/simple/virtualPath.json/a/b/c' },
     { get: '/examples/simple/jsonGet.json?field=value' },
-    { get: '/examples/cache/htmlPage.ajax' },
+//    { get: '/examples/cache/htmlPage.ajax' },
     { get: '/examples/cache/apiMethod.json' },
     { get: '/examples/events/connect.sse' },
     { get: '/examples/events/sendEvent.json' },
