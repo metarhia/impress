@@ -12,6 +12,7 @@
   "rules": {
     "arrow-parens": "off",
     "comma-dangle": "off",
-    "handle-callback-err": "off"
+    "handle-callback-err": "off",
+    "consistent-return": "off"
   }
 }
