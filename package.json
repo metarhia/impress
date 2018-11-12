@@ -56,11 +56,11 @@
     "csv": "^4.0.0",
     "globalstorage": "^0.2.8",
     "iconv-lite": "^0.4.24",
-    "mdsf": "^1.0.1",
+    "mdsf": "^1.0.2",
     "metalog": "^0.0.12",
-    "metarhia-common": "^0.0.35",
+    "metarhia-common": "^0.0.38",
     "metaschema": "^0.0.22",
-    "metasync": "^0.3.29",
+    "metasync": "^0.3.30",
     "mkdirp": "^0.5.1",
     "multiparty": "^4.2.1",
     "ncp": "^2.0.0",
@@ -74,6 +74,6 @@
     "eslint-config-metarhia": "^6.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-impress": "^2.1.0",
-    "metatests": "^0.2.1"
+    "metatests": "^0.2.4"
   }
 }
