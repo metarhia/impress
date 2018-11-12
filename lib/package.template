@@ -4,7 +4,7 @@
   "private": true,
   "description": "Impress Application Server instance",
   "dependencies": {
-    "impress": "0.4.x"
+    "impress": "0.6.x"
   },
   "engines": {
     "node": ">=0.6.0"
