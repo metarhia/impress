@@ -33,7 +33,7 @@
     address:   '*',
     ports:     [3000, [1]], // Example: [81, [-1]]
     applications: ['example'],
-    heartbeat: '2s'
+    heartbeatInterval: '2s',
   },
 
   //secureRpc: {
