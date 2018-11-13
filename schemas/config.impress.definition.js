@@ -57,20 +57,20 @@
   servers: '{{server}}',
 
   server: {
-    protocol:     '(http,jstp)',
-    transport:    '(tcp,tls,ws,wss)',
-    address:      'string',
-    ports:        '[array]',
-    bundle:       'false:boolean',
-    nagle:        'false:boolean',
-    slowTime:     '4s:duration',
-    timeout:      '30s:duration',
-    keepAlive:    '5s:duration',
-    heartbeat:    '[duration]',
-    key:          '[string]',
-    cert:         '[string]',
-    applications: '[array]',
-    inspect:      '[number]'
+    protocol:          '(http,jstp)',
+    transport:         '(tcp,tls,ws,wss)',
+    address:           'string',
+    ports:             '[array]',
+    bundle:            'false:boolean',
+    nagle:             'false:boolean',
+    slowTime:          '4s:duration',
+    timeout:           '30s:duration',
+    keepAlive:         '5s:duration',
+    heartbeatInterval: '[duration]',
+    key:               '[string]',
+    cert:              '[string]',
+    applications:      '[array]',
+    inspect:           '[number]'
   }
 
 }
