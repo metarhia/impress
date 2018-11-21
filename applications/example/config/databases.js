@@ -39,7 +39,8 @@
   //
   // oracleConnection: {
   //   url: 'oracle://user:password@host:port/database',
-  //   slowTime: 1000
+  //   slowTime: 1000,
+  //   poolMax: 10
   // },
 
   // MongoDB example database configuration
