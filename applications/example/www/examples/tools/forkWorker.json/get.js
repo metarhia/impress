@@ -1,5 +1,5 @@
 (client, callback) => {
   client.context.data = { someDataForWorker: 'parameterValue' };
-  client.fork('worker');
+  application.forkLongWorker(client, 'worker');
   callback();
 }
