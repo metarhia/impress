@@ -1,6 +1,6 @@
 (client, callback) => {
   client.context.data = { someDataForWorker: 'parameterValue' };
-  client.killLongWorker('worker');
-  client.fork('worker');
+  application.killLongWorker(client, 'worker');
+  application.forkLongWorker(client, 'worker');
   callback();
 }
