@@ -1044,14 +1044,6 @@ api.ws = function(url) {
 
 };
 
-// Create Server-Sent Events instance
-//
-api.sse = function(url) {
-  var sse = new EventSource(url);
-  sse.on = sse.addEventListener;
-  return sse;
-};
-
 // Client-side load balancer
 //
 application.balancer = {};

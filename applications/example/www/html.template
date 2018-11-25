@@ -14,7 +14,6 @@
   <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
   <link rel="stylesheet" type="text/css" href="/css/screen.css" />
 
-  <script type="text/javascript" src="/js/eventsource.min.js"></script>
   <script type="text/javascript" src="/js/impress.js"></script>
   <script type="text/javascript" src="https://unpkg.com/@metarhia/jstp@^2.0.1/dist/jstp.umd.js"></script>
   <script type="text/javascript" src="/js/init.js"></script>

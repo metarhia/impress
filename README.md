@@ -63,7 +63,6 @@ aspects:
   - Multiple protocols support:
     - JSTP (JavaScript Transfer Protocol) for RPC and MQ; (https://github.com/metarhia/jstp);
     - HTTP and HTTPS (node native libraries);
-    - Implemented SSE (Server-Sent Events) with channels and multi-cast;
     - WebSockets support;
     - TCP and UDP sockets support;
   - Reverse-proxy (routing request to external HTTP server with URL-rewriting);

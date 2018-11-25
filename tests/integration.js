@@ -35,7 +35,6 @@ const config = {
     { get: '/examples/simple/jsonGet.json?field=value' },
 //    { get: '/examples/cache/htmlPage.ajax' },
     { get: '/examples/cache/apiMethod.json' },
-    { get: '/examples/events/connect.sse' },
     { get: '/examples/events/sendEvent.json' },
     { get: '/examples/simple/csvStringify.csv' },
     {
