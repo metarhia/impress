@@ -53,7 +53,7 @@
     "accept-language": "^3.0.18",
     "argon2": "^0.19.3",
     "concolor": "^0.1.9",
-    "csv": "^5.0.0",
+    "csv": "^4.0.0",
     "globalstorage": "^0.2.8",
     "iconv-lite": "^0.4.24",
     "mdsf": "^1.0.2",
