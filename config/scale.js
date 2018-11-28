@@ -1,8 +1,5 @@
 {
-  // Cloud and health configuration
-
-  // check: 'http://127.0.0.1/',
-  // if we can get this page it means that another copy is running
+  // Cloud configuration
 
   cloud: 'PrivateCloud', // cloud name
   server: 'S1', // Server name to identify it in loadbalancing infrastructure
