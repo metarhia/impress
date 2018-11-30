@@ -4,5 +4,5 @@
   application.leak.push(
     new Array(n).join('Hello node.js, Hello Impress Application Server ')
   );
-  callback({ memory: process.memoryUsage() });
+  callback(null, { memory: process.memoryUsage() });
 }

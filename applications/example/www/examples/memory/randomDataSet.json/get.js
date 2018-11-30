@@ -11,6 +11,6 @@
     obj.school = test.randomItem(test.schools);
     res.push(obj);
   }
-  callback(res);
+  callback(null, res);
 
 }

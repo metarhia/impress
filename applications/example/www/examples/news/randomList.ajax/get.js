@@ -1,4 +1,4 @@
 (client, callback) => {
   api.news.shuffle();
-  callback({ list: api.news.data });
+  callback(null, { list: api.news.data });
 }

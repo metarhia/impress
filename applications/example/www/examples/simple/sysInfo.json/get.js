@@ -1,5 +1,5 @@
 (client, callback) => {
-  callback({
+  callback(null, {
     process: {
       execPath: process.execPath,
       execArgv: process.execArgv,

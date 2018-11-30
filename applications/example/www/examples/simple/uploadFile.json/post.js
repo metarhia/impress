@@ -1,6 +1,6 @@
 (client, callback) => {
 
-  callback(client.files);
+  callback(err, client.files);
 
   client.upload((err, file) => {
     console.dir({ uploadedFile: file });

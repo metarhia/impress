@@ -1,5 +1,5 @@
 (client, callback) => {
-  callback({
+  callback(null, {
     phone: {
       model: 'Motorola Photom Q 4G LTE',
       os: 'Android 4.0.4 (Ice Cream Sandwich)',

@@ -1,5 +1,5 @@
 (client, callback) => {
-  callback({
+  callback(null, {
     //cache: Object.keys(application.cache),
     templates: Object.keys(application.cache.templates),
     files: application.cache.files,

@@ -4,6 +4,6 @@
     for (let i = 0; i < collections.length; i++) {
       items.push(collections[i].collectionName);
     }
-    callback(items);
+    callback(err, items);
   });
 }

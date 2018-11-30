@@ -10,6 +10,6 @@
   if (st.addresses.indexOf(ip) === -1) {
     st.addresses.push(ip);
   }
-  callback(st);
+  callback(null, st);
 
 }

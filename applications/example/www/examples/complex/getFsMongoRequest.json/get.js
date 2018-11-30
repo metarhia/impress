@@ -31,6 +31,6 @@
       });
     }
   ], (err, results) => {
-    callback(results);
+    callback(null, results);
   });
 }

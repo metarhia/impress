@@ -1,3 +1,3 @@
 (client, callback) => {
-  callback(Object.keys(api));
+  callback(null, Object.keys(api));
 }

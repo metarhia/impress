@@ -1,6 +1,6 @@
 (client, callback) => {
   client.attachment('fileName.csv');
-  callback([
+  callback(null, [
     ['name1', 11, 21.1],
     ['name2', 12, 22.2],
     ['name3', 13, 23.3],

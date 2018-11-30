@@ -1,3 +1,3 @@
 (client, callback) => {
-  callback({ parameterName: client.query.parameterName });
+  callback(null, { parameterName: client.query.parameterName });
 }

@@ -9,7 +9,9 @@
     (response) => {
       let data = '';
       response.on('data', chunk => data += chunk);
-      response.on('end', () => callback(data));
+      response.on('end', () => {
+        callback(null, data);
+      });
     }
   );
 
