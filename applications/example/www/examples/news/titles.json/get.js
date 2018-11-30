@@ -1,3 +1,3 @@
 (client, callback) => {
-  callback(api.news.listTitles());
+  callback(null, api.news.listTitles());
 }

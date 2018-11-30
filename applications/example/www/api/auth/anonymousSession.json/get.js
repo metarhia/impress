@@ -1,4 +1,4 @@
 (client, callback) => {
   client.startSession();
-  callback({ sid: client.sid });
+  callback(null, { sid: client.sid });
 }

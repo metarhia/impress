@@ -1,5 +1,6 @@
 (client, callback) => {
   const item = api.news.getItem(client.query.id);
-  if (!item) callback({ error: 'id not specified' }, 404);
-  else callback(item);
+  // TODO: return HTTP 404
+  if (!item) callback(null, { error: 'id not specified' });
+  else callback(null, item);
 }

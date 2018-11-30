@@ -9,12 +9,14 @@
     (response) => {
       let data = '';
       response.on('data', chunk => data += chunk);
-      response.on('end', () => callback(data));
+      response.on('end', () => {
+        callback(null, data);
+      });
     }
   );
 
-  req.on('error', (/*err*/) => {
-    callback('Can`t get page');
+  req.on('error', (err) => {
+    callback(err, 'Can`t get page');
   });
   req.end();
 }

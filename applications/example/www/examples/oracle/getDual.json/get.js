@@ -1,9 +1,9 @@
 (client, callback) => {
   oracle.query('select * from dual', (err, result) => {
     if (err) {
-      callback({ error: err.message });
+      callback(err, { error: err.message });
       return;
     }
-    callback({ rows: result.rows, fields: result.metaData });
+    callback(null, { rows: result.rows, fields: result.metaData });
   });
 }

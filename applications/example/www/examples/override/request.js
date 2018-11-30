@@ -1,5 +1,5 @@
 (client, callback) => {
-  callback({
+  callback(null, {
     title: 'Override Page Title',
     center: {
       sid: client.sid,

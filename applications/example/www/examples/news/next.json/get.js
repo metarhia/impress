@@ -1,3 +1,3 @@
 (client, callback) => {
-  callback(api.news.getNext());
+  callback(null, api.news.getNext());
 }
