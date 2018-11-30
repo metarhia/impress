@@ -38,10 +38,6 @@ const config = {
     { get: '/examples/events/sendEvent.json' },
     { get: '/examples/simple/csvStringify.csv' },
     {
-      get: '/examples/simple/jsonpGet.jsonp',
-      data: { callback: 'callbackFunctionName' }
-    },
-    {
       post: '/examples/simple/jsonPost.json',
       data: { parameterName: 'value' }
     }
