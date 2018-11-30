@@ -192,7 +192,7 @@ and start application API development
 ## License
 
 Dual licensed under the MIT or RUMI licenses.
-Copyright (c) 2012-2017 Metarhia contributors.
+Copyright (c) 2012-2018 Metarhia contributors.
 Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;
 
 RUMI License: Everything that you want, you are already that.
