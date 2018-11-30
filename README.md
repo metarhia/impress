@@ -17,7 +17,7 @@ aspects:
   - Monolithic high cohesion core, must-have things optimized for performance;
   - Applied code simplicity, API code high-level abstraction and brevity;
   - Support for both Stateful and Stateless approach;
-  - Extensible plug-ins system for optionally needed features;
+  - Extensible architecture allowing to add needed features;
   - Application can't include Application Server, quite the opposite,
     Application Server is a container for Applications;
   - No I/O is faster even then async I/O, so maximum memory usage and
@@ -25,9 +25,9 @@ aspects:
 
 ## Features
 
-  - Can serve multiple applications and sites on multiple domains;
+  - Can serve multiple applications, sites and domains;
   - Serves multiple ports, network interfaces, hosts and protocols;
-  - Can scale on multiple servers;
+  - Can scale on multiple servers and processes;
   - Supports application sandboxing (configuration, db and memory access isolation);
   - Utilize multiple CPU cores with instances/workers:
     - Cross-process communication (not using built-in node.js cluster library);
@@ -49,34 +49,30 @@ aspects:
   only if an error occurred while processing the request or in any previous
   handler;
   - Supported multiple AJAX API result types: JSON for most APIs (including safe
-  serialization); JSONP (for cross-domain requests); CSV; HTML (aor any extension
-  unknown for IAS) for AJAX server-side HTML rendering; JSTP (for JavaScript
-  Transfer Protocol);
+  serialization); CSV; HTML (aor any extension unknown for IAS) for AJAX
+  server-side HTML rendering; JSTP (for JavaScript Transfer Protocol);
   - Server-side simple templating with caching, data structures iterators and
   personalization based on user groups;
   - Serving static files with in-memory preprocessing: gzipping and HTTP
   `if-modified-since` support with HTTP 304 "Not Modified" answer; memory caching
   and file system watching for cache reloading when files changed on disk;
-  JavaScript minification with `uglify-js`; SASS compiling styles from `.scss` to
-  `.css` in memory cache;
   - Built-in sessions support with authentication, groups and anonymous sessions;
   - Multiple protocols support:
     - JSTP (JavaScript Transfer Protocol) for RPC and MQ; (https://github.com/metarhia/jstp);
     - HTTP and HTTPS (node native libraries);
     - WebSockets support;
     - TCP and UDP sockets support;
-  - Reverse-proxy (routing request to external HTTP server with URL-rewriting);
+  - Reverse-proxy (routing request to external HTTP server);
   - Server-wide or application-specific logging, with log buffering (lazy write) and rotation (keep logs N days);
-  - Connection drivers for database engines: MongoDB, PgSQL, MySQL, Relational schema generator from JSON database schemas;
+  - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL, Relational schema generator from JSON database schemas;
   - File utilities: upload, download, streaming;
   - GeoIP support, based on `geoip-lite` module (uses MaxMind database);
   - Sending emails using `nodemailer`;
   - Built-in simple testing framework;
   - Server health monitoring;
   - Built-in data structures validation and preprocessing library;
-  - Process forking:
-    - Long workers with `client` object forwarding to separate process;
-    - Task scheduling (interval or certain time);
+  - Long workers with `client` object forwarding to separate process;
+  - Task scheduling (interval or certain time);
   - V8 features support:
     - Long stack trace with `--stack-trace-limit=1000` and stack output minification;
     - Wrapper for V8 internal functions with `--allow-natives-syntax`;
@@ -90,7 +86,7 @@ To create GET request handler for URL `/api/method.json`
 File `/api/method.json/get.js`
 ```javascript
 (client, callback) => {
-  callback({ field: 'value' });
+  callback(null, { field: 'value' });
 }
 ```
 Result: `{ "field": "value" }`
@@ -102,7 +98,7 @@ File `/api/method.json/post.js`
 (client, callback) => {
   dbImpress.users
   .find({ group: client.fields.group })
-  .toArray((err, nodes) => callback(nodes));
+  .toArray(callback);
 }
 ```
 Result:

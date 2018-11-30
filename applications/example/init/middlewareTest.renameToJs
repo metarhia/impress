@@ -1,12 +1,5 @@
-// Middleware-styl programmatically added handler
-//
-application.get('/helloWorld.ajax', (req, res, next) => {
-  res.write('<h1>Middleware handler style</h1>');
-  next();
-});
-
-// Impress-style programmatically added handler
+// Programmatically added handler
 //
 application.get('/helloWorld2.ajax', (client, callback) => {
-  callback('<h1>Middleware handler style</h1>');
+  callback(null, '<h1>Middleware handler style</h1>');
 });
