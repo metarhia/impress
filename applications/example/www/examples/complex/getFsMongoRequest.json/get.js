@@ -20,8 +20,8 @@
           response.on('end', () => callback(null, data));
         }
       );
-      req.on('error', (/*err*/) => {
-        callback(null, 'Can\'t get page');
+      req.on('error', (err) => {
+        callback(err, 'Can\'t get page');
       });
       req.end();
     },
