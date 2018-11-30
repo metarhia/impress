@@ -1,6 +1,6 @@
 // Catch event by name
 
-application.backend.on('test', (data) => {
+application.backend.on('test', data => {
   console.log('Event "test" received by: ' + application.nodeId);
   console.log('  data: ' + api.json.stringify(data));
 });

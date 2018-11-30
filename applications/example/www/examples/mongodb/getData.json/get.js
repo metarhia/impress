@@ -1,7 +1,3 @@
-(client, callback) => {
-  dbAlias.testCollection
-    .find({})
-    .toArray((err, nodes) => {
-      callback(err, nodes);
-    });
-}
+(client, callback) => dbAlias.testCollection
+  .find({})
+  .toArray(callback);

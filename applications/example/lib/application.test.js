@@ -22,10 +22,9 @@ application.test.schools = [
   'Plato', 'Aristotle', 'Hellenistic'
 ];
 
-application.test.randomItem = (arr) => (
-  arr[Math.floor(Math.random() * arr.length)]
-);
+application.test.randomItem = arr => arr[
+  Math.floor(Math.random() * arr.length)
+];
 
-application.test.random = (min, max) => (
-  min + Math.floor(Math.random() * (max - min + 1))
-);
+application.test.random = (min, max) => min +
+  Math.floor(Math.random() * (max - min + 1));

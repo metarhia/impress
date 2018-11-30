@@ -7,7 +7,7 @@ const rl = api.readline.createInterface({
 
 rl.question(
   'Delete stored data and recreate default structures? [y/n]: ',
-  (answer) => {
+  answer => {
     rl.close();
     if (answer === 'y') {
       application.createDataStructures(() => {});
