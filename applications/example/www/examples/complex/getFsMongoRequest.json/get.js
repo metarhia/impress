@@ -1,12 +1,12 @@
 (client, callback) => {
   api.metasync.parallel([
-    (callback) => {
+    callback => {
       const filePath = application.dir + '/www' + client.path + '/test.txt';
       api.fs.readFile(filePath, 'utf8', (error, data) => {
         callback(null, data);
       });
     },
-    (callback) => {
+    callback => {
       const req = api.http.request(
         {
           hostname: 'google.com',
@@ -14,18 +14,18 @@
           path: '/',
           method: 'get'
         },
-        (response) => {
+        response => {
           let data = '';
           response.on('data', chunk => data += chunk);
           response.on('end', () => callback(null, data));
         }
       );
-      req.on('error', (err) => {
+      req.on('error', err => {
         callback(err, 'Can\'t get page');
       });
       req.end();
     },
-    (callback) => {
+    callback => {
       dbAlias.testCollection.find({}).toArray((err, nodes) => {
         callback(null, nodes);
       });

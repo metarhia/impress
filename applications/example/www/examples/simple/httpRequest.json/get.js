@@ -6,7 +6,7 @@
       path: '/',
       method: 'get'
     },
-    (response) => {
+    response => {
       let data = '';
       response.on('data', chunk => data += chunk);
       response.on('end', () => {
@@ -15,7 +15,7 @@
     }
   );
 
-  req.on('error', (err) => {
+  req.on('error', err => {
     callback(err, 'Can`t get page');
   });
   req.end();

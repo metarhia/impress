@@ -57,4 +57,4 @@ api.news.getNext = () => {
 
 api.news.shuffle = () => api.common.shuffle(api.news.data);
 
-api.news.getItem = (n) => api.news.data[n];
+api.news.getItem = n => api.news.data[n];
