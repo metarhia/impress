@@ -1,5 +1,5 @@
 (client, callback) => {
-  console.log('Cached Error');
-  console.dir(client.err);
+  console.debug('Cached Error');
+  console.debug(client.err);
   callback();
 }

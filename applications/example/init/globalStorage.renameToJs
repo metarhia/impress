@@ -1,6 +1,6 @@
-function print(data) {
-  console.log(JSON.stringify(data, null, 2));
-}
+const print = data => {
+  console.debug(JSON.stringify(data, null, 2));
+};
 
 const flower1 = {
   category: 'Flower',

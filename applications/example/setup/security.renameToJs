@@ -1,4 +1,4 @@
-console.log('Impress Security database setup');
+console.debug('Impress Security database setup');
 
 const rl = api.readline.createInterface({
   input: process.stdin,

@@ -32,7 +32,7 @@ api.timers.setInterval(() => {
 }, 7000);
 
 api.timers.setInterval(() => {
-  console.log(
+  console.debug(
     'Data in ' + application.nodeId + ' ' +
     api.json.stringify(application.state.data.car)
   );

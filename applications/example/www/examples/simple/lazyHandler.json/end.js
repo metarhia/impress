@@ -1,4 +1,4 @@
 (client, callback) => {
-  console.log('Request finalization handler: end.js');
+  console.debug('Request finalization handler: end.js');
   callback(null, { handler: 'end' });
 }

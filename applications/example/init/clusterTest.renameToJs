@@ -19,7 +19,7 @@ api.timers.setTimeout(test, 1400);
 api.timers.setInterval(() => {
   const endTime = new Date().getTime();
   const processingTime = endTime - startTime;
-  console.log(
+  console.debug(
     application.nodeId + ' Processing time: ' +
     processingTime + ' count: ' + count
   );
