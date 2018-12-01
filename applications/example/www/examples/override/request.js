@@ -1,4 +1,5 @@
 (client, callback) => {
+
   callback(null, {
     title: 'Override Page Title',
     center: {
@@ -18,4 +19,5 @@
       ]
     }
   });
+
 }

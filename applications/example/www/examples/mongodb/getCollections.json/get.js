@@ -1,4 +1,5 @@
 (client, callback) => {
+
   dbAlias.connection.collections((err, collections) => {
     const items = [];
     for (let i = 0; i < collections.length; i++) {
@@ -6,4 +7,5 @@
     }
     callback(err, items);
   });
+
 }

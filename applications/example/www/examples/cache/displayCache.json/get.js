@@ -1,15 +1,11 @@
 (client, callback) => {
   callback(null, {
-    //cache: Object.keys(application.cache),
-    templates: Object.keys(application.cache.templates),
-    files: application.cache.files,
-    folders: application.cache.folders,
-    scripts: Object.keys(application.cache.scripts),
-    //watchers: Object.keys(application.cache.watchers),
-    //timer: Object.keys(application.cache.timer),
-    //updates: Object.keys(application.cache.updates),
-    static: Object.keys(application.cache.static),
-    //pages: Object.keys(application.cache.pages),
-    //size: Object.keys(application.cache.size)
+    templates: [...application.cache.templates.keys()],
+    files: [...application.cache.files.keys()],
+    folders: [...application.cache.folders.keys()],
+    scripts: [...application.cache.scripts.keys()],
+    watchers: [...application.cache.watchers.keys()],
+    static: [...application.cache.static.keys()],
+    pages: [...application.cache.pages.keys()],
   });
 }

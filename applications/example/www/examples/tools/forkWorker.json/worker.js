@@ -1,5 +1,5 @@
 (client, callback) => {
-  console.log('Message from forked worker');
-  console.dir(Object.keys(client));
+  console.debug('Message from forked worker');
+  console.debug(Object.keys(client));
   callback();
 }

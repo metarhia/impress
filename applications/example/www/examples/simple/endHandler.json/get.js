@@ -1,4 +1,4 @@
 (client, callback) => {
-  console.log('Verb handler: get.js');
+  console.debug('Verb handler: get.js');
   callback(null, { handler: 'get' });
 }

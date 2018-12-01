@@ -1,7 +1,7 @@
-api.timers.setInterval(() => {
-  console.dir({
-    files: application.cache.files, // Object.keys(
-    //static: application.cache.static,
-    //folders: application.cache.folders
+setInterval(() => {
+  console.debug({
+    files: [...application.cache.files.keys()],
+    static: [...application.cache.static.keys()],
+    folders: [...application.cache.folders.keys()],
   });
 }, 5000);

@@ -7,8 +7,8 @@
   interval: '2s',    // interval between task executions
 
   run: (task, callback) => {
-    console.log('Execute task one');
-    console.dir(application.tasks);
+    console.debug('Execute task one');
+    console.debug(application.tasks);
     callback(/* error or empty */);
     // empty if success, return new Error('Message') if not success
   },

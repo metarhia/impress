@@ -1,4 +1,4 @@
 (client, callback) => {
-  console.log('Page stored in cache for 30 sec');
+  console.debug('Page stored in cache for 30 sec');
   callback();
 }

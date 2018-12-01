@@ -7,7 +7,7 @@
 
   const st = application.stateTest;
   const ip = client.req.connection.remoteAddress;
-  if (st.addresses.indexOf(ip) === -1) {
+  if (!st.addresses.includes(ip)) {
     st.addresses.push(ip);
   }
   callback(null, st);
