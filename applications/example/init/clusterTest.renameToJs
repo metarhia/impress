@@ -1,4 +1,4 @@
-api.timers.setInterval(() => {
+setInterval(() => {
   application.backend.emit('test', { data: 'data' });
 }, 5000);
 
@@ -12,11 +12,11 @@ function test() {
   });
 }
 
-api.timers.setTimeout(test, 1000);
-api.timers.setTimeout(test, 1200);
-api.timers.setTimeout(test, 1400);
+setTimeout(test, 1000);
+setTimeout(test, 1200);
+setTimeout(test, 1400);
 
-api.timers.setInterval(() => {
+setInterval(() => {
   const endTime = new Date().getTime();
   const processingTime = endTime - startTime;
   console.debug(

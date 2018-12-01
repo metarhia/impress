@@ -1,4 +1,4 @@
-api.timers.setInterval(() => {
+setInterval(() => {
   console.debug('Worker Process: ' + application.nodeId);
   console.debug({ workers: application.workers });
   console.debug('---');

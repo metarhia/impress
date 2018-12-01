@@ -1,4 +1,4 @@
-api.timers.setInterval(() => {
+setInterval(() => {
   console.debug({
     files: [...application.cache.files.keys()],
     static: [...application.cache.static.keys()],
