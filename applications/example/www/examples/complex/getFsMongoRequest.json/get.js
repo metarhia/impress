@@ -1,7 +1,9 @@
 (client, callback) => {
   api.metasync.parallel([
     callback => {
-      const filePath = application.dir + '/www' + client.path + '/test.txt';
+      const filePath = api.path.join(
+        application.dir, 'www', client.path, 'test.txt'
+      );
       api.fs.readFile(filePath, 'utf8', (error, data) => {
         callback(null, data);
       });

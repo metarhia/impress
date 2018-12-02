@@ -49,27 +49,29 @@ const done = () => {
     console.log(
       concolor('b')('Installing Impress Application Server...')
     );
-    const sSrv = fs.createReadStream(current + '/server.js');
-    const dSrv = fs.createWriteStream(destination + '/server.js');
+    const sSrv = fs.createReadStream(api.path.join(current, 'server.js'));
+    const dSrv = fs.createWriteStream(api.path.join(destination, 'server.js'));
     sSrv.pipe(dSrv);
-    const sPkg = fs.createReadStream(current + '/lib/package.template');
-    const dPkg = fs.createWriteStream(destination + '/package.json');
+    const spPath = api.path.join(current, 'lib/package.template');
+    const sPkg = fs.createReadStream(spPath);
+    const dpPath = api.path.join(destination, 'package.json');
+    const dPkg = fs.createWriteStream(dpPath);
     sPkg.pipe(dPkg);
     const shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
-    const sScr = fs.createReadStream(current + '/' + shellScript);
-    const dScr = fs.createWriteStream(destination + '/' + shellScript);
+    const sScr = fs.createReadStream(api.path.join(current, shellScript));
+    const dScr = fs.createWriteStream(api.path.join(destination, shellScript));
     sScr.pipe(dScr);
     ncp(
-      current + '/config',
-      destination + '/config',
+      api.path.join(current, 'config'),
+      api.path.join(destination, 'config'),
       { clobber: false },
-      (err) => {
+      err => {
         if (err) console.error(err);
         ncp(
-          current + '/applications',
-          destination + '/applications',
+          api.path.join(current, 'applications'),
+          api.path.join(destination, 'applications'),
           { clobber: false },
-          (err) => {
+          err => {
             if (err) {
               console.error(err);
               return;
@@ -78,7 +80,8 @@ const done = () => {
               installCLI();
               return;
             }
-            execute('chmod +x ' + destination + '/server.sh', installCLI);
+            const serverPath = api.path.join(destination, 'server.sh');
+            execute('chmod +x ' + serverPath, installCLI);
           }
         );
       }
@@ -97,7 +100,7 @@ const installImpress = () => {
   const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
 
   const check = (file, callback) => {
-    fs.access(destination + '/' + file, (err) => {
+    fs.access(api.path.join(destination, file), err => {
       exists = exists || !err;
       callback();
     });
