@@ -3,7 +3,7 @@
   callback(null, {
     title: 'Override Page Title',
     center: {
-      sid: client.sid,
+      sid: client.session ? client.session.token : '',
       empty: '',
       users: [
         {

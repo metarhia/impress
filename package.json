@@ -58,7 +58,7 @@
     "iconv-lite": "^0.4.24",
     "mdsf": "^1.0.2",
     "metalog": "^0.0.12",
-    "@metarhia/common": "^1.1.1",
+    "@metarhia/common": "^1.2.0",
     "metaschema": "^0.0.28",
     "metasync": "^0.3.31",
     "mkdirp": "^0.5.1",

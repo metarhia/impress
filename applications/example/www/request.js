@@ -7,7 +7,7 @@
     title: 'Page Title',
     key: api.common.generateKey(2, '0123456789'),
     center: {
-      sid: client.sid,
+      sid: client.session ? client.session.token : '',
       empty: '',
       nNull: null,
       bTrue: true,
