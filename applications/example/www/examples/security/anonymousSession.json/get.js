@@ -1,4 +1,4 @@
 (client, callback) => {
-  client.startSession();
-  callback(null, { sid: client.sid });
+  application.security.startSession(client);
+  callback(null, { token: client.session ? client.session.token : '' });
 }

@@ -1,10 +1,12 @@
 (client, callback) => {
-  client.signIn(
+  application.security.signIn(
+    client,
     client.fields.Login,
     client.fields.Password,
-    (err, isSuccess) => {
-      if (client.fields.loginForm) client.redirect('/');
-      callback(err, { result: isSuccess ? 'ok' : 'error' });
+    err => {
+      client.redirect('/');
+      if (err) callback(err, { result: 'error' });
+      else callback(null, { result: 'ok' });
     }
   );
 }

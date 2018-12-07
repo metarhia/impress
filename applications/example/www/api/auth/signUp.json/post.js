@@ -1,9 +1,11 @@
 (client, callback) => {
-  client.signUp(
+  application.security.signUp(
+    client,
     client.fields.email,
     client.fields.password,
-    (err, user) => {
-      callback(err, { result: user ? 'ok' : 'error' });
+    err => {
+      if (err) callback(err, { result: 'error' });
+      else callback(null, { result: 'ok' });
     }
   );
 }

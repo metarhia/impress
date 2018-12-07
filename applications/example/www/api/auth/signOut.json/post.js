@@ -1,4 +1,4 @@
 (client, callback) => {
   client.context.data = { result: 'ok' };
-  client.signOut(callback);
+  application.security.signOut(client, callback);
 }
