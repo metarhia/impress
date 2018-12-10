@@ -8,12 +8,17 @@
   //   slowTime: '2s' // timeout to mark requests as "slow"
   // },
 
-  // gs: {
-  //   alias: 'gs',
-  //   url: 'gs://metarhia.com/',
-  //   storage: 'dbName',
-  //   security: true
-  // },
+  gs: {
+    alias: 'gs',
+    url: 'gs://metarhia.com/',
+    security: true,
+
+    user: 'postgres',
+    password: '',
+    host: 'localhost',
+    database: 'metarhia',
+    port: 5432,
+  },
 
   // MySQL example database configuration
   //
