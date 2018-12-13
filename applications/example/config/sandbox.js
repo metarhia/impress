@@ -23,7 +23,7 @@
     'db', 'con', 'json', 'common', 'registry', 'definition',
 
     // Preinstalled modules
-    'csv',
+    'csvStringify',
     'iconv',
     'zipStream', // npm module zip-stream
 
