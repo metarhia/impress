@@ -1,7 +1,7 @@
 {
   // Application configuration
 
-  slowTime: '1s',
+  slowTime: Duration('1s'),
 
   // preload application to memory at startup (default: false)
   // preload: true,

@@ -1,7 +1,7 @@
 (client, callback) => {
 
   // client.redirect('/'); // HTTP redirection
-  // client.cache('30s');  // Cache result for 30 seconds
+  // client.cache(Duration('30s'));  // Cache result for 30 seconds
 
   client.context.data = {
     title: 'Page Title',

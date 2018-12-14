@@ -8,7 +8,7 @@
     transport: 'tcp',
     address:   '127.0.0.1',
     ports:     [250],
-    slowTime:  '1s'
+    slowTime:  Duration('1s'),
   },
 
   www: {
@@ -20,10 +20,8 @@
     // range from..to [81,,91]
     // range from..count [81, [8]]
     // range from..cpu-n [81, [-2]]
-    slowTime:  '1s',
-    timeout:   '30s',
-    keepAlive: '5s',
     applications: ['example'], // undefined for all
+    slowTime:  Duration('1s'),
     // inspect: 2000 // inspect Chrome developer tools
   },
 
@@ -33,7 +31,7 @@
     address:   '*',
     ports:     [3000, [1]], // Example: [81, [-1]]
     applications: ['example'],
-    heartbeatInterval: '2s',
+    heartbeatInterval: Duration('2s'),
   },
 
   //secureRpc: {
@@ -41,8 +39,9 @@
   //  transport: 'tls',
   //  address:   '*',
   //  ports:     [4000, [1]],
+  //  timeout:   Duration('30s'),
   //  key:       'example.key',
-  //  cert:      'example.cer'
+  //  cert:      'example.cer',
   //},
 
   webRpc: {
@@ -51,7 +50,7 @@
     address:   '*',
     ports:     [8000],
     applications: ['example'],
-    slowTime:  '1s'
+    slowTime:  Duration('1s'),
   },
 
   //local: {
@@ -62,8 +61,8 @@
   //  applications: ['example'],
   //Nagle algorithm, default true, set to false for latency optimization
   //  nagle:     true,
-  //  slowTime:  '1s',
-  //  timeout:   '120s' // default 30s
+  //  timeout:   Duration('120s'),
+  //  slowTime:  Duration('1s'),
   //},
 
   //ssl: {
@@ -73,7 +72,7 @@
   //  applications: ['example'],
   //  ports:     [443],
   //  key:       'example.key',
-  //  cert:      'example.cer'
+  //  cert:      'example.cer',
   //},
 
   //static: {
@@ -82,7 +81,7 @@
   //  address:   '127.0.0.1',
   //  applications: ['example'],
   //  ports:     [8080],
-  //  slowTime:  1000
+  //  slowTime:  Duration('1s'),
   //}
 
 }

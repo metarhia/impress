@@ -1,4 +1,4 @@
 (client, callback) => {
-  client.cache('30s');
+  client.cache(Duration('30s'));
   callback();
 }

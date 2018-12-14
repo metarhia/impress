@@ -20,7 +20,7 @@
     'events', 'readline', 'querystring', 'process', 'timers',
 
     // Impress API modules
-    'db', 'con', 'json', 'common', 'registry', 'definition',
+    'db', 'con', 'json', 'common', 'registry',
 
     // Preinstalled modules
     'csv',
