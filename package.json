@@ -58,7 +58,7 @@
     "globalstorage": "^0.4.0",
     "iconv-lite": "^0.4.24",
     "mdsf": "^1.0.2",
-    "metalog": "^0.0.13",
+    "metalog": "^0.0.14",
     "metaschema": "^0.0.29",
     "metasync": "^0.3.31",
     "mkdirp": "^0.5.1",
