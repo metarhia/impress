@@ -5,7 +5,7 @@
     transport: 'tcp',
     address:   '127.0.0.1',
     ports:     [2500],
-    slowTime:  '1s'
+    slowTime:  Duration('1s'),
   },
 
   www: {
@@ -14,8 +14,8 @@
     address:   '127.0.0.1',
     ports:     [8080],
     nagle:     true,
-    slowTime:  '1s',
-    timeout:   '10s'
+    timeout:   Duration('10s'),
+    slowTime:  Duration('1s'),
   },
 
   rpc: {
@@ -23,7 +23,7 @@
     transport: 'tcp',
     address:   '127.0.0.1',
     ports:     [3000],
-    slowTime:  '1s'
+    slowTime:  Duration('1s'),
   },
 
   webRpc: {
@@ -32,7 +32,7 @@
     address:   '127.0.0.1',
     ports:     [5000],
     nagle:     true,
-    slowTime:  '1s'
+    slowTime:  Duration('1s'),
   }
 
 }

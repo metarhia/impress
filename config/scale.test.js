@@ -14,8 +14,8 @@
     enabled: false
   },
 
-  health: '5s',
+  health: Duration('5s'),
   nagle: false,
   gc: 0,
-  watch: '2s'
+  watch: Duration('2s')
 }

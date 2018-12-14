@@ -5,7 +5,7 @@
   //   alias: 'dbAlias', // optional alias to access database from global context
   //   url: 'mongodb://127.0.0.1:27017/impress', // connection string
   //   collections: ['sessions', 'users', 'groups', 'testCollection'], // optional
-  //   slowTime: '2s' // timeout to mark requests as "slow"
+  //   slowTime: Duration('2s') // timeout to mark requests as "slow"
   // },
 
   gs: {
@@ -57,7 +57,7 @@
   //    collections: ['collname1', 'collname2'],
   //    // Time to log query as slow
   //    // (optional, default: '2s', in milliseconds or string like '5s')
-  //    slowTime: '2s'
+  //    slowTime: Duration('2s')
   //  }
 
 }
