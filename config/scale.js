@@ -28,7 +28,7 @@
     }
   },
 
-  health: Duration('5m'), // health monitoring interval '5s'
+  health: Duration('5m'), // health monitoring interval default '30s'
   nagle: false, // Nagle algorithm
   gc: 0, // garbage collector interval '1h' - 1 hour, '10m' - 10 minutes
   watch: Duration('2s'), // combine wached file system events if in interval
