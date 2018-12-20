@@ -36,7 +36,6 @@
     //'geoip',
     //'nodemailer',
     //'request',
-    //'async',
   ],
 
   // Import from other applications
