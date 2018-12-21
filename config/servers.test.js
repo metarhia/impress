@@ -33,6 +33,6 @@
     ports:     [5000],
     nagle:     true,
     slowTime:  Duration('1s'),
-  }
+  },
 
 }

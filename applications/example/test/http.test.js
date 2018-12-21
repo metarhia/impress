@@ -1,13 +1,3 @@
-'use strict';
-
-const ncp = require('ncp').ncp;
-const querystring = require('querystring');
-const metatests = require('metatests');
-
-ncp.limit = 16;
-
-let taskCount = 0;
-
 const config = {
   host: '127.0.0.1',
   port: 8080,
@@ -51,7 +41,7 @@ const getRequest = task => {
     request.path = task.post;
   }
   if (task.data) {
-    task.data = querystring.stringify(task.data);
+    task.data = api.querystring.stringify(task.data);
     request.headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': task.data.length
@@ -62,10 +52,13 @@ const getRequest = task => {
 
 config.tasks.forEach(task => {
   const name = task.get || task.post;
-  metatests.test('http request of ' + name, test => {
+  test.endAfterSubtests();
+  test.test('http request of ' + name, test => {
     const request = getRequest(task);
     if (!request.path) {
-      test.bailout();
+      test.fail();
+      test.end();
+      return;
     }
 
     const req = api.http.request(request);
@@ -74,7 +67,8 @@ config.tasks.forEach(task => {
       test.end();
     });
     req.on('error', err => {
-      test.bailout(err);
+      test.error(err);
+      test.end();
     });
     if (task.data) req.write(task.data);
     req.end();

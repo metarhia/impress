@@ -1,10 +1,6 @@
-'use strict'
-
-const metatests = require('metatests');
-const { connect } = require('../utils');
-
-metatests.test('interfaceName.methodName integration test', test => {
-  connect((err, connection, app) => {
+test.endAfterSubtests();
+test.test('interfaceName.methodName integration test', test => {
+  api.jstpTest.connect((err, connection, app) => {
     test.error(err);
     test.assert(connection);
     test.assert(app);
