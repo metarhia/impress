@@ -42,7 +42,7 @@
   "scripts": {
     "install": "node install.js",
     "npm": "npm link npm",
-    "test": "eslint . && ./tests/unittests.sh && ./tests/integration.sh",
+    "test": "eslint . && ./test.sh",
     "lint": "eslint .",
     "doc": "metadoc -c"
   },
