@@ -12,13 +12,13 @@ const loadTests = dir => {
       impress.shutdown(1);
     } else {
       files.map(file => path.join(dir, file))
-      .forEach(file => {
-        if (fs.statSync(file).isDirectory()) {
-          loadTests(file);
-        } else if (path.extname(file) === '.js') {
-          require(file);
-        }
-      });
+        .forEach(file => {
+          if (fs.statSync(file).isDirectory()) {
+            loadTests(file);
+          } else if (path.extname(file) === '.js') {
+            require(file);
+          }
+        });
     }
     metatests.runner.instance.resume();
   });

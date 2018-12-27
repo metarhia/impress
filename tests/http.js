@@ -65,11 +65,11 @@ const getRequest = task => {
 };
 
 config.tasks.forEach(task => {
-  metatests.test('', test => {
+  const name = task.get || task.post;
+  metatests.test('http request of ' + name, test => {
     const request = getRequest(task);
     if (!request.path) {
       test.bailout();
-      return;
     }
 
     const req = api.http.request(request);
@@ -78,7 +78,7 @@ config.tasks.forEach(task => {
       test.end();
     });
     req.on('error', err => {
-        test.bailout(err);
+      test.bailout(err);
     });
     if (task.data) req.write(task.data);
     req.end();
