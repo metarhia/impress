@@ -14,7 +14,6 @@ const config = {
   timeout: 10000,
   tasks: [
     { get: '/' },
-    { get: '/examples/simple/asyncHandler.json' },
     { get: '/examples/simple/ajaxTest.ajax' },
     { get: '/examples/simple/dataFromMemory.json' },
     { get: '/examples/simple/fsAccess.json' },
