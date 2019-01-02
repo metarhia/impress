@@ -3,7 +3,6 @@
 
   // Allow anonymous sessions
   anonymous: true,
-  // (client should request /api/auth/anonymous to generate SID)
 
   // Session cookie name
   cookie: 'SID',
