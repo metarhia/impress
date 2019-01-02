@@ -19,7 +19,6 @@ const config = {
     { get: '/examples/simple/fsAccess.json' },
     { get: '/examples/simple/sysInfo.json' },
     { get: '/examples/memory/stateful.json' },
-    { get: '/examples/override/' },
     { get: '/examples/tools/forkWorker.json' },
     { get: '/examples/tools/serverHealth.json' },
     { get: '/examples/security/anonymousSession.json' },

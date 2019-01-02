@@ -1,8 +1,0 @@
-Title: @title@<br>
-Date: @date@<br>
-Author: @author@<br>
-<ul>
-@[changes]@
-<li>@.value@</li>
-@[/changes]@
-</ul>
