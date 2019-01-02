@@ -25,58 +25,59 @@ aspects:
 
 ## Features
 
-  - Can serve multiple applications, sites and domains;
+  - Can serve multiple applications and sites;
+  - Support multiple domains;
   - Serves multiple ports, network interfaces, hosts and protocols;
-  - Can scale on multiple servers and processes;
-  - Supports application sandboxing (configuration, db and memory access isolation);
+  - Can scale on multiple processes and servers;
+  - Supports application sandboxing (configuration, file system, database and
+  memory access isolation);
   - Utilize multiple CPU cores with instances/workers:
-    - Cross-process communication (not using built-in node.js cluster library);
+    - Inter-process communication (not using built-in node.js cluster library);
     - State synchronization mechanism with transactions and subscription;
-  - No need to write routing manually in code, just create handler files and functions;
+  - No need to write routing manually in code, just create handler files and
+  put sync or async lambdas there;
   - File system watching for cache reloading when file changes on disk;
   - Cache server-side executable JavaScript in memory;
   - Handlers inheritance override hierarchically;
-  - API development support (simple way for JSON-based WEB-services development):
+  - API development support (simple JSON-based WEB-services development):
     - RPC-style API (Stateful, state stored in memory between requests);
     - REST-style API (Stateless, each call is separate, no state in memory);
-    - Implements JSTP (long live and full duplex RPC/MQ over TCP or websockets);
-  - Multiple handlers for HTTP API (all handlers are optional and
-  inheritable/overridable): `access.js` returns access modifiers; `request.js`
-  executing for all requests (any HTTP verbs and before verb handler); HTTP
-  verbs: `get.js`, `post.js`, etc. executes for certain HTTP verb,;`end.js`
-  executes after HTTP verb handler for all verbs; `lazy.js` lazy handler executes
-  after the request has already returned to the client-side; `error.js` executed
-  only if an error occurred while processing the request or in any previous
-  handler;
+    - JSTP (long-live and full duplex RPC/MQ over TCP or websockets);
   - Supported multiple AJAX API result types: JSON for most APIs (including safe
-  serialization); CSV; HTML (aor any extension unknown for IAS) for AJAX
+  serialization); CSV; HTML (for any extension unknown for IAS) for AJAX
   server-side HTML rendering; JSTP (for JavaScript Transfer Protocol);
   - Server-side simple templating with caching, data structures iterators and
   personalization based on user groups;
   - Serving static files with in-memory preprocessing: gzipping and HTTP
-  `if-modified-since` support with HTTP 304 "Not Modified" answer; memory caching
-  and file system watching for cache reloading when files changed on disk;
-  - Built-in sessions support with authentication, groups and anonymous sessions;
+  `if-modified-since` support with HTTP 304 "Not Modified" answer; memory
+  caching and file system watching for cache reloading when files changed on
+  disk;
+  - Built-in sessions support with authentication, groups and anonymous
+  sessions;
   - Multiple protocols support:
-    - JSTP (JavaScript Transfer Protocol) for RPC and MQ; (https://github.com/metarhia/jstp);
+    - JSTP (JavaScript Transfer Protocol) for RPC and messaging;
+    See https://github.com/metarhia/jstp for details;
     - HTTP and HTTPS (node native libraries);
     - WebSockets support;
     - TCP and UDP sockets support;
   - Reverse-proxy (routing request to external HTTP server);
-  - Server-wide or application-specific logging, with log buffering (lazy write) and rotation (keep logs N days);
-  - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL, Relational schema generator from JSON database schemas;
+  - Server-wide or application-specific logging, with log buffering
+  (lazy write) and rotation (keep logs N days);
+  - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL,
+  Relational schema generator from JSON database schemas;
   - File utilities: upload, download, streaming;
   - GeoIP support, based on `geoip-lite` module (uses MaxMind database);
-  - Sending emails using `nodemailer`;
   - Built-in simple testing framework;
   - Server health monitoring;
   - Built-in data structures validation and preprocessing library;
   - Long workers with `client` object forwarding to separate process;
   - Task scheduling (interval or certain time);
   - V8 features support:
-    - Long stack trace with `--stack-trace-limit=1000` and stack output minification;
+    - Long stack trace with `--stack-trace-limit=1000` and stack output
+    minification;
     - Wrapper for V8 internal functions with `--allow-natives-syntax`;
-    - Manual garbage collection with `--nouse-idle-notification` and `--expose-gc`;
+    - Manual garbage collection with `--nouse-idle-notification` and
+    `--expose-gc`;
   - HTTP basic authentication implemented (optional omitting local requests);
 
 ## Examples
@@ -92,6 +93,17 @@ File `/api/method.json/get.js`
 Result: `{ "field": "value" }`
 
 Example #2  
+To create asyn GET request handler for URL `/api/asyncMethod.json`  
+File `/api/asyncMethod.json/get.js`
+```javascript
+async client => {
+  const result = { field: 'value' };
+  return result;
+}
+```
+Result: `{ "field": "value" }`
+
+Example #3  
 To create POST request handler for URL `/api/method.json`  
 File `/api/method.json/post.js`
 ```javascript
@@ -109,7 +121,7 @@ Result:
 ]
 ```
 
-Example #3  
+Example #4  
 File `access.js` works similar to `.htaccess` and allow one to define access
 rules for each folder, by simply putting `access.js` in it.  
 If folder does not contain `access.js` it inherits access rules from its parent
@@ -135,17 +147,13 @@ Example:
 - Install to the current folder: `npm install impress`
 - Install using package.json: add to `dependencies` and run `npm install`
 - Installation scripts for an empty server (from the scratch)
-  - For CentOS 6 `/deploy/centos6x32.sh` and `centos6x64.sh`
-  (tested on CentOS 6.6 32/64bit minimal)
-  - For CentOS 7 `/deploy/centos7x64.sh`
-  (tested on CentOS 7.0 with systemd 64bit minimal)
-  - For Ubuntu 14 and 15 `/deploy/ubuntu.sh`
-  (tested on Ubuntu 14.04 64bit minimal)
-  - For Debian 7 and 8 `/deploy/debian.sh`
-  (tested for Debian 7.5 64bit minimal)
-  - For Fedora 22, 23, 24 and 25 for x64 `/deploy/fedora.sh`
-  
-You can prepare scripts based on examples above and run at a target server shell:
+  - For CentOS 7 x64 `/deploy/centos7x64.sh`
+  - For Ubuntu 14, 16 and 18 `/deploy/ubuntu.sh`
+  - For Debian 8 and 9 `/deploy/debian.sh`
+  - For Fedora 27, 28, 29 for x64 `/deploy/fedora.sh`
+
+You can prepare scripts based on examples above and run at a target server
+shell:
 `curl http://.../install.sh | sh` or `wget http://.../install.sh -O - | sh`
 
 If Impress Application Server is already installed in directory you want to
@@ -176,13 +184,12 @@ You can use following commands from any directory:
 3. After installation you have `example` application in directory
 `/applications`, you can rename it and/or place there other applications
 4. Edit `/applications/example/config/hosts.js`, change `127.0.0.1` to
-`myapp.com`, certainly you need to register and configure domain name myapp.com
-or just add it into `hosts` file in your OS
+`myapp.com`, certainly you need to register and configure domain name
+`myapp.com` or just add it into `hosts` file in your OS
 5. Place your html to `/applications/example/app/html.template` and copy
 required files into directories `/static/js`, `/static/css`, `/static/images`
 and start application API development
-6. Run Impress using command `service impress start` or `systemctl start impress`
-(if installed as a service) or `node server.js`
+6. Run Impress using command `service impress start` or `node server.js`
 
 ## Contributors
 
@@ -192,7 +199,7 @@ and start application API development
 ## License
 
 Dual licensed under the MIT or RUMI licenses.
-Copyright (c) 2012-2018 Metarhia contributors.
+Copyright (c) 2012-2019 Metarhia contributors.
 Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;
 
 RUMI License: Everything that you want, you are already that.
