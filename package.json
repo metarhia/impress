@@ -58,7 +58,7 @@
     "globalstorage": "^0.4.0",
     "iconv-lite": "^0.4.24",
     "mdsf": "^1.1.0",
-    "metalog": "^0.1.0",
+    "metalog": "^1.0.2",
     "metaschema": "^0.0.29",
     "tickplate": "^0.0.2",
     "metasync": "^0.3.31",
