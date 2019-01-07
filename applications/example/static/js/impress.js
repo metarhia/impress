@@ -10,20 +10,9 @@ api.common = {};
 api.common.absoluteUrl = url => {
   if (url.charAt(0) !== '/') return url;
   const site = window.location;
-  let res = 'ws';
-  if (site.protocol === 'https:') res += 's';
-  res += '://' + site.host + url;
+  const proto = site.protocol === 'https:' ? 'ws' : 'wss';
+  const res = `${proto}://${site.host}${url}`;
   return res;
-};
-
-// Return random number less then one argument random(100) or
-// between two argumants random(50, 150)
-api.common.random = function(min, max) {
-  if (!max) {
-    max = min;
-    min = 0;
-  }
-  return min + Math.floor(Math.random() * (max - min + 1));
 };
 
 // Simple EventEmitter implementation
@@ -45,9 +34,11 @@ api.events.emitter = () => {
   // Emit named event
   ee.emit = (name, data) => {
     const namedEvent = ee.listeners[name];
-    if (namedEvent) namedEvent.forEach((callback) => {
-      callback(data);
-    });
+    if (namedEvent) {
+      namedEvent.forEach(callback => {
+        callback(data);
+      });
+    }
   };
 
   return ee;
@@ -71,80 +62,62 @@ api.dom.form = null;
 // Get element by tag id
 api.dom.id = id => document.getElementById(id);
 
-if (document.getElementsByClassName) {
-  api.dom.getElementsByClass = (classList, context) => (context || document)
-    .getElementsByClassName(classList);
-} else {
-  api.dom.getElementsByClass = (classList, context) => {
-    context = context || document;
-    const list = context.getElementsByTagName('*');
-    const classArray = classList.split(/\s+/);
-    const result = [];
-    for (let i = 0; i < list.length; i++) {
-      for (let j = 0; j < classArray.length; j++) {
-        if (list[i].className.search('\\b' + classArray[j] + '\\b') !== -1) {
-          result.push(list[i]);
-          break;
-        }
-      }
-    }
-    return result;
-  };
-}
-
 // Add element class
-api.dom.addClass = function(element, className) {
+api.dom.addClass = (element, className) => {
   element = api.dom.element(element);
   if (!element) return false;
   if (element.classList) {
     return element.classList.add(className);
   }
-  const regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
+  const regex = new RegExp(`(^|\\s)${className}(\\s|$)`, 'g');
   if (regex.test(element.className)) {
-    element.className = (element.className + ' ' + className)
-      .replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
+    element.className = `${element.className} ${className}`
+      .replace(/\s+/g, ' ')
+      .replace(/(^ | $)/g, '');
     return element.className;
   }
 };
 
 // Remove element class
-api.dom.removeClass = function(element, className) {
+api.dom.removeClass = (element, className) => {
   element = api.dom.element(element);
   if (!element) return false;
   if (element.classList) {
     return element.classList.remove(className);
   }
-  const regex = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
+  const regex = new RegExp(`(^|\\s)${className}(\\s|$)`, 'g');
   element.className = element.className.replace(regex, '$1')
     .replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
 };
 
 // Check element class
-api.dom.hasClass = function(element, className) {
+api.dom.hasClass = (element, className) => {
   element = api.dom.element(element);
   if (!element) return false;
   if (element.classList) {
     return element.classList.contains(className);
   }
-  return element.className.match(new RegExp('(^|\b)' + className + '($|\b)'));
+  return element.className.match(new RegExp(`(^|\b)${className}($|\b)`));
 };
 
 // Add element event
-api.dom.addEvent = function(element, event, fn) {
+api.dom.addEvent = (element, event, fn) => {
   element = api.dom.element(element);
   if (!element) return false;
   if (element.addEventListener) {
     return element.addEventListener(event, fn, false);
   } else if (element.attachEvent) {
-    const callback = function() {
+    const callback = () => {
       fn.call(element);
     };
     return element.attachEvent('on' + event, callback);
-  } else return false;
+  } else {
+    return false;
+  }
 };
 
 // Remove element event
-api.dom.removeEvent = function(element, event, fn) {
+api.dom.removeEvent = (element, event, fn) => {
   if (!fn) {
     fn = element;
     element = window;
@@ -155,11 +128,13 @@ api.dom.removeEvent = function(element, event, fn) {
     return element.removeEventListener(event, fn, false);
   } else if (element.detachEvent) {
     return element.detachEvent('on' + event, fn);
-  } else return false;
+  } else {
+    return false;
+  }
 };
 
 // Events: 'load', 'unload', 'click', etc.
-api.dom.on = function(event, element, fn) {
+api.dom.on = (event, element, fn) => {
   if (!fn) {
     fn = element;
     element = window;
@@ -168,13 +143,13 @@ api.dom.on = function(event, element, fn) {
 };
 
 // Use element or selector
-api.dom.element = function(element) {
+api.dom.element = element => {
   if (typeof element  !== 'string') {
     return element;
   }
   let result;
   try {
-    //catching DOMException if element is not a valid selector
+    // catching DOMException if element is not a valid selector
     result = document.querySelector(element);
   } catch (e) {
     result = null;
@@ -188,8 +163,8 @@ api.dom.on('load', () => {
 });
 
 // fn(event) should terurn not empty string for confirmation dialog
-api.dom.onBeforeUnload = function(fn) {
-  api.dom.addEvent(api.dom, 'beforeunload', (event) => {
+api.dom.onBeforeUnload = fn => {
+  api.dom.addEvent(api.dom, 'beforeunload', event => {
     const message = fn(event);
     if (typeof event === 'undefined') event = window.event;
     if (event) event.returnValue = message;
@@ -198,9 +173,10 @@ api.dom.onBeforeUnload = function(fn) {
 };
 
 // Fire event
-api.dom.fireEvent = function(element, eventName) {
-  if (element.fireEvent) element.fireEvent('on' + eventName);
-  else {
+api.dom.fireEvent = (element, eventName) => {
+  if (element.fireEvent) {
+    element.fireEvent('on' + eventName);
+  } else {
     const event = document.createEvent('Events');
     event.initEvent(eventName, true, false);
     element.dispatchEvent(event);
@@ -208,25 +184,25 @@ api.dom.fireEvent = function(element, eventName) {
 };
 
 // Enable element
-api.dom.enable = function(element, flag) {
+api.dom.enable = (element, flag) => {
   if (flag) api.dom.removeClass(element, 'disabled');
   else api.dom.addClass(element, 'disabled');
 };
 
 // Visible element
-api.dom.visible = function(element, flag) {
+api.dom.visible = (element, flag) => {
   if (flag) api.dom.show(element);
   else api.dom.hide(element);
 };
 
 // Toggle element
-api.dom.toggle = function(element) {
+api.dom.toggle = element => {
   if (api.dom.hasClass(element, 'hidden')) api.dom.show(element);
   else api.dom.hide(element);
 };
 
 // Hide element
-api.dom.hide = function(element) {
+api.dom.hide = element => {
   if (!api.dom.hasClass(element, 'hidden')) {
     api.dom.addClass(element, 'hidden');
     element.setAttribute('_display', element.style.display);
@@ -235,7 +211,7 @@ api.dom.hide = function(element) {
 };
 
 // Show element
-api.dom.show = function(element) {
+api.dom.show = element => {
   if (api.dom.hasClass(element, 'hidden')) {
     api.dom.removeClass(element, 'hidden');
     element.style.display = element.getAttribute('_display') || '';
@@ -243,7 +219,7 @@ api.dom.show = function(element) {
 };
 
 // Load element content using AJAX
-api.dom.load = function(url, element, callback) {
+api.dom.load = (url, element, callback) => {
   element.innerHTML = '<div class="progress"></div>';
   api.ajax.get(url, {}, (err, res) => {
     element.innerHTML = res;
@@ -252,7 +228,7 @@ api.dom.load = function(url, element, callback) {
 };
 
 // Center element
-api.dom.alignCenter = function(element, context, styles) {
+api.dom.alignCenter = (element, context, styles) => {
   let wrapper;
   const popupMargin = (element.style.margin.match(/\d+/) || [0])[0] || 0;
 
@@ -319,7 +295,7 @@ api.dom.generateResizeHandler = (wrapper, popup, popupMargin) => () => {
 api.dom.generateClosePopup = (
   wrapper, content, resizeHandler, prevPlaceRefs
 ) => {
-  const closePopup = function(event) {
+  const closePopup = event => {
     if (event.target !== wrapper && event.target !== closePopup.closeElement) {
       return true;
     }
@@ -342,7 +318,7 @@ api.dom.generateClosePopup = (
   return closePopup;
 };
 
-function injectInnerContent(content, contentHolder) {
+const injectInnerContent = (content, contentHolder) => {
   const contentNode = api.dom.element(content);
   let prevPlaceRefs;
   if (contentNode) {
@@ -354,7 +330,7 @@ function injectInnerContent(content, contentHolder) {
     contentHolder.innerHTML = content;
   }
   return prevPlaceRefs;
-}
+};
 
 api.dom.popup = content => {
   const popupMargin = 10;
@@ -375,7 +351,7 @@ api.dom.popup = content => {
     'min-height': '100px',
     'overflow': 'auto',
     'margin': popupMargin + 'px',
-    'padding': popupPadding.y + 'px ' + popupPadding.x + 'px'
+    'padding': `${popupPadding.y}px ${popupPadding.x} px`
   });
   const wrapper = api.dom.alignCenter(popup, api.dom.body, {
     'transition': 'opacity 0.5s',
@@ -402,7 +378,7 @@ api.dom.popup = content => {
   return closePopup;
 };
 
-api.dom.detectScrollbarWidth = function() {
+api.dom.detectScrollbarWidth = () => {
   const scrollDiv = document.createElement('div');
   api.dom.setStyles(scrollDiv, {
     'width': '100px',
@@ -419,41 +395,40 @@ api.dom.detectScrollbarWidth = function() {
   return scrollbarWidth;
 };
 
-function dashedToUpperCase(key) {
-  return key.replace(/-(\w)/g, (match, p1) => p1.toUpperCase());
-}
+const dashedToUpperCase = key => key
+  .replace(/-(\w)/g, (match, p1) => p1.toUpperCase());
 
-//transform CSS string to Object
-const cssStringToObject = function(styles) {
+// transform CSS string to Object
+const cssStringToObject = styles => {
   if (typeof styles === 'string') {
     const stylesStr = styles;
     styles = {};
-    stylesStr.split(/\s*;\s*/).filter(Boolean).forEach((val) => {
-      //split by first ':'
+    stylesStr.split(/\s*;\s*/).filter(Boolean).forEach(val => {
+      // split by first ':'
       const delimPos = val.search(/\s*:\s*/);
       const delimLength = val.match(/\s*:\s*/)[0].length;
       const key = val.substr(0, delimPos);
       val = val.substr(delimPos + delimLength);
-      styles[key] = val; //storing to object
+      styles[key] = val; // storing to object
     });
   }
   return styles;
 };
 
-function extractPrefixedStyles(styleName) {
+const extractPrefixedStyles = styleName => {
   styleName = styleName || styleName;
   const keys = [styleName];
-  //adding vendor prefixes if needed
+  // adding vendor prefixes if needed
   for (const pref in api.dom.styleProps) {
     if (api.dom.styleProps[pref].indexOf(styleName) >= 0) {
-      keys.push('-' + pref + '-' + styleName);
+      keys.push(`-${pref}-${styleName}`);
     }
   }
   return keys;
-}
+};
 
 // Set given styles to element
-api.dom.setStyles = function(element, styles) {
+api.dom.setStyles = (element, styles) => {
   styles = cssStringToObject(styles);
   if (typeof styles !== 'object') return false;
 
@@ -487,14 +462,14 @@ api.ajax = methods => {
 
   const createMethod = (apiStub, apiMethod) => {
     if (apiMethod === 'introspect') {
-      apiStub[apiMethod] = function(params, callback) {
+      apiStub[apiMethod] = (params, callback) => {
         apiStub.request(apiMethod, params, (err, data) => {
           apiStub.init(data);
           callback(err, data);
         });
       };
     } else {
-      apiStub[apiMethod] = function(params, callback) {
+      apiStub[apiMethod] = (params, callback) => {
         apiStub.request(apiMethod, params, callback);
       };
     }
@@ -502,9 +477,9 @@ api.ajax = methods => {
 
   const apiStub = {};
 
-  apiStub.request = function(apiMethod, params, callback) {
+  apiStub.request = (apiMethod, params, callback) => {
     let err = null;
-    const requestParams = this.methods[apiMethod];
+    const requestParams = methods[apiMethod];
     if (requestParams) {
       let httpMethod;
       let url;
@@ -528,9 +503,11 @@ api.ajax = methods => {
     callback(err, null);
   };
 
-  apiStub.init = function(methods) {
+  apiStub.init = methods => {
     apiStub.methods = methods;
-    for (const apiMethod in apiStub.methods) createMethod(apiStub, apiMethod);
+    for (const apiMethod in apiStub.methods) {
+      createMethod(apiStub, apiMethod);
+    }
   };
 
   apiStub.init(methods);
@@ -539,11 +516,11 @@ api.ajax = methods => {
 };
 
 // Send HTTP request
-//   method - HTTP verb (string)
-//   url - request URL (string)
-//   params - request parameters (hash, optional)
-//   parseResponse - boolean flag to parse JSON (boolean, optional)
-//   callback - function to call on response received
+//   method <string> HTTP verb
+//   url <string> request URL
+//   params <Object> request parameters (optional)
+//   parseResponse <boolean> boolean flag to parse JSON (optional)
+//   callback <Function> function to call on response received
 api.ajax.request = (method, url, params, parseResponse, callback) => {
   const data = [];
   let value = '';
@@ -585,7 +562,7 @@ api.ajax.request = (method, url, params, parseResponse, callback) => {
 };
 
 // Send HTTP GET request
-api.ajax.get = function(url, params, callback) {
+api.ajax.get = (url, params, callback) => {
   if (!callback) {
     callback = params;
     params = {};
@@ -594,7 +571,7 @@ api.ajax.get = function(url, params, callback) {
 };
 
 // Send HTTP POST request
-api.ajax.post = function(url, params, callback) {
+api.ajax.post = (url, params, callback) => {
   if (!callback) {
     callback = params;
     params = {};
