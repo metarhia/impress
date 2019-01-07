@@ -7,10 +7,13 @@
       method: 'get'
     },
     response => {
-      let data = '';
-      response.on('data', chunk => data += chunk);
+      const data = [];
+      response.on('data', chunk => {
+        data.push(chunk);
+      });
       response.on('end', () => {
-        callback(null, data);
+        const buf = data.join('');
+        callback(null, buf);
       });
     }
   );

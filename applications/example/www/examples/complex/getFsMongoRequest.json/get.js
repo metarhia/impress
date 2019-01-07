@@ -17,9 +17,14 @@
           method: 'get'
         },
         response => {
-          let data = '';
-          response.on('data', chunk => data += chunk);
-          response.on('end', () => callback(null, data));
+          const data = [];
+          response.on('data', chunk => {
+            data.push(chunk);
+          });
+          response.on('end', () => {
+            const buf = data.join('');
+            callback(null, data)
+          });
         }
       );
       req.on('error', err => {
