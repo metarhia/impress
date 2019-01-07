@@ -63,7 +63,6 @@ api.dom.on('load', () => {
   });
 
   // Left menu
-
   api.dom.on('click', '#menuAJAX', () => {
     const parameterName = 'paramaterValue';
     api.dom.load(
@@ -79,8 +78,8 @@ api.dom.on('load', () => {
       '/examples/simple/jsonGet.json',
       { parameterName },
       (err, res) => {
-        panelCenter.innerHTML = '<pre>' +
-          JSON.stringify(res, null, 2) + '</pre>';
+        const str = JSON.stringify(res, null, 2);
+        panelCenter.innerHTML = `<pre>${str}</pre>`;
       }
     );
   });
@@ -92,8 +91,8 @@ api.dom.on('load', () => {
       '/examples/simple/jsonPost.json',
       { parameterName },
       (err, res) => {
-        panelCenter.innerHTML = '<pre>' +
-          JSON.stringify(res, null, 2) + '</pre>';
+        const str = JSON.stringify(res, null, 2);
+        panelCenter.innerHTML = `<pre>${str}</pre>`;
       }
     );
   });
@@ -127,7 +126,8 @@ api.dom.on('load', () => {
   api.dom.on('click', '#menuGeoIP', () => {
     panelCenter.innerHTML = '<div class="progress"></div>';
     api.ajax.get('/examples/tools/geoip.json', (err, res) => {
-      panelCenter.innerHTML = '<pre>' + JSON.stringify(res, null, 2) + '</pre>';
+      const str = JSON.stringify(res, null, 2);
+      panelCenter.innerHTML = `<pre>${str}</pre>`;
     });
   });
 
@@ -135,13 +135,11 @@ api.dom.on('load', () => {
   api.dom.on('click', '#menuWS', () => {
     ws = api.ws('/examples/events/connect.ws');
 
-    panelCenter.innerHTML = (
-      '<a class="button silver" id="btnWsClose">' +
+    panelCenter.innerHTML = '<a class="button silver" id="btnWsClose">' +
       '<span class="icon delete"></span>Close WebSocket connection</a> ' +
       '<a class="button silver" id="btnWsSend">' +
       '<span class="icon handshake"></span>Send "Hello" to WebSocket</a>' +
-      '<hr>Connecting...<hr>'
-    );
+      '<hr>Connecting...<hr>';
     const btnWsSend = api.dom.id('btnWsSend');
 
     ws.on('open', () => {
@@ -152,9 +150,9 @@ api.dom.on('load', () => {
       panelCenter.insertAdjacentHTML('beforeend', 'Connection closed<hr>');
     });
 
-    ws.on('message', (event) => {
+    ws.on('message', event => {
       panelCenter.insertAdjacentHTML(
-        'beforeend', 'Message from server: ' + event.data + '<hr>'
+        'beforeend', `Message from server: ${event.data}<hr>`
       );
     });
 
@@ -171,20 +169,18 @@ api.dom.on('load', () => {
     });
   });
 
+  const runJstpExample = () => {
+    panelCenter.innerHTML = '<div id="jstpLog"></div>' +
+      '<button id="jstpDisconnect">Disconnect</button>';
+    jstpConnect();
+  };
+
   api.dom.on('click', '#menuJSTP', runJstpExample);
 
-  function runJstpExample() {
-    panelCenter.innerHTML = (
-      '<div id="jstpLog"></div>' +
-      '<button id="jstpDisconnect">Disconnect</button>'
-    );
-    jstpConnect();
-  }
-
-  function jstpConnect() {
+  const jstpConnect = () => {
     const messageBlock = api.dom.id('jstpLog');
 
-    function print(...args) {
+    const print = (...args) => {
       const msg = args.join(' ');
       if (messageBlock.innerText) {
         messageBlock.innerText += msg;
@@ -192,7 +188,7 @@ api.dom.on('load', () => {
         messageBlock.textContent += msg;
       }
       messageBlock.innerHTML += '<br>';
-    }
+    };
 
     api.jstp.ws.connect('example',
       new api.jstp.Application('example', {}),
@@ -207,7 +203,7 @@ api.dom.on('load', () => {
         print('handshake done, sid =', session);
 
         const button = api.dom.id('jstpDisconnect');
-        button.onclick = function() {
+        button.onclick = () => {
           connection.disconnect();
           print('connection closed');
           button.innerHTML = 'Connect';
@@ -218,13 +214,13 @@ api.dom.on('load', () => {
       }
     );
 
-    function runTests(err, interfaceName) {
+    const runTests = (err, interfaceName) => {
       if (err) {
         print(err);
         return;
       }
 
-      interfaceName.on('eventName', (args) => {
+      interfaceName.on('eventName', args => {
         print('Got event, data:', JSON.stringify(args));
       });
 
@@ -237,7 +233,7 @@ api.dom.on('load', () => {
         print(res);
       });
 
-      interfaceName.sendEvent((err) => {
+      interfaceName.sendEvent(err => {
         if (err) {
           print(err);
           return;
