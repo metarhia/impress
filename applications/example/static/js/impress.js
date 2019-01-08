@@ -10,7 +10,7 @@ api.common = {};
 api.common.absoluteUrl = url => {
   if (url.charAt(0) !== '/') return url;
   const site = window.location;
-  const proto = site.protocol === 'https:' ? 'ws' : 'wss';
+  const proto = site.protocol === 'https:' ? 'wss' : 'ws';
   const res = `${proto}://${site.host}${url}`;
   return res;
 };
