@@ -46,7 +46,7 @@
     "lint": "eslint ."
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "@metarhia/common": "^1.2.1",
