@@ -43,8 +43,9 @@
     "install": "node install.js",
     "npm": "npm link npm",
     "test": "eslint . && ./tests/unittests.sh && ./tests/integration.sh",
-    "lint": "eslint .",
-    "doc": "metadoc -c"
+    "doc": "metadoc -c",
+    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \".*rc\" \"**/*.yml\"",
+    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \".*rc\" \"**/*.yml\""
   },
   "engines": {
     "node": ">=8.6.0"
@@ -76,8 +77,11 @@
     "eslint": "^5.13.0",
     "eslint-config-metarhia": "^7.0.0",
     "eslint-plugin-import": "^2.16.0",
+    "eslint-config-prettier": "^3.6.0",
     "eslint-plugin-impress": "^2.3.0",
     "metatests": "^0.4.0",
-    "@metarhia/doc": "^0.1.0"
+    "@metarhia/doc": "^0.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "1.16.x"
   }
 }

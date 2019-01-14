@@ -43,12 +43,10 @@ const done = () => {
   if (exists) {
     console.log(
       em('Impress Application Server') +
-      ' is already installed and configured in this folder.'
+        ' is already installed and configured in this folder.'
     );
   } else {
-    console.log(
-      concolor('b')('Installing Impress Application Server...')
-    );
+    console.log(concolor('b')('Installing Impress Application Server...'));
     const sSrv = fs.createReadStream(path.join(current, 'server.js'));
     const dSrv = fs.createWriteStream(path.join(destination, 'server.js'));
     sSrv.pipe(dSrv);

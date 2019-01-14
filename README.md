@@ -13,111 +13,117 @@ and production.
 
 Impress (Impress Application Server, IAS) follows alternative way in several
 aspects:
-  - No middleware (avoid such evil as long callback chains);
-  - Monolithic high cohesion core, must-have things optimized for performance;
-  - Applied code simplicity, API code high-level abstraction and brevity;
-  - Support for both Stateful and Stateless approach;
-  - Extensible architecture allowing to add needed features;
-  - Application can't include Application Server, quite the opposite,
-    Application Server is a container for Applications;
-  - No I/O is faster even then async I/O, so maximum memory usage and
-    lazy I/O is the choice;
+
+- No middleware (avoid such evil as long callback chains);
+- Monolithic high cohesion core, must-have things optimized for performance;
+- Applied code simplicity, API code high-level abstraction and brevity;
+- Support for both Stateful and Stateless approach;
+- Extensible architecture allowing to add needed features;
+- Application can't include Application Server, quite the opposite,
+  Application Server is a container for Applications;
+- No I/O is faster even then async I/O, so maximum memory usage and
+  lazy I/O is the choice;
 
 ## Features
 
-  - Can serve multiple applications and sites;
-  - Support multiple domains;
-  - Serves multiple ports, network interfaces, hosts and protocols;
-  - Can scale on multiple processes and servers;
-  - Supports application sandboxing (configuration, file system, database and
+- Can serve multiple applications and sites;
+- Support multiple domains;
+- Serves multiple ports, network interfaces, hosts and protocols;
+- Can scale on multiple processes and servers;
+- Supports application sandboxing (configuration, file system, database and
   memory access isolation);
-  - Utilize multiple CPU cores with instances/workers:
-    - Inter-process communication (not using built-in node.js cluster library);
-    - State synchronization mechanism with transactions and subscription;
-  - No need to write routing manually in code, just create handler files and
+- Utilize multiple CPU cores with instances/workers:
+  - Inter-process communication (not using built-in node.js cluster library);
+  - State synchronization mechanism with transactions and subscription;
+- No need to write routing manually in code, just create handler files and
   put sync or async lambdas there;
-  - File system watching for cache reloading when file changes on disk;
-  - Cache server-side executable JavaScript in memory;
-  - Handlers inheritance override hierarchically;
-  - API development support (simple JSON-based WEB-services development):
-    - RPC-style API (Stateful, state stored in memory between requests);
-    - REST-style API (Stateless, each call is separate, no state in memory);
-    - JSTP (long-live and full duplex RPC/MQ over TCP or websockets);
-  - Supported multiple AJAX API result types: JSON for most APIs (including safe
+- File system watching for cache reloading when file changes on disk;
+- Cache server-side executable JavaScript in memory;
+- Handlers inheritance override hierarchically;
+- API development support (simple JSON-based WEB-services development):
+  - RPC-style API (Stateful, state stored in memory between requests);
+  - REST-style API (Stateless, each call is separate, no state in memory);
+  - JSTP (long-live and full duplex RPC/MQ over TCP or websockets);
+- Supported multiple AJAX API result types: JSON for most APIs (including safe
   serialization); CSV; HTML (for any extension unknown for IAS) for AJAX
   server-side HTML rendering; JSTP (for JavaScript Transfer Protocol);
-  - Server-side simple templating with caching, data structures iterators and
+- Server-side simple templating with caching, data structures iterators and
   personalization based on user groups;
-  - Serving static files with in-memory preprocessing: gzipping and HTTP
+- Serving static files with in-memory preprocessing: gzipping and HTTP
   `if-modified-since` support with HTTP 304 "Not Modified" answer; memory
   caching and file system watching for cache reloading when files changed on
   disk;
-  - Built-in sessions support with authentication, groups and anonymous
+- Built-in sessions support with authentication, groups and anonymous
   sessions;
-  - Multiple protocols support:
-    - JSTP (JavaScript Transfer Protocol) for RPC and messaging;
+- Multiple protocols support:
+  - JSTP (JavaScript Transfer Protocol) for RPC and messaging;
     See https://github.com/metarhia/jstp for details;
-    - HTTP and HTTPS (node native libraries);
-    - WebSockets support;
-    - TCP and UDP sockets support;
-  - Reverse-proxy (routing request to external HTTP server);
-  - Server-wide or application-specific logging, with log buffering
+  - HTTP and HTTPS (node native libraries);
+  - WebSockets support;
+  - TCP and UDP sockets support;
+- Reverse-proxy (routing request to external HTTP server);
+- Server-wide or application-specific logging, with log buffering
   (lazy write) and rotation (keep logs N days);
-  - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL,
+- Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL,
   Relational schema generator from JSON database schemas;
-  - File utilities: upload, download, streaming;
-  - GeoIP support, based on `geoip-lite` module (uses MaxMind database);
-  - Built-in simple testing framework;
-  - Server health monitoring;
-  - Built-in data structures validation and preprocessing library;
-  - Long workers with `client` object forwarding to separate process;
-  - Task scheduling (interval or certain time);
-  - V8 features support:
-    - Long stack trace with `--stack-trace-limit=1000` and stack output
+- File utilities: upload, download, streaming;
+- GeoIP support, based on `geoip-lite` module (uses MaxMind database);
+- Built-in simple testing framework;
+- Server health monitoring;
+- Built-in data structures validation and preprocessing library;
+- Long workers with `client` object forwarding to separate process;
+- Task scheduling (interval or certain time);
+- V8 features support:
+  - Long stack trace with `--stack-trace-limit=1000` and stack output
     minification;
-    - Wrapper for V8 internal functions with `--allow-natives-syntax`;
-    - Manual garbage collection with `--nouse-idle-notification` and
+  - Wrapper for V8 internal functions with `--allow-natives-syntax`;
+  - Manual garbage collection with `--nouse-idle-notification` and
     `--expose-gc`;
-  - HTTP basic authentication implemented (optional omitting local requests);
+- HTTP basic authentication implemented (optional omitting local requests);
 
 ## Examples
 
 Example #1  
 To create GET request handler for URL `/api/method.json`  
 File `/api/method.json/get.js`
+
 ```javascript
 (client, callback) => {
   callback(null, { field: 'value' });
 }
 ```
+
 Result: `{ "field": "value" }`
 
 Example #2  
 To create asyn GET request handler for URL `/api/asyncMethod.json`  
 File `/api/asyncMethod.json/get.js`
+
 ```javascript
 async client => {
   const result = { field: 'value' };
   return result;
-}
+};
 ```
+
 Result: `{ "field": "value" }`
 
 Example #3  
 To create POST request handler for URL `/api/method.json`  
 File `/api/method.json/post.js`
+
 ```javascript
 (client, callback) => {
-  dbImpress.users
-  .find({ group: client.fields.group })
-  .toArray(callback);
-}
+  dbImpress.users.find({ group: client.fields.group }).toArray(callback);
+};
 ```
+
 Result:
+
 ```javascript
 [
-  { "login": "Vasia Pupkin", "password": "whoami", "group": "users" },
-  { "login": "Marcus Aurelius", "password": "tomyself", "group": "users" }
+  { login: 'Vasia Pupkin', password: 'whoami', group: 'users' },
+  { login: 'Marcus Aurelius', password: 'tomyself', group: 'users' },
 ]
 ```
 
@@ -128,6 +134,7 @@ If folder does not contain `access.js` it inherits access rules from its parent
 folder, all the way up to the project root.
 
 Example:
+
 ```javascript
 {
   guests:  true,  // Allow requests from anonymous (not logged) users
@@ -164,31 +171,32 @@ installation and update libraries and dependencies.
 ## Impress CLI commands
 
 You can use following commands from any directory:
-  - `impress path <path>` to display or change path to IAS
-  - `impress start` to start IAS server
-  - `impress stop` to stop IAS server
-  - `impress restart` to restart IAS server
-  - `impress status` to display IAS status
-  - `impress update` to update IAS version
-  - `impress autostart [on|off]` to add/remove IAS to autostart on system reboot
-  - `impress list` to see IAS applications list
-  - `impress add [path]` to add application
-  - `impress remove [name]` to remove application
-  - `impress new [name]` to create application
+
+- `impress path <path>` to display or change path to IAS
+- `impress start` to start IAS server
+- `impress stop` to stop IAS server
+- `impress restart` to restart IAS server
+- `impress status` to display IAS status
+- `impress update` to update IAS version
+- `impress autostart [on|off]` to add/remove IAS to autostart on system reboot
+- `impress list` to see IAS applications list
+- `impress add [path]` to add application
+- `impress remove [name]` to remove application
+- `impress new [name]` to create application
 
 ## Configuration
 
 1. Install Impress as described above
 2. Edit `/config/*.js` to configure Application Server
-(set IP address in servers.js)
+   (set IP address in servers.js)
 3. After installation you have `example` application in directory
-`/applications`, you can rename it and/or place there other applications
+   `/applications`, you can rename it and/or place there other applications
 4. Edit `/applications/example/config/hosts.js`, change `127.0.0.1` to
-`myapp.com`, certainly you need to register and configure domain name
-`myapp.com` or just add it into `hosts` file in your OS
+   `myapp.com`, certainly you need to register and configure domain name
+   `myapp.com` or just add it into `hosts` file in your OS
 5. Place your html to `/applications/example/app/html.template` and copy
-required files into directories `/static/js`, `/static/css`, `/static/images`
-and start application API development
+   required files into directories `/static/js`, `/static/css`, `/static/images`
+   and start application API development
 6. Run Impress using command `service impress start` or `node server.js`
 
 ## Contributors
