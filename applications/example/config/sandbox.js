@@ -6,7 +6,7 @@
   // You can hide
   //
   // global: [
-  //  'Buffer', 'SlowBuffer',
+  //  'Buffer',
   //  'setTimeout', 'clearTimeout', 'setInterval',
   //  'clearInterval', 'setImmediate', 'clearImmediate'
   // ],
