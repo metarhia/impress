@@ -38,7 +38,16 @@
     "url": "https://github.com/metarhia/impress/issues",
     "email": "timur.shemsedinov@gmail.com"
   },
-  "main": "./impress.js",
+  "main": "impress.js",
+  "files": [
+    "config/",
+    "lib/",
+    "schemas/",
+    "server.sh",
+    "server.cmd",
+    "server.js",
+    "install.js"
+  ],
   "scripts": {
     "install": "node install.js",
     "npm": "npm link npm",
