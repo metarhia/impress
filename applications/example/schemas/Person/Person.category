@@ -1,4 +1,0 @@
-{
-  Name: { domain: 'Nomen' },
-  Born: { domain: 'DateDay' },
-}
