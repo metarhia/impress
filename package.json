@@ -43,7 +43,8 @@
     "install": "node install.js",
     "npm": "npm link npm",
     "test": "eslint . && ./tests/unittests.sh && ./tests/integration.sh",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "doc": "metadoc -c"
   },
   "engines": {
     "node": ">=8.6.0"
@@ -75,6 +76,7 @@
     "eslint-config-metarhia": "^7.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-impress": "^2.3.0",
-    "metatests": "^0.4.0"
+    "metatests": "^0.4.0",
+    "@metarhia/doc": "^0.1.0"
   }
 }
