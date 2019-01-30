@@ -1,0 +1,16 @@
+{
+  "files": [
+    "lib/core.js",
+    "lib/application.js"
+  ],
+
+  "customLinks": {
+    "http.IncomingMessage": "https://nodejs.org/api/http.html#http_class_http_incomingmessage",
+    "http.ServerResponse": "https://nodejs.org/api/http.html#http_class_http_serverresponse",
+    "Buffer": "https://nodejs.org/api/buffer.html#buffer_class_buffer",
+    "fs.Stats": "https://nodejs.org/api/fs.html#fs_class_fs_stats",
+    "Client": "https://github.com/metarhia/impress/blob/master/lib/client.js"
+  },
+
+  "outputDir": "doc/"
+}
