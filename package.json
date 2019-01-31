@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@metarhia/common": "^1.2.1",
+    "@metarhia/doc": "^0.1.0",
     "@metarhia/jstp": "^2.2.1",
     "accept-language": "^3.0.18",
     "argon2": "^0.20.1",
