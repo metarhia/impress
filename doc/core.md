@@ -1,2 +1,0 @@
-### Interface: core
-
