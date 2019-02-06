@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "1.0.5-alpha.0",
+  "version": "1.0.5-alpha.1",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -52,13 +52,13 @@
     "@metarhia/common": "^1.2.1",
     "@metarhia/jstp": "^2.2.1",
     "accept-language": "^3.0.18",
-    "argon2": "^0.20.0",
+    "argon2": "^0.20.1",
     "concolor": "^0.1.9",
     "csv-stringify": "^5.3.0",
     "globalstorage": "^0.4.0",
     "iconv-lite": "^0.4.24",
-    "mdsf": "^1.1.0",
-    "metalog": "^1.0.4",
+    "mdsf": "^1.1.1",
+    "metalog": "^1.0.5",
     "metaschema": "^0.1.0",
     "metasync": "^0.3.31",
     "mkdirp": "^0.5.1",
@@ -71,9 +71,9 @@
     "zip-stream": "^2.0.1"
   },
   "devDependencies": {
-    "eslint": "^5.12.1",
-    "eslint-config-metarhia": "^6.1.0",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint": "^5.13.0",
+    "eslint-config-metarhia": "^7.0.0",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-impress": "^2.3.0",
     "metatests": "^0.4.0"
   }
