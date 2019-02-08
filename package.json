@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "1.0.5-alpha.1",
+  "version": "1.0.5-alpha.2",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -53,7 +53,7 @@
     "@metarhia/jstp": "^2.2.1",
     "accept-language": "^3.0.18",
     "argon2": "^0.20.1",
-    "concolor": "^0.1.9",
+    "concolor": "^0.1.10",
     "csv-stringify": "^5.3.0",
     "globalstorage": "^0.4.0",
     "iconv-lite": "^0.4.24",
@@ -66,7 +66,7 @@
     "ncp": "^2.0.0",
     "pg": "^7.8.0",
     "sandboxed-fs": "^0.3.2",
-    "tickplate": "^0.0.2",
+    "tickplate": "^0.0.3",
     "websocket": "^1.0.28",
     "zip-stream": "^2.0.1"
   },
