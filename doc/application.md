@@ -35,7 +35,7 @@ Log Error instance
 
 _Returns:_ [`<string>`] application relative path
 
-Get path relative to application path
+Get path relative path to the application
 
 
 #### Application.prototype.preloadDirectory(relPath, depth, callback)
@@ -135,10 +135,10 @@ Load file from place
 
 #### Application.prototype.dispatch(req, res)
 
-- `req`: [`<IncomingMessage>`] http request
-- `res`: [`<ServerResponse>`] http response
+- `req`: `<IncomingMessage>` http request
+- `res`: `<ServerResponse>` http response
 
-_Returns:_ `<Client>`
+_Returns:_ [`<Client>`]
 
 HTTP Dispatcher.
 
@@ -148,7 +148,7 @@ Create new Client instance from request and response.
 #### Application.prototype.compress(filePath, stats, callback)
 
 - `filePath`: [`<string>`] compressing file path
-- `stats`: [`<Stats>`] instance of fs.Stats
+- `stats`: `<Stats>` instance of fs.Stats
 - `callback`: [`<Function>`] (optional)
   - `err`: [`<Error>`]
   - `data`: [`<Buffer>`]
@@ -206,7 +206,7 @@ Create handler for HTTP DELETE method
 
 #### Application.prototype.startWorker(client, workerFile)
 
-- `client`: `<Client>` client request to be processes in worker
+- `client`: [`<Client>`] client request to be processes in worker
 - `workerFile`: [`<string>`] handler to be executed in forked process
 
 Fork long worker
@@ -214,7 +214,7 @@ Fork long worker
 
 #### Application.prototype.stopWorker(client, workerFile)
 
-- `client`: `<Client>` client request
+- `client`: [`<Client>`] client request
 - `workerFile`: [`<string>`] name of handler file to identify process
 
 Kill long worker
@@ -238,10 +238,8 @@ Call application method with JSTP
 Get an array of methods of an interface
 
 
-[`<IncomingMessage>`]: https://nodejs.org/dist/latest-v10.x/docs/api/http.html#http_class_http_incomingmessage
-[`<ServerResponse>`]: https://nodejs.org/dist/latest-v10.x/docs/api/http.html#http_class_http_serverresponse
-[`<Buffer>`]: https://nodejs.org/dist/latest-v10.x/docs/api/buffer.html#buffer_buffer
-[`<Stats>`]: https://nodejs.org/dist/latest-v10.x/docs/api/fs.html#fs_class_fs_stats
+[`<Buffer>`]: https://nodejs.org/api/buffer.html#buffer_class_buffer
+[`<Client>`]: https://github.com/metarhia/impress/blob/master/lib/client.js
 [`<Object>`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [`<Function>`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
 [`<Array>`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
