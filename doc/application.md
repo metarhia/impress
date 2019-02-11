@@ -135,8 +135,8 @@ Load file from place
 
 #### Application.prototype.dispatch(req, res)
 
-- `req`: `<IncomingMessage>` http request
-- `res`: `<ServerResponse>` http response
+- `req`: [`<http.IncomingMessage>`] http request
+- `res`: [`<http.ServerResponse>`] http response
 
 _Returns:_ [`<Client>`]
 
@@ -148,7 +148,7 @@ Create new Client instance from request and response.
 #### Application.prototype.compress(filePath, stats, callback)
 
 - `filePath`: [`<string>`] compressing file path
-- `stats`: `<Stats>` instance of fs.Stats
+- `stats`: [`<fs.Stats>`] instance of fs.Stats
 - `callback`: [`<Function>`] (optional)
   - `err`: [`<Error>`]
   - `data`: [`<Buffer>`]
@@ -238,7 +238,10 @@ Call application method with JSTP
 Get an array of methods of an interface
 
 
+[`<http.IncomingMessage>`]: https://nodejs.org/api/http.html#http_class_http_incomingmessage
+[`<http.ServerResponse>`]: https://nodejs.org/api/http.html#http_class_http_serverresponse
 [`<Buffer>`]: https://nodejs.org/api/buffer.html#buffer_class_buffer
+[`<fs.Stats>`]: https://nodejs.org/api/fs.html#fs_class_fs_stats
 [`<Client>`]: https://github.com/metarhia/impress/blob/master/lib/client.js
 [`<Object>`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [`<Function>`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
