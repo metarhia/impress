@@ -30,6 +30,7 @@
     // Metarhia modules
     'jstp',
     'metasync',
+    'metaschema',
 
     // Additional modules
     //'mkdirp',
