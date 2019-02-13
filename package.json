@@ -61,7 +61,7 @@
     "iconv-lite": "^0.4.24",
     "mdsf": "^1.1.1",
     "metalog": "^1.0.5",
-    "metaschema": "^0.1.0",
+    "metaschema": "^0.2.0",
     "metasync": "^0.3.31",
     "mkdirp": "^0.5.1",
     "multiparty": "^4.2.1",
