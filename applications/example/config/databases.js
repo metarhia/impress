@@ -11,7 +11,7 @@
   gs: {
     alias: 'gs',
     url: 'gs://metarhia.com/',
-    security: true,
+    security: false,
 
     user: 'postgres',
     password: '',
