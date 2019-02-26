@@ -31,6 +31,7 @@
     'jstp',
     'metasync',
     'metaschema',
+    'globalstorage',
 
     // Additional modules
     //'mkdirp',
