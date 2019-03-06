@@ -2,6 +2,7 @@
 RELEASE=$(lsb_release -sc)
 sudo apt-get -y update
 sudo apt-get -y install wget mc
+sudo apt-get -y install smartmontools
 sudo apt-get -y install build-essential openssl libssl-dev pkg-config python
 sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:certbot/certbot

@@ -2,6 +2,7 @@
 yum -y update
 yum -y install wget mc
 yum -y install psmisc
+yum -y install smartmontools
 yum -y groupinstall "Development Tools"
 yum -y install epel-release
 yum -y install certbot

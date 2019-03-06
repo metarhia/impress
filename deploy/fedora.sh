@@ -1,6 +1,7 @@
 #!/bin/bash
 dnf -y update
 dnf -y install wget mc gcc-c++
+dnf -y install smartmontools
 dnf -y install psmisc
 dnf -y groupinstall "Development Tools"
 dnf -y install certbot
