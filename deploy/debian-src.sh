@@ -3,6 +3,7 @@ RELEASE=$(lsb_release -sc)
 apt-get install sudo
 sudo apt-get -y update
 sudo apt-get -y install wget mc curl
+sudo apt-get -y install smartmontools
 sudo apt-get -y install build-essential openssl libssl-dev pkg-config
 sudo apt-get -y install python
 if [ $RELEASE = 'wheezy' ]; then
