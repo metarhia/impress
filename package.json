@@ -56,7 +56,7 @@
     "globalstorage": "0.2.0",
     "iconv-lite": "^0.4.24",
     "maojian": "^0.0.6",
-    "metarhia-common": "^0.0.38",
+    "metarhia-common": "^0.0.31",
     "metarhia-jstp": "^1.1.1",
     "metaschema": "^0.0.6",
     "metasync": "^0.3.31",
