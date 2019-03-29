@@ -50,7 +50,7 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
-    "@metarhia/common": "^1.2.1",
+    "@metarhia/common": "^1.4.2",
     "@metarhia/jstp": "^2.2.1",
     "accept-language": "^3.0.18",
     "argon2": "^0.21.0",
@@ -72,11 +72,11 @@
     "zip-stream": "^2.0.1"
   },
   "devDependencies": {
+    "@metarhia/doc": "^0.2.1",
     "eslint": "^5.15.3",
     "eslint-config-metarhia": "^7.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-impress": "^2.3.0",
-    "metatests": "^0.5.0",
-    "@metarhia/doc": "^0.2.0"
+    "metatests": "^0.6.2"
   }
 }
