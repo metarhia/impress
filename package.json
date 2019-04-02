@@ -56,7 +56,7 @@
     "argon2": "^0.21.0",
     "concolor": "^0.1.11",
     "csv-stringify": "^5.3.0",
-    "globalstorage": "^0.7.3",
+    "globalstorage": "^0.9.0",
     "iconv-lite": "^0.4.24",
     "mdsf": "^1.1.1",
     "metalog": "^1.1.0",
@@ -73,10 +73,10 @@
   },
   "devDependencies": {
     "@metarhia/doc": "^0.2.1",
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "eslint-config-metarhia": "^7.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-impress": "^2.3.0",
-    "metatests": "^0.6.2"
+    "metatests": "^0.6.3"
   }
 }
