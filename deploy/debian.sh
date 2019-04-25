@@ -5,7 +5,7 @@ sudo apt-get -y install wget mc curl
 sudo apt-get -y install smartmontools
 sudo apt-get -y install build-essential openssl libssl-dev pkg-config
 sudo apt-get -y install python
-curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get -y install nodejs
 sudo mkdir /ias
 cd /ias

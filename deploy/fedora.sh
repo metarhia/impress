@@ -5,7 +5,7 @@ dnf -y install smartmontools
 dnf -y install psmisc
 dnf -y groupinstall "Development Tools"
 dnf -y install certbot
-curl --silent --location https://rpm.nodesource.com/setup_11.x | bash -
+curl --silent --location https://rpm.nodesource.com/setup_12.x | bash -
 dnf -y install nodejs
 sudo mkdir /ias
 cd /ias

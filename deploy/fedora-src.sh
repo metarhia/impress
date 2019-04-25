@@ -6,15 +6,15 @@ dnf -y install smartmontools
 dnf -y groupinstall "Development Tools"
 dnf -y install certbot
 cd /usr/src
-wget https://nodejs.org/dist/v11.1.0/node-v11.1.0.tar.gz
-tar zxf node-v11.1.0.tar.gz
-rm -f ./node-v11.1.0.tar.gz
-cd node-v11.1.0
+wget https://nodejs.org/dist/v12.0.0/node-v12.0.0.tar.gz
+tar zxf node-v12.0.0.tar.gz
+rm -f ./node-v12.0.0.tar.gz
+cd node-v12.0.0
 ./configure
 make
 make install
 cd ~
-rm -rf /usr/src/node-v11.1.0
+rm -rf /usr/src/node-v12.0.0
 ln -s /usr/local/bin/node /bin
 ln -s /usr/local/bin/npm /bin
 sudo mkdir /ias
