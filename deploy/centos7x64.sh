@@ -6,7 +6,7 @@ yum -y install smartmontools
 yum -y groupinstall "Development Tools"
 yum -y install epel-release
 yum -y install certbot
-curl --silent --location https://rpm.nodesource.com/setup_11.x | bash -
+curl --silent --location https://rpm.nodesource.com/setup_12.x | bash -
 yum -y install nodejs
 sudo mkdir /ias
 cd /ias
