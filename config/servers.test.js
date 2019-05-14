@@ -30,7 +30,7 @@
     protocol:  'jstp',
     transport: 'ws',
     address:   '127.0.0.1',
-    ports:     [5000],
+    ports:     [5000, 5001],
     nagle:     true,
     slowTime:  Duration('1s'),
   },
