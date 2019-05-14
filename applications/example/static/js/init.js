@@ -200,7 +200,7 @@ api.dom.on('load', () => {
         }
 
         print('connection opened');
-        print('handshake done, sid =', session);
+        print('handshake done, sid =', session.id);
 
         const button = api.dom.id('jstpDisconnect');
         button.onclick = () => {
