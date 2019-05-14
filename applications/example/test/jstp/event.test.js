@@ -5,7 +5,7 @@ test.test('interfaceName.sendEvent integration test', test => {
     test.assert(connection);
     test.assert(app);
 
-    connection.on('event', (interfaceName, remoteName, remoteArgs) => {
+    connection.once('event', (interfaceName, remoteName, remoteArgs) => {
       test.strictSame(interfaceName, 'interfaceName');
       test.strictSame(remoteName, 'eventName');
       test.strictSame(remoteArgs, [ { example: 'hello' } ]);

@@ -1,12 +1,12 @@
 api.jstpTest = {
   host: '127.0.0.1',
-  port: 5000,
-  connect: cb => api.jstp.ws.connectAndInspect(
+  ports: [5000, 5001],
+  connect: (cb, port = api.jstpTest.ports[0]) => api.jstp.ws.connectAndInspect(
     'example',
     null,
     ['interfaceName'],
     {},
-    `ws://${api.jstpTest.host}:${api.jstpTest.port}`,
+    `ws://${api.jstpTest.host}:${port}`,
     cb
   ),
 };
