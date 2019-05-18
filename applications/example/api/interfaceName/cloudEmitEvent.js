@@ -1,4 +1,4 @@
 callback => {
-  application.frontend.emit('workerHello', { answer: 42 });
+  application.cloud.emit('cloudWorkerHello', { answer: 42 });
   callback();
 }
