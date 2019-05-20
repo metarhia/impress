@@ -50,7 +50,7 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
-    "@metarhia/common": "^1.4.2",
+    "@metarhia/common": "^2.0.0",
     "@metarhia/jstp": "^2.2.1",
     "accept-language": "^3.0.18",
     "argon2": "^0.21.0",
