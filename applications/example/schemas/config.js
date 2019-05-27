@@ -1,4 +1,4 @@
-() => ({
+async () => ({
   ...api.globalstorage.schemaConfig,
   additionalSchemas: [
     api.path.resolve(
