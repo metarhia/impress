@@ -1,0 +1,6 @@
+({
+  domain: { domain: 'String' },
+  display: { domain: 'Boolean' },
+  required: { domain: 'Boolean' },
+  unique: { domain: 'Boolean', required: true },
+});

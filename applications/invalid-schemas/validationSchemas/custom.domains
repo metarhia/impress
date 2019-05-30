@@ -1,0 +1,4 @@
+({
+  String: { type: 'string' },
+  Boolean: { type: 'boolean' },
+});

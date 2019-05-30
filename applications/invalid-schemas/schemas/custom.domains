@@ -1,0 +1,4 @@
+{
+  Nomen: { type: 'string' },
+  CustomNomen: { type: 'string' },
+}

@@ -1,0 +1,5 @@
+({
+  [Symbol.for('additionallyAllowedProperties')]: [
+    'CategoryField' 
+  ],
+});
