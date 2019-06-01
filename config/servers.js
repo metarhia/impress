@@ -23,6 +23,7 @@
     applications: ['example'], // undefined for all
     slowTime:  Duration('1s'),
     // inspect: 2000 // inspect Chrome developer tools
+    shutdown:  Duration('5s'),
   },
 
   rpc: {
