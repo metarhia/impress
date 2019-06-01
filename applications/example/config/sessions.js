@@ -22,8 +22,8 @@
 
   perIpLimit: '20',
   perUserLimit: '5',
-  //confirmTime: '1m',
-  //expireTime: '2m',
+  //confirmTime: Duration('1m'),
+  //expireTime: Duration('2m'),
 
   // Optional domain for cookie '.domain.com' for all subdomains
   // domain: 'name.com'
