@@ -14,7 +14,6 @@ ncp.limit = 16;
 const current = path.dirname(__filename.replace(/\\/g, '/'));
 const parent = path.basename(path.dirname(current));
 const destination = path.dirname(path.dirname(current));
-let exists = false;
 
 // Execute shell command displaying output and possible errors
 //
@@ -38,50 +37,36 @@ const installCLI = () => {
   });
 };
 
-const done = () => {
-  const em = concolor('b,green');
-  if (exists) {
-    console.log(
-      em('Impress Application Server') +
-      ' is already installed and configured in this folder.'
-    );
-  } else {
-    console.log(
-      concolor('b')('Installing Impress Application Server...')
-    );
-    const sSrv = fs.createReadStream(path.join(current, 'server.js'));
-    const dSrv = fs.createWriteStream(path.join(destination, 'server.js'));
-    sSrv.pipe(dSrv);
-    const shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
-    const sScr = fs.createReadStream(path.join(current, shellScript));
-    const dScr = fs.createWriteStream(path.join(destination, shellScript));
-    sScr.pipe(dScr);
+const writeFiles = (callback) => {
+  console.log(
+    concolor('b')('Installing Impress Application Server...')
+  );
+  const sSrv = fs.createReadStream(path.join(current, 'server.js'));
+  const dSrv = fs.createWriteStream(path.join(destination, 'server.js'));
+  sSrv.pipe(dSrv);
+  const shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
+  const sScr = fs.createReadStream(path.join(current, shellScript));
+  const dScr = fs.createWriteStream(path.join(destination, shellScript));
+  sScr.pipe(dScr);
+
+  metasync.each(['config', 'applications'], (folder, cb) => {
     ncp(
-      path.join(current, 'config'),
-      path.join(destination, 'config'),
+      path.join(current, folder),
+      path.join(destination, folder),
       { clobber: false },
       err => {
         if (err) console.error(err);
-        ncp(
-          path.join(current, 'applications'),
-          path.join(destination, 'applications'),
-          { clobber: false },
-          err => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            if (isWin) {
-              installCLI();
-              return;
-            }
-            const serverPath = path.join(destination, 'server.sh');
-            execute('chmod +x ' + serverPath, installCLI);
-          }
-        );
+        cb(err);
       }
     );
-  }
+  }, err => {
+    if (err || isWin) {
+      callback(err);
+    } else {
+      const serverPath = path.join(destination, 'server.sh');
+      execute('chmod +x ' + serverPath, callback);
+    }
+  });
 };
 
 // Install Impress Application Server
@@ -94,6 +79,7 @@ const installImpress = () => {
 
   const checkFiles = ['server.js', 'config', 'applications'];
 
+  let exists = false;
   const check = (file, callback) => {
     fs.access(path.join(destination, file), err => {
       exists = exists || !err;
@@ -101,7 +87,19 @@ const installImpress = () => {
     });
   };
 
-  metasync.each(checkFiles, check, done);
+  metasync.each(checkFiles, check, () => {
+    if (exists) {
+      const em = concolor('b,green');
+      console.log(
+        em('Impress Application Server') +
+        ' is already installed and configured in this folder.'
+      );
+    } else {
+      writeFiles(err => {
+        if (!err) installCLI();
+      });
+    }
+  });
 };
 
 installImpress();
