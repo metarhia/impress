@@ -6,6 +6,7 @@ const ncp = require('ncp').ncp;
 const path = require('path');
 const metasync = require('metasync');
 const concolor = require('concolor');
+const readline = require('readline');
 
 const isWin = !!process.platform.match(/^win/);
 
@@ -32,8 +33,19 @@ const execute = (cmd, callback) => {
 // Install CLI
 //
 const installCLI = () => {
-  execute('npm install --unsafe-perm impress-cli -g', () => {
-    execute('impress path ' + destination);
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  rl.question('Install impress-cli globally? [y/N]', answer => {
+    rl.close();
+    answer = answer.toLowerCase();
+    if (answer === 'y' || answer === 'yes') {
+      execute('npm install --unsafe-perm impress-cli -g', () => {
+        execute('impress path ' + destination);
+      });
+    }
   });
 };
 
@@ -96,7 +108,7 @@ const installImpress = () => {
       );
     } else {
       writeFiles(err => {
-        if (!err) installCLI();
+        if (!err && process.stdin.isTTY) installCLI();
       });
     }
   });
