@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Impress Application Server</title>
+  <meta charset="UTF-8">
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+
+  <script type="text/javascript" src="/js/impress.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@metarhia/jstp@^2.0.1/dist/jstp.umd.js"></script>
+  <script type="text/javascript" src="/js/init.js"></script>
+</head>
+<body>
+  <div id="header">
+    <div id="header-panel">
+      <div id="logo-panel"><a href="/"><img src="/images/logo.svg" width="87" height="87" border="0" /><h1><strong>Impress</strong><br>&nbsp;&nbsp;Application<br>&nbsp;&nbsp;&nbsp;&nbsp;Server</h1></a></div>
+      <div id="hmenu-panel">
+        <div id="hmenu">
+          <a href="#" id="hmenu-SignUp">Create account</a>
+          <a href="#" id="hmenu-Signin">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main">
+    <div id="content">
+      <div id="panel-left">
+
+<!--a class="button silver cancel disabled" id="menuSetup"><span class="icon gear"></span>Setup</a-->
+<a class="button silver cancel" id="menuAJAX"><span class="icon file html"></span>AJAX handler</a>
+<a class="button silver cancel" id="menuGetJSON"><span class="icon run"></span>GET JSON handler</a>
+<a class="button silver cancel" id="menuPostJSON"><span class="icon run"></span>POST JSON handler</a>
+<a class="button silver cancel" id="menuForkWorker"><span class="icon online"></span>Fork worker</a>
+<a class="button silver cancel" id="menuLongWorker"><span class="icon online"></span>Fork 30sec worker</a>
+<a class="button silver cancel" id="menuTemplate"><span class="icon file source"></span>Templating</a>
+<a class="button silver cancel" id="menuFileUpload"><span class="icon load up"></span>Upload files</a>
+<a class="button silver cancel" id="menuDownload"><span class="icon load down"></span>Download files</a>
+<a class="button silver cancel" id="menuGeoIP"><span class="icon globe"></span>Geo IP</a>
+<a class="button silver cancel" id="menuJSTP"><span class="icon online"></span>JSTP</a>
+<a class="button silver cancel" id="menuWS"><span class="icon online"></span>Web Sockets</a>
+
+      </div>
+      <div id="panel-center"></div>
+      <div id="panel-right">Right panel</div>
+    </div>
+  </div>
+  <div id="footer">
+    <div id="footer-panel">Copyright &copy; 2012-2019 Metarhia contributors</div>
+  </div>
+  <div id="forms" style="display:none">
+    <div id="formLogin" class="form">
+      <form id="fLogin" name="fLogin" action="/api/auth/signIn.json" method="post">
+        <div class="header">Sign in</div><hr/>
+        <table class="fields">
+          <tr class="field"><td class="label">Login</td><td class="value"><input type="text" value="" name="Login" class="edit" id="formLoginLogin" Nullable="No" autocapitalize="off" autocorrect="off" /></td></tr>
+          <tr class="field"><td class="label">Password</td><td class="value"><input type="password" value="" name="Password" class="edit" id="formLoginPassword" Nullable="No" /></td></tr>
+        </table>
+        <div class="buttons">
+          <a class="button silver save" id="formLoginSignIn"><span class="icon key"></span>Sign in</a>
+          <a class="button silver cancel" id="formLoginCancel"><span class="icon undo"></span>Cancel</a>
+          <input style="display:none;" type="submit" id="formLoginSubmit" name="loginForm" vaule="yes" />
+        </div>
+      </form>
+    </div>
+    <div id="formReg" class="form">
+      <form>
+        <div class="header">Create account</div><hr/>
+        <table class="fields">
+          <tr class="field"><td class="label">E-mail</td><td class="value"><input type="text" value="" name="formRegEmail" class="edit" id="formRegEmail" Nullable="No"  autocapitalize="off" autocorrect="off" /></td></tr>
+          <tr class="field"><td class="label">Password</td><td class="value"><input type="password" value="" name="formRegPassword" class="edit" id="formRegPassword" Nullable="No" /></td></tr>
+        </table>
+        <div class="buttons">
+          <a class="button silver save" id="formRegDo"><span class="icon check"></span>Sign up</a>
+          <a class="button silver cancel" id="formRegCancel"><span class="icon undo"></span>Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

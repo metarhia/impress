@@ -1,8 +1,8 @@
 api.jstpTest = {
   host: '127.0.0.1',
-  ports: [6000],
+  ports: [5000, 5001],
   connect: (cb, port = api.jstpTest.ports[0]) => api.jstp.ws.connectAndInspect(
-    'example',
+    'test',
     null,
     ['interfaceName'],
     {},

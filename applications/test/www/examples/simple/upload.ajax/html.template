@@ -1,0 +1,5 @@
+<form method="post" enctype="multipart/form-data" action="/examples/simple/uploadFile.json">
+  <input type="file" name="thumbnails" multiple>
+  <input type="file" name="images" multiple>
+  <input type="submit">
+</form>

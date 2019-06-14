@@ -14,6 +14,7 @@
     address:   '127.0.0.1',
     ports:     [8080],
     nagle:     true,
+    applications: ['test'],
     timeout:   Duration('10s'),
     slowTime:  Duration('1s'),
   },
@@ -23,6 +24,7 @@
     transport: 'tcp',
     address:   '127.0.0.1',
     ports:     [3000],
+    applications: ['test'],
     slowTime:  Duration('1s'),
   },
 
@@ -32,6 +34,17 @@
     address:   '127.0.0.1',
     ports:     [5000, 5001],
     nagle:     true,
+    applications: ['test'],
+    slowTime:  Duration('1s'),
+  },
+
+  webRpcExample: {
+    protocol:  'jstp',
+    transport: 'ws',
+    address:   '127.0.0.1',
+    ports:     [6000],
+    nagle:     true,
+    applications: ['example'],
     slowTime:  Duration('1s'),
   },
 

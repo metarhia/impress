@@ -1,5 +1,9 @@
 node_modules/
+
+# TODO: refactor applications to pass eslint
 applications/example/
+applications/test/
+
 tests/
 schemas/
 config/
