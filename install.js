@@ -52,11 +52,6 @@ const done = () => {
     const sSrv = fs.createReadStream(path.join(current, 'server.js'));
     const dSrv = fs.createWriteStream(path.join(destination, 'server.js'));
     sSrv.pipe(dSrv);
-    const spPath = path.join(current, 'lib/package.template');
-    const sPkg = fs.createReadStream(spPath);
-    const dpPath = path.join(destination, 'package.json');
-    const dPkg = fs.createWriteStream(dpPath);
-    sPkg.pipe(dPkg);
     const shellScript = 'server.' + (isWin ? 'cmd' : 'sh');
     const sScr = fs.createReadStream(path.join(current, shellScript));
     const dScr = fs.createWriteStream(path.join(destination, shellScript));
@@ -97,7 +92,7 @@ const installImpress = () => {
     process.exit(0);
   }
 
-  const checkFiles = ['package.json', 'server.js', 'config', 'applications'];
+  const checkFiles = ['server.js', 'config', 'applications'];
 
   const check = (file, callback) => {
     fs.access(path.join(destination, file), err => {
