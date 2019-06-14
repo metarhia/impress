@@ -1,5 +1,12 @@
 'use strict';
 
+const metatests = require('metatests');
+
+const reporterType = process.stdout.isTTY ? 'classic' : 'tap';
+metatests.runner.instance.setReporter(
+  new metatests.reporters.TapReporter({ type: reporterType })
+);
+
 require('./lib/core');
 
 if (impress.isMaster) {
