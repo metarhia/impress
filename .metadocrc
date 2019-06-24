@@ -8,11 +8,14 @@
   "customLinks": {
     "Application": "https://github.com/metarhia/impress/blob/master/lib/application.js",
     "Client": "https://github.com/metarhia/impress/blob/master/lib/client.js",
+    "Session": "https://github.com/metarhia/impress/blob/master/lib/security.js",
     "http.IncomingMessage": "https://nodejs.org/api/http.html#http_class_http_incomingmessage",
     "http.ServerResponse": "https://nodejs.org/api/http.html#http_class_http_serverresponse",
+    "net.Socket": "https://nodejs.org/api/net.html#net_class_net_socket",
     "Buffer": "https://nodejs.org/api/buffer.html#buffer_class_buffer",
     "fs.Stats": "https://nodejs.org/api/fs.html#fs_class_fs_stats",
-    "bigint": "https://github.com/tc39/proposal-bigint"
+    "WebSocketRequest": "https://github.com/theturtle32/WebSocket-Node/blob/master/docs/WebSocketRequest.md",
+    "WebSocketConnection": "https://github.com/theturtle32/WebSocket-Node/blob/master/docs/WebSocketConnection.md"
   },
 
   "outputDir": "doc/"

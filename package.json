@@ -44,7 +44,7 @@
     "npm": "npm link npm",
     "test": "eslint . && ./test.sh",
     "lint": "eslint .",
-    "doc": "metadoc -c"
+    "doc": "metadoc"
   },
   "engines": {
     "node": ">=10.16.0"
