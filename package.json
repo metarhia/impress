@@ -69,14 +69,15 @@
     "sandboxed-fs": "^0.3.2",
     "tickplate": "^0.0.4",
     "websocket": "^1.0.29",
-    "zip-stream": "^2.0.1"
+    "zip-stream": "^2.1.0"
   },
   "devDependencies": {
     "@metarhia/doc": "^0.5.6",
-    "eslint": "^6.0.1",
+    "eslint": "^6.1.0",
     "eslint-config-metarhia": "^7.0.0",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-impress": "^2.3.0",
-    "metatests": "^0.7.1"
+    "metatests": "^0.7.1",
+    "diff": "^4.0.1"
   }
 }
