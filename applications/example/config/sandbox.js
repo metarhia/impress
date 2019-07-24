@@ -26,6 +26,7 @@
     'csvStringify',
     'iconv',
     'zipStream', // npm module zip-stream
+    'websocket',
 
     // Metarhia modules
     'jstp',
