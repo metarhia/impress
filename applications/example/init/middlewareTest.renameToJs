@@ -1,5 +1,0 @@
-// Programmatically added handler
-//
-application.get('/helloWorld2.ajax', (client, callback) => {
-  callback(null, '<h1>Middleware handler style</h1>');
-});

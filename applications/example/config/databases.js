@@ -1,4 +1,4 @@
-{
+({
   // Databases including persistent session storage and application specific
 
   gs: {
@@ -23,4 +23,4 @@
   //    slowTime: 1000
   //  },
 
-}
+});

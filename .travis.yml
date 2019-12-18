@@ -1,4 +1,4 @@
-dist: xenial
+dist: bionic
 language: node_js
 node_js:
   - 10
@@ -6,10 +6,7 @@ node_js:
   - 12
 sudo: false
 env: IMPRESS_MODE=test
-services:
-  - mongodb
 install:
   - npm install
-  - npm install mongodb
 script:
   - npm test

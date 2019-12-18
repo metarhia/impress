@@ -4,7 +4,8 @@
     "api": false,
     "application": false,
     "connection": false,
-    "impress": false
+    "impress": false,
+    "Duration": false
   },
   "plugins": [
     "impress"

@@ -1,6 +1,14 @@
 {
   "globals": {
     "dbAlias": false,
-    "gs": false
+    "gs": false,
+    "Duration": false
+  },
+  "rules": {
+    "new-cap": [
+      "error", {
+        "capIsNew": false
+      }
+    ]
   }
 }

@@ -1,7 +1,0 @@
-setInterval(() => {
-  console.debug({
-    files: [...application.cache.files.keys()],
-    static: [...application.cache.static.keys()],
-    folders: [...application.cache.folders.keys()],
-  });
-}, 5000);
