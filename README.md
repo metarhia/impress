@@ -63,8 +63,8 @@ aspects:
   - Reverse-proxy (routing request to external HTTP server);
   - Server-wide or application-specific logging, with log buffering
   (lazy write) and rotation (keep logs N days);
-  - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL,
-  Relational schema generator from JSON database schemas;
+  - Connection drivers for database PostgreSQL, Relational schema generator
+  from JSON database schemas;
   - File utilities: upload, download, streaming;
   - GeoIP support, based on `geoip-lite` module (uses MaxMind database);
   - Built-in simple testing framework;
