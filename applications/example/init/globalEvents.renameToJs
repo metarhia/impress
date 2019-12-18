@@ -1,3 +1,0 @@
-setInterval(() => {
-  application.backend.emit('test', { data: 'data' });
-}, 5000);

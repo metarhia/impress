@@ -1,30 +1,15 @@
-{
+({
   // Sessions configuration
 
-  // Allow anonymous sessions
-  anonymous: true,
-
-  // Session cookie name
-  cookie: 'SID',
-
-  // Possible characters for SID:
+  anonymous: true, // Allow anonymous sessions
+  cookie: 'SID', // Session cookie name
   characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
-
-  // Session secret
-  // is a string known just at server side to sign session cookie
-  secret: 'secret',
-
-  // SID length in bytes
-  length: 64,
-
-  // Store sessions in persistent database
-  persist: true,
-
-  perIpLimit: '20',
-  perUserLimit: '5',
-  //confirmTime: Duration('1m'),
-  //expireTime: Duration('2m'),
-
-  // Optional domain for cookie '.domain.com' for all subdomains
-  // domain: 'name.com'
-}
+  secret: 'secret', // Session secret
+  length: 64, // SID length in bytes
+  persist: true, // Store sessions in persistent database
+  perIpLimit: 20,
+  perUserLimit: 5,
+  regenerate: Duration('30m'),
+  expire: Duration('2h'),
+  // domain: 'name.com' // domain for cookie
+});

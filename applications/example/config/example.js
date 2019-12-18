@@ -1,4 +1,4 @@
-{
+({
 
   // Application specific configuration
   // You can place js file in this directory with your own structure
@@ -10,4 +10,4 @@
     parameter: 'value'
   }
 
-}
+});

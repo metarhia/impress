@@ -1,3 +1,0 @@
-const dbSecurity = api.definition.require('impress.security.schema');
-
-api.db.schema.validate(dbSecurity, true);

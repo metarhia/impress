@@ -1,1 +1,0 @@
-application.initScriptLoaded = true;

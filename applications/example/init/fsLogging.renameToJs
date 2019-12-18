@@ -1,2 +1,0 @@
-api.common.logApiMethod('fs.stat');
-api.common.logApiMethod('fs.access');
