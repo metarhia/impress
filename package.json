@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "1.0.8-alpha.4",
+  "version": "1.0.9",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
