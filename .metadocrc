@@ -1,19 +1,19 @@
 {
-    "files": [
-        "impress.js",
-        "lib/application.js",
-        "lib/client.js"
-    ],
+  "files": [
+    "impress.js",
+    "lib/application.js",
+    "lib/client.js"
+  ],
 
-    "customLinks": {
-        "Application": "https://github.com/metarhia/impress/blob/master/lib/application.js",
-        "Client": "https://github.com/metarhia/impress/blob/master/lib/client.js",
-        "http.IncomingMessage": "https://nodejs.org/api/http.html#http_class_http_incomingmessage",
-        "http.ServerResponse": "https://nodejs.org/api/http.html#http_class_http_serverresponse",
-        "Buffer": "https://nodejs.org/api/buffer.html#buffer_class_buffer",
-        "fs.Stats": "https://nodejs.org/api/fs.html#fs_class_fs_stats",
-        "bigint": "https://github.com/tc39/proposal-bigint"
-    },
+  "customLinks": {
+    "Application": "https://github.com/metarhia/impress/blob/master/lib/application.js",
+    "Client": "https://github.com/metarhia/impress/blob/master/lib/client.js",
+    "http.IncomingMessage": "https://nodejs.org/api/http.html#http_class_http_incomingmessage",
+    "http.ServerResponse": "https://nodejs.org/api/http.html#http_class_http_serverresponse",
+    "Buffer": "https://nodejs.org/api/buffer.html#buffer_class_buffer",
+    "fs.Stats": "https://nodejs.org/api/fs.html#fs_class_fs_stats",
+    "bigint": "https://github.com/tc39/proposal-bigint"
+  },
 
-    "outputDir": "doc/"
+  "outputDir": "doc/"
 }
