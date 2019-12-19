@@ -1,4 +1,4 @@
-{
+({
 
   master: {
     protocol:  'jstp',
@@ -35,4 +35,4 @@
     slowTime:  Duration('1s'),
   },
 
-}
+});

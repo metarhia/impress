@@ -1,4 +1,4 @@
-{
+({
 
   // Server ports bind configuration
   // Each server is named server on specified address and port
@@ -85,4 +85,4 @@
   //  slowTime:  Duration('1s'),
   //}
 
-}
+});

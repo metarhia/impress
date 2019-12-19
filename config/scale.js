@@ -1,4 +1,4 @@
-{
+({
   // Cloud configuration
 
   cloud: 'PrivateCloud', // cloud name
@@ -37,4 +37,4 @@
   characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
   length: 64,  // JSTP session token length
 
-}
+});

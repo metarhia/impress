@@ -1,4 +1,4 @@
-{
+({
   cloud: 'PrivateCloud',
   server: 'S1',
   controller: { // uplink to Impress Cloud Controller
@@ -18,4 +18,4 @@
   nagle: false,
   gc: 0,
   watch: Duration('2s')
-}
+});
