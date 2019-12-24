@@ -1,8 +1,4 @@
 ({
   // Application configuration
-
-  slowTime: Duration('1s'),
-
-  // set HTTP header Access-Control-Allow-Origin (default: not set)
-  // allowOrigin: '*'
+  slowTime: Duration('3s'),
 });

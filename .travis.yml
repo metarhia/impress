@@ -5,7 +5,7 @@ node_js:
   - 11
   - 12
 sudo: false
-env: IMPRESS_MODE=test
+env: SERVER_MODE=test
 install:
   - npm install
 script:
