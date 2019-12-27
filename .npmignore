@@ -1,9 +1,5 @@
 node_modules
 /log/
-/test/
-/debug/
 *.log
 *.done
 .DS_Store
-*.min.js
-*.min.js.map

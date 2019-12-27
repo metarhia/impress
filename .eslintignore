@@ -1,6 +1,4 @@
 node_modules/
 applications/example/
-tests/
-schemas/
 config/
 lib/templates.js
