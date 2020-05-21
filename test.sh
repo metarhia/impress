@@ -1,1 +1,0 @@
-echo Test stub
