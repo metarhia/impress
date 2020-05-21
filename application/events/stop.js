@@ -1,3 +1,3 @@
-'use strict';
-
-console.log('Stop script example');
+async event => {
+  console.log(`Event: ${event.name}`);
+};

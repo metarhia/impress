@@ -1,11 +1,12 @@
 {
   "extends": "metarhia",
   "globals": {
-    "api": false,
-    "application": false,
-    "connection": false,
-    "impress": false,
-    "Duration": false
+    "impress": "readonly",
+    "application": "readonly",
+    "context": "readonly",
+    "api": "readonly",
+    "gs": "readonly",
+    "Duration": "readonly"
   },
   "plugins": [
     "impress"
