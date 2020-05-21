@@ -40,36 +40,29 @@
   },
   "main": "./impress.js",
   "scripts": {
-    "install": "node install.js",
-    "npm": "npm link npm",
-    "test": "eslint . && ./test.sh",
-    "lint": "eslint .",
-    "doc": "metadoc"
+    "test": "npm run -s lint",
+    "lint": "eslint ."
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=12.5.0"
   },
   "dependencies": {
     "@metarhia/common": "^2.1.0",
     "@metarhia/config": "^1.0.0",
     "accept-language": "^3.0.18",
-    "argon2": "^0.25.1",
     "concolor": "^0.1.13",
-    "csv-stringify": "^5.3.4",
-    "globalstorage": "^0.9.1",
-    "metalog": "^1.1.0",
+    "metalog": "^2.0.1",
     "metaschema": "^0.4.0",
     "metasync": "^0.3.31",
     "multiparty": "^4.2.1",
-    "ncp": "^2.0.0",
     "sandboxed-fs": "^0.3.2",
-    "tickplate": "^0.0.6",
-    "websocket": "^1.0.31",
-    "zip-stream": "^2.1.2"
+    "tickplate": "^0.0.7",
+    "zip-stream": "^3.0.1",
+    "ws": "^7.3.0",
+    "pg": "^8.1.1"
   },
   "devDependencies": {
-    "@metarhia/doc": "^0.5.6",
-    "eslint": "^6.7.2",
+    "eslint": "^7.0.0",
     "eslint-config-metarhia": "^7.0.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-impress": "^2.3.0",
