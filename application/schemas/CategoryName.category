@@ -1,4 +1,0 @@
-{
-  Name: { domain: 'Nomen', display: true, required: true, unique: true },
-  CustomNomen: { domain: 'CustomNomen', display: true, required: true, unique: true },
-}
