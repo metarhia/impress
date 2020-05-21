@@ -1,5 +1,13 @@
 {
   "extends": "metarhia",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "globals": {
     "impress": "readonly",
     "application": "readonly",
