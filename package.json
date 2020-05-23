@@ -51,7 +51,7 @@
     "@metarhia/config": "^1.0.0",
     "accept-language": "^3.0.18",
     "concolor": "^0.1.13",
-    "metalog": "^2.0.1",
+    "metalog": "^2.1.0",
     "metaschema": "^0.4.0",
     "metasync": "^0.3.31",
     "multiparty": "^4.2.1",
