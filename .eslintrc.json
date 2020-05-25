@@ -8,14 +8,6 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
-  "globals": {
-    "impress": "readonly",
-    "application": "readonly",
-    "context": "readonly",
-    "api": "readonly",
-    "gs": "readonly",
-    "Duration": "readonly"
-  },
   "plugins": [
     "impress"
   ],

@@ -1,5 +1,7 @@
 'use strict';
 
+process.title = 'impress';
+
 const { Worker } = require('worker_threads');
 const path = require('path');
 
