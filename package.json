@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -62,9 +62,9 @@
     "pg": "^8.1.1"
   },
   "devDependencies": {
-    "eslint": "^7.0.0",
+    "eslint": "^7.3.0",
     "eslint-config-metarhia": "^7.0.0",
-    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-impress": "^2.3.0",
     "metatests": "^0.7.1"
   }
