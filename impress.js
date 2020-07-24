@@ -10,6 +10,7 @@ const Config = require('@metarhia/config');
 const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
+const options = { trackUnmanagedFds: true };
 
 (async () => {
   const config = await new Config(CFG_PATH);
@@ -20,7 +21,7 @@ const CTRL_C = 3;
 
   const start = id => {
     const workerPath = path.join(__dirname, 'lib/worker.js');
-    const worker = new Worker(workerPath);
+    const worker = new Worker(workerPath, options);
     workers[id] = worker;
     worker.on('exit', code => {
       if (code !== 0) start(id);
