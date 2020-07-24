@@ -55,7 +55,7 @@ lazy I/O for persistent storage;
 
 ## Requirements
 
-- Node.js v12.5.0 or later (v14 preferred)
+- Node.js v12.9.0 or later (v14 preferred)
 - Linux (tested on Fedora 30, Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
 - Postgresql 9.5 or later (v11.8 preferred)
 - OpenSSL v1.1.1 or later
