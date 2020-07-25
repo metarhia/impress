@@ -14,8 +14,7 @@ const options = { trackUnmanagedFds: true };
 
 (async () => {
   const config = await new Config(CFG_PATH);
-  const { sections } = config;
-  const count = sections.server.ports.length;
+  const count = config.sections.server.ports.length;
   let active = count;
   const workers = new Array(count);
 
