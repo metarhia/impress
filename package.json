@@ -48,24 +48,16 @@
   },
   "dependencies": {
     "@metarhia/common": "^2.1.0",
-    "@metarhia/config": "^1.0.0",
-    "accept-language": "^3.0.18",
-    "concolor": "^0.1.13",
+    "@metarhia/config": "^1.1.5",
     "metalog": "^2.2.0",
-    "metaschema": "^0.4.0",
-    "metasync": "^0.3.31",
-    "multiparty": "^4.2.1",
-    "sandboxed-fs": "^0.3.2",
-    "tickplate": "^0.0.7",
-    "zip-stream": "^3.0.1",
-    "ws": "^7.3.0",
-    "pg": "^8.1.1"
+    "pg": "^8.1.1",
+    "ws": "^7.3.0"
   },
   "devDependencies": {
-    "eslint": "^7.3.0",
+    "eslint": "^7.6.0",
     "eslint-config-metarhia": "^7.0.0",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-impress": "^2.3.0",
-    "metatests": "^0.7.1"
+    "metatests": "^0.7.2"
   }
 }
