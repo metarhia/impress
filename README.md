@@ -68,6 +68,6 @@ lazy I/O for persistent storage;
 
 ## License
 
-Copyright (c) 2020 Metarhia contributors.
+Copyright (c) 2012-2020 Metarhia contributors.
 Impress Application Server is [MIT licensed](./LICENSE).
 Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;
