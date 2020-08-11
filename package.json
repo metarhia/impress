@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-alpha.9",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -23,9 +23,6 @@
     "cache",
     "http",
     "https",
-    "sse",
-    "eventstream",
-    "static",
     "websocket",
     "websockets"
   ],
