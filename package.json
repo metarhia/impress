@@ -44,17 +44,17 @@
     "node": ">=12.9.0"
   },
   "dependencies": {
-    "@metarhia/common": "^2.1.0",
+    "@metarhia/common": "^2.2.0",
     "@metarhia/config": "^1.1.5",
     "metalog": "^2.2.0",
-    "pg": "^8.1.1",
-    "ws": "^7.3.0"
+    "pg": "^8.3.0",
+    "ws": "^7.3.1"
   },
   "devDependencies": {
-    "eslint": "^7.6.0",
-    "eslint-config-metarhia": "^7.0.0",
-    "eslint-plugin-import": "^2.21.2",
-    "eslint-plugin-impress": "^2.3.0",
+    "eslint": "^7.7.0",
+    "eslint-config-metarhia": "^7.0.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-impress": "^2.3.1",
     "metatests": "^0.7.2"
   }
 }
