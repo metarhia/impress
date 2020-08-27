@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.0.0-alpha.19",
+  "version": "2.0.0-alpha.20",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress Application Server for Node.js",
   "license": "MIT",
@@ -47,7 +47,7 @@
     "@metarhia/common": "^2.2.0",
     "@metarhia/config": "^1.1.5",
     "metalog": "^2.2.1",
-    "pg": "^8.3.0",
+    "pg": "^8.3.3",
     "ws": "^7.3.1"
   },
   "devDependencies": {
