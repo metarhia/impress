@@ -13,17 +13,16 @@ const CTRL_C = 3;
 const options = { trackUnmanagedFds: true };
 
 (async () => {
-  const config = await new Config(CFG_PATH).sections;
-  const { pool } = config.server.workers;
-  const balancer = config.server.balancer ? 1 : 0;
-  const count = config.server.ports.length + balancer + pool;
+  const { sections: config } = await new Config(CFG_PATH);
+  const { balancer, ports, workers } = config.server;
+  const count = ports.length + (balancer ? 1 : 0) + workers.pool;
   let active = count;
-  const workers = new Array(count);
+  const threads = new Array(count);
 
   const start = id => {
     const workerPath = path.join(__dirname, 'lib/worker.js');
     const worker = new Worker(workerPath, options);
-    workers[id] = worker;
+    threads[id] = worker;
     worker.on('exit', code => {
       if (code !== 0) start(id);
       else if (--active === 0) process.exit(0);
@@ -33,7 +32,7 @@ const options = { trackUnmanagedFds: true };
   for (let id = 0; id < count; id++) start(id);
 
   const stop = async () => {
-    for (const worker of workers) {
+    for (const worker of threads) {
       worker.postMessage({ name: 'stop' });
     }
   };
