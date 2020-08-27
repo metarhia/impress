@@ -13,10 +13,10 @@ const CTRL_C = 3;
 const options = { trackUnmanagedFds: true };
 
 (async () => {
-  const config = await new Config(CFG_PATH);
-  const { pool } = config.sections.server.workers;
-  const balancer = config.sections.server.balancer ? 1 : 0;
-  const count = config.sections.server.ports.length + balancer + pool;
+  const config = await new Config(CFG_PATH).sections;
+  const { pool } = config.server.workers;
+  const balancer = config.server.balancer ? 1 : 0;
+  const count = config.server.ports.length + balancer + pool;
   let active = count;
   const workers = new Array(count);
 
