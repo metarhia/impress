@@ -14,8 +14,12 @@ const options = { trackUnmanagedFds: true };
 
 (async () => {
   const { sections: config } = await new Config(CFG_PATH);
-  const { balancer, ports, workers } = config.server;
-  const count = ports.length + (balancer ? 1 : 0) + workers.pool;
+  if (!config.server) {
+    console.log('Can not read configuration: application/config/server.js');
+    process.exit(0);
+  }
+  const { balancer, ports = [], workers = {} } = config.server;
+  const count = ports.length + (balancer ? 1 : 0) + (workers.pool || 0);
   let active = count;
   const threads = new Array(count);
 
