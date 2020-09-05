@@ -13,7 +13,7 @@ const CTRL_C = 3;
 const options = { trackUnmanagedFds: true };
 
 (async () => {
-  const { sections: config } = await new Config(CFG_PATH);
+  const { sections: config } = await new Config(CFG_PATH, ['server']);
   if (!config.server) {
     console.log('Can not read configuration: application/config/server.js');
     process.exit(0);
