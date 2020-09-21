@@ -48,17 +48,19 @@ lazy I/O for persistent storage;
 - Request queue with timeout and size;
 - Execution timeout and error handling;
 
-## Installation and upgrade
+## Installation, upgrade and start
 
 - Install with `npm install impress`
-- or use [Metarhia Starter Kit](https://github.com/metarhia/StarterKit)
+- See project structure [Metarhia Starter Kit](https://github.com/metarhia/Example)
+- Start server with `npm run start` or `node server.js`
+- To select execution mode (test, dev, prod) use `MODE=dev node server.js`
 
 ## Requirements
 
 - Node.js v12.9.0 or later (v14 preferred)
 - Linux (tested on Fedora 30, Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
 - Postgresql 9.5 or later (v11.8 preferred)
-- OpenSSL v1.1.1 or later
+- OpenSSL v1.1.1 or later (optional, for https & wss)
 - [certbot](https://github.com/certbot/certbot) (recommended but optional)
 
 ## Contributors
