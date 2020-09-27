@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/impress.svg?style=flat)](https://www.npmjs.com/package/impress)
 [![npm downloads/month](https://img.shields.io/npm/dm/impress.svg)](https://www.npmjs.com/package/impress)
 [![npm downloads](https://img.shields.io/npm/dt/impress.svg)](https://www.npmjs.com/package/impress)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/metarhia/web-locks/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/metarhia/impress/blob/master/LICENSE)
 
 [Impress](https://github.com/metarhia/impress) Application Server for
 [node.js](http://nodejs.org). All decisions are made. Solutions are scaled and
@@ -13,11 +13,11 @@ optimized for performance and load.
 
 Metarhia and Impress Application Server way:
 - Applied code need to be simple and secure, so we use code sandboxing with v8
-isolated contexts and worker threads;
-- Domain code need to be separated from system code; so we use layered
-architecture and contract-based approach;
+isolated contexts, worker threads and minimal trusted npm dependencies;
+- Domain code need to be separated from system code; so we use DDE, layered
+(onion) architecture, DI, SOLID:DIP principle and contract-based approach;
 - Impress supports both stateful applications with RPC and client-session
-sticky to servers;
+sticky to servers; microservices, centralized and distributed architectire;
 - No I/O is faster even then async I/O, so we hold state in memory and use
 lazy I/O for persistent storage;
 
