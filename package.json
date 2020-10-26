@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@metarhia/common": "^2.2.0",
-    "@metarhia/config": "^2.0.0-alpha.2",
+    "@metarhia/config": "^2.0.0-alpha.3",
     "metalog": "^2.2.1",
     "metavm": "0.1.0",
     "pg": "^8.4.1",
