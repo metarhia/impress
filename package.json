@@ -37,8 +37,9 @@
   },
   "main": "impress.js",
   "scripts": {
-    "test": "npm run -s lint",
-    "lint": "eslint ."
+    "test": "npm run lint",
+    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
+    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\""
   },
   "engines": {
     "node": ">=12.9.0"
@@ -55,8 +56,11 @@
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-metarhia": "^7.0.1",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-impress": "^2.3.1",
-    "metatests": "^0.7.2"
+    "metatests": "^0.7.2",
+    "prettier": "^2.1.2"
   }
 }
