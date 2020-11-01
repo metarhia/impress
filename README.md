@@ -12,14 +12,15 @@
 optimized for performance and load.
 
 Metarhia and Impress Application Server way:
+
 - Applied code need to be simple and secure, so we use code sandboxing with v8
-isolated contexts, worker threads and minimal trusted npm dependencies;
+  isolated contexts, worker threads and minimal trusted npm dependencies;
 - Domain code need to be separated from system code; so we use DDE, layered
-(onion) architecture, DI, SOLID:DIP principle and contract-based approach;
+  (onion) architecture, DI, SOLID:DIP principle and contract-based approach;
 - Impress supports both stateful applications with RPC and client-session
-sticky to servers; microservices, centralized and distributed architectire;
+  sticky to servers; microservices, centralized and distributed architectire;
 - No I/O is faster even then async I/O, so we hold state in memory and use
-lazy I/O for persistent storage;
+  lazy I/O for persistent storage;
 
 ## Features
 
