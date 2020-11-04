@@ -49,7 +49,6 @@
     "@metarhia/config": "^2.0.0-alpha.3",
     "metacom": "0.1.0-alpha.9",
     "metalog": "^3.0.0-alpha.0",
-    "metasql": "^0.3.0-alpha.0",
     "metavm": "0.1.0",
     "pg": "^8.4.2",
     "ws": "^7.3.1"
