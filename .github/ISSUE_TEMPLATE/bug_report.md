@@ -4,7 +4,6 @@ about: Create a report to help us improve
 title: ''
 labels: bug
 assignees: ''
-
 ---
 
 **Describe the bug**
@@ -20,9 +19,10 @@ A clear and concise description of what you expected.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
- - OS: [e.g. Fedora 30 64-bit]
- - Node.js version [e.g. 14.15.1]
- - Impress version [e.g. 2.0.0]
+
+- OS: [e.g. Fedora 30 64-bit]
+- Node.js version [e.g. 14.15.1]
+- Impress version [e.g. 2.0.0]
 
 **Additional context**
 Add any other context about the problem here.
