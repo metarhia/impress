@@ -12,6 +12,6 @@ developers community:
 
 Telegram:
 
-- Channel for Metarhia comminity: https://t.me/metarhia
+- Channel for Metarhia community: https://t.me/metarhia
 - Group for Metarhia technology stack community: https://t.me/metaserverless
 - Group for NodeUA community: https://t.me/nodeua
