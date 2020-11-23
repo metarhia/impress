@@ -11,6 +11,7 @@ jobs:
         node:
           - 12
           - 14
+          - 15
         os:
           - ubuntu-latest
           - windows-latest
