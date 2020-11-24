@@ -2,7 +2,7 @@
   "name": "impress",
   "version": "2.0.0-alpha.34",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
-  "description": "Impress Application Server for Node.js",
+  "description": "Impress application server for Node.js and Metarhia private cloud",
   "license": "MIT",
   "keywords": [
     "application",
@@ -19,12 +19,17 @@
     "router",
     "routing",
     "cluster",
+    "private",
     "cloud",
-    "cache",
     "http",
     "https",
     "websocket",
-    "websockets"
+    "websockets",
+    "interactive",
+    "rack",
+    "app",
+    "backend",
+    "fullstack"
   ],
   "readmeFilename": "README.md",
   "repository": {
@@ -34,6 +39,11 @@
   "bugs": {
     "url": "https://github.com/metarhia/impress/issues",
     "email": "timur.shemsedinov@gmail.com"
+  },
+  "homepage": "https://github.com/metarhia",
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/tshemsedinov"
   },
   "main": "impress.js",
   "scripts": {
