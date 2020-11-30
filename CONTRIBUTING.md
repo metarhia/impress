@@ -34,6 +34,6 @@ Telegram:
 
 Before open pull request please follow checklist:
 
-- [ ] tests and linter show no problems (`npm run t`)
+- [ ] tests and linter show no problems (`npm t`)
 - [ ] tests are added/updated for bug fixes and new features
 - [ ] code is properly formatted (`npm run fmt`)
