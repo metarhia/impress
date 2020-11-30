@@ -57,22 +57,22 @@
   "dependencies": {
     "@metarhia/common": "^2.2.0",
     "@metarhia/config": "^2.0.0-alpha.3",
-    "metacom": "0.1.0-alpha.9",
-    "metalog": "^3.0.0-alpha.0",
+    "metacom": "0.1.0-alpha.10",
+    "metalog": "^3.0.0-alpha.2",
     "metaschema": "^0.4.0",
-    "metasql": "^0.3.0-alpha.1",
-    "metavm": "0.1.0",
-    "pg": "^8.4.2",
-    "ws": "^7.3.1"
+    "metasql": "^0.3.0-alpha.2",
+    "metavm": "0.2.0",
+    "pg": "^8.5.1",
+    "ws": "^7.4.0"
   },
   "devDependencies": {
-    "eslint": "^7.13.0",
+    "eslint": "^7.14.0",
     "eslint-config-metarhia": "^7.0.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-impress": "^2.3.1",
     "eslint-plugin-prettier": "^3.1.4",
     "metatests": "^0.7.2",
-    "prettier": "^2.1.2"
+    "prettier": "^2.2.1"
   }
 }
