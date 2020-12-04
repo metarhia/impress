@@ -50,7 +50,7 @@
     "lib/"
   ],
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint && metatests test/",
     "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
     "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\""
   },
