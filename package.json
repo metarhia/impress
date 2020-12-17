@@ -59,20 +59,20 @@
   },
   "dependencies": {
     "@metarhia/common": "^2.2.0",
-    "@metarhia/config": "^2.0.0-alpha.3",
-    "metacom": "0.1.0-alpha.11",
-    "metalog": "^3.0.0-alpha.3",
+    "@metarhia/config": "^2.0.0",
+    "metacom": "1.0.0-alpha.0",
+    "metalog": "^3.0.0",
     "metaschema": "^0.4.0",
     "metasql": "^0.3.0-alpha.2",
-    "metavm": "0.2.0"
+    "metavm": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^7.15.0",
     "eslint-config-metarhia": "^7.0.1",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-impress": "^2.3.1",
-    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-prettier": "^3.3.0",
     "metatests": "^0.7.2",
     "prettier": "^2.2.1"
   }
