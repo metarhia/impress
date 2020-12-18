@@ -62,8 +62,6 @@
     "@metarhia/config": "^2.0.0",
     "metacom": "1.0.0-alpha.0",
     "metalog": "^3.0.0",
-    "metaschema": "^0.4.0",
-    "metasql": "^0.3.0-alpha.2",
     "metavm": "^1.0.0"
   },
   "devDependencies": {
