@@ -6,6 +6,5 @@
       "files": ".prettierrc",
       "options": { "parser": "json" }
     }
-  ],
-  "arrowParens": "avoid"
+  ]
 }

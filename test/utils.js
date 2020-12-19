@@ -3,7 +3,7 @@
 const metatests = require('metatests');
 const utils = require('../lib/utils.js');
 
-metatests.test('lib/utils.makePrivate', test => {
+metatests.test('lib/utils.makePrivate', (test) => {
   const obj = {
     field: 'value',
     CONSTANT: 1000,
@@ -21,7 +21,7 @@ metatests.test('lib/utils.makePrivate', test => {
   test.end();
 });
 
-metatests.test('lib/utils.protect', test => {
+metatests.test('lib/utils.protect', (test) => {
   const obj1 = {
     field1: 'value1',
     module1: {

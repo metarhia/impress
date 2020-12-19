@@ -3,7 +3,7 @@
 const metatests = require('metatests');
 const security = require('../lib/security.js');
 
-metatests.test('lib/security.hashPassword', async test => {
+metatests.test('lib/security.hashPassword', async (test) => {
   const password = 'password';
   const hash = await security.hashPassword(password);
   test.strictSame(typeof hash, 'string');
@@ -11,7 +11,7 @@ metatests.test('lib/security.hashPassword', async test => {
   test.end();
 });
 
-metatests.test('lib/security.validatePassword', async test => {
+metatests.test('lib/security.validatePassword', async (test) => {
   const password = 'password';
   const hash = await security.hashPassword(password);
   const valid = await security.validatePassword(password, hash);
