@@ -9,7 +9,7 @@ const config = {
   length: 64, // SID length in bytes
 };
 
-metatests.test('lib/auth.Auth', test => {
+metatests.test('lib/auth.Auth', (test) => {
   const auth = new Auth(config);
   test.strictSame(typeof auth, 'object');
   test.strictSame(auth.constructor.name, 'Auth');

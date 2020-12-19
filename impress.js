@@ -23,11 +23,11 @@ const CTRL_C = 3;
   let active = count;
   const threads = new Array(count);
 
-  const start = id => {
+  const start = (id) => {
     const workerPath = path.join(__dirname, 'lib/worker.js');
     const worker = new Worker(workerPath, { trackUnmanagedFds: true });
     threads[id] = worker;
-    worker.on('exit', code => {
+    worker.on('exit', (code) => {
       if (code !== 0) start(id);
       else if (--active === 0) process.exit(0);
     });
@@ -46,7 +46,7 @@ const CTRL_C = 3;
 
   if (process.stdin.isTTY) {
     process.stdin.setRawMode(true);
-    process.stdin.on('data', data => {
+    process.stdin.on('data', (data) => {
       const key = data[0];
       if (key === CTRL_C) stop();
     });
