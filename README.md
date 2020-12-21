@@ -7,11 +7,21 @@
 [![npm downloads](https://img.shields.io/npm/dt/impress.svg)](https://www.npmjs.com/package/impress)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/metarhia/impress/blob/master/LICENSE)
 
-[Impress](https://github.com/metarhia/impress) Application Server for
-[node.js](http://nodejs.org). All decisions are made. Solutions are scaled and
-optimized for performance and load.
+[Impress](https://github.com/metarhia/impress) application server for
+[node.js](http://nodejs.org). All decisions are made and optimized for security,
+performance, high-intensive network operations, scalability, interactivity, rapid
+development practices, and clean project structure.
 
-Metarhia and Impress Application Server way:
+## Quick start
+
+- Install with `npm install impress` or copy project template from
+  [metarhia/Example](https://github.com/metarhia/Example)
+- Start server with `node server.js` or select execution mode (test, dev, prod)
+  use `MODE=dev node server.js`
+- See [documentation and specifications](https://github.com/metarhia/Contracts)
+  and project home page: https://metarhia.com
+
+### Metarhia and Impress application server way
 
 - Applied code need to be simple and secure, so we use code sandboxing with v8
   isolated contexts, worker threads and minimal trusted npm dependencies;
@@ -48,13 +58,6 @@ Metarhia and Impress Application Server way:
 - Task scheduling (interval or certain time);
 - Request queue with timeout and size;
 - Execution timeout and error handling;
-
-## Installation, upgrade and start
-
-- Install with `npm install impress`
-- See project structure [Metarhia Starter Kit](https://github.com/metarhia/Example)
-- Start server with `npm run start` or `node server.js`
-- To select execution mode (test, dev, prod) use `MODE=dev node server.js`
 
 ## Requirements
 
