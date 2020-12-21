@@ -15,11 +15,11 @@ development practices, and clean project structure.
 ## Quick start
 
 - Install with `npm install impress` or copy project template from
-[metarhia/Example](https://github.com/metarhia/Example)
+  [metarhia/Example](https://github.com/metarhia/Example)
 - Start server with `node server.js` or select execution mode (test, dev, prod)
-use `MODE=dev node server.js`
+  use `MODE=dev node server.js`
 - See [documentation and specifications](https://github.com/metarhia/Contracts)
-and project home page: https://metarhia.com
+  and project home page: https://metarhia.com
 
 ### Metarhia and Impress application server way
 
