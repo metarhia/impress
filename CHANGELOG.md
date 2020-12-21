@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased][unreleased] - 2020-12-21
+## [Unreleased][unreleased]
 
-To be released in 2.0.0
+## [2.0.0][] - 2020-12-21
 
 - Single application with code live reload and auto API routing
 - Graceful shutdown and application state recovery after reload
@@ -28,5 +28,6 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v1.0.9...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/metarhia/impress/compare/v1.0.9...v2.0.0
 [1.0.9]: https://github.com/metarhia/impress/releases/tag/v1.0.9
