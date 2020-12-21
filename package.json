@@ -60,7 +60,7 @@
   "dependencies": {
     "@metarhia/common": "^2.2.0",
     "@metarhia/config": "^2.0.0",
-    "metacom": "1.0.0-alpha.0",
+    "metacom": "1.0.0",
     "metalog": "^3.0.0",
     "metavm": "^1.0.0"
   },
