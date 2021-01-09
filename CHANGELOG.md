@@ -2,6 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.1][] - 2021-01-09
+
+- Use metautil instead of metarhia/common for core utilities
+- Fixed spelling in function name: nkdirp -> mkdirp
+
 ## [2.0.0][] - 2020-12-21
 
 - Single application with code live reload and auto API routing
@@ -28,6 +33,7 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.0...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/metarhia/impress/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/metarhia/impress/compare/v1.0.9...v2.0.0
 [1.0.9]: https://github.com/metarhia/impress/releases/tag/v1.0.9

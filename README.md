@@ -1,6 +1,6 @@
 [![impress logo](http://habrastorage.org/files/d67/1b3/be5/d671b3be591d47a9bd10fe857e9d5319.png)](https://github.com/metarhia/impress)
 
-[![CI Status](https://github.com/metarhia/impress/workflows/Testing%20CI/badge.svg)](https://github.com/metarhia/impress/actions?query=workflow%3A%22Testing+CI%22+branch%3Amaster)
+[![ci Status](https://github.com/metarhia/impress/workflows/Testing%20CI/badge.svg)](https://github.com/metarhia/impress/actions?query=workflow%3A%22Testing+CI%22+branch%3Amaster)
 [![codacy](https://api.codacy.com/project/badge/Grade/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/app/metarhia/impress)
 [![snyk](https://snyk.io/test/github/metarhia/impress/badge.svg)](https://snyk.io/test/github/metarhia/impress)
 [![npm version](https://img.shields.io/npm/v/impress.svg?style=flat)](https://www.npmjs.com/package/impress)
@@ -68,13 +68,9 @@ development practices, and clean project structure.
 - OpenSSL v1.1.1 or later (optional, for https & wss)
 - [certbot](https://github.com/certbot/certbot) (recommended but optional)
 
-## Contributors
+## License & Contributors
 
-- Timur Shemsedinov (marcusaurelius)
-- See github for full [contributors list](https://github.com/metarhia/impress/graphs/contributors)
-
-## License
-
-Copyright (c) 2012-2020 Metarhia contributors.
+Copyright (c) 2012-2021 Metarhia contributors.
+See github for full [contributors list](https://github.com/metarhia/impress/graphs/contributors).
 Impress Application Server is [MIT licensed](./LICENSE).
 Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;
