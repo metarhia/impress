@@ -26,6 +26,7 @@ metatests.test('lib/schema validate', (test) => {
     field1: 'string',
     field2: { type: 'number' },
     field3: { type: 'string', length: 30 },
+    field4: { type: 'string', required: false },
   };
   const obj = {
     field1: 'value',
@@ -72,5 +73,11 @@ metatests.test('lib/schema negative', (test) => {
     field3: 'val',
   };
   test.strictSame(schema.check(obj4).valid, false);
+
+  const obj5 = {
+    field1: 'value',
+    field2: 100,
+  };
+  test.strictSame(schema.check(obj5).valid, false);
   test.end();
 });
