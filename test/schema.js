@@ -10,6 +10,6 @@ metatests.test('lib/schema', (test) => {
   };
   const schema = new Schema('example', definition);
   test.strictSame(schema.fields.field1.type, 'string');
-  test.strictSame(schema.fields.field2.requered, true);
+  test.strictSame(schema.fields.field2.required, true);
   test.end();
 });
