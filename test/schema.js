@@ -3,6 +3,22 @@
 const metatests = require('metatests');
 const { Schema } = require('../lib/schema.js');
 
+metatests.test('lib/schema constructor', (test) => {
+  const definition = { field1: 'string' };
+  const schema = new Schema('StructName', definition);
+  test.strictSame(schema.name, 'StructName');
+  test.strictSame(schema.scope, 'system');
+  test.strictSame(schema.kind, 'entity');
+  test.strictSame(typeof schema.fields, 'object');
+  test.strictSame(typeof schema.indexes, 'object');
+  test.strictSame(schema.validate, null);
+  test.strictSame(schema.format, null);
+  test.strictSame(schema.parse, null);
+  test.strictSame(schema.serialize, null);
+  test.strictSame(schema.fields.field1.type, 'string');
+  test.end();
+});
+
 metatests.test('lib/schema preprocess', (test) => {
   const definition = {
     field1: 'string',
@@ -11,7 +27,7 @@ metatests.test('lib/schema preprocess', (test) => {
     field4: { type: 'string', length: { min: 10 } },
     field5: { type: 'string', length: [5, 60] },
   };
-  const schema = new Schema('example', definition);
+  const schema = Schema.from(definition);
   test.strictSame(schema.fields.field1.type, 'string');
   test.strictSame(schema.fields.field2.required, true);
   test.strictSame(schema.fields.field3.length.max, 30);
@@ -33,7 +49,7 @@ metatests.test('lib/schema validate', (test) => {
     field2: 100,
     field3: 'value',
   };
-  const schema = new Schema('example', definition);
+  const schema = Schema.from(definition);
   test.strictSame(schema.check(obj).valid, true);
   test.end();
 });
@@ -44,7 +60,7 @@ metatests.test('lib/schema negative', (test) => {
     field2: { type: 'number' },
     field3: { type: 'string', length: { min: 5, max: 30 } },
   };
-  const schema = new Schema('example', definition);
+  const schema = Schema.from(definition);
 
   const obj1 = {
     field1: 1,
