@@ -37,7 +37,7 @@ metatests.test('lib/schema preprocess', (test) => {
   test.end();
 });
 
-metatests.test('lib/schema validate', (test) => {
+metatests.test('lib/schema check', (test) => {
   const definition = {
     field1: 'string',
     field2: { type: 'number' },
@@ -95,5 +95,12 @@ metatests.test('lib/schema negative', (test) => {
     field2: 100,
   };
   test.strictSame(schema.check(obj5).valid, false);
+  test.end();
+});
+
+metatests.test('lib/schema static check', (test) => {
+  const definition = { type: 'string' };
+  const err = Schema.check('result', definition, 'value');
+  test.strictSame(err.length, 0);
   test.end();
 });
