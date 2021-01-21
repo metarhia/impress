@@ -98,9 +98,22 @@ metatests.test('lib/schema negative', (test) => {
   test.end();
 });
 
-metatests.test('lib/schema static check', (test) => {
-  const definition = { type: 'string' };
-  const err = Schema.check('result', definition, 'value');
-  test.strictSame(err.length, 0);
+metatests.test('lib/schema check scalar', (test) => {
+  {
+    const definition = { type: 'string' };
+    const schema = Schema.from(definition);
+    test.strictSame(schema.check('value').valid, true);
+    test.strictSame(schema.check(1917).valid, false);
+    test.strictSame(schema.check(true).valid, false);
+    test.strictSame(schema.check({}).valid, false);
+  }
+  {
+    const definition = 'string';
+    const schema = Schema.from(definition);
+    test.strictSame(schema.check('value').valid, true);
+    test.strictSame(schema.check(1917).valid, false);
+    test.strictSame(schema.check(true).valid, false);
+    test.strictSame(schema.check({}).valid, false);
+  }
   test.end();
 });
