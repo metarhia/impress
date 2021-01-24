@@ -24,23 +24,23 @@ development practices, and clean project structure.
 
 ### Metarhia and Impress application server way
 
-- Applied code need to be simple and secure, so we use code sandboxing with v8
+- Applied code needs to be simple and secure, so we use code sandboxing with v8
   isolated contexts, worker threads and minimal trusted npm dependencies;
-- Domain code need to be separated from system code; so we use DDE, layered
-  (onion) architecture, DI, SOLID:DIP principle and contract-based approach;
+- Domain code needs to be separated from system code; so we use DDE, layered
+  (onion) architecture, DI, SOLID, DIP principle and contract-based approach;
 - Impress supports both stateful applications with RPC and client-session
-  sticky to servers; microservices, centralized and distributed architectire;
-- No I/O is faster even then async I/O, so we hold state in memory and use
+  sticky to servers; microservices, centralized and distributed architecture;
+- No I/O is faster even than async I/O, so we hold state in memory and use
   lazy I/O for persistent storage;
 
 ## Features
 
 - Auto API routing, just create endpoint files as an async js lambda function;
-- API code live reload with file system watch (when files changes on disk);
+- API code live reload with file system watch (when files change on disk);
 - Graceful shutdown and application state recovery after reload;
 - Minimum code size and dependencies;
 - Can scale on multiple threads and servers;
-- Code sandboxing for security, dependency injection and context isolation;
+- Code sandboxing for security, dependency injection, and context isolation;
 - Utilize multiple CPU cores and serve multiple ports with worker threads;
 - Inter-process communication and shared memory used for state management;
 - State synchronization mechanism with transactions and subscription;
@@ -49,7 +49,7 @@ development practices, and clean project structure.
 - Serve static files from memory cache;
 - Application configuration (for different named environments);
 - Database access layer for PostgreSQL and Relational db schemas;
-- Persistent sessions support with authentication, groups and anonymous;
+- Persistent sessions support with authentication, groups, and anonymous;
 - Multiple protocols: HTTP, HTTPS, WS, WSS;
 - Logging with buffering (lazy write) and rotation (keep logs N days);
 - File utilities: upload, download, streaming;
