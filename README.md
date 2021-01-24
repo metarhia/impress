@@ -27,7 +27,7 @@ development practices, and clean project structure.
 - Applied code needs to be simple and secure, so we use code sandboxing with v8
   isolated contexts, worker threads and minimal trusted npm dependencies;
 - Domain code needs to be separated from system code; so we use DDE, layered
-  (onion) architecture, DI, SOLID, DIP principle and contract-based approach;
+  (onion) architecture, DI, SOLID:DIP principle and contract-based approach;
 - Impress supports both stateful applications with RPC and client-session
   sticky to servers; microservices, centralized and distributed architecture;
 - No I/O is faster even than async I/O, so we hold state in memory and use
