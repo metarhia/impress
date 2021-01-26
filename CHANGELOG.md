@@ -2,6 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.2][] - 2021-01-26
+
+- Move utils to metautil
+- Implement schemas for structures and scalars
 - Fixed path separators to support windows
 
 ## [2.0.1][] - 2021-01-09
