@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fixed path separators to support windows
+
 ## [2.0.1][] - 2021-01-09
 
 - Use metautil instead of metarhia/common for core utilities
