@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Fixed exception handling in module loader
+- Added relative path in logged stack traces
 
 ## [2.0.2][] - 2021-01-26
 
