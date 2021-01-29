@@ -4,6 +4,7 @@
 
 - Fixed exception handling in module loader
 - Added relative path in logged stack traces
+- Fixed application initializtion flag
 
 ## [2.0.2][] - 2021-01-26
 
