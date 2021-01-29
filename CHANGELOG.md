@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.3][] - 2021-01-29
+
 - Fixed exception handling in module loader
 - Added relative path in logged stack traces
 - Fixed application initializtion flag
@@ -44,7 +46,9 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.1...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.3...HEAD
+[2.0.3]: https://github.com/metarhia/impress/compare/v2.0.2...v2.0.3
+[2.0.2]: https://github.com/metarhia/impress/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/metarhia/impress/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/metarhia/impress/compare/v1.0.9...v2.0.0
 [1.0.9]: https://github.com/metarhia/impress/releases/tag/v1.0.9
