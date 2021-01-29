@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fixed exception handling in module loader
+
 ## [2.0.2][] - 2021-01-26
 
 - Move utils to metautil
