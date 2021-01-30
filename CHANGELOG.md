@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Load TLS certificates only if we need HTTPS or WSS
+
 ## [2.0.3][] - 2021-01-29
 
 - Fixed exception handling in module loader
