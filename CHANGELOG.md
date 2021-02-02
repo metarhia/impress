@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Load TLS certificates only if we need HTTPS or WSS
+- Move hashPassword and validatePassword to metautil
 
 ## [2.0.3][] - 2021-01-29
 
