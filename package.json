@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress application server for Node.js and Metarhia private cloud",
   "license": "MIT",
@@ -58,14 +58,14 @@
     "node": "^12.9 || 14 || 15"
   },
   "dependencies": {
-    "metautil": "^3.1.0",
     "@metarhia/config": "^2.0.0",
-    "metacom": "1.1.0",
+    "metacom": "1.2.0",
     "metalog": "^3.1.0",
+    "metautil": "^3.2.0",
     "metavm": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.18.0",
+    "eslint": "^7.19.0",
     "eslint-config-metarhia": "^7.0.1",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
