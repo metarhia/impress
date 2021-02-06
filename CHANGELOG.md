@@ -2,6 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+- Don't inject Channel to Server
+- Changed Server.constructor signature from
+  `(config, { Channel, application })` to `(config, application)`
+  so should be published with new version of metacom, see:
+  https://github.com/metarhia/metacom/issues/127
+
 ## [2.0.4][] - 2021-02-04
 
 - Load TLS certificates only if we need HTTPS or WSS
