@@ -2,7 +2,10 @@
 
 ## [Unreleased][unreleased]
 
-- Don't inject Channel to Server
+## [2.0.5][] - 2021-02-07
+
+- Removed Channel injection to metacom.Server
+- Fixed bugs amd memory leaks in metacom, update to 1.3.0
 - Changed Server.constructor signature from
   `(config, { Channel, application })` to `(config, application)`
   so should be published with new version of metacom, see:
@@ -58,7 +61,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.4...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.5...HEAD
+[2.0.5]: https://github.com/metarhia/impress/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/metarhia/impress/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/metarhia/impress/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/metarhia/impress/compare/v2.0.1...v2.0.2
