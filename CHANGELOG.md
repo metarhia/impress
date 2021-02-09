@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.6][] - 2021-02-09
+
 - Revert to lock-file version 1
 - Use metacom 1.3.1 to revert its lock-file version 1
 - Publish fixed memory leak in metacom 1.3.1
@@ -65,7 +67,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.5...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.6...HEAD
+[2.0.6]: https://github.com/metarhia/impress/compare/v2.0.5...v2.0.6
 [2.0.5]: https://github.com/metarhia/impress/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/metarhia/impress/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/metarhia/impress/compare/v2.0.2...v2.0.3
