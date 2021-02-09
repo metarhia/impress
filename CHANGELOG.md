@@ -3,6 +3,8 @@
 ## [Unreleased][unreleased]
 
 - Revert to lock-file version 1
+- Use metacom 1.3.1 to revert its lock-file version 1
+- Publish fixed memory leak in metacom 1.3.1
 
 ## [2.0.5][] - 2021-02-07
 
