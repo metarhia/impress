@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Revert to lock-file version 1
+
 ## [2.0.5][] - 2021-02-07
 
 - Removed Channel injection to metacom.Server
