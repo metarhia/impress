@@ -6,13 +6,15 @@ const { Worker } = require('worker_threads');
 const path = require('path');
 
 const { Config } = require('@metarhia/config');
+const metavm = require('metavm');
 
 const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
 
 (async () => {
-  const options = { mode: process.env.MODE, names: ['server'] };
+  const context = metavm.createContext({ process });
+  const options = { mode: process.env.MODE, context, names: ['server'] };
   const config = await new Config(CFG_PATH, options);
   if (!config.server) {
     console.log('Can not read configuration: application/config/server.js');
