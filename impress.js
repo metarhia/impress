@@ -12,8 +12,9 @@ const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
 
 (async () => {
-  const options = { mode: process.env.MODE };
-  const config = await new Config(CFG_PATH, options, ['server']);
+  const options = { mode: process.env.MODE, names: ['server'] };
+  const config = await new Config(CFG_PATH, options);
+  console.log(config);
   if (!config.server) {
     console.log('Can not read configuration: application/config/server.js');
     process.exit(0);
