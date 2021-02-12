@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Update metarhia/config to 2.1.0
+
 ## [2.0.6][] - 2021-02-09
 
 - Revert to lock-file version 1
