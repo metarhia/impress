@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Update metarhia/config to 2.1.0
+- Handle startup exceptions: can't read config
 
 ## [2.0.6][] - 2021-02-09
 
