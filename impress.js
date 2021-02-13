@@ -6,6 +6,7 @@ const { Worker } = require('worker_threads');
 const path = require('path');
 
 const { Config } = require('@metarhia/config');
+const metavm = require('metavm');
 
 const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
