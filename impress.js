@@ -12,7 +12,8 @@ const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
 
 (async () => {
-  const options = { mode: process.env.MODE };
+  const context = metarhia.metavm.createContext({ process });
+  const options = { mode: process.env.MODE, context };
   const config = await new Config(CFG_PATH, options, ['server']);
   if (!config.server) {
     console.log('Can not read configuration: application/config/server.js');
