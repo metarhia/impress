@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Impress application server for Node.js and Metarhia private cloud",
   "license": "MIT",

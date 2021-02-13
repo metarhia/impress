@@ -2,7 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.7][] - 2021-02-13
+
 - Update metarhia/config to 2.1.0
+- Add access to the environment variables from configs via `process.env`
 - Handle startup exceptions: can't read config
 
 ## [2.0.6][] - 2021-02-09
@@ -70,7 +73,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.6...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.7...HEAD
+[2.0.7]: https://github.com/metarhia/impress/compare/v2.0.6...v2.0.7
 [2.0.6]: https://github.com/metarhia/impress/compare/v2.0.5...v2.0.6
 [2.0.5]: https://github.com/metarhia/impress/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/metarhia/impress/compare/v2.0.3...v2.0.4
