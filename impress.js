@@ -12,14 +12,17 @@ const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
 
+const configError = (err) => {
+  console.log('Can not read configuration: application/config/server.js');
+  console.error(err);
+  process.exit(0);
+};
+
 (async () => {
   const context = metavm.createContext({ process });
   const options = { mode: process.env.MODE, context, names: ['server'] };
-  const config = await new Config(CFG_PATH, options);
-  if (!config.server) {
-    console.log('Can not read configuration: application/config/server.js');
-    process.exit(0);
-  }
+  const config = await new Config(CFG_PATH, options).catch(configError);
+  if (!config.server) configError(new Error('Section "server" is not found'));
   const { balancer, ports = [], workers = {} } = config.server;
   const count = ports.length + (balancer ? 1 : 0) + (workers.pool || 0);
   let active = count;
