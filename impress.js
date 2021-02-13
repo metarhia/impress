@@ -13,7 +13,7 @@ const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
 
 (async () => {
-  const context = metarhia.metavm.createContext({ process });
+  const context = metavm.createContext({ process });
   const options = { mode: process.env.MODE, context };
   const config = await new Config(CFG_PATH, options, ['server']);
   if (!config.server) {
