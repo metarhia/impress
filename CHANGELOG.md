@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Use schema validation in `application.invoke`
+
 ## [2.0.7][] - 2021-02-13
 
 - Update metarhia/config to 2.1.0
