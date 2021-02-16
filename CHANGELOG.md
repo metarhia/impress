@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Use schema validation in `application.invoke`
+- Optimize module loader and signature cache
 
 ## [2.0.7][] - 2021-02-13
 
