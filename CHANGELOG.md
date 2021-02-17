@@ -2,9 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.8][] - 2021-02-17
+
 - Use schema validation in `application.invoke`
 - Optimize module loader and signature cache
 - Reworked application api in-memory structure
+- Precompile api validation schemas
 
 ## [2.0.7][] - 2021-02-13
 
