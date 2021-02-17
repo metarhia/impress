@@ -2,9 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.8][] - 2021-02-17
+
 - Use schema validation in `application.invoke`
 - Optimize module loader and signature cache
 - Reworked application api in-memory structure
+- Precompile api validation schemas
 
 ## [2.0.7][] - 2021-02-13
 
@@ -77,7 +80,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.7...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.8...HEAD
+[2.0.8]: https://github.com/metarhia/impress/compare/v2.0.7...v2.0.8
 [2.0.7]: https://github.com/metarhia/impress/compare/v2.0.6...v2.0.7
 [2.0.6]: https://github.com/metarhia/impress/compare/v2.0.5...v2.0.6
 [2.0.5]: https://github.com/metarhia/impress/compare/v2.0.4...v2.0.5
