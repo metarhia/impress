@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Update metautil to 3.3.0 and metacom to 1.5.0
+
 ## [2.0.8][] - 2021-02-17
 
 - Use schema validation in `application.invoke`
