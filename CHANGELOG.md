@@ -2,8 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.9][] - 2021-02-19
+
 - Extract Procedure class from Application
-- Update metautil to 3.3.0 and metacom to 1.5.0
+- Update metautil to 3.3.0 and metacom to 1.5.1
 
 ## [2.0.8][] - 2021-02-17
 
@@ -83,7 +85,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.8...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.9...HEAD
+[2.0.9]: https://github.com/metarhia/impress/compare/v2.0.8...v2.0.9
 [2.0.8]: https://github.com/metarhia/impress/compare/v2.0.7...v2.0.8
 [2.0.7]: https://github.com/metarhia/impress/compare/v2.0.6...v2.0.7
 [2.0.6]: https://github.com/metarhia/impress/compare/v2.0.5...v2.0.6
