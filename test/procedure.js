@@ -11,7 +11,8 @@ metatests.testAsync('lib/procedure validate', async (test) => {
     },
 
     method: async ({ a, b }) => {
-      return a + b;
+      const result = a + b;
+      return result;
     },
   });
 
