@@ -21,9 +21,9 @@ metatests.testAsync('lib/procedure validate', async (test) => {
     server: {
       semaphore: {
         async enter() {},
-        leave() {}
-      }
-    }
+        leave() {},
+      },
+    },
   };
   const procedure = new Procedure(script, application);
 
