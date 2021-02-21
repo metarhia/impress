@@ -47,7 +47,8 @@
   },
   "main": "impress.js",
   "files": [
-    "lib/"
+    "lib/",
+    "schemas/"
   ],
   "scripts": {
     "test": "npm run lint && metatests test/",
