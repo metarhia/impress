@@ -43,13 +43,22 @@ metatests.test('lib/schema check', (test) => {
     field2: { type: 'number' },
     field3: { type: 'string', length: 30 },
     field4: { type: 'string', required: false },
+    field5: {
+      subfield1: 'number',
+      subfield2: { type: 'string', required: false },
+    },
   };
   const obj = {
     field1: 'value',
     field2: 100,
     field3: 'value',
+    field5: {
+      subfield1: 500,
+      subfield2: 'value',
+    },
   };
   const schema = Schema.from(definition);
+  console.dir(schema.check(obj));
   test.strictSame(schema.check(obj).valid, true);
   test.end();
 });
