@@ -11,8 +11,7 @@ metatests.testAsync('lib/procedure validate', async (test) => {
     },
 
     method: async ({ a, b }) => {
-      const result = a + b;
-      return result;
+      return a + b;
     },
   });
 
@@ -27,11 +26,43 @@ metatests.testAsync('lib/procedure validate', async (test) => {
   };
   const procedure = new Procedure(script, application);
 
-  test.rejects(
+  await test.rejects(
     () => procedure.invoke({}, { a: 3, b: 6 }),
-    /to be multiple of 3/
+    new Error('Expected `a` to be multiple of 3')
   );
 
-  test.resolves(() => procedure.invoke({}, { a: 4, b: 6 }), 10);
+  await test.resolves(() => procedure.invoke({}, { a: 4, b: 6 }), 10);
+  test.end();
+});
+
+metatests.testAsync('lib/procedure timeout', async (test) => {
+  const script = () => ({
+    timeout: 200,
+
+    method: async ({ waitTime }) =>
+      new Promise((resolve) => {
+        setTimeout(() => resolve(waitTime), waitTime);
+      }),
+  });
+
+  const application = {
+    Error,
+    server: {
+      semaphore: {
+        async enter() {},
+        leave() {},
+      },
+    },
+  };
+
+  const procedure = new Procedure(script, application);
+
+  await test.rejects(
+    async () => procedure.invoke({}, { waitTime: 201 }),
+    new Error('async function timed out')
+  );
+
+  await test.resolves(() => procedure.invoke({}, { waitTime: 199 }), 199);
+
   test.end();
 });
