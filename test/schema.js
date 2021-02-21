@@ -58,7 +58,6 @@ metatests.test('lib/schema check', (test) => {
     },
   };
   const schema = Schema.from(definition);
-  console.dir(schema.check(obj));
   test.strictSame(schema.check(obj).valid, true);
   test.end();
 });
