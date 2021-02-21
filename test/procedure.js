@@ -20,7 +20,7 @@ metatests.testAsync('lib/procedure validate', async (test) => {
     Error,
     server: {
       semaphore: {
-        async enter() {}
+        async enter() {},
         leave() {}
       }
     }
