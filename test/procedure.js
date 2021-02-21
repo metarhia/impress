@@ -1,7 +1,7 @@
 'use strict';
 
 const metatests = require('metatests');
-const { Procedure } = require('../lib/procedure');
+const { Procedure } = require('../lib/procedure.js');
 
 metatests.testAsync('lib/procedure validate', async (test) => {
   const script = () => ({
@@ -15,7 +15,17 @@ metatests.testAsync('lib/procedure validate', async (test) => {
       return result;
     },
   });
-  const procedure = new Procedure(script, require('../lib/application'));
+
+  const application = {
+    Error,
+    server: {
+      semaphore: {
+        await enter() {}
+        leave() {}
+      }
+    }
+  };
+  const procedure = new Procedure(script, application);
 
   test.rejects(
     () => procedure.invoke({}, { a: 3, b: 6 }),
