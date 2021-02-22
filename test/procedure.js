@@ -64,6 +64,4 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
   );
 
   await test.resolves(() => procedure.invoke({}, { waitTime: 199 }), 199);
-
-  test.end();
 });

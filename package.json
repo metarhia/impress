@@ -62,7 +62,7 @@
     "@metarhia/config": "^2.1.0",
     "metacom": "^1.5.1",
     "metalog": "^3.1.0",
-    "metautil": "^3.3.0",
+    "metautil": "^3.4.0",
     "metavm": "^1.0.0"
   },
   "devDependencies": {
