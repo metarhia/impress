@@ -60,7 +60,7 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
 
   await test.rejects(
     async () => procedure.invoke({}, { waitTime: 201 }),
-    new Error('async function timed out')
+    new Error('Timeout reached')
   );
 
   await test.resolves(() => procedure.invoke({}, { waitTime: 199 }), 199);
