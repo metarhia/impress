@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fix bug in Procedure locking with semaphore
+
 ## [2.0.9][] - 2021-02-19
 
 - Extract Procedure class from Application
