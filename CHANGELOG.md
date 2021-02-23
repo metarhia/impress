@@ -2,7 +2,13 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.10][] - 2021-02-24
+
 - Fix bug in Procedure locking with semaphore
+- Procedure execution timeout
+- Schema custom validation method
+- Support nested schemas
+- Added config schemas
 
 ## [2.0.9][] - 2021-02-19
 
@@ -87,7 +93,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.9...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.10...HEAD
+[2.0.10]: https://github.com/metarhia/impress/compare/v2.0.9...v2.0.10
 [2.0.9]: https://github.com/metarhia/impress/compare/v2.0.8...v2.0.9
 [2.0.8]: https://github.com/metarhia/impress/compare/v2.0.7...v2.0.8
 [2.0.7]: https://github.com/metarhia/impress/compare/v2.0.6...v2.0.7
