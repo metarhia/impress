@@ -2,7 +2,13 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.10][] - 2021-02-24
+
 - Fix bug in Procedure locking with semaphore
+- Procedure execution timeout
+- Schema custom validation method
+- Support nested schemas
+- Added config schemas
 
 ## [2.0.9][] - 2021-02-19
 
