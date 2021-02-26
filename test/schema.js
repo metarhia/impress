@@ -125,3 +125,19 @@ metatests.test('lib/schema check scalar', (test) => {
   }
   test.end();
 });
+
+metatests.test('lib/schema check collections', (test) => {
+  const definition = {
+    field1: { array: 'number' },
+  };
+  const obj1 = {
+    field1: [1, 2, 3],
+  };
+  const schema = Schema.from(definition);
+  test.strictSame(schema.check(obj1).valid, true);
+  const obj2 = {
+    field1: ['uno', 2, 3],
+  };
+  test.strictSame(schema.check(obj2).valid, false);
+  test.end();
+});

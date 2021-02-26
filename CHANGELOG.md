@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Schema for collection: array
+
 ## [2.0.10][] - 2021-02-24
 
 - Fix bug in Procedure locking with semaphore
