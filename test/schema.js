@@ -129,14 +129,17 @@ metatests.test('lib/schema check scalar', (test) => {
 metatests.test('lib/schema check collections', (test) => {
   const definition = {
     field1: { array: 'number' },
+    field2: { object: { string: 'string' } },
   };
   const obj1 = {
     field1: [1, 2, 3],
+    field2: { a: 'A', b: 'B' },
   };
   const schema = Schema.from(definition);
   test.strictSame(schema.check(obj1).valid, true);
   const obj2 = {
     field1: ['uno', 2, 3],
+    field2: { a: 1, b: 'B' },
   };
   test.strictSame(schema.check(obj2).valid, false);
   test.end();
