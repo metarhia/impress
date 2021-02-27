@@ -127,20 +127,59 @@ metatests.test('lib/schema check scalar', (test) => {
 });
 
 metatests.test('lib/schema check collections', (test) => {
-  const definition = {
+  const def1 = {
     field1: { array: 'number' },
-    field2: { object: { string: 'string' } },
   };
   const obj1 = {
     field1: [1, 2, 3],
-    field2: { a: 'A', b: 'B' },
   };
-  const schema = Schema.from(definition);
-  test.strictSame(schema.check(obj1).valid, true);
+  const schema1 = Schema.from(def1);
+  test.strictSame(schema1.check(obj1).valid, true);
+
+  const def2 = {
+    field1: { array: 'number' },
+  };
   const obj2 = {
     field1: ['uno', 2, 3],
-    field2: { a: 1, b: 'B' },
   };
-  test.strictSame(schema.check(obj2).valid, false);
+  const schema2 = Schema.from(def2);
+  test.strictSame(schema2.check(obj2).valid, false);
+
+  const def3 = {
+    field1: { object: { string: 'string' } },
+  };
+  const obj3 = {
+    field1: { a: 'A', b: 'B' },
+  };
+  const schema3 = Schema.from(def3);
+  test.strictSame(schema3.check(obj3).valid, true);
+
+  const def4 = {
+    field1: { object: { string: 'string' } },
+  };
+  const obj4 = {
+    field1: { a: 1, b: 'B' },
+  };
+  const schema4 = Schema.from(def4);
+  test.strictSame(schema4.check(obj4).valid, false);
+
+  const def5 = {
+    field1: { array: 'number' },
+  };
+  const obj5 = {
+    field1: [1, 2, 3],
+  };
+  const schema5 = Schema.from(def5);
+  test.strictSame(schema5.check(obj5).valid, true);
+
+  const def6 = {
+    field1: { set: 'number' },
+  };
+  const obj6 = {
+    field1: new Set(['uno', 2, 3]),
+  };
+  const schema6 = Schema.from(def6);
+  test.strictSame(schema6.check(obj6).valid, false);
+
   test.end();
 });
