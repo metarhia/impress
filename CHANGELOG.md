@@ -2,7 +2,7 @@
 
 ## [Unreleased][unreleased]
 
-- Schema for collection: array
+- Schema for collections: array, object, set, map
 
 ## [2.0.10][] - 2021-02-24
 

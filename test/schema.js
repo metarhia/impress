@@ -164,10 +164,10 @@ metatests.test('lib/schema check collections', (test) => {
   test.strictSame(schema4.check(obj4).valid, false);
 
   const def5 = {
-    field1: { array: 'number' },
+    field1: { set: 'number' },
   };
   const obj5 = {
-    field1: [1, 2, 3],
+    field1: new Set([1, 2, 3]),
   };
   const schema5 = Schema.from(def5);
   test.strictSame(schema5.check(obj5).valid, true);
@@ -180,6 +180,30 @@ metatests.test('lib/schema check collections', (test) => {
   };
   const schema6 = Schema.from(def6);
   test.strictSame(schema6.check(obj6).valid, false);
+
+  const def7 = {
+    field1: { map: { string: 'string' } },
+  };
+  const obj7 = {
+    field1: new Map([
+      ['a', 'A'],
+      ['b', 'B'],
+    ]),
+  };
+  const schema7 = Schema.from(def7);
+  test.strictSame(schema7.check(obj7).valid, true);
+
+  const def8 = {
+    field1: { map: { string: 'string' } },
+  };
+  const obj8 = {
+    field1: new Set([
+      ['a', 1],
+      ['b', 'B'],
+    ]),
+  };
+  const schema8 = Schema.from(def8);
+  test.strictSame(schema8.check(obj8).valid, false);
 
   test.end();
 });
