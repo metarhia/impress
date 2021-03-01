@@ -69,20 +69,22 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 
 ## Features
 
-- Auto API routing, just create endpoint files as an async js lambda function;
-- API code live reload with file system watch (when files change on disk);
-- Graceful shutdown and application state recovery after reload;
-- Minimum code size and dependencies;
-- Can scale on multiple threads and servers;
-- Code sandboxing for security, dependency injection, and context isolation;
+- **Auto API routing**, just create endpoint files as an async function;
+- Code **live reload** with file system watch (when files change on disk);
+- **Graceful shutdown** and application state recovery after reload;
+- **Minimal dependencies** and code size;
+- Can scale with **multiple threads** and servers;
+- Code **sandboxing** for security and context isolation;
+- Auto module loader with **dependency injection** for namespaces;
+- **Layered architecture** out of the box: core, domain, API, client;
 - Utilize multiple CPU cores and serve multiple ports with worker threads;
 - Inter-process communication and shared memory used for state management;
 - State synchronization mechanism with transactions and subscription;
 - Cache server-side executable JavaScript in memory;
-- API development support: AJAX RPC and Websocket support;
+- Rapid **API** development support: AJAX RPC and **Websocket**;
 - Serve static files from memory cache;
 - Application configuration (for different named environments);
-- Database access layer for PostgreSQL and Relational db schemas;
+- Database access layer for PostgreSQL and relational db schemas;
 - Persistent sessions support with authentication, groups, and anonymous;
 - Multiple protocols: HTTP, HTTPS, WS, WSS;
 - Logging with buffering (lazy write) and rotation (keep logs N days);
@@ -91,7 +93,7 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 - Server health monitoring;
 - Built-in data structures validation and preprocessing library;
 - Task scheduling (interval or certain time);
-- Request queue with timeout and size;
+- Concurrency control: request queue with timeout and size;
 - Execution timeout and error handling;
 
 ## Requirements
