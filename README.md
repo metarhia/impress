@@ -57,13 +57,13 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 ## Metarhia and impress application server way
 
 - Applied code needs to be simple and secure, so we use sandboxing with v8
-  isolated contexts, worker threads and js closures;
+  isolated contexts, worker threads and javascript closures;
 - Domain code should be separated from system code; so we use DDD, layered
-  (onion) architecture, DI, SOLID principles and contract-based approach;
-- Impress supports both stateful applications with RPC and client-session
-  sticky to servers; microservices, centralized or distributed architecture;
-- No I/O is faster even than async I/O, so we hold state in memory and use
-  lazy I/O for persistent storage;
+  (onion) architecture, DI, SOLID and GRASP principles, contract-based approach;
+- Impress supports stateful applications with RPC and client-session sticky to
+  servers; microservices, centralized or distributed architecture;
+- No I/O is faster even than async I/O, so we hold state in memory, share it
+  among multiple threads and use lazy I/O for persistent storage;
 - We use just internal trusted dependencies, no third-party npm packages;
   total Metarhia technology stack size is less than 2mb.
 
