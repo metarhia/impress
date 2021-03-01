@@ -11,7 +11,7 @@
 
 </div>
 
-**Enterprise** application server for [node.js](http://nodejs.org): secure,
+**Enterprise** application server for **[Node.js](http://nodejs.org)**: secure,
 lightweight, interactive, and scalable.
 
 ## Description
