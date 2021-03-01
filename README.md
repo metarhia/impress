@@ -3,24 +3,52 @@
 [![ci Status](https://github.com/metarhia/impress/workflows/Testing%20CI/badge.svg)](https://github.com/metarhia/impress/actions?query=workflow%3A%22Testing+CI%22+branch%3Amaster)
 [![codacy](https://api.codacy.com/project/badge/Grade/6fb7b607a9cb445984aebbc08fdeb13c)](https://www.codacy.com/app/metarhia/impress)
 [![snyk](https://snyk.io/test/github/metarhia/impress/badge.svg)](https://snyk.io/test/github/metarhia/impress)
-[![npm version](https://img.shields.io/npm/v/impress.svg?style=flat)](https://www.npmjs.com/package/impress)
 [![npm downloads/month](https://img.shields.io/npm/dm/impress.svg)](https://www.npmjs.com/package/impress)
 [![npm downloads](https://img.shields.io/npm/dt/impress.svg)](https://www.npmjs.com/package/impress)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/metarhia/impress/blob/master/LICENSE)
 
-[Impress](https://github.com/metarhia/impress) application server for
-[node.js](http://nodejs.org). All decisions are made and optimized for security,
-performance, high-intensive network operations, scalability, interactivity, rapid
-development practices, and clean project structure.
+Enterprise application server for [node.js](http://nodejs.org): secure,
+lightweight, interactive, and scalable.
+
+## Description
+
+**First** Node.js server scaled with **multithreading** and extra thin workload
+**isolation**. Optimized for **high-intensive** data exchange, rapid development,
+and **clean architecture**. Provides everything you need out of the box for
+**reliable** and **efficient backend**, network communication with web and mobile
+clients, protocol-agnostic **API**, run-time type validation, real-time and
+in-memory data processing, and **reliable stateful** services.
+
+**Weak sides**: not a good choice for content publishing including blogs and
+online stores, server-side rendering, serving static content and stateless
+services.
+
+**Strong sides**: security and architecture for enterprise-level applications,
+long-lived connections over websocket to minimize overhead for cryptographic
+handshake, no third-party dependencies.
 
 ## Quick start
 
-- Install with `npm install impress` or copy project template from
-  [metarhia/Example](https://github.com/metarhia/Example)
-- Start server with `node server.js` or select execution mode (test, dev, prod)
-  use `MODE=dev node server.js`
+- See project template: [metarhia/Example](https://github.com/metarhia/Example)
+- Start server with `node server.js`
 - See [documentation and specifications](https://github.com/metarhia/Contracts)
-  and project home page: https://metarhia.com
+
+API endpoint example: `application/api/example.1/citiesByCountry.js`
+
+```js
+async ({ countryId }) => {
+  const fields = ['cityId', 'name'];
+  const where = { countryId };
+  const data = await domain.db.select('City', fields, where);
+  return { result: 'success', data };
+};
+```
+
+You can call it from client-side:
+
+```js
+const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
+```
 
 ### Metarhia and Impress application server way
 
