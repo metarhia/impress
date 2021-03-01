@@ -1,3 +1,4 @@
+<div align="center">
 [![impress logo](https://raw.githubusercontent.com/metarhia/Metarhia/master/Logos/impress-header.png)](https://github.com/metarhia/impress)
 
 [![ci Status](https://github.com/metarhia/impress/workflows/Testing%20CI/badge.svg)](https://github.com/metarhia/impress/actions?query=workflow%3A%22Testing+CI%22+branch%3Amaster)
@@ -7,7 +8,9 @@
 [![npm downloads](https://img.shields.io/npm/dt/impress.svg)](https://www.npmjs.com/package/impress)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/metarhia/impress/blob/master/LICENSE)
 
-Enterprise application server for [node.js](http://nodejs.org): secure,
+</div>
+
+**Enterprise** application server for [node.js](http://nodejs.org): secure,
 lightweight, interactive, and scalable.
 
 ## Description
@@ -50,16 +53,18 @@ You can call it from client-side:
 const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 ```
 
-### Metarhia and Impress application server way
+## Metarhia and impress application server way
 
-- Applied code needs to be simple and secure, so we use code sandboxing with v8
-  isolated contexts, worker threads and minimal trusted npm dependencies;
-- Domain code needs to be separated from system code; so we use DDE, layered
-  (onion) architecture, DI, SOLID:DIP principle and contract-based approach;
+- Applied code needs to be simple and secure, so we use sandboxing with v8
+  isolated contexts, worker threads and js closures;
+- Domain code should be separated from system code; so we use DDD, layered
+  (onion) architecture, DI, SOLID principles and contract-based approach;
 - Impress supports both stateful applications with RPC and client-session
-  sticky to servers; microservices, centralized and distributed architecture;
+  sticky to servers; microservices, centralized or distributed architecture;
 - No I/O is faster even than async I/O, so we hold state in memory and use
   lazy I/O for persistent storage;
+- We use just internal trusted dependencies, no third-party npm packages;
+  total Metarhia technology stack size is less than 2mb.
 
 ## Features
 
