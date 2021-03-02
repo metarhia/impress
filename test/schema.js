@@ -62,6 +62,27 @@ metatests.test('lib/schema check', (test) => {
   test.end();
 });
 
+metatests.test('lib/schema shorthand', (test) => {
+  const definition = {
+    field1: {
+      n: { type: 'number', default: 100 },
+      c: { type: 'string', shorthand: true },
+    },
+  };
+  const schema = Schema.from(definition);
+
+  const obj1 = { field1: 'value' };
+  test.strictSame(schema.check(obj1).valid, true);
+
+  const obj2 = { field1: 1 };
+  test.strictSame(schema.check(obj2).valid, false);
+
+  const obj3 = { field1: { n: 1, c: 'value' } };
+  test.strictSame(schema.check(obj3).valid, true);
+
+  test.end();
+});
+
 metatests.test('lib/schema negative', (test) => {
   const definition = {
     field1: 'string',
