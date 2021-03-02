@@ -1,12 +1,17 @@
 {
   "name": "impress",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
-  "description": "Impress application server for Node.js and Metarhia private cloud",
+  "description": "Enterprise application server for Node.js",
   "license": "MIT",
   "keywords": [
     "application",
     "server",
+    "isolation",
+    "enterprise",
+    "security",
+    "lightweight",
+    "scalable",
     "api",
     "rpc",
     "soa",
@@ -26,7 +31,6 @@
     "websocket",
     "websockets",
     "interactive",
-    "rack",
     "app",
     "backend",
     "fullstack"
