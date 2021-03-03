@@ -66,6 +66,7 @@
     "@metarhia/config": "^2.1.0",
     "metacom": "^1.5.3",
     "metalog": "^3.1.0",
+    "metaschema": "^1.0.0",
     "metautil": "^3.5.0",
     "metavm": "^1.0.0"
   },
