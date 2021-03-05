@@ -50,15 +50,17 @@
     "url": "https://www.patreon.com/tshemsedinov"
   },
   "main": "impress.js",
+  "types": "types/metautil.d.ts",
   "files": [
     "lib/",
-    "schemas/"
+    "schemas/",
+    "types/"
   ],
   "scripts": {
     "test": "npm run lint && npm run types && metatests test/",
     "types": "tsc -p types/tsconfig.json",
-    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
-    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\""
+    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" \"**/*.ts\"",
+    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" \"**/*.ts\""
   },
   "engines": {
     "node": "^12.9 || 14 || 15"

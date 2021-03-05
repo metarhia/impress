@@ -1,14 +1,9 @@
-interface Database {
-}
+interface Database {}
 
-interface Logger {
-}
+interface Logger {}
 
-interface Config {
-}
+interface Config {}
 
-interface Server {
-}
+interface Server {}
 
-interface Schema {
-}
+interface Schema {}
