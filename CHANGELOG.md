@@ -2,6 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [2.0.13][] - 2021-03-05
+
+- Remove Schema and use metaschema instead
+- Add .d.ts typing
+
 ## [2.0.12][] - 2021-03-02
 
 - Schema field shorthand
@@ -103,7 +108,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.12...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.0.13...HEAD
+[2.0.13]: https://github.com/metarhia/impress/compare/v2.0.12...v2.0.13
 [2.0.12]: https://github.com/metarhia/impress/compare/v2.0.11...v2.0.12
 [2.0.11]: https://github.com/metarhia/impress/compare/v2.0.10...v2.0.11
 [2.0.10]: https://github.com/metarhia/impress/compare/v2.0.9...v2.0.10
