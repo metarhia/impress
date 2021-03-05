@@ -13,8 +13,8 @@ interface Application {
   staticPath: string;
   resourcesPath: string;
   starts: Array<Function>;
-  Application: Function,
-  Error: Function,
+  Application: Function;
+  Error: Function;
   cert: Cert;
   config: Config;
   logger: Logger;
