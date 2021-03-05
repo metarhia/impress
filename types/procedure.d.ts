@@ -4,10 +4,10 @@ type Access = 'public' | 'session' | 'logged' | GroupAccess | UserAccess;
 type QueueParameters = { concurrency: number; size: number; timeout: number };
 type Serializer = 'json' | 'v8';
 type Protocols = 'http' | 'https' | 'ws' | 'wss';
-type AsyncFuction = (...args: Array<unknown>) => Promise<unknown>;
+type AsyncFuction = (...args: Array<any>) => Promise<any>;
 type Example = {
-  parameters: Dictionary<unknown>;
-  returns: Dictionary<unknown>;
+  parameters: Dictionary<any>;
+  returns: Dictionary<any>;
 };
 
 interface Procedure {

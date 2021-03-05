@@ -50,7 +50,7 @@
     "url": "https://www.patreon.com/tshemsedinov"
   },
   "main": "impress.js",
-  "types": "types/metautil.d.ts",
+  "types": "types/impress.d.ts",
   "files": [
     "lib/",
     "schemas/",

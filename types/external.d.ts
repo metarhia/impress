@@ -1,9 +1,12 @@
-interface Database {}
+interface Dictionary<T> {
+  [key: string]: T;
+}
 
-interface Logger {}
+interface Stub extends Dictionary<any> {}
 
-interface Config {}
-
-interface Server {}
-
-interface Schema {}
+interface Schema extends Stub {}
+interface Logger extends Stub {}
+interface Server extends Stub {}
+interface Config extends Stub {}
+interface Client extends Stub {}
+interface Database extends Stub {}
