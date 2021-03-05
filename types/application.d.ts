@@ -1,8 +1,13 @@
+interface Cert {
+  key: Buffer;
+  cert: Buffer;
+}
+
 interface Application {
   initialization: boolean;
   finalization: boolean;
-  api: Dictionary<unknown>;
-  signatures: Dictionary<unknown>;
+  api: Dictionary<any>;
+  signatures: Dictionary<any>;
   static: Map<string, Buffer>;
   resources: Map<string, Buffer>;
   root: string;
@@ -18,8 +23,8 @@ interface Application {
   cert: Cert;
   config: Config;
   logger: Logger;
-  console: Console;
+  console: NodeJS.ConsoleConstructor;
   auth: Auth;
-  sandbod: Dictionary<unknown>;
+  sandbod: Dictionary<any>;
   server: Server;
 }
