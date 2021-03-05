@@ -37,12 +37,14 @@ metatests.testAsync('lib/procedure validate', async (test) => {
 });
 
 metatests.testAsync('lib/procedure timeout', async (test) => {
+  const DONE = 'success';
+
   const script = () => ({
     timeout: 100,
 
     method: async ({ waitTime }) =>
       new Promise((resolve) => {
-        setTimeout(() => resolve('done'), waitTime);
+        setTimeout(() => resolve(DONE), waitTime);
       }),
   });
 
@@ -63,5 +65,5 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
     new Error('Timeout reached')
   );
 
-  await test.resolves(() => procedure.invoke({}, { waitTime: 50 }), 'done');
+  await test.resolves(() => procedure.invoke({}, { waitTime: 50 }), DONE);
 });
