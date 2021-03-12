@@ -24,7 +24,7 @@ interface Procedure {
   method: AsyncFuction;
   returns?: Schema;
   assert?: Function;
-  script: Function;
+  script?: Function;
   examples?: Array<Example>;
-  application: Application;
+  application?: Application;
 }

@@ -3,9 +3,8 @@
     "target": "ESNext",
     "moduleResolution": "node",
     "strict": true,
-    "noEmit": true,
     "baseUrl": ".",
     "preserveWatchOutput": true
   },
-  "include": ["*.d.ts"]
+  "include": ["*.d.ts", "*.ts"]
 }

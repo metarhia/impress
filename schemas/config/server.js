@@ -1,8 +1,8 @@
 ({
   host: 'string',
   balancer: 'number',
-  protocol: { type: 'flag', enum: ['string'] },
-  ports: { type: { arrey: 'number', default: [8001] } },
+  protocol: { enum: ['http', 'https'] },
+  ports: { array: 'number' },
   timeout: { type: 'number', default: 5000 },
   queue: {
     concurrency: { type: 'number', default: 1000 },
