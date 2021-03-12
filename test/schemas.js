@@ -2,16 +2,25 @@
 
 const metatests = require('metatests');
 const { loadSchema } = require('metaschema');
+const { createContext } = require('metavm');
+const { Config } = require('@metarhia/config');
 
 metatests.testAsync('schemas/config', async (test) => {
+  const context = createContext({ process });
+  const config = await new Config('./test/config', { context });
+
   const log = await loadSchema('./schemas/config/log.js');
-  test.strictSame(Object.keys(log.fields).length, 5);
+  test.strictSame(log.check(config.log).valid, true);
+
   const scale = await loadSchema('./schemas/config/scale.js');
-  test.strictSame(Object.keys(scale.fields).length, 5);
+  test.strictSame(scale.check(config.scale).valid, true);
+
   const server = await loadSchema('./schemas/config/server.js');
-  test.strictSame(Object.keys(server.fields).length, 7);
+  test.strictSame(server.check(config.server).valid, true);
+
   const sessions = await loadSchema('./schemas/config/sessions.js');
-  test.strictSame(Object.keys(sessions.fields).length, 8);
+  test.strictSame(sessions.check(config.sessions).valid, true);
+
   test.end();
 });
 
