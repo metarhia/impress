@@ -7,7 +7,9 @@ const path = require('path');
 
 const { Config } = require('@metarhia/config');
 const metavm = require('metavm');
+const { loadSchema } = require('metaschema');
 
+const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
 const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
@@ -15,13 +17,31 @@ const CTRL_C = 3;
 const configError = (err) => {
   console.log('Can not read configuration: application/config/server.js');
   console.error(err);
-  process.exit(0);
+  process.exit(1);
+};
+
+const validateConfig = async (config) => {
+  const schemaPath = path.join(__dirname, 'schemas/config');
+  let valid = true;
+  for (const section of CONFIG_SECTIONS) {
+    const schema = await loadSchema(path.join(schemaPath, section + '.js'));
+    const checkResult = schema.check(config[section]);
+    if (!checkResult.valid) {
+      for (const err of checkResult.errors) console.log(err);
+      valid = false;
+    }
+  }
+  if (!valid) {
+    console.error('Can not start server');
+    process.exit(1);
+  }
 };
 
 (async () => {
   const context = metavm.createContext({ process });
-  const options = { mode: process.env.MODE, context, names: ['server'] };
+  const options = { mode: process.env.MODE, context };
   const config = await new Config(CFG_PATH, options).catch(configError);
+  await validateConfig(config);
   if (!config.server) configError(new Error('Section "server" is not found'));
   const { balancer, ports = [], workers = {} } = config.server;
   const count = ports.length + (balancer ? 1 : 0) + (workers.pool || 0);
