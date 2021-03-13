@@ -3,14 +3,19 @@
   balancer: 'number',
   protocol: { enum: ['http', 'https'] },
   ports: { array: 'number' },
-  timeout: { type: 'number', default: 5000 },
+  nagle: 'boolean',
+  timeouts: {
+    start: 'number',
+    stop: 'number',
+    request: 'number',
+    reload: 'number',
+  },
   queue: {
-    concurrency: { type: 'number', default: 1000 },
-    size: { type: 'number', default: 2000 },
-    timeout: { type: 'number', default: 3000 },
+    concurrency: 'number',
+    size: 'number',
+    timeout: 'number',
   },
   workers: {
-    pool: { type: 'number', default: 0 },
-    timeout: { type: 'number', default: 3000 },
+    pool: 'number',
   },
 });

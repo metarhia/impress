@@ -1,16 +1,13 @@
 ({
-  sid: { type: 'string', default: 'token' },
-  characters: {
-    type: 'string',
-    default: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
-  },
-  length: { type: 'number', default: 64 },
+  sid: 'string',
+  characters: 'string',
+  length: 'number',
   secret: 'string',
-  regenerate: { type: 'number', default: 60 * 60 * 1000 },
-  expire: { type: 'number', default: 24 * 60 * 60 * 1000 },
+  regenerate: 'number',
+  expire: 'number',
   persistent: 'boolean',
   limits: {
-    ip: { type: 'number', default: 20 },
-    user: { type: 'number', default: 5 },
+    ip: 'number',
+    user: 'number',
   },
 });
