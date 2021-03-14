@@ -14,9 +14,8 @@ const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const CTRL_C = 3;
 
-const configError = (err) => {
-  console.log('Can not read configuration: application/config/server.js');
-  console.error(err);
+const exit = (message) => {
+  console.log(message);
   process.exit(1);
 };
 
@@ -31,40 +30,57 @@ const validateConfig = async (config) => {
       valid = false;
     }
   }
-  if (!valid) {
-    console.error('Can not start server');
-    process.exit(1);
-  }
+  if (!valid) exit('Can not start server');
 };
 
 (async () => {
   const context = metavm.createContext({ process });
   const options = { mode: process.env.MODE, context };
-  const config = await new Config(CFG_PATH, options).catch(configError);
+  const config = await new Config(CFG_PATH, options).catch((err) => {
+    exit(`Can not read configuration: ${CFG_PATH}\n${err.stack}`);
+  });
   await validateConfig(config);
-  if (!config.server) configError(new Error('Section "server" is not found'));
   const { balancer, ports = [], workers = {} } = config.server;
   const count = ports.length + (balancer ? 1 : 0) + (workers.pool || 0);
-  let active = count;
+  let startTimer = null;
+  let active = 0;
+  let starting = 0;
   const threads = new Array(count);
+
+  const stop = async () => {
+    for (const worker of threads) {
+      worker.postMessage({ type: 'event', name: 'stop' });
+    }
+  };
 
   const start = (id) => {
     const workerPath = path.join(__dirname, 'lib/worker.js');
     const worker = new Worker(workerPath, { trackUnmanagedFds: true });
     threads[id] = worker;
+
     worker.on('exit', (code) => {
       if (code !== 0) start(id);
       else if (--active === 0) process.exit(0);
     });
+
+    worker.on('online', () => {
+      if (++starting === count) {
+        startTimer = setTimeout(() => {
+          if (active !== count) console.log('Server initialization timed out');
+        }, config.server.timeouts.start);
+      }
+    });
+
+    worker.on('message', (data) => {
+      if (data.type === 'event' && data.name === 'started') active++;
+      if (active === count && startTimer) {
+        clearTimeout(startTimer);
+        startTimer = null;
+      }
+    });
   };
 
   for (let id = 0; id < count; id++) start(id);
-
-  const stop = async () => {
-    for (const worker of threads) {
-      worker.postMessage({ name: 'stop' });
-    }
-  };
 
   process.on('SIGINT', stop);
   process.on('SIGTERM', stop);
