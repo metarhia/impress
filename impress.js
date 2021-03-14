@@ -30,10 +30,13 @@ const CTRL_C = 3;
     const schemaPath = path.join(__dirname, 'schemas/config');
     let valid = true;
     for (const section of CONFIG_SECTIONS) {
-      const schema = await loadSchema(path.join(schemaPath, section + '.js'));
+      const fileName = path.join(schemaPath, section + '.js');
+      const schema = await loadSchema(fileName);
       const checkResult = schema.check(config[section]);
       if (!checkResult.valid) {
-        for (const err of checkResult.errors) console.error(err);
+        for (const err of checkResult.errors) {
+          console.error(`${err} in application/config/${section}.js`);
+        }
         valid = false;
       }
     }
