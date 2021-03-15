@@ -2,6 +2,14 @@
 
 ## [Unreleased][unreleased]
 
+## [2.1.0][] - 2021-03-15
+
+- Improve server start and stop
+- Implmenent port re-bind
+- Unify logging output (before log init)
+- Disable Nagle's algorithm if configured
+- Improve config schemas
+
 ## [2.0.14][] - 2021-03-13
 
 - Use metaschema for config validation
@@ -112,7 +120,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.0.14...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/metarhia/impress/compare/v2.0.14...v2.1.0
 [2.0.14]: https://github.com/metarhia/impress/compare/v2.0.13...v2.0.14
 [2.0.13]: https://github.com/metarhia/impress/compare/v2.0.12...v2.0.13
 [2.0.12]: https://github.com/metarhia/impress/compare/v2.0.11...v2.0.12
