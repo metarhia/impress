@@ -9,7 +9,7 @@
     start: 'number',
     stop: 'number',
     request: 'number',
-    reload: 'number',
+    watch: 'number',
   },
   queue: {
     concurrency: 'number',
