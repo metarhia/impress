@@ -5,6 +5,7 @@
   ports: { array: 'number' },
   nagle: 'boolean',
   timeouts: {
+    bind: 'number',
     start: 'number',
     stop: 'number',
     request: 'number',

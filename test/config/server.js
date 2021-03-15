@@ -5,6 +5,7 @@
   ports: [8001, 8002],
   nagle: true,
   timeouts: {
+    bind: 2000,
     start: 30000,
     stop: 30000,
     request: 5000,
