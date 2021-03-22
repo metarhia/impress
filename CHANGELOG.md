@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Use metawatch 1.0.0 instead of internal watcher
+
 ## [2.1.0][] - 2021-03-15
 
 - Improve server start and stop
