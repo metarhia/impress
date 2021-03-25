@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Use metawatch 1.0.0 instead of internal watcher
+- Remove resources from memory on metawatch 'delete'
 
 ## [2.1.0][] - 2021-03-15
 
