@@ -5,12 +5,17 @@ const metatests = require('metatests');
 const { Cache } = require('../lib/cache.js');
 
 const root = process.cwd();
-const cachePath = path.join(root, 'test/cache');
+
+const application = {
+  path: path.join(root, 'test'),
+  absolute(relative) {
+    return path.join(this.path, relative);
+  },
+};
 
 metatests.testAsync('lib/cache load', async (test) => {
-  const cache = new Cache(cachePath);
+  const cache = new Cache('cache', application);
   await cache.load();
-  test.strictSame(cache.path, cachePath);
-  test.strictSame(typeof cache.tree, 'object');
+  test.strictSame(cache.tree.utils.UNITS.length, 9);
   test.end();
 });
