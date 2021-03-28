@@ -1,4 +1,4 @@
-interface MetarhiaApplication {
+interface Application {
   worker: Dictionary<any>;
   server: Dictionary<any>;
   auth: Auth;
@@ -11,7 +11,7 @@ interface Context {
   [key: string]: any;
 }
 
-declare var application: MetarhiaApplication;
+declare var application: Application;
 declare var node: Dictionary<any>;
 declare var npm: Dictionary<any>;
 declare var api: Dictionary<any>;
