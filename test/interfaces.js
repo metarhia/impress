@@ -18,6 +18,6 @@ const application = {
 metatests.testAsync('lib/interfaces load', async (test) => {
   const api = new Interfaces('api', application);
   await api.load();
-  test.strictSame(typeof api.api.example['1'].add.method, 'function');
+  test.strictSame(typeof api.collection.example['1'].add.method, 'function');
   test.end();
 });
