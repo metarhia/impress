@@ -8,6 +8,8 @@ const root = process.cwd();
 
 const application = {
   path: path.join(root, 'test'),
+  console,
+  starts: [],
   absolute(relative) {
     return path.join(this.path, relative);
   },
