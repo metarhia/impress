@@ -1,0 +1,18 @@
+{
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "id-denylist": [
+      2,
+      "application",
+      "node",
+      "npm",
+      "api",
+      "lib",
+      "domain",
+      "config",
+      "metarhia"
+    ]
+  }
+}
