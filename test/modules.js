@@ -10,6 +10,7 @@ const application = {
   path: path.join(root, 'test'),
   console,
   starts: [],
+  watcher: { watch() {} },
   absolute(relative) {
     return path.join(this.path, relative);
   },

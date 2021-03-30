@@ -10,6 +10,7 @@ const root = process.cwd();
 const application = {
   path: path.join(root, 'test'),
   sandbox: metavm.createContext({ api: {} }),
+  watcher: { watch() {} },
   absolute(relative) {
     return path.join(this.path, relative);
   },
