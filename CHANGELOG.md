@@ -2,9 +2,12 @@
 
 ## [Unreleased][unreleased]
 
-- Use metawatch 1.0.0 instead of internal watcher
+## [2.1.1][] - 2021-03-30
+
+- Use metawatch instead of internal watcher
 - Remove resources from memory on metawatch 'delete'
 - Decompose class Application into Cache, Modules, Interfaces, Resources
+- Fix domain and lib live reload bugs
 
 ## [2.1.0][] - 2021-03-15
 
@@ -124,7 +127,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.1.0...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/metarhia/impress/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/metarhia/impress/compare/v2.0.14...v2.1.0
 [2.0.14]: https://github.com/metarhia/impress/compare/v2.0.13...v2.0.14
 [2.0.13]: https://github.com/metarhia/impress/compare/v2.0.12...v2.0.13

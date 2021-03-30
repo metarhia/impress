@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Enterprise application server for Node.js",
   "license": "MIT",
@@ -75,8 +75,8 @@
     "metawatch": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "^14.14.35",
-    "eslint": "^7.22.0",
+    "@types/node": "^14.14.37",
+    "eslint": "^7.23.0",
     "eslint-config-metarhia": "^7.0.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
