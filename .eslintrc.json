@@ -8,7 +8,6 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
-  "plugins": ["impress"],
   "rules": {
     "arrow-parens": "off",
     "comma-dangle": "off",
