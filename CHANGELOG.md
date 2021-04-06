@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Stop module only if module folder removed, not just `stop.js` file
+- Update metawatch to fix bug: load created directory after delete
 
 ## [2.1.1][] - 2021-03-30
 
