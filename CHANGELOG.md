@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.1.2][] - 2021-04-07
+
 - Stop module only if module folder removed, not just `stop.js` file
 - Update metawatch to fix bug: load created directory after delete
 
@@ -130,7 +132,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.1.1...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.1.2...HEAD
+[2.1.2]: https://github.com/metarhia/impress/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/metarhia/impress/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/metarhia/impress/compare/v2.0.14...v2.1.0
 [2.0.14]: https://github.com/metarhia/impress/compare/v2.0.13...v2.0.14
