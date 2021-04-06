@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Stop module only if module folder removed, not just `stop.js` file
+
 ## [2.1.1][] - 2021-03-30
 
 - Use metawatch instead of internal watcher
