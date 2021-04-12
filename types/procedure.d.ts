@@ -1,3 +1,5 @@
+import { Application } from './impress';
+
 type GroupAccess = { group: string };
 type UserAccess = { login: string };
 type Access = 'public' | 'session' | 'logged' | GroupAccess | UserAccess;
