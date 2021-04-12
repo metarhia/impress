@@ -44,6 +44,8 @@ import * as _https from 'https';
 import * as _http2 from 'http2';
 import * as _dgram from 'dgram';
 
+import * as _ws from 'ws';
+
 import * as _metautil from 'metautil';
 import * as _metalog from 'metalog';
 import * as _metawatch from 'metawatch';
@@ -85,8 +87,7 @@ declare global {
   }
 
   namespace npm {
-    const ws: object;
-    const pg: object;
+    const ws: typeof _ws;
   }
 
   namespace metarhia {
@@ -96,6 +97,7 @@ declare global {
   }
 }
 
+declare var npm: Dictionary<any>;
 declare var api: Dictionary<any>;
 declare var lib: Dictionary<any>;
 declare var domain: Dictionary<any>;
