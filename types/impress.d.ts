@@ -46,7 +46,9 @@ import * as _dgram from 'dgram';
 
 import * as _ws from 'ws';
 
+import * as _config from '@metarhia/config';
 import * as _metautil from 'metautil';
+import * as _metacom from 'metacom';
 import * as _metalog from 'metalog';
 import * as _metawatch from 'metawatch';
 
@@ -91,7 +93,9 @@ declare global {
   }
 
   namespace metarhia {
+    const config: typeof _config;
     const metautil: typeof _metautil;
+    const metacom: typeof _metacom;
     const metalog: typeof _metalog;
     const metawatch: typeof _metawatch;
   }
