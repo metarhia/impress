@@ -70,9 +70,9 @@
     "@types/ws": "^7.4.1",
     "metacom": "^1.6.1",
     "metalog": "^3.1.1",
-    "metaschema": "^1.0.2",
+    "metaschema": "^1.0.3",
     "metautil": "^3.5.1",
-    "metavm": "^1.0.0",
+    "metavm": "^1.0.1",
     "metawatch": "^1.0.3"
   },
   "devDependencies": {

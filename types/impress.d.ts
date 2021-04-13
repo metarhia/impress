@@ -48,9 +48,11 @@ import * as _ws from 'ws';
 
 import * as _config from '@metarhia/config';
 import * as _metautil from 'metautil';
+import * as _metavm from 'metavm';
 import * as _metacom from 'metacom';
 import * as _metalog from 'metalog';
 import * as _metawatch from 'metawatch';
+import * as _metaschema from 'metaschema';
 
 declare global {
   namespace node {
@@ -95,9 +97,11 @@ declare global {
   namespace metarhia {
     const config: typeof _config;
     const metautil: typeof _metautil;
+    const metavm: typeof _metavm;
     const metacom: typeof _metacom;
     const metalog: typeof _metalog;
     const metawatch: typeof _metawatch;
+    const metaschema: typeof _metaschema;
   }
 }
 
