@@ -6,14 +6,10 @@ interface Application {
   introspect: () => Promise<any>;
 }
 
-declare var application: Application;
-
 interface Context {
   client: Client;
   [key: string]: any;
 }
-
-declare var context: Context;
 
 import * as _util from 'util';
 import * as _cp from 'child_process';
@@ -103,10 +99,17 @@ declare global {
     const metawatch: typeof _metawatch;
     const metaschema: typeof _metaschema;
   }
-}
 
-declare var npm: Dictionary<any>;
-declare var api: Dictionary<any>;
-declare var lib: Dictionary<any>;
-declare var domain: Dictionary<any>;
-declare var config: Dictionary<any>;
+  const application: Application;
+  const context: Context;
+  const api: Dictionary<any>;
+  const lib: Dictionary<any>;
+  const domain: Dictionary<any>;
+
+  namespace config {
+    const log: LogConfig;
+    const scale: ScaleConfig;
+    const server: ServerConfig;
+    const sessions: SessionsConfig;
+  }
+}
