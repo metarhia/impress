@@ -1,4 +1,6 @@
-import { Application } from './impress';
+import { Schema } from 'metaschema';
+
+import { Application } from './core';
 
 type GroupAccess = { group: string };
 type UserAccess = { login: string };
@@ -8,8 +10,8 @@ type Serializer = 'json' | 'v8';
 type Protocols = 'http' | 'https' | 'ws' | 'wss';
 type AsyncFuction = (...args: Array<any>) => Promise<any>;
 type Example = {
-  parameters: Dictionary<any>;
-  returns: Dictionary<any>;
+  parameters: object;
+  returns: object;
 };
 
 interface Procedure {

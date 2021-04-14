@@ -1,15 +1,5 @@
-interface Application {
-  worker: Dictionary<any>;
-  server: Dictionary<any>;
-  auth: Auth;
-  resources: Map<string, Buffer>;
-  introspect: () => Promise<any>;
-}
-
-interface Context {
-  client: Client;
-  [key: string]: any;
-}
+import { LogConfig, ScaleConfig, ServerConfig, SessionsConfig } from './config';
+import { Application, Context, Client, Auth } from './core';
 
 import * as _util from 'util';
 import * as _cp from 'child_process';
@@ -102,9 +92,9 @@ declare global {
 
   const application: Application;
   const context: Context;
-  const api: Dictionary<any>;
-  const lib: Dictionary<any>;
-  const domain: Dictionary<any>;
+  const api: object;
+  const lib: object;
+  const domain: object;
 
   namespace config {
     const log: LogConfig;
