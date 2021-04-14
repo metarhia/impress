@@ -1,4 +1,4 @@
-interface LogConfig {
+export interface LogConfig {
   keepDays: number;
   writeInterval: number;
   writeBuffer: number;
@@ -6,7 +6,7 @@ interface LogConfig {
   toStdout: Array<string>;
 }
 
-interface ScaleConfig {
+export interface ScaleConfig {
   cloud: string;
   server: string;
   instance: 'standalone' | 'controller' | 'server';
@@ -14,7 +14,7 @@ interface ScaleConfig {
   gc: number;
 }
 
-interface ServerConfig {
+export interface ServerConfig {
   host: string;
   balancer: number;
   protocol: 'http' | 'https';
@@ -37,7 +37,7 @@ interface ServerConfig {
   };
 }
 
-interface SessionsConfig {
+export interface SessionsConfig {
   sid: string;
   characters: string;
   length: number;
