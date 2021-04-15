@@ -41,6 +41,26 @@ import * as _metawatch from 'metawatch';
 import * as _metaschema from 'metaschema';
 
 declare global {
+  const application: Application;
+  const context: Context;
+
+  namespace config {
+    const log: LogConfig;
+    const scale: ScaleConfig;
+    const server: ServerConfig;
+    const sessions: SessionsConfig;
+  }
+
+  namespace metarhia {
+    const config: typeof _config;
+    const metautil: typeof _metautil;
+    const metavm: typeof _metavm;
+    const metacom: typeof _metacom;
+    const metalog: typeof _metalog;
+    const metawatch: typeof _metawatch;
+    const metaschema: typeof _metaschema;
+  }
+
   namespace node {
     const util: typeof _util;
     const child_process: typeof _cp;
@@ -78,28 +98,5 @@ declare global {
 
   namespace npm {
     const ws: typeof _ws;
-  }
-
-  namespace metarhia {
-    const config: typeof _config;
-    const metautil: typeof _metautil;
-    const metavm: typeof _metavm;
-    const metacom: typeof _metacom;
-    const metalog: typeof _metalog;
-    const metawatch: typeof _metawatch;
-    const metaschema: typeof _metaschema;
-  }
-
-  const application: Application;
-  const context: Context;
-  const api: object;
-  const lib: object;
-  const domain: object;
-
-  namespace config {
-    const log: LogConfig;
-    const scale: ScaleConfig;
-    const server: ServerConfig;
-    const sessions: SessionsConfig;
   }
 }
