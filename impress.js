@@ -5,7 +5,7 @@ process.title = 'impress';
 const { Worker } = require('worker_threads');
 const path = require('path');
 
-const { Config } = require('@metarhia/config');
+const { Config } = require('metaconfiguration');
 const metavm = require('metavm');
 const metautil = require('metautil');
 const { loadSchema } = require('metaschema');
