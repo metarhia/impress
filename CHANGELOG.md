@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Use metaconfiguration (renamed @metarhia/config)
+- Fix error handling on load
 
 ## [2.2.0][] - 2021-04-15
 
