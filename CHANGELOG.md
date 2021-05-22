@@ -4,6 +4,7 @@
 
 - Use metaconfiguration (renamed @metarhia/config)
 - Сorrectly handle the absence of method in api
+- Fix error handling on load
 
 ## [2.2.0][] - 2021-04-15
 
