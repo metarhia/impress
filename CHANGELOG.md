@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Use metaconfiguration (renamed @metarhia/config)
+
 ## [2.2.0][] - 2021-04-15
 
 - Add tipings for Metarhia libraries

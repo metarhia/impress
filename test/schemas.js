@@ -3,7 +3,7 @@
 const metatests = require('metatests');
 const { loadSchema } = require('metaschema');
 const { createContext } = require('metavm');
-const { Config } = require('@metarhia/config');
+const { Config } = require('metaconfiguration');
 
 metatests.testAsync('schemas/config', async (test) => {
   const context = createContext({ process });

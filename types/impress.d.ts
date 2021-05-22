@@ -32,7 +32,7 @@ import * as _dgram from 'dgram';
 
 import * as _ws from 'ws';
 
-import * as _config from '@metarhia/config';
+import * as _config from 'metaconfiguration';
 import * as _metautil from 'metautil';
 import * as _metavm from 'metavm';
 import * as _metacom from 'metacom';
