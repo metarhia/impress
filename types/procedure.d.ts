@@ -1,4 +1,5 @@
 import { Schema } from 'metaschema';
+import { Semaphore } from 'metautil';
 
 import { Application } from './core';
 
@@ -15,20 +16,22 @@ type Example = {
 };
 
 interface Procedure {
+  exports: object;
+  script: Function;
+  application: Application;
+  method?: AsyncFuction;
+  parameters?: Schema;
+  returns?: Schema;
+  semaphore?: Semaphore;
   caption?: string;
   description?: string;
   access?: Access;
-  parameters?: Schema;
   validate?: Function;
   timeout?: number;
   queue?: QueueParameters;
   sirializer?: Serializer;
   protocols?: Array<Protocols>;
   deprecated?: boolean;
-  method: AsyncFuction;
-  returns?: Schema;
   assert?: Function;
-  script?: Function;
   examples?: Array<Example>;
-  application?: Application;
 }
