@@ -1,7 +1,7 @@
 export interface Application {
   worker: object;
   server: object;
-  auth: Auth;
+  auth: object;
   resources: Map<string, Buffer>;
   introspect: () => Promise<any>;
 }
@@ -15,11 +15,4 @@ export interface Client {
   events: { close: Array<Function> };
   callId: number;
   ip: string;
-}
-
-export interface Auth {
-  characters: string;
-  secret: string;
-  length: number;
-  db: object;
 }
