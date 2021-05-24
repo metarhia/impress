@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.3.0][] - 2021-05-24
+
 - Use metaconfiguration (renamed @metarhia/config)
 - Сorrectly handle the absence of method in api
 - Fix error handling on load
@@ -145,7 +147,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.2.0...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.3.0...HEAD
+[2.3.0]: https://github.com/metarhia/impress/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/metarhia/impress/compare/v2.1.2...v2.2.0
 [2.1.2]: https://github.com/metarhia/impress/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/metarhia/impress/compare/v2.1.0...v2.1.1
