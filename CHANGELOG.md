@@ -7,6 +7,7 @@
 - Fix error handling on load
 - Improve Procedure class, (remove mixin, add exports field)
 - Load custom interfaces in `api`
+- Import auth from application
 
 ## [2.2.0][] - 2021-04-15
 
