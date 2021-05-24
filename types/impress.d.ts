@@ -1,5 +1,5 @@
 import { LogConfig, ScaleConfig, ServerConfig, SessionsConfig } from './config';
-import { Application, Context, Client, Auth } from './core';
+import { Application, Context, Client } from './core';
 
 import * as _util from 'util';
 import * as _cp from 'child_process';

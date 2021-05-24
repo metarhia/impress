@@ -8,6 +8,7 @@
 - Improve Procedure class, (remove mixin, add exports field)
 - Load custom interfaces in `api`
 - Import auth from application
+- Implement default auth stub module
 
 ## [2.2.0][] - 2021-04-15
 
