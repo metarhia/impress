@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Auto load and reload schemas
+
 ## [2.3.0][] - 2021-05-24
 
 - Use metaconfiguration (renamed @metarhia/config)
