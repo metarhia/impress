@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Enterprise application server for Node.js",
   "license": "MIT",
@@ -63,7 +63,7 @@
     "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" \"**/*.ts\""
   },
   "engines": {
-    "node": "^12.9 || 14 || 15"
+    "node": "^12.9 || 14 || 16"
   },
   "dependencies": {
     "@types/ws": "^7.4.4",
