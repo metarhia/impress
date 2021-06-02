@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Auto load and reload schemas
+- Update dependencies (security reasons)
 
 ## [2.3.0][] - 2021-05-24
 
