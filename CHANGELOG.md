@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.3.1][] - 2021-06-03
+
 - Auto load and reload schemas
 - Update dependencies (security reasons)
 
@@ -150,7 +152,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.3.0...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.3.1...HEAD
+[2.3.1]: https://github.com/metarhia/impress/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/metarhia/impress/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/metarhia/impress/compare/v2.1.2...v2.2.0
 [2.1.2]: https://github.com/metarhia/impress/compare/v2.1.1...v2.1.2
