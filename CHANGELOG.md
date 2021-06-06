@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Move @types/ws to dev dependencies to reduce prod module size
+
 ## [2.3.1][] - 2021-06-03
 
 - Auto load and reload schemas
