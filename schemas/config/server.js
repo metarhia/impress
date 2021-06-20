@@ -1,6 +1,6 @@
 ({
   host: 'string',
-  balancer: 'number',
+  balancer: '?number',
   protocol: { enum: ['http', 'https'] },
   ports: { array: 'number' },
   nagle: 'boolean',
