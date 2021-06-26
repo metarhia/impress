@@ -2,6 +2,7 @@
 
 ## [Unreleased][unreleased]
 
+- Use references to schemas in API definition
 - Allow optional balancer in config
 
 ## [2.3.2][] - 2021-06-06
