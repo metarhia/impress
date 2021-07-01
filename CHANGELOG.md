@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Implement basic API plugin system
+
 ## [2.4.0][] - 2021-06-26
 
 - Use references to schemas in API definition
