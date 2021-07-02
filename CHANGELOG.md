@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Remove duplicated config validation
+
 ## [2.4.1][] - 2021-07-01
 
 - Implement basic API plugin system
