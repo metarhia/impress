@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Remove duplicated config validation
+- Support custom api routers
 
 ## [2.4.1][] - 2021-07-01
 
