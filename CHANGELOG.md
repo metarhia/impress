@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.4.2][] - 2021-07-07
+
 - Remove duplicated config validation
 - Support custom api routers
 
@@ -169,7 +171,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.4.1...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.4.2...HEAD
+[2.4.2]: https://github.com/metarhia/impress/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/metarhia/impress/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/metarhia/impress/compare/v2.3.2...v2.4.0
 [2.3.2]: https://github.com/metarhia/impress/compare/v2.3.1...v2.3.2
