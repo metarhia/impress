@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Drop private fields support for modules
+
 ## [2.4.2][] - 2021-07-07
 
 - Remove duplicated config validation
