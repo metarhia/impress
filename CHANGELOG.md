@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Rework scheduler, use `every` syntax
+
 ## [2.4.3][] - 2021-07-10
 
 - Drop private fields support for modules
