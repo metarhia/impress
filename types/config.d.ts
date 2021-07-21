@@ -32,6 +32,11 @@ export interface ServerConfig {
     size: number;
     timeout: number;
   };
+  scheduler: {
+    concurrency: number;
+    size: number;
+    timeout: number;
+  };
   workers: {
     pool: number;
   };

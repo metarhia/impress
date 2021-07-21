@@ -50,7 +50,10 @@ const CTRL_C = 3;
   });
   await validateConfig(config);
   const { balancer, ports = [], workers = {} } = config.server;
-  const count = ports.length + (balancer ? 1 : 0) + (workers.pool || 0);
+  const serversCount = ports.length + (balancer ? 1 : 0);
+  const schedulerCount = 1;
+  const schedulerId = serversCount;
+  const count = serversCount + schedulerCount + (workers.pool || 0);
   let startTimer = null;
   let active = 0;
   let starting = 0;
@@ -62,10 +65,12 @@ const CTRL_C = 3;
     }
   };
 
+  let scheduler = null;
   const start = (id) => {
     const workerPath = path.join(__dirname, 'lib/worker.js');
     const worker = new Worker(workerPath, { trackUnmanagedFds: true });
     threads[id] = worker;
+    if (id === schedulerId) scheduler = worker;
 
     worker.on('exit', (code) => {
       if (code !== 0) start(id);
@@ -81,7 +86,10 @@ const CTRL_C = 3;
     });
 
     worker.on('message', (data) => {
-      if (data.type === 'event' && data.name === 'started') active++;
+      if (data.type === 'event') {
+        if (data.name === 'started') active++;
+        if (data.name === 'task') scheduler.postMessage(data);
+      }
       if (active === count && startTimer) {
         clearTimeout(startTimer);
         startTimer = null;

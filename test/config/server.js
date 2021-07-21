@@ -16,6 +16,11 @@
     size: 2000,
     timeout: 3000,
   },
+  scheduler: {
+    concurrency: 1000,
+    size: 2000,
+    timeout: 3000,
+  },
   workers: {
     pool: 2,
   },
