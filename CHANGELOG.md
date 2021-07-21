@@ -4,6 +4,7 @@
 
 - Rework scheduler, use `every` syntax
 - Run scheduler in separate thread
+- Use `Semaphore` to organize task queue in scheduler thread
 
 ## [2.4.3][] - 2021-07-10
 
