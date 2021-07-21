@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Rework scheduler, use `every` syntax
+- Run scheduler in separate thread
 
 ## [2.4.3][] - 2021-07-10
 
