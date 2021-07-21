@@ -88,7 +88,7 @@ const CTRL_C = 3;
     worker.on('message', (data) => {
       if (data.type === 'event') {
         if (data.name === 'started') active++;
-        if (data.name === 'task') scheduler.postMessage(data);
+        if (data.name.startsWith('task:')) scheduler.postMessage(data);
       }
       if (active === count && startTimer) {
         clearTimeout(startTimer);
