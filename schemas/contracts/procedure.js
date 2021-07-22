@@ -6,7 +6,7 @@
   validate: { type: 'function', required: false },
   timeout: { type: 'number', required: false },
   queue: { type: 'QueueParameters', required: false },
-  sirializer: { type: 'Serializer', required: false },
+  serializer: { type: 'Serializer', required: false },
   protocols: { array: 'Protocols', required: false },
   deprecated: { type: 'boolean', required: false },
   method: 'AsyncFuction',

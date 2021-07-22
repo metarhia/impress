@@ -29,7 +29,7 @@ interface Procedure {
   validate?: Function;
   timeout?: number;
   queue?: QueueParameters;
-  sirializer?: Serializer;
+  serializer?: Serializer;
   protocols?: Array<Protocols>;
   deprecated?: boolean;
   assert?: Function;
