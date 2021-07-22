@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "2.4.3",
+  "version": "2.5.0",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Enterprise application server for Node.js",
   "license": "MIT",
@@ -68,9 +68,9 @@
   "dependencies": {
     "metacom": "^1.8.1",
     "metaconfiguration": "^2.1.4",
-    "metalog": "^3.1.2",
+    "metalog": "^3.1.3",
     "metaschema": "^1.3.3",
-    "metautil": "^3.5.7",
+    "metautil": "^3.5.8",
     "metavm": "^1.0.3",
     "metawatch": "^1.0.4"
   },
