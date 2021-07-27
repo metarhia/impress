@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Separate queue for each task name (topics)
+
 ## [2.5.0][] - 2021-07-22
 
 - Rework scheduler, use `every` syntax
