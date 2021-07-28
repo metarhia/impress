@@ -43,7 +43,7 @@ API endpoint example: `application/api/example.1/citiesByCountry.js`
 async ({ countryId }) => {
   const fields = ['cityId', 'name'];
   const where = { countryId };
-  const data = await domain.db.select('City', fields, where);
+  const data = await db.select('City', fields, where);
   return { result: 'success', data };
 };
 ```

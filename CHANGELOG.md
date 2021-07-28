@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Separate queue for each task name (topics)
+- Add place `db` for data access layer
 
 ## [2.5.0][] - 2021-07-22
 
