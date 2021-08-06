@@ -2,6 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [2.5.2][] - 2021-08-06
+
+- Update dependencies for network layer (metacom and ws)
+
 ## [2.5.1][] - 2021-07-30
 
 - Separate queue for each task name (topics)
@@ -187,7 +191,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.5.1...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.5.2...HEAD
+[2.5.2]: https://github.com/metarhia/impress/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/metarhia/impress/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/metarhia/impress/compare/v2.4.3...v2.5.0
 [2.4.3]: https://github.com/metarhia/impress/compare/v2.4.2...v2.4.3
