@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Don't load sql from `application/schemas`
+
 ## [2.5.2][] - 2021-08-06
 
 - Update dependencies for network layer (metacom and ws)
