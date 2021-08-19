@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Don't load sql from `application/schemas`
+- Support custom key method in `Procedure` (pass `name` to constructor)
 
 ## [2.5.2][] - 2021-08-06
 
