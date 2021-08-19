@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.5.3][] - 2021-08-19
+
 - Don't load sql from `application/schemas`
 - Support custom key method in `Procedure` (pass `name` to constructor)
 - Pass `context` to plugins and hooks
@@ -195,7 +197,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.5.2...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.5.3...HEAD
+[2.5.3]: https://github.com/metarhia/impress/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/metarhia/impress/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/metarhia/impress/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/metarhia/impress/compare/v2.4.3...v2.5.0
