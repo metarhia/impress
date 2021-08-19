@@ -25,7 +25,7 @@ metatests.testAsync('lib/procedure validate', async (test) => {
       },
     },
   };
-  const procedure = new Procedure(script, application);
+  const procedure = new Procedure(script, 'method', application);
 
   await test.rejects(
     () => procedure.invoke({}, { a: 3, b: 6 }),
@@ -58,7 +58,7 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
     },
   };
 
-  const procedure = new Procedure(script, application);
+  const procedure = new Procedure(script, 'method', application);
 
   await test.rejects(
     async () => procedure.invoke({}, { waitTime: 150 }),

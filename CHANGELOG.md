@@ -4,6 +4,7 @@
 
 - Don't load sql from `application/schemas`
 - Support custom key method in `Procedure` (pass `name` to constructor)
+- Pass `context` to plugins and hooks
 
 ## [2.5.2][] - 2021-08-06
 
