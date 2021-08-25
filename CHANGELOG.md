@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Allow third party plugins (not only metarhia npm modules)
+
 ## [2.5.3][] - 2021-08-19
 
 - Don't load sql from `application/schemas`
