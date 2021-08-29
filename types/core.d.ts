@@ -6,7 +6,7 @@ export interface Task {
 }
 
 export interface Scheduler {
-  add(task: Task): void;
+  add(task: Task): Promise<string>;
   remove(id: string): void;
   stop(name: string): void;
 }

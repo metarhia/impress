@@ -88,7 +88,10 @@ const CTRL_C = 3;
     worker.on('message', (data) => {
       if (data.type === 'event') {
         if (data.name === 'started') active++;
-        if (data.name.startsWith('task:')) scheduler.postMessage(data);
+        if (data.name.startsWith('task:')) {
+          const transferList = data.port ? [data.port] : undefined;
+          scheduler.postMessage(data, transferList);
+        }
       }
       if (active === count && startTimer) {
         clearTimeout(startTimer);
