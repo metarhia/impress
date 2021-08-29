@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Allow third party plugins (not only metarhia npm modules)
+- Scheduler: return task id from `Scheduler.add(task: Task): Promise<string>`
 
 ## [2.5.3][] - 2021-08-19
 
