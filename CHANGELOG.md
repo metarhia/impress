@@ -2,6 +2,9 @@
 
 ## [Unreleased][unreleased]
 
+- Refactor impress internal dependencies loading
+- Remove access to `worker_threads` from application
+
 ## [2.6.0][] - 2021-09-08
 
 - Allow third party plugins (not only metarhia npm modules)
