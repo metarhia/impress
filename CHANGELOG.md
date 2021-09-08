@@ -4,6 +4,7 @@
 
 - Allow third party plugins (not only metarhia npm modules)
 - Scheduler: return task id from `Scheduler.add(task: Task): Promise<string>`
+- Log error and exit process if can't load dependencies
 
 ## [2.5.3][] - 2021-08-19
 
