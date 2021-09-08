@@ -21,7 +21,7 @@ const CTRL_C = 3;
   const logOpt = { path: LOG_PATH, workerId: 0, toFile: [] };
   const { console } = await new Logger(logOpt);
 
-  const exit = (message) => {
+  const exit = (message = 'Can not start server') => {
     console.error(metautil.replace(message, PATH, ''));
     process.exit(1);
   };
@@ -40,7 +40,7 @@ const CTRL_C = 3;
         valid = false;
       }
     }
-    if (!valid) exit('Can not start server');
+    if (!valid) exit();
   };
 
   const context = metavm.createContext({ process });
@@ -73,8 +73,10 @@ const CTRL_C = 3;
     if (id === schedulerId) scheduler = worker;
 
     worker.on('exit', (code) => {
+      active--;
       if (code !== 0) start(id);
-      else if (--active === 0) process.exit(0);
+      else if (active === 0) process.exit(0);
+      else if (active < 0 && id === 0) exit();
     });
 
     worker.on('online', () => {
