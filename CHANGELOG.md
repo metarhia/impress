@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.0][] - 2021-09-08
+
 - Allow third party plugins (not only metarhia npm modules)
 - Scheduler: return task id from `Scheduler.add(task: Task): Promise<string>`
 - Log error and exit process if can't load dependencies
@@ -202,7 +204,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.5.3...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.0...HEAD
+[2.6.0]: https://github.com/metarhia/impress/compare/v2.5.3...v2.6.0
 [2.5.3]: https://github.com/metarhia/impress/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/metarhia/impress/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/metarhia/impress/compare/v2.5.0...v2.5.1
