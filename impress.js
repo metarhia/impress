@@ -4,7 +4,6 @@ process.title = 'impress';
 
 const { Worker } = require('worker_threads');
 const path = require('path');
-
 const { Config } = require('metaconfiguration');
 const metavm = require('metavm');
 const metautil = require('metautil');
