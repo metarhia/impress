@@ -56,6 +56,7 @@ const CTRL_C = 3;
   let startTimer = null;
   let active = 0;
   let starting = 0;
+  let next = schedulerId + 1;
   const threads = new Array(count);
 
   const stop = async () => {
@@ -93,6 +94,18 @@ const CTRL_C = 3;
           const transferList = data.port ? [data.port] : undefined;
           scheduler.postMessage(data, transferList);
         }
+        return;
+      }
+      if (data.type === 'invoke') {
+        if (next === count) {
+          data.port.postMessage({ error: new Error('No thread available') });
+          return;
+        }
+        const transferList = data.port ? [data.port] : undefined;
+        threads[next].postMessage(data, transferList);
+        next++;
+        if (next === count) next = schedulerId + 1;
+        return;
       }
       if (active === count && startTimer) {
         clearTimeout(startTimer);
