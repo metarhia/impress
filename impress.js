@@ -109,7 +109,7 @@ const CTRL_C = 3;
           port.postMessage({ error: new Error('No thread available') });
           return;
         }
-        threads[next].postMessage(data, transferList);
+        threads[next].postMessage(msg, transferList);
         next++;
         if (next === count) next = schedulerId + 1;
         return;
