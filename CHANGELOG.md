@@ -2,6 +2,7 @@
 
 ## [Unreleased][unreleased]
 
+- Quick (not optimal) implementation of `application.invoke`
 - Refactor impress internal dependencies loading
 - Remove access to `worker_threads` from application
 
