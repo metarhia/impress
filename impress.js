@@ -87,29 +87,32 @@ const CTRL_C = 3;
       }
     });
 
-    worker.on('message', (data) => {
-      if (data.type === 'event') {
-        if (data.name === 'started') active++;
-        if (data.name.startsWith('task:')) {
-          const transferList = data.port ? [data.port] : undefined;
-          scheduler.postMessage(data, transferList);
+    worker.on('message', (msg) => {
+      const { type, name, data, port } = msg;
+      if (type === 'event') {
+        if (name === 'started') {
+          active++;
+          if (active === count && startTimer) {
+            clearTimeout(startTimer);
+            startTimer = null;
+          }
         }
         return;
       }
-      if (data.type === 'invoke') {
+      const transferList = port ? [port] : undefined;
+      if (type === 'task') {
+        scheduler.postMessage(msg, transferList);
+        return;
+      }
+      if (type === 'invoke') {
         if (next === count) {
-          data.port.postMessage({ error: new Error('No thread available') });
+          port.postMessage({ error: new Error('No thread available') });
           return;
         }
-        const transferList = data.port ? [data.port] : undefined;
         threads[next].postMessage(data, transferList);
         next++;
         if (next === count) next = schedulerId + 1;
         return;
-      }
-      if (active === count && startTimer) {
-        clearTimeout(startTimer);
-        startTimer = null;
       }
     });
   };
