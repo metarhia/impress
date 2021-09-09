@@ -88,7 +88,7 @@ const CTRL_C = 3;
     });
 
     worker.on('message', (msg) => {
-      const { type, name, data, port } = msg;
+      const { type, name, port } = msg;
       if (type === 'event') {
         if (name === 'started') {
           active++;
