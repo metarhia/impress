@@ -5,6 +5,7 @@
 - Quick (not optimal) implementation of `application.invoke`
 - Refactor impress internal dependencies loading
 - Remove access to `worker_threads` from application
+- Execute tasks in thread pool
 
 ## [2.6.0][] - 2021-09-08
 
