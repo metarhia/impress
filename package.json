@@ -70,20 +70,20 @@
     "metaconfiguration": "^2.1.5",
     "metalog": "^3.1.3",
     "metaschema": "^1.3.3",
-    "metautil": "^3.5.10",
+    "metautil": "^3.5.11",
     "metavm": "^1.0.3",
     "metawatch": "^1.0.4"
   },
   "devDependencies": {
-    "@types/node": "^16.6.2",
+    "@types/node": "^16.9.0",
     "@types/ws": "^7.4.7",
     "eslint": "^7.32.0",
     "eslint-config-metarhia": "^7.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.24.0",
-    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
     "metatests": "^0.7.2",
-    "prettier": "^2.3.2",
-    "typescript": "^4.3.5"
+    "prettier": "^2.4.0",
+    "typescript": "^4.4.2"
   }
 }
