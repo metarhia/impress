@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.1][] - 2021-09-10
+
 - Quick (not optimal) implementation of `application.invoke`
 - Refactor impress internal dependencies loading
 - Remove access to `worker_threads` from application
@@ -209,7 +211,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.0...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.1...HEAD
+[2.6.1]: https://github.com/metarhia/impress/compare/v2.6.0...v2.6.1
 [2.6.0]: https://github.com/metarhia/impress/compare/v2.5.3...v2.6.0
 [2.5.3]: https://github.com/metarhia/impress/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/metarhia/impress/compare/v2.5.1...v2.5.2
