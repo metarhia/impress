@@ -11,12 +11,18 @@ export interface Scheduler {
   stop(name: string): void;
 }
 
+export interface InvokeTarget {
+  method: string;
+  args: object;
+}
+
 export interface Application {
   worker: object;
   server: object;
   auth: object;
   resources: Map<string, Buffer>;
   introspect: () => Promise<any>;
+  invoke: (target: InvokeTarget) => Promise<any>;
   scheduler: Scheduler;
 }
 

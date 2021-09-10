@@ -3,7 +3,6 @@ import { Application, Context, Client } from './core';
 
 import * as _util from 'util';
 import * as _cp from 'child_process';
-import * as _wt from 'worker_threads';
 import * as _os from 'os';
 import * as _v8 from 'v8';
 import * as _vm from 'vm';
@@ -65,8 +64,6 @@ declare global {
     const util: typeof _util;
     const child_process: typeof _cp;
     const childProcess: typeof _cp;
-    const worker_threads: typeof _wt;
-    const worker: typeof _wt;
     const os: typeof _os;
     const v8: typeof _v8;
     const vm: typeof _vm;
