@@ -17,6 +17,7 @@ export interface Application {
   auth: object;
   resources: Map<string, Buffer>;
   introspect: () => Promise<any>;
+  invoke: ({ target: string, args: object }) => Promise<any>;
   scheduler: Scheduler;
 }
 
