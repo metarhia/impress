@@ -87,33 +87,39 @@ const CTRL_C = 3;
       }
     });
 
-    worker.on('message', (msg) => {
-      const { type, name, port } = msg;
-      if (type === 'event') {
-        if (name === 'started') {
-          active++;
-          if (active === count && startTimer) {
-            clearTimeout(startTimer);
-            startTimer = null;
-          }
+    const ITC = {
+      event: ({ name }) => {
+        if (name !== 'started') return;
+        active++;
+        if (active === count && startTimer) {
+          clearTimeout(startTimer);
+          startTimer = null;
         }
-        return;
-      }
-      const transferList = port ? [port] : undefined;
-      if (type === 'task') {
+      },
+
+      task: (msg) => {
+        if (msg.type !== 'task') return;
+        const transferList = msg.port ? [msg.port] : undefined;
         scheduler.postMessage(msg, transferList);
-        return;
-      }
-      if (type === 'invoke') {
+      },
+
+      invoke: (msg) => {
+        const { name, port } = msg;
+        if (name === 'done' || name !== 'request') return;
         if (next === count) {
           port.postMessage({ error: new Error('No thread available') });
           return;
         }
+        const transferList = port ? [port] : undefined;
         threads[next].postMessage(msg, transferList);
         next++;
         if (next === count) next = schedulerId + 1;
-        return;
-      }
+      },
+    };
+
+    worker.on('message', (msg) => {
+      const handler = ITC[msg.type];
+      if (handler) handler(msg);
     });
   };
 
