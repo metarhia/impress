@@ -4,7 +4,8 @@
     "moduleResolution": "node",
     "strict": true,
     "baseUrl": ".",
-    "preserveWatchOutput": true
+    "preserveWatchOutput": true,
+    "skipLibCheck": true
   },
   "include": ["*.d.ts", "*.ts"]
 }
