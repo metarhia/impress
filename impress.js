@@ -52,12 +52,13 @@ const CTRL_C = 3;
   const serversCount = ports.length + (balancer ? 1 : 0);
   const schedulerCount = 1;
   const schedulerId = serversCount;
-  const count = serversCount + schedulerCount + (workers.pool || 0);
+  const poolSize = workers.pool || 0;
+  const count = serversCount + schedulerCount + poolSize;
   let startTimer = null;
   let active = 0;
   let starting = 0;
-  let next = schedulerId + 1;
   const threads = new Array(count);
+  const pool = new metautil.Pool();
 
   const stop = async () => {
     for (const worker of threads) {
@@ -71,6 +72,7 @@ const CTRL_C = 3;
     const worker = new Worker(workerPath, { trackUnmanagedFds: true });
     threads[id] = worker;
     if (id === schedulerId) scheduler = worker;
+    else if (id > schedulerId) pool.add(worker);
 
     worker.on('exit', (code) => {
       active--;
@@ -104,16 +106,14 @@ const CTRL_C = 3;
       },
 
       invoke: (msg) => {
-        const { name, port } = msg;
-        if (name === 'done' || name !== 'request') return;
-        if (next === count) {
+        const { name, port, exclusive } = msg;
+        if (name !== 'request') return;
+        const next = exclusive ? pool.capture() : pool.next();
+        if (!next) {
           port.postMessage({ error: new Error('No thread available') });
           return;
         }
-        const transferList = port ? [port] : undefined;
-        threads[next].postMessage(msg, transferList);
-        next++;
-        if (next === count) next = schedulerId + 1;
+        next.postMessage(msg, [port]);
       },
     };
 
