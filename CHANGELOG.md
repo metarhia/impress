@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Implement exclusive thread capture to execute `application.invoke`
+
 ## [2.6.2][] - 2021-09-12
 
 - Update metacom to prevent instalations with critical bug
