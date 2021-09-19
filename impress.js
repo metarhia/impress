@@ -107,6 +107,10 @@ const CTRL_C = 3;
 
       invoke: (msg) => {
         const { name, port, exclusive } = msg;
+        if (name === 'done') {
+          pool.release(worker);
+          return;
+        }
         if (name !== 'request') return;
         const next = exclusive ? pool.capture() : pool.next();
         if (!next) {
