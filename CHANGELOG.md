@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Implement exclusive thread capture to execute `application.invoke`
+- Wait for exclusive thread capture timeout
 
 ## [2.6.2][] - 2021-09-12
 
