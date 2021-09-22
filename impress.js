@@ -58,7 +58,7 @@ const CTRL_C = 3;
   let active = 0;
   let starting = 0;
   const threads = new Array(count);
-  const pool = new metautil.Pool();
+  const pool = new metautil.Pool({ timeout: workers.wait });
 
   const stop = async () => {
     for (const worker of threads) {
@@ -105,18 +105,19 @@ const CTRL_C = 3;
         scheduler.postMessage(msg, transferList);
       },
 
-      invoke: (msg) => {
+      invoke: async (msg) => {
         const { name, port, exclusive } = msg;
         if (name === 'done') {
           pool.release(worker);
           return;
         }
         if (name !== 'request') return;
-        const next = exclusive ? pool.capture() : pool.next();
-        if (!next) {
+        const promisedThread = exclusive ? pool.capture() : pool.next();
+        const next = await promisedThread.catch(() => {
           port.postMessage({ error: new Error('No thread available') });
-          return;
-        }
+          return null;
+        });
+        if (!next) return;
         next.postMessage(msg, [port]);
       },
     };

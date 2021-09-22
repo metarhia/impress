@@ -39,6 +39,8 @@ export interface ServerConfig {
   };
   workers: {
     pool: number;
+    wait: number;
+    timeout: number;
   };
 }
 
