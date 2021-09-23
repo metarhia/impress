@@ -2,7 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.4][] - 2021-09-23
+
 - Dependency loader fixed, `metasql` is optional now
+- Update `metacom` and `metautil` with bugfixes
 
 ## [2.6.3][] - 2021-09-22
 
@@ -222,7 +225,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.3...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.4...HEAD
+[2.6.4]: https://github.com/metarhia/impress/compare/v2.6.3...v2.6.4
 [2.6.3]: https://github.com/metarhia/impress/compare/v2.6.2...v2.6.3
 [2.6.2]: https://github.com/metarhia/impress/compare/v2.6.1...v2.6.2
 [2.6.1]: https://github.com/metarhia/impress/compare/v2.6.0...v2.6.1
