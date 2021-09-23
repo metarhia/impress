@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Dependency loader fixed, `metasql` is optional now
+
 ## [2.6.3][] - 2021-09-22
 
 - Implement exclusive thread capture to execute `application.invoke`
