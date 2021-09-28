@@ -1,3 +1,7 @@
+export interface ApplicationConfig {
+  extends: Array<string>;
+}
+
 export interface LogConfig {
   keepDays: number;
   writeInterval: number;

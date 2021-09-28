@@ -1,4 +1,10 @@
-import { LogConfig, ScaleConfig, ServerConfig, SessionsConfig } from './config';
+import {
+  ApplicationConfig,
+  LogConfig,
+  ScaleConfig,
+  ServerConfig,
+  SessionsConfig,
+} from './config';
 import { Application, Context, Client } from './core';
 
 import * as _util from 'util';
@@ -44,6 +50,7 @@ declare global {
   const context: Context;
 
   namespace config {
+    const application: ApplicationConfig;
     const log: LogConfig;
     const scale: ScaleConfig;
     const server: ServerConfig;

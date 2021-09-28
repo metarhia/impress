@@ -16,7 +16,12 @@ export interface InvokeTarget {
   args: object;
 }
 
+export interface ApplicationOptions {
+  root: string;
+}
+
 export interface Application {
+  constructor(options: ApplicationOptions);
   worker: object;
   server: object;
   auth: object;
