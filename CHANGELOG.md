@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fix: do not release thread if invoke is not exclusive
+
 ## [2.6.4][] - 2021-09-23
 
 - Dependency loader fixed, `metasql` is optional now

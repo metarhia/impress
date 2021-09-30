@@ -108,7 +108,7 @@ const CTRL_C = 3;
       invoke: async (msg) => {
         const { name, port, exclusive } = msg;
         if (name === 'done') {
-          pool.release(worker);
+          if (exclusive) pool.release(worker);
           return;
         }
         if (name !== 'request') return;
