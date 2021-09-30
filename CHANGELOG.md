@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Fix: do not release thread if invoke is not exclusive
+- Fix: write `task.id` to serialized task `.json` file
 
 ## [2.6.4][] - 2021-09-23
 
