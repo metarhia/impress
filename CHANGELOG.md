@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.5][] - 2021-09-30
+
 - Fix: do not release thread if invoke is not exclusive
 - Fix: write `task.id` to serialized task `.json` file
 
@@ -228,7 +230,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.4...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.5...HEAD
+[2.6.5]: https://github.com/metarhia/impress/compare/v2.6.4...v2.6.5
 [2.6.4]: https://github.com/metarhia/impress/compare/v2.6.3...v2.6.4
 [2.6.3]: https://github.com/metarhia/impress/compare/v2.6.2...v2.6.3
 [2.6.2]: https://github.com/metarhia/impress/compare/v2.6.1...v2.6.2
