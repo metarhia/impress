@@ -91,6 +91,7 @@ declare global {
     const https: typeof _https;
     const http2: typeof _http2;
     const dgram: typeof _dgram;
+    const process: NodeJS.Process;
   }
 
   namespace npm {
