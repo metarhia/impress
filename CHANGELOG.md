@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Typings: a "process" member was defined for the "node" namespace
+
 ## [2.6.5][] - 2021-09-30
 
 - Fix: do not release thread if invoke is not exclusive
