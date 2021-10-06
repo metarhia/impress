@@ -2,7 +2,7 @@
 
 ## [Unreleased][unreleased]
 
-- Typings: a "process" member was defined for the "node" namespace
+- Refactor: a `process` object was moved to a global context from a "node" namespace
 
 ## [2.6.5][] - 2021-09-30
 
