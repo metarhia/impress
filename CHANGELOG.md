@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Move `node.process` object to a sandbox context
+- Make `scheduler` field optional in `config/server.js`
 
 ## [2.6.5][] - 2021-09-30
 
