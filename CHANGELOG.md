@@ -2,8 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.6][] - 2021-10-12
+
 - Move `node.process` object to a sandbox context
 - Make `scheduler` field optional in `config/server.js`
+- Update dependencies to fix security and metacom
 
 ## [2.6.5][] - 2021-09-30
 
@@ -233,7 +236,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.5...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.6...HEAD
+[2.6.6]: https://github.com/metarhia/impress/compare/v2.6.5...v2.6.6
 [2.6.5]: https://github.com/metarhia/impress/compare/v2.6.4...v2.6.5
 [2.6.4]: https://github.com/metarhia/impress/compare/v2.6.3...v2.6.4
 [2.6.3]: https://github.com/metarhia/impress/compare/v2.6.2...v2.6.3
