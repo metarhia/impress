@@ -26,4 +26,7 @@
     wait: 'number',
     timeout: 'number',
   },
+  cors: {
+    origin: 'string',
+  },
 });
