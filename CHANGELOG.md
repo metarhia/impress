@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Add cors to server config
+
 ## [2.6.6][] - 2021-10-12
 
 - Move `node.process` object to a sandbox context
