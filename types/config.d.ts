@@ -42,6 +42,9 @@ export interface ServerConfig {
     wait: number;
     timeout: number;
   };
+  cors: {
+    origin: string;
+  };
 }
 
 export interface SessionsConfig {

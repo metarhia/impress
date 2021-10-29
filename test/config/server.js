@@ -26,4 +26,7 @@
     wait: 2000,
     timeout: 5000,
   },
+  cors: {
+    origin: '*',
+  },
 });
