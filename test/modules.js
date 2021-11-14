@@ -26,6 +26,5 @@ metatests.testAsync('lib/modules load', async (test) => {
   const cache = new Modules('cache', application);
   await cache.load();
   test.strictSame(cache.tree.utils.UNITS.length, 9);
-  console.dir({ cache }, { depth: 10 });
   test.end();
 });
