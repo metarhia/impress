@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Add cors to server config
+- Update metatests dependency
 
 ## [2.6.6][] - 2021-10-12
 
