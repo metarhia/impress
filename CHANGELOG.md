@@ -5,6 +5,7 @@
 - Add cors to server config
 - Update metatests dependency
 - Allow `async` procedure `validate` function
+- Emit application init events on user application
 
 ## [2.6.6][] - 2021-10-12
 

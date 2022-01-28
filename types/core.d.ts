@@ -1,3 +1,5 @@
+import { EventEmitter, NodeJS } from 'events';
+
 export interface Task {
   name: string;
   every: string;
@@ -16,7 +18,7 @@ export interface InvokeTarget {
   args: object;
 }
 
-export interface Application {
+export interface Application extends NodeJS.EventEmitter {
   worker: object;
   server: object;
   auth: object;
@@ -24,6 +26,15 @@ export interface Application {
   introspect: () => Promise<any>;
   invoke: (target: InvokeTarget) => Promise<any>;
   scheduler: Scheduler;
+
+  on(event: 'init', listener: (...args: any[]) => void): this;
+  once(event: 'init', listener: (...args: any[]) => void): this;
+  on(event: 'init-loaded', listener: (...args: any[]) => void): this;
+  once(event: 'init-loaded', listener: (...args: any[]) => void): this;
+  on(event: 'init-started', listener: (...args: any[]) => void): this;
+  once(event: 'init-started', listener: (...args: any[]) => void): this;
+  on(event: 'init-done', listener: (...args: any[]) => void): this;
+  once(event: 'init-done', listener: (...args: any[]) => void): this;
 }
 
 export interface Context {
