@@ -27,14 +27,14 @@ export interface Application extends NodeJS.EventEmitter {
   invoke: (target: InvokeTarget) => Promise<any>;
   scheduler: Scheduler;
 
-  on(event: 'init', listener: (...args: any[]) => void): this;
-  once(event: 'init', listener: (...args: any[]) => void): this;
-  on(event: 'init-loaded', listener: (...args: any[]) => void): this;
-  once(event: 'init-loaded', listener: (...args: any[]) => void): this;
-  on(event: 'init-started', listener: (...args: any[]) => void): this;
-  once(event: 'init-started', listener: (...args: any[]) => void): this;
-  on(event: 'init-done', listener: (...args: any[]) => void): this;
-  once(event: 'init-done', listener: (...args: any[]) => void): this;
+  on(event: 'loading', listener: (...args: any[]) => void): this;
+  once(event: 'loading', listener: (...args: any[]) => void): this;
+  on(event: 'loaded', listener: (...args: any[]) => void): this;
+  once(event: 'loaded', listener: (...args: any[]) => void): this;
+  on(event: 'started', listener: (...args: any[]) => void): this;
+  once(event: 'started', listener: (...args: any[]) => void): this;
+  on(event: 'initialized', listener: (...args: any[]) => void): this;
+  once(event: 'initialized', listener: (...args: any[]) => void): this;
 }
 
 export interface Context {
