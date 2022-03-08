@@ -10,6 +10,7 @@
   dependencies with '/', '@', '-' will also be available by removing those
   symbols and converting name to camelCase format.
   e.g `@metahia/common` -> `metarhiaCommon`, `date-fns` -> `dateFns`.
+- Improve application/worker error logs
 
 ## [2.6.6][] - 2021-10-12
 
