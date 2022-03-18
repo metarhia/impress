@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.7][] - 2022-03-18
+
 - Add cors to server config
 - Update metatests dependency
 - Allow `async` procedure `validate` function
@@ -11,6 +13,7 @@
   symbols and converting name to camelCase format.
   e.g `@metahia/common` -> `metarhiaCommon`, `date-fns` -> `dateFns`.
 - Improve application/worker error logs
+- Update dependencies
 
 ## [2.6.6][] - 2021-10-12
 
@@ -246,7 +249,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.6...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.7...HEAD
+[2.6.7]: https://github.com/metarhia/impress/compare/v2.6.6...v2.6.7
 [2.6.6]: https://github.com/metarhia/impress/compare/v2.6.5...v2.6.6
 [2.6.5]: https://github.com/metarhia/impress/compare/v2.6.4...v2.6.5
 [2.6.4]: https://github.com/metarhia/impress/compare/v2.6.3...v2.6.4
