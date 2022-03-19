@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Add error handler for logger in master and worker threads
+
 ## [2.6.7][] - 2022-03-18
 
 - Add cors to server config
