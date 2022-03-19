@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.8][] - 2022-03-19
+
 - Add error handler for logger in master and worker threads
 
 ## [2.6.7][] - 2022-03-18
@@ -251,7 +253,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.7...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.8...HEAD
+[2.6.8]: https://github.com/metarhia/impress/compare/v2.6.7...v2.6.8
 [2.6.7]: https://github.com/metarhia/impress/compare/v2.6.6...v2.6.7
 [2.6.6]: https://github.com/metarhia/impress/compare/v2.6.5...v2.6.6
 [2.6.5]: https://github.com/metarhia/impress/compare/v2.6.4...v2.6.5
