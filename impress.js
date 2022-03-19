@@ -18,7 +18,12 @@ const CTRL_C = 3;
 
 (async () => {
   const logOpt = { path: LOG_PATH, workerId: 0, toFile: [] };
-  const { console } = await new Logger(logOpt);
+  const logger = await new Logger(logOpt);
+  const console = logger.active ? logger.console : global.console;
+
+  logger.on('error', (err) => {
+    console.error(err.stack);
+  });
 
   const exit = (message = 'Can not start server') => {
     console.error(metautil.replace(message, PATH, ''));
