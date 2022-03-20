@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Improve error handling in master thread
+- Server config `cors.origin` is now optional
 
 ## [2.6.8][] - 2022-03-19
 
