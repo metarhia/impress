@@ -9,47 +9,61 @@ const metavm = require('metavm');
 const metautil = require('metautil');
 const { loadSchema } = require('metaschema');
 const { Logger } = require('metalog');
+let logger = null;
+
+let finalization = false;
+let initialization = true;
 
 const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
 const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const LOG_PATH = path.join(PATH, 'log');
 const CTRL_C = 3;
+const LOG_ALL = ['error', 'warn', 'info', 'debug', 'log'];
+const LOG_OPTIONS = { path: LOG_PATH, workerId: 0, toFile: LOG_ALL };
+
+const exit = async (message = 'Can not start Application server') => {
+  console.error(metautil.replace(message, PATH, ''));
+  if (logger) await logger.close();
+  process.exit(1);
+};
+
+const logError = (type) => (err) => {
+  const msg = err.stack || err.message || 'no stack trace';
+  console.error(`${type} error: ${msg}`);
+  if (finalization) return;
+  if (initialization) exit();
+};
+
+process.on('uncaughtException', logError('uncaughtException'));
+process.on('warning', logError('warning'));
+process.on('unhandledRejection', logError('unhandledRejection'));
+
+const validateConfig = async (config) => {
+  const schemaPath = path.join(__dirname, 'schemas/config');
+  let valid = true;
+  for (const section of CONFIG_SECTIONS) {
+    const fileName = path.join(schemaPath, section + '.js');
+    const schema = await loadSchema(fileName);
+    const checkResult = schema.check(config[section]);
+    if (!checkResult.valid) {
+      for (const err of checkResult.errors) {
+        console.error(`${err} in application/config/${section}.js`);
+      }
+      valid = false;
+    }
+  }
+  if (!valid) exit();
+};
 
 (async () => {
-  const logOpt = { path: LOG_PATH, workerId: 0, toFile: [] };
-  const logger = await new Logger(logOpt);
-  const console = logger.active ? logger.console : global.console;
-
-  logger.on('error', (err) => {
-    console.error(err.stack);
-  });
-
-  const exit = (message = 'Can not start server') => {
-    console.error(metautil.replace(message, PATH, ''));
-    process.exit(1);
-  };
-
-  const validateConfig = async (config) => {
-    const schemaPath = path.join(__dirname, 'schemas/config');
-    let valid = true;
-    for (const section of CONFIG_SECTIONS) {
-      const fileName = path.join(schemaPath, section + '.js');
-      const schema = await loadSchema(fileName);
-      const checkResult = schema.check(config[section]);
-      if (!checkResult.valid) {
-        for (const err of checkResult.errors) {
-          console.error(`${err} in application/config/${section}.js`);
-        }
-        valid = false;
-      }
-    }
-    if (!valid) exit();
-  };
+  logger = await new Logger(LOG_OPTIONS);
+  logger.on('error', logError('logger error'));
+  if (logger.active) global.console = logger.console;
 
   const context = metavm.createContext({ process });
-  const options = { mode: process.env.MODE, context };
-  const config = await new Config(CFG_PATH, options).catch((err) => {
+  const CFG_OPTIONS = { mode: process.env.MODE, context };
+  const config = await new Config(CFG_PATH, CFG_OPTIONS).catch((err) => {
     exit(`Can not read configuration: ${CFG_PATH}\n${err.stack}`);
   });
   await validateConfig(config);
@@ -62,16 +76,19 @@ const CTRL_C = 3;
   let startTimer = null;
   let active = 0;
   let starting = 0;
+  let scheduler = null;
   const threads = new Array(count);
   const pool = new metautil.Pool({ timeout: workers.wait });
 
   const stop = async () => {
+    finalization = true;
+    const closing = logger.close();
     for (const worker of threads) {
       worker.postMessage({ type: 'event', name: 'stop' });
     }
+    await closing;
   };
 
-  let scheduler = null;
   const start = (id) => {
     const workerPath = path.join(__dirname, 'lib/worker.js');
     const worker = new Worker(workerPath, { trackUnmanagedFds: true });
@@ -83,13 +100,15 @@ const CTRL_C = 3;
       active--;
       if (code !== 0) start(id);
       else if (active === 0) process.exit(0);
-      else if (active < 0 && id === 0) exit();
+      else if (active < 0 && id === 0) exit('Application server stopped');
     });
 
     worker.on('online', () => {
       if (++starting === count) {
         startTimer = setTimeout(() => {
-          if (active !== count) console.warn('Server initialization timed out');
+          if (active !== count) {
+            console.warn(`Worker ${id} initialization timeout`);
+          }
         }, config.server.timeouts.start);
       }
     });
@@ -145,4 +164,5 @@ const CTRL_C = 3;
       if (key === CTRL_C) stop();
     });
   }
-})();
+  initialization = false;
+})().catch(logError('initialization'));
