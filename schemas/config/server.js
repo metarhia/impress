@@ -27,6 +27,6 @@
     timeout: 'number',
   },
   cors: {
-    origin: 'string',
+    origin: '?string',
   },
 });

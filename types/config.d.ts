@@ -42,7 +42,7 @@ export interface ServerConfig {
     wait: number;
     timeout: number;
   };
-  cors: {
+  cors?: {
     origin: string;
   };
 }
