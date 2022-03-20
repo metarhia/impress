@@ -9,6 +9,7 @@ const metavm = require('metavm');
 const metautil = require('metautil');
 const { loadSchema } = require('metaschema');
 const { Logger } = require('metalog');
+let logger = null;
 
 let finalization = false;
 let initialization = true;
@@ -18,10 +19,12 @@ const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const LOG_PATH = path.join(PATH, 'log');
 const CTRL_C = 3;
-const LOG_OPTIONS = { path: LOG_PATH, workerId: 0, toFile: [] };
+const LOG_ALL = ['error', 'warn', 'info', 'debug', 'log'];
+const LOG_OPTIONS = { path: LOG_PATH, workerId: 0, toFile: LOG_ALL };
 
-const exit = (message = 'Can not start Application server') => {
+const exit = async (message = 'Can not start Application server') => {
   console.error(metautil.replace(message, PATH, ''));
+  if (logger) await logger.close();
   process.exit(1);
 };
 
@@ -54,7 +57,7 @@ const validateConfig = async (config) => {
 };
 
 (async () => {
-  const logger = await new Logger(LOG_OPTIONS);
+  logger = await new Logger(LOG_OPTIONS);
   logger.on('error', logError('logger error'));
   if (logger.active) global.console = logger.console;
 
@@ -79,9 +82,11 @@ const validateConfig = async (config) => {
 
   const stop = async () => {
     finalization = true;
+    const closing = logger.close();
     for (const worker of threads) {
       worker.postMessage({ type: 'event', name: 'stop' });
     }
+    await closing;
   };
 
   const start = (id) => {
