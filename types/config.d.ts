@@ -4,6 +4,7 @@ export interface LogConfig {
   writeBuffer: number;
   toFile: Array<string>;
   toStdout: Array<string>;
+  json?: boolean;
 }
 
 export interface ScaleConfig {

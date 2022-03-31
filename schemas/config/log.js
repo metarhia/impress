@@ -4,4 +4,5 @@
   writeBuffer: 'number',
   toFile: { array: 'string' },
   toStdout: { array: 'string' },
+  json: '?boolean',
 });

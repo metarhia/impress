@@ -4,6 +4,7 @@
 
 - Improve error handling in master thread
 - Server config `cors.origin` is now optional
+- Update metalog and allow 'json' parameter
 
 ## [2.6.8][] - 2022-03-19
 
