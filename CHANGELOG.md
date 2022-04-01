@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.9][] - 2022-04-01
+
 - Improve error handling in master thread
 - Server config `cors.origin` is now optional
 - Update metalog and allow 'json' parameter
@@ -257,7 +259,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.8...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.9...HEAD
+[2.6.9]: https://github.com/metarhia/impress/compare/v2.6.8...v2.6.9
 [2.6.8]: https://github.com/metarhia/impress/compare/v2.6.7...v2.6.8
 [2.6.7]: https://github.com/metarhia/impress/compare/v2.6.6...v2.6.7
 [2.6.6]: https://github.com/metarhia/impress/compare/v2.6.5...v2.6.6
