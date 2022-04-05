@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Do not call stop() on directories during shutdown
+
 ## [2.6.9][] - 2022-04-01
 
 - Improve error handling in master thread
