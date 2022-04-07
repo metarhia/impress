@@ -19,8 +19,7 @@ const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'application/config');
 const LOG_PATH = path.join(PATH, 'log');
 const CTRL_C = 3;
-const LOG_ALL = ['error', 'warn', 'info', 'debug', 'log'];
-const LOG_OPTIONS = { path: LOG_PATH, workerId: 0, toFile: LOG_ALL };
+const LOG_OPTIONS = { path: LOG_PATH, home: PATH, workerId: 0 };
 
 const exit = async (message = 'Can not start Application server') => {
   console.error(metautil.replace(message, PATH, ''));
@@ -57,15 +56,16 @@ const validateConfig = async (config) => {
 };
 
 (async () => {
-  logger = await new Logger(LOG_OPTIONS);
-  logger.on('error', logError('logger error'));
-  if (logger.active) global.console = logger.console;
-
   const context = metavm.createContext({ process });
   const CFG_OPTIONS = { mode: process.env.MODE, context };
   const config = await new Config(CFG_PATH, CFG_OPTIONS).catch((err) => {
     exit(`Can not read configuration: ${CFG_PATH}\n${err.stack}`);
   });
+
+  logger = await new Logger({ ...LOG_OPTIONS, ...config.log });
+  logger.on('error', logError('logger error'));
+  if (logger.active) global.console = logger.console;
+
   await validateConfig(config);
   const { balancer, ports = [], workers = {} } = config.server;
   const serversCount = ports.length + (balancer ? 1 : 0);
