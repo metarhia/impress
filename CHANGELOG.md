@@ -4,6 +4,7 @@
 
 - Do not call stop() on directories during shutdown
 - Use config for logger initialization in thread 0
+- Fix application init order
 
 ## [2.6.9][] - 2022-04-01
 
