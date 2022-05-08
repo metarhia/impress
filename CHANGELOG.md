@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [2.6.10][] - 2022-05-09
+
 - Do not call stop() on directories during shutdown
 - Use config for logger initialization in thread 0
 - Fix application init order
@@ -264,7 +266,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.9...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v2.6.10...HEAD
+[2.6.10]: https://github.com/metarhia/impress/compare/v2.6.9...v2.6.10
 [2.6.9]: https://github.com/metarhia/impress/compare/v2.6.8...v2.6.9
 [2.6.8]: https://github.com/metarhia/impress/compare/v2.6.7...v2.6.8
 [2.6.7]: https://github.com/metarhia/impress/compare/v2.6.6...v2.6.7
