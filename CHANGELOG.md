@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fix shutdown while initialization
+
 ## [2.6.10][] - 2022-05-09
 
 - Do not call stop() on directories during shutdown
