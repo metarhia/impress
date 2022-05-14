@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Fix shutdown while initialization
+- Worker-based multitenancy implementation
 
 ## [2.6.10][] - 2022-05-09
 
