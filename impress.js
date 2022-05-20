@@ -50,9 +50,6 @@ process.on('warning', logError('Warning'));
 process.on('unhandledRejection', logError('Unhandled rejection'));
 
 const startWorker = (app, kind, port, id = ++impress.lastWorkerId) => {
-  // TODO: implement kind: 'worker'
-  // 'scheduler' will not be kind of worker
-  // it will be shared for all apps
   const workerData = { id, kind, path: app.path, port };
   const options = { trackUnmanagedFds: true, workerData };
   const worker = new Worker(WORKER_PATH, options);
@@ -68,44 +65,40 @@ const startWorker = (app, kind, port, id = ++impress.lastWorkerId) => {
   });
 
   const handlers = {
-    event: ({ name }) => {
-      if (name === 'started') {
-        app.ready++;
-        app.pool.add(worker);
-        if (app.threads.size === app.ready) {
-          impress.console.info(`App started: ${app.peth}`);
-        }
+    started: () => {
+      app.ready++;
+      app.pool.add(worker);
+      if (app.threads.size === app.ready) {
+        impress.console.info(`App started: ${app.peth}`);
       }
     },
 
     task: (msg) => {
-      impress.console.log({ id, type: 'task', msg });
+      impress.console.log({ id, name: 'task', msg });
       //const transferList = msg.port ? [msg.port] : undefined;
       //scheduler.postMessage(msg, transferList);
     },
 
     invoke: async (msg) => {
-      impress.console.log({ id, type: 'invoke', msg });
-      /*
+      impress.console.log({ id, name: 'invoke', msg });
       const { name, port, exclusive } = msg;
-      if (name === 'done') {
-        if (exclusive) pool.release(worker);
+      if (name === 'invoke/done') {
+        if (exclusive) app.pool.release(worker);
         return;
       }
-      if (name !== 'request') return;
-      const promisedThread = exclusive ? pool.capture() : pool.next();
+      const promisedThread = exclusive ? app.pool.capture() : app.pool.next();
       const next = await promisedThread.catch(() => {
-        port.postMessage({ error: new Error('No thread available') });
+        const error = new Error('No thread available');
+        port.postMessage({ name: 'error', error });
         return null;
       });
       if (!next) return;
       next.postMessage(msg, [port]);
-      */
     },
   };
 
   worker.on('message', (msg) => {
-    const handler = handlers[msg.type];
+    const handler = handlers[msg.name];
     if (handler) handler(msg);
   });
 };
@@ -162,7 +155,7 @@ const loadApplications = async () => {
 const stopApplication = (root) => {
   const app = impress.applications.get(root);
   for (const thread of app.threads.values()) {
-    thread.postMessage({ type: 'event', name: 'stop' });
+    thread.postMessage({ name: 'stop' });
   }
 };
 
