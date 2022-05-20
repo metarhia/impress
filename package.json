@@ -59,8 +59,8 @@
   "scripts": {
     "test": "npm run lint && npm run types && metatests test/",
     "types": "tsc -p types/tsconfig.json",
-    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" \"**/*.ts\"",
-    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.yml\" \"**/*.ts\""
+    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\"",
+    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
   },
   "engines": {
     "node": "^12.9 || 14 || 16 || 17 || 18"
