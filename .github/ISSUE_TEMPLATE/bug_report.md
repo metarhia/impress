@@ -1,28 +1,33 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: bug
-assignees: ''
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior: usage example or test.
-
-**Expected behavior**
-A clear and concise description of what you expected.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
-
-- OS: [e.g. Fedora 30 64-bit]
-- Node.js version [e.g. 14.15.1]
-- Impress version [e.g. 2.0.0]
-
-**Additional context**
-Add any other context about the problem here.
+name: 🐞 Bug report
+description: Create a report to help us improve
+body:
+  - type: input
+    attributes:
+      label: Impress and Node.js versions
+      description: `see package.json` and run `node -v`
+  - type: input
+    attributes:
+      label: Platform
+      description: output of `uname -a`
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior: usage example or test.
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected.
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.

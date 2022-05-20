@@ -1,5 +1,5 @@
 ---
-name: Question
+name: ❓ Question
 about: Please don't open an issue to ask questions
 ---
 
