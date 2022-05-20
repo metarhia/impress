@@ -4,7 +4,7 @@ body:
   - type: input
     attributes:
       label: Impress and Node.js versions
-      description: `see package.json` and run `node -v`
+      description: see `package.json` and run `node -v`
   - type: input
     attributes:
       label: Platform
