@@ -10,6 +10,7 @@ const metavm = require('metavm');
 const metautil = require('metautil');
 const { loadSchema } = require('metaschema');
 const { Logger } = require('metalog');
+const { Planner } = require('./lib/planner.js');
 
 const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
 const PATH = process.cwd();
@@ -24,12 +25,14 @@ const CFG_OPTIONS = { mode: process.env.MODE, context: CONTEXT };
 const impress = {
   logger: null,
   config: null,
+  planner: null,
   finalized: () => {},
   finalization: false,
   initialization: true,
   console,
   applications: new Map(),
   lastWorkerId: 0,
+  startTimer: null,
 };
 
 const exit = async (message) => {
@@ -49,10 +52,12 @@ process.on('uncaughtException', logError('Uncaught exception'));
 process.on('warning', logError('Warning'));
 process.on('unhandledRejection', logError('Unhandled rejection'));
 
-const startWorker = (app, kind, port, id = ++impress.lastWorkerId) => {
+const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   const workerData = { id, kind, path: app.path, port };
   const options = { trackUnmanagedFds: true, workerData };
   const worker = new Worker(WORKER_PATH, options);
+  app.pool.add(worker);
+  await app.pool.capture();
   app.threads.set(id, worker);
 
   worker.on('exit', (code) => {
@@ -65,24 +70,26 @@ const startWorker = (app, kind, port, id = ++impress.lastWorkerId) => {
   });
 
   const handlers = {
-    started: () => {
+    started: ({ kind }) => {
       app.ready++;
-      app.pool.add(worker);
+      if (kind === 'worker') app.pool.release(worker);
       if (app.threads.size === app.ready) {
-        impress.console.info(`App started: ${app.peth}`);
+        clearTimeout(impress.startTimer);
+        impress.initialization = false;
+        impress.console.info(`App started: ${app.path}`);
       }
     },
 
-    task: (msg) => {
-      impress.console.log({ id, name: 'task', msg });
-      //const transferList = msg.port ? [msg.port] : undefined;
-      //scheduler.postMessage(msg, transferList);
+    task: async ({ action, port, task }) => {
+      const { planner } = impress;
+      if (action === 'add') port.postMessage({ id: await planner.add(task) });
+      else if (action === 'remove') planner.remove(task.id);
+      else if (action === 'stop') planner.stop(task.name);
     },
 
     invoke: async (msg) => {
-      impress.console.log({ id, name: 'invoke', msg });
-      const { name, port, exclusive } = msg;
-      if (name === 'invoke/done') {
+      const { status, port, exclusive } = msg;
+      if (status === 'done') {
         if (exclusive) app.pool.release(worker);
         return;
       }
@@ -134,10 +141,10 @@ const loadApplication = async (root) => {
 
   const app = { path: root, config, threads, pool, ready: 0 };
 
-  if (balancer) startWorker(app, 'balancer', balancer);
-  for (const port of ports) startWorker(app, 'server', port);
+  if (balancer) await startWorker(app, 'balancer', balancer);
+  for (const port of ports) await startWorker(app, 'server', port);
   const poolSize = workers.pool || 0;
-  for (let i = 0; i < poolSize; i++) startWorker(app, 'worker');
+  for (let i = 0; i < poolSize; i++) await startWorker(app, 'worker');
 
   impress.applications.set(root, app);
 };
@@ -187,11 +194,14 @@ const stop = async () => {
   logger.on('error', logError('Logger'));
   if (logger.active) impress.console = logger.console;
   impress.logger = logger;
+  const tasksPath = path.join(PATH, 'application/tasks');
+  const tasksConfig = config.server.scheduler;
+  impress.planner = await new Planner(tasksPath, tasksConfig, impress.console);
 
   process.on('SIGINT', stop);
   process.on('SIGTERM', stop);
 
-  const startTimer = setTimeout(() => {
+  impress.startTimer = setTimeout(() => {
     impress.console.warn(`Initialization timeout`);
   }, config.server.timeouts.start);
 
@@ -204,6 +214,4 @@ const stop = async () => {
       if (key === CTRL_C) stop();
     });
   }
-  clearTimeout(startTimer);
-  impress.initialization = false;
 })().catch(logError('Initialization'));
