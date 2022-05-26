@@ -56,8 +56,10 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   const workerData = { id, kind, path: app.path, port };
   const options = { trackUnmanagedFds: true, workerData };
   const worker = new Worker(WORKER_PATH, options);
-  app.pool.add(worker);
-  await app.pool.capture();
+  if (kind === 'worker') {
+    app.pool.add(worker);
+    await app.pool.capture();
+  }
   app.threads.set(id, worker);
 
   worker.on('exit', (code) => {
@@ -91,7 +93,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
     invoke: async (msg) => {
       const { status, port, exclusive } = msg;
       if (status === 'done') {
-        if (exclusive) app.pool.release(worker);
+        app.pool.release(worker);
         return;
       }
       const promisedThread = exclusive ? app.pool.capture() : app.pool.next();
