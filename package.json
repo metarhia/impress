@@ -66,24 +66,24 @@
     "node": "14 || 16 || 17 || 18"
   },
   "dependencies": {
-    "metacom": "^2.0.7",
-    "metaconfiguration": "^2.1.6",
+    "metacom": "^3.0.0-alpha.1",
+    "metaconfiguration": "^2.1.7",
     "metalog": "^3.1.8",
     "metaschema": "^1.4.1",
     "metautil": "^3.5.20",
-    "metavm": "^1.1.0",
+    "metavm": "^1.2.0",
     "metawatch": "^1.0.5"
   },
   "devDependencies": {
-    "@types/node": "^17.0.31",
+    "@types/node": "^17.0.35",
     "@types/ws": "^8.5.3",
-    "eslint": "^8.15.0",
+    "eslint": "^8.16.0",
     "eslint-config-metarhia": "^7.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "metatests": "^0.8.2",
     "prettier": "^2.6.2",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.2"
   }
 }
