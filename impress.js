@@ -82,6 +82,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
 
     task: async ({ action, port, task }) => {
       const { planner } = impress;
+      task.app = app.path;
       if (action === 'add') port.postMessage({ id: await planner.add(task) });
       else if (action === 'remove') planner.remove(task.id);
       else if (action === 'stop') planner.stop(task.name);
@@ -196,7 +197,7 @@ const stop = async () => {
   impress.logger = logger;
   const tasksPath = path.join(PATH, 'application/tasks');
   const tasksConfig = config.server.scheduler;
-  impress.planner = await new Planner(tasksPath, tasksConfig, impress.console);
+  impress.planner = await new Planner(tasksPath, tasksConfig, impress);
 
   process.on('SIGINT', stop);
   process.on('SIGTERM', stop);
