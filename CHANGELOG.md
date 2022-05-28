@@ -4,7 +4,7 @@
 
 - Fix shutdown while initialization
 - Worker-based multitenancy implementation
-- Implement integration bus (new place `application/bus`)
+- Initial integration bus implementation (new place `application/bus`)
 
 ## [2.6.10][] - 2022-05-09
 
