@@ -9,7 +9,7 @@ type Access = 'public' | 'session' | 'logged' | GroupAccess | UserAccess;
 type QueueParameters = { concurrency: number; size: number; timeout: number };
 type Serializer = 'json' | 'v8';
 type Protocols = 'http' | 'https' | 'ws' | 'wss';
-type AsyncFuction = (...args: Array<any>) => Promise<any>;
+type AsyncFunction = (...args: Array<any>) => Promise<any>;
 type Example = {
   parameters: object;
   returns: object;
@@ -19,7 +19,7 @@ interface Procedure {
   exports: object;
   script: Function;
   application: Application;
-  method?: AsyncFuction;
+  method?: AsyncFunction;
   parameters?: Schema;
   returns?: Schema;
   semaphore?: Semaphore;
