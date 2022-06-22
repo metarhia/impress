@@ -11,7 +11,6 @@ const application = {
   path: path.join(root, 'test'),
   sandbox: metavm.createContext({ api: {} }),
   watcher: { watch() {} },
-  schemas: { model: {} },
   absolute(relative) {
     return path.join(this.path, relative);
   },
