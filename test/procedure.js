@@ -30,7 +30,7 @@ metatests.testAsync('lib/procedure validate', async (test) => {
 
   await test.rejects(
     () => procedure.invoke({}, { a: 3, b: 6 }),
-    new Error('Expected `a` to be multiple of 3')
+    new Error('Expected `a` to be multiple of 3'),
   );
 
   await test.resolves(() => procedure.invoke({}, { a: 4, b: 6 }), 10);
@@ -61,7 +61,7 @@ metatests.testAsync('lib/procedure validate async', async (test) => {
 
   await test.rejects(
     procedure.invoke({}, { a: 4, b: 10 }),
-    new Error('Expected `b` not to be multiple of 5')
+    new Error('Expected `b` not to be multiple of 5'),
   );
 
   await test.resolves(procedure.invoke({}, { a: 4, b: 6 }), 10);
@@ -93,7 +93,7 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
 
   await test.rejects(
     async () => procedure.invoke({}, { waitTime: 150 }),
-    new Error('Timeout reached')
+    new Error('Timeout reached'),
   );
 
   await test.resolves(() => procedure.invoke({}, { waitTime: 50 }), DONE);
