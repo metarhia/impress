@@ -63,7 +63,7 @@
     "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
   },
   "engines": {
-    "node": "14 || 16  || 18"
+    "node": "14 || 16 || 18"
   },
   "dependencies": {
     "metacom": "^3.0.0-alpha.1",
@@ -75,15 +75,15 @@
     "metawatch": "^1.0.5"
   },
   "devDependencies": {
-    "@types/node": "^17.0.35",
+    "@types/node": "^18.0.0",
     "@types/ws": "^8.5.3",
-    "eslint": "^8.16.0",
+    "eslint": "^8.18.0",
     "eslint-config-metarhia": "^8.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "metatests": "^0.8.2",
-    "prettier": "^2.6.2",
-    "typescript": "^4.7.2"
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
   }
 }
