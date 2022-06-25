@@ -2,9 +2,12 @@
 
 ## [Unreleased][unreleased]
 
-- Fix shutdown while initialization
+## [3.0.0-alpha.1][] - 2022-06-25
+
 - Worker-based multitenancy implementation
+- Update to metaschema v2.x
 - Initial integration bus implementation (new place `application/bus`)
+- Fix shutdown while initialization
 
 ## [2.6.10][] - 2022-05-09
 
@@ -270,7 +273,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v2.6.10...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...HEAD
+[3.0.0-alpha.1]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0-alpha.1
 [2.6.10]: https://github.com/metarhia/impress/compare/v2.6.9...v2.6.10
 [2.6.9]: https://github.com/metarhia/impress/compare/v2.6.8...v2.6.9
 [2.6.8]: https://github.com/metarhia/impress/compare/v2.6.7...v2.6.8
