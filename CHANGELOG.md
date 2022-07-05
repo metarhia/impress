@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fix clear introspection signature cache
+
 ## [3.0.0-alpha.1][] - 2022-06-25
 
 - Worker-based multitenancy implementation
