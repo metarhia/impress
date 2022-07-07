@@ -2,7 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.2][] - 2022-07-07
+
 - Fix clear introspection signature cache
+- Package maintenance
 
 ## [3.0.0-alpha.1][] - 2022-06-25
 
@@ -275,7 +278,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.2...HEAD
+[3.0.0-alpha.1]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...v3.0.0-alpha.2
 [3.0.0-alpha.1]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0-alpha.1
 [2.6.10]: https://github.com/metarhia/impress/compare/v2.6.9...v2.6.10
 [2.6.9]: https://github.com/metarhia/impress/compare/v2.6.8...v2.6.9
