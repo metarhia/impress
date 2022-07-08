@@ -25,6 +25,7 @@ metatests.testAsync('lib/procedure validate', async (test) => {
         leave() {},
       },
     },
+    schemas: { model: null },
   };
   const procedure = new Procedure(script, 'method', application);
 
