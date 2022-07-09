@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Handle application init errors
+- Stop worker on start handler failure
 
 ## [3.0.0-alpha.2][] - 2022-07-07
 
