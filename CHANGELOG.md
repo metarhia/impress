@@ -4,6 +4,7 @@
 
 - Handle application init errors
 - Stop worker on start handler failure
+- Stop process on worker failure
 
 ## [3.0.0-alpha.2][] - 2022-07-07
 
