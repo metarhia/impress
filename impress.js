@@ -65,6 +65,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   worker.on('exit', (code) => {
     if (code !== 0) startWorker(app, kind, port, id);
     else app.threads.delete(id);
+    if (impress.initialization) exit('Can not start Application server');
     if (app.threads.size === 0) {
       impress.applications.delete(app.path);
       if (impress.applications.size === 0) impress.finalized();
