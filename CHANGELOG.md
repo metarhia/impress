@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Handle application init errors
+
 ## [3.0.0-alpha.2][] - 2022-07-07
 
 - Fix clear introspection signature cache
