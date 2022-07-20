@@ -14,11 +14,15 @@ const application = {
   absolute(relative) {
     return path.join(this.path, relative);
   },
+  Error,
 };
 
 metatests.testAsync('lib/interfaces load', async (test) => {
   const api = new Interfaces('api', application);
   await api.load();
+  console.dir(
+    await api.collection.geo['1'].schemaCity.invoke({ custom: true }),
+  );
   test.strictSame(typeof api.collection.example['1'].add.method, 'function');
   test.end();
 });

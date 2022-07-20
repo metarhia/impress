@@ -66,6 +66,7 @@
     "node": "14 || 16 || 18"
   },
   "dependencies": {
+    "@oldendev/testplugin": "^1.1.3",
     "metacom": "^3.0.0-alpha.2",
     "metaconfiguration": "^2.1.8",
     "metalog": "^3.1.9",
