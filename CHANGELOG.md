@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.3][] - 2022-07-26
+
 - Handle application init errors
 - Stop worker on start handler failure
 - Stop process on worker failure
@@ -282,8 +284,9 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.2...HEAD
-[3.0.0-alpha.1]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...v3.0.0-alpha.2
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.3...HEAD
+[3.0.0-alpha.3]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.2...v3.0.0-alpha.3
+[3.0.0-alpha.2]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...v3.0.0-alpha.2
 [3.0.0-alpha.1]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0-alpha.1
 [2.6.10]: https://github.com/metarhia/impress/compare/v2.6.9...v2.6.10
 [2.6.9]: https://github.com/metarhia/impress/compare/v2.6.8...v2.6.9
