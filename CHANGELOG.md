@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fix scheduler: task id, unknown app, etc.
+
 ## [3.0.0-alpha.3][] - 2022-07-26
 
 - Handle application init errors
