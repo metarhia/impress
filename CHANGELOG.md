@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.4][] - 2022-07-30
+
 - Fix scheduler: task id, unknown app, etc.
 
 ## [3.0.0-alpha.3][] - 2022-07-26
@@ -286,7 +288,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.3...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.4...HEAD
+[3.0.0-alpha.4]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.3...v3.0.0-alpha.4
 [3.0.0-alpha.3]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.2...v3.0.0-alpha.3
 [3.0.0-alpha.2]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...v3.0.0-alpha.2
 [3.0.0-alpha.1]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0-alpha.1
