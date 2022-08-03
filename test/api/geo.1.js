@@ -1,4 +1,4 @@
 ({
   plugin: 'oldendevTestplugin/crud',
-  entities: { City: { name: 'string ' } },
+  entities: { City: { name: 'string' } },
 });
