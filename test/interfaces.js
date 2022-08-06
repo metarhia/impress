@@ -22,7 +22,7 @@ metatests.testAsync('lib/interfaces load', async (test) => {
   await api.load();
   test.strictSame(await api.collection.geo['1'].schemaCity.invoke('context'), {
     context: 'context',
-    data: { name: 'string ' },
+    data: { name: 'string' },
   });
   const request = {
     method: 'hook',
