@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Exit on initializatopn timeout
+
 ## [3.0.0-alpha.4][] - 2022-07-30
 
 - Fix scheduler: task id, unknown app, etc.

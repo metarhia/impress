@@ -42,7 +42,7 @@ const exit = async (message) => {
 };
 
 const logError = (type) => (err) => {
-  const msg = err.stack || err.message || 'no stack trace';
+  const msg = err?.stack || err?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
   if (impress.finalization) return;
   if (impress.initialization) exit('Can not start Application server');
@@ -205,9 +205,10 @@ const stop = async () => {
   process.on('SIGINT', stop);
   process.on('SIGTERM', stop);
 
-  impress.startTimer = setTimeout(() => {
-    impress.console.warn(`Initialization timeout`);
-  }, config.server.timeouts.start);
+  impress.startTimer = setTimeout(
+    logError('Initialization timeout'),
+    config.server.timeouts.start,
+  );
 
   await loadApplications();
 
