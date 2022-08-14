@@ -35,9 +35,11 @@ const impress = {
   startTimer: null,
 };
 
-const exit = async (message) => {
-  impress.console.info(message);
-  if (impress.logger && impress.logger.active) await impress.logger.close();
+const exit = (message) => {
+  process.on('exit', async () => {
+    impress.console.info(message);
+    if (impress.logger && impress.logger.active) await impress.logger.close();
+  });
   process.exit(1);
 };
 
