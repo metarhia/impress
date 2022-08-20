@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.5][] - 2022-08-20
+
 - Exit on initializatopn timeout
 - Fix main process exit
 - Fix adding tasks to scheduler
@@ -293,7 +295,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.4...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.5...HEAD
+[3.0.0-alpha.5]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.4...v3.0.0-alpha.5
 [3.0.0-alpha.4]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.3...v3.0.0-alpha.4
 [3.0.0-alpha.3]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.2...v3.0.0-alpha.3
 [3.0.0-alpha.2]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...v3.0.0-alpha.2

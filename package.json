@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "3.0.0-alpha.4",
+  "version": "3.0.0-alpha.5",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Enterprise application server for Node.js",
   "license": "MIT",
@@ -69,15 +69,15 @@
     "metacom": "^3.0.0-alpha.4",
     "metaconfiguration": "^2.1.8",
     "metalog": "^3.1.9",
-    "metaschema": "^2.1.0",
-    "metautil": "^3.5.22",
+    "metaschema": "^2.1.1",
+    "metautil": "^3.5.23",
     "metavm": "^1.2.1",
     "metawatch": "^1.0.6"
   },
   "devDependencies": {
-    "@types/node": "^18.6.1",
+    "@types/node": "^18.7.8",
     "@types/ws": "^8.5.3",
-    "eslint": "^8.20.0",
+    "eslint": "^8.22.0",
     "eslint-config-metarhia": "^8.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
