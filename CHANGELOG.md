@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Exit on initializatopn timeout
+- Fix main process exit
 - Fix adding tasks to scheduler
 
 ## [3.0.0-alpha.4][] - 2022-07-30

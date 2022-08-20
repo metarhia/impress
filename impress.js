@@ -26,7 +26,7 @@ const impress = {
   logger: null,
   config: null,
   planner: null,
-  finalized: () => {},
+  close: () => {},
   finalization: false,
   initialization: true,
   console,
@@ -36,6 +36,8 @@ const impress = {
 };
 
 const exit = async (message) => {
+  if (impress.finalization) return;
+  impress.finalization = true;
   impress.console.info(message);
   if (impress.logger && impress.logger.active) await impress.logger.close();
   process.exit(1);
@@ -44,7 +46,6 @@ const exit = async (message) => {
 const logError = (type) => (err) => {
   const msg = err?.stack || err?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
-  if (impress.finalization) return;
   if (impress.initialization) exit('Can not start Application server');
 };
 
@@ -68,7 +69,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
     if (impress.initialization) exit('Can not start Application server');
     if (app.threads.size === 0) {
       impress.applications.delete(app.path);
-      if (impress.applications.size === 0) impress.finalized();
+      if (impress.applications.size === 0) impress.close();
     }
   });
 
@@ -171,19 +172,20 @@ const stopApplication = (root) => {
 };
 
 const stop = async () => {
-  impress.finalization = true;
-  const logClosed = impress.logger.close();
   const portsClosed = new Promise((resolve) => {
-    impress.finalized = resolve;
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       impress.console.error('Exit with graceful shutdown timeout');
       resolve();
     }, impress.config.server.timeouts.stop);
+    impress.close = () => {
+      clearTimeout(timeout);
+      resolve();
+    };
   });
   for (const app of impress.applications.values()) {
     stopApplication(app.path);
   }
-  await Promise.allSettled([logClosed, portsClosed]);
+  await portsClosed;
   exit('Application server stopped');
 };
 
