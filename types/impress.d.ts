@@ -2,6 +2,7 @@ import { LogConfig, ScaleConfig, ServerConfig, SessionsConfig } from './config';
 import { Application, Context, Client } from './core';
 
 import * as _util from 'util';
+import * as _buffer from 'buffer';
 import * as _cp from 'child_process';
 import * as _os from 'os';
 import * as _v8 from 'v8';
@@ -62,6 +63,7 @@ declare global {
 
   namespace node {
     const util: typeof _util;
+    const buffer: typeof _buffer;
     const child_process: typeof _cp;
     const childProcess: typeof _cp;
     const os: typeof _os;
