@@ -63,7 +63,7 @@
     "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
   },
   "engines": {
-    "node": "14 || 16 || 18"
+    "node": "14 || 16 || 18 || 19"
   },
   "dependencies": {
     "metacom": "^3.0.0-alpha.5",
