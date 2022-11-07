@@ -12,6 +12,7 @@ jobs:
           - 14
           - 16
           - 18
+          - 19
         os:
           - ubuntu-latest
           - windows-latest
