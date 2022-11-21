@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fix multiple applications for windows
+
 ## [3.0.0-alpha.5][] - 2022-08-20
 
 - Exit on initializatopn timeout

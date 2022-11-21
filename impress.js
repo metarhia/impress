@@ -157,7 +157,7 @@ const loadApplication = async (root) => {
 const loadApplications = async () => {
   const list = await fsp
     .readFile('.applications', 'utf8')
-    .then((data) => data.split('\n').filter((s) => s.length !== 0))
+    .then((data) => data.split(/[\r\n\s]+/).filter((s) => s.length !== 0))
     .catch(() => [PATH]);
   for (const path of list) {
     await loadApplication(path);
