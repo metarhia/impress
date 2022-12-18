@@ -2,6 +2,7 @@
 
 ## [Unreleased][unreleased]
 
+- Move `serveStatic` from metacom
 - Fix multiple applications for windows
 
 ## [3.0.0-alpha.5][] - 2022-08-20
