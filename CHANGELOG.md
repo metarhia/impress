@@ -2,8 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.6][] - 2022-12-24
+
 - Move `serveStatic` from metacom
 - Fix multiple applications for windows
+- Use metacom 3.0.0-alpha.5
 
 ## [3.0.0-alpha.5][] - 2022-08-20
 
