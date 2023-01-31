@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Support relative path in `.applications` file
+
 ## [3.0.0-alpha.6][] - 2022-12-24
 
 - Move `serveStatic` from metacom
