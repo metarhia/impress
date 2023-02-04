@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.8][] - 2023-02-04
+
 - Fix absolute path in `.applications` file
 
 ## [3.0.0-alpha.7][] - 2023-01-31
@@ -308,7 +310,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.7...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.8...HEAD
+[3.0.0-alpha.8]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.7...v3.0.0-alpha.8
 [3.0.0-alpha.7]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.6...v3.0.0-alpha.7
 [3.0.0-alpha.6]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.5...v3.0.0-alpha.6
 [3.0.0-alpha.5]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.4...v3.0.0-alpha.5
