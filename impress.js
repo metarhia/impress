@@ -159,9 +159,9 @@ const loadApplications = async () => {
     .readFile('.applications', 'utf8')
     .then((data) => data.split(/[\r\n\s]+/).filter((s) => s.length !== 0))
     .catch(() => [PATH]);
-  for (const location of applications) {
-    const dir = path.join(PATH, location);
-    await loadApplication(dir);
+  for (const dir of applications) {
+    const location = path.isAbsolute(dir) ? dir : path.join(PATH, dir);
+    await loadApplication(location);
   }
 };
 

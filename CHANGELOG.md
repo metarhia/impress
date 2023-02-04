@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fix absolute path in `.applications` file
+
 ## [3.0.0-alpha.7][] - 2023-01-31
 
 - Support relative path in `.applications` file
