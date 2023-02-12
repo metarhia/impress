@@ -15,7 +15,6 @@ const { Planner } = require('./lib/planner.js');
 const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
 const PATH = process.cwd();
 const WORKER_PATH = path.join(__dirname, 'lib/worker.js');
-const CFG_PATH = path.join(PATH, 'application/config');
 const LOG_PATH = path.join(PATH, 'log');
 const CTRL_C = 3;
 const LOG_OPTIONS = { path: LOG_PATH, home: PATH, workerId: 0 };
@@ -49,12 +48,8 @@ const logError = (type) => (err) => {
   if (impress.initialization) exit('Can not start Application server');
 };
 
-process.on('uncaughtException', logError('Uncaught exception'));
-process.on('warning', logError('Warning'));
-process.on('unhandledRejection', logError('Unhandled rejection'));
-
 const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
-  const workerData = { id, kind, path: app.path, port };
+  const workerData = { id, kind, root: app.root, path: app.path, port };
   const options = { trackUnmanagedFds: true, workerData };
   const worker = new Worker(WORKER_PATH, options);
   if (kind === 'worker') {
@@ -132,41 +127,53 @@ const validateConfig = async (config) => {
   if (!valid) exit('Application server configuration is invalid');
 };
 
-const loadApplication = async (root) => {
-  impress.console.info(`Start: ${root}`);
-  const configPath = path.join(root, 'application/config');
+const loadApplication = async (root, dir, master) => {
+  impress.console.info(`Start: ${dir}`);
+  const configPath = path.join(dir, 'config');
   const config = await new Config(configPath, CFG_OPTIONS).catch((err) => {
-    exit(`Can not read configuration: ${CFG_PATH}\n${err.stack}`);
+    exit(`Can not read configuration: ${configPath}\n${err.stack}`);
   });
   await validateConfig(config);
-
+  if (master) {
+    impress.startTimer = setTimeout(
+      logError('Initialization timeout'),
+      config.server.timeouts.start,
+    );
+    const logger = await new Logger({ ...LOG_OPTIONS, ...config.log });
+    logger.on('error', logError('Logger'));
+    if (logger.active) impress.console = logger.console;
+    impress.logger = logger;
+    const tasksPath = path.join(dir, 'tasks');
+    const tasksConfig = config.server.scheduler;
+    impress.planner = await new Planner(tasksPath, tasksConfig, impress);
+    impress.config = config;
+  }
   const { balancer, ports = [], workers = {} } = config.server;
   const threads = new Map();
   const pool = new metautil.Pool({ timeout: workers.wait });
-
-  const app = { path: root, config, threads, pool, ready: 0 };
-
+  const app = { root, path: dir, config, threads, pool, ready: 0 };
   if (balancer) await startWorker(app, 'balancer', balancer);
   for (const port of ports) await startWorker(app, 'server', port);
   const poolSize = workers.pool || 0;
   for (let i = 0; i < poolSize; i++) await startWorker(app, 'worker');
-
-  impress.applications.set(root, app);
+  impress.applications.set(dir, app);
 };
 
 const loadApplications = async () => {
   const applications = await fsp
     .readFile('.applications', 'utf8')
     .then((data) => data.split(/[\r\n\s]+/).filter((s) => s.length !== 0))
-    .catch(() => [PATH]);
+    .catch(() => [path.join(PATH, 'application')]);
+  let master = true;
   for (const dir of applications) {
     const location = path.isAbsolute(dir) ? dir : path.join(PATH, dir);
-    await loadApplication(location);
+    await loadApplication(PATH, location, master);
+    if (master) master = false;
   }
 };
 
-const stopApplication = (root) => {
-  const app = impress.applications.get(root);
+const stopApplication = (dir) => {
+  const app = impress.applications.get(dir);
   for (const thread of app.threads.values()) {
     thread.postMessage({ name: 'stop' });
   }
@@ -190,36 +197,16 @@ const stop = async () => {
   exit('Application server stopped');
 };
 
-(async () => {
-  const configPath = path.join(PATH, 'application/config');
-  const config = await new Config(configPath, CFG_OPTIONS).catch((err) => {
-    exit(`Can not read configuration: ${CFG_PATH}\n${err.stack}`);
+process.on('uncaughtException', logError('Uncaught exception'));
+process.on('warning', logError('Warning'));
+process.on('unhandledRejection', logError('Unhandled rejection'));
+process.on('SIGINT', stop);
+process.on('SIGTERM', stop);
+if (process.stdin.isTTY) {
+  process.stdin.setRawMode(true);
+  process.stdin.on('data', (data) => {
+    const key = data[0];
+    if (key === CTRL_C) stop();
   });
-  await validateConfig(config);
-  impress.config = config;
-  const logger = await new Logger({ ...LOG_OPTIONS, ...config.log });
-  logger.on('error', logError('Logger'));
-  if (logger.active) impress.console = logger.console;
-  impress.logger = logger;
-  const tasksPath = path.join(PATH, 'application/tasks');
-  const tasksConfig = config.server.scheduler;
-  impress.planner = await new Planner(tasksPath, tasksConfig, impress);
-
-  process.on('SIGINT', stop);
-  process.on('SIGTERM', stop);
-
-  impress.startTimer = setTimeout(
-    logError('Initialization timeout'),
-    config.server.timeouts.start,
-  );
-
-  await loadApplications();
-
-  if (process.stdin.isTTY) {
-    process.stdin.setRawMode(true);
-    process.stdin.on('data', (data) => {
-      const key = data[0];
-      if (key === CTRL_C) stop();
-    });
-  }
-})().catch(logError('Initialization'));
+}
+loadApplications().catch(logError('Initialization'));
