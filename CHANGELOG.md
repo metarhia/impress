@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Do not add `./application` to paths from `.applications`
+
 ## [3.0.0-alpha.8][] - 2023-02-04
 
 - Fix absolute path in `.applications` file
