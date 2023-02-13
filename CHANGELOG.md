@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Update metacom to 3.0.0-alpha.6 and other dependencies
+
 ## [3.0.0-alpha.9][] - 2023-02-13
 
 - Do not add `./application` to paths from `.applications`
