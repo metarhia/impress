@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.10][] - 2023-02-13
+
 - Update metacom to 3.0.0-alpha.6 and other dependencies
 
 ## [3.0.0-alpha.9][] - 2023-02-13
@@ -316,7 +318,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.9...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.10...HEAD
+[3.0.0-alpha.10]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.9...v3.0.0-alpha.10
 [3.0.0-alpha.9]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.8...v3.0.0-alpha.9
 [3.0.0-alpha.8]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.7...v3.0.0-alpha.8
 [3.0.0-alpha.7]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.6...v3.0.0-alpha.7
