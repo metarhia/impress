@@ -104,7 +104,7 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 
 ## License & Contributors
 
-Copyright (c) 2012-2022 Metarhia contributors.
+Copyright (c) 2012-2023 Metarhia contributors.
 See github for full [contributors list](https://github.com/metarhia/impress/graphs/contributors).
 Impress Application Server is [MIT licensed](./LICENSE).
 Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;
