@@ -42,8 +42,8 @@ const exit = async (message) => {
   process.exit(1);
 };
 
-const logError = (type) => (err) => {
-  const msg = err?.stack || err?.message || 'exit';
+const logError = (type) => (error) => {
+  const msg = error?.stack || error?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
   if (impress.initialization) exit('Can not start Application server');
 };
@@ -118,8 +118,8 @@ const validateConfig = async (config) => {
     const schema = await loadSchema(fileName);
     const checkResult = schema.check(config[section]);
     if (!checkResult.valid) {
-      for (const err of checkResult.errors) {
-        impress.console.error(`${err} in application/config/${section}.js`);
+      for (const error of checkResult.errors) {
+        impress.console.error(`${error} in application/config/${section}.js`);
       }
       valid = false;
     }
@@ -130,8 +130,8 @@ const validateConfig = async (config) => {
 const loadApplication = async (root, dir, master) => {
   impress.console.info(`Start: ${dir}`);
   const configPath = path.join(dir, 'config');
-  const config = await new Config(configPath, CFG_OPTIONS).catch((err) => {
-    exit(`Can not read configuration: ${configPath}\n${err.stack}`);
+  const config = await new Config(configPath, CFG_OPTIONS).catch((error) => {
+    exit(`Can not read configuration: ${configPath}\n${error.stack}`);
   });
   await validateConfig(config);
   if (master) {
