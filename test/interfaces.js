@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+const path = require('node:path');
 const metavm = require('metavm');
 const metatests = require('metatests');
 const { Interfaces } = require('../lib/interfaces.js');

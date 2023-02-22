@@ -1,4 +1,4 @@
-import { EventEmitter, NodeJS } from 'events';
+import { EventEmitter, NodeJS } from 'node:events';
 
 export interface Task {
   name: string;
