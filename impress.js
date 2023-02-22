@@ -2,9 +2,9 @@
 
 process.title = 'impress';
 
-const fsp = require('fs').promises;
-const { Worker } = require('worker_threads');
-const path = require('path');
+const fsp = require('node:fs').promises;
+const { Worker } = require('node:worker_threads');
+const path = require('node:path');
 const { Config } = require('metaconfiguration');
 const metavm = require('metavm');
 const metautil = require('metautil');

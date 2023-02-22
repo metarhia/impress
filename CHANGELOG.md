@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Add `node:` prefix in require for built-in modules
+
 ## [3.0.0-alpha.10][] - 2023-02-13
 
 - Update metacom to 3.0.0-alpha.6 and other dependencies
