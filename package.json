@@ -67,7 +67,7 @@
     "metalog": "^3.1.9",
     "metaschema": "^2.1.1",
     "metautil": "^3.6.0",
-    "metavm": "^1.2.2",
+    "metavm": "^1.2.3",
     "metawatch": "^1.0.7"
   },
   "devDependencies": {
