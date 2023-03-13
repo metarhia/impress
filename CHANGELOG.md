@@ -4,6 +4,7 @@
 
 - Add `node:` prefix in require for built-in modules
 - Use latest metacom 3.0.0-alpha.8 and update typings
+- Update `auth` interface for compatibility with metacom 3.0.0-alpha.8
 
 ## [3.0.0-alpha.10][] - 2023-02-13
 
