@@ -62,20 +62,20 @@
     "node": "^14.18 || 16 || 18 || 19"
   },
   "dependencies": {
-    "metacom": "^3.0.0-alpha.6",
-    "metaconfiguration": "^2.1.9",
+    "metacom": "^3.0.0-alpha.8",
+    "metaconfiguration": "^2.1.10",
     "metalog": "^3.1.9",
-    "metaschema": "^2.1.1",
-    "metautil": "^3.6.0",
-    "metavm": "^1.2.2",
+    "metaschema": "^2.1.3",
+    "metautil": "^3.7.1",
+    "metavm": "^1.2.4",
     "metawatch": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^18.13.0",
+    "@types/node": "^18.15.2",
     "@types/ws": "^8.5.4",
-    "eslint": "^8.34.0",
+    "eslint": "^8.36.0",
     "eslint-config-metarhia": "^8.1.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "metatests": "^0.8.2",
