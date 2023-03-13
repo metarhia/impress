@@ -36,14 +36,3 @@ export interface Application extends NodeJS.EventEmitter {
   on(event: 'initialized', listener: (...args: any[]) => void): this;
   once(event: 'initialized', listener: (...args: any[]) => void): this;
 }
-
-export interface Context {
-  client: Client;
-  [key: string]: any;
-}
-
-export interface Client {
-  events: { close: Array<Function> };
-  callId: number;
-  ip: string;
-}

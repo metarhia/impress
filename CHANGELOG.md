@@ -3,6 +3,7 @@
 ## [Unreleased][unreleased]
 
 - Add `node:` prefix in require for built-in modules
+- Use latest metacom 3.0.0-alpha.8 and update typings
 
 ## [3.0.0-alpha.10][] - 2023-02-13
 
