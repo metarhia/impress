@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.11][] - 2023-03-14
+
 - Add `node:` prefix in require for built-in modules
 - Use latest metacom 3.0.0-alpha.8 and update typings
 - Update `auth` interface for compatibility with metacom 3.0.0-alpha.8
@@ -322,7 +324,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.10...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.11...HEAD
+[3.0.0-alpha.11]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.10...v3.0.0-alpha.11
 [3.0.0-alpha.10]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.9...v3.0.0-alpha.10
 [3.0.0-alpha.9]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.8...v3.0.0-alpha.9
 [3.0.0-alpha.8]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.7...v3.0.0-alpha.8
