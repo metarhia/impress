@@ -62,7 +62,7 @@
     "node": "^14.18 || 16 || 18 || 19"
   },
   "dependencies": {
-    "metacom": "^3.0.0-alpha.8",
+    "metacom": "github:ResonanceHolding/metacom",
     "metaconfiguration": "^2.1.10",
     "metalog": "^3.1.9",
     "metaschema": "^2.1.3",
