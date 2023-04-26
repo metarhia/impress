@@ -96,10 +96,10 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 
 ## Requirements
 
-- Node.js v12.9.0 or later (v14 preferred)
-- Linux (tested on Fedora 30, Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
-- Postgresql 9.5 or later (v11.8 preferred)
-- OpenSSL v1.1.1 or later (optional, for https & wss)
+- Node.js v16.0.0 or later (v18 preferred)
+- Linux (tested on Fedora 36, 37, Ubuntu 18, 20 and 22, CentOS 7, 8, 9)
+- Postgresql 11 or later (v14 preferred)
+- OpenSSL v3 or later (optional, for https & wss)
 - [certbot](https://github.com/certbot/certbot) (recommended but optional)
 
 ## License & Contributors
