@@ -2,7 +2,15 @@
 
 ## [Unreleased][unreleased]
 
-## [3.0.0-alpha.11][] - 2023-03-14
+## [3.0.0-alpha.13][] - 2023-04-03
+
+- Drop node.js 14 support, add node.js 20
+- Convert package_lock.json to lockfileVersion 2
+- Use native AbortController
+- Remove deprecated node:url
+- Update dependencies
+
+## [3.0.0-alpha.12][] - 2023-04-22
 
 - Use latest metacom 3.0.0-alpha.9
 
@@ -328,7 +336,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.12...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.13...HEAD
+[3.0.0-alpha.13]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.11...v3.0.0-alpha.13
 [3.0.0-alpha.12]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.11...v3.0.0-alpha.12
 [3.0.0-alpha.11]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.10...v3.0.0-alpha.11
 [3.0.0-alpha.10]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.9...v3.0.0-alpha.10
