@@ -25,7 +25,10 @@ const impress = {
   logger: null,
   config: null,
   planner: null,
-  close: () => {},
+  close: async () => {
+    if (impress.logger?.active) await impress.logger.close();
+     process.exit(0);
+  },
   finalization: false,
   initialization: true,
   console,
