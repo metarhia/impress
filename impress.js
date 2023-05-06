@@ -197,11 +197,13 @@ const stop = async () => {
   exit('Application server stopped');
 };
 
-process.on('uncaughtException', logError('Uncaught exception'));
+process.removeAllListeners('warning');
 process.on('warning', logError('Warning'));
+process.on('uncaughtException', logError('Uncaught exception'));
 process.on('unhandledRejection', logError('Unhandled rejection'));
 process.on('SIGINT', stop);
 process.on('SIGTERM', stop);
+
 if (process.stdin.isTTY) {
   process.stdin.setRawMode(true);
   process.stdin.on('data', (data) => {
