@@ -66,7 +66,7 @@
     "metaconfiguration": "^2.1.10",
     "metalog": "^3.1.9",
     "metaschema": "^2.1.3",
-    "metautil": "^3.7.1",
+    "metautil": "^3.7.2",
     "metavm": "^1.2.4",
     "metawatch": "^1.0.7"
   },
