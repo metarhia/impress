@@ -181,6 +181,7 @@ const stopApplication = (dir) => {
 
 const stop = async () => {
   const portsClosed = new Promise((resolve) => {
+    impress.console.info('Graceful shutdown in worker 0');
     const timeout = setTimeout(() => {
       impress.console.error('Exit with graceful shutdown timeout');
       resolve();
