@@ -2,6 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.0-alpha.15][] - 2023-06-17
+
+- Support HTTP 206 and 416, Partial content (Range)
+- Add checks loading x509 certificates
+
 ## [3.0.0-alpha.14][] - 2023-06-08
 
 - Support miltiple domains and multiple SSL certificates with SNI
@@ -342,9 +347,10 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.14...HEAD
-[3.0.0-alpha.14]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.12...v3.0.0-alpha.14
-[3.0.0-alpha.13]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.11...v3.0.0-alpha.13
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.15...HEAD
+[3.0.0-alpha.15]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.14...v3.0.0-alpha.15
+[3.0.0-alpha.14]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.13...v3.0.0-alpha.14
+[3.0.0-alpha.13]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.12...v3.0.0-alpha.13
 [3.0.0-alpha.12]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.11...v3.0.0-alpha.12
 [3.0.0-alpha.11]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.10...v3.0.0-alpha.11
 [3.0.0-alpha.10]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.9...v3.0.0-alpha.10
