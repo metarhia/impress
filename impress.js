@@ -43,8 +43,10 @@ const exit = async (message) => {
 };
 
 const logError = (type) => (error) => {
+  if (error.name === 'ExperimentalWarning') return;
   const msg = error?.stack || error?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
+  if (type === 'warning') return;
   if (impress.initialization) exit('Can not start Application server');
 };
 
@@ -199,7 +201,7 @@ const stop = async () => {
 };
 
 process.removeAllListeners('warning');
-process.on('warning', logError('Warning'));
+process.on('warning', logError('warning'));
 process.on('uncaughtException', logError('Uncaught exception'));
 process.on('unhandledRejection', logError('Unhandled rejection'));
 process.on('SIGINT', stop);
