@@ -51,7 +51,11 @@
   },
   "main": "impress.js",
   "types": "types/impress.d.ts",
-  "files": ["lib/", "schemas/", "types/"],
+  "files": [
+    "lib/",
+    "schemas/",
+    "types/"
+  ],
   "scripts": {
     "test": "npm run lint && npm run types && metatests test/",
     "types": "tsc -p types/tsconfig.json",
@@ -66,20 +70,20 @@
     "metaconfiguration": "^2.1.11",
     "metalog": "^3.1.11",
     "metaschema": "^2.1.4",
-    "metautil": "^3.9.0",
+    "metautil": "^3.10.0",
     "metavm": "^1.2.4",
     "metawatch": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.3.1",
+    "@types/node": "^20.3.2",
     "@types/ws": "^8.5.5",
     "eslint": "^8.43.0",
     "eslint-config-metarhia": "^8.1.0",
     "eslint-config-prettier": "^8.7.0",
-    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "metatests": "^0.8.2",
     "prettier": "^2.8.4",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.6"
   }
 }
