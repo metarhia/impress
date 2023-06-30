@@ -2,86 +2,25 @@
 
 ## [Unreleased][unreleased]
 
-## [3.0.0-alpha.15][] - 2023-06-17
+## [3.0.0][] - 2023-06-30
 
+- Worker-based multitenancy implementation
+- Support metacom bi-directional streams
 - Support HTTP 206 and 416, Partial content (Range)
-- Add checks loading x509 certificates
-
-## [3.0.0-alpha.14][] - 2023-06-08
-
+- Move `serveStatic` from metacom
 - Support miltiple domains and multiple SSL certificates with SNI
 - Support large files streaming from disk without memory cache
 - Now impress works with certbot and supports `--webroot` mode
-
-## [3.0.0-alpha.13][] - 2023-04-03
-
+- Add `node:` prefix in require for built-in modules
 - Drop node.js 14 support, add node.js 20
 - Convert package_lock.json to lockfileVersion 2
+- Initial integration bus implementation (new place `application/bus`)
+- Fix shutdown while initialization
+- Server config `cors.origin` is now optional
+- Update metalog and allow 'json' parameter
 - Use native AbortController
 - Remove deprecated node:url
 - Update dependencies
-
-## [3.0.0-alpha.12][] - 2023-04-22
-
-- Use latest metacom 3.0.0-alpha.9
-
-## [3.0.0-alpha.11][] - 2023-03-14
-
-- Add `node:` prefix in require for built-in modules
-- Use latest metacom 3.0.0-alpha.8 and update typings
-- Update `auth` interface for compatibility with metacom 3.0.0-alpha.8
-
-## [3.0.0-alpha.10][] - 2023-02-13
-
-- Update metacom to 3.0.0-alpha.6 and other dependencies
-
-## [3.0.0-alpha.9][] - 2023-02-13
-
-- Do not add `./application` to paths from `.applications`
-
-## [3.0.0-alpha.8][] - 2023-02-04
-
-- Fix absolute path in `.applications` file
-
-## [3.0.0-alpha.7][] - 2023-01-31
-
-- Support relative path in `.applications` file
-- Update dependencies to fix secutity issues
-
-## [3.0.0-alpha.6][] - 2022-12-24
-
-- Move `serveStatic` from metacom
-- Fix multiple applications for windows
-- Use metacom 3.0.0-alpha.5
-
-## [3.0.0-alpha.5][] - 2022-08-20
-
-- Exit on initializatopn timeout
-- Fix main process exit
-- Fix adding tasks to scheduler
-- Fix reset scheduler nextId count
-
-## [3.0.0-alpha.4][] - 2022-07-30
-
-- Fix scheduler: task id, unknown app, etc.
-
-## [3.0.0-alpha.3][] - 2022-07-26
-
-- Handle application init errors
-- Stop worker on start handler failure
-- Stop process on worker failure
-
-## [3.0.0-alpha.2][] - 2022-07-07
-
-- Fix clear introspection signature cache
-- Package maintenance
-
-## [3.0.0-alpha.1][] - 2022-06-25
-
-- Worker-based multitenancy implementation
-- Update to metaschema v2.x
-- Initial integration bus implementation (new place `application/bus`)
-- Fix shutdown while initialization
 
 ## [2.6.10][] - 2022-05-09
 
@@ -91,10 +30,6 @@
 - Do not shotdown if not started
 
 ## [2.6.9][] - 2022-04-01
-
-- Improve error handling in master thread
-- Server config `cors.origin` is now optional
-- Update metalog and allow 'json' parameter
 
 ## [2.6.8][] - 2022-03-19
 
@@ -347,22 +282,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.15...HEAD
-[3.0.0-alpha.15]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.14...v3.0.0-alpha.15
-[3.0.0-alpha.14]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.13...v3.0.0-alpha.14
-[3.0.0-alpha.13]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.12...v3.0.0-alpha.13
-[3.0.0-alpha.12]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.11...v3.0.0-alpha.12
-[3.0.0-alpha.11]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.10...v3.0.0-alpha.11
-[3.0.0-alpha.10]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.9...v3.0.0-alpha.10
-[3.0.0-alpha.9]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.8...v3.0.0-alpha.9
-[3.0.0-alpha.8]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.7...v3.0.0-alpha.8
-[3.0.0-alpha.7]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.6...v3.0.0-alpha.7
-[3.0.0-alpha.6]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.5...v3.0.0-alpha.6
-[3.0.0-alpha.5]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.4...v3.0.0-alpha.5
-[3.0.0-alpha.4]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.3...v3.0.0-alpha.4
-[3.0.0-alpha.3]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.2...v3.0.0-alpha.3
-[3.0.0-alpha.2]: https://github.com/metarhia/impress/compare/v3.0.0-alpha.1...v3.0.0-alpha.2
-[3.0.0-alpha.1]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0-alpha.1
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0
 [2.6.10]: https://github.com/metarhia/impress/compare/v2.6.9...v2.6.10
 [2.6.9]: https://github.com/metarhia/impress/compare/v2.6.8...v2.6.9
 [2.6.8]: https://github.com/metarhia/impress/compare/v2.6.7...v2.6.8
