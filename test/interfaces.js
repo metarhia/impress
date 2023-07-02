@@ -3,7 +3,7 @@
 const path = require('node:path');
 const metavm = require('metavm');
 const metatests = require('metatests');
-const { Interfaces } = require('../lib/interfaces.js');
+const { Apis } = require('../lib/apis.js');
 
 const root = process.cwd();
 
@@ -16,8 +16,8 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/interfaces load', async (test) => {
-  const api = new Interfaces('api', application);
+metatests.testAsync('lib/apis load', async (test) => {
+  const api = new Apis('api', application);
   await api.load();
   test.strictSame(typeof api.collection.example['1'].add.method, 'function');
   test.end();
