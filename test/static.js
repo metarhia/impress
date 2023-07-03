@@ -2,7 +2,7 @@
 
 const path = require('node:path');
 const metatests = require('metatests');
-const { Resources } = require('../lib/resources.js');
+const { Static } = require('../lib/static.js');
 
 const root = process.cwd();
 
@@ -14,9 +14,9 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/resources load', async (test) => {
-  const resources = new Resources('cache', application);
-  await resources.load();
-  test.strictSame(resources.get('/example/add.js').length, 158);
+metatests.testAsync('lib/static load', async (test) => {
+  const cache = new Static('cache', application);
+  await cache.load();
+  test.strictSame(cache.get('/example/add.js').length, 158);
   test.end();
 });
