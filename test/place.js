@@ -2,7 +2,7 @@
 
 const path = require('node:path');
 const metatests = require('metatests');
-const { Loader } = require('../lib/loader.js');
+const { Place } = require('../lib/place.js');
 
 const root = process.cwd();
 
@@ -16,8 +16,8 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/loader', async (test) => {
-  const cache = new Loader('cache', application);
+metatests.testAsync('lib/place', async (test) => {
+  const cache = new Place('cache', application);
   await cache.load();
   test.strictSame(cache.tree.utils.UNITS.length, 9);
   test.end();
