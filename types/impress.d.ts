@@ -39,6 +39,7 @@ import * as _metacom from 'metacom';
 import * as _metalog from 'metalog';
 import * as _metawatch from 'metawatch';
 import * as _metaschema from 'metaschema';
+import * as _metaconfiguration from 'metaconfiguration';
 
 declare global {
   const application: Application;
@@ -59,6 +60,7 @@ declare global {
     const metalog: typeof _metalog;
     const metawatch: typeof _metawatch;
     const metaschema: typeof _metaschema;
+    const metaconfiguration: typeof _metaconfiguration;
   }
 
   namespace node {

@@ -1,4 +1,4 @@
-import { EventEmitter, NodeJS } from 'node:events';
+import { EventEmitter } from 'node:events';
 
 export interface Task {
   name: string;
@@ -18,21 +18,28 @@ export interface InvokeTarget {
   args: object;
 }
 
-export interface Application extends NodeJS.EventEmitter {
-  worker: object;
-  server: object;
-  auth: object;
-  resources: Map<string, Buffer>;
-  introspect: () => Promise<any>;
-  invoke: (target: InvokeTarget) => Promise<any>;
-  scheduler: Scheduler;
+export interface Cache {
+  get(name: string): unknown;
+}
 
-  on(event: 'loading', listener: (...args: any[]) => void): this;
-  once(event: 'loading', listener: (...args: any[]) => void): this;
-  on(event: 'loaded', listener: (...args: any[]) => void): this;
-  once(event: 'loaded', listener: (...args: any[]) => void): this;
-  on(event: 'started', listener: (...args: any[]) => void): this;
-  once(event: 'started', listener: (...args: any[]) => void): this;
-  on(event: 'initialized', listener: (...args: any[]) => void): this;
-  once(event: 'initialized', listener: (...args: any[]) => void): this;
+export interface Listener {
+  (...args: Array<unknown>): void;
+}
+
+export interface Application extends EventEmitter {
+  worker: { id: string };
+  server: { host: string; port: number; protocol: string };
+  resources: Cache;
+  schemas: Cache;
+  scheduler: Scheduler;
+  introspect: () => Promise<object>;
+  invoke: (target: InvokeTarget) => Promise<unknown>;
+  on(event: 'loading', listener: Listener): this;
+  once(event: 'loading', listener: Listener): this;
+  on(event: 'loaded', listener: Listener): this;
+  once(event: 'loaded', listener: Listener): this;
+  on(event: 'started', listener: Listener): this;
+  once(event: 'started', listener: Listener): this;
+  on(event: 'initialized', listener: Listener): this;
+  once(event: 'initialized', listener: Listener): this;
 }

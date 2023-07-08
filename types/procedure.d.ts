@@ -18,10 +18,12 @@ type Example = {
 interface Procedure {
   exports: object;
   script: Function;
+  methodName: string;
   application: Application;
   method?: AsyncFunction;
   parameters?: Schema;
   returns?: Schema;
+  errors?: Record<string, string>;
   semaphore?: Semaphore;
   caption?: string;
   description?: string;
