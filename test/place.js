@@ -18,7 +18,17 @@ const application = {
 
 metatests.testAsync('lib/place', async (test) => {
   const cache = new Place('cache', application);
+  test.strictSame(cache.place, 'cache');
+  test.strictSame(typeof cache.path, 'string');
+  test.strictSame(typeof cache.application, 'object');
+  test.strictSame(cache.tree, {});
   await cache.load();
+  test.strictSame(Object.keys(cache.tree), ['example', 'utils']);
+  test.strictSame(cache.tree.example.parent, cache.tree);
+  test.strictSame(typeof cache.tree.example.add, 'object');
+  test.strictSame(typeof cache.tree.example.doSomething, 'function');
+  test.strictSame(typeof cache.tree.example.stop, 'function');
+  test.strictSame(typeof cache.tree.example.start, 'function');
   test.strictSame(cache.tree.utils.UNITS.length, 9);
   test.end();
 });
