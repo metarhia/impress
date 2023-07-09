@@ -6,6 +6,8 @@ const cp = require('node:child_process');
 const metatests = require('metatests');
 const { Cert } = require('../lib/cert.js');
 
+const WIN = process.platform === 'win32';
+
 const root = process.cwd();
 
 const certPath = path.join(root, 'test/cert/default/');
@@ -23,6 +25,7 @@ const application = {
 };
 
 metatests.testAsync('lib/cert', async (test) => {
+  if (WIN) return void test.end();
   let cert = new Cert('cert', application, { ext: ['pem'] });
   await cert.load();
   test.strictSame(cert.files.size, 3);
