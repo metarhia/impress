@@ -91,10 +91,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
 
     invoke: async (msg) => {
       const { status, port, exclusive } = msg;
-      if (status === 'done') {
-        app.pool.release(worker);
-        return;
-      }
+      if (status === 'done') return void app.pool.release(worker);
       const promisedThread = exclusive ? app.pool.capture() : app.pool.next();
       const next = await promisedThread.catch(() => {
         const error = new Error('No thread available');
