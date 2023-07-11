@@ -29,6 +29,7 @@ metatests.testAsync('lib/cache', async (test) => {
     }
 
     async change(filePath) {
+      test.strictSame(this.constructor.name, 'EmptyCache');
       test.strictSame(typeof filePath, 'string');
     }
   }

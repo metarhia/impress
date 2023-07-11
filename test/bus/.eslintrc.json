@@ -1,0 +1,8 @@
+{
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "camelcase": ["error", { "properties": "never" }]
+  }
+}
