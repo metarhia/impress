@@ -2,6 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.1][] - 2023-07-23
+
+- Fix noncritical bugs, restructure, rename and reorganize modules
+- Update dependencies, improve code style, apply eslint: consistent-return
+- Add more tests for application server, move some code to metautil
+
 ## [3.0.0][] - 2023-06-30
 
 - Worker-based multitenancy implementation
@@ -282,7 +288,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.0...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/metarhia/impress/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0
 [2.6.10]: https://github.com/metarhia/impress/compare/v2.6.9...v2.6.10
 [2.6.9]: https://github.com/metarhia/impress/compare/v2.6.8...v2.6.9
