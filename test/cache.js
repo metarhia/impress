@@ -36,6 +36,6 @@ metatests.testAsync('lib/place', async (test) => {
 
   const place = new EmptyPlace('lib', application);
   await place.load();
-  test.strictSame(place.place, 'lib');
+  test.strictSame(place.name, 'lib');
   test.strictSame(place.empty, true);
 });

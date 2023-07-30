@@ -18,7 +18,7 @@ const application = {
 
 metatests.testAsync('lib/bus', async (test) => {
   const bus = new Code('bus', application);
-  test.strictSame(bus.place, 'bus');
+  test.strictSame(bus.name, 'bus');
   test.strictSame(bus.path, path.join(root, 'test/bus'));
   test.strictSame(typeof bus.application, 'object');
   test.strictSame(bus.tree, {});
