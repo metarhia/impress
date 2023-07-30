@@ -18,7 +18,7 @@ const application = {
 
 metatests.testAsync('lib/code', async (test) => {
   const code = new Code('lib', application);
-  test.strictSame(code.place, 'lib');
+  test.strictSame(code.name, 'lib');
   test.strictSame(typeof code.path, 'string');
   test.strictSame(typeof code.application, 'object');
   test.strictSame(code.tree, {});
