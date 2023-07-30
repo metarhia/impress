@@ -17,18 +17,18 @@ const application = {
 };
 
 metatests.testAsync('lib/code', async (test) => {
-  const cache = new Code('cache', application);
-  test.strictSame(cache.place, 'cache');
-  test.strictSame(typeof cache.path, 'string');
-  test.strictSame(typeof cache.application, 'object');
-  test.strictSame(cache.tree, {});
-  await cache.load();
-  test.strictSame(Object.keys(cache.tree), ['example', 'utils']);
-  test.strictSame(cache.tree.example.parent, cache.tree);
-  test.strictSame(typeof cache.tree.example.add, 'object');
-  test.strictSame(typeof cache.tree.example.doSomething, 'function');
-  test.strictSame(typeof cache.tree.example.stop, 'function');
-  test.strictSame(typeof cache.tree.example.start, 'function');
-  test.strictSame(cache.tree.utils.UNITS.length, 9);
+  const code = new Code('lib', application);
+  test.strictSame(code.place, 'lib');
+  test.strictSame(typeof code.path, 'string');
+  test.strictSame(typeof code.application, 'object');
+  test.strictSame(code.tree, {});
+  await code.load();
+  test.strictSame(Object.keys(code.tree), ['example', 'utils']);
+  test.strictSame(code.tree.example.parent, code.tree);
+  test.strictSame(typeof code.tree.example.add, 'object');
+  test.strictSame(typeof code.tree.example.doSomething, 'function');
+  test.strictSame(typeof code.tree.example.stop, 'function');
+  test.strictSame(typeof code.tree.example.start, 'function');
+  test.strictSame(code.tree.utils.UNITS.length, 9);
   test.end();
 });

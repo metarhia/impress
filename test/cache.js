@@ -2,7 +2,7 @@
 
 const path = require('node:path');
 const metatests = require('metatests');
-const { Cache } = require('../lib/cache.js');
+const { Place } = require('../lib/place.js');
 
 const root = process.cwd();
 
@@ -16,26 +16,26 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/cache', async (test) => {
+metatests.testAsync('lib/place', async (test) => {
   test.plan(17);
 
-  test.strictSame(typeof Cache, 'function');
-  test.strictSame(Cache.name, 'Cache');
+  test.strictSame(typeof Place, 'function');
+  test.strictSame(Place.name, 'Place');
 
-  class EmptyCache extends Cache {
+  class EmptyPlace extends Place {
     constructor(place, application) {
       super(place, application);
       this.empty = true;
     }
 
     async change(filePath) {
-      test.strictSame(this.constructor.name, 'EmptyCache');
+      test.strictSame(this.constructor.name, 'EmptyPlace');
       test.strictSame(typeof filePath, 'string');
     }
   }
 
-  const cache = new EmptyCache('cache', application);
-  await cache.load();
-  test.strictSame(cache.place, 'cache');
-  test.strictSame(cache.empty, true);
+  const place = new EmptyPlace('lib', application);
+  await place.load();
+  test.strictSame(place.place, 'lib');
+  test.strictSame(place.empty, true);
 });

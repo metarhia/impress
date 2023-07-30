@@ -18,7 +18,11 @@ export interface InvokeTarget {
   args: object;
 }
 
-export interface Cache {
+export interface Static {
+  get(name: string): unknown;
+}
+
+export interface Schemas {
   get(name: string): unknown;
 }
 
@@ -29,8 +33,8 @@ export interface Listener {
 export interface Application extends EventEmitter {
   worker: { id: string };
   server: { host: string; port: number; protocol: string };
-  resources: Cache;
-  schemas: Cache;
+  resources: Static;
+  schemas: Schemas;
   scheduler: Scheduler;
   introspect: () => Promise<object>;
   invoke: (target: InvokeTarget) => Promise<unknown>;
