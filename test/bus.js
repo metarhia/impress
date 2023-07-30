@@ -2,7 +2,7 @@
 
 const path = require('node:path');
 const metatests = require('metatests');
-const { Place } = require('../lib/place.js');
+const { Code } = require('../lib/code.js');
 
 const root = process.cwd();
 
@@ -17,7 +17,7 @@ const application = {
 };
 
 metatests.testAsync('lib/bus', async (test) => {
-  const bus = new Place('bus', application);
+  const bus = new Code('bus', application);
   test.strictSame(bus.place, 'bus');
   test.strictSame(bus.path, path.join(root, 'test/bus'));
   test.strictSame(typeof bus.application, 'object');

@@ -2,7 +2,7 @@
 
 const path = require('node:path');
 const metatests = require('metatests');
-const { Place } = require('../lib/place.js');
+const { Code } = require('../lib/code.js');
 
 const root = process.cwd();
 
@@ -16,8 +16,8 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/place', async (test) => {
-  const cache = new Place('cache', application);
+metatests.testAsync('lib/code', async (test) => {
+  const cache = new Code('cache', application);
   test.strictSame(cache.place, 'cache');
   test.strictSame(typeof cache.path, 'string');
   test.strictSame(typeof cache.application, 'object');
