@@ -20,9 +20,9 @@ metatests.test('lib/application', (test) => {
   test.strictSame(application.cert.constructor.name, 'Cert');
   test.strictSame(application.resources.constructor.name, 'Static');
   test.strictSame(application.api.constructor.name, 'Api');
-  test.strictSame(application.lib.constructor.name, 'Place');
-  test.strictSame(application.db.constructor.name, 'Place');
-  test.strictSame(application.bus.constructor.name, 'Place');
+  test.strictSame(application.lib.constructor.name, 'Code');
+  test.strictSame(application.db.constructor.name, 'Code');
+  test.strictSame(application.bus.constructor.name, 'Code');
   test.strictSame(application.starts, []);
   test.strictSame(application.config, null);
   test.strictSame(application.logger, null);
