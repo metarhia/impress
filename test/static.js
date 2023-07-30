@@ -15,7 +15,7 @@ const application = {
 };
 
 metatests.testAsync('lib/static load', async (test) => {
-  const cache = new Static('cache', application);
+  const cache = new Static('lib', application);
   test.strictSame(cache.files instanceof Map, true);
   test.strictSame(cache.files.size, 0);
   test.strictSame(cache.ext, undefined);
