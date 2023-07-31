@@ -2,6 +2,14 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.2][] - 2023-07-31
+
+- Require dependencies from application, not from impress
+- Support new globals: fetch, AbortController, Event, EventTarget,
+  MessageChannel, MessageEvent, MessagePort
+- Create `application/tasks` directory if not exists
+- Refactor `Place` class and all child classes
+
 ## [3.0.1][] - 2023-07-23
 
 - Fix noncritical bugs, restructure, rename and reorganize modules
@@ -288,7 +296,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.1...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.2...HEAD
+[3.0.2]: https://github.com/metarhia/impress/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/metarhia/impress/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/metarhia/impress/compare/v2.6.10...v3.0.0
 [2.6.10]: https://github.com/metarhia/impress/compare/v2.6.9...v2.6.10
