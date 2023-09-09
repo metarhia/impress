@@ -2,6 +2,13 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.4][] - 2023-09-09
+
+- Fix bug serving empty folders
+- Fix for node.js 20: writing headers after they are sent to the client
+- Move semaphore from metacom to `Application`
+- Integrate native node.js tests into metarhia
+
 ## [3.0.3][] - 2023-08-14
 
 - Fix `MessagePort` leak
@@ -302,7 +309,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.3...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.4...HEAD
+[3.0.4]: https://github.com/metarhia/impress/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/metarhia/impress/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/metarhia/impress/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/metarhia/impress/compare/v3.0.0...v3.0.1
