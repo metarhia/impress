@@ -34,12 +34,12 @@ const impress = {
   startTimer: null,
 };
 
-const exit = async (message) => {
+const exit = async (message, code) => {
   if (impress.finalization) return;
   impress.finalization = true;
   impress.console.info(message);
   if (impress.logger && impress.logger.active) await impress.logger.close();
-  process.exit(1);
+  process.exit(code);
 };
 
 const logError = (type) => (error) => {
@@ -47,7 +47,7 @@ const logError = (type) => (error) => {
   const msg = error?.stack || error?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
   if (type === 'warning') return;
-  if (impress.initialization) exit('Can not start Application server');
+  if (impress.initialization) exit('Can not start Application server', 1);
 };
 
 const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
@@ -63,7 +63,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   worker.on('exit', (code) => {
     if (code !== 0) startWorker(app, kind, port, id);
     else app.threads.delete(id);
-    if (impress.initialization) exit('Can not start Application server');
+    if (impress.initialization) exit('Can not start Application server', 1);
     if (app.threads.size === 0) {
       impress.applications.delete(app.path);
       if (impress.applications.size === 0) impress.close();
@@ -123,14 +123,14 @@ const validateConfig = async (config) => {
       valid = false;
     }
   }
-  if (!valid) exit('Application server configuration is invalid');
+  if (!valid) exit('Application server configuration is invalid', 1);
 };
 
 const loadApplication = async (root, dir, master) => {
   impress.console.info(`Start: ${dir}`);
   const configPath = path.join(dir, 'config');
   const config = await new Config(configPath, CFG_OPTIONS).catch((error) => {
-    exit(`Can not read configuration: ${configPath}\n${error.stack}`);
+    exit(`Can not read configuration: ${configPath}\n${error.stack}`, 1);
   });
   await validateConfig(config);
   if (master) {
@@ -194,7 +194,7 @@ const stop = async () => {
     stopApplication(app.path);
   }
   await portsClosed;
-  exit('Application server stopped');
+  exit('Application server stopped', 0);
 };
 
 process.removeAllListeners('warning');
