@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Enterprise application server for Node.js",
   "license": "MIT",
@@ -62,11 +62,11 @@
     "node": "16 || 18 || 19 || 20"
   },
   "dependencies": {
-    "metacom": "^3.0.2",
+    "metacom": "^3.0.5",
     "metaconfiguration": "^2.1.11",
     "metalog": "^3.1.12",
     "metaschema": "^2.1.5",
-    "metautil": "^3.11.0",
+    "metautil": "^3.12.0",
     "metavm": "^1.2.6",
     "metawatch": "^1.1.1"
   },
