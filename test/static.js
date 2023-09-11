@@ -23,8 +23,9 @@ metatests.testAsync('lib/static load', async (test) => {
   test.strictSame(cache.get('/example/add.js'), undefined);
   await cache.load();
   test.strictSame(cache.files.size, 13);
-  test.strictSame(cache.get('/example/add.js') instanceof Buffer, true);
-  test.strictSame(cache.get('/example/add.js').length, 158);
+  const file = cache.get('/example/add.js');
+  test.strictSame(file.data instanceof Buffer, true);
+  test.strictSame(file.data.length, 158);
   test.strictSame(cache.get('/example/unknown.js'), undefined);
   test.strictSame(cache.ext, undefined);
   test.strictSame(cache.maxFileSize, 10000000);
