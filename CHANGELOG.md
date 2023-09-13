@@ -2,6 +2,13 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.5][] - 2023-09-13
+
+- Implemented virtual paths with page templates
+- Implemented custom erro pages 404, 500...
+- Fixed integration with native node.js test runner
+- Fixed process exit code
+
 ## [3.0.4][] - 2023-09-09
 
 - Fix bug serving empty folders
@@ -309,7 +316,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.4...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.5...HEAD
+[3.0.5]: https://github.com/metarhia/impress/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/metarhia/impress/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/metarhia/impress/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/metarhia/impress/compare/v3.0.1...v3.0.2
