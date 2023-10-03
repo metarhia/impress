@@ -183,7 +183,7 @@ const stopApplication = (dir) => {
   }
 };
 
-async function stop(code = 0) {
+const stop = async (code = 0) => {
   const portsClosed = new Promise((resolve) => {
     impress.console.info('Graceful shutdown in worker 0');
     const timeout = setTimeout(() => {
