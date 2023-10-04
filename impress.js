@@ -42,7 +42,8 @@ const exit = async (message, code) => {
   process.exit(code);
 };
 
-const logError = (type) => (error) => {
+const logError = (type) => (err) => {
+  const error = metautil.isError(err) ? err : new Error('Unknown');
   if (error.name === 'ExperimentalWarning') return;
   const msg = error?.stack || error?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
