@@ -2,6 +2,13 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.6][] - 2023-10-06
+
+- Fixed static server for windows
+- Fixed restart on EADDRINUSE
+- Fixed unicode content length in JSON serialization
+- Drop node.js 16 and 19, update dependencies
+
 ## [3.0.5][] - 2023-09-13
 
 - Implemented virtual paths with page templates
@@ -316,7 +323,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.5...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.6...HEAD
+[3.0.6]: https://github.com/metarhia/impress/compare/v3.0.5...v3.0.6
 [3.0.5]: https://github.com/metarhia/impress/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/metarhia/impress/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/metarhia/impress/compare/v3.0.2...v3.0.3
