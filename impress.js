@@ -7,7 +7,7 @@ const { Worker } = require('node:worker_threads');
 const path = require('node:path');
 const { Config } = require('metaconfiguration');
 const metavm = require('metavm');
-const metautil = require('metautil');
+const { Pool, isError } = require('metautil');
 const { loadSchema } = require('metaschema');
 const { Logger } = require('metalog');
 const { Planner } = require('./lib/planner.js');
@@ -43,7 +43,7 @@ const exit = async (message, code) => {
 };
 
 const logError = (type) => (err) => {
-  const error = metautil.isError(err) ? err : new Error('Unknown');
+  const error = isError(err) ? err : new Error('Unknown');
   if (error.name === 'ExperimentalWarning') return;
   const msg = error?.stack || error?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
@@ -150,7 +150,7 @@ const loadApplication = async (root, dir, master) => {
   }
   const { balancer, ports = [], workers = {} } = config.server;
   const threads = new Map();
-  const pool = new metautil.Pool({ timeout: workers.wait });
+  const pool = new Pool({ timeout: workers.wait });
   const app = { root, path: dir, config, threads, pool, ready: 0 };
   if (balancer) await startWorker(app, 'balancer', balancer);
   for (const port of ports) await startWorker(app, 'server', port);
