@@ -102,6 +102,10 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
       if (!next) return;
       next.postMessage(msg, [port]);
     },
+
+    terminate: () => {
+      process.emit('TERMINATE');
+    },
   };
 
   worker.on('message', (msg) => {
@@ -204,6 +208,7 @@ process.on('uncaughtException', logError('Uncaught exception'));
 process.on('unhandledRejection', logError('Unhandled rejection'));
 process.on('SIGINT', stop);
 process.on('SIGTERM', stop);
+process.on('TERMINATE', stop);
 
 if (process.stdin.isTTY) {
   process.stdin.setRawMode(true);
