@@ -10,6 +10,7 @@
     stop: 5000,
     request: 5000,
     watch: 1000,
+    test: 10000,
   },
   queue: {
     concurrency: 1000,
