@@ -103,8 +103,8 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
       next.postMessage(msg, [port]);
     },
 
-    terminate: () => {
-      process.emit('TERMINATE');
+    terminate: (msg) => {
+      process.emit('TERMINATE', msg.code);
     },
   };
 
@@ -183,7 +183,7 @@ const stopApplication = (dir) => {
   }
 };
 
-const stop = async () => {
+const stop = async (code = 0) => {
   const portsClosed = new Promise((resolve) => {
     impress.console.info('Graceful shutdown in worker 0');
     const timeout = setTimeout(() => {
@@ -199,7 +199,7 @@ const stop = async () => {
     stopApplication(app.path);
   }
   await portsClosed;
-  exit('Application server stopped', 0);
+  exit('Application server stopped', code);
 };
 
 process.removeAllListeners('warning');
