@@ -2,6 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.8][] - 2023-10-09
+
+- Integration with custom test reporter
+- Implement test timeout
+- Metacom fix: do not serve API over http and ws on balancing port
+
 ## [3.0.7][] - 2023-10-06
 
 - Fixed imtegration with node.js native test runner for windows
@@ -327,7 +333,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.7...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.8...HEAD
+[3.0.8]: https://github.com/metarhia/impress/compare/v3.0.7...v3.0.8
 [3.0.7]: https://github.com/metarhia/impress/compare/v3.0.6...v3.0.7
 [3.0.6]: https://github.com/metarhia/impress/compare/v3.0.5...v3.0.6
 [3.0.5]: https://github.com/metarhia/impress/compare/v3.0.4...v3.0.5
