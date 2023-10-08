@@ -15,6 +15,7 @@ const { Planner } = require('./lib/planner.js');
 const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
 const PATH = process.cwd();
 const WORKER_PATH = path.join(__dirname, 'lib/worker.js');
+const REPORTER_PATH = path.join(__dirname, 'lib/reporter.js');
 const LOG_PATH = path.join(PATH, 'log');
 const CTRL_C = 3;
 const LOG_OPTIONS = { path: LOG_PATH, home: PATH, workerId: 0 };
@@ -53,7 +54,8 @@ const logError = (type) => (err) => {
 
 const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   const workerData = { id, kind, root: app.root, path: app.path, port };
-  const options = { trackUnmanagedFds: true, workerData };
+  const execArgv = [...process.execArgv, `--test-reporter=${REPORTER_PATH}`];
+  const options = { trackUnmanagedFds: true, workerData, execArgv };
   const worker = new Worker(WORKER_PATH, options);
   if (kind === 'worker') {
     app.pool.add(worker);
