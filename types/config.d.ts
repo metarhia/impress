@@ -27,6 +27,7 @@ export interface ServerConfig {
     stop: number;
     request: number;
     watch: number;
+    test: number;
   };
   queue: {
     concurrency: number;
