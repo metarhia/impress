@@ -2,6 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.10][] - 2023-10-10
+
+- Run tests on `ready` (all workers started)
+- Support units without version: `api/example` instead of `api/example.1`
+
 ## [3.0.9][] - 2023-10-09
 
 - Fixed outupt stack traces and test duration
@@ -337,7 +342,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.9...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.10...HEAD
+[3.0.10]: https://github.com/metarhia/impress/compare/v3.0.9...v3.0.10
 [3.0.9]: https://github.com/metarhia/impress/compare/v3.0.8...v3.0.9
 [3.0.8]: https://github.com/metarhia/impress/compare/v3.0.7...v3.0.8
 [3.0.7]: https://github.com/metarhia/impress/compare/v3.0.6...v3.0.7
