@@ -87,6 +87,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
         clearTimeout(impress.startTimer);
         impress.initialization = false;
         impress.console.info(`App started: ${app.path}`);
+        broadcast(app, { name: 'ready' });
       }
     },
 
