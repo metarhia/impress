@@ -2,6 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.11][] - 2023-10-12
+
+- Fix reporter path: add `file://` to support windows
+- Optimize cross-worker invocation
+
 ## [3.0.10][] - 2023-10-10
 
 - Run tests on `ready` (all workers started)
@@ -342,7 +347,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.10...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.11...HEAD
+[3.0.11]: https://github.com/metarhia/impress/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/metarhia/impress/compare/v3.0.9...v3.0.10
 [3.0.9]: https://github.com/metarhia/impress/compare/v3.0.8...v3.0.9
 [3.0.8]: https://github.com/metarhia/impress/compare/v3.0.7...v3.0.8
