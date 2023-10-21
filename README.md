@@ -67,32 +67,38 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 
 ## Features
 
-- **Auto API routing**, just create endpoint files as an async function;
-- Code **live reload** with file system watch (when files change on disk);
-- **Graceful shutdown** and application state recovery after reload;
-- **Minimal dependencies** and code size;
-- Can scale with **multiple threads** and servers;
-- Code **sandboxing** for security and context isolation;
-- Auto module loader with **dependency injection** for namespaces;
-- **Layered architecture** out of the box: core, domain, API, client;
-- Utilize multiple CPU cores and serve multiple ports with worker threads;
-- Inter-process communication and shared memory used for state management;
-- State synchronization mechanism with transactions and subscription;
-- Cache server-side executable JavaScript in memory;
-- Rapid **API** development support: AJAX RPC and **Websocket**;
-- Serve static files from memory cache;
-- Application configuration (for different named environments);
-- Database access layer for PostgreSQL and relational db schemas;
-- Persistent sessions support with authentication, groups, and anonymous;
-- Multiple protocols: HTTP, HTTPS, WS, WSS;
-- Logging with buffering (lazy write) and rotation (keep logs N days);
-- File utilities: upload, download, streaming;
-- Built-in simple testing framework;
-- Server health monitoring;
-- Built-in data structures validation and preprocessing library;
-- Task scheduling (interval or certain time);
-- Concurrency control: request queue with timeout and size;
-- Execution timeout and error handling;
+- **API auto-routing** calls to `endpoint` for rapid API development (no need to add routes manually)
+- **API concurrency**: request execution timeout and execution queue with both timeout and size limitations
+- **Schemas** for API contract, data structures validation, and domain models
+- **Application server** supports different API styles: RPC over AJAX and over Websocket, REST, and web hooks
+- **Multiple protocols** support: HTTP, HTTPS, WS, WSS
+- **Auto loader** with `start` hooks, namespace generation for code and dependencies
+- **Live reload** of code through filesystem watch
+- **Graceful shutdown** with `stop` hooks
+- **Minimal dependencies** and reduced code size
+- **Layered architecture**: api, domain logic, data access layer, and system code layer (hidden)
+- **Code sandboxing** for enhanced security and execution context isolation
+- **Code protection**: reference pollution prevention, prototype pollution prevention
+- **Multi-threading** for CPU utilization and execution isolation
+- **Load balancing** for simple scaling with redirection to multiple ports
+- **Caching**: in-memory caching for APIs and static files
+- **Configuration**: environment-specific application settings
+- **Database access** layer compatible with PostgreSQL with SQL-injection protection
+- **Persistent sessions** with authentication, groups, and anonymous sessions
+- **Buffered logging** (lazy write) with log rotation (keep logs N days) and console interface
+- **Testing**: integrated node.js native test runner and table-test support
+- **Inter-process** communication and shared memory used for state management
+- **File utilities**: upload, download, support for partial content and streaming
+- **Task Management**: scheduled task execution at specific intervals or certain times
+
+## TODO list
+
+Those features will be implemented in nearest future (3-6 months):
+
+- Server health monitoring
+- Database migrations
+- State synchronization mechanism with transactions and subscription
+- Multi-tenancy support
 
 ## Requirements
 
