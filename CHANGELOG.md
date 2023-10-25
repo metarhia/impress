@@ -2,6 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.13][] - 2023-10-22
+
+- Fix serve static not in cache (e.g. certbot challenge)
+- Fix `application.invoke` availability on `start` hook
+- Support node.js 21.x
+
 ## [3.0.12][] - 2023-10-22
 
 - Update metacom and metautil with important error.code and timeout fixes
@@ -352,7 +358,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.12...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.13...HEAD
+[3.0.13]: https://github.com/metarhia/impress/compare/v3.0.12...v3.0.13
 [3.0.12]: https://github.com/metarhia/impress/compare/v3.0.11...v3.0.12
 [3.0.11]: https://github.com/metarhia/impress/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/metarhia/impress/compare/v3.0.9...v3.0.10

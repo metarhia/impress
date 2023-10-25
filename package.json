@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "3.0.12",
+  "version": "3.0.13",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Enterprise application server for Node.js",
   "license": "MIT",
@@ -38,7 +38,7 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/metarhia/impress"
+    "url": "git+https://github.com/metarhia/impress.git"
   },
   "bugs": {
     "url": "https://github.com/metarhia/impress/issues",
