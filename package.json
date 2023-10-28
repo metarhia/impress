@@ -51,7 +51,11 @@
   },
   "main": "impress.js",
   "types": "types/impress.d.ts",
-  "files": ["lib/", "schemas/", "types/"],
+  "files": [
+    "lib/",
+    "schemas/",
+    "types/"
+  ],
   "scripts": {
     "test": "npm run lint && npm run types && metatests test/",
     "types": "tsc -p types/tsconfig.json",
