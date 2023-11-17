@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "metacom": "^3.1.2",
-    "metaconfiguration": "^2.1.11",
+    "metaconfiguration": "^2.2.0",
     "metalog": "^3.1.13",
     "metaschema": "^2.1.5",
     "metautil": "^3.15.0",
