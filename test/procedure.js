@@ -10,11 +10,10 @@ metatests.testAsync('lib/procedure', async (test) => {
   });
 
   const application = {
-    server: {
-      semaphore: {
-        async enter() {},
-        leave() {},
-      },
+    Error,
+    semaphore: {
+      async enter() {},
+      leave() {},
     },
   };
 
@@ -62,11 +61,9 @@ metatests.testAsync('lib/procedure validate', async (test) => {
 
   const application = {
     Error,
-    server: {
-      semaphore: {
-        async enter() {},
-        leave() {},
-      },
+    semaphore: {
+      async enter() {},
+      leave() {},
     },
   };
   const procedure = new Procedure(script, 'method', application);
@@ -93,11 +90,9 @@ metatests.testAsync('lib/procedure validate async', async (test) => {
 
   const application = {
     Error,
-    server: {
-      semaphore: {
-        async enter() {},
-        leave() {},
-      },
+    semaphore: {
+      async enter() {},
+      leave() {},
     },
   };
   const procedure = new Procedure(script, 'method', application);
@@ -124,11 +119,9 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
 
   const application = {
     Error,
-    server: {
-      semaphore: {
-        async enter() {},
-        leave() {},
-      },
+    semaphore: {
+      async enter() {},
+      leave() {},
     },
   };
 
