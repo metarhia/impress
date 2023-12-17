@@ -134,3 +134,72 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
 
   await test.resolves(() => procedure.invoke({}, { waitTime: 50 }), DONE);
 });
+
+metatests.testAsync('lib/procedure queue', async (test) => {
+  const DONE = 'success';
+
+  const script = () => ({
+    queue: {
+      concurrency: 1,
+      size: 1,
+      timeout: 15,
+    },
+
+    method: async ({ waitTime }) =>
+      new Promise((resolve) => {
+        setTimeout(() => resolve(DONE), waitTime);
+      }),
+  });
+
+  const application = {
+    Error,
+    semaphore: {
+      async enter() {},
+      leave() {},
+    },
+  };
+
+  const rpc = async (proc, args) => {
+    let result = null;
+    await proc.enter();
+    try {
+      result = await proc.invoke({}, args);
+    } catch (error) {
+      throw new Error('Procedure.invoke failed. Check your script.method');
+    }
+    proc.leave();
+    return result;
+  };
+
+  const procedure = new Procedure(script, 'method', application);
+
+  await test.resolves(async () => {
+    const invokes = await Promise.allSettled([
+      rpc(procedure, { waitTime: 2 }),
+      rpc(procedure, { waitTime: 1 }),
+    ]);
+    const last = invokes[1];
+    return last.value;
+  }, DONE);
+
+  await test.rejects(async () => {
+    const invokes = await Promise.allSettled([
+      rpc(procedure, { waitTime: 16 }),
+      rpc(procedure, { waitTime: 1 }),
+    ]);
+    const last = invokes[1];
+    if (last.status === 'rejected') throw last.reason;
+    return last.value;
+  }, new Error('Semaphore timeout'));
+
+  await test.rejects(async () => {
+    const invokes = await Promise.allSettled([
+      rpc(procedure, { waitTime: 1 }),
+      rpc(procedure, { waitTime: 1 }),
+      rpc(procedure, { waitTime: 1 }),
+    ]);
+    const last = invokes[2];
+    if (last.status === 'rejected') throw last.reason;
+    return last.value;
+  }, new Error('Semaphore queue is full'));
+});
