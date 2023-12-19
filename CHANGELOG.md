@@ -2,6 +2,8 @@
 
 ## [Unreleased][unreleased]
 
+- Fixed API endpoints local queue settings applying
+
 ## [3.0.13][] - 2023-10-22
 
 - Fix serve static not in cache (e.g. certbot challenge)
