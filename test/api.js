@@ -14,6 +14,7 @@ const application = {
   absolute(relative) {
     return path.join(this.path, relative);
   },
+  config: { server: { timeouts: {} } },
 };
 
 metatests.testAsync('lib/api load', async (test) => {

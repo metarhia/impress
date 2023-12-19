@@ -15,6 +15,7 @@ metatests.testAsync('lib/procedure', async (test) => {
       async enter() {},
       leave() {},
     },
+    config: { server: { timeouts: {} } },
   };
 
   const procedure = new Procedure(script, 'method', application);
@@ -65,6 +66,7 @@ metatests.testAsync('lib/procedure validate', async (test) => {
       async enter() {},
       leave() {},
     },
+    config: { server: { timeouts: {} } },
   };
   const procedure = new Procedure(script, 'method', application);
 
@@ -94,6 +96,7 @@ metatests.testAsync('lib/procedure validate async', async (test) => {
       async enter() {},
       leave() {},
     },
+    config: { server: { timeouts: {} } },
   };
   const procedure = new Procedure(script, 'method', application);
 
@@ -123,6 +126,7 @@ metatests.testAsync('lib/procedure timeout', async (test) => {
       async enter() {},
       leave() {},
     },
+    config: { server: { timeouts: { request: 20 } } },
   };
 
   const procedure = new Procedure(script, 'method', application);
@@ -157,6 +161,7 @@ metatests.testAsync('lib/procedure queue', async (test) => {
       async enter() {},
       leave() {},
     },
+    config: { server: { timeouts: {} } },
   };
 
   const rpc = async (proc, args) => {
@@ -202,4 +207,33 @@ metatests.testAsync('lib/procedure queue', async (test) => {
     if (last.status === 'rejected') throw last.reason;
     return last.value;
   }, new Error('Semaphore queue is full'));
+});
+
+metatests.testAsync('lib/procedure global timeouts.request', async (test) => {
+  const DONE = 'success';
+
+  const script = () => ({
+    timeout: undefined,
+
+    method: async ({ waitTime }) =>
+      new Promise((resolve) => {
+        setTimeout(() => resolve(DONE), waitTime);
+      }),
+  });
+
+  const application = {
+    Error,
+    semaphore: {
+      async enter() {},
+      leave() {},
+    },
+    config: { server: { timeouts: { request: 10 } } },
+  };
+
+  const procedure = new Procedure(script, 'method', application);
+
+  await test.rejects(
+    async () => procedure.invoke({}, { waitTime: 20 }),
+    new Error('Timeout of 10ms reached'),
+  );
 });
