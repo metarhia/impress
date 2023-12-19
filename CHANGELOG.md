@@ -4,6 +4,7 @@
 
 - Fixed API endpoints local queue settings applying
 - Worker task execution global timeout implementation
+- Reimplement global timeouts.request usage during a Procedure invocation
 
 ## [3.0.13][] - 2023-10-22
 
