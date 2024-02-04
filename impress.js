@@ -100,20 +100,30 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
     },
 
     invoke: async (msg) => {
-      const { status, port, exclusive } = msg;
-      if (status === 'done') return void app.pool.release(worker);
-      const promisedThread = exclusive ? app.pool.capture() : app.pool.next();
-      const next = await promisedThread.catch(() => {
-        const error = new Error('No thread available');
-        port.postMessage({ name: 'error', error });
-        return null;
-      });
-      if (!next) return;
-      next.postMessage(msg, [port]);
+      const { from, to, exclusive } = msg;
+      if (from) {
+        const promised = exclusive ? app.pool.capture() : app.pool.next();
+        const next = await promised.catch(() => {
+          const error = { message: 'No thread available' };
+          const back = app.threads.get(from);
+          const data = { id, status: 'error', error };
+          back.postMessage({ name: 'invoke', to: from, data });
+          return null;
+        });
+        if (!next) return;
+        next.postMessage(msg);
+      } else {
+        const back = app.threads.get(to);
+        back.postMessage(msg);
+      }
     },
 
-    terminate: (msg) => {
-      process.emit('TERMINATE', msg.code);
+    release: () => {
+      app.pool.release(worker);
+    },
+
+    terminate: ({ code }) => {
+      process.emit('TERMINATE', code);
     },
   };
 
