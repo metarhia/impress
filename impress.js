@@ -69,6 +69,10 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   }
   app.threads.set(id, worker);
 
+  worker.on('error', (error) => {
+    impress.console.error(error.message);
+  });
+
   worker.on('exit', (code) => {
     if (code !== 0) startWorker(app, kind, port, id);
     else app.threads.delete(id);
