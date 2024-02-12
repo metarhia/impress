@@ -110,7 +110,7 @@ Those features will be implemented in nearest future (3-6 months):
 
 ## License & Contributors
 
-Copyright (c) 2012-2023 Metarhia contributors.
+Copyright (c) 2012-2024 Metarhia contributors.
 See github for full [contributors list](https://github.com/metarhia/impress/graphs/contributors).
 Impress Application Server is [MIT licensed](./LICENSE).
 Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;
