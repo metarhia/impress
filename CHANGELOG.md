@@ -2,9 +2,15 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.14][] - 2024-02-12
+
 - Fixed API endpoints local queue settings applying
 - Worker task execution global timeout implementation
 - Reimplement global timeouts.request usage during a Procedure invocation
+- Fix worker exit error: catch and restart (e.g. memoy leaks)
+- Refactor procedure timeout
+- Rewrite `invoke` without ports, including timeouts and thread pool
+- Fix timers namespace: due to changes in `node:timers/promises`
 
 ## [3.0.13][] - 2023-10-22
 
@@ -362,7 +368,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.13...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.14...HEAD
+[3.0.14]: https://github.com/metarhia/impress/compare/v3.0.13...v3.0.14
 [3.0.13]: https://github.com/metarhia/impress/compare/v3.0.12...v3.0.13
 [3.0.12]: https://github.com/metarhia/impress/compare/v3.0.11...v3.0.12
 [3.0.11]: https://github.com/metarhia/impress/compare/v3.0.10...v3.0.11
