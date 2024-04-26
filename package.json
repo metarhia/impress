@@ -66,11 +66,11 @@
     "node": "^18.15 || 20 || 21"
   },
   "dependencies": {
-    "metacom": "^3.2.1",
+    "metacom": "^3.2.3",
     "metaconfiguration": "^3.0.0",
     "metalog": "^3.1.14",
-    "metaschema": "^2.1.5",
-    "metautil": "^5.2.1",
+    "metaschema": "^2.2.0",
+    "metautil": "^5.2.2",
     "metavm": "^1.4.1",
     "metawatch": "^1.2.1"
   },
