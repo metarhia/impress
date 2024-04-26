@@ -2,6 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.15][] - 2024-04-27
+
+- Update dependencies to fix metacom compatibility
+
 ## [3.0.14][] - 2024-02-12
 
 - Fixed API endpoints local queue settings applying
@@ -368,7 +372,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.14...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.15...HEAD
+[3.0.15]: https://github.com/metarhia/impress/compare/v3.0.14...v3.0.15
 [3.0.14]: https://github.com/metarhia/impress/compare/v3.0.13...v3.0.14
 [3.0.13]: https://github.com/metarhia/impress/compare/v3.0.12...v3.0.13
 [3.0.12]: https://github.com/metarhia/impress/compare/v3.0.11...v3.0.12
