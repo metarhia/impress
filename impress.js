@@ -198,7 +198,7 @@ const loadApplications = async () => {
   }
 };
 
-const stop = async (code = 0) => {
+const stop = async (signal = 'SIGINT', code = 0) => {
   const portsClosed = new Promise((resolve) => {
     impress.console.info('Graceful shutdown in worker 0');
     const timeout = setTimeout(() => {
@@ -214,7 +214,7 @@ const stop = async (code = 0) => {
     broadcast(app, { name: 'stop' });
   }
   await portsClosed;
-  exit('Application server stopped', code);
+  exit(`Application server stopped by ${signal}`, code);
 };
 
 process.removeAllListeners('warning');
