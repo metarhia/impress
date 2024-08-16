@@ -169,7 +169,7 @@ metatests.testAsync('lib/procedure queue', async (test) => {
     await proc.enter();
     try {
       result = await proc.invoke({}, args);
-    } catch (error) {
+    } catch {
       throw new Error('Procedure.invoke failed. Check your script.method');
     }
     proc.leave();
