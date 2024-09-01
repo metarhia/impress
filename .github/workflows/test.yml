@@ -1,11 +1,8 @@
 name: Testing CI
-
 on: pull_request
-
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         node:
