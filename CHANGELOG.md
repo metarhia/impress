@@ -2,6 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.16][] - 2024-09-01
+
+- Update eslint to 9.x and prettier with configs
+- Add node.js 22 to CI
+
 ## [3.0.15][] - 2024-04-27
 
 - Update dependencies to fix metacom compatibility
@@ -372,7 +377,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.15...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.16...HEAD
+[3.0.16]: https://github.com/metarhia/impress/compare/v3.0.15...v3.0.16
 [3.0.15]: https://github.com/metarhia/impress/compare/v3.0.14...v3.0.15
 [3.0.14]: https://github.com/metarhia/impress/compare/v3.0.13...v3.0.14
 [3.0.13]: https://github.com/metarhia/impress/compare/v3.0.12...v3.0.13
