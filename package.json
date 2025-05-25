@@ -66,21 +66,21 @@
     "node": "^18.15 || 20 || 21 || 22 || 23 || 24"
   },
   "dependencies": {
-    "metacom": "^3.2.4",
-    "metaconfiguration": "^3.0.1",
+    "metacom": "^3.2.5",
+    "metaconfiguration": "^3.0.2",
     "metalog": "^3.1.15",
-    "metaschema": "^2.2.1",
-    "metautil": "^5.2.3",
-    "metavm": "^1.4.2",
-    "metawatch": "^1.2.2"
+    "metaschema": "^2.2.2",
+    "metautil": "^5.2.5",
+    "metavm": "^1.4.4",
+    "metawatch": "^1.2.3"
   },
   "devDependencies": {
-    "@types/node": "^22.5.1",
-    "@types/ws": "^8.5.12",
-    "eslint": "^9.9.1",
-    "eslint-config-metarhia": "^9.0.5",
+    "@types/node": "^22.15.21",
+    "@types/ws": "^8.18.1",
+    "eslint": "^9.27.0",
+    "eslint-config-metarhia": "^9.1.1",
     "metatests": "^0.9.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
   }
 }
