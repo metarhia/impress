@@ -2,6 +2,11 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.17][] - 2025-05-25
+
+- Add node.js 24 to CI
+- Update dependencies
+
 ## [3.0.16][] - 2024-09-01
 
 - Update eslint to 9.x and prettier with configs
