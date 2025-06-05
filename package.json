@@ -68,16 +68,16 @@
   "dependencies": {
     "metacom": "^3.2.5",
     "metaconfiguration": "^3.0.2",
-    "metalog": "^3.1.15",
+    "metalog": "^3.1.16",
     "metaschema": "^2.2.2",
     "metautil": "^5.2.5",
     "metavm": "^1.4.4",
     "metawatch": "^1.2.3"
   },
   "devDependencies": {
-    "@types/node": "^22.15.21",
+    "@types/node": "^22.15.30",
     "@types/ws": "^8.18.1",
-    "eslint": "^9.27.0",
+    "eslint": "^9.28.0",
     "eslint-config-metarhia": "^9.1.1",
     "metatests": "^0.9.0",
     "prettier": "^3.5.3",
