@@ -78,7 +78,7 @@
     "@types/node": "^22.15.30",
     "@types/ws": "^8.18.1",
     "eslint": "^9.28.0",
-    "eslint-config-metarhia": "^9.1.1",
+    "eslint-config-metarhia": "^9.1.2",
     "metatests": "^0.9.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
