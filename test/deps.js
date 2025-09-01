@@ -1,18 +1,18 @@
 'use strict';
 
-const metatests = require('metatests');
+const { test } = require('node:test');
+const assert = require('node:assert');
 const deps = require('../lib/deps.js');
 const { node, npm, metarhia } = deps;
 
-metatests.test('lib/deps', async (test) => {
+test('lib/deps - should have correct dependencies structure', async () => {
   const expectedNamespaces = ['node', 'npm', 'metarhia', 'notLoaded', 'wt'];
-  test.strictSame(Object.keys(deps), expectedNamespaces);
-  test.strictSame(typeof node, 'object');
-  test.strictSame(typeof node.os, 'object');
-  test.strictSame(typeof npm, 'object');
-  test.strictSame(typeof npm.ws, 'function');
-  test.strictSame(typeof metarhia, 'object');
-  test.strictSame(typeof metarhia.metaschema, 'object');
-  test.strictSame(deps.notLoaded instanceof Set, true);
-  test.end();
+  assert.deepStrictEqual(Object.keys(deps), expectedNamespaces);
+  assert.strictEqual(typeof node, 'object');
+  assert.strictEqual(typeof node.os, 'object');
+  assert.strictEqual(typeof npm, 'object');
+  assert.strictEqual(typeof npm.ws, 'function');
+  assert.strictEqual(typeof metarhia, 'object');
+  assert.strictEqual(typeof metarhia.metaschema, 'object');
+  assert.strictEqual(deps.notLoaded instanceof Set, true);
 });

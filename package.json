@@ -57,7 +57,7 @@
     "types/"
   ],
   "scripts": {
-    "test": "npm run lint && npm run types && metatests test/",
+    "test": "npm run lint && npm run types && node --test",
     "types": "tsc -p types/tsconfig.json",
     "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\"",
     "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
@@ -79,7 +79,6 @@
     "@types/ws": "^8.18.1",
     "eslint": "^9.28.0",
     "eslint-config-metarhia": "^9.1.2",
-    "metatests": "^0.9.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   }
