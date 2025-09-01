@@ -1,7 +1,8 @@
 'use strict';
 
+const { test } = require('node:test');
+const assert = require('node:assert');
 const path = require('node:path');
-const metatests = require('metatests');
 const { Static } = require('../lib/static.js');
 
 const root = process.cwd();
@@ -14,20 +15,20 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/static load', async (test) => {
+test('lib/static load - should load static files correctly', async () => {
   const cache = new Static('lib', application);
-  test.strictSame(cache.files instanceof Map, true);
-  test.strictSame(cache.files.size, 0);
-  test.strictSame(cache.ext, undefined);
-  test.strictSame(cache.maxFileSize, -1);
-  test.strictSame(cache.get('/example/add.js'), undefined);
+  assert.strictEqual(cache.files instanceof Map, true);
+  assert.strictEqual(cache.files.size, 0);
+  assert.strictEqual(cache.ext, undefined);
+  assert.strictEqual(cache.maxFileSize, -1);
+  assert.strictEqual(cache.get('/example/add.js'), undefined);
+
   await cache.load();
-  test.strictSame(cache.files.size, 13);
+  assert.strictEqual(cache.files.size, 13);
   const file = cache.get('/example/add.js');
-  test.strictSame(file.data instanceof Buffer, true);
-  test.strictSame(file.data.length, 158);
-  test.strictSame(cache.get('/example/unknown.js'), undefined);
-  test.strictSame(cache.ext, undefined);
-  test.strictSame(cache.maxFileSize, 10000000);
-  test.end();
+  assert.strictEqual(file.data instanceof Buffer, true);
+  assert.strictEqual(file.data.length, 158);
+  assert.strictEqual(cache.get('/example/unknown.js'), undefined);
+  assert.strictEqual(cache.ext, undefined);
+  assert.strictEqual(cache.maxFileSize, 10000000);
 });

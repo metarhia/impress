@@ -1,7 +1,8 @@
 'use strict';
 
+const { test } = require('node:test');
+const assert = require('node:assert');
 const path = require('node:path');
-const metatests = require('metatests');
 const { Place } = require('../lib/place.js');
 
 const root = process.cwd();
@@ -16,11 +17,9 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/place', async (test) => {
-  test.plan(17);
-
-  test.strictSame(typeof Place, 'function');
-  test.strictSame(Place.name, 'Place');
+test('lib/place - should load place correctly', async () => {
+  assert.strictEqual(typeof Place, 'function');
+  assert.strictEqual(Place.name, 'Place');
 
   class EmptyPlace extends Place {
     constructor(place, application) {
@@ -29,13 +28,13 @@ metatests.testAsync('lib/place', async (test) => {
     }
 
     async change(filePath) {
-      test.strictSame(this.constructor.name, 'EmptyPlace');
-      test.strictSame(typeof filePath, 'string');
+      assert.strictEqual(this.constructor.name, 'EmptyPlace');
+      assert.strictEqual(typeof filePath, 'string');
     }
   }
 
   const place = new EmptyPlace('lib', application);
   await place.load();
-  test.strictSame(place.name, 'lib');
-  test.strictSame(place.empty, true);
+  assert.strictEqual(place.name, 'lib');
+  assert.strictEqual(place.empty, true);
 });

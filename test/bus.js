@@ -1,7 +1,8 @@
 'use strict';
 
+const { test } = require('node:test');
+const assert = require('node:assert');
 const path = require('node:path');
-const metatests = require('metatests');
 const { Code } = require('../lib/code.js');
 
 const root = process.cwd();
@@ -16,19 +17,19 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/bus', async (test) => {
+test('lib/bus - should load bus correctly', async () => {
   const bus = new Code('bus', application);
-  test.strictSame(bus.name, 'bus');
-  test.strictSame(bus.path, path.join(root, 'test/bus'));
-  test.strictSame(typeof bus.application, 'object');
-  test.strictSame(bus.tree, {});
+  assert.strictEqual(bus.name, 'bus');
+  assert.strictEqual(bus.path, path.join(root, 'test/bus'));
+  assert.strictEqual(typeof bus.application, 'object');
+  assert.deepStrictEqual(bus.tree, {});
+
   await bus.load();
-  test.strictSame(Object.keys(bus.tree), ['math', 'worldTime']);
-  test.strictSame(bus.tree.math.parent, bus.tree);
-  test.strictSame(typeof bus.tree.math, 'object');
-  test.strictSame(typeof bus.tree.math.eval, 'function');
-  test.strictSame(bus.tree.math.eval.constructor.name, 'AsyncFunction');
-  test.strictSame(typeof bus.tree.math['.service'], 'function');
-  test.strictSame(bus.tree.math['.service'].url, 'https://api.mathjs.org');
-  test.end();
+  assert.deepStrictEqual(Object.keys(bus.tree), ['math', 'worldTime']);
+  assert.strictEqual(bus.tree.math.parent, bus.tree);
+  assert.strictEqual(typeof bus.tree.math, 'object');
+  assert.strictEqual(typeof bus.tree.math.eval, 'function');
+  assert.strictEqual(bus.tree.math.eval.constructor.name, 'AsyncFunction');
+  assert.strictEqual(typeof bus.tree.math['.service'], 'function');
+  assert.strictEqual(bus.tree.math['.service'].url, 'https://api.mathjs.org');
 });
