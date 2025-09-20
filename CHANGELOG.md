@@ -1,10 +1,14 @@
 # Changelog
 
-## [Unreleased][unreleased]
+## [3.1.0][] - 2025-09-20
 
 - Migrate from metatests to Node.js native test runner
 - Remove metatests dependency
-- Update all packages to latest versions
+- Node.js engines now: >= 18.15
+- Add custom URL params (queries) support for bus
+- Implement custom headers support for bus
+- Load schemas before db and libs (fixes #1983)
+- Update all dependencies to latest versions
 - Update AUTHORS file with all contributors
 - Update README requirements with current versions
 
@@ -393,7 +397,7 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.18...HEAD
+[3.1.0]: https://github.com/metarhia/impress/compare/v3.0.18...v3.1.0
 [3.0.18]: https://github.com/metarhia/impress/compare/v3.0.17...v3.0.18
 [3.0.17]: https://github.com/metarhia/impress/compare/v3.0.16...v3.0.17
 [3.0.16]: https://github.com/metarhia/impress/compare/v3.0.15...v3.0.16
