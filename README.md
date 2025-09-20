@@ -102,10 +102,10 @@ Those features will be implemented in nearest future (3-6 months):
 
 ## Requirements
 
-- Node.js v18.15 - v24.x
-- Linux (tested on Fedora v36-38, Ubuntu v18-23, CentOS v8-9)
-- Postgresql v11-16
-- OpenSSL v3 or later (optional, for https & wss)
+- Node.js v18.15 (up to v24.x)
+- Linux (tested on Fedora v36-42, Ubuntu v20-25, CentOS v8-9, RHEL v8-10)
+- PostgreSQL v12-17 (recommended v15+)
+- OpenSSL v3.0+ (optional, for https & wss)
 - [certbot](https://github.com/certbot/certbot) (recommended but optional)
 
 ## License & Contributors
