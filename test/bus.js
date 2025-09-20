@@ -25,7 +25,7 @@ test('lib/bus - should load bus correctly', async () => {
   assert.deepStrictEqual(bus.tree, {});
 
   await bus.load();
-  assert.deepStrictEqual(Object.keys(bus.tree), ['math', 'worldTime']);
+  assert.deepStrictEqual(Object.keys(bus.tree), ['fakerapi', 'math', 'worldTime']);
   assert.strictEqual(bus.tree.math.parent, bus.tree);
   assert.strictEqual(typeof bus.tree.math, 'object');
   assert.strictEqual(typeof bus.tree.math.eval, 'function');
