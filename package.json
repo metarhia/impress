@@ -1,6 +1,6 @@
 {
   "name": "impress",
-  "version": "3.0.13",
+  "version": "3.0.18",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "description": "Enterprise application server for Node.js",
   "license": "MIT",
@@ -57,33 +57,29 @@
     "types/"
   ],
   "scripts": {
-    "test": "npm run lint && npm run types && metatests test/",
+    "test": "npm run lint && npm run types && node --test",
     "types": "tsc -p types/tsconfig.json",
     "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\"",
-    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
+    "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
   },
   "engines": {
-    "node": "^18.15 || 20 || 21"
+    "node": "^18.15 || 20 || 21 || 22 || 23 || 24"
   },
   "dependencies": {
-    "metacom": "^3.1.2",
-    "metaconfiguration": "^2.1.11",
-    "metalog": "^3.1.13",
-    "metaschema": "^2.1.5",
-    "metautil": "^3.15.0",
-    "metavm": "^1.4.0",
-    "metawatch": "^1.1.1"
+    "metacom": "^3.2.5",
+    "metaconfiguration": "^3.0.2",
+    "metalog": "^3.1.16",
+    "metaschema": "^2.2.2",
+    "metautil": "^5.2.5",
+    "metavm": "^1.4.4",
+    "metawatch": "^1.2.3"
   },
   "devDependencies": {
-    "@types/node": "^20.5.0",
-    "@types/ws": "^8.5.5",
-    "eslint": "^8.47.0",
-    "eslint-config-metarhia": "^8.2.1",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.28.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "metatests": "^0.8.2",
-    "prettier": "^3.0.1",
-    "typescript": "^5.1.6"
+    "@types/node": "^22.15.30",
+    "@types/ws": "^8.18.1",
+    "eslint": "^9.28.0",
+    "eslint-config-metarhia": "^9.1.2",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
   }
 }

@@ -2,9 +2,34 @@
 
 ## [Unreleased][unreleased]
 
+## [3.0.18][] - 2025-06-06
+
+- Remove deprecated and invalid internal modules from loader
+- Uppate dependencies
+
+## [3.0.17][] - 2025-05-25
+
+- Add node.js 24 to CI
+- Update dependencies
+
+## [3.0.16][] - 2024-09-01
+
+- Update eslint to 9.x and prettier with configs
+- Add node.js 22 to CI
+
+## [3.0.15][] - 2024-04-27
+
+- Update dependencies to fix metacom compatibility
+
+## [3.0.14][] - 2024-02-12
+
 - Fixed API endpoints local queue settings applying
 - Worker task execution global timeout implementation
 - Reimplement global timeouts.request usage during a Procedure invocation
+- Fix worker exit error: catch and restart (e.g. memoy leaks)
+- Refactor procedure timeout
+- Rewrite `invoke` without ports, including timeouts and thread pool
+- Fix timers namespace: due to changes in `node:timers/promises`
 
 ## [3.0.13][] - 2023-10-22
 
@@ -362,7 +387,12 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
-[unreleased]: https://github.com/metarhia/impress/compare/v3.0.13...HEAD
+[unreleased]: https://github.com/metarhia/impress/compare/v3.0.18...HEAD
+[3.0.18]: https://github.com/metarhia/impress/compare/v3.0.17...v3.0.18
+[3.0.17]: https://github.com/metarhia/impress/compare/v3.0.16...v3.0.17
+[3.0.16]: https://github.com/metarhia/impress/compare/v3.0.15...v3.0.16
+[3.0.15]: https://github.com/metarhia/impress/compare/v3.0.14...v3.0.15
+[3.0.14]: https://github.com/metarhia/impress/compare/v3.0.13...v3.0.14
 [3.0.13]: https://github.com/metarhia/impress/compare/v3.0.12...v3.0.13
 [3.0.12]: https://github.com/metarhia/impress/compare/v3.0.11...v3.0.12
 [3.0.11]: https://github.com/metarhia/impress/compare/v3.0.10...v3.0.11

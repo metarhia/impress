@@ -102,15 +102,15 @@ Those features will be implemented in nearest future (3-6 months):
 
 ## Requirements
 
-- Node.js v18.x or v20.x
-- Linux (tested on Fedora v36-38, Ubuntu v18-23, CentOS v7-9)
+- Node.js v18.15 - v24.x
+- Linux (tested on Fedora v36-38, Ubuntu v18-23, CentOS v8-9)
 - Postgresql v11-16
 - OpenSSL v3 or later (optional, for https & wss)
 - [certbot](https://github.com/certbot/certbot) (recommended but optional)
 
 ## License & Contributors
 
-Copyright (c) 2012-2023 Metarhia contributors.
+Copyright (c) 2012-2025 Metarhia contributors.
 See github for full [contributors list](https://github.com/metarhia/impress/graphs/contributors).
 Impress Application Server is [MIT licensed](./LICENSE).
 Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;

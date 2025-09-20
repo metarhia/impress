@@ -1,8 +1,9 @@
 'use strict';
 
+const { test } = require('node:test');
+const assert = require('node:assert');
 const path = require('node:path');
 const metavm = require('metavm');
-const metatests = require('metatests');
 const { Api } = require('../lib/api.js');
 
 const root = process.cwd();
@@ -17,33 +18,34 @@ const application = {
   config: { server: { timeouts: {} } },
 };
 
-metatests.testAsync('lib/api load', async (test) => {
+test('lib/api load - should load API correctly', async () => {
   const api = new Api('api', application);
   await api.load();
   const { example } = api.collection;
-  test.strictSame(example.default, 1);
+
+  assert.strictEqual(example.default, 1);
   const { add } = example['1'];
-  test.strictSame(add.constructor.name, 'Procedure');
-  test.strictSame(typeof add.method, 'function');
-  test.strictSame(add.method.constructor.name, 'AsyncFunction');
+  assert.strictEqual(add.constructor.name, 'Procedure');
+  assert.strictEqual(typeof add.method, 'function');
+  assert.strictEqual(add.method.constructor.name, 'AsyncFunction');
+
   const exportsKeys = ['parameters', 'method', 'returns'];
-  test.strictSame(Object.keys(add.exports), exportsKeys);
-  test.strictSame(typeof add.script, 'function');
-  test.strictSame(add.methodName, 'method');
-  test.strictSame(typeof add.application, 'object');
-  test.strictSame(add.parameters.constructor.name, 'Schema');
-  test.strictSame(add.returns.constructor.name, 'Schema');
-  test.strictSame(add.errors, null);
-  test.strictSame(add.semaphore, null);
-  test.strictSame(add.caption, '');
-  test.strictSame(add.description, '');
-  test.strictSame(add.access, '');
-  test.strictSame(add.validate, null);
-  test.strictSame(add.timeout, 0);
-  test.strictSame(add.serializer, null);
-  test.strictSame(add.protocols, null);
-  test.strictSame(add.deprecated, false);
-  test.strictSame(add.assert, null);
-  test.strictSame(add.examples, null);
-  test.end();
+  assert.deepStrictEqual(Object.keys(add.exports), exportsKeys);
+  assert.strictEqual(typeof add.script, 'function');
+  assert.strictEqual(add.methodName, 'method');
+  assert.strictEqual(typeof add.application, 'object');
+  assert.strictEqual(add.parameters.constructor.name, 'Schema');
+  assert.strictEqual(add.returns.constructor.name, 'Schema');
+  assert.strictEqual(add.errors, null);
+  assert.strictEqual(add.semaphore, null);
+  assert.strictEqual(add.caption, '');
+  assert.strictEqual(add.description, '');
+  assert.strictEqual(add.access, '');
+  assert.strictEqual(add.validate, null);
+  assert.strictEqual(add.timeout, 0);
+  assert.strictEqual(add.serializer, null);
+  assert.strictEqual(add.protocols, null);
+  assert.strictEqual(add.deprecated, false);
+  assert.strictEqual(add.assert, null);
+  assert.strictEqual(add.examples, null);
 });

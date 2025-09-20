@@ -1,7 +1,8 @@
 'use strict';
 
+const { test } = require('node:test');
+const assert = require('node:assert');
 const path = require('node:path');
-const metatests = require('metatests');
 const { Code } = require('../lib/code.js');
 
 const root = process.cwd();
@@ -16,19 +17,19 @@ const application = {
   },
 };
 
-metatests.testAsync('lib/code', async (test) => {
+test('lib/code - should load code correctly', async () => {
   const code = new Code('lib', application);
-  test.strictSame(code.name, 'lib');
-  test.strictSame(typeof code.path, 'string');
-  test.strictSame(typeof code.application, 'object');
-  test.strictSame(code.tree, {});
+  assert.strictEqual(code.name, 'lib');
+  assert.strictEqual(typeof code.path, 'string');
+  assert.strictEqual(typeof code.application, 'object');
+  assert.deepStrictEqual(code.tree, {});
+
   await code.load();
-  test.strictSame(Object.keys(code.tree), ['example', 'utils']);
-  test.strictSame(code.tree.example.parent, code.tree);
-  test.strictSame(typeof code.tree.example.add, 'object');
-  test.strictSame(typeof code.tree.example.doSomething, 'function');
-  test.strictSame(typeof code.tree.example.stop, 'function');
-  test.strictSame(typeof code.tree.example.start, 'function');
-  test.strictSame(code.tree.utils.UNITS.length, 9);
-  test.end();
+  assert.deepStrictEqual(Object.keys(code.tree), ['example', 'utils']);
+  assert.strictEqual(code.tree.example.parent, code.tree);
+  assert.strictEqual(typeof code.tree.example.add, 'object');
+  assert.strictEqual(typeof code.tree.example.doSomething, 'function');
+  assert.strictEqual(typeof code.tree.example.stop, 'function');
+  assert.strictEqual(typeof code.tree.example.start, 'function');
+  assert.strictEqual(code.tree.utils.UNITS.length, 9);
 });

@@ -69,6 +69,10 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   }
   app.threads.set(id, worker);
 
+  worker.on('error', (error) => {
+    impress.console.error(error.message);
+  });
+
   worker.on('exit', (code) => {
     if (code !== 0) startWorker(app, kind, port, id);
     else app.threads.delete(id);
@@ -100,20 +104,29 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
     },
 
     invoke: async (msg) => {
-      const { status, port, exclusive } = msg;
-      if (status === 'done') return void app.pool.release(worker);
-      const promisedThread = exclusive ? app.pool.capture() : app.pool.next();
-      const next = await promisedThread.catch(() => {
-        const error = new Error('No thread available');
-        port.postMessage({ name: 'error', error });
+      const { from, to, exclusive } = msg;
+      if (to) {
+        const back = app.threads.get(to);
+        return void back.postMessage(msg);
+      }
+      const promised = exclusive ? app.pool.capture() : app.pool.next();
+      const next = await promised.catch(() => {
+        const error = { message: 'No thread available' };
+        const back = app.threads.get(from);
+        const data = { id, status: 'error', error };
+        back.postMessage({ name: 'invoke', to: from, data });
         return null;
       });
       if (!next) return;
-      next.postMessage(msg, [port]);
+      next.postMessage(msg);
     },
 
-    terminate: (msg) => {
-      process.emit('TERMINATE', msg.code);
+    release: () => {
+      app.pool.release(worker);
+    },
+
+    terminate: ({ code }) => {
+      process.emit('TERMINATE', code);
     },
   };
 
@@ -185,7 +198,7 @@ const loadApplications = async () => {
   }
 };
 
-const stop = async (code = 0) => {
+const stop = async (signal = 'SIGINT', code = 0) => {
   const portsClosed = new Promise((resolve) => {
     impress.console.info('Graceful shutdown in worker 0');
     const timeout = setTimeout(() => {
@@ -201,7 +214,7 @@ const stop = async (code = 0) => {
     broadcast(app, { name: 'stop' });
   }
   await portsClosed;
-  exit('Application server stopped', code);
+  exit(`Application server stopped by ${signal}`, code);
 };
 
 process.removeAllListeners('warning');
