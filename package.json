@@ -57,7 +57,7 @@
     "types/"
   ],
   "scripts": {
-    "test": "npm run lint && npm run types && node --test",
+    "test": "npm run lint && npm run types && node --no-warnings --test",
     "types": "tsc -p types/tsconfig.json",
     "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\"",
     "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
