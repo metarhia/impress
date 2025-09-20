@@ -2,10 +2,16 @@
 
 ## [Unreleased][unreleased]
 
+- Migrate from metatests to Node.js native test runner
+- Remove metatests dependency
+- Update all packages to latest versions
+- Update AUTHORS file with all contributors
+- Update README requirements with current versions
+
 ## [3.0.18][] - 2025-06-06
 
 - Remove deprecated and invalid internal modules from loader
-- Uppate dependencies
+- Update dependencies
 
 ## [3.0.17][] - 2025-05-25
 
