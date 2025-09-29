@@ -1,5 +1,7 @@
 # Changelog
 
+- Fix worker: invoke handler for scheduler
+
 ## [3.1.1][] - 2025-09-21
 
 - Fix TypeError: domain.enter is not a function
