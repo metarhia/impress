@@ -1,5 +1,7 @@
 # Changelog
 
+## [3.1.2][] - 2025-09-29
+
 - Fix worker: invoke handler for scheduler
 
 ## [3.1.1][] - 2025-09-21
@@ -405,6 +407,7 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
+[3.1.2]: https://github.com/metarhia/impress/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/metarhia/impress/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/metarhia/impress/compare/v3.0.18...v3.1.0
 [3.0.18]: https://github.com/metarhia/impress/compare/v3.0.17...v3.0.18
