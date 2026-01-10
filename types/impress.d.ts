@@ -14,6 +14,7 @@ import * as _qs from 'node:querystring';
 import * as _querystring from 'node:querystring';
 import * as _assert from 'node:assert';
 import * as _stream from 'node:stream';
+import * as _streamConsumers from 'node:stream/consumers';
 import * as _fs from 'node:fs';
 import * as _crypto from 'node:crypto';
 import * as _zlib from 'node:zlib';
@@ -77,6 +78,8 @@ declare global {
     const querystring: typeof _qs;
     const assert: typeof _assert;
     const stream: typeof _stream;
+    const stream_consumers: typeof _streamConsumers;
+    const streamConsumers: typeof _streamConsumers;
     const fs: typeof _fs;
     const fsp: typeof _fs.promises;
     const crypto: typeof _crypto;

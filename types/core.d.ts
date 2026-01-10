@@ -20,6 +20,7 @@ export interface InvokeTarget {
 
 export interface Static {
   get(name: string): unknown;
+  compress(filePath: string): Promise<Buffer>;
 }
 
 export interface Schemas {
