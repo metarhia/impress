@@ -110,11 +110,12 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
         return void back.postMessage(msg);
       }
       const promised = exclusive ? app.pool.capture() : app.pool.next();
+      const { data } = msg;
       const next = await promised.catch(() => {
         const error = { message: 'No thread available' };
         const back = app.threads.get(from);
-        const data = { id, status: 'error', error };
-        back.postMessage({ name: 'invoke', to: from, data });
+        const payload = { id: data.id, status: 'error', error };
+        back.postMessage({ name: 'invoke', to: from, data: payload });
         return null;
       });
       if (!next) return;
