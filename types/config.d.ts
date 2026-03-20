@@ -49,6 +49,12 @@ export interface ServerConfig {
   };
 }
 
+export interface CacheConfig {
+  size: string;
+  maxFileSize: string;
+  avoid?: Array<string>;
+}
+
 export interface SessionsConfig {
   sid: string;
   characters: string;

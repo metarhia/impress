@@ -1,4 +1,10 @@
-import { LogConfig, ScaleConfig, ServerConfig, SessionsConfig } from './config';
+import {
+  LogConfig,
+  ScaleConfig,
+  ServerConfig,
+  SessionsConfig,
+  CacheConfig,
+} from './config';
 import { Application, Context, Client } from './core';
 
 import * as _util from 'node:util';
@@ -50,6 +56,7 @@ declare global {
     const scale: ScaleConfig;
     const server: ServerConfig;
     const sessions: SessionsConfig;
+    const cache: CacheConfig;
   }
 
   namespace metarhia {
