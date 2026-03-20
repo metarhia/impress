@@ -79,6 +79,7 @@
     "@types/ws": "^8.18.1",
     "eslint": "^9.36.0",
     "eslint-config-metarhia": "^9.1.8",
+    "metaskills": "^1.0.4",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3"
   }
