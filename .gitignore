@@ -4,3 +4,4 @@ node_modules
 *.pem
 *.done
 .DS_Store
+*/skills/metaskills

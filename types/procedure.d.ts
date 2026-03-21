@@ -36,4 +36,7 @@ interface Procedure {
   deprecated?: boolean;
   assert?: Function;
   examples?: Array<Example>;
+  invoke(context: object, args?: object): Promise<unknown>;
+  enter(): Promise<void>;
+  leave(): void;
 }
