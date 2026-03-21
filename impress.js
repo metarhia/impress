@@ -141,7 +141,7 @@ const validateConfig = async (config) => {
   let valid = true;
   const schemaPath = path.join(__dirname, 'schemas/config');
   for (const section of CONFIG_SECTIONS) {
-    const fileName = path.join(schemaPath, section + '.js');
+    const fileName = path.join(schemaPath, `${section}.js`);
     const schema = await loadSchema(fileName);
     const checkResult = schema.check(config[section]);
     if (!checkResult.valid) {
