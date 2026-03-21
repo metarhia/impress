@@ -96,11 +96,15 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
     },
 
     task: async ({ action, port, task }) => {
-      const { planner } = impress;
-      task.app = app.path;
-      if (action === 'add') port.postMessage({ id: await planner.add(task) });
-      else if (action === 'remove') planner.remove(task.id);
-      else if (action === 'stop') planner.stop(task.name);
+      if (action === 'add') {
+        const record = { ...task, app: app.path };
+        const id = await impress.planner.add(record);
+        port.postMessage({ id });
+      } else if (action === 'remove') {
+        impress.planner.remove(task.id);
+      } else if (action === 'stop') {
+        impress.planner.stop(task.name);
+      }
     },
 
     invoke: async (msg) => {
