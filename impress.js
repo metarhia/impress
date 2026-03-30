@@ -11,6 +11,7 @@ const { Pool, isError } = require('metautil');
 const { loadSchema } = require('metaschema');
 const { Logger } = require('metalog');
 const { Planner } = require('./lib/planner.js');
+const { StaticCache } = require('./lib/cache.js');
 
 const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
 const PATH = process.cwd();
@@ -68,6 +69,17 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
     await app.pool.capture();
   }
   app.threads.set(id, worker);
+
+  if (app.cache) {
+    for (const place of ['static', 'resources']) {
+      const entries = StaticCache.getPlaceEntries(app.cache, place);
+      worker.postMessage({
+        name: 'cache-init',
+        place,
+        entries,
+      });
+    }
+  }
 
   worker.on('error', (error) => {
     impress.console.error(error.message);
@@ -174,14 +186,20 @@ const loadApplication = async (root, dir, master) => {
     impress.planner = await new Planner(tasksPath, tasksConfig, impress);
     impress.config = config;
   }
+  const cache = new StaticCache(dir, config);
+  await cache.loadPlace('static');
+  await cache.loadPlace('resources');
+
   const { balancer, ports = [], workers = {} } = config.server;
   const threads = new Map();
   const pool = new Pool({ timeout: workers.wait });
-  const app = { root, path: dir, config, threads, pool, ready: 0 };
+  const app = { root, path: dir, config, threads, pool, ready: 0, cache };
   if (balancer) await startWorker(app, 'balancer', balancer);
   for (const port of ports) await startWorker(app, 'server', port);
   const poolSize = workers.pool || 0;
   for (let i = 0; i < poolSize; i++) await startWorker(app, 'worker');
+  const watchTimeout = config.server.timeouts.watch;
+  cache.startWatch(watchTimeout, (data) => broadcast(app, data));
   impress.applications.set(dir, app);
 };
 
