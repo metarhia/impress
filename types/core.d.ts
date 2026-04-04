@@ -24,7 +24,8 @@ export interface Static {
   name: string;
   path: string;
   files: Map<string, { data: Buffer | null; stat: object | null }>;
-  get(name: string): { data: Buffer | null; stat: object | null } | undefined;
+  get(name: string): unknown;
+  compress(filePath: string): Promise<Buffer>;
   find(
     path: string,
     code?: number,
