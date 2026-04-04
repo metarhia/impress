@@ -43,8 +43,8 @@ const exit = async (message, code) => {
   process.exit(code);
 };
 
-const logError = (type) => (err) => {
-  const error = isError(err) ? err : new Error('Unknown');
+const logError = (type) => (caught) => {
+  const error = isError(caught) ? caught : new Error('Unknown');
   if (error.name === 'ExperimentalWarning') return;
   const msg = error?.stack || error?.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
@@ -96,11 +96,15 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
     },
 
     task: async ({ action, port, task }) => {
-      const { planner } = impress;
-      task.app = app.path;
-      if (action === 'add') port.postMessage({ id: await planner.add(task) });
-      else if (action === 'remove') planner.remove(task.id);
-      else if (action === 'stop') planner.stop(task.name);
+      if (action === 'add') {
+        const record = { ...task, app: app.path };
+        const id = await impress.planner.add(record);
+        port.postMessage({ id });
+      } else if (action === 'remove') {
+        impress.planner.remove(task.id);
+      } else if (action === 'stop') {
+        impress.planner.stop(task.name);
+      }
     },
 
     invoke: async (msg) => {
@@ -141,7 +145,7 @@ const validateConfig = async (config) => {
   let valid = true;
   const schemaPath = path.join(__dirname, 'schemas/config');
   for (const section of CONFIG_SECTIONS) {
-    const fileName = path.join(schemaPath, section + '.js');
+    const fileName = path.join(schemaPath, `${section}.js`);
     const schema = await loadSchema(fileName);
     const checkResult = schema.check(config[section]);
     if (!checkResult.valid) {
