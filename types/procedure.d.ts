@@ -3,19 +3,23 @@ import { Semaphore } from 'metautil';
 
 import { Application } from './core';
 
-type GroupAccess = { group: string };
-type UserAccess = { login: string };
-type Access = 'public' | 'session' | 'logged' | GroupAccess | UserAccess;
-type QueueParameters = { concurrency: number; size: number; timeout: number };
-type Serializer = 'json' | 'v8';
-type Protocols = 'http' | 'https' | 'ws' | 'wss';
-type AsyncFunction = (...args: Array<any>) => Promise<any>;
-type Example = {
+export type GroupAccess = { group: string };
+export type UserAccess = { login: string };
+export type Access = 'public' | 'session' | 'logged' | GroupAccess | UserAccess;
+export type QueueParameters = {
+  concurrency: number;
+  size: number;
+  timeout: number;
+};
+export type Serializer = 'json' | 'v8';
+export type Protocols = 'http' | 'https' | 'ws' | 'wss';
+export type AsyncFunction = (...args: Array<any>) => Promise<any>;
+export type Example = {
   parameters: object;
   returns: object;
 };
 
-interface Procedure {
+export interface Procedure {
   exports: object;
   script: Function;
   methodName: string;
