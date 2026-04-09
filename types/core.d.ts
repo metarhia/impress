@@ -1,6 +1,8 @@
 import { EventEmitter } from 'node:events';
 import { IncomingMessage, ServerResponse } from 'node:http';
 
+export * from './procedure';
+
 export interface Task {
   name: string;
   every: string;
