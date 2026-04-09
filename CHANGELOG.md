@@ -1,5 +1,40 @@
 # Changelog
 
+## [Unreleased][unreleased]
+
+## [4.0.0][] - 2026-04-09
+
+### Breaking
+
+- Inlined HTTP balancer and static file serving (moved from metacom); align `metacom` version and any integration assumptions when upgrading
+
+### Added
+
+- Static file compression (gzip, deflate, brotli, zstd)
+- Tests for balancer, planner, and auth
+
+### Changed
+
+- Moved balancer implementation from metacom into impress
+- Moved static file server from metacom into impress
+- Ran application `start` methods the same way as `start.js` lifecycle hooks
+- Improved error handling and return behaviour across several code paths
+- Updated TypeScript typings and dependencies
+- Applied metaskills-based code style; removed legacy ESLint config files
+- Documented that HTTP webhooks are not part of metacom/impress core (implement separately if needed)
+
+### Fixed
+
+- Static compressor now instantiates fresh compressor instances where required
+- Optional dependency handling for submodules (skip when missing, detect optional modules by error code)
+- Avoided loading submodules twice when already loaded with the parent module
+- Logged errors when module loading fails
+- File watch behaviour with metawatch (`DirectoryWatcher` integration)
+
+### Removed
+
+- Duplicate code blocks
+
 ## [3.1.2][] - 2025-09-29
 
 - Fix worker: invoke handler for scheduler
@@ -407,6 +442,8 @@ First generation of application server with following features
 - Connection drivers for database engines: MongoDB, PgSQL, Oracle, MySQL
 - Support GeoIP, health monitoring, task scheduling, server-side templating
 
+[unreleased]: https://github.com/metarhia/impress/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/metarhia/impress/compare/v3.1.2...v4.0.0
 [3.1.2]: https://github.com/metarhia/impress/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/metarhia/impress/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/metarhia/impress/compare/v3.0.18...v3.1.0
