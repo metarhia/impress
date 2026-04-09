@@ -101,9 +101,9 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
         const id = await impress.planner.add(record);
         port.postMessage({ id });
       } else if (action === 'remove') {
-        impress.planner.remove(task.id);
+        await impress.planner.remove(task.id);
       } else if (action === 'stop') {
-        impress.planner.stop(task.name);
+        await impress.planner.stop(task.name);
       }
     },
 
