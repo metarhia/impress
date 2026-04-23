@@ -4,7 +4,8 @@ const { test } = require('node:test');
 const assert = require('node:assert');
 const path = require('node:path');
 const { Static } = require('../lib/static.js');
-const { StaticCache } = require('../lib/cache.js');
+const { LimitCache } = require('../lib/cache/LimitCache.js');
+const { PerFileCache } = require('../lib/cache/PerFileCache.js');
 
 const root = process.cwd();
 
@@ -16,133 +17,204 @@ const application = {
   },
 };
 
-// --- StaticCache (main process) ---
+// --- LimitCache (limit backend) ---
 
-test('StaticCache - should load files into SAB', async () => {
-  const appPath = path.join(root, 'test');
-  const cache = new StaticCache(appPath, {});
-  const entries = await cache.loadPlace('lib');
-  assert.ok(entries.length > 0);
-  const entry = entries.find((e) => e.key.includes('add.js'));
-  assert.ok(entry);
+test('LimitCache - should load files into segments', async () => {
+  const seg = 1024;
+  const options = { limit: seg, maxFileSize: seg, baseSegmentSize: seg };
+  const cache = new LimitCache(options);
+  const filesMap = new Map();
+  const data = Buffer.from('hello world');
+  const stat = { size: data.byteLength };
+  filesMap.set('/test.js', { data, stat, path: '/test.js' });
+  await cache.load('static', filesMap);
+  const index = cache.indexes.static;
+  assert.ok(index);
+  const entry = index.entries.get('/test.js');
+  assert.strictEqual(entry.kind, 'shared');
+  assert.strictEqual(entry.length, data.byteLength);
+});
+
+test('LimitCache - project creates Buffer view', async () => {
+  const seg = 1024;
+  const options = { limit: seg, maxFileSize: seg, baseSegmentSize: seg };
+  const cache = new LimitCache(options);
+  const data = Buffer.from('test data');
+  const stat = { size: data.byteLength };
+  const filesMap = new Map([['/f.js', { data, stat, path: '/f.js' }]]);
+  await cache.load('static', filesMap);
+  const snap = cache.snapshot();
+  const segmentsMap = new Map();
+  for (const seg of snap.segments) segmentsMap.set(seg.id, seg.sab);
+  const files = LimitCache.project(snap.indexes.static, segmentsMap);
+  const file = files.get('/f.js');
+  assert.ok(file.data instanceof Buffer);
+  assert.deepStrictEqual(file.data, data);
+  assert.strictEqual(file.stat, stat);
+});
+
+test('LimitCache - zero-byte files stay shared without segments', async () => {
+  const seg = 1024;
+  const options = { limit: seg, maxFileSize: seg, baseSegmentSize: seg };
+  const cache = new LimitCache(options);
+  const stat = { size: 0 };
+  const filesMap = new Map([['/empty.txt', { data: Buffer.alloc(0), stat, path: '/empty.txt' }]]);
+  await cache.load('static', filesMap);
+  const entry = cache.indexes.static.entries.get('/empty.txt');
+  assert.deepStrictEqual(entry, {
+    kind: 'shared',
+    segmentId: 0,
+    offset: 0,
+    length: 0,
+    stat,
+  });
+  const snapshot = cache.snapshot();
+  assert.deepStrictEqual(snapshot.segments, []);
+});
+
+test('LimitCache - projectEntry returns empty Buffer for zero-byte files', () => {
+  const stat = { size: 0 };
+  const file = LimitCache.projectEntry(
+    { kind: 'shared', segmentId: 0, offset: 0, length: 0, stat },
+    new Map(),
+  );
+  assert.ok(file.data instanceof Buffer);
+  assert.strictEqual(file.data.length, 0);
+  assert.strictEqual(file.stat, stat);
+});
+
+// --- PerFileCache (per-file backend) ---
+
+test('PerFileCache - should load files into individual SABs', async () => {
+  const cache = new LimitCache({ limit: 1024, maxFileSize: 10 });
+  const data = Buffer.alloc(20);
+  const stat = { size: 20 };
+  const filePath = '/tmp/big.bin';
+  const file = { data, stat, path: filePath };
+  const fm = new Map([['/big.bin', file]]);
+  await cache.load('static', fm);
+  const entry = cache.indexes.static.entries.get('/big.bin');
+  assert.strictEqual(entry.kind, 'disk');
+  assert.strictEqual(entry.data, null);
+});
+
+test('LimitCache - disk fallback for oversized files', async () => {
+  const cache = new PerFileCache({ maxFileSize: 1024 * 1024 });
+  const data = Buffer.from('hello world');
+  const stat = { size: data.byteLength };
+  const filesMap = new Map([['/test.js', { data, stat, path: '/test.js' }]]);
+  await cache.load('static', filesMap);
+  const entry = cache.indexes.static.entries.get('/test.js');
+  assert.strictEqual(entry.kind, 'shared');
   assert.ok(entry.sab instanceof SharedArrayBuffer);
-  assert.strictEqual(entry.byteLength, entry.sab.byteLength);
-  const data = Buffer.from(entry.sab, 0, entry.byteLength);
-  assert.ok(data.length > 0);
+  assert.strictEqual(entry.length, data.byteLength);
 });
 
-test('StaticCache - entries have correct structure', async () => {
-  const appPath = path.join(root, 'test');
-  const cache = new StaticCache(appPath, {});
-  const entries = await cache.loadPlace('lib');
-  for (const entry of entries) {
-    assert.strictEqual(typeof entry.key, 'string');
-    assert.ok(entry.key.startsWith('/'));
-    assert.strictEqual(typeof entry.byteLength, 'number');
-    assert.strictEqual(typeof entry.size, 'number');
-    if (entry.sab) {
-      assert.ok(entry.sab instanceof SharedArrayBuffer);
-    }
-  }
+test('PerFileCache - project creates Buffer view over SAB', async () => {
+  const cache = new PerFileCache({ maxFileSize: 1024 * 1024 });
+  const data = Buffer.from('test data');
+  const stat = { size: data.byteLength };
+  const filesMap = new Map([['/f.js', { data, stat, path: '/f.js' }]]);
+  await cache.load('static', filesMap);
+  const snap = cache.snapshot();
+  assert.strictEqual(snap.segments, null);
+  const files = PerFileCache.project(snap.indexes.static);
+  const file = files.get('/f.js');
+  assert.ok(file.data instanceof Buffer);
+  assert.deepStrictEqual(file.data, data);
 });
 
-test('StaticCache.getPlaceEntries - returns entries', async () => {
-  const appPath = path.join(root, 'test');
-  const cache = new StaticCache(appPath, {});
-  await cache.loadPlace('lib');
-  const entries = StaticCache.getPlaceEntries(cache, 'lib');
-  assert.ok(entries.length > 0);
-  const missing = StaticCache.getPlaceEntries(cache, 'none');
-  assert.strictEqual(missing.length, 0);
+test('PerFileCache - disk fallback for oversized', async () => {
+  const cache = new PerFileCache({ maxFileSize: 10 });
+  const data = Buffer.alloc(20);
+  const stat = { size: 20 };
+  const filePath = '/tmp/big.bin';
+  const file = { data, stat, path: filePath };
+  const fm = new Map([['/big.bin', file]]);
+  await cache.load('static', fm);
+  const entry = cache.indexes.static.entries.get('/big.bin');
+  assert.strictEqual(entry.kind, 'disk');
+});
+
+test('PerFileCache - free and compact are no-ops', () => {
+  const cache = new PerFileCache();
+  cache.free({ kind: 'shared', sab: new SharedArrayBuffer(4), length: 4 });
+  assert.strictEqual(cache.compact(), null);
 });
 
 // --- Static (worker side) ---
 
-test('Static initCache - populate from SAB entries', () => {
-  const cache = new Static('lib', application);
-  const content = Buffer.from('hello world');
-  const sab = new SharedArrayBuffer(content.byteLength);
-  new Uint8Array(sab).set(content);
-  cache.initCache([
-    {
-      key: '/index.html',
-      sab,
-      byteLength: content.byteLength,
-      size: content.byteLength,
-    },
-  ]);
-  assert.strictEqual(cache.files.size, 1);
-  const file = cache.get('/index.html');
+test('Static setFiles - populate from projected entries', () => {
+  const st = new Static('lib', application);
+  const data = Buffer.from('hello world');
+  const stat = { size: data.byteLength };
+  const files = new Map([['/index.html', { data, stat }]]);
+  st.setFiles(files);
+  assert.strictEqual(st.files.size, 1);
+  const file = st.get('/index.html');
   assert.ok(file.data instanceof Buffer);
-  assert.strictEqual(file.data.length, content.byteLength);
-  assert.deepStrictEqual(file.data, content);
-  assert.ok(file.sab instanceof SharedArrayBuffer);
+  assert.deepStrictEqual(file.data, data);
 });
 
-test('Static updateEntry - updates SAB entry', () => {
-  const cache = new Static('lib', application);
-  const sab1 = new SharedArrayBuffer(9);
-  new Uint8Array(sab1).set(Buffer.from('version 1'));
-  cache.initCache([{ key: '/f.js', sab: sab1, byteLength: 9, size: 9 }]);
-  const content2 = Buffer.from('version 2 updated');
-  const sab2 = new SharedArrayBuffer(content2.byteLength);
-  new Uint8Array(sab2).set(content2);
-  cache.updateEntry({
-    key: '/f.js',
-    sab: sab2,
-    byteLength: content2.byteLength,
-    size: content2.byteLength,
-  });
-  const file = cache.get('/f.js');
-  assert.deepStrictEqual(file.data, content2);
+test('Static updateFiles - updates entries', () => {
+  const st = new Static('lib', application);
+  const data1 = Buffer.from('version 1');
+  const stat1 = { size: data1.byteLength };
+  st.setFiles(new Map([['/f.js', { data: data1, stat: stat1 }]]));
+  const data2 = Buffer.from('version 2 updated');
+  const stat2 = { size: data2.byteLength };
+  st.updateFiles(new Map([['/f.js', { data: data2, stat: stat2 }]]));
+  const file = st.get('/f.js');
+  assert.deepStrictEqual(file.data, data2);
 });
 
-test('Static deleteEntry - removes entry by key', () => {
-  const cache = new Static('lib', application);
+test('Static deleteFiles - removes entries by keys', () => {
+  const st = new Static('lib', application);
   const sab = new SharedArrayBuffer(4);
   new Uint8Array(sab).set([1, 2, 3, 4]);
-  cache.initCache([
-    { key: '/a.js', sab, byteLength: 4, size: 4 },
-    { key: '/b.js', sab, byteLength: 4, size: 4 },
-  ]);
-  assert.strictEqual(cache.files.size, 2);
-  cache.deleteEntry('/a.js');
-  assert.strictEqual(cache.files.size, 1);
-  assert.strictEqual(cache.get('/a.js'), undefined);
-  assert.ok(cache.get('/b.js'));
+  const data = Buffer.from(sab, 0, 4);
+  const stat = { size: 4 };
+  st.setFiles(
+    new Map([
+      ['/a.js', { data, stat }],
+      ['/b.js', { data, stat }],
+    ]),
+  );
+  assert.strictEqual(st.files.size, 2);
+  st.deleteFiles(['/a.js']);
+  assert.strictEqual(st.files.size, 1);
+  assert.strictEqual(st.get('/a.js'), undefined);
+  assert.ok(st.get('/b.js'));
 });
 
-test('Static withData - null sab has null data', () => {
-  const cache = new Static('lib', application);
-  cache.initCache([
-    {
-      key: '/big.bin',
-      sab: null,
-      byteLength: 0,
-      size: 20000000,
-    },
-  ]);
-  const file = cache.get('/big.bin');
+test('Static - disk entry has null data', () => {
+  const st = new Static('lib', application);
+  const stat = { size: 20000000 };
+  st.setFiles(new Map([['/big.bin', { data: null, stat, path: '/big.bin' }]]));
+  const file = st.get('/big.bin');
   assert.strictEqual(file.data, null);
-  assert.strictEqual(file.size, 20000000);
+  assert.strictEqual(file.stat.size, 20000000);
 });
 
-test('Static SAB data is zero-copy view', () => {
+test('Static - SAB data is zero-copy view', () => {
   const sab = new SharedArrayBuffer(5);
   new Uint8Array(sab).set([10, 20, 30, 40, 50]);
-  const cache = new Static('lib', application);
-  cache.initCache([{ key: '/f.bin', sab, byteLength: 5, size: 5 }]);
-  const file = cache.get('/f.bin');
+  const data = Buffer.from(sab, 0, 5);
+  const stat = { size: 5 };
+  const st = new Static('lib', application);
+  st.setFiles(new Map([['/f.bin', { data, stat }]]));
+  const file = st.get('/f.bin');
   assert.strictEqual(file.data.buffer, sab);
 });
 
-test('Static initCache clears previous entries', () => {
-  const cache = new Static('lib', application);
-  const sab = new SharedArrayBuffer(2);
-  cache.initCache([{ key: '/old.js', sab, byteLength: 2, size: 2 }]);
-  assert.strictEqual(cache.files.size, 1);
-  cache.initCache([{ key: '/new.js', sab, byteLength: 2, size: 2 }]);
-  assert.strictEqual(cache.files.size, 1);
-  assert.strictEqual(cache.get('/old.js'), undefined);
-  assert.ok(cache.get('/new.js'));
+test('Static setFiles clears previous entries', () => {
+  const st = new Static('lib', application);
+  const data = Buffer.from([1, 2]);
+  const stat = { size: 2 };
+  st.setFiles(new Map([['/old.js', { data, stat }]]));
+  assert.strictEqual(st.files.size, 1);
+  st.setFiles(new Map([['/new.js', { data, stat }]]));
+  assert.strictEqual(st.files.size, 1);
+  assert.strictEqual(st.get('/old.js'), undefined);
+  assert.ok(st.get('/new.js'));
 });
