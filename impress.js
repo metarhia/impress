@@ -188,7 +188,22 @@ const loadApplication = async (root, dir, master) => {
     impress.planner = await new Planner(tasksPath, tasksConfig, impress);
     impress.config = config;
   }
-  const cacheOptions = { config, dir, console: impress.console };
+  const { balancer, ports = [], workers = {} } = config.server;
+  const { cache = {} } = config;
+  const threads = new Map();
+  const cacheOptions = {
+    limit: cache.sab?.limit,
+    baseSegmentSize: cache.sab?.baseSegmentSize,
+    maxFileSize: cache.maxFileSize,
+    watchTimeout: config.server.timeouts.watch,
+    placements: cache.placements,
+    dir,
+    console: impress.console,
+    broadcast: (data) => {
+      for (const thread of threads.values()) thread.postMessage(data);
+    },
+    getWorkerIds: () => threads.keys(),
+  };
   const sharedCache = new SharedCache(cacheOptions);
   try {
     await sharedCache.initialize();
@@ -197,8 +212,6 @@ const loadApplication = async (root, dir, master) => {
     throw error;
   }
 
-  const { balancer, ports = [], workers = {} } = config.server;
-  const threads = new Map();
   const pool = new Pool({ timeout: workers.wait });
   const app = {
     root,
@@ -209,7 +222,7 @@ const loadApplication = async (root, dir, master) => {
     ready: 0,
     sharedCache,
   };
-  sharedCache.watch(app);
+  sharedCache.watch();
   if (balancer) await startWorker(app, 'balancer', balancer);
   for (const port of ports) await startWorker(app, 'server', port);
   const poolSize = workers.pool || 0;

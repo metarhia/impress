@@ -1,5 +1,4 @@
 ({
-  mode: { type: 'string', required: false },
   size: 'size',
   maxFileSize: 'size',
   streamThreshold: { type: 'size', required: false },
