@@ -12,7 +12,7 @@ const WIN = process.platform === 'win32';
 const root = process.cwd();
 
 const certPath = path.join(root, 'test/cert/default/');
-cp.execSync(certPath + 'generate.sh');
+cp.execSync(`${certPath}generate.sh`);
 
 const application = {
   path: path.join(root, 'test'),
@@ -33,7 +33,7 @@ test('lib/cert - should load certificates correctly', async () => {
   assert.strictEqual(cert.files.size, 3);
   assert.strictEqual(cert.domains.size, 5);
 
-  fs.copyFileSync(certPath + 'self.pem', certPath + 'key.pem');
+  fs.copyFileSync(`${certPath}self.pem`, `${certPath}key.pem`);
   cert = new Cert('cert', application, { ext: ['pem'] });
   await cert.load();
   assert.strictEqual(cert.files.size, 3);
