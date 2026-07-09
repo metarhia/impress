@@ -63,7 +63,7 @@
     "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
   },
   "engines": {
-    "node": ">=18.15"
+    "node": ">=22"
   },
   "dependencies": {
     "metacom": "^3.2.6",
