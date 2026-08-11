@@ -2,6 +2,7 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert');
+
 const { loadSchema } = require('metaschema');
 const { createContext } = require('metavm');
 const { Config } = require('metaconfiguration');

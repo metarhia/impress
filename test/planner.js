@@ -5,6 +5,7 @@ const assert = require('node:assert');
 const os = require('node:os');
 const path = require('node:path');
 const fsp = require('node:fs').promises;
+
 const { Planner } = require('../lib/planner.js');
 
 const mockConsole = {
@@ -129,7 +130,6 @@ test('lib/planner - should restore tasks from persisted files', async () => {
     run: 'lib.job',
   });
   assert.ok(id.length > 0);
-  // Clear timers without deleting files so planner2 can restore them
   for (const task of planner1.tasks.values()) {
     if (task.timer) {
       clearTimeout(task.timer);

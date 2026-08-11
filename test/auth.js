@@ -2,6 +2,7 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert');
+
 const auth = require('../lib/auth.js');
 
 const OPTIONS = { characters: 'ABCabc123', secret: 'test-secret', length: 32 };

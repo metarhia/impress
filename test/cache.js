@@ -3,6 +3,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert');
 const path = require('node:path');
+
 const { Place } = require('../lib/place.js');
 
 const root = process.cwd();

@@ -4,11 +4,10 @@ const { test } = require('node:test');
 const assert = require('node:assert');
 const http = require('node:http');
 
-// buildHeaders was removed from metacom; stub it so Balancer can be constructed
 const metacom = require('metacom');
 if (typeof metacom.buildHeaders !== 'function') {
   metacom.buildHeaders = (cors = {}) => ({
-    'Access-Control-Allow-Origin': cors.origin || '*',
+    'Access-Control-Allow-Origin': cors.origin ?? '*',
     'Access-Control-Allow-Headers': 'Content-Type',
   });
 }

@@ -3,6 +3,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert');
 const path = require('node:path');
+
 const { Code } = require('../lib/code.js');
 
 const root = process.cwd();
@@ -25,15 +26,14 @@ test('lib/bus - should load bus correctly', async () => {
   assert.deepStrictEqual(bus.tree, {});
 
   await bus.load();
-  assert.deepStrictEqual(Object.keys(bus.tree), [
-    'fakerapi',
-    'math',
-    'worldTime',
-  ]);
+  const expected = ['fakerapi', 'math', 'worldTime'];
+  assert.deepStrictEqual(Object.keys(bus.tree), expected);
   assert.strictEqual(bus.tree.math.parent, bus.tree);
   assert.strictEqual(typeof bus.tree.math, 'object');
   assert.strictEqual(typeof bus.tree.math.eval, 'function');
-  assert.strictEqual(bus.tree.math.eval.constructor.name, 'AsyncFunction');
+  const evalType = bus.tree.math.eval.constructor.name;
+  assert.strictEqual(evalType, 'AsyncFunction');
   assert.strictEqual(typeof bus.tree.math['.service'], 'function');
-  assert.strictEqual(bus.tree.math['.service'].url, 'https://api.mathjs.org');
+  const mathUrl = bus.tree.math['.service'].url;
+  assert.strictEqual(mathUrl, 'https://api.mathjs.org');
 });

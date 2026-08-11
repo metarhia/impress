@@ -3,6 +3,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert');
 const path = require('node:path');
+
 const metavm = require('metavm');
 const { Api } = require('../lib/api.js');
 
@@ -25,9 +26,10 @@ test('lib/api load - should load API correctly', async () => {
 
   assert.strictEqual(example.default, 1);
   const { add } = example['1'];
+  const methodType = add.method.constructor.name;
   assert.strictEqual(add.constructor.name, 'Procedure');
   assert.strictEqual(typeof add.method, 'function');
-  assert.strictEqual(add.method.constructor.name, 'AsyncFunction');
+  assert.strictEqual(methodType, 'AsyncFunction');
 
   const exportsKeys = ['parameters', 'method', 'returns'];
   assert.deepStrictEqual(Object.keys(add.exports), exportsKeys);

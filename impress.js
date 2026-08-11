@@ -5,6 +5,7 @@ process.title = 'impress';
 const fsp = require('node:fs').promises;
 const { Worker } = require('node:worker_threads');
 const path = require('node:path');
+
 const { Config } = require('metaconfiguration');
 const metavm = require('metavm');
 const { Pool, isError } = require('metautil');
@@ -39,7 +40,7 @@ const exit = async (message, code) => {
   if (impress.finalization) return;
   impress.finalization = true;
   impress.console.info(message);
-  if (impress.logger && impress.logger.active) await impress.logger.close();
+  if (impress.logger?.active) await impress.logger.close();
   process.exit(code);
 };
 
@@ -150,7 +151,8 @@ const validateConfig = async (config) => {
     const checkResult = schema.check(config[section]);
     if (!checkResult.valid) {
       for (const error of checkResult.errors) {
-        impress.console.error(`${error} in application/config/${section}.js`);
+        const loc = `application/config/${section}.js`;
+        impress.console.error(`${error} in ${loc}`);
       }
       valid = false;
     }
@@ -162,7 +164,8 @@ const loadApplication = async (root, dir, master) => {
   impress.console.info(`Start: ${dir}`);
   const configPath = path.join(dir, 'config');
   const config = await new Config(configPath, CFG_OPTIONS).catch((error) => {
-    exit(`Can not read configuration: ${configPath}\n${error.stack}`, 1);
+    const { stack } = error;
+    exit(`Can not read configuration: ${configPath}\n${stack}`, 1);
   });
   await validateConfig(config);
   if (master) {
@@ -190,11 +193,17 @@ const loadApplication = async (root, dir, master) => {
   impress.applications.set(dir, app);
 };
 
+const parseApplicationsFile = async () => {
+  try {
+    const data = await fsp.readFile('.applications', 'utf8');
+    return data.split(/[\r\n\s]+/).filter((s) => s.length !== 0);
+  } catch {
+    return [path.join(PATH, 'application')];
+  }
+};
+
 const loadApplications = async () => {
-  const applications = await fsp
-    .readFile('.applications', 'utf8')
-    .then((data) => data.split(/[\r\n\s]+/).filter((s) => s.length !== 0))
-    .catch(() => [path.join(PATH, 'application')]);
+  const applications = await parseApplicationsFile();
   let master = true;
   for (const dir of applications) {
     const location = path.isAbsolute(dir) ? dir : path.join(PATH, dir);

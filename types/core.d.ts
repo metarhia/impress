@@ -1,5 +1,4 @@
 import { EventEmitter } from 'node:events';
-import { IncomingMessage, ServerResponse } from 'node:http';
 
 export * from './procedure';
 
@@ -22,16 +21,22 @@ export interface InvokeTarget {
   exclusive?: boolean;
 }
 
+export interface StaticFile {
+  data: Buffer | null;
+  stat: object | null;
+}
+
+export interface StaticFindResult extends StaticFile {
+  code: number;
+}
+
 export interface Static {
   name: string;
   path: string;
-  files: Map<string, { data: Buffer | null; stat: object | null }>;
+  files: Map<string, StaticFile>;
   get(name: string): unknown;
   compress(filePath: string): Promise<Buffer>;
-  find(
-    path: string,
-    code?: number,
-  ): { data: Buffer | null; stat: object | null; code: number };
+  find(path: string, code?: number): StaticFindResult;
   serve(url: string, transport: object): Promise<void>;
   load(targetPath?: string): Promise<void>;
   delete(filePath: string): void;

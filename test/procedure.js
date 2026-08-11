@@ -2,6 +2,7 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert');
+
 const metautil = require('metautil');
 const { Procedure } = require('../lib/procedure.js');
 
@@ -177,7 +178,8 @@ test('lib/procedure - should handle queue correctly', async () => {
     try {
       result = await proc.invoke({}, args);
     } catch {
-      throw new Error('Procedure.invoke failed. Check your script.method');
+      const msg = 'Procedure.invoke failed. Check your script.method';
+      throw new Error(msg);
     }
     proc.leave();
     return result;

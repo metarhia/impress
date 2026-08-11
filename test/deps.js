@@ -2,6 +2,7 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert');
+
 const deps = require('../lib/deps.js');
 const { node, npm, metarhia } = deps;
 
