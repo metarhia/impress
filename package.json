@@ -75,9 +75,9 @@
     "metawatch": "^1.2.5"
   },
   "devDependencies": {
-    "@types/node": "^25.9.4",
+    "@types/node": "^25.9.5",
     "@types/ws": "^8.18.1",
-    "eslint": "^9.39.4",
+    "eslint": "^9.39.5",
     "eslint-config-metarhia": "^9.1.9",
     "metaskills": "^1.0.4",
     "prettier": "^3.8.4",
