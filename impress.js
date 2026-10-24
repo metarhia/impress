@@ -142,13 +142,21 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   });
 };
 
+let configSchemas = null;
+
+const loadConfigSchemas = () => {
+  const schemaPath = path.join(__dirname, 'schemas/config');
+  const load = (section) => loadSchema(path.join(schemaPath, `${section}.js`));
+  return Promise.all(CONFIG_SECTIONS.map(load));
+};
+
 const validateConfig = async (config) => {
   let valid = true;
-  const schemaPath = path.join(__dirname, 'schemas/config');
-  for (const section of CONFIG_SECTIONS) {
-    const fileName = path.join(schemaPath, `${section}.js`);
-    const schema = await loadSchema(fileName);
-    const checkResult = schema.check(config[section]);
+  if (!configSchemas) configSchemas = loadConfigSchemas();
+  const schemas = await configSchemas;
+  for (let i = 0; i < CONFIG_SECTIONS.length; i++) {
+    const section = CONFIG_SECTIONS[i];
+    const checkResult = schemas[i].check(config[section]);
     if (!checkResult.valid) {
       for (const error of checkResult.errors) {
         const loc = `application/config/${section}.js`;
