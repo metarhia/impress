@@ -6,19 +6,27 @@ const assert = require('node:assert');
 const metautil = require('metautil');
 const { Procedure } = require('../lib/procedure.js');
 
+const DONE = 'success';
+
+const createApplication = (timeouts = {}) => ({
+  semaphore: {
+    async enter() {},
+    leave() {},
+  },
+  config: { server: { timeouts } },
+});
+
+const delayed = async ({ waitTime }) => {
+  await metautil.delay(waitTime);
+  return DONE;
+};
+
 test('lib/procedure - should create procedure correctly', async () => {
   const script = () => ({
     method: async ({ a, b }) => a + b,
   });
 
-  const application = {
-    Error,
-    semaphore: {
-      async enter() {},
-      leave() {},
-    },
-    config: { server: { timeouts: {} } },
-  };
+  const application = createApplication();
 
   const procedure = new Procedure(script, 'method', application);
 
@@ -62,14 +70,7 @@ test('lib/procedure - should validate procedure correctly', async () => {
     },
   });
 
-  const application = {
-    Error,
-    semaphore: {
-      async enter() {},
-      leave() {},
-    },
-    config: { server: { timeouts: {} } },
-  };
+  const application = createApplication();
   const procedure = new Procedure(script, 'method', application);
 
   await assert.rejects(
@@ -96,14 +97,7 @@ test('lib/procedure - should validate procedure async', async () => {
     method: async ({ a, b }) => a + b,
   });
 
-  const application = {
-    Error,
-    semaphore: {
-      async enter() {},
-      leave() {},
-    },
-    config: { server: { timeouts: {} } },
-  };
+  const application = createApplication();
   const procedure = new Procedure(script, 'method', application);
 
   await assert.rejects(
@@ -116,25 +110,13 @@ test('lib/procedure - should validate procedure async', async () => {
 });
 
 test('lib/procedure - should handle timeout correctly', async () => {
-  const DONE = 'success';
-
   const script = () => ({
     timeout: 100,
 
-    method: async ({ waitTime }) =>
-      new Promise((resolve) => {
-        setTimeout(() => resolve(DONE), waitTime);
-      }),
+    method: delayed,
   });
 
-  const application = {
-    Error,
-    semaphore: {
-      async enter() {},
-      leave() {},
-    },
-    config: { server: { timeouts: { request: 20 } } },
-  };
+  const application = createApplication({ request: 20 });
 
   const procedure = new Procedure(script, 'method', application);
 
@@ -148,8 +130,6 @@ test('lib/procedure - should handle timeout correctly', async () => {
 });
 
 test('lib/procedure - should handle queue correctly', async () => {
-  const DONE = 'success';
-
   const script = () => ({
     queue: {
       concurrency: 1,
@@ -157,20 +137,10 @@ test('lib/procedure - should handle queue correctly', async () => {
       timeout: 15,
     },
 
-    method: async ({ waitTime }) =>
-      new Promise((resolve) => {
-        setTimeout(() => resolve(DONE), waitTime);
-      }),
+    method: delayed,
   });
 
-  const application = {
-    Error,
-    semaphore: {
-      async enter() {},
-      leave() {},
-    },
-    config: { server: { timeouts: {} } },
-  };
+  const application = createApplication();
 
   const rpc = async (proc, args) => {
     let result = null;
@@ -217,25 +187,13 @@ test('lib/procedure - should handle queue correctly', async () => {
 });
 
 test('lib/procedure - should handle global timeouts.request', async () => {
-  const DONE = 'success';
-
   const script = () => ({
     timeout: undefined,
 
-    method: async ({ waitTime }) =>
-      new Promise((resolve) => {
-        setTimeout(() => resolve(DONE), waitTime);
-      }),
+    method: delayed,
   });
 
-  const application = {
-    Error,
-    semaphore: {
-      async enter() {},
-      leave() {},
-    },
-    config: { server: { timeouts: { request: 10 } } },
-  };
+  const application = createApplication({ request: 10 });
 
   const procedure = new Procedure(script, 'method', application);
 

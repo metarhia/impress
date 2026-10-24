@@ -14,17 +14,17 @@ const mockConsole = {
   error() {},
 };
 
-const makeConfig = () => ({ concurrency: 5, size: 20, timeout: 1000 });
+const CONFIG = { concurrency: 5, size: 20, timeout: 1000 };
+const OPTIONS = { applications: new Map(), console: mockConsole };
 
 const makeDir = async () =>
   fsp.mkdtemp(path.join(os.tmpdir(), 'impress-planner-'));
 
+const createPlanner = async (dir = makeDir()) =>
+  new Planner(await dir, CONFIG, OPTIONS);
+
 test('lib/planner - should initialize with empty tasks map', async () => {
-  const dir = await makeDir();
-  const planner = await new Planner(dir, makeConfig(), {
-    applications: new Map(),
-    console: mockConsole,
-  });
+  const planner = await createPlanner();
   assert.strictEqual(planner.tasks instanceof Map, true);
   assert.strictEqual(planner.tasks.size, 0);
   assert.strictEqual(planner.topics instanceof Map, true);
@@ -32,11 +32,7 @@ test('lib/planner - should initialize with empty tasks map', async () => {
 });
 
 test('lib/planner - should add and remove a task', async () => {
-  const dir = await makeDir();
-  const planner = await new Planner(dir, makeConfig(), {
-    applications: new Map(),
-    console: mockConsole,
-  });
+  const planner = await createPlanner();
 
   const id = await planner.add({
     app: 'test-app',
@@ -56,11 +52,7 @@ test('lib/planner - should add and remove a task', async () => {
 });
 
 test('lib/planner - should stop tasks by name', async () => {
-  const dir = await makeDir();
-  const planner = await new Planner(dir, makeConfig(), {
-    applications: new Map(),
-    console: mockConsole,
-  });
+  const planner = await createPlanner();
 
   const id1 = await planner.add({
     app: 'app1',
@@ -100,11 +92,7 @@ test('lib/planner - should stop tasks by name', async () => {
 });
 
 test('lib/planner - stop with no name removes all tasks', async () => {
-  const dir = await makeDir();
-  const planner = await new Planner(dir, makeConfig(), {
-    applications: new Map(),
-    console: mockConsole,
-  });
+  const planner = await createPlanner();
 
   const taskA = { app: 'app', name: 'a', every: '1d', args: {}, run: 'lib.a' };
   const taskB = { app: 'app', name: 'b', every: '1d', args: {}, run: 'lib.b' };
@@ -118,10 +106,7 @@ test('lib/planner - stop with no name removes all tasks', async () => {
 
 test('lib/planner - should restore tasks from persisted files', async () => {
   const dir = await makeDir();
-  const config = makeConfig();
-  const opts = { applications: new Map(), console: mockConsole };
-
-  const planner1 = await new Planner(dir, config, opts);
+  const planner1 = await createPlanner(dir);
   const id = await planner1.add({
     app: 'app',
     name: 'persisted',
@@ -137,7 +122,7 @@ test('lib/planner - should restore tasks from persisted files', async () => {
     }
   }
 
-  const planner2 = await new Planner(dir, config, opts);
+  const planner2 = await createPlanner(dir);
   assert.strictEqual(planner2.tasks.has(id), true);
   const task = planner2.tasks.get(id);
   assert.strictEqual(task.name, 'persisted');
@@ -146,11 +131,7 @@ test('lib/planner - should restore tasks from persisted files', async () => {
 });
 
 test('lib/planner - remove non-existent id should not throw', async () => {
-  const dir = await makeDir();
-  const planner = await new Planner(dir, makeConfig(), {
-    applications: new Map(),
-    console: mockConsole,
-  });
+  const planner = await createPlanner();
   await assert.doesNotReject(() => planner.remove('nonexistent-id'));
   await planner.stop();
 });
