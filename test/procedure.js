@@ -143,7 +143,7 @@ test('lib/procedure - should handle queue correctly', async () => {
   const application = createApplication();
 
   const rpc = async (proc, args) => {
-    let result = null;
+    let result;
     await proc.enter();
     try {
       result = await proc.invoke({}, args);
