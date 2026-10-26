@@ -72,10 +72,11 @@
     "metaschema": "^2.2.2",
     "metautil": "^5.5.2",
     "metavm": "^1.4.5",
-    "metawatch": "^1.2.5"
+    "metawatch": "^1.2.5",
+    "js-yaml": "^5.5.0"
   },
   "devDependencies": {
-    "@types/node": "^25.9.5",
+    "@types/node": "^26.6.5",
     "eslint": "^9.39.5",
     "eslint-config-metarhia": "^9.1.9",
     "metaskills": "^1.0.4",
