@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add an optional npm dependency triage report in GitHub Actions
+
 ## [3.1.2][] - 2025-09-29
 
 - Fix worker: invoke handler for scheduler
