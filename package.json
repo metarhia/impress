@@ -66,21 +66,24 @@
     "node": ">=22"
   },
   "dependencies": {
+    "js-yaml": "^5.5.0",
     "metacom": "^3.2.6",
     "metaconfiguration": "^3.0.3",
     "metalog": "^3.1.18",
     "metaschema": "^2.2.2",
     "metautil": "^5.5.2",
     "metavm": "^1.4.5",
-    "metawatch": "^1.2.5",
-    "js-yaml": "^5.5.0"
+    "metawatch": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "^26.6.5",
-    "eslint": "^9.39.5",
-    "eslint-config-metarhia": "^9.1.9",
-    "metaskills": "^1.0.4",
-    "prettier": "^3.8.4",
-    "typescript": "^5.9.3"
+    "@types/node": "^26.6.6",
+    "eslint": "^10.14.0",
+    "eslint-config-metarhia": "^10.0.1",
+    "metaskills": "^1.0.6",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1"
   }
 }
