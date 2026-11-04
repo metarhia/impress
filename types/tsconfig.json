@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "moduleResolution": "node",
+    "module": "nodenext",
     "strict": true,
-    "baseUrl": ".",
     "preserveWatchOutput": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true,
+    "preserveWatchOutput": true
   },
   "include": ["*.d.ts", "*.ts"]
 }
