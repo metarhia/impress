@@ -36,7 +36,6 @@ import {
   CacheConfig,
 } from './config';
 import { Application, Context } from './core';
-import * as _ws from 'ws';
 import * as _config from 'metaconfiguration';
 import * as _metautil from 'metautil';
 import * as _metavm from 'metavm';
@@ -105,7 +104,5 @@ declare global {
     const dgram: typeof _dgram;
   }
 
-  namespace npm {
-    const ws: typeof _ws;
-  }
+  namespace npm {}
 }
