@@ -15,6 +15,8 @@ test('lib/deps - should have correct dependencies structure', async () => {
   assert.deepStrictEqual(Object.keys(deps), expectedNamespaces);
   assert.strictEqual(typeof node, 'object');
   assert.strictEqual(typeof node.os, 'object');
+  assert.strictEqual(typeof node.test, 'function');
+  assert.strictEqual(node['node:test'], undefined);
   assert.strictEqual(typeof npm, 'object');
   assert.strictEqual(npm.ws, undefined);
   assert.strictEqual(typeof npm.jsYaml, 'object');
