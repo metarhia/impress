@@ -32,7 +32,7 @@ test('lib/cert - should load certificates correctly', async () => {
   let cert = new Cert('cert', application, { ext: ['pem'] });
   await cert.load();
   assert.strictEqual(cert.files.size, 3);
-  assert.strictEqual(cert.domains.size, 5);
+  assert.strictEqual(cert.domains.size, 7);
 
   const selfPem = path.join(certPath, 'self.pem');
   const keyPem = path.join(certPath, 'key.pem');
