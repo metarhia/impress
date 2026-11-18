@@ -6,6 +6,8 @@ const dgram = require('node:dgram');
 const http = require('node:http');
 const net = require('node:net');
 const tls = require('node:tls');
+const crypto = require('node:crypto');
+const http2 = require('node:http2');
 const fsp = require('node:fs').promises;
 const os = require('node:os');
 const path = require('node:path');
@@ -945,5 +947,246 @@ test('server groups - domains and wildcard certificates', async () => {
       await expectUnrecognized(secure, 'other.test');
     },
     { prepare },
+  );
+});
+
+const tlsGroup = (port) => `({
+  api: {
+    host: '127.0.0.1',
+    ports: [${port}],
+    protocols: ['h2', 'http/1.1'],
+    tls: true,
+    domains: ['localhost'],
+  },
+});
+`;
+
+const ADD = `({
+  access: 'public',
+
+  parameters: {
+    a: 'number',
+    b: 'number',
+  },
+
+  method: async ({ a, b }) => {
+    const result = a + b;
+    return result;
+  },
+
+  returns: 'number',
+});
+`;
+
+const prepareApi = async (dir) => {
+  await copyLocalCert(dir);
+  const staticDir = path.join(dir, 'static');
+  await fsp.mkdir(staticDir);
+  const hello = path.join(staticDir, 'hello.txt');
+  await fsp.writeFile(hello, 'hello\n');
+  const apiDir = path.join(dir, 'api', 'math');
+  await fsp.mkdir(apiDir, { recursive: true });
+  await fsp.writeFile(path.join(apiDir, 'add.js'), ADD);
+};
+
+const readH2 = (port, headers, payload = '') =>
+  new Promise((resolve, reject) => {
+    const session = http2.connect(`https://127.0.0.1:${port}`, {
+      rejectUnauthorized: false,
+      servername: 'localhost',
+    });
+    let settled = false;
+    let timer = null;
+    const finish = (error, value) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      session.destroy();
+      if (error) reject(error);
+      else resolve(value);
+    };
+    timer = setTimeout(() => {
+      finish(new Error(`timeout h2 ${port}`), null);
+    }, 3000);
+    session.once('error', (error) => {
+      finish(error, null);
+    });
+    const req = session.request(headers);
+    const chunks = [];
+    let status = 0;
+    req.on('response', (head) => {
+      status = head[':status'] ?? 0;
+    });
+    req.on('data', (chunk) => {
+      chunks.push(chunk);
+    });
+    req.on('end', () => {
+      const body = Buffer.concat(chunks).toString();
+      finish(null, { status, body });
+    });
+    req.once('error', (error) => {
+      finish(error, null);
+    });
+    if (payload) req.end(payload);
+    else req.end();
+  });
+
+const WS_TEXT = 0x1;
+const WS_CLOSE = 0x8;
+
+const maskText = (text) => {
+  const payload = Buffer.from(text);
+  const length = payload.length;
+  const mask = crypto.randomBytes(4);
+  const header = Buffer.alloc(6);
+  header[0] = 0x81;
+  header[1] = 0x80 | length;
+  mask.copy(header, 2);
+  const masked = Buffer.alloc(length);
+  for (let i = 0; i < length; i++) {
+    masked[i] = payload[i] ^ mask[i % 4];
+  }
+  return Buffer.concat([header, masked]);
+};
+
+const nextFrame = (buffer) => {
+  if (buffer.length < 2) return null;
+  const opcode = buffer[0] & 0x0f;
+  let length = buffer[1] & 0x7f;
+  let offset = 2;
+  if (length === 126) {
+    if (buffer.length < 4) return null;
+    length = buffer.readUInt16BE(2);
+    offset = 4;
+  }
+  const end = offset + length;
+  if (buffer.length < end) return null;
+  const payload = buffer.subarray(offset, end);
+  return { opcode, end, payload };
+};
+
+const parsePacket = (text) => {
+  try {
+    return { packet: JSON.parse(text), error: null };
+  } catch (error) {
+    return { packet: null, error };
+  }
+};
+
+const takeText = (buffer) => {
+  let offset = 0;
+  while (offset < buffer.length) {
+    const frame = nextFrame(buffer.subarray(offset));
+    if (!frame) return null;
+    offset += frame.end;
+    if (frame.opcode === WS_TEXT) return frame.payload.toString();
+    if (frame.opcode === WS_CLOSE) return '';
+  }
+  return null;
+};
+
+const wsCall = (port, packet) =>
+  new Promise((resolve, reject) => {
+    const key = crypto.randomBytes(16).toString('base64');
+    const socket = tls.connect({
+      host: '127.0.0.1',
+      port,
+      servername: 'localhost',
+      rejectUnauthorized: false,
+      ALPNProtocols: ['http/1.1'],
+    });
+    let settled = false;
+    let upgraded = false;
+    let pending = Buffer.alloc(0);
+    let timer = null;
+    const finish = (error, value) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      socket.destroy();
+      if (error) reject(error);
+      else resolve(value);
+    };
+    timer = setTimeout(() => {
+      finish(new Error(`timeout websocket ${port}`), null);
+    }, 3000);
+    socket.once('secureConnect', () => {
+      const lines = [
+        'GET / HTTP/1.1',
+        'Host: localhost',
+        'Upgrade: websocket',
+        'Connection: Upgrade',
+        `Sec-WebSocket-Key: ${key}`,
+        'Sec-WebSocket-Version: 13',
+        '',
+        '',
+      ];
+      socket.write(lines.join('\r\n'));
+    });
+    socket.on('data', (chunk) => {
+      pending = Buffer.concat([pending, chunk]);
+      if (!upgraded) {
+        const splitAt = pending.indexOf('\r\n\r\n');
+        if (splitAt < 0) return;
+        const header = pending.subarray(0, splitAt).toString();
+        pending = pending.subarray(splitAt + 4);
+        const switching = header.startsWith('HTTP/1.1 101');
+        if (!switching) {
+          finish(new Error(header), null);
+          return;
+        }
+        upgraded = true;
+        socket.write(maskText(JSON.stringify(packet)));
+      }
+      const text = takeText(pending);
+      if (text === null) return;
+      if (!text) {
+        finish(new Error('websocket closed'), null);
+        return;
+      }
+      const parsed = parsePacket(text);
+      if (parsed.error) {
+        finish(parsed.error, null);
+        return;
+      }
+      finish(null, { status: 101, packet: parsed.packet });
+    });
+    socket.once('error', (error) => {
+      finish(error, null);
+    });
+  });
+
+test('server groups - one tls port serves h2 and websocket', async () => {
+  const port = await reservePort();
+  const source = tlsGroup(port);
+  await withApp(
+    source,
+    async (read) => {
+      const file = await readH2(port, { ':path': '/hello.txt' });
+      assert.strictEqual(file.status, 200, file.body);
+      assert.strictEqual(file.body, 'hello\n', plain(read()));
+      const headers = {
+        ':method': 'POST',
+        ':path': '/api/math/add',
+        'content-type': 'application/json',
+      };
+      const payload = JSON.stringify({ a: 2, b: 3 });
+      const posted = await readH2(port, headers, payload);
+      const api = JSON.parse(posted.body);
+      assert.strictEqual(api.type, 'callback', posted.body);
+      assert.strictEqual(api.result, 5, posted.body);
+      const call = {
+        type: 'call',
+        id: '1',
+        method: 'math/add',
+        args: { a: 2, b: 3 },
+      };
+      const ws = await wsCall(port, call);
+      assert.strictEqual(ws.status, 101, plain(read()));
+      assert.strictEqual(ws.packet.type, 'callback');
+      assert.strictEqual(ws.packet.id, '1');
+      assert.strictEqual(ws.packet.result, 5);
+    },
+    { prepare: prepareApi },
   );
 });
