@@ -16,7 +16,7 @@ const application = {
   absolute(relative) {
     return path.join(this.path, relative);
   },
-  config: { server: { timeouts: {} } },
+  config: { network: { timeouts: {} } },
 };
 
 test('lib/api load - should load API correctly', async () => {

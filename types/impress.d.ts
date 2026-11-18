@@ -32,6 +32,10 @@ import {
   LogConfig,
   ScaleConfig,
   ServerConfig,
+  NetworkConfig,
+  LifecycleConfig,
+  SchedulerConfig,
+  WorkersConfig,
   SessionsConfig,
   CacheConfig,
 } from './config';
@@ -53,6 +57,10 @@ declare global {
     const log: LogConfig;
     const scale: ScaleConfig;
     const server: ServerConfig;
+    const network: NetworkConfig;
+    const lifecycle: LifecycleConfig;
+    const scheduler: SchedulerConfig;
+    const workers: WorkersConfig;
     const sessions: SessionsConfig;
     const cache: CacheConfig;
   }

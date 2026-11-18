@@ -9,11 +9,12 @@ const path = require('node:path');
 const { Config } = require('metaconfiguration');
 const metavm = require('metavm');
 const { Pool, isError } = require('metautil');
-const { loadSchema } = require('metaschema');
 const { Logger } = require('metalog');
-const { Planner } = require('./lib/planner.js');
 
-const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
+const { Planner } = require('./lib/planner.js');
+const configLib = require('./lib/config.js');
+const { collectConfigErrors, loadProviders, planThreads } = configLib;
+
 const PATH = process.cwd();
 const WORKER_PATH = path.join(__dirname, 'lib/worker.js');
 const REPORTER_PATH = `file://${path.join(__dirname, 'lib/reporter.js')}`;
@@ -59,8 +60,8 @@ const broadcast = (app, data) => {
   }
 };
 
-const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
-  const workerData = { id, kind, root: app.root, path: app.path, port };
+const startWorker = async (app, kind, thread, id = ++impress.lastWorkerId) => {
+  const workerData = { id, kind, root: app.root, path: app.path, thread };
   const execArgv = [...process.execArgv, `--test-reporter=${REPORTER_PATH}`];
   const options = { trackUnmanagedFds: true, workerData, execArgv };
   const worker = new Worker(WORKER_PATH, options);
@@ -75,7 +76,7 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   });
 
   worker.on('exit', (code) => {
-    if (code !== 0) startWorker(app, kind, port, id);
+    if (code !== 0) startWorker(app, kind, thread, id);
     else app.threads.delete(id);
     if (impress.initialization) exit('Can not start Application server', 1);
     if (app.threads.size === 0) {
@@ -142,30 +143,15 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   });
 };
 
-let configSchemas = null;
-
-const loadConfigSchemas = () => {
-  const schemaPath = path.join(__dirname, 'schemas/config');
-  const load = (section) => loadSchema(path.join(schemaPath, `${section}.js`));
-  return Promise.all(CONFIG_SECTIONS.map(load));
-};
-
-const validateConfig = async (config) => {
-  let valid = true;
-  if (!configSchemas) configSchemas = loadConfigSchemas();
-  const schemas = await configSchemas;
-  for (let i = 0; i < CONFIG_SECTIONS.length; i++) {
-    const section = CONFIG_SECTIONS[i];
-    const checkResult = schemas[i].check(config[section]);
-    if (!checkResult.valid) {
-      for (const error of checkResult.errors) {
-        const loc = `application/config/${section}.js`;
-        impress.console.error(`${error} in ${loc}`);
-      }
-      valid = false;
-    }
+const validateConfig = async (config, discovered) => {
+  const root = __dirname;
+  const messages = await collectConfigErrors(config, root, discovered);
+  for (let i = 0; i < messages.length; i++) {
+    impress.console.error(messages[i]);
   }
-  if (!valid) exit('Application server configuration is invalid', 1);
+  if (messages.length > 0) {
+    await exit('Application server configuration is invalid', 1);
+  }
 };
 
 const loadApplication = async (root, dir, master) => {
@@ -175,29 +161,36 @@ const loadApplication = async (root, dir, master) => {
     const { stack } = error;
     exit(`Can not read configuration: ${configPath}\n${stack}`, 1);
   });
-  await validateConfig(config);
+  const discovered = loadProviders(PATH);
+  await validateConfig(config, discovered);
   if (master) {
     impress.startTimer = setTimeout(
       logError('Initialization timeout'),
-      config.server.timeouts.start,
+      config.lifecycle.start,
     );
     const logger = await new Logger({ ...LOG_OPTIONS, ...config.log });
     logger.on('error', logError('Logger'));
     if (logger.active) impress.console = logger.console;
     impress.logger = logger;
     const tasksPath = path.join(dir, 'tasks');
-    const tasksConfig = config.server.scheduler;
+    const tasksConfig = config.scheduler;
     impress.planner = await new Planner(tasksPath, tasksConfig, impress);
     impress.config = config;
   }
-  const { balancer, ports = [], workers = {} } = config.server;
+  const workers = config.workers;
   const threads = new Map();
   const pool = new Pool({ timeout: workers.wait });
   const app = { root, path: dir, config, threads, pool, ready: 0 };
-  if (balancer) await startWorker(app, 'balancer', balancer);
-  for (const port of ports) await startWorker(app, 'server', port);
+  const known = discovered.providers;
+  const planned = planThreads(config.server, config.network, known);
+  for (let i = 0; i < planned.length; i++) {
+    const thread = planned[i];
+    const front = thread.balance || thread.redirect;
+    const kind = front ? 'balancer' : 'server';
+    await startWorker(app, kind, thread);
+  }
   const poolSize = workers.pool || 0;
-  for (let i = 0; i < poolSize; i++) await startWorker(app, 'worker');
+  for (let i = 0; i < poolSize; i++) await startWorker(app, 'worker', null);
   impress.applications.set(dir, app);
 };
 
@@ -226,7 +219,7 @@ const stop = async (signal = 'SIGINT', code = 0) => {
     const timeout = setTimeout(() => {
       impress.console.error('Exit with graceful shutdown timeout');
       resolve();
-    }, impress.config.server.timeouts.stop);
+    }, impress.config.lifecycle.stop);
     impress.close = () => {
       clearTimeout(timeout);
       resolve();

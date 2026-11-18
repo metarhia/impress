@@ -15,38 +15,62 @@ export interface ScaleConfig {
   gc: number;
 }
 
+export type HttpProtocol = 'http/1.1' | 'h2';
+
+export type Transport = 'tcp' | 'udp';
+
+export interface ServerGroup {
+  host?: string;
+  ports: Array<number | Array<number>>;
+  transports?: Array<Transport>;
+  protocols: Array<HttpProtocol>;
+  tls?: boolean;
+  domains?: Array<string>;
+  application?: boolean;
+  balance?: string;
+  redirect?: string;
+  nagle?: boolean;
+  timeouts?: NetworkConfig['timeouts'];
+  queue?: NetworkConfig['queue'];
+  cors?: {
+    origin?: string;
+  };
+}
+
 export interface ServerConfig {
-  host: string;
-  balancer: number;
-  protocol: 'http' | 'https';
-  ports: Array<number>;
+  [name: string]: ServerGroup;
+}
+
+export interface NetworkConfig {
   nagle: boolean;
   timeouts: {
     bind: number;
-    start: number;
-    stop: number;
     request: number;
-    watch: number;
-    test: number;
   };
   queue: {
     concurrency: number;
     size: number;
     timeout: number;
   };
-  scheduler: {
-    concurrency: number;
-    size: number;
-    timeout: number;
-  };
-  workers: {
-    pool: number;
-    wait: number;
-    timeout: number;
-  };
-  cors?: {
-    origin: string;
-  };
+}
+
+export interface LifecycleConfig {
+  start: number;
+  stop: number;
+  watch: number;
+  test: number;
+}
+
+export interface SchedulerConfig {
+  concurrency?: number;
+  size?: number;
+  timeout?: number;
+}
+
+export interface WorkersConfig {
+  pool: number;
+  wait: number;
+  timeout: number;
 }
 
 export interface CacheConfig {
