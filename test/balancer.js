@@ -49,6 +49,53 @@ test('lib/balancer - close should be no-op when not listening', async () => {
   await assert.doesNotReject(() => balancer.close());
 });
 
+const readHttp = (port, method, host, route) =>
+  new Promise((resolve, reject) => {
+    const headers = { Host: host, Connection: 'close' };
+    const options = {
+      hostname: '127.0.0.1',
+      port,
+      method,
+      path: route,
+      headers,
+    };
+    const req = http.request(options, (res) => {
+      const chunks = [];
+      res.on('data', (chunk) => {
+        chunks.push(chunk);
+      });
+      res.on('end', () => {
+        const body = Buffer.concat(chunks).toString();
+        const status = res.statusCode;
+        const location = res.headers.location ?? '';
+        resolve({ status, location, body });
+      });
+    });
+    req.on('error', reject);
+    req.end();
+  });
+
+test('lib/balancer - https redirect answers 301 without a body', async () => {
+  const options = makeOptions(0);
+  options.redirect = 'https';
+  const balancer = new Balancer({ console: mockConsole }, options);
+  await balancer.listen();
+  try {
+    const address = balancer.httpServer.address();
+    const port = typeof address === 'object' ? address.port : 0;
+    const posted = await readHttp(port, 'POST', 'xxii.chat:444', '/room');
+    assert.strictEqual(posted.status, 301);
+    assert.strictEqual(posted.location, 'https://xxii.chat:444/room');
+    assert.strictEqual(posted.body, '');
+    const got = await readHttp(port, 'GET', 'xxii.chat', '/room?x=1');
+    assert.strictEqual(got.status, 301);
+    assert.strictEqual(got.location, 'https://xxii.chat/room?x=1');
+    assert.strictEqual(got.body, '');
+  } finally {
+    await balancer.close();
+  }
+});
+
 const NON_EADDRINUSE = 'lib/balancer - listen rejects on non-EADDRINUSE error';
 test(NON_EADDRINUSE, async () => {
   const balancer = new Balancer({ console: mockConsole }, makeOptions());

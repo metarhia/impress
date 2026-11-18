@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+- Breaking: server.js host, ports, protocol, balancer, nagle, timeouts,
+  queue, scheduler, workers, and cors moved to the new files and to groups
+
 ## [3.1.2][] - 2025-09-29
 
 - Fix worker: invoke handler for scheduler

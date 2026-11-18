@@ -20,6 +20,18 @@ test('schemas/config - should validate config schemas correctly', async () => {
   const server = await loadSchema('./schemas/config/server.js');
   assert.strictEqual(server.check(config.server).valid, true);
 
+  const network = await loadSchema('./schemas/config/network.js');
+  assert.strictEqual(network.check(config.network).valid, true);
+
+  const lifecycle = await loadSchema('./schemas/config/lifecycle.js');
+  assert.strictEqual(lifecycle.check(config.lifecycle).valid, true);
+
+  const scheduler = await loadSchema('./schemas/config/scheduler.js');
+  assert.strictEqual(scheduler.check(config.scheduler).valid, true);
+
+  const workers = await loadSchema('./schemas/config/workers.js');
+  assert.strictEqual(workers.check(config.workers).valid, true);
+
   const sessions = await loadSchema('./schemas/config/sessions.js');
   assert.strictEqual(sessions.check(config.sessions).valid, true);
 });
