@@ -32,7 +32,7 @@ test('lib/cert - should load certificates correctly', async () => {
   let cert = new Cert('cert', application, { ext: ['pem'] });
   await cert.load();
   assert.strictEqual(cert.files.size, 3);
-  assert.strictEqual(cert.domains.size, 5);
+  assert.strictEqual(cert.domains.size, 7);
 
   const selfPem = path.join(certPath, 'self.pem');
   const keyPem = path.join(certPath, 'key.pem');
@@ -41,4 +41,20 @@ test('lib/cert - should load certificates correctly', async () => {
   await cert.load();
   assert.strictEqual(cert.files.size, 3);
   assert.strictEqual(cert.domains.size, 0);
+});
+
+test('lib/cert - exact name wins over a wildcard', () => {
+  const cert = new Cert('cert', application, { ext: ['pem'] });
+  const exact = { creds: { name: 'exact' } };
+  const wild = { creds: { name: 'wild' } };
+  const rooted = { creds: { name: 'rooted' } };
+  cert.domains.set('*.example.com', wild);
+  cert.domains.set('.example.com', rooted);
+  cert.domains.set('api.example.com', exact);
+  assert.strictEqual(cert.contextFor('api.example.com'), exact);
+  assert.strictEqual(cert.contextFor('API.EXAMPLE.COM.'), exact);
+  assert.strictEqual(cert.contextFor('www.example.com'), wild);
+  assert.strictEqual(cert.contextFor('a.b.example.com'), rooted);
+  assert.strictEqual(cert.contextFor('example.com'), rooted);
+  assert.strictEqual(cert.contextFor('notexample.com'), null);
 });

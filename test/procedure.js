@@ -13,7 +13,7 @@ const createApplication = (timeouts = {}) => ({
     async enter() {},
     leave() {},
   },
-  config: { server: { timeouts } },
+  config: { network: { timeouts } },
 });
 
 const delayed = async ({ waitTime }) => {

@@ -91,6 +91,25 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 - **File utilities**: upload, download, support for partial content and streaming
 - **Task Management**: scheduled task execution at specific intervals or certain times
 
+## Configuration
+
+Application settings are files in `application/config`: `network.js`,
+`lifecycle.js`, `scheduler.js`, `workers.js`, and `server.js`.
+
+`server.js` holds server groups. Each `ports` entry is one thread, and an
+entry may be an array of ports. `protocols` are ALPN ids. `http/1.1` and `h2`
+come from metacom. Other protocols come from a dependency `metarhia.protocols`
+field. `balance` and `redirect` are group fields.
+
+## Threads
+
+Every thread talks to the main thread over its own metacom link: a
+`MetacomPeer` on a MessagePort, where packets travel as objects. The main
+thread serves `thread` (start and test exit), `planner` (scheduler tasks),
+and `pool` (`application.invoke`, routed to a pool worker and released when
+the call settles); threads serve `thread/stop` and, with application code,
+`pool/run`. A `thread/ready` event tells threads that all of them started.
+
 ## TODO list
 
 Those features will be implemented in nearest future (3-6 months):

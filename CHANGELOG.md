@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+- Threads talk to the main thread over metacom links (`MetacomPeer` on a
+  MessagePort per thread) instead of private `parentPort` messages:
+  lifecycle, scheduler, and `application.invoke`; errors keep their `code`
+- Failed application tests exit with code 1; SIGINT and SIGTERM exit with
+  code 0
+- Index IP addresses from a certificate, and apply certificate folders in
+  sorted order so one name keeps a stable certificate
+- Breaking: server.js host, ports, protocol, balancer, nagle, timeouts,
+  queue, scheduler, workers, and cors moved to the new files and to groups
+
 ## [3.1.2][] - 2025-09-29
 
 - Fix worker: invoke handler for scheduler

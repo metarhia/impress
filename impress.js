@@ -3,22 +3,25 @@
 process.title = 'impress';
 
 const fsp = require('node:fs').promises;
-const { Worker } = require('node:worker_threads');
+const { Worker, MessageChannel } = require('node:worker_threads');
 const path = require('node:path');
 
 const { Config } = require('metaconfiguration');
 const metavm = require('metavm');
 const { Pool, isError } = require('metautil');
-const { loadSchema } = require('metaschema');
 const { Logger } = require('metalog');
-const { Planner } = require('./lib/planner.js');
+const { MetacomPeer } = require('metacom');
 
-const CONFIG_SECTIONS = ['log', 'scale', 'server', 'sessions'];
+const { Planner } = require('./lib/planner.js');
+const configLib = require('./lib/config.js');
+const { collectConfigErrors, loadProviders, planThreads } = configLib;
+
 const PATH = process.cwd();
 const WORKER_PATH = path.join(__dirname, 'lib/worker.js');
 const REPORTER_PATH = `file://${path.join(__dirname, 'lib/reporter.js')}`;
 const LOG_PATH = path.join(PATH, 'log');
 const CTRL_C = 3;
+const LINK_MARGIN_MS = 1000;
 const LOG_OPTIONS = { path: LOG_PATH, home: PATH, workerId: 0 };
 const CONTEXT = metavm.createContext({ process });
 const CFG_OPTIONS = { mode: process.env.MODE, context: CONTEXT };
@@ -53,17 +56,68 @@ const logError = (type) => (caught) => {
   if (impress.initialization) exit('Can not start Application server', 1);
 };
 
-const broadcast = (app, data) => {
-  for (const thread of app.threads.values()) {
-    thread.postMessage(data);
+const sendAll = (app, unit, name, data) => {
+  for (const link of app.links.values()) link.send(unit, name, data);
+};
+
+const runOnPool = async (app, request) => {
+  const exclusive = request.exclusive === true;
+  const waiting = exclusive ? app.pool.capture() : app.pool.next();
+  const worker = await waiting.catch(() => null);
+  if (!worker) throw new Error('No thread available');
+  const link = app.links.get(worker);
+  const call = { method: request.method, args: request.args };
+  const timeout = app.config.workers.timeout + LINK_MARGIN_MS;
+  try {
+    return await link.call('pool', 'run', call, { timeout });
+  } finally {
+    if (exclusive) app.pool.release(worker);
   }
 };
 
-const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
-  const workerData = { id, kind, root: app.root, path: app.path, port };
+const threadUnits = (app, worker) => ({
+  thread: {
+    started: async ({ kind }) => {
+      app.ready++;
+      if (kind === 'worker') app.pool.release(worker);
+      if (app.threads.size !== app.ready) return;
+      clearTimeout(impress.startTimer);
+      impress.initialization = false;
+      impress.console.info(`App started: ${app.path}`);
+      sendAll(app, 'thread', 'ready', {});
+    },
+    terminate: async ({ code }) => {
+      process.emit('TERMINATE', code);
+    },
+  },
+  planner: {
+    add: (task) => impress.planner.add({ ...task, app: app.path }),
+    remove: ({ id }) => impress.planner.remove(id),
+    stop: ({ name }) => impress.planner.stop(name),
+  },
+  pool: {
+    invoke: (request) => runOnPool(app, request),
+  },
+});
+
+const startWorker = async (app, kind, thread, id = ++impress.lastWorkerId) => {
+  const { port1, port2 } = new MessageChannel();
+  const { root } = app;
+  const workerData = { id, kind, root, path: app.path, thread, port: port2 };
   const execArgv = [...process.execArgv, `--test-reporter=${REPORTER_PATH}`];
-  const options = { trackUnmanagedFds: true, workerData, execArgv };
+  const transferList = [port2];
+  const trackUnmanagedFds = true;
+  const options = { trackUnmanagedFds, workerData, execArgv, transferList };
   const worker = new Worker(WORKER_PATH, options);
+  const link = new MetacomPeer({ port: port1 });
+  const units = threadUnits(app, worker);
+  const names = Object.keys(units);
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+    link.register(name, units[name]);
+  }
+  await link.open();
+  app.links.set(worker, link);
   if (kind === 'worker') {
     app.pool.add(worker);
     await app.pool.capture();
@@ -75,7 +129,9 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
   });
 
   worker.on('exit', (code) => {
-    if (code !== 0) startWorker(app, kind, port, id);
+    app.links.delete(worker);
+    link.close();
+    if (code !== 0) startWorker(app, kind, thread, id);
     else app.threads.delete(id);
     if (impress.initialization) exit('Can not start Application server', 1);
     if (app.threads.size === 0) {
@@ -83,89 +139,17 @@ const startWorker = async (app, kind, port, id = ++impress.lastWorkerId) => {
       if (impress.applications.size === 0) impress.close();
     }
   });
-
-  const handlers = {
-    started: ({ kind }) => {
-      app.ready++;
-      if (kind === 'worker') app.pool.release(worker);
-      if (app.threads.size === app.ready) {
-        clearTimeout(impress.startTimer);
-        impress.initialization = false;
-        impress.console.info(`App started: ${app.path}`);
-        broadcast(app, { name: 'ready' });
-      }
-    },
-
-    task: async ({ action, port, task }) => {
-      if (action === 'add') {
-        const record = { ...task, app: app.path };
-        const id = await impress.planner.add(record);
-        port.postMessage({ id });
-      } else if (action === 'remove') {
-        await impress.planner.remove(task.id);
-      } else if (action === 'stop') {
-        await impress.planner.stop(task.name);
-      }
-    },
-
-    invoke: async (msg) => {
-      const { from, to, exclusive } = msg;
-      if (to) {
-        const back = app.threads.get(to);
-        return void back.postMessage(msg);
-      }
-      const promised = exclusive ? app.pool.capture() : app.pool.next();
-      const { data } = msg;
-      const next = await promised.catch(() => {
-        const error = { message: 'No thread available' };
-        const back = app.threads.get(from);
-        const payload = { id: data.id, status: 'error', error };
-        back.postMessage({ name: 'invoke', to: from, data: payload });
-        return null;
-      });
-      if (!next) return;
-      next.postMessage(msg);
-    },
-
-    release: () => {
-      app.pool.release(worker);
-    },
-
-    terminate: ({ code }) => {
-      process.emit('TERMINATE', code);
-    },
-  };
-
-  worker.on('message', (msg) => {
-    const handler = handlers[msg.name];
-    if (handler) handler(msg);
-  });
 };
 
-let configSchemas = null;
-
-const loadConfigSchemas = () => {
-  const schemaPath = path.join(__dirname, 'schemas/config');
-  const load = (section) => loadSchema(path.join(schemaPath, `${section}.js`));
-  return Promise.all(CONFIG_SECTIONS.map(load));
-};
-
-const validateConfig = async (config) => {
-  let valid = true;
-  if (!configSchemas) configSchemas = loadConfigSchemas();
-  const schemas = await configSchemas;
-  for (let i = 0; i < CONFIG_SECTIONS.length; i++) {
-    const section = CONFIG_SECTIONS[i];
-    const checkResult = schemas[i].check(config[section]);
-    if (!checkResult.valid) {
-      for (const error of checkResult.errors) {
-        const loc = `application/config/${section}.js`;
-        impress.console.error(`${error} in ${loc}`);
-      }
-      valid = false;
-    }
+const validateConfig = async (config, discovered) => {
+  const root = __dirname;
+  const messages = await collectConfigErrors(config, root, discovered);
+  for (let i = 0; i < messages.length; i++) {
+    impress.console.error(messages[i]);
   }
-  if (!valid) exit('Application server configuration is invalid', 1);
+  if (messages.length > 0) {
+    await exit('Application server configuration is invalid', 1);
+  }
 };
 
 const loadApplication = async (root, dir, master) => {
@@ -175,29 +159,37 @@ const loadApplication = async (root, dir, master) => {
     const { stack } = error;
     exit(`Can not read configuration: ${configPath}\n${stack}`, 1);
   });
-  await validateConfig(config);
+  const discovered = loadProviders(PATH);
+  await validateConfig(config, discovered);
   if (master) {
     impress.startTimer = setTimeout(
       logError('Initialization timeout'),
-      config.server.timeouts.start,
+      config.lifecycle.start,
     );
     const logger = await new Logger({ ...LOG_OPTIONS, ...config.log });
     logger.on('error', logError('Logger'));
     if (logger.active) impress.console = logger.console;
     impress.logger = logger;
     const tasksPath = path.join(dir, 'tasks');
-    const tasksConfig = config.server.scheduler;
+    const tasksConfig = config.scheduler;
     impress.planner = await new Planner(tasksPath, tasksConfig, impress);
     impress.config = config;
   }
-  const { balancer, ports = [], workers = {} } = config.server;
+  const workers = config.workers;
   const threads = new Map();
   const pool = new Pool({ timeout: workers.wait });
-  const app = { root, path: dir, config, threads, pool, ready: 0 };
-  if (balancer) await startWorker(app, 'balancer', balancer);
-  for (const port of ports) await startWorker(app, 'server', port);
+  const links = new Map();
+  const app = { root, path: dir, config, threads, pool, links, ready: 0 };
+  const known = discovered.providers;
+  const planned = planThreads(config.server, config.network, known);
+  for (let i = 0; i < planned.length; i++) {
+    const thread = planned[i];
+    const front = thread.balance || thread.redirect;
+    const kind = front ? 'balancer' : 'server';
+    await startWorker(app, kind, thread);
+  }
   const poolSize = workers.pool || 0;
-  for (let i = 0; i < poolSize; i++) await startWorker(app, 'worker');
+  for (let i = 0; i < poolSize; i++) await startWorker(app, 'worker', null);
   impress.applications.set(dir, app);
 };
 
@@ -226,14 +218,17 @@ const stop = async (signal = 'SIGINT', code = 0) => {
     const timeout = setTimeout(() => {
       impress.console.error('Exit with graceful shutdown timeout');
       resolve();
-    }, impress.config.server.timeouts.stop);
+    }, impress.config.lifecycle.stop);
     impress.close = () => {
       clearTimeout(timeout);
       resolve();
     };
   });
   for (const app of impress.applications.values()) {
-    broadcast(app, { name: 'stop' });
+    for (const link of app.links.values()) {
+      const stopping = link.call('thread', 'stop');
+      stopping.catch(() => undefined);
+    }
   }
   await portsClosed;
   exit(`Application server stopped by ${signal}`, code);
@@ -243,9 +238,9 @@ process.removeAllListeners('warning');
 process.on('warning', logError('warning'));
 process.on('uncaughtException', logError('Uncaught exception'));
 process.on('unhandledRejection', logError('Unhandled rejection'));
-process.on('SIGINT', stop);
-process.on('SIGTERM', stop);
-process.on('TERMINATE', stop);
+process.on('SIGINT', () => stop('SIGINT'));
+process.on('SIGTERM', () => stop('SIGTERM'));
+process.on('TERMINATE', (code) => stop('TERMINATE', code));
 
 if (process.stdin.isTTY) {
   process.stdin.setRawMode(true);

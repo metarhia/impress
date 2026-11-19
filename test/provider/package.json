@@ -1,0 +1,8 @@
+{
+  "name": "fixture-provider",
+  "version": "1.0.0",
+  "main": "index.js",
+  "metarhia": {
+    "protocols": ["stun.turn"]
+  }
+}

@@ -32,11 +32,14 @@ import {
   LogConfig,
   ScaleConfig,
   ServerConfig,
+  NetworkConfig,
+  LifecycleConfig,
+  SchedulerConfig,
+  WorkersConfig,
   SessionsConfig,
   CacheConfig,
 } from './config';
 import { Application, Context } from './core';
-import * as _ws from 'ws';
 import * as _config from 'metaconfiguration';
 import * as _metautil from 'metautil';
 import * as _metavm from 'metavm';
@@ -54,6 +57,10 @@ declare global {
     const log: LogConfig;
     const scale: ScaleConfig;
     const server: ServerConfig;
+    const network: NetworkConfig;
+    const lifecycle: LifecycleConfig;
+    const scheduler: SchedulerConfig;
+    const workers: WorkersConfig;
     const sessions: SessionsConfig;
     const cache: CacheConfig;
   }
@@ -105,7 +112,5 @@ declare global {
     const dgram: typeof _dgram;
   }
 
-  namespace npm {
-    const ws: typeof _ws;
-  }
+  namespace npm {}
 }
