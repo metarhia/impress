@@ -23,7 +23,9 @@
 
   sizeToBytes(size) {
     if (typeof size === 'number') return size;
-    const [num, unit] = size.toLowerCase().split(' ');
+    const parts = size.toLowerCase().split(' ');
+    const num = parts[0];
+    const unit = parts[1];
     const exp = this.UNIT_SIZES[unit];
     const value = parseInt(num, 10);
     if (!exp) return value;

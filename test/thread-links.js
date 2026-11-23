@@ -104,8 +104,12 @@ const LINKS_TEST = `({
     let ticked = false;
     for (let i = 0; i < 50 && !ticked; i++) {
       await metarhia.metautil.delay(100);
-      const checking = node.fs.promises.access(file);
-      ticked = await checking.then(() => true, () => false);
+      try {
+        await node.fs.promises.access(file);
+        ticked = true;
+      } catch {
+        // tick file is not written yet
+      }
     }
     assert.strictEqual(ticked, true);
     await application.scheduler.stop('fixture-tick');

@@ -46,7 +46,7 @@ for (const { name, compressType, length } of CASES) {
     const cache = new Static('lib', application, { compressType });
     assert.strictEqual(cache.files instanceof Map, true);
     assert.strictEqual(cache.files.size, 0);
-    assert.strictEqual(cache.ext, undefined);
+    assert.strictEqual(cache.ext, null);
     assert.strictEqual(cache.maxFileSize, -1);
     assert.strictEqual(cache.get('/example/add.js'), undefined);
 
@@ -56,7 +56,7 @@ for (const { name, compressType, length } of CASES) {
     assert.strictEqual(file.data instanceof Buffer, true);
     assert.strictEqual(file.data.length, length);
     assert.strictEqual(cache.get('/example/unknown.js'), undefined);
-    assert.strictEqual(cache.ext, undefined);
+    assert.strictEqual(cache.ext, null);
     assert.strictEqual(cache.maxFileSize, 10000000);
   });
 }

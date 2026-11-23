@@ -143,16 +143,15 @@ test('lib/procedure - should handle queue correctly', async () => {
   const application = createApplication();
 
   const rpc = async (proc, args) => {
-    let result;
     await proc.enter();
     try {
-      result = await proc.invoke({}, args);
+      const result = await proc.invoke({}, args);
+      proc.leave();
+      return result;
     } catch {
       const msg = 'Procedure.invoke failed. Check your script.method';
       throw new Error(msg);
     }
-    proc.leave();
-    return result;
   };
 
   const procedure = new Procedure(script, 'method', application);
