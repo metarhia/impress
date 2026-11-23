@@ -610,15 +610,6 @@ test('server groups - provider receives tcp and udp', async () => {
   }
 });
 
-const FIXTURES = path.join(
-  __dirname,
-  '..',
-  '..',
-  'metaice',
-  'test',
-  'fixtures',
-);
-
 const domainSource = (ports) => `({
   exact: {
     host: '127.0.0.1',
@@ -657,15 +648,6 @@ const domainSource = (ports) => `({
   },
 });
 `;
-
-const copyLocalCert = async (dir) => {
-  const target = path.join(dir, 'cert', 'localhost');
-  await fsp.mkdir(target, { recursive: true });
-  const keyFrom = path.join(FIXTURES, 'turn-key.pem');
-  const certFrom = path.join(FIXTURES, 'turn-cert.pem');
-  await fsp.copyFile(keyFrom, path.join(target, 'key.pem'));
-  await fsp.copyFile(certFrom, path.join(target, 'cert.pem'));
-};
 
 const writeNamedCert = async (dir, folder, name) => {
   const target = path.join(dir, 'cert', folder);
@@ -906,7 +888,7 @@ test('server groups - domains and wildcard certificates', async () => {
   const secure = await reservePort();
   const ports = { exact, wild, rooted, open, secure };
   const prepare = async (dir) => {
-    await copyLocalCert(dir);
+    await writeNamedCert(dir, 'localhost', 'localhost');
     await writeNamedCert(dir, 'wild', '*.example.com');
     await writeNamedCert(dir, 'api', 'api.example.com');
     const staticDir = path.join(dir, 'static');
@@ -979,7 +961,7 @@ const ADD = `({
 `;
 
 const prepareApi = async (dir) => {
-  await copyLocalCert(dir);
+  await writeNamedCert(dir, 'localhost', 'localhost');
   const staticDir = path.join(dir, 'static');
   await fsp.mkdir(staticDir);
   const hello = path.join(staticDir, 'hello.txt');

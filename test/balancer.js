@@ -99,12 +99,13 @@ test('lib/balancer - https redirect answers 301 without a body', async () => {
 const NON_EADDRINUSE = 'lib/balancer - listen rejects on non-EADDRINUSE error';
 test(NON_EADDRINUSE, async () => {
   const balancer = new Balancer({ console: mockConsole }, makeOptions());
-  balancer.httpServer.listen = function () {
+  balancer.httpServer.listen = () => {
     process.nextTick(() => {
-      const error = Object.assign(new Error('EACCES'), { code: 'EACCES' });
-      this.emit('error', error);
+      const error = new Error('EACCES');
+      error.code = 'EACCES';
+      balancer.httpServer.emit('error', error);
     });
-    return this;
+    return balancer.httpServer;
   };
   await assert.rejects(() => balancer.listen(), { code: 'EACCES' });
 });
