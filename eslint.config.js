@@ -22,4 +22,14 @@ module.exports = [
       },
     },
   },
+  {
+    files: ['test/fixtures/**/*.js'],
+    languageOptions: {
+      globals: {
+        DomainError: true,
+        metarhia: true,
+        node: true,
+      },
+    },
+  },
 ];

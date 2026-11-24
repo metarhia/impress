@@ -14,6 +14,7 @@ const path = require('node:path');
 const { spawn, execFileSync } = require('node:child_process');
 
 const { planThreads } = require('../lib/config.js');
+const { readFixture, toSection } = require('./section.js');
 
 const impress = path.join(__dirname, '..', 'impress.js');
 const SHARED = ['scale', 'network', 'lifecycle', 'scheduler', 'sessions'];
@@ -53,14 +54,14 @@ const reservePort = () =>
     });
   });
 
-const serverSource = (ports) => `({
-  api: {
-    host: '127.0.0.1',
-    ports: ${JSON.stringify(ports)},
-    protocols: ['http/1.1'],
-  },
-});
-`;
+const serverSource = (ports) =>
+  toSection({
+    api: {
+      host: '127.0.0.1',
+      ports,
+      protocols: ['http/1.1'],
+    },
+  });
 
 const writeApp = async (dir, source, options = {}) => {
   const configDir = path.join(dir, 'config');
@@ -90,22 +91,16 @@ const writeApp = async (dir, source, options = {}) => {
       path.join(configDir, `${name}.js`),
     );
   }
-  const log = `({
-  keepDays: 1,
-  writeInterval: 3000,
-  writeBuffer: 65536,
-  toStdout: ['error', 'warn', 'info'],
-  toFile: [],
-});
-`;
-  const workers = `({
-  pool: 0,
-  wait: 2000,
-  timeout: 5000,
-});
-`;
-  await fsp.writeFile(path.join(configDir, 'log.js'), log);
-  await fsp.writeFile(path.join(configDir, 'workers.js'), workers);
+  const log = {
+    keepDays: 1,
+    writeInterval: 3000,
+    writeBuffer: 65536,
+    toStdout: ['error', 'warn', 'info'],
+    toFile: [],
+  };
+  const workers = { pool: 0, wait: 2000, timeout: 5000 };
+  await fsp.writeFile(path.join(configDir, 'log.js'), toSection(log));
+  await fsp.writeFile(path.join(configDir, 'workers.js'), toSection(workers));
   await fsp.writeFile(path.join(configDir, 'server.js'), source);
   const sections = options.sections ?? null;
   if (!sections) return;
@@ -366,10 +361,7 @@ test('server groups - two ports entries are two threads', async () => {
 const PROVIDER = path.join(__dirname, 'provider');
 const PROVIDER_B = path.join(__dirname, 'provider-b');
 
-const PROVIDER_SECTION = `({
-  token: 'seen',
-});
-`;
+const PROVIDER_SECTION = toSection({ token: 'seen' });
 
 const linkProvider = () => ({
   dependencies: { 'fixture-provider': '1.0.0' },
@@ -387,15 +379,15 @@ const linkBoth = () => ({
   },
 });
 
-const groupSource = (ports, protocols) => `({
-  rtc: {
-    host: '127.0.0.1',
-    ports: ${JSON.stringify(ports)},
-    transports: ['tcp', 'udp'],
-    protocols: ${JSON.stringify(protocols)},
-  },
-});
-`;
+const groupSource = (ports, protocols) =>
+  toSection({
+    rtc: {
+      host: '127.0.0.1',
+      ports,
+      transports: ['tcp', 'udp'],
+      protocols,
+    },
+  });
 
 const spawnImpress = (dir) =>
   spawn(process.execPath, [impress], {
@@ -628,44 +620,44 @@ test('server groups - provider receives tcp and udp', async () => {
   }
 });
 
-const domainSource = (ports) => `({
-  exact: {
-    host: '127.0.0.1',
-    ports: [${ports.exact}],
-    protocols: ['http/1.1'],
-    domains: ['localhost'],
-  },
-  wild: {
-    host: '127.0.0.1',
-    ports: [${ports.wild}],
-    protocols: ['http/1.1'],
-    domains: ['*.example.com'],
-  },
-  rooted: {
-    host: '127.0.0.1',
-    ports: [${ports.rooted}],
-    protocols: ['http/1.1'],
-    domains: ['.example.com'],
-  },
-  open: {
-    host: '127.0.0.1',
-    ports: [${ports.open}],
-    protocols: ['http/1.1'],
-  },
-  secure: {
-    host: '127.0.0.1',
-    ports: [${ports.secure}],
-    protocols: ['http/1.1'],
-    tls: true,
-    domains: [
-      'localhost',
-      '*.example.com',
-      'api.example.com',
-      '.example.com',
-    ],
-  },
-});
-`;
+const domainSource = (ports) =>
+  toSection({
+    exact: {
+      host: '127.0.0.1',
+      ports: [ports.exact],
+      protocols: ['http/1.1'],
+      domains: ['localhost'],
+    },
+    wild: {
+      host: '127.0.0.1',
+      ports: [ports.wild],
+      protocols: ['http/1.1'],
+      domains: ['*.example.com'],
+    },
+    rooted: {
+      host: '127.0.0.1',
+      ports: [ports.rooted],
+      protocols: ['http/1.1'],
+      domains: ['.example.com'],
+    },
+    open: {
+      host: '127.0.0.1',
+      ports: [ports.open],
+      protocols: ['http/1.1'],
+    },
+    secure: {
+      host: '127.0.0.1',
+      ports: [ports.secure],
+      protocols: ['http/1.1'],
+      tls: true,
+      domains: [
+        'localhost',
+        '*.example.com',
+        'api.example.com',
+        '.example.com',
+      ],
+    },
+  });
 
 const writeNamedCert = async (dir, folder, name) => {
   const target = path.join(dir, 'cert', folder);
@@ -778,31 +770,31 @@ const expectUnrecognized = async (port, servername) => {
   assert.strictEqual(isUnrecognized(error), true, `${servername} ${error}`);
 };
 
-const balanceSource = (ports) => `({
-  edge: {
-    host: '127.0.0.1',
-    ports: [${ports.edge}],
-    protocols: ['http/1.1'],
-    balance: 'api',
-  },
-  api: {
-    host: '127.0.0.1',
-    ports: [${ports.left}, ${ports.right}],
-    protocols: ['http/1.1'],
-    tls: true,
-  },
-});
-`;
+const balanceSource = (ports) =>
+  toSection({
+    edge: {
+      host: '127.0.0.1',
+      ports: [ports.edge],
+      protocols: ['http/1.1'],
+      balance: 'api',
+    },
+    api: {
+      host: '127.0.0.1',
+      ports: [ports.left, ports.right],
+      protocols: ['http/1.1'],
+      tls: true,
+    },
+  });
 
-const redirectSource = (port) => `({
-  web: {
-    host: '127.0.0.1',
-    ports: [${port}],
-    protocols: ['http/1.1'],
-    redirect: 'https',
-  },
-});
-`;
+const redirectSource = (port) =>
+  toSection({
+    web: {
+      host: '127.0.0.1',
+      ports: [port],
+      protocols: ['http/1.1'],
+      redirect: 'https',
+    },
+  });
 
 test('server groups - balance chooses a port of the named group', async () => {
   const edge = await reservePort();
@@ -950,33 +942,18 @@ test('server groups - domains and wildcard certificates', async () => {
   );
 });
 
-const tlsGroup = (port) => `({
-  api: {
-    host: '127.0.0.1',
-    ports: [${port}],
-    protocols: ['h2', 'http/1.1'],
-    tls: true,
-    domains: ['localhost'],
-  },
-});
-`;
+const tlsGroup = (port) =>
+  toSection({
+    api: {
+      host: '127.0.0.1',
+      ports: [port],
+      protocols: ['h2', 'http/1.1'],
+      tls: true,
+      domains: ['localhost'],
+    },
+  });
 
-const ADD = `({
-  access: 'public',
-
-  parameters: {
-    a: 'number',
-    b: 'number',
-  },
-
-  method: async ({ a, b }) => {
-    const result = a + b;
-    return result;
-  },
-
-  returns: 'number',
-});
-`;
+const ADD = readFixture('groups/add.js');
 
 const prepareApi = async (dir) => {
   await writeNamedCert(dir, 'localhost', 'localhost');
