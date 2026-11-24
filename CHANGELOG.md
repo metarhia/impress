@@ -6,7 +6,8 @@
   MessagePort per thread) instead of private `parentPort` messages:
   lifecycle, scheduler, and `application.invoke`; errors keep their `code`
 - Failed application tests exit with code 1; SIGINT and SIGTERM exit with
-  code 0
+  code 0. On Windows, send `shutdown` over an IPC channel to take that
+  path; those signals terminate the process without running handlers
 - Index IP addresses from a certificate, and apply certificate folders in
   sorted order so one name keeps a stable certificate
 - Breaking: server.js host, ports, protocol, balancer, nagle, timeouts,
