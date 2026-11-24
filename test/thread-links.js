@@ -11,6 +11,19 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const IMPRESS = path.join(ROOT, 'impress.js');
 const SHARED = ['scale', 'network', 'lifecycle', 'scheduler', 'sessions'];
+const WIN = process.platform === 'win32';
+
+const requestStop = (child, signal) => {
+  if (typeof child.send !== 'function') {
+    child.kill(signal);
+    return;
+  }
+  const sent = child.send('shutdown', (error) => {
+    if (error) child.kill(signal);
+  });
+  if (!sent) child.kill(signal);
+};
+
 const ESC = String.fromCharCode(27);
 const ANSI = new RegExp(`${ESC}\\[[0-9;]*m`, 'g');
 const RUN_LIMIT_MS = 60000;
@@ -177,6 +190,7 @@ const plain = (text) => text.replace(ANSI, '');
 const spawnApp = (dir, mode) => {
   const env = { ...process.env, MODE: mode, NODE_TEST_CONTEXT: undefined };
   const stdio = ['ignore', 'pipe', 'pipe'];
+  if (WIN) stdio.push('ipc');
   return spawn(process.execPath, [IMPRESS], { cwd: dir, env, stdio });
 };
 
@@ -193,7 +207,7 @@ const collect = (child) => {
 const untilExit = (child) =>
   new Promise((resolve) => {
     const timer = setTimeout(() => child.kill('SIGKILL'), RUN_LIMIT_MS);
-    child.once('exit', (code) => {
+    child.once('close', (code) => {
       clearTimeout(timer);
       resolve(code);
     });
@@ -247,7 +261,7 @@ test('thread links - SIGTERM stops every thread over its link', async () => {
     const state = collect(child);
     await untilOutput(state, 'App started');
     const exiting = untilExit(child);
-    child.kill('SIGTERM');
+    requestStop(child, 'SIGTERM');
     const code = await exiting;
     const output = plain(state.output);
     assert.strictEqual(code, 0, output);
@@ -269,6 +283,10 @@ test('thread links - no impress messages on parentPort', async () => {
     if (!file.endsWith('.js')) continue;
     const source = await fsp.readFile(file, 'utf8');
     assert.ok(!source.includes('parentPort'), file);
-    assert.ok(!source.includes(`on('message'`), file);
+    const messages = countOf(source, `on('message'`);
+    const marker = `message === 'shutdown'`;
+    const shutdown = file === IMPRESS && source.includes(marker);
+    const allowed = shutdown ? 1 : 0;
+    assert.strictEqual(messages, allowed, file);
   }
 });

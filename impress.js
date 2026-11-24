@@ -242,6 +242,15 @@ process.on('SIGINT', () => stop('SIGINT'));
 process.on('SIGTERM', () => stop('SIGTERM'));
 process.on('TERMINATE', (code) => stop('TERMINATE', code));
 
+// Windows child.kill(SIGINT|SIGTERM) calls TerminateProcess and never
+// runs the handlers above. A parent can spawn with an IPC channel and
+// send 'shutdown' to take the same path.
+if (process.connected) {
+  process.on('message', (message) => {
+    if (message === 'shutdown') stop('SIGTERM');
+  });
+}
+
 if (process.stdin.isTTY) {
   process.stdin.setRawMode(true);
   process.stdin.on('data', (data) => {

@@ -17,6 +17,24 @@ const { planThreads } = require('../lib/config.js');
 
 const impress = path.join(__dirname, '..', 'impress.js');
 const SHARED = ['scale', 'network', 'lifecycle', 'scheduler', 'sessions'];
+const WIN = process.platform === 'win32';
+
+const childStdio = () => {
+  const stdio = ['ignore', 'pipe', 'pipe'];
+  if (WIN) stdio.push('ipc');
+  return stdio;
+};
+
+const requestStop = (child, signal) => {
+  if (typeof child.send !== 'function') {
+    child.kill(signal);
+    return;
+  }
+  const sent = child.send('shutdown', (error) => {
+    if (error) child.kill(signal);
+  });
+  if (!sent) child.kill(signal);
+};
 
 const network = {
   nagle: false,
@@ -179,11 +197,11 @@ const stopChild = (child) =>
     const timer = setTimeout(() => {
       child.kill('SIGKILL');
     }, 5000);
-    child.once('exit', () => {
+    child.once('close', () => {
       clearTimeout(timer);
       resolve();
     });
-    child.kill('SIGINT');
+    requestStop(child, 'SIGINT');
   });
 
 const readResponse = (port, method, host, route) =>
@@ -252,7 +270,7 @@ const withApp = async (source, check, options = {}) => {
     child = spawn(process.execPath, [impress], {
       cwd: dir,
       env: { ...process.env, MODE: 'prod' },
-      stdio: ['ignore', 'pipe', 'pipe'],
+      stdio: childStdio(),
     });
     const log = follow(child);
     await log.started;
@@ -383,7 +401,7 @@ const spawnImpress = (dir) =>
   spawn(process.execPath, [impress], {
     cwd: dir,
     env: { ...process.env, MODE: 'prod' },
-    stdio: ['ignore', 'pipe', 'pipe'],
+    stdio: childStdio(),
   });
 
 const runToExit = (dir) =>
