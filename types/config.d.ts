@@ -15,7 +15,8 @@ export interface ScaleConfig {
   gc: number;
 }
 
-export type HttpProtocol = 'http/1.1' | 'h2';
+export type Protocol =
+  'http/1.1' | 'h2' | 'stun.turn' | 'stun.nat-discovery' | (string & {});
 
 export type Transport = 'tcp' | 'udp';
 
