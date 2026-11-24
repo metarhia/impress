@@ -59,14 +59,14 @@
   "scripts": {
     "test": "npm run lint && npm run types && node --no-warnings --test",
     "types": "tsc -p types/tsconfig.json",
-    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\"",
-    "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
+    "lint": "eslint . && prettier --check \"**/*.{js,jsx,mjs,cjs,ts,tsx,json,md,mdx,yaml,yml}\"",
+    "fix": "eslint . --fix && prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,json,md,mdx,yaml,yml}\""
   },
   "engines": {
     "node": ">=22"
   },
   "dependencies": {
-    "metacom": "file:../..",
+    "metacom": "git+https://github.com/metarhia/metacom.git#master",
     "metaconfiguration": "^3.0.3",
     "metalog": "^3.1.18",
     "metaschema": "^2.2.2",
