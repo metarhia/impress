@@ -12,7 +12,7 @@ const { Pool, isError } = require('metautil');
 const { Logger } = require('metalog');
 const { MetacomPeer } = require('metacom');
 
-const { Planner } = require('./lib/planner.js');
+const { Planner, runOnPool } = require('./lib/planner.js');
 const configLib = require('./lib/config.js');
 const { collectConfigErrors, loadProviders, planThreads } = configLib;
 
@@ -21,7 +21,6 @@ const WORKER_PATH = path.join(__dirname, 'lib/worker.js');
 const REPORTER_PATH = `file://${path.join(__dirname, 'lib/reporter.js')}`;
 const LOG_PATH = path.join(PATH, 'log');
 const CTRL_C = 3;
-const LINK_MARGIN_MS = 1000;
 const LOG_OPTIONS = { path: LOG_PATH, home: PATH, workerId: 0 };
 const CONTEXT = metavm.createContext({ process });
 const CFG_OPTIONS = { mode: process.env.MODE, context: CONTEXT };
@@ -50,7 +49,7 @@ const exit = async (message, code) => {
 const logError = (type) => (caught) => {
   const error = isError(caught) ? caught : new Error('Unknown');
   if (error.name === 'ExperimentalWarning') return;
-  const msg = error?.stack || error?.message || 'exit';
+  const msg = error.stack || error.message || 'exit';
   impress.console.error(`${type}: ${msg}`);
   if (type === 'warning') return;
   if (impress.initialization) exit('Can not start Application server', 1);
@@ -60,24 +59,9 @@ const sendAll = (app, unit, name, data) => {
   for (const link of app.links.values()) link.send(unit, name, data);
 };
 
-const runOnPool = async (app, request) => {
-  const exclusive = request.exclusive === true;
-  const waiting = exclusive ? app.pool.capture() : app.pool.next();
-  const worker = await waiting.catch(() => null);
-  if (!worker) throw new Error('No thread available');
-  const link = app.links.get(worker);
-  const call = { method: request.method, args: request.args };
-  const timeout = app.config.workers.timeout + LINK_MARGIN_MS;
-  try {
-    return await link.call('pool', 'run', call, { timeout });
-  } finally {
-    if (exclusive) app.pool.release(worker);
-  }
-};
-
-const threadUnits = (app, worker) => ({
+const threadUnits = (app, worker, kind) => ({
   thread: {
-    started: async ({ kind }) => {
+    started: async () => {
       app.ready++;
       if (kind === 'worker') app.pool.release(worker);
       if (app.threads.size !== app.ready) return;
@@ -110,7 +94,7 @@ const startWorker = async (app, kind, thread, id = ++impress.lastWorkerId) => {
   const options = { trackUnmanagedFds, workerData, execArgv, transferList };
   const worker = new Worker(WORKER_PATH, options);
   const link = new MetacomPeer({ port: port1 });
-  const units = threadUnits(app, worker);
+  const units = threadUnits(app, worker, kind);
   const names = Object.keys(units);
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
@@ -152,14 +136,13 @@ const validateConfig = async (config, discovered) => {
   }
 };
 
-const loadApplication = async (root, dir, master) => {
+const loadApplication = async (dir, master, discovered) => {
   impress.console.info(`Start: ${dir}`);
   const configPath = path.join(dir, 'config');
   const config = await new Config(configPath, CFG_OPTIONS).catch((error) => {
     const { stack } = error;
     exit(`Can not read configuration: ${configPath}\n${stack}`, 1);
   });
-  const discovered = loadProviders(PATH);
   await validateConfig(config, discovered);
   if (master) {
     impress.startTimer = setTimeout(
@@ -179,7 +162,7 @@ const loadApplication = async (root, dir, master) => {
   const threads = new Map();
   const pool = new Pool({ timeout: workers.wait });
   const links = new Map();
-  const app = { root, path: dir, config, threads, pool, links, ready: 0 };
+  const app = { root: PATH, path: dir, config, threads, pool, links, ready: 0 };
   const known = discovered.providers;
   const planned = planThreads(config.server, config.network, known);
   for (let i = 0; i < planned.length; i++) {
@@ -204,11 +187,11 @@ const parseApplicationsFile = async () => {
 
 const loadApplications = async () => {
   const applications = await parseApplicationsFile();
-  let master = true;
-  for (const dir of applications) {
+  const discovered = loadProviders(PATH);
+  for (let i = 0; i < applications.length; i++) {
+    const dir = applications[i];
     const location = path.isAbsolute(dir) ? dir : path.join(PATH, dir);
-    await loadApplication(PATH, location, master);
-    if (master) master = false;
+    await loadApplication(location, i === 0, discovered);
   }
 };
 
